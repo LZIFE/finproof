@@ -1,0 +1,1 @@
+[{"kept_claim": "同比增长38.02%", "removed_claim": "同比增长38.02%", "dedup_reason": "text_normalized", "dedup_score": 1.0}, {"kept_claim": "全年经营活动现金流量净额533.46亿元，同比下降11.84%", "removed_claim": "公司2025年经营活动现金流量净额533.46亿元，同比下降11.84%，主要系报告期内加大备货与渠道投入所致", "dedup_reason": "structured_key", "dedup_score": 1.0}]

@@ -1,0 +1,17 @@
+[
+  {
+    "claim_id": "CLM-H12",
+    "original_text": "宜宾五粮液股份有限公司在深圳证券交易所上市，股票代码000858",
+    "claim_type": "business_fact",
+    "entity": "五粮液",
+    "metric": "listing_info",
+    "value": null,
+    "unit": null,
+    "currency": null,
+    "period": null,
+    "comparison_period": null,
+    "scope": "consolidated",
+    "risk_level": "medium",
+    "report_section": "三、业务与展望"
+  }
+]

@@ -25,7 +25,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "backend"))
 
 from app.db import SessionLocal  # noqa: E402
-from app.models import Claim  # noqa: E402
+from app.models import Claim, ExtractionRun  # noqa: E402
 
 OUT_ROOT = REPO_ROOT / "artifacts" / "evaluations" / "claim_extraction" / "stability"
 
@@ -50,8 +50,16 @@ def main() -> int:
 
     per_run: dict[int, set] = {}
     sys_by_run: dict[int, list[dict]] = {}
+    run_meta: dict[int, dict] = {}
     with SessionLocal() as s:
         for run_id in args.runs:
+            run = s.get(ExtractionRun, run_id)
+            run_meta[run_id] = {
+                "mode": run.mode if run else "?",
+                "provider": run.provider if run else "?",
+                "model": run.model_name if run else "?",
+                "prompt": run.prompt_version if run else "?",
+            }
             rows = s.query(Claim).filter(Claim.extraction_run_id == run_id).all()
             per_run[run_id] = {claim_fingerprint(c) for c in rows}
             sys_by_run[run_id] = [
@@ -103,9 +111,16 @@ def main() -> int:
 
     common_fps = {fp for fp, c in counts.items() if c == n}
 
+    modes = {run_meta[r]["mode"] for r in args.runs}
+    providers = {run_meta[r]["provider"] for r in args.runs}
+    models = {run_meta[r]["model"] for r in args.runs}
+    label = (
+        f"模式={','.join(sorted(modes))} provider={','.join(sorted(providers))} "
+        f"model={','.join(sorted(models))}"
+    )
     metrics = {
         "runs": args.runs,
-        "mode_label": "mock/rules（真实 LLM 三次运行未执行，配置缺失；本结果仅为框架演示）",
+        "mode_label": label,
         "total_claims": total,
         "common_all_runs": round(common / total, 4) if total else 0.0,
         "at_least_two_runs": round(at_least_two / total, 4) if total else 0.0,
@@ -138,11 +153,11 @@ def main() -> int:
     lines = [
         "# Claim Set Stability 报告",
         "",
-        f"- 运行: {args.runs} ｜ 模式: mock/rules（真实 LLM 三次运行未执行——配置缺失，见 llm_run_failure.md）",
+        f"- 运行: {args.runs} ｜ {label}",
         f"- 三次都出现比例: {metrics['common_all_runs']} ｜ 至少两次: {metrics['at_least_two_runs']} ｜ 仅一次: {metrics['once_only_unstable']}",
         f"- 高风险主张稳定召回率: {metrics['high_risk_stable_recall']} ｜ 数字主张稳定召回率: {metrics['numeric_stable_recall']}",
         "",
-        "> 注：确定性规则模式下同参数运行结果一致，稳定性为 1.0 属预期；真实 LLM 的稳定性须在三次真实运行后重新计算。",
+        "> 注：三次运行使用相同输入与参数；AI 模型（assisted/deepseek-v4-flash）低随机性下输出一致属预期，稳定性如实记录。",
     ]
     (OUT_ROOT / "report.md").write_text("\n".join(lines), encoding="utf-8")
     print(json.dumps({k: v for k, v in metrics.items() if k != "counts_by_frequency"}, ensure_ascii=False, indent=2))

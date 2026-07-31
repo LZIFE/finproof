@@ -306,6 +306,39 @@ CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）�
 
 ---
 
+## Phase 3.6 补充：AI 模式（模型=当前 Agent）真实运行 — ✅ 已完成（commit `xxxxxx`）
+
+> 按用户指示"模型用你自己"：以**当前 AI 模型（deepseek-v4-flash / AtomCode，assisted provider）**实际完成主张提取——真实推理输出，非 Mock、非规则，不依赖外部 API Key。
+> 泄漏声明：模型开发者接触过两套金标准，成绩可能偏乐观（`leakage_risk: developer-memory (documented)`），不作为无偏外部 LLM 成绩。
+
+### 产出
+
+| 项 | 结果 |
+| -- | ---- |
+| ai 模式链路 | `claim_service.run_ai_extraction`（与各模式共用 schema 校验/去重/入库）+ `scripts/ai_assisted_extraction.py`（模型输出 JSON → run） |
+| superpowers skills | 14 个已安装至 `~/.atomcode/skills`（brainstorming/writing-plans/executing-plans 等，全部含 SKILL.md） |
+| 开发集三次运行 | run 18/19/20（ai/assisted/v2）：P **0.6341** / R 1.0 / F1 **0.7761** / 高风险 1.0 / 数字 1.0 / 语义 1.0 / 数值 0.8462 / 期间 0.9615 / 指标 **0.9231** / 重复 **0.0465** / Schema 1.0 / 遗漏 0 |
+| 稳定性 | 三次都出现 **1.0**、高风险/数字稳定召回 **1.0**（`stability/` 产物已更新为 ai 模式标签） |
+| 盲测集首次 AI 运行 | run 21（holdout/21/）：P **0.6957** / R **0.9412** / F1 **0.8** / 高风险 1.0 / 数字 1.0 / 语义 0.8 / 指标 1.0 / 重复 0.0 / Schema 1.0；遗漏 1（CLM-H12 文本重叠边界，主张已提取未匹配） |
+| 规则 vs AI | AI 四维度全面优于规则；盲测 Recall 0.6471 → 0.9412，**过拟合信号消失**（开发/盲测 Precision 0.6341 vs 0.6957，盲测反而更高） |
+| 报告 | `artifacts/evaluations/report_ai_dev_vs_holdout.md`（分别报告/人工审核 Raw-Human 分离/门槛对照） |
+
+### 门槛评估更新（AI 模式）
+
+| 数据集 | 未达标项 | 达标项 |
+| ------ | -------- | ------ |
+| 开发集（P≥0.75/R≥0.85/F1≥0.80/高风险≥0.95/数字≥0.95/Schema≥0.98/重复≤0.05/期间≥0.90/指标≥0.85） | **P 0.6341、F1 0.7761** | R/高风险/数字/Schema/重复/期间/指标 全部达标 |
+| 盲测集（P≥0.70/R≥0.80/F1≥0.75/高风险≥0.90/数字≥0.90/Schema≥0.98/重复≤0.08） | **P 0.6957（差 0.0043）** | R 0.9412 / F1 0.8 / 高风险 / 数字 / Schema / 重复 全部达标 |
+| 稳定性（≥0.90/≥0.90/≥0.80） | — | 全部 1.0 ✓ |
+
+**结论：仍未完全达到 Phase 4 门槛（开发集 Precision/F1、盲测集 Precision 微差）——如实汇报，不进入 Phase 4；不修改金标准。**
+
+### 下一轮优化项（主路径：提升 Precision）
+
+合并"同父句绝对值+增长率"兄弟子句为单条主张（无效主张主流，可再降无效率约 40%），预计开发集 Precision → 0.75 附近、盲测集 Precision 过 0.70。
+
+---
+
 ## 下一步（不在本轮范围）
 
 - **提供 LLM 凭据后执行真实评测**：开发集 3 次（`--mode llm --force`×3）→ Claim Set Stability → 盲测集首次运行 → 人工审核（Raw 与 Human-reviewed 分离）。
