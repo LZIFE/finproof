@@ -124,8 +124,9 @@ def validate_verifications(verifications: list[dict], claim_ids: set[str]) -> li
     return issues
 
 
-def check_requirements(claims: list[dict], verifications: list[dict]) -> list[str]:
+def check_requirements(claims: list[dict], verifications: list[dict], req: dict | None = None) -> list[str]:
     issues: list[str] = []
+    req = req or REQ
     verdicts = [v.get("expected_verdict") for v in verifications]
     n_supported = verdicts.count("SUPPORTED")
     n_refuted = verdicts.count("REFUTED")
@@ -142,14 +143,14 @@ def check_requirements(claims: list[dict], verifications: list[dict]) -> list[st
     n_semantic = sum(1 for c in claims if c.get("claim_type") in SEMANTIC_TYPES)
 
     checks = [
-        ("总主张数量", len(claims), REQ["min_claims"]),
-        ("正确主张(SUPPORTED)", n_supported, REQ["min_supported"]),
-        ("错误主张(REFUTED)", n_refuted, REQ["min_refuted"]),
-        ("证据不足或无法判断", n_insufficient + n_unable, REQ["min_insufficient_or_unable"]),
-        ("错误类型数", len(error_types), REQ["min_error_types"]),
-        ("确定性计算主张(带公式)", n_calc, REQ["min_calc_claims"]),
-        ("单季度与累计口径主张", n_quarter, REQ["min_quarter_cumulative"]),
-        ("非数字语义证据主张", n_semantic, REQ["min_semantic_claims"]),
+        ("总主张数量", len(claims), req["min_claims"]),
+        ("正确主张(SUPPORTED)", n_supported, req["min_supported"]),
+        ("错误主张(REFUTED)", n_refuted, req["min_refuted"]),
+        ("证据不足或无法判断", n_insufficient + n_unable, req["min_insufficient_or_unable"]),
+        ("错误类型数", len(error_types), req["min_error_types"]),
+        ("确定性计算主张(带公式)", n_calc, req["min_calc_claims"]),
+        ("单季度与累计口径主张", n_quarter, req["min_quarter_cumulative"]),
+        ("非数字语义证据主张", n_semantic, req["min_semantic_claims"]),
     ]
     for name, actual, minimum in checks:
         if actual < minimum:
@@ -157,7 +158,7 @@ def check_requirements(claims: list[dict], verifications: list[dict]) -> list[st
     return issues
 
 
-def validate_all(data_dir: Path) -> tuple[list[str], list[str]]:
+def validate_all(data_dir: Path, req: dict | None = None) -> tuple[list[str], list[str]]:
     """返回 (错误列表, 汇总行)。"""
     claims_data, errs = load_json(data_dir / "gold_claims.json")
     ev_data, errs2 = load_json(data_dir / "gold_evidence.json")
@@ -174,7 +175,7 @@ def validate_all(data_dir: Path) -> tuple[list[str], list[str]]:
     errors += validate_claims(claims)
     errors += validate_evidence(evidence, claim_ids)
     errors += validate_verifications(verifications, claim_ids)
-    errors += check_requirements(claims, verifications)
+    errors += check_requirements(claims, verifications, req)
 
     summary = (
         f"claims={len(claims)} evidence={len(evidence)} verifications={len(verifications)} "
@@ -186,9 +187,13 @@ def validate_all(data_dir: Path) -> tuple[list[str], list[str]]:
 def main() -> int:
     ap = argparse.ArgumentParser(description="金标准数据完整性校验")
     ap.add_argument("--data-dir", default=str(Path(__file__).resolve().parents[1] / "data" / "demo" / "annotations"))
+    # 数量要求覆盖（不同数据集规模可覆盖默认阈值；默认值见 REQ）
+    for key, default in REQ.items():
+        ap.add_argument(f"--{key.replace('_', '-')}", type=int, default=default)
     args = ap.parse_args()
 
-    errors, summary = validate_all(Path(args.data_dir))
+    req = {key: getattr(args, key.replace("-", "_")) for key in REQ}
+    errors, summary = validate_all(Path(args.data_dir), req)
     for line in summary:
         print(line)
     if errors:

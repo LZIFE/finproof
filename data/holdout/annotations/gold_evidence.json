@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "notes": "盲测集证据：均来自 data/holdout/source/annual_report.pdf（五粮液2025年年度报告）实际提取文本；无证据主张（因果/预测/无法判断/证据不足）不列出",
+  "evidence": [
+    {"evidence_id": "EVD-H01", "claim_id": "CLM-H01", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%", "evidence_type": "financial_table", "source_level": "S", "notes": "主要会计数据：2025 营业收入 405.29 亿元，同比 -54.55%"},
+    {"evidence_id": "EVD-H02", "claim_id": "CLM-H02", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%", "evidence_type": "financial_table", "source_level": "S", "notes": "2025 归母净利润 89.54 亿元"},
+    {"evidence_id": "EVD-H03", "claim_id": "CLM-H03", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%", "evidence_type": "financial_table", "source_level": "S", "notes": "全年归母净利润同比为 -71.89%，非 -38.02%"},
+    {"evidence_id": "EVD-H04", "claim_id": "CLM-H04", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%", "evidence_type": "financial_table", "source_level": "S", "notes": "2025 经营现金流 297.06 亿元，同比 -12.47%"},
+    {"evidence_id": "EVD-H05", "claim_id": "CLM-H05", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%", "evidence_type": "financial_table", "source_level": "S", "notes": "同比为 -12.47%（下降），非 +12.47%"},
+    {"evidence_id": "EVD-H06", "claim_id": "CLM-H06", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "基本每股收益（元/股） 2.3068 8.2062 -71.89%", "evidence_type": "financial_table", "source_level": "S", "notes": "2025 基本每股收益 2.31 元；8.21 元为 2024 年数据"},
+    {"evidence_id": "EVD-H07", "claim_id": "CLM-H07", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "加权平均净资产收益率 6.89% 23.35% 减少16.46 个百分点", "evidence_type": "financial_table", "source_level": "S", "notes": "2025 加权 ROE 6.89%"},
+    {"evidence_id": "EVD-H08", "claim_id": "CLM-H08", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "总资产（元） 189,984,270,815.47 188,252,218,704.17 0.92%", "evidence_type": "financial_table", "source_level": "S", "notes": "2025 年末总资产 1899.84 亿元，同比 +0.92%"},
+    {"evidence_id": "EVD-H09", "claim_id": "CLM-H09", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "归属于上市公司股东的净资产（元） 119,932,271,234.99 133,285,282,015.97 -10.02%", "evidence_type": "financial_table", "source_level": "S", "notes": "归母净资产同比 -10.02%（下降），非 +10.02%"},
+    {"evidence_id": "EVD-H10", "claim_id": "CLM-H10", "document_name": "annual_report.pdf", "page": 1, "evidence_text": "2026 年4 月30 日", "evidence_type": "management_discussion", "source_level": "S", "notes": "年报封面董事长签名日期 2026-04-30，即披露年份；非 2025-03-31"},
+    {"evidence_id": "EVD-H11", "claim_id": "CLM-H11", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "归属于上市公司股东的扣除非经常性损益的净利润（元） 8,815,635,943.27 31,741,959,276.27 -72.23%", "evidence_type": "financial_table", "source_level": "S", "notes": "2025 扣非归母净利润 88.16 亿元"},
+    {"evidence_id": "EVD-H12", "claim_id": "CLM-H12", "document_name": "annual_report.pdf", "page": 6, "evidence_text": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所", "evidence_type": "management_discussion", "source_level": "S", "notes": "公司信息：五粮液（000858）于深交所上市"},
+    {"evidence_id": "EVD-H16", "claim_id": "CLM-H16", "document_name": "annual_report.pdf", "page": 7, "evidence_text": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%", "evidence_type": "financial_table", "source_level": "S", "notes": "2025 营业收入 405.29 亿元，非 4052.85 亿元（数量级错误）"}
+  ]
+}
