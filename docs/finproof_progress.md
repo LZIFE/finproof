@@ -647,7 +647,7 @@ Overall Accuracy：Demo 0.6154 / Holdout 0.5882（含语义分组后的重算）
 
 ---
 
-## Phase 7：Investment Due Diligence Agent（投资尽调智能体）— ✅ 已完成（commit `xxxxxx`）
+## Phase 7：Investment Due Diligence Agent（投资尽调智能体）— ✅ 已完成（commit `77a29dc`）
 
 ### 核心内容
 
