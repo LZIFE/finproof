@@ -577,7 +577,7 @@ Overall Accuracy：Demo 0.6154 / Holdout 0.5882（含语义分组后的重算）
 
 ---
 
-## Phase 5：金融审计智能体（Audit Agent）— ✅ 已完成（commit `xxxxxx`）
+## Phase 5：金融审计智能体（Audit Agent）— ✅ 已完成（commit `1503c50`）
 
 ### 核心内容
 
