@@ -306,7 +306,7 @@ CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）�
 
 ---
 
-## Phase 3.6 补充：AI 模式（模型=当前 Agent）真实运行 — ✅ 已完成（commit `xxxxxx`）
+## Phase 3.6 补充：AI 模式（模型=当前 Agent）真实运行 — ✅ 已完成（commit `31b57ee`）
 
 > 按用户指示"模型用你自己"：以**当前 AI 模型（deepseek-v4-flash / AtomCode，assisted provider）**实际完成主张提取——真实推理输出，非 Mock、非规则，不依赖外部 API Key。
 > 泄漏声明：模型开发者接触过两套金标准，成绩可能偏乐观（`leakage_risk: developer-memory (documented)`），不作为无偏外部 LLM 成绩。
