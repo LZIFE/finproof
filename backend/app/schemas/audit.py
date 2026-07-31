@@ -29,3 +29,4 @@ class AuditReportOut(BaseModel):
     evidence_chain: list = []
     verification_results: list = []
     plan: dict | None = None
+    risk: dict | None = None  # Phase 6：Overall Risk（score/level/distribution）

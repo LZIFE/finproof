@@ -610,6 +610,43 @@ Overall Accuracy：Demo 0.6154 / Holdout 0.5882（含语义分组后的重算）
 
 ---
 
+## Phase 6：Financial Risk Intelligence Layer（金融风险评分层）— ✅ 已完成（commit `xxxxxx`）
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| Risk Engine 模块 | `backend/app/services/risk/`：risk_rules（风险分类/评分区间/调整因子）+ risk_engine（assess_claim/assess_audit）+ schemas |
+| 风险类型 | FINANCIAL_ERROR（REFUTED+数字核验→HIGH）/ EVIDENCE_RISK（INSUFFICIENT/UNKNOWN→MEDIUM/HIGH）/ SEMANTIC_RISK（PARTIALLY→MEDIUM）/ FORECAST_RISK（预测被描述为事实） |
+| Risk Score | 0-100，按状态区间（REFUTED 80-100 / PARTIALLY 40-70 / INSUFFICIENT 60-90 / SUPPORTED 0-20），按主张重要性/核验置信度/证据质量调整，clamp 到合法区间，`risk_reason` 逐条可解释 |
+| Overall Risk | `overall = 0.5×max(risk_scores) + 0.5×风险点平均`（可解释公式）；Level 按分数阈值（LOW<30 / MEDIUM≤65 / HIGH>65） |
+| 数据库 | `risk_assessments` 表（claim_id/verification_status/type/risk_score/level/type/risk_reason） |
+| API | `POST /api/v1/risk-assessments/{audit_id}`（生成评分入库）、`GET /{audit_id}`（overall/distribution/top_risks/claim_details，确定性重建） |
+| Audit 集成 | `GET /api/v1/audits/{id}` 新增 risk 字段（Overall Risk：score/level/distribution） |
+| 前端 | /audit 页面 Risk Dashboard：FinProof Risk Score + Risk Level + 风险分布（HIGH/MEDIUM/LOW）+ Top Risk Findings（按 risk_score 排序：Verification → Risk Reason） |
+
+### Demo 验证（任务书八）
+
+```
+输入：AI 研报（文档 #4，41 条主张）
+输出：Overall Risk 93.6/100 HIGH
+  Risk Distribution：HIGH 17 / MEDIUM 5 / LOW 19
+  Top Risk：CLM-RUN20-004（归母净利润同比增长38.02%）Risk Score 100 FINANCIAL_ERROR
+    Reason：核验 REFUTED（GROWTH_RATE_CHECK）基准90 + 重要性HIGH +8 + 置信度0.90 +9.6
+            （计算增长率 13.73% 与主张 38.02% 偏差 24.29pp）
+```
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| Risk Engine 运行 / 每个 Claim 生成 Risk Score | ✅ 全部实现并验证（REFUTED 100 HIGH / SUPPORTED 18 LOW / PARTIALLY 59 MEDIUM / INSUFFICIENT 79 HIGH） |
+| Audit 生成整体风险评分 / 前端 Risk Dashboard / Demo 风险排序 | ✅ 完成 |
+| 测试（新增 risk 7 项，全量 **243 passed**）/ 前端 build / 双金标准 0 错误 | ✅ |
+| 更新 docs/finproof_progress.md / Git commit | ✅ |
+
+---
+
 ## 下一步（不在本轮范围）
 
 - 自动报告修复、投资建议、股票推荐、自动交易——按任务书"完成后停止"，均不开发。

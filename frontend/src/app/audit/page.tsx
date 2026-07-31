@@ -39,6 +39,23 @@ type ChainItem = {
 
 type PlanStep = { name: string; status: string; detail: string };
 
+type RiskDetail = {
+  audit_id: number;
+  overall_risk_score: number;
+  overall_risk_level: string;
+  risk_distribution: Record<string, number>;
+  top_risks: {
+    claim_id: string;
+    risk_score: number;
+    risk_level: string;
+    risk_type: string;
+    risk_reason: string[];
+    verification_status: string;
+    verification_type: string;
+  }[];
+  claim_details: unknown[];
+};
+
 type AuditDetail = {
   audit_id: number;
   document_id: number;
@@ -47,6 +64,11 @@ type AuditDetail = {
   evidence_chain: ChainItem[];
   verification_results: unknown[];
   plan: { log: PlanStep[] } | null;
+  risk: {
+    overall_risk_score: number;
+    overall_risk_level: string;
+    risk_distribution: Record<string, number>;
+  } | null;
 };
 
 const STEP_LABEL: Record<string, string> = {
@@ -71,6 +93,7 @@ export default function AuditPage() {
   const [uploading, setUploading] = useState(false);
   const [auditing, setAuditing] = useState(false);
   const [detail, setDetail] = useState<AuditDetail | null>(null);
+  const [risk, setRisk] = useState<RiskDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const loadDocs = useCallback(() => {
@@ -112,6 +135,7 @@ export default function AuditPage() {
     setAuditing(true);
     setError(null);
     setDetail(null);
+    setRisk(null);
     try {
       const resp = await fetch("/api/v1/audits", {
         method: "POST",
@@ -124,6 +148,11 @@ export default function AuditPage() {
       const detailBody = await resp2.json();
       if (!resp2.ok) throw new Error(JSON.stringify(detailBody));
       setDetail(detailBody);
+      // Phase 6：风险评分（生成 Top Risk Findings）
+      await fetch(`/api/v1/risk-assessments/${body.audit_id}`, { method: "POST" });
+      const resp3 = await fetch(`/api/v1/risk-assessments/${body.audit_id}`);
+      const riskBody = await resp3.json();
+      if (resp3.ok) setRisk(riskBody);
     } catch (e) {
       setError(`审计失败：${e instanceof Error ? e.message : String(e)}`);
     } finally {
@@ -172,6 +201,39 @@ export default function AuditPage() {
       </section>
 
       {error && <p className="bad">{error}</p>}
+
+      {risk && (
+        <section>
+          <h2>Risk Dashboard（Phase 6 · Financial Risk Intelligence）</h2>
+          <div className={`verdict-card verdict-${risk.overall_risk_level === "HIGH" ? "refuted" : risk.overall_risk_level === "MEDIUM" ? "partial" : "supported"}`}>
+            <h3>
+              FinProof Risk Score：<strong>{risk.overall_risk_score}/100</strong>{" "}
+              <span className="muted">Risk Level: {risk.overall_risk_level}</span>
+            </h3>
+            <p>
+              风险分布：HIGH {risk.risk_distribution.HIGH ?? 0} ｜ MEDIUM {risk.risk_distribution.MEDIUM ?? 0} ｜ LOW{" "}
+              {risk.risk_distribution.LOW ?? 0}
+            </p>
+          </div>
+
+          <h3>Top Risk Findings（按 risk_score 排序）</h3>
+          {risk.top_risks.map((t) => (
+            <div key={t.claim_id} className={`verdict-card verdict-${t.risk_level === "HIGH" ? "refuted" : t.risk_level === "MEDIUM" ? "partial" : "supported"}`}>
+              <h4>
+                {t.claim_id} — Risk Score <strong>{t.risk_score}</strong>（{t.risk_level} · {t.risk_type}）
+              </h4>
+              <p>
+                <b>Verification：</b>
+                {t.verification_status}（{t.verification_type}）
+              </p>
+              <p>
+                <b>Risk Reason：</b>
+                {(t.risk_reason ?? []).join("；")}
+              </p>
+            </div>
+          ))}
+        </section>
+      )}
 
       {detail && (
         <section>
