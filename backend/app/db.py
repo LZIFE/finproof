@@ -1,0 +1,35 @@
+"""SQLAlchemy 引擎 / 会话 / Base 与 SQLite 连接检查。"""
+
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
+
+from app.core.config import get_settings
+
+
+class Base(DeclarativeBase):
+    """所有 ORM 模型的基类。"""
+
+
+def _make_engine():
+    settings = get_settings()
+    connect_args = {}
+    if settings.database_url.startswith("sqlite"):
+        # SQLite 默认不允许多线程；FastAPI 线程池需要
+        connect_args = {"check_same_thread": False}
+    return create_engine(settings.database_url, connect_args=connect_args)
+
+
+engine = _make_engine()
+SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
+
+
+def init_db() -> None:
+    """按当前注册的 ORM 模型建表（幂等，可重复调用）。"""
+    Base.metadata.create_all(bind=engine)
+
+
+def check_db_connection() -> dict:
+    """执行一次真实查询，返回数据库类型与版本；失败时抛出异常。"""
+    with engine.connect() as conn:
+        version = conn.execute(text("SELECT sqlite_version()")).scalar()
+    return {"database": "sqlite", "version": str(version)}
