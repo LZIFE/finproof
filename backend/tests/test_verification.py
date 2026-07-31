@@ -142,3 +142,103 @@ def test_security_no_gold_verifications(tmp_path):
         assert before == after == STATUS_SUPPORTED
     finally:
         gold_path.write_text(original, encoding="utf-8")
+
+
+# ---------- Phase 4B.2：语义核验与证据充分性 ----------
+
+def test_semantic_overseas_growth_supported():
+    """海外收入增长（BUSINESS_FACT）：证据含数值+增长 → SUPPORTED。"""
+    from app.services.verification.semantic_verifier import verify_semantic_support
+
+    r = verify_semantic_support(
+        {"claim_id": "S1", "claim_type": "BUSINESS_FACT", "original_text": "海外市场收入增长"},
+        ["海外市场收入300亿元，同比增长30%"],
+    )
+    assert r.verification_status == STATUS_SUPPORTED
+    assert r.verification_type == "SEMANTIC_SUPPORT_CHECK"
+
+
+def test_semantic_core_growth_insufficient():
+    """海外成为核心增长动力（STRATEGIC_CLAIM）：只有海外增长（缺整体比较）→ PARTIALLY。"""
+    from app.services.verification.semantic_verifier import verify_semantic_support
+
+    r = verify_semantic_support(
+        {"claim_id": "S2", "claim_type": "OPINION", "original_text": "海外业务成为公司增长核心动力"},
+        ["海外市场收入300亿元，同比增长30%"],
+    )
+    assert r.verification_status == STATUS_PARTIALLY_SUPPORTED
+    assert r.calculation_detail["covered"] == 2 and r.calculation_detail["required"] == 3
+
+
+def test_semantic_causal_insufficient():
+    """由于业务调整导致利润提升（CAUSAL）：仅相关性（财务结果）无原因披露 → INSUFFICIENT。"""
+    from app.services.verification.semantic_verifier import verify_causal
+
+    r = verify_causal(
+        {"claim_id": "S3", "claim_type": "CAUSAL_CLAIM", "original_text": "由于业务调整，公司利润提升"},
+        ["公司利润100亿元，同比增长20%"],
+    )
+    assert r.verification_status == STATUS_INSUFFICIENT
+    r2 = verify_causal(
+        {"claim_id": "S3", "claim_type": "CAUSAL_CLAIM", "original_text": "由于业务调整，公司利润提升"},
+        ["公司利润100亿元，同比增长20%", "利润提升主要系业务调整所致"],
+    )
+    assert r2.verification_status == STATUS_PARTIALLY_SUPPORTED
+
+
+def test_semantic_comparative_no_peer_insufficient():
+    """行业领先（COMPARATIVE）：无比较数据 → INSUFFICIENT；含行业排名 → PARTIALLY。"""
+    from app.services.verification.semantic_verifier import verify_comparison
+
+    r = verify_comparison(
+        {"claim_id": "S4", "claim_type": "COMPARISON", "original_text": "公司竞争优势领先行业"},
+        ["公司产品销量100万台"],
+    )
+    assert r.verification_status == STATUS_INSUFFICIENT
+    r2 = verify_comparison(
+        {"claim_id": "S4", "claim_type": "COMPARISON", "original_text": "公司竞争优势领先行业"},
+        ["公司市场份额位居行业第一，市占率25%"],
+    )
+    assert r2.verification_status == STATUS_PARTIALLY_SUPPORTED
+
+
+def test_semantic_partial_support_full_coverage():
+    """完整覆盖 3/3（数值+增长+占比）→ SUPPORTED（部分支持 vs 完整支持区分）。"""
+    from app.services.verification.semantic_verifier import verify_semantic_support
+
+    r = verify_semantic_support(
+        {"claim_id": "S5", "claim_type": "OPINION", "original_text": "海外业务成为公司增长核心动力"},
+        ["海外收入300亿元同比增长30%", "海外收入占公司总收入40%"],
+    )
+    assert r.verification_status == STATUS_SUPPORTED
+    assert r.calculation_detail["covered"] == 3
+
+
+def test_semantic_no_numeric_evidence_insufficient():
+    """语义主张无数字证据 → INSUFFICIENT。"""
+    from app.services.verification.semantic_verifier import verify_semantic_support
+
+    r = verify_semantic_support(
+        {"claim_id": "S6", "claim_type": "BUSINESS_FACT", "original_text": "海外市场收入增长"},
+        ["公司经营稳健"],
+    )
+    assert r.verification_status == STATUS_INSUFFICIENT
+
+
+def test_semantic_unknown_kept():
+    """UNKNOWN/无法判定结果保持（不删除）：无数值且无证据 → INSUFFICIENT 保留。"""
+    from app.services.verification.numeric_verifier import verify_exact_value
+
+    r = verify_exact_value({"claim_id": "S7", "value": None}, ["公司经营稳健"])
+    assert r.verification_status == "UNABLE_TO_DETERMINE"  # 主张无数值 → 保持 UNABLE
+    r2 = verify_semantic_support_scenario_no_evidence()
+    assert r2.verification_status == STATUS_INSUFFICIENT
+
+
+def verify_semantic_support_scenario_no_evidence():
+    from app.services.verification.semantic_verifier import verify_semantic_support
+
+    return verify_semantic_support(
+        {"claim_id": "S7", "claim_type": "BUSINESS_FACT", "original_text": "海外市场收入增长"},
+        [],
+    )

@@ -2,21 +2,49 @@
   "dataset": "demo",
   "claim_count": 26,
   "overall_accuracy": 0.6154,
-  "supported_precision": 0.8333,
+  "supported_precision": 0.7692,
   "refuted_precision": 0.6667,
   "unknown_rate": 0.2692,
   "group_accuracy": {
     "numeric": 0.75,
     "growth": 0.6667,
     "period": 0.0,
-    "multi": 0.5,
     "semantic": 0.5
   },
   "group_counts": {
     "numeric": 16,
     "growth": 3,
     "period": 3,
-    "multi": 2,
-    "semantic": 2
+    "semantic": 4
+  },
+  "semantic_accuracy": {
+    "BUSINESS_FACT": {
+      "accuracy": 0.2,
+      "supported_precision": 0.5,
+      "partial_recall": 0.0,
+      "insufficient_precision": 0.0,
+      "count": 5
+    },
+    "CAUSAL_CLAIM": {
+      "accuracy": 0.5,
+      "supported_precision": 0.0,
+      "partial_recall": 0.0,
+      "insufficient_precision": 0.5,
+      "count": 2
+    },
+    "COMPARATIVE_CLAIM": {
+      "accuracy": 1.0,
+      "supported_precision": 0.0,
+      "partial_recall": 0.0,
+      "insufficient_precision": 1.0,
+      "count": 1
+    },
+    "FORECAST_CLAIM": {
+      "accuracy": 0.0,
+      "supported_precision": 0.0,
+      "partial_recall": 0.0,
+      "insufficient_precision": 0.0,
+      "count": 1
+    }
   }
 }

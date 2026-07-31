@@ -39,7 +39,69 @@ const TYPE_LABEL: Record<string, string> = {
   PERIOD_CHECK: "期间验证",
   MULTI_EVIDENCE_CHECK: "多证据组合",
   SEMANTIC_CHECK: "语义核验",
+  SEMANTIC_SUPPORT_CHECK: "语义证据充分性",
+  CAUSAL_CHECK: "因果关系验证",
+  COMPARISON_CHECK: "比较类验证",
+  EVIDENCE_SUFFICIENCY_CHECK: "证据充分性",
 };
+
+const SEMANTIC_TYPES = new Set([
+  "SEMANTIC_SUPPORT_CHECK",
+  "CAUSAL_CHECK",
+  "COMPARISON_CHECK",
+  "EVIDENCE_SUFFICIENCY_CHECK",
+]);
+
+function SemanticEvidenceCard({ r }: { r: VerificationResult }) {
+  const cd = r.calculation_detail as {
+    semantic_type?: string;
+    coverage?: Record<string, boolean>;
+    required_desc?: string[];
+    covered?: number;
+    required?: number;
+    has_financial_result?: boolean;
+    has_disclosed_reason?: boolean;
+    has_time_order?: boolean;
+    has_industry_rank?: boolean;
+    has_peer_data?: boolean;
+  } | null;
+  if (!cd) return null;
+  const coverage = cd.coverage ?? {};
+  const descs = cd.required_desc ?? [];
+  const dims = Object.keys(coverage);
+  return (
+    <div className="semantic-card">
+      <p>
+        <b>Semantic Evidence Card</b>（{cd.semantic_type ?? "语义主张"}）
+      </p>
+      {dims.length > 0 && (
+        <ul>
+          {dims.map((d, i) => (
+            <li key={d}>
+              {coverage[d] ? "✓" : "✗"} {descs[i] ?? d}
+            </li>
+          ))}
+        </ul>
+      )}
+      {cd.has_financial_result !== undefined && (
+        <ul>
+          <li>{cd.has_financial_result ? "✓" : "✗"} 财务结果（数值）</li>
+          <li>{cd.has_disclosed_reason || cd.has_time_order ? "✓" : "✗"} 公司披露原因/时间顺序</li>
+        </ul>
+      )}
+      {cd.has_industry_rank !== undefined && (
+        <ul>
+          <li>{cd.has_industry_rank ? "✓" : "✗"} 行业排名/市占率</li>
+          <li>{cd.has_peer_data ? "✓" : "✗"} 同行业比较数据</li>
+        </ul>
+      )}
+      <p>
+        <b>结果：</b>
+        <strong>{r.verification_status}</strong>（覆盖 {cd.covered}/{cd.required} 个要求维度）
+      </p>
+    </div>
+  );
+}
 
 export default function VerificationPage() {
   const [claimIds, setClaimIds] = useState("CLM-001, CLM-004, CLM-005");
@@ -115,6 +177,7 @@ export default function VerificationPage() {
               <p>
                 <b>证据：</b>block [{r.matched_evidence_ids.join(", ") || "无"}]
               </p>
+              {SEMANTIC_TYPES.has(r.verification_type) && <SemanticEvidenceCard r={r} />}
               {calcSummary(r.calculation_detail) && (
                 <p>
                   <b>计算：</b>

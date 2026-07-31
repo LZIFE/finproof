@@ -527,6 +527,56 @@ AI 报告错误句：「归母净利润439.45亿元，同比增长38.02%」
 
 ---
 
+## Phase 4B.2：金融语义核验与证据充分性增强 — ✅ 已完成（commit `xxxxxx`）
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| 语义主张类型 | BUSINESS_FACT / STRATEGIC_CLAIM / CAUSAL_CLAIM / COMPARATIVE_CLAIM / FORECAST_CLAIM（原句关键词优先 + claim_type 兜底分类） |
+| Semantic 分析模块 | `backend/app/services/verification/semantic_verifier.py`：语义类型分类、Evidence Requirement 规则、Coverage 评分、因果/比较专项 |
+| Evidence Requirement 规则 | STRATEGIC（海外核心动力）需 数值+增长率+整体占比/比较 3 维；CAUSAL 需 财务结果+原因披露；COMPARATIVE 需 行业排名/市占率+同行业数据；FORECAST 需 历史趋势+指引 |
+| Evidence Coverage 评分 | 维度覆盖 → 全部 SUPPORTED / 部分 PARTIALLY_SUPPORTED / 无 INSUFFICIENT_EVIDENCE（example：海外核心动力 2/3 → PARTIALLY） |
+| 因果关系验证 | 拆 Cause/Result；证据需 财务结果+公司披露原因/时间顺序；仅相关性（只有财务结果）不能认定因果 → INSUFFICIENT |
+| 比较类验证 | 需比较对象（行业排名/市占率/同行业数据）；无 → INSUFFICIENT |
+| 新 verification_type | SEMANTIC_SUPPORT_CHECK / CAUSAL_CHECK / COMPARISON_CHECK / EVIDENCE_SUFFICIENCY_CHECK |
+| 语义检索修复 | `_text_keywords` 连接词加"已"、剥离公司/集团前缀——语义主张关键词回退从过窄（"海外业务已成"0 命中）修复为可检索（"海外业务"18 块） |
+| 前端 | Semantic Evidence Card：Required Evidence ✓/✗（覆盖明细）、Result、Reason |
+| UNKNOWN 保持 | 不删除 UNKNOWN/UNABLE_TO_DETERMINE 结果（专项测试覆盖） |
+
+### Semantic Verification Accuracy（分组指标）
+
+| 组 | Demo（accuracy/supp/prec/partial/insuff/count） | Holdout |
+| -- | ---------------------------------------------- | ------- |
+| BUSINESS_FACT | 0.20 / 0.50 / 0.00 / 0.00 / 5 | 0.50 / 0.50 / 0.00 / 0.50 / 4 |
+| CAUSAL_CLAIM | 0.50 / 0.00 / 0.00 / 0.50 / 2 | 0.00 / — / — / — / 1 |
+| COMPARATIVE_CLAIM | 1.00 / — / — / 1.00 / 1 | — |
+| FORECAST_CLAIM | 0.00 / — / — / — / 1 | 0.00 / 1 |
+
+Overall Accuracy：Demo 0.6154 / Holdout 0.5882（含语义分组后的重算）。
+
+### Demo 闭环演示（两个案例，任务书十二）
+
+```
+案例 1（数字错误）：「归母净利润439.45亿元，同比增长38.02%」
+  → CLM-004 → 财报数据 (438.30−385.37)/385.37=13.73% → REFUTED（差 24.29pp）
+
+案例 2（语义夸大）：「海外业务已成为公司利润增长的核心引擎」
+  → CLM-020（STRATEGIC_CLAIM，要求 3 维）
+  → 找到证据：海外收入数据✓ + 增长率✓，缺 整体占比/增长比较✗
+  → 覆盖 2/3 → PARTIALLY_SUPPORTED（"不是简单判断真假，而是判断证据是否足够"）
+```
+
+### 完成标准对照（任务书十三）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| Semantic Verification Engine / 新 Claim 类型 / Evidence Requirement 规则 / Evidence Coverage | ✅ 全部实现并验证 |
+| 前端展示 / Demo 案例 / Semantic 评测 / 测试 | ✅ 完成（新增 7 项语义测试，全量 **231 passed**） |
+| Git commit / progress.md 更新 | ✅ |
+
+---
+
 ## 下一步（不在本轮范围）
 
 - **自动报告修复阶段**——按任务书"完成后停止，不进入自动报告修复阶段"。

@@ -142,10 +142,20 @@ def _select_verifier(claim: dict, evidence: list[dict]) -> VerificationResult:
     # 3) 数值主张 → 绝对值验证
     if value is not None:
         return verify_exact_value(claim, texts, ids)
-    # 4) 无数字语义主张 → 多证据/语义检查
-    if len(evidence) >= 2:
-        return verify_multi_evidence(claim, texts, ids, evidence)
-    return verify_semantic(claim, texts, ids)
+    # 4) 无数字语义主张 → 语义核验（Phase 4B.2：按语义类型路由 因果/比较/证据充分性）
+    from app.services.verification.semantic_verifier import (
+        classify_semantic_type,
+        verify_causal,
+        verify_comparison,
+        verify_semantic_support,
+    )
+
+    stype = classify_semantic_type(claim)
+    if stype == "CAUSAL_CLAIM":
+        return verify_causal(claim, texts, ids)
+    if stype == "COMPARATIVE_CLAIM":
+        return verify_comparison(claim, texts, ids)
+    return verify_semantic_support(claim, texts, ids)
 
 
 def verify_claim(session: Session, claim: dict, top_k: int = 8) -> VerificationResult:

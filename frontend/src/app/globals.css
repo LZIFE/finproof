@@ -277,3 +277,20 @@ input:not([type]) {
   color: #94a3b8;
   font-size: 0.9rem;
 }
+
+/* Phase 4B.2：语义证据卡片 */
+.semantic-card {
+  border: 1px dashed #475569;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 8px 0;
+  background: #111c2e;
+}
+.semantic-card ul {
+  margin: 6px 0;
+  padding-left: 18px;
+}
+.semantic-card li {
+  margin: 2px 0;
+  font-size: 0.92rem;
+}

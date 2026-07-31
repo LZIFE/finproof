@@ -166,14 +166,21 @@ def _text_keywords(text: str, limit: int = 6) -> list[str]:
         "根据", "以及", "可以", "进行", "相关", "主要", "其中", "高于", "超过", "达到", "以及",
         "持续", "深化", "重点", "整体", "水平", "程度", "范围",
     }
-    # 中文连续段按连接词切分（和/与/及/的/在/以/为/或/、），得到有意义的短语
+    # 中文连续段按连接词切分（和/与/及/的/在/以/为/或/已/、），得到有意义的短语
     runs = re.findall(r"[\u4e00-\u9fff]{2,}", text)
     words: list[str] = []
     for run in runs:
-        for seg in re.split(r"[和与及或以在为由的、]", run):
+        for seg in re.split(r"[和与及或以在为由的已、]", run):
             seg = seg.strip()
-            if len(seg) >= 2 and seg not in stops:
-                words.append(seg)
+            # 剥离主语/前缀停用词（公司/集团/我们）后的剩余短语
+            stripped = seg
+            for prefix in ("公司", "集团", "我们", "本"):
+                if stripped.startswith(prefix):
+                    stripped = stripped[len(prefix):]
+                    break
+            for cand in (stripped, seg):
+                if len(cand) >= 2 and cand not in stops:
+                    words.append(cand)
     seen, out = set(), []
     for w in sorted(words, key=len, reverse=True):
         if w not in seen:
