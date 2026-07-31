@@ -39,6 +39,10 @@ class EvidenceCandidateOut(BaseModel):
     matched_terms: list[str] = []
     retrieval_method: str = "structured"
     block_text: str | None = None
+    evidence_type: str = "UNKNOWN"
+    evidence_quality_score: float = 0.3
+    evidence_rank_reason: str | None = None
+    evidence_tier: str = "secondary"
 
 
 class ClaimCandidatesOut(BaseModel):

@@ -58,6 +58,16 @@ def _migrate_columns(conn) -> None:
         if name not in claim_cols:
             conn.execute(text(f"ALTER TABLE claims ADD COLUMN {name} {ddl}"))
 
+    # Phase 4A.6：证据候选新增证据类型/质量分/排名原因（保留原始检索分）
+    ev_cols = {row[1] for row in conn.execute(text("PRAGMA table_info(evidence_candidates)"))}
+    for name, ddl in [
+        ("evidence_type", "TEXT DEFAULT 'UNKNOWN'"),
+        ("evidence_quality_score", "FLOAT DEFAULT 0.3"),
+        ("evidence_rank_reason", "TEXT"),
+    ]:
+        if name not in ev_cols:
+            conn.execute(text(f"ALTER TABLE evidence_candidates ADD COLUMN {name} {ddl}"))
+
 def init_db() -> None:
     """按当前注册的 ORM 模型建表（幂等，可重复调用），并执行轻量迁移。"""
     Base.metadata.create_all(bind=engine)

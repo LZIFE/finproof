@@ -273,3 +273,88 @@ def test_dictionary_expansion_and_isolation():
     assert "经营活动产生的现金流量净额" in metric_aliases("operating_cash_flow", "经营现金流")
     assert "净利润" not in metric_aliases("net_profit_attributable", "归母净利润")
     assert "归母净利润" not in metric_aliases("net_profit", "净利润")
+
+
+# ---------- Phase 4A.6：证据分级与多证据 ----------
+
+def test_classify_income_statement():
+    """利润表识别 → PRIMARY_FINANCIAL_STATEMENT。"""
+    from app.services.evidence_retrieval.engine import (
+        EVIDENCE_TYPE_PRIMARY,
+        classify_evidence_type,
+    )
+
+    t, q, r = classify_evidence_type("合并利润表 营业收入 净利润 营业成本")
+    assert t == EVIDENCE_TYPE_PRIMARY and q == 1.0
+    t, q, r = classify_evidence_type("主要会计数据和财务指标 营业收入（千元）456,451,731")
+    assert t == EVIDENCE_TYPE_PRIMARY
+
+
+def test_classify_table_row_evidence():
+    """表格区域 + 财务指标行 → PRIMARY（表格证据优先）。"""
+    from app.services.evidence_retrieval.engine import (
+        EVIDENCE_TYPE_PRIMARY,
+        classify_evidence_type,
+    )
+
+    t, q, r = classify_evidence_type("营业收入 归母净利润 经营活动产生的现金流量净额", is_table_region=True)
+    assert t == EVIDENCE_TYPE_PRIMARY and q == 1.0
+    # 非表格区域同文本 → 不判 PRIMARY（避免定性描述误判）
+    t2, _, _ = classify_evidence_type("营业收入 归母净利润", is_table_region=False)
+    assert t2 != EVIDENCE_TYPE_PRIMARY or t2 == "NARRATIVE_DISCLOSURE"
+
+
+def test_classify_management_discussion():
+    """管理层讨论识别 → MANAGEMENT_DISCUSSION。"""
+    from app.services.evidence_retrieval.engine import (
+        EVIDENCE_TYPE_MD,
+        classify_evidence_type,
+    )
+
+    t, q, r = classify_evidence_type("管理层讨论与分析：2025年经营情况回顾", is_management_section=True)
+    assert t == EVIDENCE_TYPE_MD and q == 0.6
+    t2, _, _ = classify_evidence_type("业务回顾与经营情况讨论", is_management_section=True)
+    assert t2 == EVIDENCE_TYPE_MD
+
+
+def test_classify_note_and_segment():
+    """附注 → FINANCIAL_NOTE；分部 → BUSINESS_SEGMENT。"""
+    from app.services.evidence_retrieval.engine import (
+        EVIDENCE_TYPE_NOTE,
+        EVIDENCE_TYPE_SEGMENT,
+        classify_evidence_type,
+    )
+
+    t, _, _ = classify_evidence_type("参见财务报表附注四（10）会计政策")
+    assert t == EVIDENCE_TYPE_NOTE
+    t2, _, _ = classify_evidence_type("主营业务分行业情况 空调 洗衣机 机器人")
+    assert t2 == EVIDENCE_TYPE_SEGMENT
+
+
+def test_evidence_quality_ranking():
+    """不同证据等级排序：PRIMARY > MANAGEMENT_DISCUSSION > UNKNOWN。"""
+    from app.services.evidence_retrieval.engine import score_block
+
+    claim = {"metric_code": "revenue", "metric": "营业收入", "reported_value": 100.0,
+             "unit": "亿元", "period": "2025FY", "entity_name": "美的集团",
+             "original_text": "公司2025年营业收入100亿元"}
+    s_p = score_block("合并利润表 2025年营业收入为100亿元", claim, evidence_quality=1.0)
+    s_md = score_block("管理层讨论与分析 2025年营业收入为100亿元", claim, evidence_quality=0.6)
+    s_u = score_block("营业收入为100亿元", claim, evidence_quality=0.3)
+    assert s_p["final_score"] > s_md["final_score"] > s_u["final_score"]
+
+
+def test_multi_evidence_tiers(mini_source_doc):
+    """多证据返回：候选携带 primary/secondary 分层。"""
+    from app.services.evidence_retrieval.service import retrieve_for_claim
+
+    claim = {"claim_id": "CLM-M", "entity": "美的集团", "metric": "revenue",
+             "value": 4564.52, "unit": "亿元", "period": "2025FY", "claim_type": "raw_number",
+             "original_text": "公司2025年实现营业收入4564.52亿元"}
+    with SessionLocal() as s:
+        cands = retrieve_for_claim(s, claim, top_k=5)
+    assert cands
+    for c in cands:
+        assert c.get("evidence_tier") in ("primary", "secondary")
+        assert "evidence_type" in c and "evidence_quality_score" in c and "evidence_rank_reason" in c
+    assert any(c["evidence_tier"] == "primary" for c in cands)

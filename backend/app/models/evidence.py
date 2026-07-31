@@ -50,6 +50,10 @@ class EvidenceCandidate(Base):
     text_score: Mapped[float] = mapped_column(Float, default=0.0)
     matched_terms: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON 数组
     retrieval_method: Mapped[str] = mapped_column(String(40), default="structured")
+    # Phase 4A.6：证据类型分级与多证据排序
+    evidence_type: Mapped[str] = mapped_column(String(40), default="UNKNOWN")
+    evidence_quality_score: Mapped[float] = mapped_column(Float, default=0.3)
+    evidence_rank_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     run: Mapped["EvidenceRetrievalRun"] = relationship(back_populates="candidates")

@@ -311,7 +311,7 @@ def text_similarity(claim_text: str, block_text: str) -> float:
 
 # ---------------------------------------------------------------- 默认权重
 
-# 基础五分量（Phase 4A 原始方案）+ 阶段2/3 新增加成项（page/table/section，可配置）
+# 基础五分量（Phase 4A 原始方案）+ 阶段2/3/4A.6 新增加成项（page/table/section/evidence_quality，可配置）
 DEFAULT_WEIGHTS = {
     "metric": 0.30,
     "value": 0.25,
@@ -321,6 +321,7 @@ DEFAULT_WEIGHTS = {
     "page": 0.10,
     "table": 0.05,
     "section": 0.10,
+    "evidence_quality": 0.10,
 }
 # 防止"相同数字、不同指标/期间"排名过高：指标未命中但数值命中的候选施加惩罚系数
 _METRIC_MISS_VALUE_HIT_PENALTY = 0.5
@@ -338,12 +339,78 @@ def section_matches(text: str) -> bool:
     return any(kw in text for kw in SECTION_KEYWORDS)
 
 
+# ---------------------------------------------------------------- 证据类型（Phase 4A.6）
+
+EVIDENCE_TYPE_PRIMARY = "PRIMARY_FINANCIAL_STATEMENT"  # 财务报表主表（利润表/资产负债表/现金流量表）
+EVIDENCE_TYPE_NOTE = "FINANCIAL_NOTE"  # 财报附注
+EVIDENCE_TYPE_SEGMENT = "BUSINESS_SEGMENT"  # 业务分部数据
+EVIDENCE_TYPE_MD = "MANAGEMENT_DISCUSSION"  # 管理层讨论与分析
+EVIDENCE_TYPE_NARRATIVE = "NARRATIVE_DISCLOSURE"  # 定性描述
+EVIDENCE_TYPE_UNKNOWN = "UNKNOWN"
+
+# 证据质量分值（用于 evidence_quality_score；权重可配置）
+EVIDENCE_QUALITY = {
+    EVIDENCE_TYPE_PRIMARY: 1.0,
+    EVIDENCE_TYPE_NOTE: 0.8,
+    EVIDENCE_TYPE_SEGMENT: 0.7,
+    EVIDENCE_TYPE_MD: 0.6,
+    EVIDENCE_TYPE_NARRATIVE: 0.4,
+    EVIDENCE_TYPE_UNKNOWN: 0.3,
+}
+
+_STATEMENT_KEYWORDS = (
+    "利润表", "合并利润表", "资产负债表", "合并资产负债表", "现金流量表", "合并现金流量表",
+    "主要会计数据", "主要财务指标",
+)
+_NOTE_KEYWORDS = ("附注", "财务报表附注", "注释", "会计政策", "会计估计", "会计科目")
+_SEGMENT_KEYWORDS = (
+    "分部", "分行业", "分产品", "分地区", "主营业务分", "经营分部", "分业务", "营业收入构成",
+)
+# 财务报表主表的典型指标行（表格区域 + 指标 → PRIMARY）
+_STATEMENT_METRICS = (
+    "营业收入", "营业总收入", "营业成本", "净利润", "归属于上市公司股东的净利润",
+    "总资产", "总负债", "经营活动产生的现金流量净额", "每股收益",
+)
+
+
+def classify_evidence_type(
+    block_text: str,
+    is_table_region: bool = False,
+    is_management_section: bool = False,
+) -> tuple[str, float, str]:
+    """证据类型规则分类（优先级：主表 > 附注 > 分部 > 管理层讨论 > 定性 > 未知）。
+
+    返回 (evidence_type, quality_score, rank_reason)。
+    """
+    text = block_text or ""
+    # 1) 财务报表主表：财务表标题，或表格区域内含财务指标行（主要会计数据/利润表行）
+    if any(kw in text for kw in _STATEMENT_KEYWORDS):
+        return EVIDENCE_TYPE_PRIMARY, EVIDENCE_QUALITY[EVIDENCE_TYPE_PRIMARY], "命中财务报表关键词"
+    if is_table_region and any(m in text for m in _STATEMENT_METRICS):
+        return EVIDENCE_TYPE_PRIMARY, EVIDENCE_QUALITY[EVIDENCE_TYPE_PRIMARY], "表格区域内财务指标行"
+    # 2) 财报附注
+    if any(kw in text for kw in _NOTE_KEYWORDS):
+        return EVIDENCE_TYPE_NOTE, EVIDENCE_QUALITY[EVIDENCE_TYPE_NOTE], "命中附注/注释关键词"
+    # 3) 业务分部
+    if any(kw in text for kw in _SEGMENT_KEYWORDS):
+        return EVIDENCE_TYPE_SEGMENT, EVIDENCE_QUALITY[EVIDENCE_TYPE_SEGMENT], "命中分部经营关键词"
+    # 4) 管理层讨论与经营分析
+    if is_management_section or section_matches(text):
+        return EVIDENCE_TYPE_MD, EVIDENCE_QUALITY[EVIDENCE_TYPE_MD], "管理层讨论/经营分析章节"
+    # 5) 定性描述（有实质内容但无财务结构信号）
+    if len(text.strip()) >= 8:
+        return EVIDENCE_TYPE_NARRATIVE, EVIDENCE_QUALITY[EVIDENCE_TYPE_NARRATIVE], "定性描述"
+    # 6) 未知
+    return EVIDENCE_TYPE_UNKNOWN, EVIDENCE_QUALITY[EVIDENCE_TYPE_UNKNOWN], "无法识别证据类型"
+
+
 def score_block(
     block_text: str,
     claim: dict,
     doc_period: str | None = None,
     weights: dict | None = None,
     section_bonus: float = 0.0,
+    evidence_quality: float = 0.0,
 ) -> dict:
     """对单个文本块计算解释性分数。返回组件分 + 总分 + 命中项。"""
     w = {**DEFAULT_WEIGHTS, **(weights or {})}
@@ -375,6 +442,9 @@ def score_block(
     # 无数字语义主张：管理层讨论/经营分析章节加分（document_section_bonus）
     if claim_value is None and section_bonus > 0:
         final += w.get("section", 0.10) * section_bonus
+    # 证据质量加分（evidence_quality_score，Phase 4A.6；由 service 层在证据分类后注入）
+    if evidence_quality > 0:
+        final += w.get("evidence_quality", 0.10) * evidence_quality
     # 防错匹配：数值相同但指标未命中（如收入 vs 净利润同数）→ 总分惩罚
     if metric_score == 0 and value_score == 1:
         final *= _METRIC_MISS_VALUE_HIT_PENALTY

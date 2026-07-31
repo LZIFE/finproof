@@ -16,6 +16,19 @@ type Candidate = {
   matched_terms: string[];
   retrieval_method: string;
   block_text: string | null;
+  evidence_type: string;
+  evidence_quality_score: number;
+  evidence_rank_reason: string | null;
+  evidence_tier: string;
+};
+
+const EVIDENCE_TYPE_LABEL: Record<string, string> = {
+  PRIMARY_FINANCIAL_STATEMENT: "★★★★★ 财务报表",
+  FINANCIAL_NOTE: "★★★★ 财报附注",
+  BUSINESS_SEGMENT: "★★★★ 业务分部",
+  MANAGEMENT_DISCUSSION: "★★★ 管理层分析",
+  NARRATIVE_DISCLOSURE: "★★ 定性描述",
+  UNKNOWN: "☆ 未知",
 };
 
 type RunOut = {
@@ -156,15 +169,14 @@ export default function EvidenceRetrievalPage() {
                 <thead>
                   <tr>
                     <th>#</th>
+                    <th>证据类型</th>
                     <th>页</th>
                     <th>块</th>
                     <th>总分</th>
                     <th>指标</th>
                     <th>数值</th>
                     <th>期间</th>
-                    <th>主体</th>
-                    <th>文本</th>
-                    <th>命中词</th>
+                    <th>排名原因</th>
                     <th>文本块内容</th>
                   </tr>
                 </thead>
@@ -172,6 +184,12 @@ export default function EvidenceRetrievalPage() {
                   {c.candidates.map((cd) => (
                     <tr key={`${cd.rank}-${cd.block_id}`}>
                       <td>{cd.rank}</td>
+                      <td>
+                        <span className={cd.evidence_tier === "primary" ? "tier-primary" : ""}>
+                          {EVIDENCE_TYPE_LABEL[cd.evidence_type] ?? cd.evidence_type}
+                        </span>
+                        {cd.evidence_tier === "primary" && "（Primary）"}
+                      </td>
                       <td>doc{cd.document_id} p{cd.page_number}</td>
                       <td>{cd.block_id ?? "-"}</td>
                       <td style={{ color: scoreColor(cd.final_score), fontWeight: 700 }}>
@@ -180,9 +198,7 @@ export default function EvidenceRetrievalPage() {
                       <td>{cd.metric_score}</td>
                       <td>{cd.value_score}</td>
                       <td>{cd.period_score}</td>
-                      <td>{cd.entity_score}</td>
-                      <td>{cd.text_score.toFixed(2)}</td>
-                      <td>{(cd.matched_terms ?? []).slice(0, 3).join("、") || "-"}</td>
+                      <td className="block-text">{cd.evidence_rank_reason ?? "-"}</td>
                       <td className="block-text">{cd.block_text ?? ""}</td>
                     </tr>
                   ))}

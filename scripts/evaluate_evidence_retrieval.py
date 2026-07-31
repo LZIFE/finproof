@@ -120,9 +120,18 @@ def evaluate_dataset(session, dataset: str, top_k: int, version: str = "v2") -> 
 
     page_ranks: list[int | None] = []
     block_ranks: list[int | None] = []
+    primary_page_ranks: list[int | None] = []  # 仅 primary 层级的候选
+    type_hits: list[bool] = []  # Evidence Quality Accuracy
     no_result = 0
     candidate_counts: list[int] = []
     failures: list[dict] = []
+
+    # gold evidence_type → 六类证据类型映射（用于 Quality Accuracy 判定）
+    GOLD_TYPE_MAP = {
+        "financial_table": "PRIMARY_FINANCIAL_STATEMENT",
+        "financial_statement_note": "FINANCIAL_NOTE",
+        "management_discussion": "MANAGEMENT_DISCUSSION",
+    }
 
     for claim in gold_claims:
         cid = claim["claim_id"]
@@ -134,6 +143,7 @@ def evaluate_dataset(session, dataset: str, top_k: int, version: str = "v2") -> 
         evs = ev_by_claim.get(cid, [])
         if not evs:
             continue  # 无证据标注的主张不参与 Hit 计算
+        primary_cands = [c for c in cands if c.get("evidence_tier") == "primary"]
         for e in evs:
             g_doc = doc_map.get(e["document_name"])
             g_page = e.get("page")
@@ -148,6 +158,16 @@ def evaluate_dataset(session, dataset: str, top_k: int, version: str = "v2") -> 
             # Block Hit：gold 块出现在 Top-K 中的最小排名
             block_rank = next((c["rank"] for c in cands if c["block_id"] == g_block), None) if g_block else None
             block_ranks.append(block_rank)
+            # Primary Evidence Hit Rate：gold 页出现在 primary 层级候选中的最小排名
+            primary_rank = next(
+                (c["rank"] for c in primary_cands if c["document_id"] == g_doc and c["page_number"] == g_page),
+                None,
+            )
+            primary_page_ranks.append(primary_rank)
+            # Evidence Quality Accuracy：Top1 候选类型 == gold 最佳证据类型
+            g_type = GOLD_TYPE_MAP.get(e.get("evidence_type"), "UNKNOWN")
+            top1_type = cands[0].get("evidence_type") if cands else "UNKNOWN"
+            type_hits.append(g_type == top1_type)
             if page_rank is None and block_rank is None:
                 failures.append(
                     {
@@ -184,6 +204,10 @@ def evaluate_dataset(session, dataset: str, top_k: int, version: str = "v2") -> 
         "block_hit_at_5": hit_at(block_ranks, 5),
         "mrr": mrr(page_ranks),
         "block_mrr": mrr(block_ranks),
+        "primary_evidence_hit_at_1": hit_at(primary_page_ranks, 1),
+        "primary_evidence_hit_at_3": hit_at(primary_page_ranks, 3),
+        "primary_evidence_hit_at_5": hit_at(primary_page_ranks, 5),
+        "evidence_quality_accuracy": round(sum(type_hits) / len(type_hits), 4) if type_hits else 0.0,
         "no_result_rate": round(no_result / max(len(gold_claims), 1), 4),
         "average_candidate_count": round(sum(candidate_counts) / max(len(candidate_counts), 1), 2),
         "average_latency": run.duration_ms,
@@ -202,6 +226,8 @@ def evaluate_dataset(session, dataset: str, top_k: int, version: str = "v2") -> 
     for k in (
         "page_hit_at_1", "page_hit_at_3", "page_hit_at_5",
         "block_hit_at_1", "block_hit_at_3", "block_hit_at_5",
+        "primary_evidence_hit_at_1", "primary_evidence_hit_at_3", "primary_evidence_hit_at_5",
+        "evidence_quality_accuracy",
         "mrr", "block_mrr", "no_result_rate", "average_candidate_count", "average_latency",
     ):
         lines.append(f"| {k} | {metrics[k]} |")

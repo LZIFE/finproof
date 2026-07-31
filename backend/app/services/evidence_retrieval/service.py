@@ -10,6 +10,8 @@ from app.models import Document, DocumentBlock
 from app.models.evidence import EvidenceCandidate, EvidenceRetrievalRun
 from app.services.evidence_retrieval.engine import (
     DEFAULT_WEIGHTS,
+    EVIDENCE_TYPE_PRIMARY,
+    classify_evidence_type,
     document_priority,
     metric_aliases,
     normalize_claim,
@@ -184,10 +186,20 @@ def retrieve_for_claim(
         for b in blocks:
             b["page_bonus"] = page_bonus
             b["table_region"] = b["block_id"] in table_blocks
+            # Phase 4A.6：证据类型分级 + 质量分 + 排名原因（多证据分层）
+            section_flag = _page_section_flag(session, b["page_id"], section_cache)
+            etype, qscore, reason = classify_evidence_type(
+                b["block_text"], is_table_region=b["table_region"], is_management_section=section_flag
+            )
+            b["evidence_type"] = etype
+            b["evidence_quality_score"] = qscore
+            b["evidence_rank_reason"] = reason
+            b["evidence_tier"] = "primary" if etype == EVIDENCE_TYPE_PRIMARY else "secondary"
             b["final_score"] = round(
                 b["final_score"]
                 + w.get("page", 0.10) * page_bonus
-                + w.get("table", 0.05) * (1.0 if b["block_id"] in table_blocks else 0.0),
+                + w.get("table", 0.05) * (1.0 if b["block_id"] in table_blocks else 0.0)
+                + w.get("evidence_quality", 0.10) * qscore,
                 4,
             )
 
@@ -246,6 +258,9 @@ def run_retrieval(
                         text_score=c["text_score"],
                         matched_terms=json.dumps(c.get("matched_terms", []), ensure_ascii=False),
                         retrieval_method="structured",
+                        evidence_type=c.get("evidence_type", "UNKNOWN"),
+                        evidence_quality_score=c.get("evidence_quality_score", 0.3),
+                        evidence_rank_reason=c.get("evidence_rank_reason"),
                     )
                 )
         run.status = "COMPLETED"
@@ -285,6 +300,10 @@ def get_run_claims(session: Session, run_id: int) -> dict[str, list[dict]]:
                 "text_score": r.text_score,
                 "matched_terms": json.loads(r.matched_terms or "[]"),
                 "retrieval_method": r.retrieval_method,
+                "evidence_type": r.evidence_type,
+                "evidence_quality_score": r.evidence_quality_score,
+                "evidence_rank_reason": r.evidence_rank_reason,
+                "evidence_tier": "primary" if r.evidence_type == EVIDENCE_TYPE_PRIMARY else "secondary",
             }
         )
     return out

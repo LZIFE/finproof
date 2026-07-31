@@ -436,6 +436,46 @@ CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）�
 
 ---
 
+## Phase 4A.6：金融证据分级与多证据排序层 — ✅ 已完成（commit `xxxxxx`）
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| Evidence Type 六类 | `PRIMARY_FINANCIAL_STATEMENT`（利润表/资产负债表/现金流量表/主要会计数据）/ `FINANCIAL_NOTE`（附注/注释/会计政策）/ `BUSINESS_SEGMENT`（分部经营）/ `MANAGEMENT_DISCUSSION`（管理层讨论与经营分析）/ `NARRATIVE_DISCLOSURE`（定性）/ `UNKNOWN` |
+| 类型识别规则 | 优先级：主表（财务表关键词 或 表格区域+财务指标行）> 附注 > 分部 > 管理层讨论（章节/关键词）> 定性 > 未知；规则纯函数可测 |
+| 证据质量分 | `EVIDENCE_QUALITY`：PRIMARY 1.0 / NOTE 0.8 / SEGMENT 0.7 / MD 0.6 / NARRATIVE 0.4 / UNKNOWN 0.3；`evidence_quality` 权重（默认 0.10）可配置 |
+| 新排序公式 | `final = metric + value + period + entity + text + page_bonus + table_bonus + evidence_quality×质量分`（semantic+value+period+table+evidence_quality，权重全可配置） |
+| 多证据集合 | 候选按 `evidence_tier` 分层：`primary`（PRIMARY_FINANCIAL_STATEMENT）/ `secondary`（其余），一个主张同时返回多级证据 |
+| 数据库 | `evidence_candidates` 新增 `evidence_type` / `evidence_quality_score` / `evidence_rank_reason`（轻量迁移；原始检索分保留） |
+| 评测新增 | **Evidence Quality Accuracy**（Top1 类型 vs gold 最佳类型，gold evidence_type 映射六类）与 **Primary Evidence Hit Rate**（gold 页在 primary 层级候选中的 Hit@K） |
+| 前端 | 候选表新增证据类型星级标签（★★★★★ 财务报表 / ★★★★ 附注/分部 / ★★★ 管理层分析 / ★★ 定性）+ 排名原因列 + Primary 标记 |
+
+### 重新评测（Oracle 模式，top_k=5，v2 权重）
+
+| 指标 | Demo | Holdout |
+| ---- | ---- | ------- |
+| Page Hit@1 / @3 / @5 | **0.167 / 0.208 / 0.25**（Hit@1 ↑ 0.125） | 0.273 / 0.364 / 0.364 |
+| Block Hit@5 | 0.25 | 0.364 |
+| MRR | **0.191**（↑ 0.170） | 0.303 |
+| Primary Evidence Hit@1 / @5 | 0.167 / 0.25 | 0.182 / 0.273 |
+| Evidence Quality Accuracy | 0.417 | 0.545 |
+| no_result_rate | 0.269 | 0.353 |
+
+**证据质量加权带来正向改善**：Demo Page Hit@1 0.125→0.167、MRR 0.170→0.191（财务报表主表候选因质量分上浮）；Holdout 持平。
+
+### 完成标准对照
+
+| 标准 | 状态 |
+| ---- | ---- |
+| Evidence Type 设计 / 分类准确案例 | ✅ 六类规则分类 + 专项测试（利润表/管理层讨论/附注/分部/表格优先/等级排序） |
+| 新排序公式 | ✅ semantic+value+period+table+evidence_quality（权重可配置） |
+| Demo/Holdout 重新评测 | ✅ 如上（含新增两项指标） |
+| Primary Evidence Hit Rate / Evidence Quality Accuracy | ✅ 已实现并输出 |
+| 测试（新增 6 项，全量 **211 passed**）/ 前端 build / 双金标准 0 错误 / Git commit | ✅ |
+
+---
+
 ## 下一步（不在本轮范围）
 
 - **Phase 4B：事实核验**（SUPPORTED/REFUTED 等五类判定）——按任务书"完成后停止，不进入事实核验阶段"。
