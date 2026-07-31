@@ -52,14 +52,22 @@ def structured_key(
     value_operator: str | None,
     claim_nature: str,
     business_segment: str | None,
+    claim_type: str | None = None,
     source_text: str | None = None,
 ) -> str:
     """第二层结构化键。
 
-    无指标主张（metric_code 为空）追加文本指纹，防止"公司持续深化……战略"
-    与"海外OBM战略成效逐步显现"等不同语义句因空字段共用键被误并。
+    - 无指标主张（metric_code 为空）追加文本指纹，防止不同语义句因空字段共用键被误并；
+    - claim_type 参与键：同父句的"绝对值"与"同比增长率"兄弟主张类型不同 → 键不同，
+      不会被误并（见 claim_group_id 语义）。
     """
     metric_part = metric_code or metric or ""
+    # 增长率主张的指标基名归一（yoy_growth_revenue ≈ revenue@增长率）：同义增长率去重
+    if (claim_type or "") == "GROWTH_RATE":
+        for prefix in ("yoy_growth_", "qoq_growth_", "growth_"):
+            if metric_part.startswith(prefix):
+                metric_part = metric_part[len(prefix):]
+                break
     # 期间归一化：2025FY ≈ 2025（同义去重层）
     period_norm = (period or "").rstrip("FY")
     comp_period_norm = (comparison_period or "").rstrip("FY")
@@ -72,6 +80,7 @@ def structured_key(
         (value_operator or "EQUAL").strip(),
         (claim_nature or "").strip(),
         (business_segment or "").strip(),
+        (claim_type or "").strip(),
     ]
     key = "|".join(parts)
     if not metric_part:
@@ -94,15 +103,25 @@ class DedupResult:
     records: list[DedupRecord] = field(default_factory=list)
 
 
+def _get(claim, name: str, default=None):
+    """兼容 dict（Hybrid 候选）与 ORM/数据类（ClaimCreate）的字段读取。"""
+    if isinstance(claim, dict):
+        return claim.get(name, default)
+    return getattr(claim, name, default)
+
+
 def deduplicate(claims: list) -> DedupResult:
-    """三层去重：文本归一化 → 结构化键 → 同义（结构化键在指标别名归一后合并）。"""
+    """三层去重：文本归一化 → 结构化键 → 同义（结构化键在指标别名归一后合并）。
+
+    支持 dict 与对象（分别来自 Hybrid Provider 与 ClaimCreate 候选）。
+    """
     result = DedupResult()
     kept: list = []
-    seen_text: dict[str, int] = {}  # 归一化文本 -> kept index
-    seen_key: dict[str, int] = {}  # 结构化键 -> kept index
+    seen_text: dict[str, int] = {}
+    seen_key: dict[str, int] = {}
 
     for idx, c in enumerate(claims):
-        norm_text = text_norm(getattr(c, "source_text", "") or "")
+        norm_text = text_norm(_get(c, "source_text", "") or "")
 
         # 第一层：文本归一化去重
         if norm_text:
@@ -113,18 +132,19 @@ def deduplicate(claims: list) -> DedupResult:
                 continue
             seen_text[norm_text] = idx
 
-        # 第二层：结构化键去重（无指标追加文本指纹）
+        # 第二层：结构化键去重（无指标追加文本指纹；claim_type 参与键，兄弟主张不误并）
         key = structured_key(
-            entity=getattr(c, "entity_name", None),
-            metric_code=getattr(c, "metric_code", None),
-            metric=getattr(c, "metric", None),
-            period=getattr(c, "period", None),
-            comparison_period=getattr(c, "comparison_period", None),
-            value=getattr(c, "reported_value", None),
-            value_operator=getattr(c, "value_operator", None),
-            claim_nature=getattr(c, "claim_nature", None) or "FACT",
-            business_segment=getattr(c, "business_segment", None),
-            source_text=getattr(c, "source_text", None),
+            entity=_get(c, "entity_name", None),
+            metric_code=_get(c, "metric_code", None),
+            metric=_get(c, "metric", None),
+            period=_get(c, "period", None),
+            comparison_period=_get(c, "comparison_period", None),
+            value=_get(c, "reported_value", None),
+            value_operator=_get(c, "value_operator", None),
+            claim_nature=_get(c, "claim_nature", None) or "FACT",
+            business_segment=_get(c, "business_segment", None),
+            claim_type=_get(c, "claim_type", None),
+            source_text=_get(c, "source_text", None),
         )
         dup_idx = seen_key.get(key)
         if dup_idx is not None:

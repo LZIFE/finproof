@@ -75,6 +75,9 @@ class Claim(Base):
     )
     source_page_number: Mapped[int] = mapped_column(Integer, default=1)
     source_text: Mapped[str] = mapped_column(Text)
+    # 主张组：同一父句拆分出的兄弟主张共享 claim_group_id（绝对值+增长率等），
+    # 前端可按组折叠展示；数据库/评测/核验仍保留独立主张
+    claim_group_id: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
     # 父句上下文（子句归属）：拆分后的子主张保留父句信息用于评测与证据定位
     parent_block_id: Mapped[int | None] = mapped_column(Integer, nullable=True)
     parent_sentence_text: Mapped[str | None] = mapped_column(Text, nullable=True)

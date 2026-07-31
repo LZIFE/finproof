@@ -106,6 +106,10 @@ def run_claim_extraction(
             prompt_version=get_settings().claim_extraction_prompt_version,
         )
         provider = get_claim_provider(mode)
+        # 金标准泄漏防护：提取链路不得读取 gold/holdout/artifacts（违规立即失败）
+        from app.services.claims.guard import assert_extraction_isolated
+
+        assert_extraction_isolated()
         start = time.monotonic()
         result: ClaimExtractionResult = provider.extract_claims(ctx, blocks)
         duration_ms = int((time.monotonic() - start) * 1000)
@@ -151,6 +155,7 @@ def run_claim_extraction(
                 source_block_id=claim.source_block_id,
                 source_page_number=claim.source_page_number,
                 source_text=claim.source_text,
+                claim_group_id=claim.claim_group_id,
                 parent_block_id=claim.parent_block_id,
                 parent_sentence_text=claim.parent_sentence_text,
                 clause_index=claim.clause_index,

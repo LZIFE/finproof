@@ -1,0 +1,171 @@
+[
+  {
+    "system_claim_id": 707,
+    "gold_claim_id": "CLM-H01",
+    "match_score": 0.99,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "metric",
+      "value",
+      "period",
+      "entity",
+      "type",
+      "nature"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 709,
+    "gold_claim_id": "CLM-H02",
+    "match_score": 0.99,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "metric",
+      "value",
+      "period",
+      "entity",
+      "type",
+      "nature"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 710,
+    "gold_claim_id": "CLM-H03",
+    "match_score": 0.88,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "value",
+      "period",
+      "comparison_period",
+      "entity",
+      "type",
+      "nature"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 711,
+    "gold_claim_id": "CLM-H04",
+    "match_score": 0.99,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "metric",
+      "value",
+      "period",
+      "entity",
+      "type",
+      "nature"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 713,
+    "gold_claim_id": "CLM-H10",
+    "match_score": 0.69,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "period",
+      "entity",
+      "type",
+      "nature"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 715,
+    "gold_claim_id": "CLM-H13",
+    "match_score": 0.69,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "period",
+      "entity",
+      "type",
+      "nature"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 716,
+    "gold_claim_id": "CLM-H11",
+    "match_score": 0.99,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "metric",
+      "value",
+      "period",
+      "entity",
+      "type",
+      "nature"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 717,
+    "gold_claim_id": "CLM-H06",
+    "match_score": 0.99,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "metric",
+      "value",
+      "period",
+      "entity",
+      "type",
+      "nature"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 723,
+    "gold_claim_id": "CLM-H16",
+    "match_score": 0.99,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "metric",
+      "value",
+      "period",
+      "entity",
+      "type",
+      "nature"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 724,
+    "gold_claim_id": "CLM-H14",
+    "match_score": 0.84,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "metric",
+      "period",
+      "entity",
+      "type",
+      "nature"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 725,
+    "gold_claim_id": "CLM-H15",
+    "match_score": 0.87,
+    "match_reasons": [
+      "text_overlap",
+      "parent_sentence",
+      "metric",
+      "value",
+      "period",
+      "entity"
+    ],
+    "match_status": "MATCHED"
+  }
+]

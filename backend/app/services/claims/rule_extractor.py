@@ -76,6 +76,8 @@ class ClaimCandidate:
     clause_index: int | None = None
     source_span_start: int | None = None
     source_span_end: int | None = None
+    # 主张组：同一父句拆分出的兄弟主张共享 claim_group_id（前端折叠，评测/核验保留独立）
+    claim_group_id: str | None = None
 
     def to_dict(self) -> dict:
         return {k: v for k, v in self.__dict__.items()}
@@ -223,8 +225,11 @@ class RuleBasedCandidateExtractor:
             if _is_meta(text):
                 continue
             last_metric: tuple | None = None
+            sentence_seq = 0
             for sentence in _split_sentences(text):
                 result.candidate_sentence_count += 1
+                sentence_seq += 1
+                group_id = f"blk{getattr(block, 'id', 0)}-s{sentence_seq}"
                 year = _inherit_year(sentence, self.report_year)
                 # 句子级期间：向无显式期间的子句传播（如"2025年上半年，……"）
                 sentence_period = parse_period(sentence, year)
@@ -239,6 +244,7 @@ class RuleBasedCandidateExtractor:
                         clause_index=ci,
                         source_span_start=span[0],
                         source_span_end=span[1],
+                        claim_group_id=group_id,
                     )
                     if candidate is None:
                         continue
@@ -259,6 +265,7 @@ class RuleBasedCandidateExtractor:
         clause_index: int | None = None,
         source_span_start: int | None = None,
         source_span_end: int | None = None,
+        claim_group_id: str | None = None,
     ) -> ClaimCandidate | None:
         if len(clause) < MIN_CLAIM_LEN:
             return None
@@ -349,4 +356,5 @@ class RuleBasedCandidateExtractor:
             clause_index=clause_index,
             source_span_start=source_span_start,
             source_span_end=source_span_end,
+            claim_group_id=claim_group_id,
         )

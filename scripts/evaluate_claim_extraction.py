@@ -35,8 +35,9 @@ GOLD_PATH = REPO_ROOT / "data" / "demo" / "annotations" / "gold_claims.json"
 ARTIFACT_ROOT = REPO_ROOT / "artifacts" / "evaluations" / "claim_extraction"
 
 
-def load_gold() -> list[dict]:
-    data = json.loads(GOLD_PATH.read_text(encoding="utf-8"))
+def load_gold(path: str | None = None) -> list[dict]:
+    p = Path(path) if path else GOLD_PATH
+    data = json.loads(p.read_text(encoding="utf-8"))
     return data["claims"]
 
 
@@ -44,8 +45,10 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="主张提取评测")
     ap.add_argument("--document-id", type=int, default=None, help="待核验文档 id（默认查询 REPORT_TO_VERIFY）")
     ap.add_argument("--run-id", type=int, default=None, help="指定提取运行 id")
-    ap.add_argument("--mode", default="mock", choices=["mock", "rules", "llm"])
+    ap.add_argument("--mode", default="mock", choices=["mock", "rules", "llm", "hybrid"])
     ap.add_argument("--force", action="store_true", help="强制新建提取运行")
+    ap.add_argument("--gold", default=str(GOLD_PATH), help="金标准 claims 文件路径（支持盲测集）")
+    ap.add_argument("--artifacts-root", default=str(ARTIFACT_ROOT), help="评测产物根目录")
     args = ap.parse_args()
 
     init_db()
@@ -116,11 +119,11 @@ def main() -> int:
             "duplicate_removed_count": run.duplicate_removed_count,
         }
 
-    gold = load_gold()
+    gold = load_gold(args.gold)
     result = claim_eval.match_claims(system_claims, gold)
     metrics = claim_eval.compute_metrics(run_dict, result, gold, system_claims)
     report_md = claim_eval.build_report(metrics, result, gold)
-    out_dir = ARTIFACT_ROOT / str(run.id)
+    out_dir = Path(args.artifacts_root) / str(run.id)
     claim_eval.write_artifacts(out_dir, metrics, result, report_md)
 
     # 去重分析产物

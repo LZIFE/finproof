@@ -1,0 +1,14 @@
+{
+  "runs": [
+    11,
+    12
+  ],
+  "mode_label": "mock/rules（真实 LLM 三次运行未执行，配置缺失；本结果仅为框架演示）",
+  "total_claims": 0,
+  "common_all_runs": 0.0,
+  "at_least_two_runs": 0.0,
+  "once_only_unstable": 0.0,
+  "high_risk_stable_recall": 0.0,
+  "numeric_stable_recall": 0.0,
+  "counts_by_frequency": {}
+}

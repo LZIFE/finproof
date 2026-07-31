@@ -19,6 +19,7 @@ METRIC_DICTIONARY: list[tuple[str, str, str]] = [
     ("营业总收入", "营业总收入", "total_operating_revenue"),
     ("归母净利润", "归母净利润", "net_profit_attributable"),
     ("营业收入", "营业收入", "revenue"),
+    ("营收", "营业收入", "revenue"),
     ("基本每股收益", "基本每股收益", "basic_eps"),
     ("每股收益", "每股收益", "eps"),
     ("毛利率", "毛利率", "gross_margin"),

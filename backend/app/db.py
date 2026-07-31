@@ -53,6 +53,7 @@ def _migrate_columns(conn) -> None:
         ("clause_index", "INTEGER"),
         ("source_span_start", "INTEGER"),
         ("source_span_end", "INTEGER"),
+        ("claim_group_id", "TEXT"),
     ]:
         if name not in claim_cols:
             conn.execute(text(f"ALTER TABLE claims ADD COLUMN {name} {ddl}"))

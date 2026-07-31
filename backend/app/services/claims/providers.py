@@ -111,12 +111,14 @@ class RuleOnlyClaimExtractionProvider(MockClaimExtractionProvider):
 
 
 class HybridClaimExtractionProvider:
-    """Hybrid（rule → LLM 精炼）：规则候选句 + 上下文窗口交给 LLM 筛选/拆分/结构化。
+    """Hybrid（rule → LLM 精炼，Phase 3.6 优化版）。
 
-    建议流程（与任务书一致）：
-    文档文本块 → 规则候选句 → 按段落上下文窗口 → LLM 筛选/拆分/结构化
-    → 字段标准化 → 去重 → 风险分级 → Schema 校验
+    流程：
+    文档文本块 → 规则标记候选段落（不产出最终主张）→ 按标题/前后段落形成
+    上下文窗口 → LLM v2 逐窗口筛选/拆分/结构化 → 确定性字段标准化 →
+    Schema 校验 → 语义去重 → 风险分级 → 入库
 
+    规则层职责：减少无关段落、标记数字与财务指标、提供上下文线索、降低 Token 成本。
     无 LLM 配置时抛出明确错误（Hybrid 必须真实调用模型，不允许伪装）。
     """
 
@@ -124,18 +126,79 @@ class HybridClaimExtractionProvider:
         self.settings = settings or get_settings()
         self.llm = LLMClaimExtractionProvider(settings=self.settings)
 
-    def _build_messages(self, ctx: DocumentContext, blocks: list, rule_candidates: list[str]) -> list[dict]:
-        prompt = load_prompt(ctx.prompt_version)
-        candidate_lines = "\n".join(f"- {t}" for t in rule_candidates[:80])
-        user = (
-            f"公司名称: {ctx.company_name or ''}\n股票代码: {ctx.stock_code or ''}\n\n"
-            f"规则预提取候选句（仅作参考，请按规则筛选/拆分/补全结构化字段）：\n{candidate_lines}\n\n"
-            f"报告文本块：\n{self.llm._blocks_to_text(blocks)}"
+    # ---------- 上下文窗口 ----------
+
+    @staticmethod
+    def _mark_candidate_blocks(blocks: list) -> set[int]:
+        """规则层标记候选段落：含数字/百分比/财务指标/强信号词的段落。"""
+        from app.services.claims.rule_extractor import (
+            STRONG_SIGNAL_WORDS,
+            find_metric,
+            parse_number,
         )
-        return [
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": user},
-        ]
+
+        candidates: set[int] = set()
+        for b in blocks:
+            text = b.text or ""
+            if getattr(b, "block_type", "") == "heading":
+                continue
+            if find_metric(text) or parse_number(text) or any(w in text for w in STRONG_SIGNAL_WORDS):
+                candidates.add(getattr(b, "id", id(b)))
+        return candidates
+
+    def _build_context_windows(self, blocks: list) -> list[dict]:
+        """按"标题 + 前段 + 当前 + 后段"组织上下文窗口，附文本块 ID 与位置。"""
+        candidate_ids = self._mark_candidate_blocks(blocks)
+        windows: list[dict] = []
+        current_title = ""
+        prev_block = None
+        for idx, b in enumerate(blocks):
+            text = b.text or ""
+            if getattr(b, "block_type", "") == "heading":
+                current_title = text
+                continue
+            if getattr(b, "id", id(b)) not in candidate_ids:
+                prev_block = b
+                continue
+            nxt = blocks[idx + 1] if idx + 1 < len(blocks) else None
+            windows.append(
+                {
+                    "title": current_title,
+                    "prev": (prev_block.text or "") if prev_block else "",
+                    "current": text,
+                    "next": (nxt.text or "") if nxt and getattr(nxt, "block_type", "") != "heading" else "",
+                    "block_id": getattr(b, "id", None),
+                    "block_index": idx,
+                }
+            )
+            prev_block = b
+        return windows
+
+    @staticmethod
+    def _deterministic_normalize(claim_dict: dict) -> dict:
+        """确定性字段标准化：模型未给出的 metric/period/unit 用规则补齐，显式值不覆盖。"""
+        from app.services.claims.normalizers import (
+            find_metric,
+            parse_number,
+            parse_period,
+        )
+
+        if not claim_dict.get("metric_code"):
+            m = find_metric(claim_dict.get("metric") or claim_dict.get("source_text") or "")
+            if m:
+                claim_dict["metric_code"] = m[1]
+                claim_dict.setdefault("metric", m[0])
+        if not claim_dict.get("period") and claim_dict.get("source_text"):
+            p = parse_period(claim_dict["source_text"], None)
+            if p and p.period:
+                claim_dict["period"] = p.period
+                claim_dict["period_type"] = p.period_type
+        if claim_dict.get("reported_value") is not None and not claim_dict.get("unit"):
+            n = parse_number(claim_dict.get("source_text") or "")
+            if n:
+                claim_dict["unit"] = n.unit
+                claim_dict["currency"] = n.currency or claim_dict.get("currency")
+        return claim_dict
 
     def extract_claims(self, document_context: DocumentContext, blocks: list) -> ClaimExtractionResult:
         cfg = self.settings
@@ -145,32 +208,71 @@ class HybridClaimExtractionProvider:
                 status_code=422,
                 code="LLM_NOT_CONFIGURED",
             )
-        extractor = RuleBasedCandidateExtractor(
-            entity_name=document_context.company_name or "美的集团",
-            stock_code=document_context.stock_code or "000333",
-            report_year=document_context.report_year,
-        )
-        rule_result = extractor.extract(blocks)
-        candidates = [c.source_text for c in rule_result.candidates]
+        windows = self._build_context_windows(blocks)
+        claim_dicts: list[dict] = []
+        total_usage = {"prompt_tokens": 0, "completion_tokens": 0}
+        call_count = 0
+        for w in windows:
+            messages = self._build_messages(document_context, w)
+            content, usage = self._call_llm(messages)
+            call_count += 1
+            if usage:
+                total_usage["prompt_tokens"] += int(usage.get("prompt_tokens") or 0)
+                total_usage["completion_tokens"] += int(usage.get("completion_tokens") or 0)
+            items = self.llm._parse_response(content)
+            for item in items:
+                d = self.llm._normalize_item(item)
+                if d is None:
+                    continue
+                # 上下文窗口补充定位信息（模型输出未带时）
+                d.setdefault("source_block_id", w["block_id"])
+                d.setdefault("source_page_number", 1)
+                d.setdefault("claim_group_id", f"hyb-blk{w['block_id']}")
+                d.setdefault("parent_sentence_text", w["current"])
+                d["extraction_method"] = "HYBRID"
+                claim_dicts.append(self._deterministic_normalize(d))
 
-        messages = self._build_messages(document_context, blocks, candidates)
-        content, usage = self._call_llm(messages)
-        items = self.llm._parse_response(content)
-        claim_dicts, failed = self.llm._to_claim_dicts(items)
-        for d in claim_dicts:
-            d["extraction_method"] = "HYBRID"
+        # 语义去重 + 风险分级（Schema 校验由服务层执行）
+        from app.services.claims.dedup import deduplicate
+        from app.services.claims.normalizers import grade_risk
+
+        result = deduplicate(claim_dicts)
+        for d in result.unique:
+            level, reason = grade_risk(
+                d.get("source_text", ""), d.get("claim_type", ""), d.get("metric_code")
+            )
+            d["risk_level"] = level
+            d["risk_reason"] = reason
+
+        raw_hash = None
         return ClaimExtractionResult(
-            claim_dicts=claim_dicts,
+            claim_dicts=result.unique,
             provider="hybrid_rule_llm",
             model_name=cfg.claim_extraction_model,
             prompt_version=document_context.prompt_version,
             is_mock=False,
-            schema_failed_count=failed,
-            raw_response_hash=hashlib.sha256(content.encode("utf-8")).hexdigest(),
-            token_usage=usage,
-            candidate_sentence_count=rule_result.candidate_sentence_count,
-            input_block_count=rule_result.input_block_count,
+            schema_failed_count=0,
+            token_usage=total_usage,
+            candidate_sentence_count=len(windows),
+            input_block_count=len(blocks),
         )
+
+    def _build_messages(self, ctx: DocumentContext, window: dict) -> list[dict]:
+        prompt = load_prompt(ctx.prompt_version)
+        user = (
+            f"公司名称: {ctx.company_name or ''} ｜ 股票代码: {ctx.stock_code or ''} ｜ "
+            f"报告基准期: {ctx.report_year or ''}\n"
+            f"文本块 ID: {window['block_id']}（块位置 #{window['block_index']}）\n\n"
+            f"【段落标题】\n{window['title']}\n\n"
+            f"【前一段落】\n{window['prev']}\n\n"
+            f"【当前段落】\n{window['current']}\n\n"
+            f"【后一段落】\n{window['next']}\n\n"
+            "请从【当前段落】提取可核验金融主张；前/后段落与标题仅作上下文参考，不要从中提取主张。"
+        )
+        return [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": user},
+        ]
 
     def _call_llm(self, messages: list[dict]) -> tuple[str, dict | None]:
         """Hybrid 的模型调用（复用 LLM Provider 的重试/超时逻辑）。"""
