@@ -1,0 +1,47 @@
+[
+  {
+    "claim_id": "CLM-004",
+    "original_text": "归母净利润439.45亿元，同比增长38.02%",
+    "claim_type": "calculated_financial_metric",
+    "entity": "美的集团",
+    "metric": "yoy_growth_net_profit",
+    "value": 38.02,
+    "unit": "%",
+    "currency": "CNY",
+    "period": "2025FY",
+    "comparison_period": "2024FY",
+    "scope": "consolidated",
+    "risk_level": "high",
+    "report_section": "核心观点"
+  },
+  {
+    "claim_id": "CLM-015",
+    "original_text": "根据公司2025年一季度报告，2025年上半年公司营业收入同比增长20.49%",
+    "claim_type": "calculated_financial_metric",
+    "entity": "美的集团",
+    "metric": "yoy_growth_revenue",
+    "value": 20.49,
+    "unit": "%",
+    "currency": "CNY",
+    "period": "2025H1",
+    "comparison_period": "2024H1",
+    "scope": "consolidated",
+    "risk_level": "high",
+    "report_section": "二、分季度分析"
+  },
+  {
+    "claim_id": "CLM-019",
+    "original_text": "公司持续深化\"国内高端品牌和海外OBM优先\"战略",
+    "claim_type": "business_fact",
+    "entity": "美的集团",
+    "metric": "overseas_obm_strategy",
+    "value": null,
+    "unit": null,
+    "currency": null,
+    "period": "2025H1",
+    "comparison_period": null,
+    "scope": "consolidated",
+    "risk_level": "medium",
+    "report_section": "三、业务与战略"
+  }
+]

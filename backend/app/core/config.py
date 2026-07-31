@@ -37,6 +37,17 @@ class Settings(BaseSettings):
     llm_api_key: str = ""
     llm_model: str = ""
 
+    # --- 主张提取（Phase 3，openai_compatible Provider 抽象） ---
+    # mock: 规则候选提取并明确标识 Mock；llm: 调用真实大模型
+    claim_extraction_mode: str = "mock"
+    claim_extraction_provider: str = "openai_compatible"
+    claim_extraction_model: str = ""
+    claim_extraction_base_url: str = ""
+    claim_extraction_api_key: str = ""
+    claim_extraction_timeout_seconds: int = 60
+    claim_extraction_max_retries: int = 2
+    claim_extraction_prompt_version: str = "v1"
+
 
 @lru_cache
 def get_settings() -> Settings:

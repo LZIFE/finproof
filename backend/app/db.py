@@ -26,9 +26,31 @@ SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 from app import models  # noqa: E402, F401
 
 
+def _migrate_columns(conn) -> None:
+    """开发库轻量迁移：PRAGMA 检查缺失列并 ALTER TABLE 补充（幂等）。
+
+    Phase 3 新增 extraction_runs.candidate_claim_count（用于评测 Schema 合法率）。
+    """
+    from sqlalchemy import text
+
+    cols = {row[1] for row in conn.execute(text("PRAGMA table_info(extraction_runs)"))}
+    if "candidate_claim_count" not in cols:
+        conn.execute(
+            text(
+                "ALTER TABLE extraction_runs "
+                "ADD COLUMN candidate_claim_count INTEGER NOT NULL DEFAULT 0"
+            )
+        )
+
+
 def init_db() -> None:
-    """按当前注册的 ORM 模型建表（幂等，可重复调用）。"""
+    """按当前注册的 ORM 模型建表（幂等，可重复调用），并执行轻量迁移。"""
     Base.metadata.create_all(bind=engine)
+    with engine.begin() as conn:
+        try:
+            _migrate_columns(conn)
+        except Exception:  # noqa: BLE001 —— 表不存在等场景跳过
+            pass
 
 
 def get_session():

@@ -1,0 +1,58 @@
+[
+  {
+    "id": 212,
+    "claim_uid": "CLM-RUN5-004",
+    "source_text": "同比增长38.02%",
+    "normalized_claim": "归母净利润202538.02PERCENT同比",
+    "claim_type": "GROWTH_RATE",
+    "metric": "归母净利润",
+    "metric_code": "yoy_growth_net_profit",
+    "reported_value": 38.02,
+    "unit": "PERCENT",
+    "period": "2025",
+    "comparison_period": "2024",
+    "risk_level": "HIGH"
+  },
+  {
+    "id": 227,
+    "claim_uid": "CLM-RUN5-022",
+    "source_text": "同比增长20.49%",
+    "normalized_claim": "营业收入2025Q120.49PERCENT同比",
+    "claim_type": "GROWTH_RATE",
+    "metric": "营业收入",
+    "metric_code": "yoy_growth_revenue",
+    "reported_value": 20.49,
+    "unit": "PERCENT",
+    "period": "2025Q1",
+    "comparison_period": "2024Q1",
+    "risk_level": "HIGH"
+  },
+  {
+    "id": 229,
+    "claim_uid": "CLM-RUN5-024",
+    "source_text": "同比增长38.02%",
+    "normalized_claim": "归母净利润2025Q138.02PERCENT同比",
+    "claim_type": "GROWTH_RATE",
+    "metric": "归母净利润",
+    "metric_code": "yoy_growth_net_profit",
+    "reported_value": 38.02,
+    "unit": "PERCENT",
+    "period": "2025Q1",
+    "comparison_period": "2024Q1",
+    "risk_level": "HIGH"
+  },
+  {
+    "id": 238,
+    "claim_uid": "CLM-RUN5-033",
+    "source_text": "2025年上半年公司营业收入同比增长20.49%",
+    "normalized_claim": "收入同比增长2025H120.49PERCENT同比",
+    "claim_type": "GROWTH_RATE",
+    "metric": "收入同比增长",
+    "metric_code": "yoy_growth_revenue",
+    "reported_value": 20.49,
+    "unit": "PERCENT",
+    "period": "2025H1",
+    "comparison_period": "2024H1",
+    "risk_level": "HIGH"
+  }
+]

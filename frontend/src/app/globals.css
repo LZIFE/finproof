@@ -189,3 +189,46 @@ th {
 .links a {
   color: var(--accent);
 }
+
+/* ---- 主张提取页 ---- */
+.mock-badge {
+  display: inline-block;
+  background: #7c2d12;
+  color: #fdba74;
+  border: 1px solid #9a3412;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.link-btn {
+  display: inline-block;
+  margin-left: 12px;
+  color: var(--accent);
+}
+
+.source-quote {
+  background: #0f172a;
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+.field-key {
+  width: 140px;
+  white-space: nowrap;
+}
+
+input[type="text"],
+input:not([type]) {
+  background: #0f172a;
+  color: var(--fg);
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 8px;
+  width: 100%;
+}
