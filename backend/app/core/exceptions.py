@@ -1,7 +1,8 @@
-"""基础异常与统一异常处理。
+"""基础异常与统一错误处理。
 
-- AppError：业务层可抛出的可预期错误（带 HTTP 状态码与可读 detail）。
-- register_exception_handlers：注册到 FastAPI 应用。
+所有 API 错误统一返回结构（Phase 2 约定）：
+
+    {"error": {"code": "...", "message": "...", "details": {...}}}
 """
 
 from fastapi import FastAPI, Request
@@ -9,15 +10,26 @@ from fastapi.responses import JSONResponse
 
 
 class AppError(Exception):
-    """可预期的业务错误，携带 HTTP 状态码与用户可读信息。"""
+    """可预期的业务错误，携带统一错误码、HTTP 状态码与用户可读信息。"""
 
-    def __init__(self, detail: str, status_code: int = 400) -> None:
-        self.detail = detail
+    def __init__(self, message: str, status_code: int = 400, code: str = "APP_ERROR", details: dict | None = None) -> None:
+        self.message = message
         self.status_code = status_code
-        super().__init__(detail)
+        self.code = code
+        self.details = details or {}
+        super().__init__(message)
 
 
 def register_exception_handlers(app: FastAPI) -> None:
     @app.exception_handler(AppError)
     async def app_error_handler(request: Request, exc: AppError) -> JSONResponse:
-        return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+        return JSONResponse(
+            status_code=exc.status_code,
+            content={
+                "error": {
+                    "code": exc.code,
+                    "message": exc.message,
+                    "details": exc.details,
+                }
+            },
+        )

@@ -23,6 +23,7 @@ next-env.d.ts
 # Data (runtime)
 data/finproof.db
 data/uploads/
+storage/
 # 候选公司临时下载（可经 scripts/download_cninfo.py 重新下载）
 data/demo/tmp/
 

@@ -24,6 +24,10 @@ class Settings(BaseSettings):
     database_url: str = f"sqlite:///{(BASE_DIR / 'data' / 'finproof.db').as_posix()}"
     upload_dir: str = str(BASE_DIR / "data" / "uploads")
     demo_dir: str = str(BASE_DIR / "data" / "demo")
+    # 原始文件存储根目录（gitignore），结构：storage/documents/<document_id>/original.<ext>
+    storage_dir: str = str(BASE_DIR / "storage")
+    # 单文件上传大小上限（MB）
+    max_upload_size_mb: int = 50
 
     # --- 大模型（混合核验架构，见 docs/finproof_audit.md 6.5） ---
     # mock: 无 API Key 时使用，结果带 "Mock" 标识，不伪装为真实模型输出

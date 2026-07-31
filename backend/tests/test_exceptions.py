@@ -1,4 +1,4 @@
-"""基础异常处理测试：AppError 应转换为带状态码与 detail 的 JSON 响应。"""
+"""基础异常处理测试：AppError 应转换为统一错误结构 {"error": {...}}。"""
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -12,7 +12,7 @@ def _build_app() -> FastAPI:
 
     @app.get("/boom")
     def boom():
-        raise AppError(detail="演示数据校验失败", status_code=422)
+        raise AppError(message="演示数据校验失败", status_code=422, code="VALIDATION_FAILED")
 
     return app
 
@@ -21,4 +21,10 @@ def test_app_error_handler():
     with TestClient(_build_app()) as client:
         resp = client.get("/boom")
     assert resp.status_code == 422
-    assert resp.json() == {"detail": "演示数据校验失败"}
+    assert resp.json() == {
+        "error": {
+            "code": "VALIDATION_FAILED",
+            "message": "演示数据校验失败",
+            "details": {},
+        }
+    }

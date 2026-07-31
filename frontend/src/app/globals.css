@@ -63,3 +63,129 @@ h1 {
 .pending {
   color: var(--pending);
 }
+
+/* ---- 文档接入页 ---- */
+.card {
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 16px 20px;
+  background: #1e293b;
+  margin-bottom: 24px;
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+}
+
+.form-row {
+  margin-bottom: 12px;
+}
+
+.form-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+input[type="file"],
+select {
+  background: #0f172a;
+  color: var(--fg);
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+button {
+  background: var(--accent);
+  color: #0f172a;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+th,
+td {
+  border: 1px solid #334155;
+  padding: 6px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #0f172a;
+}
+
+.muted {
+  color: #94a3b8;
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+.page-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.page-picker button {
+  min-width: 40px;
+  background: #0f172a;
+  color: var(--fg);
+  border: 1px solid #334155;
+}
+
+.page-picker button.active {
+  background: var(--accent);
+  color: #0f172a;
+}
+
+.page-text {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 12px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 420px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+}
+
+.block-text {
+  max-width: 320px;
+}
+
+.inline-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0;
+  font-size: 0.9rem;
+}
+
+.links {
+  margin-top: 24px;
+}
+
+.links a {
+  color: var(--accent);
+}

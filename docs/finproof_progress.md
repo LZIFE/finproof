@@ -82,10 +82,63 @@
 
 ---
 
+## Phase 2：文档接入与可追溯解析 — ✅ 已完成（commit `xxxxxx`，见文末提交记录）
+
+### 数据冻结
+
+- 创建 `data/demo/annotations/high_risk_review.md`：10 条高风险主张（CLM-002/004/006/010/015/016/017/018/020/024）七项复核全部通过。
+- 复核发现并修正 2 处金标准问题：EVD-005~008 证据片段改为页内连续文本；CLM-003 原句改为报告原文片段。修正记录见 high_risk_review.md 第三节。
+- **页码体系确认**：金标准/API/前端统一使用 PDF 物理页码 `page_number`（1 基），与现有金标准一致，无需迁移。
+- 创建标签 **`v0.1-demo-dataset`**（复核通过后）。
+
+### 产出
+
+| 层 | 内容 |
+| -- | ---- |
+| 数据模型 | `documents` / `document_pages` / `document_blocks` 三表（页码规范：page_index 0 基 / page_number 1 基 / printed_page_label 默认 null） |
+| 存储 | `storage/documents/<id>/original.<ext>` + `extraction.json`；路径穿越防护；不覆盖已有文件；`storage/` 已 gitignore |
+| 安全校验 | 扩展名白名单 / MIME与PDF头 / 大小限制 / 空文件 / 加密PDF / 无文本PDF / 哈希去重；统一错误结构 `{"error":{code,message,details}}` |
+| 解析 | PDF：PyMuPDF 按页提取文本 + 文本块坐标 + 阅读顺序；Markdown：单逻辑页（page_number=1）+ 标题层级 + 段落行号定位 |
+| API | `POST /api/v1/documents`（multipart，201/200去重）、`GET /api/v1/documents`（角色/状态过滤+分页）、`GET /api/v1/documents/{id}`、`GET .../pages`、`GET .../pages/{page_number}`（含块坐标） |
+| 日志 | 每次解析记录 document_id/文件名/大小/SHA-256/页数/字符数/耗时/状态/错误类型（不含文件内容）；`parse_duration_ms` 入库 |
+| 导入 | `scripts/import_demo_documents.py`：5 个演示文件批量导入，复用 document_service，可重复运行（SHA-256 去重） |
+| 前端 | 文档上传区（PDF/Markdown + 角色选择 + 状态/错误显示）、文档列表（角色/类型/页数/状态/时间）、文档查看页（页面选择 + 物理页码 + 字符数 + 逐页文本 + 文本块边界信息）；首页增加入口 |
+
+### 演示文件解析状态（实测）
+
+| 文件 | document_id | 状态 | 页数 | 字符数 | 解析耗时 |
+| ---- | ----------- | ---- | ---- | ------ | -------- |
+| annual_report.pdf | 1 | COMPLETED | 276 | 280,674 | 1307ms |
+| q1_report.pdf | 2 | COMPLETED | 11 | 15,641 | 84ms |
+| half_year_report.pdf | 3 | COMPLETED | 205 | 226,985 | 1004ms |
+| ai_report_with_errors.md | 4 | COMPLETED | 1 | 1,743 | <1ms |
+| corrected_report.md | 5 | COMPLETED | 1 | 1,958 | <1ms |
+
+重复导入全部走去重（不产生重复数据）；数据库共 documents=5 / pages=494 / blocks=10,183。
+
+### 金标准锚点验证（5 条，全部通过）
+
+CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）、CLM-014（年报 p9）、CLM-019（半年报 p17）：页面可读、非空、核心数字/关键词在空白归一化后均可找到、页码与金标准一致。
+
+### 验证结果
+
+- 后端完整测试：**72 passed**（原有 24 + 解析器/服务/API 单元 41 + 演示集成与锚点 7）
+- 前端：`pnpm build` 成功；端到端冒烟（上传列表页/查看页/代理）通过
+- 金标准校验：`claims=26 evidence=29 verifications=26 errors=0`
+- 数据冻结期间将演示研报扩写至 1,743 字符（满足 1,500–3,000 要求），金标准原句无损
+
+### Phase 2 遗留问题
+
+1. `printed_page_label`（财报印刷页码）统一为 null，未做印刷页码识别（后续阶段可增强）。
+2. 大量 deprecation warning（`datetime.utcnow`、httpx testclient 等）不影响功能，建议后续清理。
+3. 解析为同步执行，三份大 PDF 合计约 2.4s；MVP 可接受，后续如需可换 BackgroundTasks。
+4. 扫描件/加密 PDF 被明确拒绝（UNSUPPORTED/415），无 OCR 能力（符合边界）。
+
+---
+
 ## 下一步（不在本轮范围）
 
-- **Phase 2：PDF 解析与文档入库**（上传接口 + PyMuPDF 页码保留解析 + documents/pages 表）
-- Phase 3：主张提取与结构化（规则初筛 + LLM/Mock 拆解）
+- **Phase 3：主张提取与结构化**（规则初筛 + LLM/Mock 拆解，输入为 Phase 2 的 pages/blocks）
 - Phase 4：证据匹配；Phase 5：确定性计算引擎；Phase 6：五类判定与评分
 - Phase 7：前端三栏展示；Phase 8：评测与导出
 

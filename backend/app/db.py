@@ -22,10 +22,19 @@ def _make_engine():
 engine = _make_engine()
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
+# 导入全部 ORM 模型，确保 Base.metadata.create_all 能建出所有表
+from app import models  # noqa: E402, F401
+
 
 def init_db() -> None:
     """按当前注册的 ORM 模型建表（幂等，可重复调用）。"""
     Base.metadata.create_all(bind=engine)
+
+
+def get_session():
+    """FastAPI 依赖：每个请求一个会话。"""
+    with SessionLocal() as session:
+        yield session
 
 
 def check_db_connection() -> dict:

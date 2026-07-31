@@ -32,6 +32,10 @@ export default function Home() {
           <p className="pending">后端状态：检测中…</p>
         )}
       </section>
+
+      <p className="links">
+        <a href="/documents">文档接入（上传 / 查看逐页文本）</a>
+      </p>
     </main>
   );
 }
