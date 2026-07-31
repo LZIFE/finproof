@@ -1,0 +1,296 @@
+{
+  "schema_version": "1.0",
+  "notes": "证据文本为 PDF 提取内容的空白归一化短片段，页码已在提取测试中核对；无证据的主张（CLM-021/022/023/025）不在此文件列出",
+  "evidence": [
+    {
+      "evidence_id": "EVD-001",
+      "claim_id": "CLM-001",
+      "document_name": "annual_report.pdf",
+      "page": 9,
+      "evidence_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "主要会计数据表：2025 年营业收入 456,451,731 千元，2024 年 407,149,600 千元，同比 12.11%"
+    },
+    {
+      "evidence_id": "EVD-002",
+      "claim_id": "CLM-002",
+      "document_name": "annual_report.pdf",
+      "page": 135,
+      "evidence_text": "一、营业总收入 458,502,407 409,084,266",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "合并利润表：营业总收入 2025 年 458,502,407 千元（4585.02 亿元），2024 年 409,084,266 千元"
+    },
+    {
+      "evidence_id": "EVD-003",
+      "claim_id": "CLM-003",
+      "document_name": "annual_report.pdf",
+      "page": 9,
+      "evidence_text": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "主要会计数据表：归母净利润 2025 年 43,945,411 千元（439.45 亿元），同比 14.03%"
+    },
+    {
+      "evidence_id": "EVD-004",
+      "claim_id": "CLM-004",
+      "document_name": "annual_report.pdf",
+      "page": 9,
+      "evidence_text": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "全年归母净利润同比为 14.03%，非 38.02%"
+    },
+    {
+      "evidence_id": "EVD-005",
+      "claim_id": "CLM-005",
+      "document_name": "annual_report.pdf",
+      "page": 135,
+      "evidence_text": "其中：营业收入 456,451,731 407,149,600",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "合并利润表营业收入行（2025/2024）"
+    },
+    {
+      "evidence_id": "EVD-006",
+      "claim_id": "CLM-005",
+      "document_name": "annual_report.pdf",
+      "page": 135,
+      "evidence_text": "减：营业成本 (335,989,528) (299,584,935)",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "合并利润表营业成本行（2025/2024），用于毛利率计算"
+    },
+    {
+      "evidence_id": "EVD-007",
+      "claim_id": "CLM-006",
+      "document_name": "annual_report.pdf",
+      "page": 135,
+      "evidence_text": "其中：营业收入 456,451,731 407,149,600",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "用于计算 2025 与 2024 毛利率变动"
+    },
+    {
+      "evidence_id": "EVD-008",
+      "claim_id": "CLM-006",
+      "document_name": "annual_report.pdf",
+      "page": 135,
+      "evidence_text": "减：营业成本 (335,989,528) (299,584,935)",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "2025 毛利率 26.39%，2024 毛利率 26.42%，基本持平"
+    },
+    {
+      "evidence_id": "EVD-009",
+      "claim_id": "CLM-007",
+      "document_name": "q1_report.pdf",
+      "page": 2,
+      "evidence_text": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "一季报主要会计数据：2025Q1 营业收入 1278.39 亿元，同比 20.49%"
+    },
+    {
+      "evidence_id": "EVD-010",
+      "claim_id": "CLM-008",
+      "document_name": "half_year_report.pdf",
+      "page": 96,
+      "evidence_text": "一、营业总收入 252,331,494 218,121,839",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "半年报合并利润表：营业总收入 2025H1 252,331,494 千元（2523.31 亿元）"
+    },
+    {
+      "evidence_id": "EVD-011",
+      "claim_id": "CLM-008",
+      "document_name": "half_year_report.pdf",
+      "page": 17,
+      "evidence_text": "2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%",
+      "evidence_type": "management_discussion",
+      "source_level": "S",
+      "notes": "管理层讨论：H1 营业总收入 2523 亿元，同比 15.7%"
+    },
+    {
+      "evidence_id": "EVD-012",
+      "claim_id": "CLM-009",
+      "document_name": "half_year_report.pdf",
+      "page": 96,
+      "evidence_text": "一、营业总收入 252,331,494 218,121,839",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "2523.31 亿元为上半年累计值，非 Q2 单季"
+    },
+    {
+      "evidence_id": "EVD-013",
+      "claim_id": "CLM-009",
+      "document_name": "q1_report.pdf",
+      "page": 8,
+      "evidence_text": "其中：营业收入 127,838,538 106,101,612 240,751",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "Q1 营业收入 1278.39 亿元；Q2 = H1 − Q1 = 1244.93 亿元"
+    },
+    {
+      "evidence_id": "EVD-014",
+      "claim_id": "CLM-010",
+      "document_name": "half_year_report.pdf",
+      "page": 96,
+      "evidence_text": "归属于母公司股东的净利润 26,013,690 20,804,176",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "H1 归母净利润 260.14 亿元为累计值，非 Q2 单季"
+    },
+    {
+      "evidence_id": "EVD-015",
+      "claim_id": "CLM-010",
+      "document_name": "q1_report.pdf",
+      "page": 8,
+      "evidence_text": "归属于母公司股东的净利润 12,422,233 9,000,007 245,043",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "Q1 归母净利润 124.22 亿元；Q2 = 260.14 − 124.22 = 135.91 亿元"
+    },
+    {
+      "evidence_id": "EVD-016",
+      "claim_id": "CLM-011",
+      "document_name": "q1_report.pdf",
+      "page": 2,
+      "evidence_text": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "一季报：2025Q1 归母净利润 124.22 亿元，同比 38.02%"
+    },
+    {
+      "evidence_id": "EVD-017",
+      "claim_id": "CLM-012",
+      "document_name": "annual_report.pdf",
+      "page": 9,
+      "evidence_text": "基本每股收益（元/股） 5.80 5.44 6.62%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "主要会计数据：2025 基本每股收益 5.80 元，同比 6.62%"
+    },
+    {
+      "evidence_id": "EVD-018",
+      "claim_id": "CLM-013",
+      "document_name": "half_year_report.pdf",
+      "page": 173,
+      "evidence_text": "基本每股收益 人民币元/股 3.41 3.02",
+      "evidence_type": "financial_statement_note",
+      "source_level": "S",
+      "notes": "半年报附注（61）：2025H1 基本每股收益 3.41 元，2024H1 3.02 元"
+    },
+    {
+      "evidence_id": "EVD-019",
+      "claim_id": "CLM-014",
+      "document_name": "annual_report.pdf",
+      "page": 9,
+      "evidence_text": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "主要会计数据：2025 经营现金流 533.46 亿元，同比 -11.84%"
+    },
+    {
+      "evidence_id": "EVD-020",
+      "claim_id": "CLM-015",
+      "document_name": "half_year_report.pdf",
+      "page": 17,
+      "evidence_text": "营业总收入2523 亿元，同比增长15.7%",
+      "evidence_type": "management_discussion",
+      "source_level": "S",
+      "notes": "H1 实际增速为 15.7%，非 20.49%"
+    },
+    {
+      "evidence_id": "EVD-021",
+      "claim_id": "CLM-015",
+      "document_name": "q1_report.pdf",
+      "page": 2,
+      "evidence_text": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "20.49% 为一季度单季增速，被报告错误用于 H1"
+    },
+    {
+      "evidence_id": "EVD-022",
+      "claim_id": "CLM-016",
+      "document_name": "annual_report.pdf",
+      "page": 1,
+      "evidence_text": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+      "evidence_type": "management_discussion",
+      "source_level": "S",
+      "notes": "年报首页标注 2026 年 3 月；交易所公告发布日期为 2026-03-31，非 2025-03-31"
+    },
+    {
+      "evidence_id": "EVD-023",
+      "claim_id": "CLM-017",
+      "document_name": "annual_report.pdf",
+      "page": 9,
+      "evidence_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "4071.50 亿元为 2024 年营业收入（表中 2024 列），2025 年为 4564.52 亿元"
+    },
+    {
+      "evidence_id": "EVD-024",
+      "claim_id": "CLM-018",
+      "document_name": "annual_report.pdf",
+      "page": 9,
+      "evidence_text": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "经营现金流为 533.46 亿元，非 5334.59 亿元（数量级错误）"
+    },
+    {
+      "evidence_id": "EVD-025",
+      "claim_id": "CLM-019",
+      "document_name": "half_year_report.pdf",
+      "page": 17,
+      "evidence_text": "支撑国内高端品牌和海外OBM 优先战略",
+      "evidence_type": "management_discussion",
+      "source_level": "S",
+      "notes": "半年报管理层讨论原文，报告表述一致"
+    },
+    {
+      "evidence_id": "EVD-026",
+      "claim_id": "CLM-020",
+      "document_name": "half_year_report.pdf",
+      "page": 17,
+      "evidence_text": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%",
+      "evidence_type": "management_discussion",
+      "source_level": "S",
+      "notes": "仅披露整体收入/利润增速，未披露海外业务对利润增长的具体贡献拆分"
+    },
+    {
+      "evidence_id": "EVD-027",
+      "claim_id": "CLM-024",
+      "document_name": "annual_report.pdf",
+      "page": 9,
+      "evidence_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "evidence_type": "financial_table",
+      "source_level": "S",
+      "notes": "全年收入增速 12.11%，不支持'超过 15%'"
+    },
+    {
+      "evidence_id": "EVD-028",
+      "claim_id": "CLM-024",
+      "document_name": "half_year_report.pdf",
+      "page": 17,
+      "evidence_text": "营业总收入2523 亿元，同比增长15.7%",
+      "evidence_type": "management_discussion",
+      "source_level": "S",
+      "notes": "上半年收入增速 15.7%，支持'超过 15%'（期间口径部分成立）"
+    },
+    {
+      "evidence_id": "EVD-029",
+      "claim_id": "CLM-026",
+      "document_name": "half_year_report.pdf",
+      "page": 17,
+      "evidence_text": "实现扣非归母净利润262 亿元，同比增长30.0%",
+      "evidence_type": "management_discussion",
+      "source_level": "S",
+      "notes": "半年报管理层讨论原文，报告表述一致"
+    }
+  ]
+}

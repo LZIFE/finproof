@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "notes": "expected_verdict 枚举：SUPPORTED / REFUTED / PARTIALLY_SUPPORTED / INSUFFICIENT_EVIDENCE / UNABLE_TO_DETERMINE / OPINION_OR_FORECAST；error_type 为空表示正确主张",
+  "verifications": [
+    {
+      "claim_id": "CLM-001",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": "4564.52亿元",
+      "correct_value": "4564.52亿元",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "年报主要会计数据表：2025 年营业收入 456,451,731 千元（4564.52 亿元），2024 年 407,149,600 千元，同比 12.11%，与报告一致",
+      "review_required": false
+    },
+    {
+      "claim_id": "CLM-002",
+      "expected_verdict": "REFUTED",
+      "error_type": "口径错误（营业总收入 vs 营业收入）",
+      "reported_value": "4564.52亿元",
+      "correct_value": "4585.02亿元",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "报告称营业总收入 4564.52 亿元；年报合并利润表显示营业总收入 458,502,407 千元（4585.02 亿元），营业收入才是 4564.52 亿元——报告把营业收入数值安到了营业总收入口径",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-003",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": "439.45亿元 / 14.03%",
+      "correct_value": "439.45亿元 / 14.03%",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "年报主要会计数据：归母净利润 43,945,411 千元（439.45 亿元），同比 14.03%，与报告一致",
+      "review_required": false
+    },
+    {
+      "claim_id": "CLM-004",
+      "expected_verdict": "REFUTED",
+      "error_type": "计算错误（同比增长率）",
+      "reported_value": "38.02%",
+      "correct_value": "14.03%",
+      "calculation_formula": "归母净利润同比 = (2025 − 2024) / 2024 × 100%",
+      "calculation_inputs": [439.45, 385.37],
+      "explanation": "38.02% 是 2025 年一季度归母净利润同比增速；全年归母净利润同比应为 (439.45−385.37)/385.37 = 14.03%",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-005",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": "26.4%",
+      "correct_value": "26.4%（计算值 26.39%）",
+      "calculation_formula": "毛利率 = (营业收入 − 营业成本) / 营业收入 × 100%",
+      "calculation_inputs": [4564.52, 3359.90],
+      "explanation": "毛利率 = (456,451,731 − 335,989,528)/456,451,731 = 26.39%，与报告的 26.4% 在容差内一致",
+      "review_required": false
+    },
+    {
+      "claim_id": "CLM-006",
+      "expected_verdict": "REFUTED",
+      "error_type": "计算错误（毛利率变动）",
+      "reported_value": "提升0.7个百分点",
+      "correct_value": "基本持平（-0.03个百分点）",
+      "calculation_formula": "2025毛利率 − 2024毛利率",
+      "calculation_inputs": [26.39, 26.42],
+      "explanation": "2025 毛利率 26.39%，2024 毛利率 (407,149,600−299,584,935)/407,149,600 = 26.42%，实际基本持平；报告称提升 0.7 个百分点有误",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-007",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": "1278.39亿元 / 20.49%",
+      "correct_value": "1278.39亿元 / 20.49%",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "一季报主要会计数据：2025Q1 营业收入 127,838,538 千元（1278.39 亿元），同比 20.49%，一致",
+      "review_required": false
+    },
+    {
+      "claim_id": "CLM-008",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": "2523.31亿元 / 15.7%",
+      "correct_value": "2523.31亿元 / 15.7%",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "半年报合并利润表营业总收入 252,331,494 千元（2523.31 亿元）；管理层讨论披露同比 15.7%，一致",
+      "review_required": false
+    },
+    {
+      "claim_id": "CLM-009",
+      "expected_verdict": "REFUTED",
+      "error_type": "单季度与累计数据混用",
+      "reported_value": "2523.31亿元（Q2单季）",
+      "correct_value": "1244.93亿元（Q2单季）",
+      "calculation_formula": "Q2 = H1 − Q1",
+      "calculation_inputs": [2523.31, 1278.39],
+      "explanation": "2523.31 亿元是上半年累计营业总收入；Q2 单季 = 2523.31 − 1278.39 = 1244.93 亿元。报告把累计数据写成单季数据（核心演示错误）",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-010",
+      "expected_verdict": "REFUTED",
+      "error_type": "单季度与累计数据混用",
+      "reported_value": "260.14亿元（Q2单季）",
+      "correct_value": "135.91亿元（Q2单季）",
+      "calculation_formula": "Q2归母 = H1归母 − Q1归母",
+      "calculation_inputs": [260.14, 124.22],
+      "explanation": "260.14 亿元是上半年累计归母净利润；Q2 单季 = 260.14 − 124.22 = 135.91 亿元（核心演示错误）",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-011",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": "124.22亿元 / 38.02%",
+      "correct_value": "124.22亿元 / 38.02%",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "一季报主要会计数据：2025Q1 归母净利润 12,422,233 千元（124.22 亿元），同比 38.02%，一致",
+      "review_required": false
+    },
+    {
+      "claim_id": "CLM-012",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": "5.80元/股 / 6.62%",
+      "correct_value": "5.80元/股 / 6.62%",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "年报主要会计数据：2025 基本每股收益 5.80 元，同比 6.62%，一致",
+      "review_required": false
+    },
+    {
+      "claim_id": "CLM-013",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": "3.41元/股",
+      "correct_value": "3.41元/股",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "半年报附注（61）：2025H1 基本每股收益 3.41 元，一致",
+      "review_required": false
+    },
+    {
+      "claim_id": "CLM-014",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": "533.46亿元 / -11.84%",
+      "correct_value": "533.46亿元 / -11.84%",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "年报主要会计数据：经营现金流净额 53,345,930 千元（533.46 亿元），同比 -11.84%，一致",
+      "review_required": false
+    },
+    {
+      "claim_id": "CLM-015",
+      "expected_verdict": "REFUTED",
+      "error_type": "引用错配（期间错位）",
+      "reported_value": "20.49%（H1增速）",
+      "correct_value": "15.7%（H1增速）",
+      "calculation_formula": "H1同比 = (H1 2025 − H1 2024) / H1 2024 × 100%",
+      "calculation_inputs": [2523.31, 2181.22],
+      "explanation": "20.49% 是一季度单季收入增速；半年报管理层讨论显示 H1 增速为 15.7%。报告引用一季报数据支持 H1 结论，属于引用错配",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-016",
+      "expected_verdict": "REFUTED",
+      "error_type": "时间错误（发布日期）",
+      "reported_value": "2025-03-31",
+      "correct_value": "2026-03-31",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "2025 年年度报告于 2026 年 3 月 31 日发布（年报首页标注 2026 年 3 月，交易所公告日期 2026-03-31）；报告写成 2025 年 3 月 31 日，时间错误",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-017",
+      "expected_verdict": "REFUTED",
+      "error_type": "时间错误（使用过期数据）",
+      "reported_value": "4071.50亿元",
+      "correct_value": "4564.52亿元",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "4071.50 亿元是 2024 年营业收入（年报表中 2024 列）；2025 年营业收入应为 4564.52 亿元。报告把上年数据当作最新年度数据",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-018",
+      "expected_verdict": "REFUTED",
+      "error_type": "单位错误（数量级）",
+      "reported_value": "5334.59亿元",
+      "correct_value": "533.46亿元",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "年报披露经营现金流净额 53,345,930 千元 = 533.46 亿元；报告写成 5334.59 亿元，数量级错误（千元/亿元换算错误）",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-019",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": null,
+      "correct_value": null,
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "半年报管理层讨论原文为'支撑国内高端品牌和海外OBM 优先战略'，报告表述与原文一致",
+      "review_required": false
+    },
+    {
+      "claim_id": "CLM-020",
+      "expected_verdict": "REFUTED",
+      "error_type": "因果关系过度推断",
+      "reported_value": null,
+      "correct_value": null,
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "半年报仅披露海外OBM 战略与整体收入/利润增速，未披露海外业务对利润增长的具体贡献；'已成为利润增长核心引擎'属于因果过度推断，判定反驳",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-021",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "error_type": "证据不足（海外利润贡献）",
+      "reported_value": "过半",
+      "correct_value": null,
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "公开披露文件未提供海外市场利润贡献拆分，无法核验'贡献过半利润'，应判定证据不足",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-022",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "error_type": "证据不足",
+      "reported_value": "20个百分点",
+      "correct_value": null,
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "年报/半年报均未披露机器人业务毛利率，行业平均毛利率亦无引用来源，无法核验，应判定证据不足",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-023",
+      "expected_verdict": "OPINION_OR_FORECAST",
+      "error_type": "预测事实化",
+      "reported_value": "5000亿元",
+      "correct_value": null,
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "2026 年营业收入 5000 亿元为预测性表述，年报无此披露；报告将其作为既定事实陈述，应标记为观点/预测而非事实",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-024",
+      "expected_verdict": "PARTIALLY_SUPPORTED",
+      "error_type": "部分支持（期间口径）",
+      "reported_value": "超过15%",
+      "correct_value": "全年12.11%；上半年15.7%",
+      "calculation_formula": "全年收入同比 = (2025 − 2024) / 2024 × 100%",
+      "calculation_inputs": [4564.52, 4071.50],
+      "explanation": "2025 全年收入增速 12.11%，不满足'超过 15%'；但上半年增速 15.7% 满足。期间口径部分成立，判定部分支持",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-025",
+      "expected_verdict": "UNABLE_TO_DETERMINE",
+      "error_type": "无法判断（缺少Q3报告）",
+      "reported_value": "超过1200亿元",
+      "correct_value": null,
+      "calculation_formula": "Q4 = FY − 前三季度累计",
+      "calculation_inputs": [],
+      "explanation": "计算 Q4 单季收入需要全年减前三季度累计，证据文件不含三季报，无法计算；系统应拒答（无法判断），而非强行给结论",
+      "review_required": true
+    },
+    {
+      "claim_id": "CLM-026",
+      "expected_verdict": "SUPPORTED",
+      "error_type": null,
+      "reported_value": "262亿元 / 30.0%",
+      "correct_value": "262亿元 / 30.0%",
+      "calculation_formula": null,
+      "calculation_inputs": [],
+      "explanation": "半年报管理层讨论原文'实现扣非归母净利润262 亿元，同比增长30.0%'，与报告一致",
+      "review_required": false
+    }
+  ]
+}
