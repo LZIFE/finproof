@@ -610,7 +610,7 @@ Overall Accuracy：Demo 0.6154 / Holdout 0.5882（含语义分组后的重算）
 
 ---
 
-## Phase 6：Financial Risk Intelligence Layer（金融风险评分层）— ✅ 已完成（commit `xxxxxx`）
+## Phase 6：Financial Risk Intelligence Layer（金融风险评分层）— ✅ 已完成（commit `2a961c7`）
 
 ### 核心内容
 
