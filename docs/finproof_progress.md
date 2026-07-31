@@ -343,7 +343,7 @@ CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）�
 
 ---
 
-## Phase 4A：Oracle Evidence Retrieval（证据检索引擎）— ✅ 已完成（commit `xxxxxx`）
+## Phase 4A：Oracle Evidence Retrieval（证据检索引擎）— ✅ 已完成（commit `9e0bb85`）
 
 ### 核心内容
 
