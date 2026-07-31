@@ -8,6 +8,7 @@ from app.api.claims import router as claims_router
 from app.api.documents import router as documents_router
 from app.api.evidence import router as evidence_router
 from app.api.health import router as health_router
+from app.api.verification import router as verification_router
 from app.core.exceptions import register_exception_handlers
 from app.core.logging import setup_logging
 from app.db import init_db
@@ -28,6 +29,7 @@ def create_app() -> FastAPI:
     app.include_router(documents_router)
     app.include_router(claims_router)
     app.include_router(evidence_router)
+    app.include_router(verification_router)
     return app
 
 

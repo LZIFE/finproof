@@ -232,3 +232,48 @@ input:not([type]) {
   padding: 8px;
   width: 100%;
 }
+
+/* Phase 4B.1：核验结果卡片与状态颜色 */
+.verdict-card {
+  border: 1px solid #334155;
+  border-left: 5px solid #64748b;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 12px 0;
+  background: #0f172a;
+}
+.verdict-card h3 {
+  margin: 0 0 8px;
+}
+.verdict-card p {
+  margin: 4px 0;
+}
+.verdict-supported {
+  border-left-color: #22c55e; /* 绿 */
+}
+.verdict-refuted {
+  border-left-color: #ef4444; /* 红 */
+}
+.verdict-partial {
+  border-left-color: #f59e0b;
+}
+.verdict-insufficient {
+  border-left-color: #eab308; /* 黄 */
+}
+.verdict-unable {
+  border-left-color: #94a3b8;
+}
+.verdict-supported strong {
+  color: #4ade80;
+}
+.verdict-refuted strong {
+  color: #f87171;
+}
+.verdict-partial strong,
+.verdict-insufficient strong {
+  color: #facc15;
+}
+.muted {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}

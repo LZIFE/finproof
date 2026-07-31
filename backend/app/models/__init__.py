@@ -7,3 +7,4 @@ from app.models.evidence import (  # noqa: F401
     EvidenceRetrievalConfig,
     EvidenceRetrievalRun,
 )
+from app.models.verification import VerificationResultRow, VerificationRun  # noqa: F401

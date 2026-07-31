@@ -476,9 +476,60 @@ CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）�
 
 ---
 
+## Phase 4B.1：金融事实核验引擎 — ✅ 已完成（commit `xxxxxx`）
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| 架构 | **Deterministic Verification Engine + Agent Explanation Layer**——规则/计算核验（不依赖 LLM 自由判断），可解释结论 |
+| 核验模块 | `backend/app/services/verification/`：base（状态/类型/结果数据类）、numeric_verifier、growth_verifier、period_verifier、evidence_checker、verification_service |
+| 数字验证 | EXACT_VALUE_CHECK：绝对值核验，单位转换（亿元/千元/万元/元/千分位/括号负数/列单位），`calculation_detail` 保存换算过程（source_value/source_unit/converted_value/tolerance） |
+| 增长率验证 | GROWTH_RATE_CHECK：(cur−prev)/prev×100%，±0.5pp 容差；**指标族+期间双重证据排序**（防止用 Q1 数据验证 FY 增长率） |
+| 期间验证 | PERIOD_CHECK：Q2 = H1 − Q1 单季推算；期间冲突检测 |
+| 证据充分性 | SEMANTIC_CHECK：无数字主张只有收入数字 → INSUFFICIENT_EVIDENCE（不强制判断）；MULTI_EVIDENCE_CHECK：数值+同比+业务三维覆盖 |
+| 数据库 | `verification_runs` + `verification_results`（matched_evidence_ids/calculation_detail/reason 完整入库） |
+| API | `POST /api/v1/verifications`（claim_ids+mode）、`GET /api/v1/verifications/{id}`（status/confidence/证据/计算/说明） |
+| 前端 | `/verifications` 页面：Claim/Evidence/Calculation/Result，绿（SUPPORTED）/红（REFUTED）/黄（INSUFFICIENT）卡片 |
+| 安全 | 核验引擎不读取 gold_verifications（专项测试：篡改答案不影响核验结果） |
+
+### 核验评测（Verification Accuracy）
+
+| 指标 | Demo（26 条） | Holdout（17 条） |
+| ---- | ------------- | ---------------- |
+| Overall Accuracy | 0.6154 | 0.5294 |
+| SUPPORTED precision | 0.8333 | 0.8 |
+| REFUTED precision | 0.6667 | 0.8 |
+| Unknown rate | 0.2692 | 0.2941 |
+| 分组（numeric/growth/period/multi/semantic） | 0.75 / 0.667 / 0.0 / 0.5 / 0.5 | 0.667 / 1.0 / 0.0 / 0.0 / 0.0 |
+
+产物：`artifacts/evaluations/verification/{demo,holdout}/metrics.json + report.md`。
+
+### Demo 闭环演示（任务书十七要求）
+
+```
+AI 报告错误句：「归母净利润439.45亿元，同比增长38.02%」
+→ 拆解 claim：CLM-004（yoy_growth_net_profit / 2025FY / 主张 38.02%）
+→ 找到财报证据：年报主要会计数据（归母净利润行：当前期 438.30 亿元 / 上年同期 385.37 亿元）
+→ 自动计算：(438.30 − 385.37) / 385.37 = 13.73%
+→ 指出错误原因：计算增长率 13.73% 与主张 38.02% 不符（差 24.29pp）
+→ 核验结论：REFUTED（置信度 0.9）
+```
+
+### 完成标准对照（任务书十七）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| Verification Engine 运行 / 数字验证 / 增长率验证 / Q2 计算 / 多证据 | ✅ 全部实现并验证 |
+| verification_results 入库 / API / 前端展示 | ✅ 完成 |
+| 测试（新增 13 项，全量 **224 passed**） | ✅ |
+| Demo 案例跑通 / Git commit / progress.md 更新 | ✅ |
+
+---
+
 ## 下一步（不在本轮范围）
 
-- **Phase 4B：事实核验**（SUPPORTED/REFUTED 等五类判定）——按任务书"完成后停止，不进入事实核验阶段"。
+- **自动报告修复阶段**——按任务书"完成后停止，不进入自动报告修复阶段"。
 
 ---
 

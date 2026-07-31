@@ -1,0 +1,22 @@
+{
+  "dataset": "holdout",
+  "claim_count": 17,
+  "overall_accuracy": 0.5294,
+  "supported_precision": 0.8,
+  "refuted_precision": 0.8,
+  "unknown_rate": 0.2941,
+  "group_accuracy": {
+    "numeric": 0.6667,
+    "growth": 1.0,
+    "multi": 0.0,
+    "semantic": 0.0,
+    "period": 0.0
+  },
+  "group_counts": {
+    "numeric": 9,
+    "growth": 3,
+    "multi": 2,
+    "semantic": 2,
+    "period": 1
+  }
+}

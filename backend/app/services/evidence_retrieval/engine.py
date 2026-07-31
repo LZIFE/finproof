@@ -215,6 +215,18 @@ def metric_aliases(metric_code: str | None, metric: str | None) -> set[str]:
         names.add(metric)  # 仅收中文指标名（英文代码走 metric_code 路径）
     if metric_code:
         names |= _METRIC_ALIASES.get(metric_code, set())
+        # yoy_growth_* / qoq_growth_* 前缀剥除 → 基础指标族（增长率主张的指标行匹配）
+        base = str(metric_code)
+        for pfx in ("yoy_growth_", "qoq_growth_", "growth_"):
+            if base.startswith(pfx):
+                base = base[len(pfx):]
+                break
+        if base != metric_code:
+            names |= _METRIC_ALIASES.get(base, set())
+            if base == "net_profit":
+                names |= _METRIC_ALIASES.get("net_profit_attributable", set())
+            if base == "revenue":
+                names |= _METRIC_ALIASES.get("total_operating_revenue", set())
     # 指标词典兜底：仅按"相同 metric_code 家族"或"名称完全相等"补充
     for name, metric_name, code in METRIC_DICTIONARY:
         if metric_code and code == metric_code:

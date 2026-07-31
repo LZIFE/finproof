@@ -1,0 +1,22 @@
+{
+  "dataset": "demo",
+  "claim_count": 26,
+  "overall_accuracy": 0.6154,
+  "supported_precision": 0.8333,
+  "refuted_precision": 0.6667,
+  "unknown_rate": 0.2692,
+  "group_accuracy": {
+    "numeric": 0.75,
+    "growth": 0.6667,
+    "period": 0.0,
+    "multi": 0.5,
+    "semantic": 0.5
+  },
+  "group_counts": {
+    "numeric": 16,
+    "growth": 3,
+    "period": 3,
+    "multi": 2,
+    "semantic": 2
+  }
+}
