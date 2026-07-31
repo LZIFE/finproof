@@ -47,7 +47,7 @@ def create_retrieval(
         dataset=body.dataset,
         input_mode=body.input_mode,
         top_k=body.top_k,
-        version="v1",
+        version="v2",
     )
     return RetrievalRunOut.model_validate(run)
 

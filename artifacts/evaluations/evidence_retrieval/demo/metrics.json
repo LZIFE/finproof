@@ -1,11 +1,11 @@
 {
   "dataset": "demo",
-  "retrieval_run_id": 15,
+  "retrieval_run_id": 34,
   "input_mode": "ORACLE_GOLD",
   "top_k": 5,
   "claim_count": 26,
   "gold_evidence_count": 29,
-  "duration_ms": 269,
+  "duration_ms": 344,
   "page_hit_at_1": 0.125,
   "page_hit_at_3": 0.2083,
   "page_hit_at_5": 0.25,
@@ -15,6 +15,6 @@
   "mrr": 0.1701,
   "block_mrr": 0.1667,
   "no_result_rate": 0.2692,
-  "average_candidate_count": 3.27,
-  "average_latency": 269
+  "average_candidate_count": 3.31,
+  "average_latency": 344
 }

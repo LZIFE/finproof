@@ -1,4 +1,4 @@
-# 证据检索评测：holdout（run 16，Oracle 模式）
+# 证据检索评测：holdout（run 35，Oracle 模式）
 
 | 指标 | 值 |
 | ---- | -- |
@@ -11,7 +11,7 @@
 | mrr | 0.303 |
 | block_mrr | 0.303 |
 | no_result_rate | 0.3529 |
-| average_candidate_count | 2.53 |
-| average_latency | 60 |
+| average_candidate_count | 2.59 |
+| average_latency | 78 |
 
-检索任务：run 16（COMPLETED，60ms，17 条主张）
+检索任务：run 35（COMPLETED，78ms，17 条主张）

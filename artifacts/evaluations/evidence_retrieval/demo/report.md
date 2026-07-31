@@ -1,4 +1,4 @@
-# 证据检索评测：demo（run 15，Oracle 模式）
+# 证据检索评测：demo（run 34，Oracle 模式）
 
 | 指标 | 值 |
 | ---- | -- |
@@ -11,7 +11,7 @@
 | mrr | 0.1701 |
 | block_mrr | 0.1667 |
 | no_result_rate | 0.2692 |
-| average_candidate_count | 3.27 |
-| average_latency | 269 |
+| average_candidate_count | 3.31 |
+| average_latency | 344 |
 
-检索任务：run 15（COMPLETED，269ms，26 条主张）
+检索任务：run 34（COMPLETED，344ms，26 条主张）

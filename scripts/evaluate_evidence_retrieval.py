@@ -96,10 +96,10 @@ def find_gold_block(session, document_id: int, page_number: int, fragment: str) 
     return None
 
 
-def evaluate_dataset(session, dataset: str, top_k: int) -> dict:
+def evaluate_dataset(session, dataset: str, top_k: int, version: str = "v2") -> dict:
     """对单个数据集执行检索并计算评测指标。"""
     ensure_source_documents(session, dataset)
-    run = run_retrieval(session, dataset=dataset, input_mode="ORACLE_GOLD", top_k=top_k, version="v1")
+    run = run_retrieval(session, dataset=dataset, input_mode="ORACLE_GOLD", top_k=top_k, version=version)
 
     # ---- 检索完成后读取 gold_evidence（仅评测，不参与排序）----
     gold_claims = json.loads(
@@ -215,11 +215,12 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", choices=["demo", "holdout"], default="demo")
     ap.add_argument("--top-k", type=int, default=5)
+    ap.add_argument("--version", default="v2", help="权重方案版本（v2/va/vb）")
     args = ap.parse_args()
 
     init_db()
     with SessionLocal() as s:
-        m = evaluate_dataset(s, args.dataset, args.top_k)
+        m = evaluate_dataset(s, args.dataset, args.top_k, args.version)
     print(json.dumps(m, ensure_ascii=False, indent=2))
     return 0
 

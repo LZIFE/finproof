@@ -76,8 +76,10 @@ def test_thousand_separator_parsed():
     nums = list(iter_numbers("营业收入 456,451,731千元"))
     assert any(v == 456451731.0 and u == "千元" for v, u, _c, _y in nums)
     # 列头单位布局：（千元）在数字之前
-    assert _block_value_hits("营业收入（千元） 456,451,731 407,149,600", 4564.52, "亿元")
-    assert not _block_value_hits("营业收入（千元） 456,451,731", 456.45, "亿元")
+    hit, _reason = _block_value_hits("营业收入（千元） 456,451,731 407,149,600", 4564.52, "亿元")
+    assert hit
+    hit2, _r2 = _block_value_hits("营业收入（千元） 456,451,731", 456.45, "亿元")
+    assert not hit2
 
 
 # ---------- 指标别名 ----------
@@ -144,11 +146,11 @@ def test_wrong_period_not_ranked_high():
 def test_weights_configurable_and_explainable():
     """权重可配置、可解释、存库；score_block 输出组件分。"""
     with SessionLocal() as s:
-        w = ensure_retrieval_config(s, "v1")
+        w = ensure_retrieval_config(s, "v2")
         assert w == DEFAULT_WEIGHTS
         from app.models.evidence import EvidenceRetrievalConfig
 
-        row = s.query(EvidenceRetrievalConfig).filter(EvidenceRetrievalConfig.version == "v1").first()
+        row = s.query(EvidenceRetrievalConfig).filter(EvidenceRetrievalConfig.version == "v2").first()
         assert row and row.weights_json  # 持久化
     claim = {"metric_code": "revenue", "metric": "营业收入", "reported_value": 100.0,
              "unit": "亿元", "period": "2025FY", "entity_name": "美的集团",
@@ -214,3 +216,60 @@ def test_semantic_claim_has_candidates(mini_source_doc):
     with SessionLocal() as s:
         cands = retrieve_for_claim(s, semantic, top_k=3)
     assert cands  # 文本关键词回退应找到候选
+
+
+# ---------- Phase 4A.5 新增 ----------
+
+def test_paren_negative_numbers():
+    """括号负数预处理（公允价值变动损失 (1,081,776)）。"""
+    from app.services.evidence_retrieval.engine import _clean_numbers
+
+    assert _clean_numbers("(1,081,776)") == "-1081776"
+    assert _clean_numbers("公允价值变动损失 (1,081,776)") == "公允价值变动损失 -1081776"
+
+
+def test_page_unit_declaration():
+    """页级单位声明（'单位：人民币千元'）数值匹配。"""
+    from app.services.evidence_retrieval.engine import _block_value_hits, _page_unit_of
+
+    assert _page_unit_of("单位：人民币千元") == "千元"
+    assert _page_unit_of("单位:万元") == "万元"
+    hit, reason = _block_value_hits("单位：人民币千元 营业收入 2,523,310", 25.2331, "亿元")
+    assert hit and "匹配" in reason
+
+
+def test_value_match_reason_explainable():
+    """数值匹配保存可解释 match_reason（成对/列单位/百分比均不崩溃）。"""
+    from app.services.evidence_retrieval.engine import _block_value_hits
+
+    hit, reason = _block_value_hits("营业收入（千元） 456,451,731 407,149,600", 4564.52, "亿元")
+    assert hit and reason
+    hit2, reason2 = _block_value_hits("营业收入同比增长 12.11%", 12.11, "PERCENT")
+    assert hit2 and reason2
+
+
+def test_page_bonus_and_table_region_flags(mini_source_doc):
+    """页面聚合加分（同页指标+数值+期间）与表格区域标记在候选上生效。"""
+    from app.services.evidence_retrieval.service import retrieve_for_claim
+
+    claim = {"claim_id": "CLM-T", "entity": "美的集团", "metric": "revenue",
+             "value": 4564.52, "unit": "亿元", "period": "2025FY", "claim_type": "raw_number",
+             "original_text": "公司2025年实现营业收入4564.52亿元"}
+    with SessionLocal() as s:
+        cands = retrieve_for_claim(s, claim, top_k=5)
+    assert cands
+    for c in cands:
+        assert "page_bonus" in c and "table_region" in c
+    # 迷你报告页含 营业收入+4564.52亿+2025FY（文档级期间）→ 页面加分应生效
+    assert any(c["page_bonus"] == 1.0 for c in cands)
+
+
+def test_dictionary_expansion_and_isolation():
+    """词典扩充（ROE/现金流别名）且保持家族隔离。"""
+    from app.services.evidence_retrieval.engine import metric_aliases
+
+    assert "加权平均净资产收益率" in metric_aliases("roe", "加权平均净资产收益率")
+    assert "ROE" in metric_aliases("roe", None)
+    assert "经营活动产生的现金流量净额" in metric_aliases("operating_cash_flow", "经营现金流")
+    assert "净利润" not in metric_aliases("net_profit_attributable", "归母净利润")
+    assert "归母净利润" not in metric_aliases("net_profit", "净利润")

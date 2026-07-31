@@ -83,6 +83,22 @@ def _candidate_blocks(session: Session, doc: Document, aliases: set[str]):
     return rows
 
 
+def _page_section_flag(session: Session, page_id: int, cache: dict) -> bool:
+    """页面是否处于管理层讨论/经营分析章节（标题块命中 section 关键词）。"""
+    if page_id in cache:
+        return cache[page_id]
+    from app.services.evidence_retrieval.engine import section_matches
+
+    headings = (
+        session.query(DocumentBlock)
+        .filter(DocumentBlock.page_id == page_id, DocumentBlock.heading_level > 0)
+        .all()
+    )
+    flag = any(section_matches(h.text or "") for h in headings)
+    cache[page_id] = flag
+    return flag
+
+
 def retrieve_for_claim(
     session: Session,
     claim: dict,
@@ -109,13 +125,19 @@ def retrieve_for_claim(
         return []
 
     scored: list[dict] = []
+    section_cache: dict[int, bool] = {}
     for doc in filter_documents(session, claim):
         for block, page_number in _candidate_blocks(session, doc, aliases):
             if len(scored) >= max_blocks_per_doc:
                 break
             if not block.text:
                 continue
-            s = score_block(block.text, claim, doc_period=doc.report_period, weights=weights)
+            s = score_block(
+                block.text, claim,
+                doc_period=doc.report_period,
+                weights=weights,
+                section_bonus=1.0 if _page_section_flag(session, block.page_id, section_cache) else 0.0,
+            )
             if s["final_score"] < MIN_CANDIDATE_SCORE:
                 continue
             scored.append(
@@ -123,14 +145,57 @@ def retrieve_for_claim(
                     "document_id": doc.id,
                     "page_number": page_number,
                     "block_id": block.id,
+                    "page_id": block.page_id,
+                    "y0": block.y0 or 0.0,
+                    "reading_order": block.reading_order or 0,
                     **s,
                     "block_text": block.text[:300],
                 }
             )
-    scored.sort(key=lambda x: -x["final_score"])
-    for rank, c in enumerate(scored[:top_k], start=1):
-        c["rank"] = rank
-    return scored[:top_k]
+    if not scored:
+        return []
+
+    # ---- Phase 4A.5：表格感知 + 页面/表格加分（块级加成，保持 block 级排序）----
+    # 实测结论：页面级重排（按页面分排序 + 每页上限）在两个变体（max / top-2 之和）
+    # 下均使 Hit@K 回退（Demo Hit@5 0.25→0.167），故回退为 block 级排序；
+    # page_bonus（同页指标+数值+期间）与 table_bonus（表格区域）作为块级加分保留。
+    from collections import defaultdict
+
+    w = weights or DEFAULT_WEIGHTS
+    page_blocks: dict[tuple, list[dict]] = defaultdict(list)
+    for b in scored:
+        page_blocks[(b["document_id"], b["page_number"])].append(b)
+
+    for (doc_id, pn), blocks in page_blocks.items():
+        has_metric = any(b["metric_score"] > 0 for b in blocks)
+        has_value = any(b["value_score"] > 0 for b in blocks)
+        has_period = any(b["period_score"] > 0 for b in blocks)
+        page_bonus = 1.0 if (has_metric and has_value and has_period) else 0.0
+        # 表格区域：y 坐标分桶（5pt）+ 桶内同时含指标块与数字块；单块表格行（指标+数字同块）同样标记
+        buckets: dict[int, list[dict]] = defaultdict(list)
+        for b in blocks:
+            buckets[round(b["y0"] / 5.0)].append(b)
+        table_blocks: set[int] = set()
+        for bucket in buckets.values():
+            has_metric_b = any(b["metric_score"] > 0 for b in bucket)
+            has_number_b = any(re.search(r"\d", b["block_text"] or "") for b in bucket)
+            if has_metric_b and has_number_b:
+                table_blocks.update(b["block_id"] for b in bucket)
+        for b in blocks:
+            b["page_bonus"] = page_bonus
+            b["table_region"] = b["block_id"] in table_blocks
+            b["final_score"] = round(
+                b["final_score"]
+                + w.get("page", 0.10) * page_bonus
+                + w.get("table", 0.05) * (1.0 if b["block_id"] in table_blocks else 0.0),
+                4,
+            )
+
+    scored.sort(key=lambda b: -b["final_score"])
+    final = scored[:top_k]
+    for i, c in enumerate(final, start=1):
+        c["rank"] = i
+    return final
 
 
 def run_retrieval(
@@ -138,7 +203,7 @@ def run_retrieval(
     dataset: str = "demo",
     input_mode: str = "ORACLE_GOLD",
     top_k: int = 5,
-    version: str = "v1",
+    version: str = "v2",
 ) -> EvidenceRetrievalRun:
     """执行一次证据检索任务：逐条金标准主张 → Top-K 候选 → 持久化。
 

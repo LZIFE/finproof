@@ -40,12 +40,19 @@ def unit_to_yi(unit: str | None) -> float | None:
     return _UNIT_TO_YI.get(unit)
 
 
+def _clean_numbers(text: str) -> str:
+    """数值预处理：去千分位逗号 + 括号负数转负号（(1,081,776) → -1081776）。"""
+    out = re.sub(r"(?<=\d),(?=\d)", "", text)
+    out = re.sub(r"\((\d[\d.]*)\)", r"-\1", out)
+    return out
+
+
 def iter_numbers(text: str):
     """遍历文本中所有 '数字+单位' 对，返回 (value, unit, currency, 亿元值)。
 
-    先去除数字千分位逗号（456,451,731 → 456451731），保证财务表格数值可解析。
+    先去除数字千分位逗号与括号负数，保证财务表格数值可解析。
     """
-    cleaned = re.sub(r"(?<=\d),(?=\d)", "", text)
+    cleaned = _clean_numbers(text)
     for m in NUMBER_UNIT_RE.finditer(cleaned):
         value = float(m.group(1))
         raw_unit = m.group(2)
@@ -76,51 +83,73 @@ def values_compatible(claim_value: float, claim_unit: str | None, block_value: f
 
 _COLUMN_UNIT_RE = re.compile(r"万亿元|亿元|百万元|万元|千元|元/股|元")
 _YEAR_RE = re.compile(r"^(19|20)\d{2}$")
+_PAGE_UNIT_RE = re.compile(r"单位\s*[:：]?\s*(人民币)?\s*(万亿元|亿元|百万元|万元|千元|元)")
 
 
-def _block_value_hits(block_text: str, claim_value: float, claim_unit: str | None) -> bool:
-    """块级数值匹配：支持两种财务表格布局。
+def _page_unit_of(text: str) -> str | None:
+    """从文本中识别页级单位声明（'单位：人民币千元'）。"""
+    m = _PAGE_UNIT_RE.search(text)
+    return m.group(2) if m else None
 
-    1) '数字+单位'成对（2523.31亿元）；
-    2) 列头单位 + 裸数字（'（千元） 456,451,731'）——取块内首个金额单位为列单位。
+
+def _block_value_hits(block_text: str, claim_value: float, claim_unit: str | None) -> tuple[bool, str | None]:
+    """块级数值匹配：成对单位 / 列头单位 / 页级单位三种布局。
+
+    返回 (是否命中, match_reason)；match_reason 记录换算过程（可解释）。
     """
     if claim_value is None:
-        return False
-    # 1) 成对布局
+        return False, None
+    # 1) 成对布局：数字+单位相邻
     for block_value, block_unit, _currency, _yi in iter_numbers(block_text):
         if values_compatible(claim_value, claim_unit, block_value, block_unit):
-            return True
-    # 2) 列头单位布局（去千分位逗号）
-    cleaned = re.sub(r"(?<=\d),(?=\d)", "", block_text)
+            yi_desc = f"（{_yi:g}亿）" if _yi is not None else ""
+            return True, f"数值匹配: {block_value:g}{block_unit}≈{claim_value:g}{claim_unit or ''}{yi_desc}"
+    # 2) 列头单位布局（单位在块内，如"营业收入（千元）456,451,731"）
+    cleaned = _clean_numbers(block_text)
     m = _COLUMN_UNIT_RE.search(cleaned)
-    if not m:
-        return False
-    col_unit = m.group(0)
-    for n in re.finditer(r"(?<![0-9])(\d+(?:\.\d+)?)(?![0-9])", cleaned):
-        num = float(n.group(1))
-        if _YEAR_RE.match(n.group(1)):  # 跳过年份
-            continue
-        if values_compatible(claim_value, claim_unit, num, col_unit):
-            return True
-    return False
+    if m:
+        col_unit = m.group(0)
+        for n in re.finditer(r"(?<![0-9])(\d+(?:\.\d+)?)(?![0-9])", cleaned):
+            num = float(n.group(1))
+            if _YEAR_RE.match(n.group(1)):
+                continue
+            if values_compatible(claim_value, claim_unit, num, col_unit):
+                return True, f"列单位匹配: {num:g}{col_unit}≈{claim_value:g}{claim_unit or ''}"
+    # 3) 页级单位声明（"单位：人民币千元" + 裸数字）
+    page_unit = _page_unit_of(block_text)
+    if page_unit:
+        for n in re.finditer(r"(?<![0-9])(\d+(?:\.\d+)?)(?![0-9])", cleaned):
+            num = float(n.group(1))
+            if _YEAR_RE.match(n.group(1)):
+                continue
+            if values_compatible(claim_value, claim_unit, num, page_unit):
+                return True, f"页单位匹配: {num:g}{page_unit}≈{claim_value:g}{claim_unit or ''}"
+    return False, None
 
 
 # ---------------------------------------------------------------- 指标别名
 
-# 关键指标别名（严格：净利润 ≠ 归母净利润，不合并）
+# 关键指标别名（严格：净利润 ≠ 归母净利润，不合并；Phase 4A.5 扩充）
 _METRIC_ALIASES: dict[str, set[str]] = {
-    "revenue": {"营业收入", "营业总收入", "营收", "收入"},
-    "total_operating_revenue": {"营业总收入", "营业收入", "营收", "收入"},
+    "revenue": {"营业收入", "营业总收入", "主营业务收入", "营收", "收入"},
+    "total_operating_revenue": {"营业总收入", "营业收入", "主营业务收入", "营收", "收入"},
     "net_profit_attributable": {"归属于上市公司股东的净利润", "归属于母公司股东的净利润", "归母净利润", "归母净利"},
     "net_profit": {"净利润"},
-    "deducted_net_profit": {"扣除非经常性损益的净利润", "扣非归母净利润", "扣非净利润"},
-    "operating_cash_flow": {"经营活动现金流量净额", "经营活动产生的现金流量净额", "经营现金流净额", "经营现金流"},
+    "deducted_net_profit": {
+        "扣除非经常性损益的净利润", "归属于上市公司股东的扣除非经常性损益的净利润",
+        "扣非归母净利润", "扣非净利润", "扣非",
+    },
+    "operating_cash_flow": {
+        "经营活动产生的现金流量净额", "经营活动现金流量净额", "经营活动现金流净额",
+        "经营现金流净额", "经营现金流", "经营活动现金流", "现金流量净额",
+    },
     "basic_eps": {"基本每股收益"},
     "eps": {"稀释每股收益", "每股收益"},
     "gross_margin": {"毛利率"},
-    "roe": {"加权平均净资产收益率", "净资产收益率"},
+    "roe": {"加权平均净资产收益率", "净资产收益率", "加权净资产收益率", "ROE"},
     "total_assets": {"总资产"},
     "net_assets": {"归属于上市公司股东的净资产", "净资产"},
+    "yoy_growth_revenue": {"营业收入同比增长", "营业总收入同比增长", "收入同比增长", "营收同比增长"},
 }
 _ALIAS_BY_NAME: dict[str, str] = {}
 for _code, _names in _METRIC_ALIASES.items():
@@ -282,15 +311,31 @@ def text_similarity(claim_text: str, block_text: str) -> float:
 
 # ---------------------------------------------------------------- 默认权重
 
+# 基础五分量（Phase 4A 原始方案）+ 阶段2/3 新增加成项（page/table/section，可配置）
 DEFAULT_WEIGHTS = {
     "metric": 0.30,
     "value": 0.25,
     "period": 0.20,
     "entity": 0.10,
     "text": 0.15,
+    "page": 0.10,
+    "table": 0.05,
+    "section": 0.10,
 }
 # 防止"相同数字、不同指标/期间"排名过高：指标未命中但数值命中的候选施加惩罚系数
 _METRIC_MISS_VALUE_HIT_PENALTY = 0.5
+
+
+# 管理层讨论/经营分析章节关键词（无数字语义主张的 document_section_bonus）
+SECTION_KEYWORDS = (
+    "管理层讨论与分析", "经营情况讨论", "业务回顾", "董事会报告", "经营分析",
+    "经营情况", "业务概要", "管理层分析", "报告期经营", "主要经营情况",
+)
+
+
+def section_matches(text: str) -> bool:
+    """文本是否处于管理层讨论/经营分析章节（命中关键词）。"""
+    return any(kw in text for kw in SECTION_KEYWORDS)
 
 
 def score_block(
@@ -298,6 +343,7 @@ def score_block(
     claim: dict,
     doc_period: str | None = None,
     weights: dict | None = None,
+    section_bonus: float = 0.0,
 ) -> dict:
     """对单个文本块计算解释性分数。返回组件分 + 总分 + 命中项。"""
     w = {**DEFAULT_WEIGHTS, **(weights or {})}
@@ -306,10 +352,14 @@ def score_block(
     metric_score = 1.0 if hits else 0.0
 
     value_score = 0.0
+    value_match_reason = None
     claim_value = claim.get("reported_value")
     claim_unit = claim.get("unit")
-    if claim_value is not None and _block_value_hits(block_text, claim_value, claim_unit):
-        value_score = 1.0
+    if claim_value is not None:
+        hit, reason = _block_value_hits(block_text, claim_value, claim_unit)
+        if hit:
+            value_score = 1.0
+            value_match_reason = reason
 
     period_score = period_matches(claim.get("period"), block_text, doc_period)
     entity_score = entity_matches(block_text, claim.get("entity_name"))
@@ -322,6 +372,9 @@ def score_block(
         + w["entity"] * entity_score
         + w["text"] * text_score
     )
+    # 无数字语义主张：管理层讨论/经营分析章节加分（document_section_bonus）
+    if claim_value is None and section_bonus > 0:
+        final += w.get("section", 0.10) * section_bonus
     # 防错匹配：数值相同但指标未命中（如收入 vs 净利润同数）→ 总分惩罚
     if metric_score == 0 and value_score == 1:
         final *= _METRIC_MISS_VALUE_HIT_PENALTY
@@ -335,4 +388,5 @@ def score_block(
         "text_score": text_score,
         "matched_terms": hits[:5],
         "matched_metrics": hits,
+        "value_match_reason": value_match_reason,
     }
