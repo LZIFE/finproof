@@ -26,6 +26,11 @@ class ClaimCreate(BaseModel):
     source_block_id: int | None = None
     source_page_number: int = Field(default=1, ge=0)
     source_text: str = Field(min_length=1)
+    parent_block_id: int | None = None
+    parent_sentence_text: str | None = None
+    clause_index: int | None = None
+    source_span_start: int | None = None
+    source_span_end: int | None = None
     normalized_claim: str = Field(min_length=1)
     claim_type: ClaimType
     entity_name: str | None = None

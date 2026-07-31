@@ -47,6 +47,8 @@ class ExtractionRun(Base):
     duplicate_removed_count: Mapped[int] = mapped_column(Integer, default=0)
     error_code: Mapped[str | None] = mapped_column(String(50), nullable=True)
     error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    # 去重分析产物（kept/removed/reason/score 记录 JSON）
+    dedup_analysis_json: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     claims: Mapped[list["Claim"]] = relationship(
@@ -73,6 +75,12 @@ class Claim(Base):
     )
     source_page_number: Mapped[int] = mapped_column(Integer, default=1)
     source_text: Mapped[str] = mapped_column(Text)
+    # 父句上下文（子句归属）：拆分后的子主张保留父句信息用于评测与证据定位
+    parent_block_id: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    parent_sentence_text: Mapped[str | None] = mapped_column(Text, nullable=True)
+    clause_index: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    source_span_start: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    source_span_end: Mapped[int | None] = mapped_column(Integer, nullable=True)
     normalized_claim: Mapped[str] = mapped_column(Text)
     claim_type: Mapped[str] = mapped_column(String(40))
     entity_name: Mapped[str | None] = mapped_column(String(100), nullable=True)

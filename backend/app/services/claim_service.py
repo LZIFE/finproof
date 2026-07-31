@@ -131,6 +131,18 @@ def run_claim_extraction(
         dedup_result = deduplicate(dedup_targets)
         duplicates = dedup_result.removed_count
 
+        # 去重分析产物（kept/removed/reason/score）
+        dedup_records = [
+            {
+                "kept_claim": dedup_targets[r.kept_index].source_text,
+                "removed_claim": dedup_targets[r.removed_index].source_text,
+                "dedup_reason": r.dedup_reason,
+                "dedup_score": r.dedup_score,
+            }
+            for r in dedup_result.records
+        ]
+        run.dedup_analysis_json = json.dumps(dedup_records, ensure_ascii=False)
+
         for claim in dedup_result.unique:
             row = Claim(
                 claim_uid=claim.claim_uid,
@@ -139,6 +151,11 @@ def run_claim_extraction(
                 source_block_id=claim.source_block_id,
                 source_page_number=claim.source_page_number,
                 source_text=claim.source_text,
+                parent_block_id=claim.parent_block_id,
+                parent_sentence_text=claim.parent_sentence_text,
+                clause_index=claim.clause_index,
+                source_span_start=claim.source_span_start,
+                source_span_end=claim.source_span_end,
                 normalized_claim=claim.normalized_claim,
                 claim_type=claim.claim_type.value,
                 entity_name=claim.entity_name,

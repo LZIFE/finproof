@@ -1,0 +1,275 @@
+[
+  {
+    "system_claim_id": 261,
+    "gold_claim_id": "CLM-001",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 263,
+    "gold_claim_id": "CLM-003",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 264,
+    "gold_claim_id": "CLM-004",
+    "match_score": 0.9,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "comparison_period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 265,
+    "gold_claim_id": "CLM-014",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 271,
+    "gold_claim_id": "CLM-002",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 273,
+    "gold_claim_id": "CLM-005",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 274,
+    "gold_claim_id": "CLM-006",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 275,
+    "gold_claim_id": "CLM-012",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 278,
+    "gold_claim_id": "CLM-007",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 280,
+    "gold_claim_id": "CLM-011",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 282,
+    "gold_claim_id": "CLM-008",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 284,
+    "gold_claim_id": "CLM-009",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 285,
+    "gold_claim_id": "CLM-010",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 287,
+    "gold_claim_id": "CLM-026",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 289,
+    "gold_claim_id": "CLM-013",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 290,
+    "gold_claim_id": "CLM-015",
+    "match_score": 0.9,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "comparison_period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 292,
+    "gold_claim_id": "CLM-025",
+    "match_score": 0.8,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 298,
+    "gold_claim_id": "CLM-023",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 300,
+    "gold_claim_id": "CLM-017",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 301,
+    "gold_claim_id": "CLM-018",
+    "match_score": 0.85,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period",
+      "type"
+    ],
+    "match_status": "MATCHED"
+  },
+  {
+    "system_claim_id": 302,
+    "gold_claim_id": "CLM-024",
+    "match_score": 0.8,
+    "match_reasons": [
+      "text_overlap",
+      "metric",
+      "value",
+      "period"
+    ],
+    "match_status": "MATCHED"
+  }
+]

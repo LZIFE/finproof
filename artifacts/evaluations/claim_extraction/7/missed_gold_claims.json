@@ -1,0 +1,17 @@
+[
+  {
+    "claim_id": "CLM-019",
+    "original_text": "公司持续深化\"国内高端品牌和海外OBM优先\"战略",
+    "claim_type": "business_fact",
+    "entity": "美的集团",
+    "metric": "overseas_obm_strategy",
+    "value": null,
+    "unit": null,
+    "currency": null,
+    "period": "2025H1",
+    "comparison_period": null,
+    "scope": "consolidated",
+    "risk_level": "medium",
+    "report_section": "三、业务与战略"
+  }
+]

@@ -30,17 +30,32 @@ def _migrate_columns(conn) -> None:
     """开发库轻量迁移：PRAGMA 检查缺失列并 ALTER TABLE 补充（幂等）。
 
     Phase 3 新增 extraction_runs.candidate_claim_count（用于评测 Schema 合法率）。
+    Phase 3.5 新增 claims 父句归属列（parent_block_id / parent_sentence_text /
+    clause_index / source_span_start / source_span_end）。
     """
     from sqlalchemy import text
 
-    cols = {row[1] for row in conn.execute(text("PRAGMA table_info(extraction_runs)"))}
-    if "candidate_claim_count" not in cols:
+    run_cols = {row[1] for row in conn.execute(text("PRAGMA table_info(extraction_runs)"))}
+    if "candidate_claim_count" not in run_cols:
         conn.execute(
             text(
                 "ALTER TABLE extraction_runs "
                 "ADD COLUMN candidate_claim_count INTEGER NOT NULL DEFAULT 0"
             )
         )
+    if "dedup_analysis_json" not in run_cols:
+        conn.execute(text("ALTER TABLE extraction_runs ADD COLUMN dedup_analysis_json TEXT"))
+
+    claim_cols = {row[1] for row in conn.execute(text("PRAGMA table_info(claims)"))}
+    for name, ddl in [
+        ("parent_block_id", "INTEGER"),
+        ("parent_sentence_text", "TEXT"),
+        ("clause_index", "INTEGER"),
+        ("source_span_start", "INTEGER"),
+        ("source_span_end", "INTEGER"),
+    ]:
+        if name not in claim_cols:
+            conn.execute(text(f"ALTER TABLE claims ADD COLUMN {name} {ddl}"))
 
 
 def init_db() -> None:

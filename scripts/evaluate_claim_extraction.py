@@ -91,6 +91,7 @@ def main() -> int:
                 "claim_uid": c.claim_uid,
                 "source_text": c.source_text,
                 "normalized_claim": c.normalized_claim,
+                "parent_sentence_text": c.parent_sentence_text,
                 "claim_type": c.claim_type,
                 "metric": c.metric,
                 "metric_code": c.metric_code,
@@ -98,6 +99,8 @@ def main() -> int:
                 "unit": c.unit,
                 "period": c.period,
                 "comparison_period": c.comparison_period,
+                "claim_nature": c.claim_nature,
+                "entity_name": c.entity_name,
                 "risk_level": c.risk_level,
             }
             for c in rows
@@ -119,6 +122,11 @@ def main() -> int:
     report_md = claim_eval.build_report(metrics, result, gold)
     out_dir = ARTIFACT_ROOT / str(run.id)
     claim_eval.write_artifacts(out_dir, metrics, result, report_md)
+
+    # 去重分析产物
+    if getattr(run, "dedup_analysis_json", None):
+        (out_dir / "dedup_analysis.json").write_text(run.dedup_analysis_json, encoding="utf-8")
+        print(f"去重分析产物: {out_dir / 'dedup_analysis.json'}")
 
     print(f"== 评测完成 run_id={run.id} ==")
     print(f"模式={metrics['mode']} provider={metrics['provider']} model={metrics.get('model_name') or '无(Mock)'} prompt={metrics['prompt_version']}")

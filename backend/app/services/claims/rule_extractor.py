@@ -70,6 +70,12 @@ class ClaimCandidate:
     requires_external_evidence: bool
     extraction_method: str = "RULE_BASED"
     confidence: float = 0.9
+    # 父句上下文（子句归属）：拆分后的子主张保留父句信息用于评测与证据定位
+    parent_block_id: int | None = None
+    parent_sentence_text: str | None = None
+    clause_index: int | None = None
+    source_span_start: int | None = None
+    source_span_end: int | None = None
 
     def to_dict(self) -> dict:
         return {k: v for k, v in self.__dict__.items()}
@@ -97,19 +103,69 @@ def _is_meta(text: str) -> bool:
 
 BUSINESS_FACT_SIGNAL = ["战略", "布局", "收购", "完成", "发布", "披露", "深化", "升级"]
 
+# 高优先级保留信号：任一命中即保留（数字/指标在 _should_keep_clause 中单独判断）
+STRONG_SIGNAL_WORDS = [
+    "同比", "环比", "增长", "下降", "增速", "降幅", "占比", "过半",
+    "超过", "低于", "达到", "高于", "突破", "增至", "降至",
+    # 重大事件与披露
+    "收购", "出售", "并购", "处罚", "诉讼", "仲裁", "退市", "处分", "回购", "分红", "发行",
+    "发布", "披露", "完成", "签署", "中标", "获批",
+    # 明确预测
+    "预计", "有望", "预测", "目标", "展望", "将突破",
+    # 明确因果（含可验证对象）
+    "主要由", "主要系", "推动", "导致", "得益于", "核心引擎", "贡献",
+]
+
+# 弱信号：需要"可验证对象 + 变化/关系动词"才保留
+WEAK_SIGNAL_WORDS = [
+    "改善", "优化", "稳步", "加速", "向好", "回暖", "回升", "持续",
+    "我们", "认为", "看好", "评级", "建议", "判断",
+    "战略", "布局", "深化", "升级", "显现", "兑现",
+]
+
+VERIFIABLE_OBJECTS = [
+    "公司", "集团", "业务", "收入", "利润", "现金流", "占比", "份额",
+    "市场", "行业", "毛利率", "净利率", "费用", "负债", "资产", "每股收益",
+    "海外", "国内", "机器人", "智能家居", "战略", "模式", "产品", "品牌",
+]
+
+CHANGE_VERBS = [
+    "增长", "改善", "提升", "下降", "回落", "优化", "加速", "回暖", "回升",
+    "向好", "成为", "占据", "推动", "贡献", "持续", "深化", "升级", "显现",
+    "兑现", "突破", "扩大", "提升",
+]
+
+# 复合句拆分残片：以连接词/介词/引导短语开头、无法独立核验
+FRAGMENT_PREFIX_RE = re.compile(
+    r"^(但|以及|综合|主要系|展望|而|并且|其中|尤其|另外|同时|因此|所以|"
+    r"在[^，。]{0,10}(领域|方面|环节)|从[^，。]{0,10}(看|来看))"
+)
+
 
 def _has_claim_signal(text: str, metric: tuple | None, number) -> bool:
+    """保留决策：数字/指标/强信号任一命中即保留；残片先行过滤；弱信号需对象+动词。
+
+    顺序：残片 > 数字/指标 > 强信号 > 弱信号。
+    有指标无数字的纯形容词评价（无变化动词/强信号/观点词）默认过滤。
+    """
+    if FRAGMENT_PREFIX_RE.match(text.strip()):
+        return False
     if metric or number:
+        if number:
+            return True
+        # 有指标无数字：需变化动词、强信号或观点词（"现金流整体稳健"这类纯评价过滤）
+        return (
+            any(v in text for v in CHANGE_VERBS)
+            or any(w in text for w in STRONG_SIGNAL_WORDS)
+            or any(w in text for w in OPINION_WORDS)
+        )
+    if any(w in text for w in STRONG_SIGNAL_WORDS):
         return True
-    words = (
-        CAUSAL_WORDS
-        + FORECAST_WORDS
-        + TREND_WORDS
-        + COMPARISON_WORDS
-        + OPINION_WORDS
-        + BUSINESS_FACT_SIGNAL
-    )
-    return any(w in text for w in words)
+    if any(w in text for w in WEAK_SIGNAL_WORDS):
+        has_object = any(obj in text for obj in VERIFIABLE_OBJECTS)
+        has_verb = any(v in text for v in CHANGE_VERBS)
+        return has_object and has_verb
+    return False
 
 
 def _split_sentences(text: str) -> list[str]:
@@ -172,9 +228,17 @@ class RuleBasedCandidateExtractor:
                 year = _inherit_year(sentence, self.report_year)
                 # 句子级期间：向无显式期间的子句传播（如"2025年上半年，……"）
                 sentence_period = parse_period(sentence, year)
-                for clause in _split_clauses(sentence):
+                for ci, clause in enumerate(_split_clauses(sentence)):
+                    # 子句在父句内的字符跨度（source_span，供评测与证据定位）
+                    clause_start = sentence.find(clause)
+                    span = (clause_start, clause_start + len(clause)) if clause_start >= 0 else (None, None)
                     candidate = self._build_candidate(
-                        clause, block, year, last_metric, sentence_period
+                        clause, block, year, last_metric, sentence_period,
+                        parent_block_id=getattr(block, "id", None),
+                        parent_sentence_text=sentence,
+                        clause_index=ci,
+                        source_span_start=span[0],
+                        source_span_end=span[1],
                     )
                     if candidate is None:
                         continue
@@ -190,6 +254,11 @@ class RuleBasedCandidateExtractor:
         year: int | None,
         last_metric: tuple | None,
         sentence_period=None,
+        parent_block_id: int | None = None,
+        parent_sentence_text: str | None = None,
+        clause_index: int | None = None,
+        source_span_start: int | None = None,
+        source_span_end: int | None = None,
     ) -> ClaimCandidate | None:
         if len(clause) < MIN_CLAIM_LEN:
             return None
@@ -222,6 +291,9 @@ class RuleBasedCandidateExtractor:
                 base = "net_profit"
             metric_name = last_metric[0]
             metric_code = f"yoy_growth_{base}"
+        # 增长率无归属（通用"同比增长"且无前文指标可继承）不得直接入库
+        if metric_code == "growth_rate" and not last_metric:
+            return None
 
         value = number.value if number else None
         unit = number.unit if number else None
@@ -272,4 +344,9 @@ class RuleBasedCandidateExtractor:
             requires_calculation=calc,
             requires_external_evidence=needs_evidence,
             confidence=0.9 if value is not None else 0.7,
+            parent_block_id=parent_block_id,
+            parent_sentence_text=parent_sentence_text,
+            clause_index=clause_index,
+            source_span_start=source_span_start,
+            source_span_end=source_span_end,
         )

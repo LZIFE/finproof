@@ -27,15 +27,45 @@ SEMANTIC_GOLD_TYPES = {"business_fact", "causality", "forecast", "comparison"}
 MATCH_THRESHOLD = 0.5
 AMBIGUITY_EPSILON = 0.05
 
-W_TEXT = 0.4
-W_METRIC = 0.25
-W_VALUE = 0.25
-W_PERIOD = 0.15
-W_TYPE = 0.1
+# 匹配权重（信号综合：文本/规范化/父句/指标/数值/期间/比较期间/主体/类型/性质）
+W_TEXT = 0.35
+W_NORM = 0.08
+W_PARENT = 0.10
+W_METRIC = 0.15
+W_VALUE = 0.15
+W_PERIOD = 0.08
+W_COMP_PERIOD = 0.04
+W_ENTITY = 0.04
+W_TYPE = 0.08
+W_NATURE = 0.04
+# metric / period 明显冲突时的高额惩罚（防止"同值不同指标/期间"互相抢占）
+PENALTY_CONFLICT = 0.40
+
+# 金标准 claim_type → 系统 claim_nature（近似兼容）
+GOLD_NATURE_MAP = {
+    "raw_number": {"FACT"},
+    "calculated_financial_metric": {"CALCULATED_FACT"},
+    "scope": {"FACT"},
+    "business_fact": {"FACT"},
+    "causality": {"CAUSAL_INTERPRETATION"},
+    "forecast": {"FORECAST"},
+    "comparison": {"COMPARATIVE_JUDGMENT"},
+}
 
 
 def _norm(s: str) -> str:
-    return re.sub(r"\s+", "", s or "")
+    """空白/引号/全半角归一化（用于文本重叠判定）。"""
+    if not s:
+        return ""
+    out = re.sub(r"\s+", "", s)
+    out = out.replace("“", '"').replace("”", '"').replace("‘", "'").replace("’", "'")
+    out = out.replace("\u3000", "").replace("，", ",").replace("。", ".").replace("；", ";")
+    out = out.replace("（", "(").replace("）", ")").replace("：", ":").replace("、", ",")
+    return out
+
+
+def _contains(a: str, b: str) -> bool:
+    return bool(a) and bool(b) and (a in b or b in a or a == b)
 
 
 def period_compatible(gold_period: str | None, sys_period: str | None) -> bool:
@@ -67,30 +97,83 @@ def metric_compatible(gold_metric: str | None, sys_metric: str | None) -> bool:
     return g == s or g in s or s in g
 
 
+def entity_compatible(gold_entity: str | None, sys_entity: str | None) -> bool:
+    if not gold_entity or not sys_entity:
+        return False
+    g, s = _norm(gold_entity), _norm(sys_entity)
+    return g == s or g in s or s in g
+
+
+def nature_compatible(gold_type: str | None, sys_nature: str | None) -> bool:
+    if not gold_type or not sys_nature:
+        return False
+    return sys_nature in GOLD_NATURE_MAP.get(gold_type, set())
+
+
 def match_score(gold: dict, sys: dict) -> tuple[float, list[str]]:
-    """计算一条系统主张与一条金标准主张的匹配分（0~1）。"""
+    """综合信号评分；metric/period 冲突施加高额惩罚（防止同值不同口径抢占）。"""
     score = 0.0
     reasons: list[str] = []
-    g_text, s_text = _norm(gold.get("original_text", "")), _norm(sys.get("source_text", ""))
-    if g_text and s_text and (g_text in s_text or s_text in g_text or g_text == s_text):
+
+    g_text = _norm(gold.get("original_text", ""))
+    s_text = _norm(sys.get("source_text", ""))
+    if _contains(g_text, s_text):
         score += W_TEXT
         reasons.append("text_overlap")
-    # 金标准 metric 存的是代码（如 revenue）；系统侧 metric_code 与之对齐，
-    # 中文 metric 作为兜底（包含匹配）
-    if metric_compatible(gold.get("metric"), sys.get("metric_code")) or metric_compatible(
-        gold.get("metric"), sys.get("metric")
-    ):
+    # normalized_claim 语义相似（规范化表述与金标准原文重叠）
+    s_norm = _norm(sys.get("normalized_claim", ""))
+    if _contains(g_text, s_norm):
+        score += W_NORM
+        reasons.append("normalized")
+    # 父句上下文（子句拆分的归属来源；Phase 3.5 起由提取层提供）
+    s_parent = _norm(sys.get("parent_sentence_text", ""))
+    if s_parent and _contains(g_text, s_parent):
+        score += W_PARENT
+        reasons.append("parent_sentence")
+
+    # 指标：兼容加分；冲突惩罚仅在"系统中文指标不在金标准原文中"时生效
+    #（金标准 metric 为代码、系统 metric 为中文，无法直接判定冲突的场合不惩罚）
+    g_metric = gold.get("metric")
+    s_metric = sys.get("metric_code") or sys.get("metric")
+    metric_ok = metric_compatible(g_metric, s_metric)
+    if metric_ok:
         score += W_METRIC
         reasons.append("metric")
+    elif sys.get("metric") and g_text and _norm(sys["metric"]) not in g_text:
+        score -= PENALTY_CONFLICT
+        reasons.append("metric_conflict")
+
+    # 数值
     if value_compatible(gold.get("value"), sys.get("reported_value")):
         score += W_VALUE
         reasons.append("value")
-    if period_compatible(gold.get("period"), sys.get("period")):
+
+    # 期间：兼容加分；冲突惩罚仅当系统期间为"具体期间"（非裸年份默认值）时生效
+    g_period = gold.get("period")
+    s_period = sys.get("period")
+    if period_compatible(g_period, s_period):
         score += W_PERIOD
         reasons.append("period")
+    elif g_period and s_period and not re.fullmatch(r"20\d{2}", str(s_period)):
+        score -= PENALTY_CONFLICT
+        reasons.append("period_conflict")
+
+    # 比较期间
+    if period_compatible(gold.get("comparison_period"), sys.get("comparison_period")):
+        score += W_COMP_PERIOD
+        reasons.append("comparison_period")
+
+    # 主体 / 类型 / 性质
+    if entity_compatible(gold.get("entity"), sys.get("entity_name")):
+        score += W_ENTITY
+        reasons.append("entity")
     if type_compatible(gold.get("claim_type"), sys.get("claim_type")):
         score += W_TYPE
         reasons.append("type")
+    if nature_compatible(gold.get("claim_type"), sys.get("claim_nature")):
+        score += W_NATURE
+        reasons.append("nature")
+
     return round(min(score, 1.0), 4), reasons
 
 

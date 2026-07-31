@@ -29,8 +29,82 @@ def test_match_score_signals():
     g = _gold("G1", "公司2025年营业收入4564.52亿元")
     s = _sys(1, "公司2025年营业收入4564.52亿元")
     score, reasons = claim_eval.match_score(g, s)
-    assert score >= 0.9
+    assert score >= 0.80
     assert "text_overlap" in reasons and "metric" in reasons and "value" in reasons
+
+
+def test_quote_normalization_for_overlap():
+    """引号（全角/弯引号）差异不影响文本重叠判定。"""
+    g = _gold("G1", "公司持续深化\u201c国内高端品牌和海外OBM优先\u201d战略")
+    s = _sys(1, '公司持续深化"国内高端品牌和海外OBM优先"战略', code=None, value=None,
+             period=None, claim_type="BUSINESS_FACT", metric=None)
+    score, reasons = claim_eval.match_score(g, s)
+    assert "text_overlap" in reasons
+    assert score >= claim_eval.W_TEXT  # 文本重叠本身足够贡献基础分
+
+
+def test_period_conflict_penalty():
+    """同值同文本但期间明显冲突（2025Q1 vs 2025FY）→ 高额惩罚，不得抢占。"""
+    gold_fy = _gold("G_FY", "归母净利润同比增长38.02%", metric="yoy_growth_net_profit",
+                    value=38.02, period="2025FY", claim_type="calculated_financial_metric")
+    gold_q1 = _gold("G_Q1", "归母净利润同比增长38.02%", metric="yoy_growth_net_profit",
+                    value=38.02, period="2025Q1", claim_type="calculated_financial_metric")
+    sys_q1 = _sys(1, "归母净利润同比增长38.02%", code="yoy_growth_net_profit",
+                  value=38.02, period="2025Q1", claim_type="GROWTH_RATE")
+    # 对自身期间（2025Q1）得分显著高于对冲突期间（2025FY）
+    score_own, _ = claim_eval.match_score(gold_q1, sys_q1)
+    score_conflict, _ = claim_eval.match_score(gold_fy, sys_q1)
+    assert "period" in claim_eval.match_score(gold_q1, sys_q1)[1]
+    assert "period_conflict" in claim_eval.match_score(gold_fy, sys_q1)[1]
+    assert score_own - score_conflict >= claim_eval.PENALTY_CONFLICT
+
+
+def test_metric_conflict_penalty():
+    """同值同文本但指标明显冲突（收入 vs 净利润）→ 惩罚。"""
+    gold_rev = _gold("G_REV", "2025年收入为100亿元", metric="revenue",
+                     value=100.0, period="2025FY")
+    sys_profit = _sys(1, "2025年收入为100亿元", code="net_profit",
+                      value=100.0, period="2025FY", metric="净利润")
+    # 系统中文指标"净利润"不在金标准原文"2025年收入为100亿元"中 → 冲突惩罚
+    score, reasons = claim_eval.match_score(gold_rev, sys_profit)
+    assert "metric_conflict" in reasons
+    # 正确指标版本不受惩罚
+    sys_correct = _sys(2, "2025年收入为100亿元", code="revenue",
+                       value=100.0, period="2025FY", metric="收入")
+    score_ok, reasons_ok = claim_eval.match_score(gold_rev, sys_correct)
+    assert "metric_conflict" not in reasons_ok
+    assert score_ok > score
+
+
+def test_semantic_claim_clears_threshold():
+    """无数字语义主张（文本+类型+性质+主体）应达到匹配阈值。"""
+    g = _gold("G1", "公司持续深化OBM优先战略", metric="overseas_obm_strategy",
+              value=None, period="2025H1", claim_type="business_fact")
+    s = _sys(1, "公司持续深化OBM优先战略", code=None, value=None, period="2025",
+             claim_type="BUSINESS_FACT", metric=None)
+    s["claim_nature"] = "FACT"
+    s["entity_name"] = "美的集团"
+    g["entity"] = "美的集团"
+    score, reasons = claim_eval.match_score(g, s)
+    assert score >= claim_eval.MATCH_THRESHOLD
+    assert "text_overlap" in reasons and "nature" in reasons
+
+
+def test_no_steal_between_same_value_different_period():
+    """规格示例：2025Q1收入38.02% 与 2025全年归母净利38.02% 不得互相抢占。"""
+    gold_q1_rev = _gold("G1", "2025Q1收入同比增长38.02%", metric="revenue",
+                        value=38.02, period="2025Q1", claim_type="raw_number")
+    gold_fy_profit = _gold("G2", "2025全年归母净利润同比增长38.02%",
+                           metric="yoy_growth_net_profit", value=38.02,
+                           period="2025FY", claim_type="calculated_financial_metric")
+    sys_q1 = _sys(1, "2025Q1收入同比增长38.02%", code="revenue", value=38.02,
+                  period="2025Q1", claim_type="GROWTH_RATE")
+    sys_fy = _sys(2, "2025全年归母净利润同比增长38.02%", code="yoy_growth_net_profit",
+                  value=38.02, period="2025FY", claim_type="GROWTH_RATE")
+    result = claim_eval.match_claims([sys_q1, sys_fy], [gold_q1_rev, gold_fy_profit])
+    assert result.matched_gold_ids == {"G1", "G2"}
+    matched_golds = {r.gold_claim_id for r in result.records if r.match_status == "MATCHED"}
+    assert matched_golds == {"G1", "G2"}
 
 
 def test_match_score_weak_without_signals():

@@ -84,3 +84,4 @@ class ExtractionMode(str, Enum):
     MOCK = "mock"
     RULES = "rules"
     LLM = "llm"
+    HYBRID = "hybrid"

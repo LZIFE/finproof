@@ -1,0 +1,32 @@
+[
+  {
+    "claim_id": "CLM-016",
+    "original_text": "根据公司2025年3月31日发布的2025年年度报告",
+    "claim_type": "business_fact",
+    "entity": "美的集团",
+    "metric": "publication_date",
+    "value": null,
+    "unit": null,
+    "currency": null,
+    "period": "2025FY",
+    "comparison_period": null,
+    "scope": "consolidated",
+    "risk_level": "medium",
+    "report_section": "四、财务细节与风险提示"
+  },
+  {
+    "claim_id": "CLM-019",
+    "original_text": "公司持续深化\"国内高端品牌和海外OBM优先\"战略",
+    "claim_type": "business_fact",
+    "entity": "美的集团",
+    "metric": "overseas_obm_strategy",
+    "value": null,
+    "unit": null,
+    "currency": null,
+    "period": "2025H1",
+    "comparison_period": null,
+    "scope": "consolidated",
+    "risk_level": "medium",
+    "report_section": "三、业务与战略"
+  }
+]

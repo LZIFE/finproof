@@ -75,6 +75,10 @@ class ClaimExtractionProvider(Protocol):
 class MockClaimExtractionProvider:
     """规则候选提取 + 明确 Mock 标识（无 API Key 时的运行路径）。"""
 
+    def __init__(self, extraction_method: str = "MOCK", is_mock: bool = True) -> None:
+        self.extraction_method = extraction_method
+        self.is_mock = is_mock
+
     def extract_claims(self, document_context: DocumentContext, blocks: list) -> ClaimExtractionResult:
         extractor = RuleBasedCandidateExtractor(
             entity_name=document_context.company_name or "美的集团",
@@ -85,18 +89,92 @@ class MockClaimExtractionProvider:
         claim_dicts = []
         for cand in rule_result.candidates:
             d = cand.to_dict()
-            d["extraction_method"] = "MOCK"
+            d["extraction_method"] = self.extraction_method
             d["confidence"] = round((d.get("confidence") or 0.9) * 0.9, 2)
             claim_dicts.append(d)
         return ClaimExtractionResult(
             claim_dicts=claim_dicts,
-            provider="mock",
+            provider="mock" if self.is_mock else "rule_only",
             model_name=None,
             prompt_version=document_context.prompt_version,
-            is_mock=True,
+            is_mock=self.is_mock,
             candidate_sentence_count=rule_result.candidate_sentence_count,
             input_block_count=rule_result.input_block_count,
         )
+
+
+class RuleOnlyClaimExtractionProvider(MockClaimExtractionProvider):
+    """纯规则模式（rule_only）：与 Mock 同源，但标注 RULE_BASED、is_mock=False。"""
+
+    def __init__(self) -> None:
+        super().__init__(extraction_method="RULE_BASED", is_mock=False)
+
+
+class HybridClaimExtractionProvider:
+    """Hybrid（rule → LLM 精炼）：规则候选句 + 上下文窗口交给 LLM 筛选/拆分/结构化。
+
+    建议流程（与任务书一致）：
+    文档文本块 → 规则候选句 → 按段落上下文窗口 → LLM 筛选/拆分/结构化
+    → 字段标准化 → 去重 → 风险分级 → Schema 校验
+
+    无 LLM 配置时抛出明确错误（Hybrid 必须真实调用模型，不允许伪装）。
+    """
+
+    def __init__(self, settings=None) -> None:
+        self.settings = settings or get_settings()
+        self.llm = LLMClaimExtractionProvider(settings=self.settings)
+
+    def _build_messages(self, ctx: DocumentContext, blocks: list, rule_candidates: list[str]) -> list[dict]:
+        prompt = load_prompt(ctx.prompt_version)
+        candidate_lines = "\n".join(f"- {t}" for t in rule_candidates[:80])
+        user = (
+            f"公司名称: {ctx.company_name or ''}\n股票代码: {ctx.stock_code or ''}\n\n"
+            f"规则预提取候选句（仅作参考，请按规则筛选/拆分/补全结构化字段）：\n{candidate_lines}\n\n"
+            f"报告文本块：\n{self.llm._blocks_to_text(blocks)}"
+        )
+        return [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": user},
+        ]
+
+    def extract_claims(self, document_context: DocumentContext, blocks: list) -> ClaimExtractionResult:
+        cfg = self.settings
+        if not cfg.claim_extraction_base_url or not cfg.claim_extraction_api_key or not cfg.claim_extraction_model:
+            raise AppError(
+                "Hybrid 模式需要配置 CLAIM_EXTRACTION_BASE_URL/MODEL/API_KEY 才能真实调用模型",
+                status_code=422,
+                code="LLM_NOT_CONFIGURED",
+            )
+        extractor = RuleBasedCandidateExtractor(
+            entity_name=document_context.company_name or "美的集团",
+            stock_code=document_context.stock_code or "000333",
+            report_year=document_context.report_year,
+        )
+        rule_result = extractor.extract(blocks)
+        candidates = [c.source_text for c in rule_result.candidates]
+
+        messages = self._build_messages(document_context, blocks, candidates)
+        content, usage = self._call_llm(messages)
+        items = self.llm._parse_response(content)
+        claim_dicts, failed = self.llm._to_claim_dicts(items)
+        for d in claim_dicts:
+            d["extraction_method"] = "HYBRID"
+        return ClaimExtractionResult(
+            claim_dicts=claim_dicts,
+            provider="hybrid_rule_llm",
+            model_name=cfg.claim_extraction_model,
+            prompt_version=document_context.prompt_version,
+            is_mock=False,
+            schema_failed_count=failed,
+            raw_response_hash=hashlib.sha256(content.encode("utf-8")).hexdigest(),
+            token_usage=usage,
+            candidate_sentence_count=rule_result.candidate_sentence_count,
+            input_block_count=rule_result.input_block_count,
+        )
+
+    def _call_llm(self, messages: list[dict]) -> tuple[str, dict | None]:
+        """Hybrid 的模型调用（复用 LLM Provider 的重试/超时逻辑）。"""
+        return self.llm._call_model(messages)
 
 
 class LLMClaimExtractionProvider:
@@ -241,7 +319,11 @@ class LLMClaimExtractionProvider:
 
 
 def get_claim_provider(mode: str) -> ClaimExtractionProvider:
-    """按模式返回 Provider：mock（默认）/ llm。"""
+    """按模式返回 Provider：mock（默认）/ rules / llm / hybrid。"""
+    if mode == "rules":
+        return RuleOnlyClaimExtractionProvider()
     if mode == "llm":
         return LLMClaimExtractionProvider()
+    if mode == "hybrid":
+        return HybridClaimExtractionProvider()
     return MockClaimExtractionProvider()
