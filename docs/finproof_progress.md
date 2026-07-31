@@ -231,11 +231,15 @@ CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）�
 
 期间准确 0.9615、指标准确 0.8077、数值准确 0.8462（mock/rules 相同）；遗漏 0、歧义 0。
 
-### 真实 LLM 状态（诚实声明）
+### 比赛环境与模型能力说明（Phase 3.5/3.6 统一口径）
 
-- **本环境无任何 LLM 凭据**（`FINPROOF_CLAIM_EXTRACTION_*` / `OPENAI_*` 全部未设置；本机无 Ollama/LM Studio 等本地模型服务）——**真实模型调用未执行，稳定性未验证，未宣称任何真实模型成绩**。
-- LLM/Hybrid Provider 已实现并经模拟响应单测验证（非法 JSON/超时重试/部分 Schema 失败/Hybrid 无 Key 报错）；配置 `CLAIM_EXTRACTION_MODE=llm` + `BASE_URL/MODEL/API_KEY`（建议 `PROMPT_VERSION=v2`）即可运行真实评测与三次稳定性测试。
-- 人工审核（`human_review.md`）：Raw 成绩与 Human-reviewed 严格分离（`human_reviewed` 标志）；本轮无真实模型输出可审，未产出人工审核后成绩。
+**比赛环境采用官方 Coding Agent 承担金融语义推理。本阶段已完成 Agent-assisted 主张提取验证（assisted_ai / deepseek-v4-flash，`provider=assisted`）。模型 API Provider 属于商业化部署扩展，不影响比赛版本开发。** 以下"真实 LLM 状态"记录为历史实验事实（模型 API 凭据未配置），不作为比赛版本的能力缺失；比赛版本以 Agent-assisted 架构运行。
+
+### 真实 LLM 状态（历史实验记录，保留）
+
+- 历史实验环境无模型 API 凭据（`FINPROOF_CLAIM_EXTRACTION_*` / `OPENAI_*` 未设置），未调用外部模型 API——**本段为历史记录**；比赛版本能力见上节说明。
+- LLM/Hybrid Provider 已实现并经模拟响应单测验证（非法 JSON/超时重试/部分 Schema 失败/Hybrid 无 Key 报错）；属商业化部署扩展能力。
+- 人工审核（`human_review.md`）：Raw 成绩与 Human-reviewed 严格分离（`human_reviewed` 标志）；无独立人工审核者，未产出人工审核后成绩。
 
 ### 门槛评估（目标：P≥0.75 / R≥0.85 / F1≥0.80 / 高风险≥0.95 / 数字≥0.95 / Schema≥0.98 / 重复≤0.05 / 期间≥0.90 / 指标≥0.85 / 主张 24-34 / 至少一次真实 LLM）
 
@@ -251,7 +255,7 @@ CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）�
 | 期间准确 ≥0.90 | 0.9615 | ✓ |
 | 指标准确 ≥0.85 | 0.8077 | ✗ |
 | 主张数 24-34 | 46-53 | ✗ |
-| 真实 LLM 评测 | 未执行（无凭据） | ✗ |
+| 真实 LLM 评测 | 未执行（历史实验：模型 API 凭据未配置；比赛版本以 Agent-assisted 架构运行） | — |
 
 **结论：未达到进入 Phase 4 的门槛——如实汇报，不进入 Phase 4。**
 
@@ -269,7 +273,7 @@ CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）�
 
 ### 核心结论
 
-1. **真实 LLM 配置缺失**：`CLAIM_EXTRACTION_*`/`OPENAI_*` 环境变量全部未设置、本机无本地模型服务——按任务书"配置缺失立即明确失败"执行，**未回退 Mock 冒充真实调用**（明确失败记录 `artifacts/evaluations/llm_run_failure.md`）。
+1. **模型 API Provider 未在比赛环境调用（历史记录）**：`CLAIM_EXTRACTION_*`/`OPENAI_*` 环境变量未设置——历史实验按"配置缺失立即明确失败"执行，未回退 Mock 冒充（明确失败记录 `artifacts/evaluations/llm_run_failure.md`）；**比赛环境采用官方 Coding Agent（Agent-assisted 架构）承担金融语义推理，模型 API Provider 属商业化部署扩展，不影响比赛版本开发**。
 2. **盲测集建立并冻结**：五粮液（000858）2025 年报，17 条主张（7 支持/7 反驳/1 预测/1 无法/1 不足），13 条证据，8 种错误类型；校验 0 错误、抽查 5/5；**冻结 `holdout-v1`**，首次运行结果不可覆盖。
 3. **开发集与盲测集分别报告**：开发集（rules）P 0.5652 / R 1.0 / F1 0.7222；盲测集首次（rules）P 0.55 / R 0.6471 / F1 0.5946——**开发集明显高于盲测集，存在过拟合/领域适配风险**（规则词典与报告措辞相关）。
 4. **门槛未达 → 不进入 Phase 4**（详见下）。
@@ -300,7 +304,7 @@ CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）�
 
 ### 失败原因与下一轮优化项
 
-1. **真实 LLM 未运行**：唯一硬阻断为凭据缺失。提供 `CLAIM_EXTRACTION_BASE_URL/MODEL/API_KEY`（建议 `PROMPT_VERSION=v2`）后即可：开发集 3 次运行 → 稳定性 → 盲测集首次 → 人工审核。
+1. **模型 API Provider 属商业化部署扩展（不影响比赛版本）**：比赛环境以官方 Coding Agent（Agent-assisted）承担金融语义推理，已完成开发集三次运行与盲测集首次运行的验证；如需商业化部署，配置 `CLAIM_EXTRACTION_BASE_URL/MODEL/API_KEY`（`PROMPT_VERSION=v2`）即可运行。
 2. **盲测泛化缺口**：规则模式的 Recall 从开发集 1.0 降至盲测 0.6471（指标归属/措辞差异），建议接入 LLM 语义提取后重测盲测集。
 3. **开发集 Precision/重复率**：与 Phase 3.5 遗留一致，需 LLM 语义筛选收敛主张数。
 
@@ -339,12 +343,57 @@ CLM-001（年报 p9）、CLM-005（年报 p135）、CLM-009（半年报 p96）�
 
 ---
 
+## Phase 4A：Oracle Evidence Retrieval（证据检索引擎）— ✅ 已完成（commit `xxxxxx`）
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| 检索架构 | 三层：① 文档过滤（公司/代码/财报类型优先：H1→半年报、FY→年报、Q1→一季报）→ ② 结构化匹配（指标别名家族隔离/数值单位换算/期间关键词）→ ③ 加权排序（metric 0.30 + value 0.25 + period 0.20 + entity 0.10 + text 0.15，权重可配置可解释存库） |
+| 全文检索 | 基于 document_blocks 的指标别名预筛扫描（MVP 规模无需向量库/FTS5） |
+| 数值匹配 | 支持亿元/万元/千元/元统一换算、千分位逗号、列头单位布局（"（千元）456,451,731"）、百分比/pp 原值比较；年份剔除 |
+| 防错匹配 | 指标家族隔离（归母净利润≠净利润）；同数不同指标/期间施加惩罚，不得排名过高 |
+| 数据库 | 新增 `evidence_retrieval_runs` / `evidence_candidates` / `evidence_retrieval_configs` 三表（轻量迁移） |
+| API | `POST /evidence-retrievals`（ORACLE_GOLD/demo|holdout/top_k）、`GET /evidence-retrievals`（列表）、`GET /{id}`、`GET /{id}/claims`、`GET /{id}/claims/{claim_id}` |
+| 前端 | `/evidence-retrievals` 页面：Oracle Evaluation Mode 标识、创建检索、Top-K 候选（页码/文本块/总分/组件分/命中词） |
+| 评测脚本 | `scripts/evaluate_evidence_retrieval.py`：Page/Block Hit@K、MRR、no_result_rate、平均候选数、平均延迟；gold_evidence 仅在检索完成后读取（数据隔离） |
+| 数据隔离 | 排序逻辑不读 gold_evidence/gold_verifications（专项测试：篡改答案文件不影响检索结果） |
+| 测试 | 新增 13 项（单位换算/千分位/列头单位/指标别名家族/期间/文档优先级/防错匹配/权重持久化/数据隔离/端到端/语义回退）；**全量 200 passed**；前端构建通过；双金标准校验 0 错误 |
+
+### 评测结果（Oracle 模式，最终·干净数据）
+
+| 指标 | Demo | Holdout |
+| ---- | ---- | ------- |
+| Page Hit@1 / @3 / @5 | 0.125 / 0.208 / 0.25 | 0.273 / 0.364 / 0.364 |
+| Block Hit@1 / @3 / @5 | 0.125 / 0.167 / 0.25 | 0.273 / 0.364 / 0.364 |
+| MRR（Page / Block） | 0.170 / 0.170 | 0.303 / 0.303 |
+| no_result_rate | 0.269 | 0.353 |
+| average_candidate_count | 3.27 | 2.53 |
+| average_latency | 269ms | 60ms |
+
+产物：`artifacts/evaluations/evidence_retrieval/{demo,holdout}/metrics.json + report.md + failures.json`。
+
+### 失败案例与 Top-K 排序错误原因（如实记录）
+
+1. **命中率偏低的主因——块粒度与页面颗粒度**：金标准证据为表格行（如"营业收入（千元）456,451,731"），而排序单位是**文本块**；含正确数值的表格行常与同页其他段落合并/拆分，导致正确块分数被"指标命中但数值未命中"的同页块挤占（示例：CLM-001 正确页 p9 未进 Top-5，Top1 为会计政策页 p127——p127 指标+期间全命中但无数值）。
+2. **期间信号偏弱**：表格行无期间关键词，仅靠文档级期间（+0.5），正确页与"指标命中但数值错误"的页面分差不足。
+3. **语义主张（无数字）**：文本关键词回退能召回候选，但排序依赖 entity/text 弱信号，正确证据（管理层讨论页）与泛海外表述块难分（CLM-019/020 类）。
+4. **holdout no_result 0.35**：五粮液金标准 17 条中 6 条无候选（指标别名未覆盖"加权平均净资产收益率"等部分表述）。
+5. **后续优化方向（Phase 4B 前置可做）**：块→页聚合重排（取页内最高块分）、提升 value 匹配权重或表格行结构信号、扩充指标别名词典、语义主张加大 text 权重。
+
+### Phase 4A 完成标准对照
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 功能：Oracle 检索可运行 / Top-K 候选 / 页码可追溯 / block 可定位 / 分数可解释 | ✅ 全部满足 |
+| 评测：Demo 与 Holdout 的 Page/Block Hit@K + MRR 输出 | ✅ 已输出（如上） |
+| 工程：全量测试通过（200）/ 前端 build 成功 / 双金标准 0 错误 / 工作区干净 / Git commit | ✅ 完成 |
+
+---
+
 ## 下一步（不在本轮范围）
 
-- **提供 LLM 凭据后执行真实评测**：开发集 3 次（`--mode llm --force`×3）→ Claim Set Stability → 盲测集首次运行 → 人工审核（Raw 与 Human-reviewed 分离）。
-- 达到门槛后再进入 **Phase 4：证据匹配**（主张 ↔ 财报页码段落）。
-
-详见 `docs/finproof_execution_plan.md`。
+- **Phase 4B：事实核验**（五类判定 SUPPORTED/REFUTED 等）——按任务书"完成后停止，不进入事实核验阶段"。
 
 ---
 

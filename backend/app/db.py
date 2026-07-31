@@ -58,7 +58,6 @@ def _migrate_columns(conn) -> None:
         if name not in claim_cols:
             conn.execute(text(f"ALTER TABLE claims ADD COLUMN {name} {ddl}"))
 
-
 def init_db() -> None:
     """按当前注册的 ORM 模型建表（幂等，可重复调用），并执行轻量迁移。"""
     Base.metadata.create_all(bind=engine)

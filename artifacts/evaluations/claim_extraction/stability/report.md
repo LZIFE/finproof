@@ -1,7 +1,7 @@
 # Claim Set Stability 报告
 
-- 运行: [18, 19, 20] ｜ 模式=ai provider=assisted model=deepseek-v4-flash (AtomCode)
-- 三次都出现比例: 1.0 ｜ 至少两次: 1.0 ｜ 仅一次: 0.0
-- 高风险主张稳定召回率: 1.0 ｜ 数字主张稳定召回率: 1.0
+- 运行: [11, 12] ｜ 模式=? provider=? model=?
+- 三次都出现比例: 0.0 ｜ 至少两次: 0.0 ｜ 仅一次: 0.0
+- 高风险主张稳定召回率: 0.0 ｜ 数字主张稳定召回率: 0.0
 
 > 注：三次运行使用相同输入与参数；AI 模型（assisted/deepseek-v4-flash）低随机性下输出一致属预期，稳定性如实记录。

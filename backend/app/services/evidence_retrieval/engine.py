@@ -1,0 +1,338 @@
+"""证据检索引擎（Phase 4A Oracle 模式）——纯函数核心。
+
+流程：
+Gold Claim → 文档过滤（公司/代码/财报类型/时间） → 文本块候选（指标别名预筛）
+→ 结构化匹配（指标/数值换算/期间/主体/文本相似度） → 加权排序 → Top-K
+
+约束：
+- 不使用 gold_evidence / gold_verifications 参与排序（评测脚本在检索完成后独立计算 Hit@K）；
+- 不引入向量数据库（document_blocks 扫描 + 指标别名预筛，MVP 规模足够）；
+- 权重可配置、可解释、持久化（见 evidence_retrieval_configs）。
+"""
+
+import re
+
+from app.services.claims.normalizers import METRIC_DICTIONARY, NUMBER_UNIT_RE
+
+# ---------------------------------------------------------------- 数值换算
+
+# 单位 → 亿元 换算系数（人民币金额）
+_UNIT_TO_YI = {
+    "万亿元": 10000.0,
+    "亿元": 1.0,
+    "百万元": 0.01,
+    "万元": 0.0001,
+    "千元": 0.00001,
+    "元": 1e-8,
+}
+# 无需换算的单位（直接按原值比较）
+_DIRECT_UNITS = {"%", "PERCENT", "个百分点", "pp", "元/股"}
+
+_VALUE_TOLERANCE = 0.005  # 相对容差 0.5%
+
+
+def unit_to_yi(unit: str | None) -> float | None:
+    """金额单位 → 亿元系数；百分比/每股类返回 None（直接比较）。"""
+    if not unit:
+        return None
+    if unit in _DIRECT_UNITS:
+        return None
+    return _UNIT_TO_YI.get(unit)
+
+
+def iter_numbers(text: str):
+    """遍历文本中所有 '数字+单位' 对，返回 (value, unit, currency, 亿元值)。
+
+    先去除数字千分位逗号（456,451,731 → 456451731），保证财务表格数值可解析。
+    """
+    cleaned = re.sub(r"(?<=\d),(?=\d)", "", text)
+    for m in NUMBER_UNIT_RE.finditer(cleaned):
+        value = float(m.group(1))
+        raw_unit = m.group(2)
+        unit = next((norm for raw, norm in _UNIT_NORMS if raw == raw_unit), raw_unit)
+        currency = "CNY" if re.search(r"[亿万]?元(?!\/股)|元/股", raw_unit) else None
+        yi = value * unit_to_yi(unit) if unit_to_yi(unit) is not None else None
+        yield value, unit, currency, yi
+
+
+# NUMBER_UNIT_RE 中的单位与规范名映射（对齐 normalizers.UNIT_PATTERNS）
+_UNIT_NORMS = [("%", "PERCENT"), ("个百分点", "pp")]
+
+
+def values_compatible(claim_value: float, claim_unit: str | None, block_value: float, block_unit: str | None) -> bool:
+    """数值匹配：统一换算到亿元后比较；百分比/每股类按原值比较。"""
+    if claim_value is None:
+        return False
+    cy = unit_to_yi(claim_unit)
+    by = unit_to_yi(block_unit)
+    if cy is not None and by is not None:
+        # 金额：换算到亿元比较（容差 0.5%）
+        return abs(claim_value * cy - block_value * by) / max(abs(claim_value * cy), 1.0) <= _VALUE_TOLERANCE
+    if cy is None and by is None and (claim_unit in _DIRECT_UNITS or block_unit in _DIRECT_UNITS):
+        # 百分比/每股：原值比较
+        return abs(claim_value - block_value) / max(abs(claim_value), 1.0) <= _VALUE_TOLERANCE
+    return False
+
+
+_COLUMN_UNIT_RE = re.compile(r"万亿元|亿元|百万元|万元|千元|元/股|元")
+_YEAR_RE = re.compile(r"^(19|20)\d{2}$")
+
+
+def _block_value_hits(block_text: str, claim_value: float, claim_unit: str | None) -> bool:
+    """块级数值匹配：支持两种财务表格布局。
+
+    1) '数字+单位'成对（2523.31亿元）；
+    2) 列头单位 + 裸数字（'（千元） 456,451,731'）——取块内首个金额单位为列单位。
+    """
+    if claim_value is None:
+        return False
+    # 1) 成对布局
+    for block_value, block_unit, _currency, _yi in iter_numbers(block_text):
+        if values_compatible(claim_value, claim_unit, block_value, block_unit):
+            return True
+    # 2) 列头单位布局（去千分位逗号）
+    cleaned = re.sub(r"(?<=\d),(?=\d)", "", block_text)
+    m = _COLUMN_UNIT_RE.search(cleaned)
+    if not m:
+        return False
+    col_unit = m.group(0)
+    for n in re.finditer(r"(?<![0-9])(\d+(?:\.\d+)?)(?![0-9])", cleaned):
+        num = float(n.group(1))
+        if _YEAR_RE.match(n.group(1)):  # 跳过年份
+            continue
+        if values_compatible(claim_value, claim_unit, num, col_unit):
+            return True
+    return False
+
+
+# ---------------------------------------------------------------- 指标别名
+
+# 关键指标别名（严格：净利润 ≠ 归母净利润，不合并）
+_METRIC_ALIASES: dict[str, set[str]] = {
+    "revenue": {"营业收入", "营业总收入", "营收", "收入"},
+    "total_operating_revenue": {"营业总收入", "营业收入", "营收", "收入"},
+    "net_profit_attributable": {"归属于上市公司股东的净利润", "归属于母公司股东的净利润", "归母净利润", "归母净利"},
+    "net_profit": {"净利润"},
+    "deducted_net_profit": {"扣除非经常性损益的净利润", "扣非归母净利润", "扣非净利润"},
+    "operating_cash_flow": {"经营活动现金流量净额", "经营活动产生的现金流量净额", "经营现金流净额", "经营现金流"},
+    "basic_eps": {"基本每股收益"},
+    "eps": {"稀释每股收益", "每股收益"},
+    "gross_margin": {"毛利率"},
+    "roe": {"加权平均净资产收益率", "净资产收益率"},
+    "total_assets": {"总资产"},
+    "net_assets": {"归属于上市公司股东的净资产", "净资产"},
+}
+_ALIAS_BY_NAME: dict[str, str] = {}
+for _code, _names in _METRIC_ALIASES.items():
+    for _n in _names:
+        _ALIAS_BY_NAME[_n] = _code
+
+
+def _text_keywords(text: str, limit: int = 6) -> list[str]:
+    """语义主张回退：从主张原文提取中文内容词（去停用词/连接词）作为候选检索词。"""
+    if not text:
+        return []
+    stops = {
+        "公司", "集团", "我们", "认为", "预计", "实现", "同比", "增长", "下降", "亿元", "报告",
+        "根据", "以及", "可以", "进行", "相关", "主要", "其中", "高于", "超过", "达到", "以及",
+        "持续", "深化", "重点", "整体", "水平", "程度", "范围",
+    }
+    # 中文连续段按连接词切分（和/与/及/的/在/以/为/或/、），得到有意义的短语
+    runs = re.findall(r"[\u4e00-\u9fff]{2,}", text)
+    words: list[str] = []
+    for run in runs:
+        for seg in re.split(r"[和与及或以在为由的、]", run):
+            seg = seg.strip()
+            if len(seg) >= 2 and seg not in stops:
+                words.append(seg)
+    seen, out = set(), []
+    for w in sorted(words, key=len, reverse=True):
+        if w not in seen:
+            seen.add(w)
+            out.append(w)
+        if len(out) >= limit:
+            break
+    return out
+
+
+def normalize_claim(claim: dict) -> dict:
+    """主张输入归一化：兼容金标准（metric=代码/value/entity）与 API（metric_code/reported_value/entity_name）。
+
+    输出引擎内部统一格式：entity_name / metric_code / metric(中文) / reported_value / unit / period。
+    """
+    out = dict(claim)
+    out["entity_name"] = claim.get("entity_name") or claim.get("entity")
+    if claim.get("reported_value") is None and claim.get("value") is not None:
+        out["reported_value"] = claim["value"]
+    metric = claim.get("metric")
+    code = claim.get("metric_code")
+    if code is None and metric and not re.search(r"[\u4e00-\u9fff]", str(metric)):
+        code = metric  # metric 字段存的是代码（金标准格式）
+    out["metric_code"] = code
+    if metric and not re.search(r"[\u4e00-\u9fff]", str(metric)):
+        chinese = next((m for _n, m, c in METRIC_DICTIONARY if c == metric), None)
+        out["metric"] = chinese or metric
+    return out
+
+
+def metric_aliases(metric_code: str | None, metric: str | None) -> set[str]:
+    """主张指标 → 匹配别名集合（含指标词典中的规范名与别名）。
+
+    家族隔离：别名按 metric_code 精确匹配（归母净利润家族不含"净利润"，
+    净利润家族不含"归母净利润"），防止跨指标误匹配。
+    """
+    names: set[str] = set()
+    if metric and re.search(r"[\u4e00-\u9fff]", str(metric)):
+        names.add(metric)  # 仅收中文指标名（英文代码走 metric_code 路径）
+    if metric_code:
+        names |= _METRIC_ALIASES.get(metric_code, set())
+    # 指标词典兜底：仅按"相同 metric_code 家族"或"名称完全相等"补充
+    for name, metric_name, code in METRIC_DICTIONARY:
+        if metric_code and code == metric_code:
+            names.add(name)
+        elif metric and name == metric:
+            names.add(name)
+    return {n for n in names if n}
+
+
+def metric_hits(block_text: str, aliases: set[str]) -> list[str]:
+    """返回块中命中的指标别名（按名称长度降序，长名优先）。"""
+    hits = [a for a in aliases if a and a in block_text]
+    return sorted(hits, key=lambda a: -len(a))
+
+
+# ---------------------------------------------------------------- 期间匹配
+
+_PERIOD_PATTERNS = {
+    "Q1": ["一季度", "第一季度", "2025年第一季度", "年初至报告期末", "1-3月", "1季度"],
+    "H1": ["上半年", "半年度", "中期", "1-6月"],
+    "FY": ["年度", "全年", "本报告期", "报告期内", "2025年"],
+    "2025": ["2025"],
+}
+# 期间类型 → 优先财报类型（文档过滤用）
+_PERIOD_TO_DOC_TYPE = {"Q1": "quarter", "H1": "half", "FY": "annual"}
+
+
+def period_type_of(period: str | None) -> str | None:
+    if not period:
+        return None
+    p = str(period).upper()
+    if "Q" in p:
+        return "Q1" if p.endswith("Q1") else None
+    if "H" in p:
+        return "H1" if p.endswith("H1") else None
+    if "FY" in p or p.isdigit() or p == "2025":
+        return "FY"
+    return None
+
+
+def period_matches(claim_period: str | None, block_text: str, doc_period: str | None = None) -> float:
+    """期间匹配分（0/0.5/1）：块内期间关键词 + 文档期间。"""
+    ptype = period_type_of(claim_period)
+    if not ptype:
+        return 0.0
+    # 块级：命中期间关键词
+    for kw in _PERIOD_PATTERNS[ptype]:
+        if kw in block_text:
+            return 1.0
+    # 文档级：文档报告期间与主张一致（如 H1 主张检索半年报）
+    if doc_period:
+        dpt = period_type_of(str(doc_period))
+        if dpt == ptype:
+            return 0.5
+    return 0.0
+
+
+def document_priority(claim_period: str | None, doc_period: str | None) -> int:
+    """文档优先级：主张期间类型与文档期间一致 → 0（最优先），否则 1。"""
+    cp, dp = period_type_of(claim_period), period_type_of(str(doc_period) if doc_period else None)
+    return 0 if cp and dp and cp == dp else 1
+
+
+# ---------------------------------------------------------------- 主体与文本
+
+def entity_matches(block_text: str, entity_name: str | None) -> float:
+    if not entity_name:
+        return 0.0
+    name = entity_name.strip()
+    if name in block_text:
+        return 1.0
+    # 简称兜底：取前 2-3 字（美的集团 → 美的；宜宾五粮液 → 五粮液）
+    short = name[:2] if len(name) >= 2 else name
+    return 1.0 if short in block_text and short not in ("公司", "集团") else 0.0
+
+
+def _norm_text(s: str) -> str:
+    if not s:
+        return ""
+    out = re.sub(r"\s+", "", s)
+    return out.replace("，", ",").replace("。", ".").replace("、", ",").replace("（", "(").replace("）", ")").lower()
+
+
+def text_similarity(claim_text: str, block_text: str) -> float:
+    """文本相似度：主张文本字符被块文本覆盖的比例（字符集重叠 / 主张长度）。"""
+    if not claim_text:
+        return 0.0
+    ct, bt = _norm_text(claim_text), _norm_text(block_text)
+    if not bt:
+        return 0.0
+    covered = sum(1 for ch in ct if ch in bt)
+    return round(covered / len(ct), 4)
+
+
+# ---------------------------------------------------------------- 默认权重
+
+DEFAULT_WEIGHTS = {
+    "metric": 0.30,
+    "value": 0.25,
+    "period": 0.20,
+    "entity": 0.10,
+    "text": 0.15,
+}
+# 防止"相同数字、不同指标/期间"排名过高：指标未命中但数值命中的候选施加惩罚系数
+_METRIC_MISS_VALUE_HIT_PENALTY = 0.5
+
+
+def score_block(
+    block_text: str,
+    claim: dict,
+    doc_period: str | None = None,
+    weights: dict | None = None,
+) -> dict:
+    """对单个文本块计算解释性分数。返回组件分 + 总分 + 命中项。"""
+    w = {**DEFAULT_WEIGHTS, **(weights or {})}
+    aliases = metric_aliases(claim.get("metric_code"), claim.get("metric"))
+    hits = metric_hits(block_text, aliases)
+    metric_score = 1.0 if hits else 0.0
+
+    value_score = 0.0
+    claim_value = claim.get("reported_value")
+    claim_unit = claim.get("unit")
+    if claim_value is not None and _block_value_hits(block_text, claim_value, claim_unit):
+        value_score = 1.0
+
+    period_score = period_matches(claim.get("period"), block_text, doc_period)
+    entity_score = entity_matches(block_text, claim.get("entity_name"))
+    text_score = text_similarity(claim.get("original_text", ""), block_text)
+
+    final = (
+        w["metric"] * metric_score
+        + w["value"] * value_score
+        + w["period"] * period_score
+        + w["entity"] * entity_score
+        + w["text"] * text_score
+    )
+    # 防错匹配：数值相同但指标未命中（如收入 vs 净利润同数）→ 总分惩罚
+    if metric_score == 0 and value_score == 1:
+        final *= _METRIC_MISS_VALUE_HIT_PENALTY
+
+    return {
+        "final_score": round(final, 4),
+        "metric_score": metric_score,
+        "value_score": value_score,
+        "period_score": period_score,
+        "entity_score": entity_score,
+        "text_score": text_score,
+        "matched_terms": hits[:5],
+        "matched_metrics": hits,
+    }

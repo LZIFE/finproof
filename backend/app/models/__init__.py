@@ -2,3 +2,8 @@
 
 from app.models.claim import Claim, ExtractionRun  # noqa: F401
 from app.models.document import Document, DocumentBlock, DocumentPage  # noqa: F401
+from app.models.evidence import (  # noqa: F401
+    EvidenceCandidate,
+    EvidenceRetrievalConfig,
+    EvidenceRetrievalRun,
+)

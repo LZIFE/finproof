@@ -1,0 +1,127 @@
+[
+  {
+    "claim_id": "CLM-H02",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 7,
+    "top_pages": [
+      [
+        7,
+        12
+      ],
+      [
+        7,
+        57
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-H03",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 7,
+    "top_pages": [
+      [
+        7,
+        12
+      ],
+      [
+        7,
+        11
+      ],
+      [
+        7,
+        21
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-H04",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 7,
+    "top_pages": [
+      [
+        7,
+        17
+      ],
+      [
+        7,
+        60
+      ],
+      [
+        7,
+        116
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-H05",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 7,
+    "top_pages": [
+      [
+        7,
+        22
+      ],
+      [
+        7,
+        36
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-H10",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 1,
+    "top_pages": [
+      [
+        7,
+        119
+      ],
+      [
+        7,
+        32
+      ],
+      [
+        7,
+        14
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-H12",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 6,
+    "top_pages": [
+      [
+        7,
+        70
+      ],
+      [
+        7,
+        70
+      ],
+      [
+        7,
+        70
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-H16",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 7,
+    "top_pages": [
+      [
+        7,
+        12
+      ],
+      [
+        7,
+        133
+      ],
+      [
+        7,
+        11
+      ]
+    ]
+  }
+]

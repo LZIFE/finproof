@@ -1,0 +1,20 @@
+{
+  "dataset": "holdout",
+  "retrieval_run_id": 16,
+  "input_mode": "ORACLE_GOLD",
+  "top_k": 5,
+  "claim_count": 17,
+  "gold_evidence_count": 13,
+  "duration_ms": 60,
+  "page_hit_at_1": 0.2727,
+  "page_hit_at_3": 0.3636,
+  "page_hit_at_5": 0.3636,
+  "block_hit_at_1": 0.2727,
+  "block_hit_at_3": 0.3636,
+  "block_hit_at_5": 0.3636,
+  "mrr": 0.303,
+  "block_mrr": 0.303,
+  "no_result_rate": 0.3529,
+  "average_candidate_count": 2.53,
+  "average_latency": 60
+}

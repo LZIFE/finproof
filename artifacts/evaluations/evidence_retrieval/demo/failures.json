@@ -1,0 +1,328 @@
+[
+  {
+    "claim_id": "CLM-001",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 9,
+    "top_pages": [
+      [
+        1,
+        127
+      ],
+      [
+        1,
+        41
+      ],
+      [
+        1,
+        20
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-002",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 135,
+    "top_pages": [
+      [
+        1,
+        127
+      ],
+      [
+        1,
+        41
+      ],
+      [
+        1,
+        20
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-003",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 9,
+    "top_pages": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        20
+      ],
+      [
+        1,
+        9
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-004",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 9,
+    "top_pages": [
+      [
+        1,
+        49
+      ],
+      [
+        3,
+        14
+      ],
+      [
+        1,
+        22
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-005",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 135,
+    "top_pages": [
+      [
+        1,
+        206
+      ],
+      [
+        1,
+        128
+      ],
+      [
+        1,
+        128
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-005",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 135,
+    "top_pages": [
+      [
+        1,
+        206
+      ],
+      [
+        1,
+        128
+      ],
+      [
+        1,
+        128
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-006",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 135,
+    "top_pages": [
+      [
+        1,
+        206
+      ],
+      [
+        1,
+        128
+      ],
+      [
+        1,
+        175
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-006",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 135,
+    "top_pages": [
+      [
+        1,
+        206
+      ],
+      [
+        1,
+        128
+      ],
+      [
+        1,
+        175
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-012",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 9,
+    "top_pages": [
+      [
+        1,
+        9
+      ],
+      [
+        1,
+        231
+      ],
+      [
+        3,
+        96
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-014",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 9,
+    "top_pages": [
+      [
+        1,
+        9
+      ],
+      [
+        1,
+        234
+      ],
+      [
+        1,
+        11
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-015",
+    "gold_document": "half_year_report.pdf",
+    "gold_page": 17,
+    "top_pages": [
+      [
+        1,
+        24
+      ],
+      [
+        1,
+        23
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-015",
+    "gold_document": "q1_report.pdf",
+    "gold_page": 2,
+    "top_pages": [
+      [
+        1,
+        24
+      ],
+      [
+        1,
+        23
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-016",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 1,
+    "top_pages": [
+      [
+        3,
+        192
+      ],
+      [
+        1,
+        257
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-017",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 9,
+    "top_pages": [
+      [
+        1,
+        9
+      ],
+      [
+        1,
+        127
+      ],
+      [
+        1,
+        224
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-018",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 9,
+    "top_pages": [
+      [
+        1,
+        234
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        1,
+        11
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-019",
+    "gold_document": "half_year_report.pdf",
+    "gold_page": 17,
+    "top_pages": [
+      [
+        3,
+        32
+      ],
+      [
+        3,
+        46
+      ],
+      [
+        3,
+        12
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-024",
+    "gold_document": "annual_report.pdf",
+    "gold_page": 9,
+    "top_pages": [
+      [
+        1,
+        24
+      ],
+      [
+        1,
+        23
+      ]
+    ]
+  },
+  {
+    "claim_id": "CLM-024",
+    "gold_document": "half_year_report.pdf",
+    "gold_page": 17,
+    "top_pages": [
+      [
+        1,
+        24
+      ],
+      [
+        1,
+        23
+      ]
+    ]
+  }
+]
