@@ -41,7 +41,7 @@
     },
     {
       "claim_id": "CLM-003",
-      "original_text": "归母净利润439.45亿元，同比增长14.03%",
+      "original_text": "归母净利润439.45亿元",
       "claim_type": "raw_number",
       "entity": "美的集团",
       "metric": "net_profit_attributable",

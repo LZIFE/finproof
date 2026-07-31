@@ -47,7 +47,7 @@
       "claim_id": "CLM-005",
       "document_name": "annual_report.pdf",
       "page": 135,
-      "evidence_text": "其中：营业收入 456,451,731 407,149,600",
+      "evidence_text": "456,451,731 407,149,600",
       "evidence_type": "financial_table",
       "source_level": "S",
       "notes": "合并利润表营业收入行（2025/2024）"
@@ -57,7 +57,7 @@
       "claim_id": "CLM-005",
       "document_name": "annual_report.pdf",
       "page": 135,
-      "evidence_text": "减：营业成本 (335,989,528) (299,584,935)",
+      "evidence_text": "(335,989,528) (299,584,935)",
       "evidence_type": "financial_table",
       "source_level": "S",
       "notes": "合并利润表营业成本行（2025/2024），用于毛利率计算"
@@ -67,7 +67,7 @@
       "claim_id": "CLM-006",
       "document_name": "annual_report.pdf",
       "page": 135,
-      "evidence_text": "其中：营业收入 456,451,731 407,149,600",
+      "evidence_text": "456,451,731 407,149,600",
       "evidence_type": "financial_table",
       "source_level": "S",
       "notes": "用于计算 2025 与 2024 毛利率变动"
@@ -77,7 +77,7 @@
       "claim_id": "CLM-006",
       "document_name": "annual_report.pdf",
       "page": 135,
-      "evidence_text": "减：营业成本 (335,989,528) (299,584,935)",
+      "evidence_text": "(335,989,528) (299,584,935)",
       "evidence_type": "financial_table",
       "source_level": "S",
       "notes": "2025 毛利率 26.39%，2024 毛利率 26.42%，基本持平"
