@@ -577,9 +577,42 @@ Overall Accuracy：Demo 0.6154 / Holdout 0.5882（含语义分组后的重算）
 
 ---
 
+## Phase 5：金融审计智能体（Audit Agent）— ✅ 已完成（commit `xxxxxx`）
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| Agent 模块 | `backend/app/services/agent/`：planner（固定流程，无 LLM 自由规划）/ tools（封装已有能力）/ executor（完整流程+执行日志）/ report_generator（审计报告）/ schemas |
+| 固定审计流程 | `extract_claims → retrieve_evidence → verify_claims → generate_report`（AuditPlan 4 步，执行日志落库） |
+| Agent Tools | `extract_claims`（复用已有提取/读取最近运行）、`retrieve_evidence`（证据检索 Top-K）、`verify_claim`（核验引擎）、`require_report_to_verify`（角色校验） |
+| Audit Report | `audit_reports` 表（total/supported/refuted/partially/insufficient/unknown + risk_summary + report_json + plan_json）；报告含 **Summary / Risk Findings（Claim→Evidence→Calculation→Conclusion）/ Evidence Chain** |
+| API | `POST /api/v1/audits`（{document_id}→{audit_id,status}）、`GET /api/v1/audits/{id}`（summary/findings/evidence_chain/verification_results/plan） |
+| 前端 | `/audit` 页面：上传 AI 研报 / 选择已有研报 → 创建审计 → 执行过程展示（✓ Extracting claims 等 4 步）→ 审计结果（Summary 计数 + 风险详情卡片 + 证据链） |
+| Evidence First | 不凭空判断、不编造证据、不输出投资建议；事实判断全部交由 Verification Engine |
+
+### Demo 3 案例验证（任务书九）
+
+| 案例 | 主张 | 结果 |
+| ---- | ---- | ---- |
+| Case 1 数字错误 | 归母净利润同比增长38.02%（CLM-004） | **REFUTED**（真实计算 (438.30−385.37)/385.37=13.73%） |
+| Case 2 期间/口径错误 | 据一季度报告称上半年营收+20.49%（CLM-015） | **REFUTED**（期间口径与披露不符） |
+| Case 3 语义夸大 | 海外业务成为增长核心动力（CLM-020） | **PARTIALLY_SUPPORTED**（2/3 覆盖：有增长证据、缺核心动力证明） |
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| Audit Agent 运行 / 上传 AI 研报自动审计 / 调用已有 Claim-Evidence-Verification 模块 | ✅ 全部实现并验证 |
+| 结构化 Audit Report / 前端完整流程展示 / Demo 案例运行 | ✅ 完成 |
+| 测试（新增 Agent workflow 5 项，全量 **236 passed**）/ 前端 build / 双金标准 0 错误 | ✅ |
+| Git commit / progress.md 更新 | ✅ |
+
+---
+
 ## 下一步（不在本轮范围）
 
-- **自动报告修复阶段**——按任务书"完成后停止，不进入自动报告修复阶段"。
+- 自动报告修复、投资建议、股票推荐、自动交易——按任务书"完成后停止"，均不开发。
 
 ---
 

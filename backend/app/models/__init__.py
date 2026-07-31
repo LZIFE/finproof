@@ -8,3 +8,4 @@ from app.models.evidence import (  # noqa: F401
     EvidenceRetrievalRun,
 )
 from app.models.verification import VerificationResultRow, VerificationRun  # noqa: F401
+from app.models.audit import AuditReport  # noqa: F401
