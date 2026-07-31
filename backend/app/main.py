@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from app.api.investment import router as investment_router
 from app.api.audit import router as audit_router
 from app.api.claims import router as claims_router
 from app.api.documents import router as documents_router
@@ -34,6 +35,7 @@ def create_app() -> FastAPI:
     app.include_router(verification_router)
     app.include_router(audit_router)
     app.include_router(risk_router)
+    app.include_router(investment_router)
     return app
 
 

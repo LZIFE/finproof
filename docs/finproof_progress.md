@@ -647,9 +647,45 @@ Overall Accuracy：Demo 0.6154 / Holdout 0.5882（含语义分组后的重算）
 
 ---
 
+## Phase 7：Investment Due Diligence Agent（投资尽调智能体）— ✅ 已完成（commit `xxxxxx`）
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| Investment 模块 | `backend/app/services/investment/`：investment_analyzer（生成 Memo）、risk_summary（投资风险分类聚合）、schemas |
+| 投资风险分类 | FINANCIAL_RISK（数字/增长率/指标错误）/ BUSINESS_RISK（业务事实/战略）/ COMPETITIVE_RISK（比较类）/ MANAGEMENT_RISK（治理/管理层）；基于 claim_type/verification_type/risk_type/关键词规则（可解释） |
+| Investment Risk Memo | Company（公司/代码/报告期）+ Overall Risk Score/Level + Key Risks（按 risk_score 排序 + 分类标签）+ Evidence Chain + Claims Requiring Review（risk_score≥60 → NEED_REVIEW 初始化） |
+| Human Review | 审核状态 NEED_REVIEW / APPROVED / REJECTED；`investment_reviews` 表保存记录（note/reviewer/updated_at）；非法状态拒绝 |
+| 数据库 | `investment_memos`（company/overall/key_risks_json/memo_json）+ `investment_reviews` |
+| API | `POST /api/v1/investment/memos`（{audit_id}）、`GET /{id}`、`POST /{id}/reviews`（审核） |
+| 前端 | `/investment` 页面：公司信息 + 风险评分 + Key Risks + 待审核事项（审核按钮 APPROVE/REJECT + 备注）+ 证据链 |
+| 设计约束 | 不改变已有 Verification/Risk 逻辑；不输出投资建议、不自动决策（审核权留给投资经理） |
+
+### Demo 全链路验证（任务书 6）
+
+```
+① 公司：美的集团（000333，2025FY）
+② 整体风险：93.6/100 HIGH
+③ Top Risks（12 条）：CLM-RUN20-004 [财务风险] 100 | CLM-RUN20-008 [财务风险] 100 | …
+④ 待审核事项：12 条（全部 NEED_REVIEW）
+⑤ 投资经理审核：CLM-RUN20-004 → APPROVED（投资经理A，备注"与年报核对一致"）
+```
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 投资尽调流程运行 / 输出 Investment Risk Memo | ✅ 全部实现并验证（audit → memo → review 全链路） |
+| 支持人工审核 / 前端展示 / Demo 完成 | ✅ NEED_REVIEW→APPROVED/REJECTED 持久化；/investment 页面 |
+| 测试（新增 investment 4 项，全量 **247 passed**）/ 前端 build / 双金标准 0 错误 | ✅ |
+| 更新 docs/finproof_progress.md / Git commit | ✅ |
+
+---
+
 ## 下一步（不在本轮范围）
 
-- 自动报告修复、投资建议、股票推荐、自动交易——按任务书"完成后停止"，均不开发。
+- 投资建议、自动决策、自动交易——按任务书"停止，不开发投资建议和自动决策"。
 
 ---
 
