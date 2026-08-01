@@ -57,3 +57,6 @@ from app.models.agent_arena import (  # noqa: F401
     ArenaMessageRow,
     ArenaResultRow,
 )
+from app.models.replay import (  # noqa: F401
+    AuditReplayEventRow,
+)

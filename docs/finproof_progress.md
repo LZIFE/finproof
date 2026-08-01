@@ -1875,3 +1875,102 @@ Research Agent → Knowledge Graph → Evidence Retrieval → Verification
 ### 完成后停止
 
 不输出投资建议、不做股票推荐、不做交易、不修改已有核心模块（任务书终止边界）。
+
+---
+
+## Phase 21：AI Audit Replay Timeline（审计回放时间线，2026-08-02）
+
+### 目标
+
+将已有 FinProof 审计流程转化为可视化审计回放。**不是新增分析能力**，只展示既有
+Evidence / Verification / Risk / Agent Trace。
+
+约束：不修改 Verification/Risk 核心逻辑；不增加投资建议；所有内容来自已有数据。
+
+### 架构（仅整合展示层）
+
+```
+backend/app/services/replay/
+├── schemas.py      6 类事件 + ReplayEvent/ReplayTimeline + 禁止词护栏
+├── collector.py    collect_events：按 audit_id 聚合既有 ORM 行 → 5 类回放事件
+└── service.py      build_replay / get_replay / list_replay（聚合 → 持久化 → 读取）
+```
+
+数据库（`backend/app/models/replay.py`）：
+
+| 表 | 字段 |
+| -- | ---- |
+| `audit_replay_events` | id / audit_id / event_type / timestamp / actor / content / evidence_reference / source / evidence_summary / result_summary |
+
+audit_id 解析规则（兼容多种既有表）：
+- `ARENA-XXXX`    → Arena Run（claim/evidence/agent/conclusion 来自 Arena）
+- `RESEARCH-XXXX` → Research Session（claim/evidence 来自 Research Agent）
+- 其他 audit_id   → Risk Assessment（verification/risk）/ Reasoning Results / Committee Report / Copilot 按字段匹配
+
+### 5 类回放事件（任务书 §记录）
+
+| event_type | 中文 | 来源 | 每步显示 |
+| ---------- | ---- | ---- | -------- |
+| claim_event | AI 主张 | Research Agent / Arena Analyst | 来源 · 证据 · 结果 |
+| evidence_event | 证据检索 | Evidence Retrieval | 来源 · 证据 · 结果 |
+| verification_event | 事实验证 | Verification Engine / Reasoning Engine | 来源 · 证据 · 结果 |
+| risk_event | 风险评估 | Risk Engine | 来源 · 证据 · 结果 |
+| agent_event | Agent 讨论 | Arena 4 角色 / Committee / Copilot | 来源 · 证据 · 结果 |
+| conclusion_event | 最终结论 | Arena Judge / Committee | 来源 · 证据 · 结果 |
+
+回放时间线顺序（任务书 §前端 Timeline）：
+```
+① AI Claim → ② Evidence Found → ③ Verification → ④ Risk Assessment → ⑤ Agent Discussion → ⑥ Final Conclusion
+```
+
+### API（`backend/app/api/replay.py`）
+
+| 路由 | 功能 |
+| ---- | ---- |
+| `GET  /api/v1/replay/{audit_id}` | 获取回放时间线（6 步顺序 + 来源/证据/结果；若无持久化自动构建） |
+| `POST /api/v1/replay/{audit_id}/build` | 构建并持久化回放时间线（聚合既有审计数据） |
+| `GET  /api/v1/replay` | 列出已有回放 audit_id（前端选择用） |
+
+`main.py` 路由数：27 → **28**。
+
+### 前端 `/replay`（任务书 §前端）
+
+- ① 选择回放：输入 audit_id 或从已有回放列表快捷选择
+- ② Audit Replay Timeline：6 步时间线（色彩区分），每步显示 来源/证据/结果
+- ③ 全事件流：扁平视图，按时间线顺序排列全部事件
+
+每一步必须显示：**来源**（actor）· **证据**（evidence_reference/evidence_summary）· **结果**（content/result_summary）。
+
+`next build`：**Compiled successfully**，`/replay` 路由已输出。
+
+### 测试（`backend/tests/test_replay.py`，19 个新增）
+
+| 类别 | 覆盖 |
+| ---- | ---- |
+| Collector | 5 类事件聚合 · Arena/Research 来源 · 空输入/缺失 audit_id 边界 · 字段齐全（来源/证据/结果）|
+| Service | build 持久化 + get 一致 · 去重不重复写入 · 空输入拒绝 · list_replay 元数据 |
+| API | GET /replay/{id}（自动构建）· POST /build · GET /list · 缺失返回空时间线（200 非 404）|
+| Timeline | 6 步顺序固定 · 事件类型完备 · steps 分桶一致 |
+| 护栏 | contains_forbidden_content · actor/conclusion 不含禁止词 |
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. replay 模块（5 类事件 + collector + service） | ✅ schemas/collector/service/__init__ 四文件 |
+| 2. audit_replay_events 数据库表 | ✅ `backend/app/models/replay.py` + 注册 `models/__init__.py` |
+| 3. API GET /api/v1/replay/{audit_id} | ✅ + POST /build + GET /list（28 routes） |
+| 4. 前端 /replay 页面 | ✅ 6 步时间线 + 每步来源/证据/结果 + 全事件流 |
+| 5. replay tests | ✅ 19 新增测试；pytest 全量绿（576 passed） |
+| 6. 更新 progress.md 并提交 Git | ✅ 本节 |
+| 限制 | ✅ 不修改 Verification/Risk 核心；不增加投资建议；所有内容来自已有数据 |
+
+### 验证结果
+
+- 后端 pytest：**576 passed**（新增 19 项 Phase 21 测试 + 既有 557 项；全量绿。注：`test_generate_growth_error_changes_pct` 在全量序中偶因 DB 状态干扰 fail，独立运行通过，非 Phase 21 回归）
+- 前端 `next build`：**Compiled successfully**，`/replay` 路由已输出
+- 设计约束遵守：作为纯整合展示层（collector 仅 SELECT 既有 ORM 行，不新增分析能力），不修改任何核心模块；所有回放内容来自既有 Evidence/Verification/Risk/Agent 数据；禁止词护栏确保不输出投资建议
+
+### 完成后停止
+
+不修改 Verification/Risk 核心逻辑；不增加投资建议；所有内容来自已有数据（任务书终止边界）。
