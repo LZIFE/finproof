@@ -11,3 +11,35 @@ from app.models.verification import VerificationResultRow, VerificationRun  # no
 from app.models.audit import AuditReport  # noqa: F401
 from app.models.risk import RiskAssessmentRow  # noqa: F401
 from app.models.investment import InvestmentMemoRow, InvestmentReviewRow  # noqa: F401
+from app.models.intelligence import IntelligenceReportRow  # noqa: F401
+from app.models.investment_committee import CommitteeReportRow  # noqa: F401
+from app.models.knowledge_graph import KGFactsRow, KGEntityRow, KGRelationshipRow  # noqa: F401
+from app.models.benchmark import (  # noqa: F401
+    BenchmarkCaseRow,
+    BenchmarkResultRow,
+    BenchmarkRunRow,
+)
+from app.models.portfolio import (  # noqa: F401
+    PortfolioProjectRow,
+    PortfolioRiskSnapshotRow,
+)
+from app.models.monitoring import (  # noqa: F401
+    InvestmentThesisRow,
+    MonitoringAlertRow,
+)
+from app.models.audit_trail import AuditTrailLogRow  # noqa: F401
+from app.models.autonomous_agent import (  # noqa: F401
+    InvestigationMemoryRow,
+    InvestigationRunRow,
+    InvestigationStepRow,
+)
+from app.models.red_team import (  # noqa: F401
+    RedTeamCaseRow,
+    RedTeamResultRow,
+    RedTeamRunRow,
+)
+from app.models.copilot import CopilotMessageRow, CopilotSessionRow  # noqa: F401
+from app.models.financial_reasoning import (  # noqa: F401
+    ReasoningResultRow,
+    ReasoningRunRow,
+)

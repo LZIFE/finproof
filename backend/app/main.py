@@ -5,6 +5,17 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from app.api.investment import router as investment_router
+from app.api.intelligence import router as intelligence_router
+from app.api.investment_committee import router as committee_router
+from app.api.knowledge_graph import router as knowledge_graph_router
+from app.api.benchmark import router as benchmark_router
+from app.api.portfolio import router as portfolio_router
+from app.api.monitoring import router as monitoring_router
+from app.api.governance import router as governance_router
+from app.api.investigation import router as investigation_router
+from app.api.red_team import router as red_team_router
+from app.api.copilot import router as copilot_router
+from app.api.reasoning import router as reasoning_router
 from app.api.audit import router as audit_router
 from app.api.claims import router as claims_router
 from app.api.documents import router as documents_router
@@ -36,6 +47,17 @@ def create_app() -> FastAPI:
     app.include_router(audit_router)
     app.include_router(risk_router)
     app.include_router(investment_router)
+    app.include_router(intelligence_router)
+    app.include_router(committee_router)
+    app.include_router(knowledge_graph_router)
+    app.include_router(benchmark_router)
+    app.include_router(portfolio_router)
+    app.include_router(monitoring_router)
+    app.include_router(governance_router)
+    app.include_router(investigation_router)
+    app.include_router(red_team_router)
+    app.include_router(copilot_router)
+    app.include_router(reasoning_router)
     return app
 
 

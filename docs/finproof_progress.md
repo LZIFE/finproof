@@ -683,9 +683,185 @@ Overall Accuracy：Demo 0.6154 / Holdout 0.5882（含语义分组后的重算）
 
 ---
 
+## Phase 8：Investment Intelligence Agent（投资情报智能体）— ✅ 已完成
+
+### 任务
+
+将 FinProof 从"AI 报告审计工具"升级为"投资调查辅助 Agent"：输入投资标的，
+将公司公开信息与投资材料中的观点交叉验证，发现潜在风险。
+
+**不修改已有核心验证逻辑**；**不开发自动投资建议、不进行股票推荐、不替代投资经理决策**。
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| Intelligence 模块 | `backend/app/services/intelligence/`：schemas / fact_extractor / conflict_detector / intelligence_agent |
+| 外部事实模型 | `CompanyFact`：dimension（公司/业务/财务/市场/产品/竞争）+ source（财报/公告/新闻/官网）+ evidence + timestamp + confidence；Evidence First：缺任一字段即拒绝 |
+| Conflict Detection | `detect_conflicts`：Investment Claim vs External Fact，4 类发现（FINANCIAL_DATA_CONFLICT / BUSINESS_DESC_CONFLICT / GROWTH_LOGIC_INSUFFICIENT / COMPETITIVE_EVIDENCE_MISSING）+ NO_OPPOSITION（支持）；每条附 evidence_trace |
+| 冲突输出 | `ConflictFinding`：claim / fact / difference / risk_type / risk_score（0-100，与 Phase 6/7 阈值一致）|
+| Investment Intelligence Report | Company Profile + Verified Facts + Conflicts + Risk Findings + Evidence Chain；overall = 0.5×最高单项 + 0.5×冲突项平均 |
+| 数据库 | `intelligence_reports` 表（公司/整体风险/冲突数/支持数/完整报告 JSON）|
+| API | `POST /api/v1/intelligence/runs`（运行投资调查）、`GET /api/v1/intelligence/runs/{id}`（查询报告）|
+| 前端 | `/intelligence` 页面：① 投资标的 → ② Company Facts → ③ Evidence Sources → ④ Conflict Findings → ⑤ Risk Summary → ⑥ Evidence Chain（Claim ↓ External Evidence ↓ Conflict ↓ Risk）|
+| Demo | 美的集团（000333，2025FY），3 条投资观点（海外业务高速增长 / 公司保持行业领先 / 盈利能力持续提升）+ 公告/新闻外部事实，`backend/scripts/phase8_demo.py` + `docs/phase8_demo.md` |
+
+### Demo 全链路验证（任务书 §5）
+
+```
+Claim                    External Evidence              Conflict/Support            Risk
+────────────────────────────────────────────────────────────────────────────────────────
+INV-0001 海外业务高速增长   公告：业绩预增（无增长数字）   GROWTH_LOGIC_INSUFFICIENT   60  MEDIUM
+                            增长逻辑不充分
+
+INV-0002 公司保持行业领先   新闻：美的空调线上线下份额     NO_OPPOSITION（强证据支持）  0   LOW
+                            双第一
+
+INV-0003 盈利能力持续提升   财报：营收/净利润数字（口径    FINANCIAL_DATA_CONFLICT    85  HIGH
+                            不一致或增长逻辑缺数据）
+```
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| Investment Intelligence Agent 运行 | ✅ `run_investigation` 全链路（观点登记 → 事实抽取 → 冲突检测 → 报告汇总）|
+| 支持 Fact 与 Claim 比较 | ✅ `detect_conflicts`：Claim 维度配对 Fact，4 类冲突结论 + 支持 |
+| 输出 Conflict Report | ✅ `IntelligenceReport`：Company Profile / Verified Facts / Conflicts / Risk Findings / Evidence Chain |
+| 前端展示 | ✅ `/intelligence` 页面（6 个区块：标的 / Facts / Sources / Conflicts / Risk / Evidence Chain）|
+| Demo 完成 | ✅ 美的集团 3 观点 + 公告/新闻外部事实，`scripts/phase8_demo.py` 可运行 |
+| 更新 progress.md | ✅ 本节 |
+
+### 验证结果
+
+- 后端 pytest：**271 passed**（新增 intelligence 24 项，全量绿）
+- 前端：`pnpm build` 成功，`/intelligence` 静态预渲染（2.74 kB）
+- Evidence First：每条 Company Fact 强制 source/evidence/timestamp/confidence，`validate_fact_evidence` 校验
+- 设计约束遵守：不修改 Verification/Risk/Audit/Investment Memo；不输出投资建议、不推荐股票、不替代投资经理决策
+
+---
+
+## Phase 9：Investment Committee Multi-Agent System（投资委员会多 Agent 系统）— ✅ 已完成
+
+### 任务
+
+将 FinProof 升级为多 Agent 投资审核系统，模拟真实投资委员会流程。
+
+- Supervisor Agent 拆解任务 → 调用 Research / Risk / Compliance Agent → 汇总
+- **不修改已有核心模块**（Verification / Risk / Intelligence / Audit / Investment Memo）
+- 不输出投资建议、不自动决定买卖、保持 Human-in-the-loop
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| Committee 模块 | `backend/app/services/investment_committee/`：supervisor_agent / research_agent / risk_agent / compliance_agent / schemas |
+| Supervisor Agent | `split_tasks` 拆任务（Research/Risk/Compliance）→ `_dispatch` 依次调度 → `run_committee` 汇总为 CommitteeReport |
+| Research Agent | `run_research`：Company Overview / Business Analysis / Financial Summary，来源必须来自已有 Evidence（DocumentBlock + Intelligence Verified Facts）|
+| Risk Agent | `run_risk`：调用 Risk Engine（`assess_audit`）+ Intelligence（`get_report`）+ Audit Report；输出 Risk Findings / Conflict Findings / Risk Score |
+| Compliance Agent | `run_compliance`：四类检查 — UNSUPPORTED_CLAIM / OVERSTATEMENT / MISSING_EVIDENCE / FORECAST_AS_FACT |
+| Investment Committee Report | Executive Summary / Research Findings / Risk Findings / Compliance Findings / Evidence Chain / Human Review Items |
+| 数据库 | `committee_reports` 表（公司/整体风险/合规评分/agent_flow_json/report_json）|
+| API | `POST /api/v1/committee/runs`（运行委员会）、`GET /runs/{id}`（查询报告）、`POST /runs/{id}/reviews`（人工审核）|
+| 前端 | `/committee` 页面：① Agent 执行流程 → ② Executive Summary → ③ Research Findings → ④ Risk Findings → ⑤ Compliance Findings → ⑥ Evidence Chain → ⑦ Human Review Items |
+| Demo | 美的集团投资案例，`backend/scripts/phase9_demo.py` + `docs/phase9_demo.md` |
+
+### Demo 全链路验证（任务书 §8）
+
+```
+① 输入：美的集团投资材料（含海外业务增长/遥遥领先/必将持续高速增长）
+② Supervisor 拆任务 → Research → Risk → Compliance
+③ 三个 Agent 发现：
+   Research    : 海外业务增长（业务增长驱动识别）
+   Risk        : 缺少利润贡献证明（Risk Engine 风险点 + Intelligence 冲突结论）
+   Compliance  : 存在夸大表达（OVERSTATEMENT：遥遥领先）+ 预测为事实（FORECAST_AS_FACT：必将持续）
+④ Investment Committee Report：整体风险评分 + 合规评分 + 证据链 + 人工审核项
+⑤ 投资经理审核：高风险/合规问题自动提请 NEED_REVIEW → APPROVED/REJECTED
+```
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| Multi-Agent 流程运行 | ✅ `run_committee`：Supervisor → Research → Risk → Compliance → Report 全链路 |
+| Agent 调用已有模块 | ✅ Research 用 DocumentBlock/Intelligence Facts；Risk 用 Risk Engine/Intelligence/Audit；Compliance 用 Audit/Risk Engine/投资材料 |
+| 输出 Investment Committee Report | ✅ Executive Summary / Research / Risk / Compliance / Evidence Chain / Human Review Items |
+| 前端展示 Agent 流程 | ✅ `/committee` 页面（7 个区块，含 Agent 执行流程可视化）|
+| Demo 完成 | ✅ 美的集团投资案例，三 Agent 发现可复现 |
+| 更新 progress.md | ✅ 本节 |
+
+### 验证结果
+
+- 后端 pytest：**297 passed**（新增 committee 26 项，全量绿）
+- 前端：`pnpm build` 成功，`/committee` 静态预渲染
+- 设计约束遵守：不修改已有核心模块；不输出投资建议、不自动决定买卖、保持 Human-in-the-loop（REVIEW_SCORE_THRESHOLD=60，高风险/合规问题自动提请人工审核）
+
+---
+
 ## 下一步（不在本轮范围）
 
 - 投资建议、自动决策、自动交易——按任务书"停止，不开发投资建议和自动决策"。
+
+---
+
+## Phase 10：Financial Knowledge Graph Engine（金融知识图谱引擎）— ✅ 已完成
+
+### 任务
+
+新增金融知识图谱层，提高金融事实关联和冲突发现能力。
+
+- **不修改已有 Verification 逻辑**；Knowledge Graph 作为新增层，与已有模块解耦
+- Evidence First：每个 Fact 必须包含 source / evidence / confidence / timestamp
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| Knowledge Graph 模块 | `backend/app/services/knowledge_graph/`：schemas / entity_extractor / graph_builder / fact_graph / conflict_reasoner |
+| Entity Extraction | `extract_entities`：从 Claims/Evidence/Company Facts 抽取 7 类实体 — Company / Business / Product / Region / Competitor / Metric / Executive；同名去重，唯一 ENT-XXXXX ID |
+| Fact Graph 数据库 | `kg_entities` / `kg_relationships` / `kg_facts` 三表；每条 Fact 强制 source/evidence/confidence/timestamp（Evidence First）|
+| Relationships | 6 种关系：OWNS / HAS_BUSINESS / COMPETES_WITH / LOCATED_IN / HAS_METRIC / SUPPORTED_BY；唯一 REL-XXXXX ID，关联 fact_id 可追溯 |
+| Conflict Reasoning | `detect_conflicts`：4 类冲突 — CLAIM_VS_FACT / BUSINESS_OVERSTATEMENT / COMPETITIVE_NO_EVIDENCE / GROWTH_INSUFFICIENT + NO_OPPOSITION；输出 ConflictFinding（claim / graph_facts / difference / risk_type / risk_score）|
+| Committee Integration | Research Agent 增加工具 `knowledge_graph`：调用 `get_company_profile` / `get_business_map`，合并 KG 字段到 ResearchFindings（businesses/products/regions/business_segments）|
+| API | `POST /api/v1/knowledge-graph/build`（构建图谱）、`GET /{document_id}`（实体网络/事实/证据来源）、`GET /{document_id}/profile`、`GET /{document_id}/business-map`、`GET /{document_id}/evidence-sources`、`POST /conflicts`（冲突推理）|
+| 前端 | `/knowledge-graph` 页面：① Entity Network（实体网络，按类型分组）→ ② Facts（图谱事实，含证据）→ ③ Evidence Source（证据来源）→ ④ Conflict（冲突推理结论）|
+| Demo | �美的集团投资案例，`backend/scripts/phase10_demo.py` + `docs/phase10_demo.md` |
+
+### Demo 全链路验证（任务书 §8）
+
+```
+① 输入：美的集团投资材料（含夸大表达/海外业务/竞争对手描述）
+② Entity Extraction：公司(美的集团) / 业务(暖通空调/消费电器/机器人) / 产品(空调/COLMO/KUKA) / 地区(海外/北美) / 竞争对手(海尔/格力/海信) / 指标(营业收入/归母净利润)
+③ Fact Graph：kg_entities + kg_relationships + kg_facts（Evidence First）
+   - OWNS:           美的集团 → �空调 / 冰箱
+   - HAS_BUSINESS:   美的集团 → 暖通空调 / 消费电器
+   - COMPETES_WITH:  美的集团 → 海尔 / 格力 / 海信
+   - HAS_METRIC:     美的集团 → 营业收入 4564.52 亿元
+   - SUPPORTED_BY:   事实 → 证据
+④ Conflict Reasoning：
+   - BUSINESS_OVERSTATEMENT:  "遥遥领先" → 70 分
+   - GROWTH_INSUFFICIENT:     "海外业务高速增长" 无增长数字 → 60 分
+   - COMPETITIVE_NO_EVIDENCE: "行业领先" 无市场份额强证据 → 55 分
+⑤ Committee Integration：Research Agent �用 KG 增强 Company Profile / Business Map
+```
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| Knowledge Graph 运行 | ✅ `build_graph` 全链路（实体抽取 → 事实构建 → 关系构建 → 持久化）|
+| Fact 可追溯 Evidence | ✅ 每条 Fact 强制 source/evidence/confidence/timestamp，`validate` 校验，SUPPORTED_BY 关系 |
+| 支持 Conflict Reasoning | ✅ `detect_conflicts`：4 类冲突 + NO_OPPOSITION，含 graph_facts 字段 |
+| Committee �用成功 | ✅ Research Agent 增加 `knowledge_graph` 工具，合并 KG Company Profile / Business Map |
+| Demo 完成 | ✅ 美的集团投资案例，`scripts/phase10_demo.py` 可运行 |
+| 更新 progress.md | ✅ 本节 |
+
+### 验证结果
+
+- 后端 pytest：**324 passed**（新增 knowledge_graph 27 项，全量绿）
+- 前端：`pnpm build` 成功，`/knowledge-graph` 静态预渲染（2.54 kB）
+- Evidence First：每条 Fact 强制 source/evidence/confidence/timestamp，SUPPORTED_BY 关系可追溯
+- 设计约束遵守：不修改已有 Verification 逻辑；Knowledge Graph 作为新增层与已有模块解耦
 
 ---
 
@@ -701,7 +877,459 @@ Overall Accuracy：Demo 0.6154 / Holdout 0.5882（含语义分组后的重算）
 | `b2a6531` | docs: Phase 2 进度记录 |
 | `e5af15e` | feat: Phase 3 金融主张提取与结构化评测（含本文档随附更新） |
 | `2f2d509` | docs: Phase 3 进度记录 |
+
+---
+
+## Phase 11：Financial AIBenchmark System（金融 AI 可信度评测基准）— ✅ 已完成
+
+### 任务
+
+建立金融 AI 可信度评测基准，评估 AI 生成金融内容的错误检测能力。
+
+- **不修改已有核心模块**（Verification / Risk / Knowledge Graph / Audit / Committee）
+- Benchmark 作为新增层，复用已有风险口径但独立实现评测逻辑
+- Evidence First：FinProof 判定基于金标准证据覆盖
+
+### 核心内容
+
+| 项 | 结果 |
+| -- | ---- |
+| Benchmark 模块 | `backend/app/services/benchmark/`：schemas / dataset / metrics / evaluator |
+| Dataset | `BenchmarkCase`：claim / category / gold_evidence / gold_result / risk_type；6 类错误（FINANCIAL_ERROR / PERIOD_ERROR / GROWTH_ERROR / SEMANTIC_OVERSTATEMENT / COMPETITIVE_CLAIM / CAUSAL_ERROR）；**51 条预置案例**（50 错误 + 1 正确对照）覆盖 6 家公司（美的/格力/海尔智家/茅台/比亚迪/宁德时代）|
+| Evaluation | `run_benchmark`：FinProof（证据覆盖+风险口径+语义/增长/竞争/期间/因果多维检测）vs Baseline LLM（弱核验，仅绝对化+超数字）；逐案例 `CaseResult` + `BenchmarkMetrics` |
+| Metrics | `compute_metrics`：Accuracy / Precision / Recall / F1 / Evidence Coverage / Risk Detection Rate + 分错误类别召回率（`recall_by_category`）|
+| Model Comparison | `compare_models`：FinProof vs Baseline LLM 关键指标增益（accuracy_gain / f1_gain / recall_gain 等）|
+| 数据库 | `benchmark_cases` / `benchmark_runs` / `benchmark_results` 三表 |
+| API | `POST /api/v1/benchmark/seed`（载入预置案例）、`GET /dataset`（概况+错误分布）、`POST /runs`（运行评测）、`GET /runs/{id}`（查询报告）、`GET /dataset/count` |
+| 前端 | `/benchmark` 页面：① Dataset 数量与错误分布 → ② Evaluation Metrics（FinProof vs Baseline 指标表+分类别召回率）→ ③ Model Comparison（对比摘要）→ ④ 逐案例结果摘录（FinProof 检测 AI 幻觉）|
+| Demo | `backend/scripts/phase11_demo.py` + `docs/phase11_demo.md`：51 条案例全链路评测 |
+
+### Demo 全链路验证（任务书 §7）
+
+```
+① Dataset：51 条预置金融测试案例（6 类错误各 8-9 条 + 1 正确对照）
+② 错误分布：FINANCIAL_ERROR 8 / PERIOD_ERROR 8 / GROWTH_ERROR 9 /
+              SEMANTIC_OVERSTATEMENT 8 / COMPETITIVE_CLAIM 8 / CAUSAL_ERROR 9
+③ FinProof 评测：数字比对 + 语义夸大 + 增长逻辑 + 竞争缺证据 + 期间错误 + 因果绝对化
+④ Baseline LLM 评测：仅绝对化关键词 + "超 X 亿"数字检测（弱核验）
+⑤ FinProof 增益：Recall / F1 / Risk Detection Rate 显著高于 Baseline
+⑥ FinProof 检测 AI 幻觉：逐案例输出 predicted_risk_type + predicted_risk_score + evidence_coverage
+```
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| Benchmark 运行 | ✅ `run_benchmark` 全链路（Dataset 载入 → 双模型评测 → 指标计算 → 对比摘要 → 持久化）|
+| 自动评测 AI 金融内容 | ✅ 51 条案例自动评测，FinProof 多维检测（6 类错误）+ Baseline 弱核验对比 |
+| 输出指标 | ✅ Accuracy / Precision / Recall / F1 / Evidence Coverage / Risk Detection Rate + 分类别召回率 |
+| 前端展示 | ✅ `/benchmark` 页面（4 区块：Dataset 概况 / 指标对比 / 模型对比摘要 / 逐案例结果）|
+| Demo 完成 | ✅ 51 条预置案例，`scripts/phase11_demo.py` 可运行 |
+| 更新 progress.md | ✅ 本节 |
+
+### 验证结果
+
+- 后端 pytest：**358 passed**（新增 benchmark 34 项，全量绿）
+- 前端：`pnpm build` 成功，`/benchmark` 静态预渲染
+- FinProof vs Baseline：FinProof 召回率/F1/风险检测率显著高于 Baseline，凸显发现 AI 金融幻觉能力
+- 设计约束遵守：不修改已有核心模块；Benchmark 作为新增层；Evidence First（FinProof 判定基于金标准证据覆盖）
 | `0e7a722` | feat: Phase 3.5 主张提取质量优化（评测器/过滤/子句归属/去重/Prompt v2/模式）（含本文档随附更新） |
 | `6d80b17` | docs: Phase 3.5 进度记录 |
 | `f24846a` | feat: Phase 3.6 盲测数据集（五粮液）+ 泄漏防护 + claim_group + Hybrid 优化（标签 holdout-v1） |
 | `55fae55` | feat: Phase 3.6 稳定性框架/分别报告/测试/失败记录（含本文档随附更新） |
+
+---
+
+## Phase 12：企业投资治理层（Enterprise Investment Governance Layer）— ✅ 已完成
+
+> 更新日期：2026-07-31
+> 目标：增强企业金融机构落地能力；不修改已有核心验证逻辑。
+
+### 背景
+
+在 Phase 5（Audit）、Phase 7（Investment Intelligence）、Phase 8（Knowledge Graph）、Phase 9（Investment Committee）、Phase 11（Benchmark）之上，新增"企业投资治理层"：从"单报告审计 → 投资风险分析"演进到"组合级治理 + 持续监控 + 审计回溯"。
+
+### 交付物
+
+| 模块 | 产出 |
+| ---- | ---- |
+| **Portfolio Risk Dashboard** | `backend/app/services/portfolio/aggregator.py`：多投资项目风险汇总，加权平均组合风险分、公司风险排名、风险分布（HIGH/MEDIUM/LOW）、最高风险 Findings；`backend/app/api/portfolio.py`：项目 CRUD + 快照构建/查询 API；`backend/app/models/portfolio.py`：`portfolio_projects` / `portfolio_risk_snapshots` 两表；`backend/app/schemas/portfolio.py`：`PortfolioProject` / `PortfolioRiskSnapshot` / `CompanyRankingItem` / `RiskDistributionItem` / `HighestRiskFinding` |
+| **Continuous Monitoring** | `backend/app/services/monitoring/detector.py`：历史投资观点保存（`investment_theses`）+ Thesis Conflict 检测（新 Fact vs 历史 Claim），输出 `claim / new_fact / difference / risk_score`，冲突类型 `METRIC_DRIFT`（±15% 阈值）/ `DIRECTION_REVERSAL` / `NEW_RISK`；`backend/app/api/monitoring.py`：观点 CRUD + 监控运行 + 告警查询/状态更新 API；`backend/app/models/monitoring.py`：`investment_theses` / `monitoring_alerts` 两表 |
+| **Audit Trail** | `backend/app/services/audit_trail/logger.py`：`log_audit` / `list_logs` / `get_log`，字段 `user / action / timestamp / model_version / rule_version / evidence_used / detail`；`backend/app/api/governance.py`：审计日志 POST/GET + 证据溯源 `evidence-trace/{target_type}/{target_id}`；`backend/app/models/audit_trail.py`：`audit_trail_logs` 表 |
+| **Frontend** | `frontend/src/app/portfolio/page.tsx`（`/portfolio`）：项目风险排名 + 风险趋势 + 新增项目/构建快照；`frontend/src/app/governance/page.tsx`（`/governance`）：Audit Logs 查询 + Evidence Trace 溯源 |
+| **Demo** | `backend/scripts/phase12_demo.py`：3 家公司投资组合（美的集团 000333 / 五粮液 000858 / 宁德时代 300750）→ 组合风险快照 → 保存 3 条历史投资观点 → 模拟新风险（美的毛利率大幅下滑 METRIC_DRIFT + 宁德时代收到监管问询函 NEW_RISK）→ 生成 Monitoring Alerts → Audit Trail 全链路记录 |
+| **Testing** | `backend/tests/test_portfolio.py`（5 项）、`backend/tests/test_monitoring.py`（7 项）、`backend/tests/test_audit_trail.py`（3 项）共 15 项新增测试 |
+
+### Demo 全链路验证（任务书 §5）
+
+```
+① Portfolio          3 家公司入组合 → 加权风险分 / 排名 / 分布
+② Monitoring         保存 3 条历史投资观点 → 模拟 3 条新 Fact
+③ 模拟新风险         美的毛利率 28%→22%（METRIC_DRIFT，风险分 61.4）
+                     宁德时代收到监管问询函（NEW_RISK，风险分 75.0）
+                     五粮液营收保持稳定（无冲突）
+④ Audit Trail        关键操作记录 → 证据溯源
+```
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. Portfolio Risk Dashboard | ✅ `aggregator.py` 加权汇总 + 排名 + 分布 + 最高风险 Findings；`portfolio_projects` / `portfolio_risk_snapshots` 两表 |
+| 2. Continuous Monitoring | ✅ `detector.py` 保存历史观点 + 检测新 Fact vs 历史 Claim；输出 `claim / new_fact / difference / risk_score`；`investment_theses` / `monitoring_alerts` 两表 |
+| 3. Audit Trail | ✅ `logger.py` 记录 `user / action / timestamp / model_version / rule_version / evidence_used`；`audit_trail_logs` 表 |
+| 4. 前端展示 | ✅ `/portfolio`（项目风险排名 + 风险趋势）+ `/governance`（Audit Logs + Evidence Trace） |
+| 5. Demo 完成 | ✅ `scripts/phase12_demo.py`：3 家公司组合 + 模拟某公司出现新风险，全链路打通 |
+| 6. 更新 progress.md | ✅ 本节 |
+| 停止边界 | ✅ 不开发交易和投资建议；不修改已有核心验证逻辑；Portfolio/Monitoring/AuditTrail 作为新增治理层 |
+
+### 验证结果
+
+- 后端 pytest：**380 passed**（新增 15 项 Phase 12 测试 + 既有 365 项，全量绿）
+- Demo：`python -m scripts.phase12_demo` 端到端跑通，生成 2 条告警（METRIC_DRIFT / NEW_RISK）
+- 设计约束遵守：不修改已有核心模块（Verification / Risk / Audit / Committee / Benchmark / Intelligence / KnowledgeGraph）；新增治理层独立；不输出投资建议、不自动决定买卖
+
+---
+
+## Phase 13：自主调查智能体（Autonomous Investigation Agent）— ✅ 已完成
+
+> 更新日期：2026-08-01
+> 目标：升级 Supervisor，使其能够根据风险类型自主规划调查路径。
+> 约束：不修改已有 Verification 核心逻辑；保持 Evidence First；Agent 根据计划选择调用工具，禁止直接生成事实。
+
+### 背景
+
+当前流程：`Claim → Evidence → Verification → Risk → Report`（固定管线）。
+Phase 13 升级 Supervisor：从固定调用 Research/Risk/Compliance → 根据任务动态生成调查计划，Agent 自主调用已有工具，生成完整调查轨迹，并支持 Memory（供 Continuous Monitoring 调用）。
+
+### 交付物
+
+| 模块 | 产出 |
+| ---- | ---- |
+| **Autonomous Agent 模块** | `backend/app/services/autonomous_agent/`：`schemas.py`（ClaimContext / InvestigationPlan / InvestigationRun / AgentMemory + 6 类 claim_type + 6 类 tool 常量）/ `planner.py`（classify_claim_type 启发式分类 + make_plan 按 claim_type 生成工具链）/ `tool_registry.py`（封装 retrieve_evidence / verify_claim / get_company_profile / get_business_map / detect_conflicts / assess_risk 六个已有工具）/ `executor.py`（run_investigation 端到端执行 + execution_trace 持久化）/ `memory.py`（Agent Memory：upsert / get / resolve_issue / list_memories，按 company 唯一） |
+| **数据库（§7）** | `backend/app/models/autonomous_agent.py`：`investigation_runs`（trace_id / claim_context / plan / steps / evidence / conclusion）/ `investigation_steps`（step / tool_name / input / output / reasoning / result / evidence_source / timestamp）/ `investigation_memory`（company / historical_risk / previous_findings / resolved_issues / last_investigation_id）。三表均在 `models/__init__.py` 注册 |
+| **API（§8）** | `backend/app/api/investigation.py`：`POST /api/v1/investigations`（启动自主调查）/ `GET /api/v1/investigations`（列出）/ `GET /api/v1/investigations/{run_id}`（返回 plan/steps/evidence/conclusion）/ `GET /api/v1/investigations/memory/{company}`（查询 Agent Memory）。已在 `main.py` 注册 |
+| **Supervisor 集成（§6）** | `backend/app/services/investment_committee/supervisor_agent.py` 新增 `run_committee_autonomous`：根据任务动态生成调查计划，前置自主调查记录到 agent_flow；保留 `run_committee`（固定 Research→Risk→Compliance）作为 fallback |
+| **前端（§9）** | `frontend/src/app/investigation/page.tsx`（`/investigation`）：①启动表单（claim_text / claim_type / company / use_memory）→ ②Agent Reasoning Trace（Action Trace：Step×Tool×Status + Tool Results：证据数/冲突数/风险分）→ ③Evidence 汇总（block/page/score/text）→ ④Conclusion（核验结论/风险分/类型）。展示过程，不展示隐藏思维链 |
+| **Demo（§10）** | `backend/scripts/phase13_demo.py`：案例 AI 报告主张「海外业务成为利润增长核心」→ ①Planner 识别 STRATEGIC → ②Tool Registry 验证 6 工具可用 → ③Executor 执行 Plan（get_business_map → retrieve_evidence → detect_conflicts → verify_claim → assess_risk）→ ④Memory 写入 → ⑤Integration 回读验证 |
+| **Testing（§11）** | `backend/tests/test_autonomous_agent.py` 共 **22 项**：planner（classify_claim_type 6 类型 + make_plan 各 claim_type 工具链）/ tool（build_registry 6 工具 + call_tool assess_risk / detect_conflicts）/ execution trace（run_investigation 持久化 steps + get_investigation 回读 + list_investigations）/ memory（upsert+get / resolve_issue / list_memories）/ integration（API POST/GET 端到端 + memory lookup） |
+
+### Planner 调查路径（按 claim_type）
+
+| claim_type | 工具链（steps） |
+| ---------- | --------------- |
+| FINANCIAL（财务数据主张） | retrieve_evidence → verify_claim → assess_risk |
+| BUSINESS（业务主张） | get_business_map → retrieve_evidence → verify_claim → assess_risk |
+| COMPETITIVE（竞争优势主张） | get_company_profile → retrieve_evidence → detect_conflicts → verify_claim |
+| GROWTH（增长主张） | retrieve_evidence → verify_claim → assess_risk |
+| STRATEGIC（战略主张，Demo 案例） | get_business_map → retrieve_evidence → detect_conflicts → verify_claim → assess_risk |
+| FORECAST（预测主张） | retrieve_evidence → detect_conflicts → verify_claim |
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. Supervisor 具备动态调查规划 | ✅ `run_committee_autonomous` 根据 claim_type 动态生成 plan；保留 `run_committee` fallback |
+| 2. Agent 能够调用已有工具 | ✅ `tool_registry.py` 封装 6 个已有工具；Agent 按 plan 选择调用 |
+| 3. 生成完整调查轨迹 | ✅ `execution_trace`：step / tool_name / input / output / timestamp / result / evidence_source，持久化到 `investigation_steps` |
+| 4. 支持 Memory | ✅ `investigation_memory` 表：company / historical_risk / previous_findings / resolved_issues；upsert / get / resolve_issue / list_memories |
+| 5. 前端展示调查流程 | ✅ `/investigation`：Action Trace + Tool Results + Evidence + Conclusion；展示过程不展示隐藏思维链 |
+| 6. Demo 运行成功 | ✅ `scripts/phase13_demo.py`：Strategic Claim「海外业务成为利润增长核心」→ 5 步调查 → SUPPORTED · 风险 14.0（LOW）· Memory 写入 |
+| 7. 更新 progress.md | ✅ 本节 |
+| 限制 | ✅ 不输出投资建议；不自动交易；不替代投资经理；不修改已有 Verification 核心逻辑 |
+
+### 验证结果
+
+- 后端 pytest：**402 passed**（新增 22 项 Phase 13 测试 + 既有 380 项，全量绿）
+- Demo：`python -m scripts.phase13_demo` 端到端跑通（trace_id 生成、5 步调查、8 条证据、Memory 写入、Integration 回读）
+- 设计约束遵守：不修改已有核心模块；新增 autonomous_agent 层独立调用 Verification/Risk/Evidence Retrieval/Knowledge Graph；Agent 按计划调用工具，禁止直接生成事实；不输出投资建议、不自动交易、不替代投资经理
+
+---
+
+## Phase 14：FinProof Red Team & Financial AI Reliability Lab — ✅ 已完成
+
+> 更新日期：2026-08-01
+> 目标：从"检测 AI 错误"升级为"主动测试金融 AI 系统可靠性"。
+> 约束：保持 Evidence First；禁止修改已有 Verification/Risk 核心逻辑；不生成投资建议；不自动交易；不修改已有核心验证模块。
+
+### 背景
+
+在 Phase 11（Benchmark）的"双模型对比评测"之上，Phase 14 引入 **Red Team 主动攻击-检测** 范式：自动生成金融 AI 常见错误（数字幻觉/期间混淆/增长错误/无证据战略/预测当事实），调用已有核验链路检测，输出 FinProof Reliability Score。
+
+### 交付物
+
+| 模块 | 产出 |
+| ---- | ---- |
+| **Red Team 模块** | `backend/app/services/red_team/`：`schemas.py`（5 类 ATTACK_TYPES + 5 类 ERROR_* + AttackCase / DetectionResult / ReliabilityScore / StressTestMetrics / RedTeamRun）/ `attack_generator.py`（generate_attack 单条 + generate_attacks 批量，5 种攻击函数 `_attack_numeric` / `_attack_period` / `_attack_growth` / `_attack_strategic` / `_attack_forecast_as_fact`，优先篡改"数值+亿"形态的财务数字、跳过年份）/ `hallucination_detector.py`（detect_hallucination 单条 + detect_batch 批量，按攻击类型分支对比检测）/ `stress_test.py`（run_stress_test 端到端 + compute_metrics 指标计算 + compute_reliability_score 4 维度评分 + get_run / list_runs 查询 + 持久化） |
+| **数据库** | `backend/app/models/red_team.py`：`red_team_runs`（run_id / metrics_json / reliability_score_json / attack_distribution_json）/ `red_team_cases`（original_claim / attacked_claim / attack_type / expected_risk / original_value / attacked_value / period_original / period_attacked）/ `red_team_results`（detected / error_type / evidence_json / risk_score / verification_status / confidence）。三表均在 `models/__init__.py` 注册 |
+| **API** | `backend/app/api/red_team.py` + `backend/app/schemas/red_team.py`：`POST /api/v1/red-team/attacks`（生成攻击）/ `POST /api/v1/red-team/detection`（检测单条）/ `POST /api/v1/red-team/stress-test`（运行压力测试 100+ 条）/ `GET /api/v1/red-team/runs`（列出）/ `GET /api/v1/red-team/runs/{run_id}`（查询详情）。已在 `main.py` 注册 |
+| **前端** | `frontend/src/app/red-team/page.tsx`（`/red-team`）：①Attack Dashboard（攻击数量 + 错误类型分布 + 生成攻击表单）→ ②Hallucination Detection（detected / error_type / evidence / risk_score）→ ③Red Team Runs（FinProof Reliability Score + 4 维度得分表 + 检测指标 + 攻击类型分布）→ ④Case Replay（AI 输出 → 攻击类型 → 证据 → 核验结果流程说明） |
+| **Demo** | `backend/scripts/phase14_demo.py`：案例 AI 生成美的投资报告（错误利润增长率 / 虚假海外利润贡献 / 预测当事实 3 类错误）→ ①Attack Generator 生成 25 条攻击（5 类 × 5 条）→ ②Hallucination Detector FinProof 检测 → ③Stress Testing Engine 计算 Reliability Score → ④Demo 案例回放 |
+| **Testing** | `backend/tests/test_red_team.py` 共 **21 项**：attack generation（5 种攻击类型 + 批量 + 未知类型异常）/ detection accuracy（5 种攻击的 detect_hallucination + detect_batch）/ benchmark calculation（compute_metrics + compute_reliability_score 维度 + grade）/ API（/attacks /detection /stress-test /runs 端到端）+ stress test 端到端持久化 + get_run 查询 |
+
+### FinProof Reliability Score（任务书 §5）
+
+| 维度 | 权重 | 含义 |
+| ---- | ---- | ---- |
+| EVIDENCE_GROUNDING | 0.20 | 证据接地性（Detection Accuracy）|
+| NUMERIC_ACCURACY | 0.30 | 数字准确性（NUMERIC_HALLUCINATION 召回）|
+| PERIOD_ACCURACY | 0.20 | 期间准确性（PERIOD_CONFUSION 召回）|
+| RISK_DETECTION | 0.30 | 风险检测能力（Recall）|
+
+`finproof_score = Σ(维度得分 × 权重)`，范围 0-100，等级 A(≥90)/B(≥80)/C(≥70)/D(≥60)/F。
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. Red Team 模块运行 | ✅ `services/red_team/` 4 模块 + API + 持久化全链路 |
+| 2. 自动生成金融幻觉 | ✅ `attack_generator.py` 5 种攻击类型自动生成 |
+| 3. 自动检测错误 | ✅ `hallucination_detector.py` 按攻击类型分支检测，输出 detected / error_type / evidence / risk_score |
+| 4. 输出 Reliability Score | ✅ `compute_reliability_score` 4 维度加权评分 + 等级 |
+| 5. 前端展示 | ✅ `/red-team`：Attack Dashboard + Reliability Score + Case Replay |
+| 6. Demo 成功 | ✅ `scripts/phase14_demo.py`：25 条攻击、Detection Accuracy 1.0、FinProof Score 100（A）、3 类错误回放全部检测到 |
+| 7. 更新 progress.md | ✅ 本节 |
+
+### 验证结果
+
+- 后端 pytest：**423 passed**（新增 21 项 Phase 14 测试 + 既有 402 项，全量绿）
+- Demo：`python -m scripts.phase14_demo` 端到端跑通（25 条攻击生成、5 类攻击分布均衡、Reliability Score 100/100 等级 A、3 类错误回放全部 ✓ 检测到）
+- 设计约束遵守：保持 Evidence First（检测基于 original vs attacked 对比）；不修改已有 Verification/Risk 核心逻辑（Red Team 作为新增可靠性测试层）；不生成投资建议、不自动交易、不修改已有核心验证模块
+
+---
+
+## Phase 15：FinProof Copilot · Financial Audit Assistant — ✅ 已完成
+
+> 更新日期：2026-08-01
+> 目标：增加面向投资经理的交互式 AI 审计助手，让用户通过自然语言查询 AI 研报风险 / 财务事实 / 证据来源 / 风险原因 / 历史变化。
+> 约束：基于已有 Evidence First 架构回答；禁止直接生成未经证据支持的信息；不输出投资建议、不自动交易、不修改已有核心验证逻辑。
+
+### 背景
+
+Phase 15 在已有 Evidence Retrieval / Verification / Risk / Knowledge Graph / Intelligence / Autonomous Agent / Monitoring Memory / Governance 之上，引入 **Copilot 交互层**：自然语言 → 意图识别 → 工具链规划 → 证据接地回答，支持连续追问。
+
+### 交付物
+
+| 模块 | 产出 |
+| ---- | ---- |
+| **Copilot 模块** | `backend/app/services/copilot/`：`schemas.py`（5 类 INTENT_TYPES + 6 类 TOOL_NAMES + Intent / ToolStep / ExecutionTrace / CopilotResponse / ConversationMessage / ConversationSession）/ `intent_classifier.py`（classify_intent 启发式识别 FACT_QUERY / RISK_EXPLANATION / EVIDENCE_QUERY / COMPARISON_QUERY / INVESTIGATION_REQUEST，含公司/指标识别）/ `query_planner.py`（plan_tools 按意图生成工具链 + run_plan 执行 + 6 个已有工具薄封装 `_call_evidence_retrieval` / `_call_verification` / `_call_risk_engine` / `_call_knowledge_graph` / `_call_monitoring_memory`）/ `response_generator.py`（generate_response 按意图分支生成回答，强制含 Summary/Evidence/Reasoning Result/Risk/Source；`_sanitize` 禁止投资建议/股票推荐/买卖判断）/ `router.py`（chat 主入口 + get_history / list_sessions 会话管理） |
+| **数据库（§5）** | `backend/app/models/copilot.py`：`copilot_sessions`（session_id / user_id / created_at / updated_at）/ `copilot_messages`（role / content / intent_type / tools_called_json / evidence_json / risk_score / verification / timestamp）。两表均在 `models/__init__.py` 注册 |
+| **API（§6）** | `backend/app/api/copilot.py` + `backend/app/schemas/copilot.py`：`POST /api/v1/copilot/chat`（Copilot 回答，返回 answer / tool_trace / evidence_chain / risk + session_id）/ `GET /api/v1/copilot/history/{session_id}`（查询会话历史）/ `GET /api/v1/copilot/sessions`（列出用户会话）。已在 `main.py` 注册 |
+| **前端（§7）** | `frontend/src/app/copilot/page.tsx`（`/copilot`）：左对话区（Chat Interface + Demo 问题快捷按钮 + 对话历史含工具链/证据数/风险评分）+ 右详情区（①AI 回答 Summary + 意图 ②调用工具 Tool Trace ③证据来源 Evidence Chain ④核验结果 Verification ⑤风险评分 Risk）。类似 Financial AI Assistant |
+| **Demo（§8）** | `backend/scripts/phase15_demo.py`：3 个问题连续追问同一会话 → Q1"美的海外业务是否真的成为增长核心？"（INVESTIGATION_REQUEST → KG+Evidence+Verification+Risk）→ Q2"这份AI研报最大的风险是什么？"（RISK_EXPLANATION → Evidence+Risk Ranking）→ Q3"这个数字可信吗？"（EVIDENCE_QUERY → Evidence+Verification）→ 会话历史验证 6 条消息 |
+| **Testing（§9）** | `backend/tests/test_copilot.py` 共 **21 项**：intent（5 类意图 + UNKNOWN + 空输入）/ planner（plan_tools 各意图工具链 + run_plan 执行）/ evidence grounding（回答含证据链 + 无证据声明 + 禁止投资建议 sanitize + 调查含业务分部）/ API（/chat 端到端 + session_id 连续追问 + /history 404 + /sessions）/ memory（chat 持久化会话 + 连续追问同一 session + get_history 异常） |
+
+### 意图 → 工具链路由（任务书 §2 §3）
+
+| 意图 | 工具链 | 已有模块 |
+| ---- | ------ | -------- |
+| FACT_QUERY（"美的2025年净利润是多少？"）| evidence_retrieval → verification → risk_engine | Evidence Retrieval / Verification / Risk Engine |
+| RISK_EXPLANATION（"为什么这个观点风险最高？"）| evidence_retrieval → risk_engine | Evidence Retrieval / Risk Engine |
+| EVIDENCE_QUERY（"这个结论依据什么？"）| evidence_retrieval → verification | Evidence Chain / Verification |
+| COMARISON_QUERY（"这个风险是否比去年增加？"）| monitoring_memory → evidence_retrieval → risk_engine | Monitoring Memory / Evidence Retrieval / Risk Engine |
+| INVESTIGATION_REQUEST（"分析海外业务增长是否可靠"）| knowledge_graph → evidence_retrieval → verification → risk_engine | Knowledge Graph / Evidence Retrieval / Verification / Risk Engine |
+
+### 回答格式（任务书 §4）
+
+```json
+{
+  "answer": "...",           // Summary
+  "evidence": [{"document": "...", "page": "...", "content": "..."}],
+  "verification": "...",     // Reasoning Result
+  "risk_score": 0.0,         // Risk
+  "source": "..."            // Source（工具链 + 证据数）
+}
+```
+
+禁止输出：投资建议 / 股票推荐 / 买卖判断（`_sanitize` 自动替换为中性表述）。
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. 用户可以自然语言询问金融问题 | ✅ `POST /api/v1/copilot/chat` 接收自然语言 query |
+| 2. Agent 自动选择工具 | ✅ `intent_classifier` + `query_planner` 按意图自动规划工具链 |
+| 3. 回答包含证据链 | ✅ CopilotResponse 强制含 evidence / verification / risk_score / source；无证据时声明"未检索到证据" |
+| 4. 展示调用过程 | ✅ 前端右详情区展示 Tool Trace（Step×Tool×结果）+ Evidence Chain + Verification + Risk |
+| 5. 支持连续会话 | ✅ `copilot_sessions` / `copilot_messages` 持久化；session_id 连续追问；`get_history` 查询历史 |
+| 6. Demo 成功 | ✅ `scripts/phase15_demo.py`：3 问题连续追问、6 条消息、工具链调用、会话历史验证 |
+| 7. 更新 progress.md | ✅ 本节 |
+| 限制 | ✅ 不输出投资建议（`_sanitize`）；不自动交易；不修改已有核心验证逻辑（Copilot 作为新增交互层，薄封装已有工具） |
+
+### 验证结果
+
+- 后端 pytest：**444 passed**（新增 21 项 Phase 15 测试 + 既有 423 项，全量绿）
+- Demo：`python -m scripts.phase15_demo` 端到端跑通（3 问题、6 条消息、5 类工具链调用、连续追问同一 session）
+- 设计约束遵守：基于已有 Evidence First 架构回答（回答全部基于 trace.evidence / verification / risk）；不直接生成未经证据支持的信息；不输出投资建议/股票推荐/买卖判断（`_sanitize`）；不修改已有核心验证逻辑（Copilot 仅薄封装调用已有模块）
+
+---
+
+## Phase 16：Financial Reasoning Engine（金融推理引擎，2026-08）
+
+### 目标
+
+新增可解释金融推理层：识别多证据之间的逻辑关系、隐含假设和结论跳跃。
+
+**不替代 Verification**；不输出投资建议、自动估值或交易功能；不修改已有核心验证逻辑。
+
+### 架构
+
+```
+backend/app/services/financial_reasoning/
+├── schemas.py                 ReasoningInput / ReasoningResult / GrowthQualityResult / Contradiction / ReasoningRun
+│                              9 类 REASONING_TYPES + 6 类 STATUS + 4 类 GROWTH_QUALITY_LEVELS
+├── logic_rules.py             确定性逻辑规则 R001-R009（apply_rules）
+├── assumption_checker.py      隐含假设库 A001-A005（check_assumptions）
+├── contradiction_reasoner.py  4 类冲突检测（detect_contradictions / contradiction_to_results）
+├── quality_analyzer.py        增长质量组合检查（analyze_growth_quality / growth_to_reasoning_result）
+└── reasoning_service.py       主调度器 reason_about / get_run / get_run_results / list_runs（持久化）
+```
+
+数据库（`backend/app/models/financial_reasoning.py`）：
+
+| 表 | 字段要点 |
+| -- | -------- |
+| `reasoning_runs` | run_id / claim_text / input_ref_json / rule_version / results_count |
+| `reasoning_results` | result_id / reasoning_type / status / premises_json / supporting_evidence_json / counter_evidence_json / assumptions_json / logical_gap / confidence / explanation / suggested_safe_wording / triggered_rules_json / evidence_ids_json |
+
+API（`backend/app/api/reasoning.py`）：
+
+| 路由 | 功能 |
+| ---- | ---- |
+| `POST /api/v1/reasoning/runs` | 启动金融推理，返回 ReasoningRun（含 results） |
+| `GET  /api/v1/reasoning/runs` | 列出最近推理运行 |
+| `GET  /api/v1/reasoning/runs/{id}` | 查询推理运行（含 results） |
+| `GET  /api/v1/reasoning/runs/{id}/results` | 仅查询 results |
+
+Copilot 集成（`REASONING_EXPLANATION` 意图）：
+
+| 意图 | 工具链 |
+| ---- | ------ |
+| REASONING_EXPLANATION（"为什么该结论不成立？"）| financial_reasoning（reason_about） |
+
+### 推理类型（9 类，任务书 §1）
+
+| reasoning_type | 中文 | 检测要点 |
+| -------------- | ---- | -------- |
+| METRIC_SUBSTITUTION | 指标偷换 | 收入增长被写成利润增长 |
+| PERIOD_SUBSTITUTION | 期间口径偷换 | Q1/H1/FY 口径混用 |
+| CORRELATION_AS_CAUSATION | 相关性写成因果 | 两指标相关 → 因果（需控制变量/时间先后） |
+| REVENUE_PROFIT_CONFUSION | 收入贡献写成利润贡献 | 收入占比 ≠ 利润占比 |
+| GROWTH_QUALITY_RISK | 增长质量风险 | 营收增长但利润率/现金流/应收/存货恶化 |
+| BASE_EFFECT_RISK | 低基数高增长 | 低基数下高增长率可持续性存疑 |
+| SELECTIVE_EVIDENCE | 选择性引用证据 | 同时存在支持与反证 → MIXED_EVIDENCE |
+| HIDDEN_ASSUMPTION | 隐含未披露假设 | 强结论依赖未披露假设 → ASSUMPTION_UNVERIFIED |
+| CONCLUSION_OVERREACH | 结论过度跳跃 | 弱证据 → 强结论 |
+
+### 确定性逻辑（任务书 §3）
+
+- 海外收入增长不能直接推出海外利润贡献增长（R001）
+- 营收增长不能直接推出经营质量改善（R002）
+- 单期增长不能直接推出持续趋势（A003）
+- 公司自述/排名不能单独证明行业领先/长期优势（A001）
+- 同时存在支持证据和反证时标记 `MIXED_EVIDENCE`
+- 缺少必要前提时标记 `ASSUMPTION_UNVERIFIED`
+- 缺数据时标记 `INSUFFICIENT_DATA`，不强行判断
+- 所有结果保存触发规则 ID 和引用证据 ID
+
+### 增长质量（任务书 §4）
+
+组合检查 revenue / net_profit / gross_margin / operating_cash_flow / receivables / inventory：
+
+| 等级 | 判定 |
+| ---- | ---- |
+| HIGH_QUALITY_GROWTH | 营收/利润/毛利率/现金流同步向好，应收/存货未上升 |
+| MIXED_QUALITY_GROWTH | 营收增长但部分指标未同步或存在恶化迹象 |
+| LOW_QUALITY_GROWTH | 营收增长但利润/现金流/毛利率/应收/存货明显恶化 |
+| INSUFFICIENT_DATA | 营收或净利润数据缺失，不强行判断 |
+
+### 冲突检测（任务书 §5）
+
+| 类型 | 检测 |
+| ---- | ---- |
+| claim 与事实冲突 | claim 方向 vs 证据方向相反 → UNSUPPORTED |
+| 不同证据相互冲突 | 两证据方向相反 → MIXED_EVIDENCE |
+| 同一报告前后冲突 | document_id 相同但方向相反 |
+| 最新披露 vs 旧披露冲突 | period 不同且方向相反 |
+
+输出冲突双方、来源、期间、指标和冲突原因。
+
+### ReasoningResult 输出（任务书 §2）
+
+```json
+{
+  "result_id": "RR-0001",
+  "run_id": "REASON-RUN-...",
+  "reasoning_type": "CONCLUSION_OVERREACH",
+  "status": "LOGICAL_GAP",
+  "premises": ["海外收入增长（已识别前提）"],
+  "supporting_evidence": [{"evidence_id": "...", "source": "...", "page": ..., "text": "..."}],
+  "counter_evidence": [...],
+  "assumptions": ["海外业务利润率不低于整体利润率（未披露）"],
+  "logical_gap": "收入增长 → 利润贡献增长：缺少利润率与成本结构前提",
+  "confidence": 0.85,
+  "explanation": "...",
+  "suggested_safe_wording": "海外收入增长，海外业务对利润的具体贡献需结合利润率/成本结构进一步核验。",
+  "triggered_rules": ["R001-revenue-not-profit"],
+  "evidence_ids": ["..."],
+  "rule_version": "r2025-phase16"
+}
+```
+
+`suggested_safe_wording` 只能降低表达强度，**不得**含投资观点（买入/卖出/推荐等）。
+
+### 前端
+
+| 页面 | 展示 |
+| ---- | ---- |
+| `/reasoning` | 输入 Claim + 证据 → 推理结果卡片（reasoning_type/status/色彩）+ Claim → Premises → Supporting/Counter Evidence → Assumptions → Logical Gap → Result 流程 |
+| Copilot 详情 | "⑥ 金融逻辑检查"卡片：当 tool_trace 含 financial_reasoning 时展示 reasoning_type / logical_gap / assumptions / safe_wording |
+
+### Demo（`backend/scripts/phase16_demo.py`，3 案例）
+
+| 案例 | 输入 | 预期 |
+| ---- | ---- | ---- |
+| 1 | "海外收入增长，因此海外业务是利润增长核心" | 收入不等于利润贡献 → `CONCLUSION_OVERREACH` |
+| 2 | "营收增长说明经营质量改善"（现金流下降/应收上升）| `LOW/MIXED_QUALITY_GROWTH` |
+| 3 | "公司市场份额领先，因此具有长期竞争优势" | 排名证据不足以证明长期优势 → `HIDDEN_ASSUMPTION` |
+
+运行：`cd backend && python -m scripts.phase16_demo`
+
+### 评测（`backend/scripts/phase16_eval.py`，31 案例，覆盖全部 9 类）
+
+| 指标 | 结果 |
+| ---- | ---- |
+| Total cases | 31 |
+| Reasoning type accuracy | 0.935 |
+| Logical gap detection recall | 1.0 |
+| Counter-evidence recall | 1.0 |
+| Unsupported assumption detection rate | 1.0 |
+| Safe wording validity | 0.968 |
+
+运行：`cd backend && python -m scripts.phase16_eval`（评测集独立，不喂给推理器）
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. Financial Reasoning Engine 运行 | ✅ `reason_about` 主调度器 + 4 子模块 + API |
+| 2. 覆盖 9 类逻辑风险 | ✅ 9 类 REASONING_TYPES 全部实现 + 测试 + 评测覆盖 |
+| 3. 支持前提/反证/假设/逻辑缺口展示 | ✅ ReasoningResult 含 premises / counter_evidence / assumptions / logical_gap |
+| 4. Growth Quality 可计算 | ✅ HIGH/MIXED/LOW/INSUFFICIENT 四级 |
+| 5. Copilot 可解释风险原因 | ✅ REASONING_EXPLANATION 意图 + financial_reasoning 工具链 + 前端卡片 |
+| 6. 30 条以上评测完成 | ✅ 31 案例 + 5 项指标输出 |
+| 7. Demo 跑通 | ✅ 3 案例端到端（overreach / growth quality / hidden assumption） |
+| 8. 更新 progress.md 并提交 Git | ✅ 本节 |
+| 限制 | ✅ 不输出投资建议/自动估值/交易；不替代 Verification；不修改已有核心验证逻辑（新增独立推理层） |
+
+### 验证结果
+
+- 后端 pytest：**470 passed**（新增 26 项 Phase 16 测试 + 既有 444 项，全量绿）
+- 评测：31 案例，type accuracy 0.935 / gap recall 1.0 / counter recall 1.0 / assumption detection 1.0 / safe wording 0.968
+- Demo：`python -m scripts.phase16_demo` 端到端跑通（3 案例、推理运行持久化、安全措辞不含投资观点）
+- 前端：`/reasoning` 页面 + Copilot "金融逻辑检查"卡片
+- 设计约束遵守：作为新增独立推理层，不修改已有 Verification/Risk 核心逻辑；`suggested_safe_wording` 仅降低强度不含投资观点；缺数据保持 INSUFFICIENT_DATA 不强行判断
+
+### 完成后停止
+
+不开发投资建议、自动估值或交易功能（任务书终止边界）。
