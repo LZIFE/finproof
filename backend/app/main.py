@@ -18,6 +18,7 @@ from app.api.copilot import router as copilot_router
 from app.api.reasoning import router as reasoning_router
 from app.api.research import router as research_router
 from app.api.simulation import router as simulation_router
+from app.api.arena import router as arena_router
 from app.api.audit import router as audit_router
 from app.api.claims import router as claims_router
 from app.api.documents import router as documents_router
@@ -62,6 +63,7 @@ def create_app() -> FastAPI:
     app.include_router(reasoning_router)
     app.include_router(research_router)
     app.include_router(simulation_router)
+    app.include_router(arena_router)
     return app
 
 

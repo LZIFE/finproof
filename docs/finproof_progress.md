@@ -1614,3 +1614,148 @@ success 判定：必须埋点全检出 + 无幻觉 + 无禁止词命中。
 ### 完成后停止
 
 不输出投资建议、不做交易、不改变 Verification 核心（任务书终止边界）。
+
+---
+
+## Phase 19：Financial AI Agent Arena（多 Agent 金融研究竞技，2026-08）
+
+### 目标
+
+构建多 Agent 金融研究竞技系统：让不同角色 Agent 对同一金融研究任务进行分析、质疑和审计，通过对抗提高金融 AI 可靠性。保持 Evidence First。
+
+**禁止**：投资建议 / 股票推荐 / 交易 / 修改 Verification 核心逻辑。所有结论必须来自 Evidence。
+
+### 架构
+
+```
+backend/app/services/agent_arena/
+├── schemas.py             EvidenceRef / AnalystViewpoint / SkepticChallenge /
+│                          AuditorIssue / AuditorReport / ArenaScore / ArenaMessage /
+│                          ArenaResult / ArenaRun（4 角色 + 5 阶段 + 5 挑战类型 + 禁止词护栏）
+├── analyst_agent.py       generate_viewpoints：分析公司业务、提取财务事实、建立研究观点（每观点绑定 Evidence）
+├── skeptic_agent.py       challenge_viewpoints：5 类挑战（Unsupported/Overstatement/Missing/Contradictory/GrowthQuality）
+├── auditor_agent.py       audit_debate：审计 Evidence Coverage / Logical Consistency / Risk Completeness
+├── judge.py               score_arena / decide_winner：5 项子分 + Final Arena Score + 辩论胜负
+└── arena.py               run_arena / get_arena / list_arena（端到端 + 持久化）
+```
+
+数据库（`backend/app/models/agent_arena.py`）：
+
+| 表 | 字段要点 |
+| -- | -------- |
+| `arena_runs`     | run_id / company / research_question / phase |
+| `arena_messages` | run_id / message_id / role / phase / content / viewpoints_json / challenges_json / audit_json / evidence_json |
+| `arena_results`  | run_id / result_id / analyst_viewpoints_json / skeptic_challenges_json / auditor_report_json / score_json / final_arena_score / winner |
+
+API（`backend/app/api/arena.py`）：
+
+| 路由 | 功能 |
+| ---- | ---- |
+| `POST /api/v1/arena/run` | 启动竞技（company + research_question）|
+| `GET  /api/v1/arena` | 列出竞技运行 |
+| `GET  /api/v1/arena/{id}` | 查询：messages（辩论时间线）+ result（双方观点/挑战/审计/评分）|
+
+### Agent 角色（4 角色，任务书 §Agent Roles）
+
+| 角色 | 职责 | 调用 | 输出 |
+| ---- | ---- | ---- | ---- |
+| Analyst（分析师）| 分析公司业务、提取财务事实、建立研究观点 | Research Agent / Evidence Retrieval / KG | claim / evidence / confidence（每观点绑定 Evidence）|
+| Skeptic（质疑者）| 挑战 Analyst：寻找漏洞 | Verification / Reasoning / Risk | counter_claim / missing_evidence / risk |
+| Auditor（审计师）| 最终审计：检查覆盖率/一致性/完整性 | — | audit_score / issues |
+| Judge（评判）| 综合 Analyst 质量 / Skeptic 发现 / Auditor 可靠性 | — | ArenaScore 0-100 |
+
+### Skeptic 挑战类型（5 类，任务书 §2）
+
+| challenge_type | 中文 | 检测 |
+| -------------- | ---- | ---- |
+| Unsupported Claim | 无依据主张 | 观点无 Evidence |
+| Overstatement | 夸大 | 强表述但置信度低 |
+| Missing Evidence | 缺证据 | claim 含指标但证据未覆盖 |
+| Contradictory Facts | 事实冲突 | 证据含反向词与 claim 冲突 |
+| Growth Quality Problem | 增长质量 | 营收增长但现金流/应收/存货/毛利率恶化 |
+
+### Workflow（任务书 §Workflow）
+
+输入：company + research_question
+
+```
+① Analyst 生成观点 → ② Skeptic 挑战 → ③ Auditor 验证双方 → ④ Judge 评分 → ⑤ 保存 ArenaReport
+```
+
+Auditor 判定 SkepticChallenge 是否成立（valid/invalid）；Judge 判定辩论胜负（analyst/skeptic/tie，仅辩论胜负，非投资建议）。
+
+### 评分（5 项子分 + Final Arena Score，任务书 §4 Judge）
+
+| 子分 | 权重 | 计算 |
+| ---- | ---- | ---- |
+| Evidence | 30% | Analyst 观点证据覆盖率 × 100 |
+| Reasoning | 25% | Auditor logical_consistency × 80 + Skeptic 逻辑类挑战加成 |
+| Risk Detection | 25% | Auditor risk_completeness × 70 + Skeptic 风险类挑战加成 |
+| Efficiency | 10% | 工具调用合理区间满分，冗余扣分 |
+| Safety | 10% | 禁止词零容忍（命中即 0）+ 无依据观点扣分 |
+
+Final Arena Score = 加权合成 0-100。
+
+### 前端
+
+`/arena` 页面：
+- ① 启动竞技（公司 + 研究问题）
+- ② Agent Debate Timeline：4 角色消息时间线（色彩区分）
+- ③ Analyst 观点（证据绑定标注 + 被挑战标注）
+- ④ Skeptic 反驳（5 类挑战 + 成立性标注）
+- ⑤ Auditor 判断（覆盖率/一致性/完整性 + Issues）
+- ⑥ Final Score（FinAgent Score 大数 + 5 项子分进度条 + 辩论胜负）
+
+### Demo（`backend/scripts/phase19_demo.py`，3 案例，任务书 §Demo）
+
+| Case | 公司 | 研究问题 |
+| ---- | ---- | -------- |
+| 1 | 美的集团 | 美的海外增长是否可持续 |
+| 2 | 宁德时代 | 宁德时代竞争优势是否被夸大 |
+| 3 | 五粮液 | 五粮液增长质量分析 |
+
+展示：Analyst 提出观点 → Skeptic 发现漏洞 → Auditor 给出 Evidence-based 结论 → Judge 评分。
+运行：`cd backend && python -m scripts.phase19_demo`
+
+### 评测（`backend/scripts/phase19_eval.py`，30 Cases，任务书 §Evaluation）
+
+30 用例 = 6 公司 × 5 研究问题。指标：
+
+| 指标 | 结果 |
+| ---- | ---- |
+| Total cases | 30 |
+| Successful runs | 30 |
+| Debate quality mean | 100.0 |
+| Evidence coverage mean | 0.976 |
+| Risk discovery rate mean | 0.867 |
+| Reasoning accuracy mean | 1.0 |
+| Final arena score mean | 79.1 |
+| Forbidden word hits | 0（应为 0）|
+| Winner distribution | analyst/skeptic/tie 均有覆盖 |
+
+评测集独立，仅构造 company + question，不喂答案给 Agent。
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. 多 Agent 金融研究竞技系统运行 | ✅ `run_arena` 端到端 + API（26 routes）|
+| 2. Analyst/Skeptic/Auditor/Judge 4 角色对抗 | ✅ 4 角色独立模块 + 5 类挑战 + 审计 + 评分 |
+| 3. Agent 通信（辩论时间线）| ✅ ArenaMessage 4 角色 phase 顺序 + 持久化 arena_messages |
+| 4. 自动评分（Final Arena Score）| ✅ 5 项子分加权 + 辩论胜负判定 |
+| 5. 前端展示 | ✅ `/arena`：辩论时间线 + 双方观点/挑战/审计 + Score 进度条 |
+| 6. Demo 完成 | ✅ `scripts/phase19_demo.py`：3 案例端到端跑通并评分 |
+| 7. 更新 progress.md 并提交 Git | ✅ 本节 |
+| 限制 | ✅ 不输出投资建议（`contains_forbidden_content` 护栏）；不做交易；不修改 Verification 核心；所有结论来自 Evidence |
+
+### 验证结果
+
+- 后端 pytest：**536 passed**（新增 22 项 Phase 19 测试 + 既有 514 项，全量绿）
+- 前端 `next build`：**Compiled successfully**，`/arena` 路由已输出
+- 评测：30 Cases 全成功，Debate Quality 100.0 / Evidence Coverage 0.976 / Risk Discovery 0.867 / Reasoning 1.0 / Final Arena Score 79.1 / 禁止词命中 0
+- Demo：`python -m scripts.phase19_demo` 端到端跑通（3 案例，4 角色对抗，护栏通过无禁止词）
+- 设计约束遵守：作为新增竞技层薄封装 Research Agent + Financial Reasoning（不修改 Verification 核心）；所有结论必须绑定 Evidence（无证据观点标记 unsupported，Skeptic 抓出）；禁止词护栏确保不输出投资建议/股票推荐/估值预测；辩论胜负仅指对抗结果，非投资建议
+
+### 完成后停止
+
+不输出投资建议、不做股票推荐、不做交易、不修改 Verification 核心逻辑（任务书终止边界）。

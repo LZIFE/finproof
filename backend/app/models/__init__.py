@@ -52,3 +52,8 @@ from app.models.financial_simulation import (  # noqa: F401
     SimulationStepRow,
     SimulationResultRow,
 )
+from app.models.agent_arena import (  # noqa: F401
+    ArenaRunRow,
+    ArenaMessageRow,
+    ArenaResultRow,
+)
