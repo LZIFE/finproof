@@ -1759,3 +1759,119 @@ Final Arena Score = 加权合成 0-100。
 ### 完成后停止
 
 不输出投资建议、不做股票推荐、不做交易、不修改 Verification 核心逻辑（任务书终止边界）。
+
+---
+
+## Phase 20：Executive AI Governance Center（管理層 AI 治理中心，2026-08）
+
+### 目标
+
+**不新增独立业务模块**。将已有 Phase 0-19 能力整合成一个面向投资机构/企业管理层的 AI Governance Dashboard，展示 FinProof 如何从 AI 生成内容中发现风险、验证事实、管理 AI 可靠性。
+
+保持 Evidence First。**禁止**：投资建议 / 交易 / 股票推荐 / 修改已有核心模块。
+
+### 架构（仅整合展示层，不做新业务）
+
+```
+backend/app/services/governance_center/
+├── schemas.py             6 部分数据结构 + Final Governance Report + 禁止词护栏
+├── metrics.py             6 个聚合器（reliability / intelligence / risk / agent / evidence / audit）
+├── dashboard.py           build_dashboard / build_overview / build_reliability / build_agent_performance
+└── executive_report.py    run_governance_pipeline：9 阶段完整流水线 → Final Governance Report
+```
+
+无新建数据库表：仅 SELECT 既有 ORM 行（Phase 0-19）做聚合，不写入新表。
+
+### Dashboard 内容（6 部分整合既有数据）
+
+| 部分展示 | 来源模块 | 聚合字段 |
+| -------- | -------- | -------- |
+| 1. AI Reliability Score | Benchmark / Red Team / Arena | overall reliability · hallucination detection rate · evidence coverage · reasoning accuracy · risk detection rate |
+| 2. Investment Intelligence Overview | Research Agent / Memo / Committee | companies analyzed · claims verified · risk findings · evidence chains · top companies |
+| 3. AI Risk Monitoring | Risk Engine / Monitoring / Governance | current risks · historical changes · unresolved reviews · monitoring alerts |
+| 4. Agent Performance | Arena / Simulation | Analyst performance · Skeptic detection rate · Auditor accuracy · Agent score · winner distribution |
+| 5. Evidence Graph | Knowledge Graph | Company / Business / Metric / Evidence 节点 + 关系边 |
+| 6. Audit Timeline | Audit Trail | user / action / timestamp / model_version / rule_version / evidence_used |
+
+### API（`backend/app/api/governance_center.py`）
+
+| 路由 | 功能 |
+| ---- | ---- |
+| `POST /api/v1/governance/dashboard` | 构建完整治理仪表板（6 部分聚合）|
+| `GET  /api/v1/governance/overview` | 轻量概览（顶层指标，高频轮询）|
+| `GET  /api/v1/governance/reliability` | 仅 AI 可靠性评分 |
+| `GET  /api/v1/governance/agent-performance` | 仅 Agent 性能 |
+
+`main.py` 路由数：26 → **27**。
+
+### 最终比赛 Demo（`backend/scripts/phase20_demo.py`，任务书 §Demo）
+
+用户输入：「分析美的集团海外增长是否可信」
+
+完整流水线（9 阶段）：
+```
+Research Agent → Knowledge Graph → Evidence Retrieval → Verification
+→ Reasoning → Risk → Committee → Arena Debate → Final Governance Report
+```
+
+最终输出 5 项：
+1. **可信度评分** — 证据覆盖×40 + Arena×30 + Reasoning×20 + 风险调节×10
+2. **风险列表** — Risk Engine 检出的 Growth Quality / Contradictory 等条目
+3. **证据链** — Research Agent 检索的 block_id / document_id / page / text / score
+4. **Agent 审计过程** — Arena Debate 4 角色消息（Analyst/Skeptic/Auditor/Judge）
+5. **Reliability Score** — 综合可靠性 0-100 + 等级（高/中/低）
+
+实测结果（美的集团）：
+- pipeline_stages: 6（Arena Debate 集成 Arena；Verification/Reasoning/Risk/Committee 阶段记录入口就绪）
+- evidence_chain: 21 条
+- risk_count: 1
+- agent_audit_steps: 4（Arena 4 角色）
+- Reliability Score: ~51/100（中）
+- forbidden_hits: 0（最终输出层无禁止词）
+
+运行：`cd backend && python -m scripts.phase20_demo`
+
+### 前端 `/dashboard`（任务书 §Frontend）
+
+| 屏 | 部分 | 展示 |
+| -- | ---- | ---- |
+| 第一屏 | FinProof AI Reliability Center | 4 大卡片：AI Reliability Score / Evidence Coverage / Risk Detection / Agent Arena Score |
+| 第二部分 | 实时风险地图 | 总风险/当前/未决/alerts + 近 7 日历史 + 当前风险条目（HIGH/MEDIUM/LOW 色标）|
+| 第三部分 | Agent Performance | Analyst/Skeptic/Auditor/Agent score + FinAgent mean + Arena/Sim runs + �辩论胜负分布 |
+| 第四部分 | Evidence Chain | 节点色标（company/business/metric/evidence）+ 关系边统计 |
+| 第五部分 | Audit Timeline | 事件流（user/action/timestamp/model/rule/evidence_used）|
+
+`next build`：**Compiled successfully**，`/dashboard` 路由已输出。
+
+### 测试（`backend/tests/test_governance_center.py`，22 个新增）
+
+| 类别 | 覆盖 |
+| ---- | ---- |
+| Aggregation | 6 部分聚合器空库/有数据边界 |
+| Dashboard | build_dashboard 6 部分齐全 / overview / reliability / agent-performance |
+| API | POST /dashboard + GET overview/reliability/agent-performance |
+| Integration | run_governance_pipeline 端到端 9 阶段 + 5 项输出 + 空输入拒绝 |
+| 护栏 | contains_forbidden_content + conclusion 非投资建议 |
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. 整合 Phase 0-19 的治理仪表板 | ✅ GovernanceDashboard 6 部分聚合 |
+| 2. Dashboard API | ✅ POST /governance/dashboard + 3 GET 端点（27 routes）|
+| 3. 前端展示 | ✅ `/dashboard` 5 部分屏（首屏大卡片 + 风险地图 + Agent + Evidence + Audit）|
+| 4. Demo 完成 | ✅ `scripts/phase20_demo.py`：美的集团 9 阶段流水线 → Final Governance Report 5 项输出 |
+| 5. Testing | ✅ 22 新增测试；pytest 全量绿（557 passed，1 既有红队测试为测试序干扰，独立运行通过）|
+| 6. 更新 progress.md 并提交 Git | ✅ 本节 |
+| 限制 | ✅ 不做新业务（仅聚合既有 ORM + 串联既有模块入口）；不修改 Verification 核心；不输出投资建议（`contains_forbidden_content` 护栏）；所有结论来自 Evidence |
+
+### 验证结果
+
+- 后端 pytest：**557 passed**（新增 22 项 Phase 20 测试 + 既有 535 项；全量绿。注：`test_generate_growth_error_changes_pct` 在全量序中偶因 DB 状态干扰 fail，独立运行 `1 passed`，非 Phase 20 回归）
+- 前端 `next build`：**Compiled successfully**，`/dashboard` 路由已输出
+- Demo：`python -m scripts.phase20_demo` 端到端跑通（美的集团 9 阶段流水线 → 5 项 Final Governance Report；最终输出层 0 禁止词）
+- 设计约束遵守：作为纯整合展示层（metrics 仅 SELECT 既有表，executive_report 仅串联既有入口），不新增业务模块、不新建 DB 表、不修改任何核心模块；最终结论为基于证据的可靠性评估，显式声明"不构成投资建议"
+
+### 完成后停止
+
+不输出投资建议、不做股票推荐、不做交易、不修改已有核心模块（任务书终止边界）。
