@@ -1333,3 +1333,131 @@ Copilot 集成（`REASONING_EXPLANATION` 意图）：
 ### 完成后停止
 
 不开发投资建议、自动估值或交易功能（任务书终止边界）。
+
+---
+
+## Phase 17：Autonomous Financial Research Agent（自主金融研究代理，2026-08）
+
+### 目标
+
+从企业名称/股票代码出发的自主金融研究流程，输出 **Evidence First Research Memo**。
+
+**不是投资建议**；不是股票推荐；不是估值预测；不做自动交易。仅生成：事实、证据、风险、待验证事项。
+
+### 架构
+
+```
+backend/app/services/research_agent/
+├── schemas.py          ResearchPlan / ResearchTaskSpec / EvidenceRef / ResearchFinding /
+│                        ToolCall / RiskFinding / ResearchMemo / ResearchSession
+│                        5 任务类型 + 5 阶段 + Memo 禁止词护栏
+├── planner.py          make_plan：Financial / Business / Risk / Competition 四类任务自动规划
+├── collector.py        collect_evidence：Evidence Retrieval + Knowledge Graph（无证据→SKIPPED）
+├── analyst.py          analyze_findings：ResearchFinding + RiskFinding（调用 Risk/Reasoning/Monitoring）
+├── memo_generator.py   generate_memo：7 段结构 + 禁止词护栏
+└── orchestrator.py     run_research / get_research / list_research（持久化）
+```
+
+数据库（`backend/app/models/research_agent.py`）：
+
+| 表 | 字段要点 |
+| -- | -------- |
+| `research_sessions` | session_id / company / stock_code / phase / plan_json / tool_calls_json / findings_json / risk_findings_json / memo_json / evidence_count / tasks_done |
+| `research_tasks`    | session_id / task_type / category / metric / objective / status / evidence_json / findings_json / tool_calls_json |
+
+API（`backend/app/api/research.py`）：
+
+| 路由 | 功能 |
+| ---- | ---- |
+| `POST /api/v1/research/run` | 启动自主研究，返回 ResearchSession（含 Memo） |
+| `GET  /api/v1/research` | 列出研究会话 |
+| `GET  /api/v1/research/{id}` | 查询：plan / progress / findings / evidence / memo |
+
+### 研究阶段（任务书 §7）
+
+```
+Planning → Collecting Evidence → Analyzing → Risk Checking → Memo Generated
+```
+
+### 研究任务（任务书 §2 §3）
+
+| 任务类型 | 调用工具 | 输出 |
+| -------- | -------- | ---- |
+| Company Profile | Evidence Retrieval | 业务分部 / 产品 / 地区 / 重要指标（绑定 Evidence） |
+| Financial Overview | Evidence Retrieval | revenue / profit / margin / cash flow 趋势 |
+| Business Analysis | Knowledge Graph | business map |
+| Risk Discovery | Risk Engine + Reasoning + Monitoring | financial / business / logic risk |
+| Competition Facts | Evidence Retrieval | 竞争对手事实 |
+
+**所有事实必须绑定 Evidence**；无证据 → SKIPPED（不凭空生成）→ Open Questions。
+
+### Research Memo 结构（任务书 §5）
+
+1. Company Overview
+2. Key Facts
+3. Financial Facts
+4. Business Facts
+5. Risk Findings
+6. Evidence Chain（去重汇总）
+7. Open Questions（无证据/待验证）
+
+**禁止**：buy/sell、target price、recommendation（投资建议/股票推荐/估值预测）。
+护栏 `contains_forbidden_memo_content` 剥离否定式免责片段后判定，不误伤"不构成..."声明。
+
+### 前端
+
+`/research-agent` 页面展示：
+- ① 启动研究（公司名 + 股票代码）
+- ② Research Progress：5 阶段流程图（Planning → Collecting → Analyzing → Risk Checking → Memo）
+- ③ 研究计划任务清单
+- ④ Tool Trace：工具调用链
+- ⑤ Research Memo：7 段结构 + 评测指标（Evidence Coverage / Unsupported Claim Rate / Task Completion Rate）
+- Evidence Trace：每条事实标注证据绑定（✓ 证据 N / ○ 无证据 Open Question）
+
+### Demo（`backend/scripts/phase17_demo.py`）
+
+输入：美的集团 000333 → Agent 自动完成企业画像 / 财务摘要 / 海外业务分析 / 风险发现 → 完整 Research Memo。
+
+运行：`cd backend && python -m scripts.phase17_demo`
+
+### 评测（`backend/scripts/phase17_eval.py`，20 家公司测试集，任务书 §9）
+
+| 指标 | 结果 |
+| ---- | ---- |
+| Total companies | 20 |
+| Successful runs | 20 |
+| Failed runs | 0 |
+| Evidence Coverage mean | 0.951 |
+| Fact Accuracy | 0.847 |
+| Unsupported Claim Rate | 0.049 |
+| Task Completion Rate | 0.81 |
+| Memo forbidden hits | 0（应为 0） |
+| Fact count total | 496 |
+| Grounded facts total | 420 |
+
+评测集独立，仅传入公司名，不喂答案给 agent。
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. 输入公司即可启动研究流程 | ✅ `POST /api/v1/research/run` 接收 company + stock_code |
+| 2. Agent 自主规划任务 | ✅ `make_plan` 自动生成 Financial / Business / Risk / Competition 四类任务 |
+| 3. 所有事实有 Evidence | ✅ `ResearchFinding.evidence` 绑定 EvidenceRef；无证据 → SKIPPED + Open Question，不凭空生成 |
+| 4. 输出 Research Memo | ✅ 7 段结构 + 禁止词护栏（`contains_forbidden_memo_content`） |
+| 5. 前端展示全过程 | ✅ `/research-agent`：5 阶段流程图 + Tool Trace + Memo 7 段 + Evidence Trace |
+| 6. Demo 完成 | ✅ `scripts/phase17_demo.py`：美的集团 000333 端到端跑通，Memo 护栏通过 |
+| 7. 更新 progress.md | ✅ 本节 |
+| 限制 | ✅ 不生成投资建议 / 不做股票推荐 / 不做自动交易；不修改 Verification 核心逻辑（作为新增独立研究层薄封装已有工具） |
+
+### 验证结果
+
+- 后端 pytest：**488 passed**（新增 18 项 Phase 17 测试 + 既有 470 项，全量绿）
+- 评测：20 家公司全成功，Evidence Coverage 0.951 / Fact Accuracy 0.847 / Unsupported 0.049 / Completion 0.81 / Memo 禁止词命中 0
+- Demo：`python -m scripts.phase17_demo` 端到端跑通（美的集团 000333，7 段 Memo，12 条 Evidence Chain，护栏通过）
+- 前端：`/research-agent` 页面 `next build` 编译成功
+- 设计约束遵守：作为新增独立研究层薄封装已有工具（Evidence Retrieval / Verification / Risk / Knowledge Graph / Reasoning / Monitoring），不修改 Verification 核心逻辑；无证据不凭空生成事实（SKIPPED + Open Questions）；Memo 护栏确保不含投资建议/股票推荐/估值预测
+
+### 完成后停止
+
+不生成投资建议、不做股票推荐、不做自动交易、不做估值预测（任务书终止边界）。

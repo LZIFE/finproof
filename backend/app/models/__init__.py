@@ -43,3 +43,7 @@ from app.models.financial_reasoning import (  # noqa: F401
     ReasoningResultRow,
     ReasoningRunRow,
 )
+from app.models.research_agent import (  # noqa: F401
+    ResearchSessionRow,
+    ResearchTaskRow,
+)
