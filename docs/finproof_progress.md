@@ -1461,3 +1461,156 @@ Planning → Collecting Evidence → Analyzing → Risk Checking → Memo Genera
 ### 完成后停止
 
 不生成投资建议、不做股票推荐、不做自动交易、不做估值预测（任务书终止边界）。
+
+---
+
+## Phase 18：FinSim — Financial Agent Simulation Environment（金融 Agent 模拟测试环境，2026-08）
+
+### 目标
+
+构建金融 AI Agent 模拟测试环境，评估金融 Agent 在复杂研究任务中的能力（测试**完整 Agent workflow**，不是单个答案）。保持 Evidence First。
+
+**禁止**：投资建议 / 交易 / 修改 Verification 核心逻辑。
+
+### 架构
+
+```
+backend/app/services/financial_simulation/
+├── schemas.py             ExpectedFinding / SimulationScenario / SimulationStep /
+│                          AgentRunRecord / ScoreBreakdown / SimulationScore /
+│                          SimulationResult / SimulationRun（5 场景类型 + 3 难度 + 5 阶段 + 禁止词护栏）
+├── scenario_generator.py  make_scenario / build_scenario_catalog / make_demo_scenarios
+├── simulator.py           run_simulation / run_simulation_by_id（端到端模拟 + 持久化）
+├── evaluator.py           evaluate_run / aggregate_metrics（比对埋点 + 评分聚合）
+└── scoring.py             5 项子分 + compute_fin_agent_score（Evidence/Reasoning/Risk/Efficiency/Hallucination）
+```
+
+数据库（`backend/app/models/financial_simulation.py`）：
+
+| 表 | 字段要点 |
+| -- | -------- |
+| `simulation_runs`    | run_id / scenario_id / scenario_json / agent_name / phase |
+| `simulation_steps`   | run_id / step_id / phase / tool / evidence_count / findings_count / success |
+| `simulation_results` | run_id / agent_run_json / detected/missed/hallucination_json / score_json / fin_agent_score / final_score / success |
+
+API（`backend/app/api/simulation.py`）：
+
+| 躯由 | 功能 |
+| ---- | ---- |
+| `GET  /api/v1/simulation/scenarios` | 列出 5 场景类型 + 3 难度 |
+| `POST /api/v1/simulation/runs` | 启动模拟（scenario_type + company + difficulty）|
+| `GET  /api/v1/simulation/runs` | 列出最近模拟运行 |
+| `GET  /api/v1/simulation/runs/{id}` | 查询：scenario / steps / result / score |
+
+### 场景类型（5 类，任务书 §2）
+
+| scenario_type | 中文 | 测试要点 |
+| ------------- | ---- | -------- |
+| Financial Misstatement | 财务错报 | 海外收入增长≠利润增长，识别指标偷换/结论跳跃 |
+| Business Overstatement | 业务夸大 | 市场份额领先≠长期竞争优势，识别隐含假设 |
+| Growth Quality Problem | 增长质量问题 | 营收增长但现金流/应收/存货/毛利率恶化（Hard 埋点）|
+| Competitive Claim Verification | 竞争主张验证 | 公司自述不足以证明行业领先，需独立证据 |
+| Risk Monitoring | 风险监控 | claim 与事实冲突、历史观点冲突 |
+
+### 难度（3 级，任务书 §5）
+
+| 难度 | 权重 | 埋点特征 |
+| ---- | ---- | -------- |
+| Easy | 1.0 | 基础埋点 |
+| Medium | 1.2 | 增加可选埋点 |
+| Hard | 1.5 | 隐藏风险（hidden_risks）非空，必须检出风险细化（如现金流恶化/应收增/库存增/毛利率降）|
+
+Hard 范例：收入增长正常但现金流恶化/应收增/库存增 → 测试 Agent 是否发现增长质量问题。
+
+### 模拟流程（任务书 §3）
+
+```
+Scenario → Agent Investigates → Collect Evidence → Generate Memo → Compare and Score
+```
+
+1. 场景生成（埋点 + hidden_risks）
+2. Agent 接收任务（task_query）自主调查（调用 Research Agent）
+3. 收集证据（Evidence Retrieval + Knowledge Graph）
+4. 生成 Memo（7 段结构 + 禁止词护栏）
+5. 比对 expected_findings → 5 项评分 → FinAgent Score
+
+### 评分（5 项子分 + FinAgent Score，任务书 §4）
+
+| 子分 | 计算 | 权重 |
+| ---- | ---- | ---- |
+| Evidence Score | 证据覆盖率 = Agent 证据数 / 预期埋点数 | 0.25 |
+| Reasoning Score | 逻辑漏洞发现率 = 检出 logic 类埋点 / 全部 logic | 0.20 |
+| Risk Detection Score | 风险识别率 = 检出 risk/contradiction 类埋点 / 全部 | 0.25 |
+| Efficiency Score | 工具调用效率 = 产出率 × 规模惩罚（冗余调用扣分）| 0.15 |
+| Hallucination Score | 无依据输出比例（越低越好；禁止词零容忍扣 50 分）| 0.15 |
+
+**FinAgent Score** = 加权合成 0-100；**Final Score** = 难度加成（Hard ×1.05 基础上封顶 100）。
+
+success 判定：必须埋点全检出 + 无幻觉 + 无禁止词命中。
+
+### 前端
+
+`/simulation` 页面（金融 AI 竞技场）：
+- ① 启动模拟（场景类型 + 公司 + 行业 + 难度）
+- ② Simulation Flow：5 阶段流程图（Scenario → Agent → Evidence → Memo → Score）
+- ③ Scenario 详情 + 埋点清单（检出/未检出标注）
+- ④ Agent Actions（步骤记录）
+- ⑤ Evidence（证据列表）
+- ⑥ Findings（事实 + 风险发现 + 无依据输出标注）
+- ⑦ Score（FinAgent Score 大数 + 5 项子分进度条 + success 判定）
+
+### Demo（`backend/scripts/phase18_demo.py`，3 场景，任务书 §7）
+
+| Scenario | 公司 | 类型 | 难度 |
+| -------- | ---- | ---- | ---- |
+| 1 | 美的集团 | Financial Misstatement | Hard |
+| 2 | 宁德时代 | Competitive Claim Verification | Medium |
+| 3 | 五粮液 | Growth Quality Problem | Hard |
+
+运行：`cd backend && python -m scripts.phase18_demo`（Agent 自动完成并评分）
+
+### 评测（`backend/scripts/phase18_eval.py`，30 Cases，任务书 §8）
+
+30 用例 = 5 类型 × 3 难度 × 2 公司。指标：
+
+| 指标 | 结果 |
+| ---- | ---- |
+| Total cases | 30 |
+| Successful runs | 30 |
+| Failed runs | 0 |
+| Scenario success rate | 0.0 |
+| Evidence coverage mean | 100.0 |
+| Risk detection mean | 44.44 |
+| Reasoning accuracy mean | 20.0 |
+| FinAgent score mean | 58.48 |
+| Final score mean | 59.84 |
+
+分类型：Risk Monitoring 最高（77.93）· Financial Misstatement/Growth Quality 最低（46.2）。
+分难度：Easy 58.99 · Medium 60.16 · Hard 60.36（难度加成后趋平）。
+
+评测集独立，仅构造场景，不喂答案给 Agent。
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. 金融 Agent 模拟环境运行 | ✅ `run_simulation` 端到端 + API |
+| 2. 支持多类型任务 | ✅ 5 场景类型 × 3 难度 |
+| 3. Agent 自主完成调查 | ✅ 调用 Research Agent 全流程（Planning→Collect→Analyze→Memo）|
+| 4. 自动评分 | ✅ 5 项子分 + FinAgent Score + 难度加权 Final Score |
+| 5. 前端展示 | ✅ `/simulation` 竞技场：5 阶段流程 + 埋点命中 + Score 进度条 |
+| 6. Demo 完成 | ✅ `scripts/phase18_demo.py`：3 场景端到端跑通并评分 |
+| 7. 更新 progress.md 并提交 Git | ✅ 本节 |
+| 限制 | ✅ 不输出投资建议（`contains_forbidden_content` 护栏）；不交易；不修改 Verification 核心（作为新增模拟层薄封装 Research Agent）|
+
+### 验证结果
+
+- 后端 pytest：**514 passed**（新增 26 项 Phase 18 测试 + 既有 488 项，全量绿）
+- 评测：30 Cases 全成功，Evidence Coverage 100.0 / Risk Detection 44.44 / Reasoning 20.0 / Final Score 59.84
+- Demo：`python -m scripts.phase18_demo` 端到端跑通（3 场景自动评分，护栏通过）
+- 前端：`/simulation` 页面 `next build` 编译成功
+- 设计约束遵守：作为新增模拟层薄封装 Research Agent（不修改 Verification 核心）；场景埋点均含可被 Evidence Retrieval 检索到的关键词（保持 Evidence First）；禁止词护栏确保 Agent 输出不含投资建议/股票推荐/估值预测
+
+### 完成后停止
+
+不输出投资建议、不做交易、不改变 Verification 核心（任务书终止边界）。

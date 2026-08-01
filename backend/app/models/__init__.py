@@ -47,3 +47,8 @@ from app.models.research_agent import (  # noqa: F401
     ResearchSessionRow,
     ResearchTaskRow,
 )
+from app.models.financial_simulation import (  # noqa: F401
+    SimulationRunRow,
+    SimulationStepRow,
+    SimulationResultRow,
+)
