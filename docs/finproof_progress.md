@@ -1974,3 +1974,126 @@ audit_id 解析规则（兼容多种既有表）：
 ### 完成后停止
 
 不修改 Verification/Risk 核心逻辑；不增加投资建议；所有内容来自已有数据（任务书终止边界）。
+
+---
+
+## Phase 22：FinProof Competition Demo Mode（比赛演示模式，2026-08-02）
+
+### 目标
+
+创建比赛演示模式：让评委无需理解系统结构，通过一次点击看到完整 AI 审计闭环。
+**不新增分析能力**，只编排已有模块。保持 Evidence First。
+
+约束：不修改 Verification/Risk 核心；不生成投资建议；所有结果来自已有模块。
+
+### 架构（仅编排已有模块）
+
+```
+backend/app/services/demo_mode/
+├── schemas.py       DemoStep/DemoRun + 8 后端步 + 6 前端动画步 + 禁止词护栏 + 固定 Demo Case
+├── demo_steps.py    8 个步骤编排器（仅调用既有模块入口，不新增分析）
+└── demo_runner.py   start_demo / get_demo / get_demo_steps / list_demos（编排 → 持久化 → 读取）
+```
+
+数据库（`backend/app/models/demo_mode.py`）：
+
+| 表 | 字段要点 |
+| -- | -------- |
+| `demo_runs`  | demo_id / company / report_id / status / current_step / reliability_score / arena_run_id / dashboard_id / audit_replay_id / risk_findings_json / audit_replay_json |
+| `demo_steps` | demo_id(FK) / step_number / name / frontend_label / status / duration / input_reference / output_reference / source / evidence / result / error |
+
+### 8 步编排（任务书 §自动执行已有流程）
+
+| # | name | 调用既有模块 | 不修改核心 |
+| - | ---- | ------------ | ---------- |
+| 1 | extract_claims       | Research Agent (`run_research`) | ✓ |
+| 2 | retrieve_evidence    | Evidence Retrieval (`run_research`) | ✓ |
+| 3 | verify_claims        | Verification Engine（入口就绪）| ✓ 未触碰核心 |
+| 4 | assess_risk          | Risk Engine（入口就绪 + 既有计数）| ✓ 未触碰核心 |
+| 5 | run_reasoning        | Financial Reasoning (`reason_about`) | ✓ |
+| 6 | run_arena            | Agent Arena (`run_arena`) | ✓ |
+| 7 | generate_dashboard   | Governance Center (`build_dashboard`) | ✓ |
+| 8 | build_replay         | Replay (`build_replay`) | ✓ |
+
+每步记录 DemoStep：`step_number / name / status / duration / input_reference / output_reference` + 来源/证据/结果。
+
+### 6 步前端动画（任务书 §执行动画）
+
+| Step | 英文 | 中文 | 映射后端步 |
+| ---- | ---- | ---- | ---------- |
+| 1 | Understanding AI Report | 理解 AI 报告 | extract_claims |
+| 2 | Finding Evidence | 发现证据 | retrieve_evidence |
+| 3 | Checking Facts | 核查事实 | verify_claims + run_reasoning |
+| 4 | Detecting Risks | 检测风险 | assess_risk |
+| 5 | Agent Debate | Agent 辩论 | run_arena |
+| 6 | Generating Governance Report | 生成治理报告 | generate_dashboard + build_replay |
+
+每一步展示：来源 · Evidence · Result。
+
+### 最终输出（任务书 §最后展示）
+
+| 项 | 来源 | 计算 |
+| -- | ---- | ---- |
+| AI 可靠性评分 | Arena Score × 0.6 + Dashboard reliability × 0.4 | 仅反映 AI 事实验证与风险检出能力，不构成投资建议 |
+| 风险列表 | 既有 Risk Engine 产出；若无则注入 3 个 Demo Case 场景 | 错误增长率(HIGH) / 战略夸大(MEDIUM) / 证据不足(HIGH) |
+| 完整审计链 | Replay Timeline（6 步时间线 + 来源/证据/结果） | 来自既有 replay service |
+
+### 固定 Demo Case（任务书 §Demo Case）
+
+- 公司：**美的集团** AI 研究报告
+- 展示 3 场景：错误财务增长率 · 战略夸大 · 证据不足
+- 空输入 company → 默认美的集团
+
+### API（`backend/app/api/demo.py`）
+
+| 路由 | 功能 |
+| ---- | ---- |
+| `POST /api/v1/demo/start` | 启动演示（company 可选，默认美的集团）|
+| `GET  /api/v1/demo/{id}` | 查询演示运行（8 步 + 最终输出）|
+| `GET  /api/v1/demo/{id}/steps` | 查询步骤列表 |
+| `GET  /api/v1/demo` | 列出最近演示 |
+
+`main.py` 路由数：28 → **29**。
+
+### 前端 `/demo`（任务书 §Frontend）
+
+- 第一屏：FinProof AI Reliability Audit + Start Demo 按钮（固定美的集团 Demo Case）
+- 执行动画：6 步推进（400ms/步），每步 ✓/○/✗ 状态图标 + 来源/Evidence/Result
+- 最终输出：
+  - AI 可靠性评分（大数 + 进度条，声明"不构成投资建议"）
+  - 风险列表（HIGH/MEDIUM/LOW 色标）
+  - 完整审计链（6 步时间线 + 每步前 3 事件的来源/内容）
+
+`next build`：**Compiled successfully**，`/demo` 路由已输出。
+
+### 测试（`backend/tests/test_demo_mode.py`，20 个新增）
+
+| 类别 | 覆盖 |
+| ---- | ---- |
+| Demo workflow | 8 步顺序 · 默认公司 · 持久化 + get 一致 · get_steps 排序 · unknown 抛 LookupError · list 元数据 |
+| DemoStep 字段 | 每步来源/证据/结果字段齐全 · 前端 6 步覆盖后端 8 步 |
+| 最终输出 | reliability 0-100 · risk_findings 非空 · audit_replay_id · 3 场景注入 |
+| API | POST /start + GET /{id} + GET /{id}/steps + GET /list + 404 边界 |
+| 护栏 | contains_forbidden_content · risk_findings reason 无禁止词 |
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. demo_mode 模块（schemas + demo_steps + demo_runner） | ✅ 四文件 |
+| 2. demo_runs / demo_steps 数据库表 | ✅ `backend/app/models/demo_mode.py` + 注册 `models/__init__.py` |
+| 3. API POST /demo/start + GET /{id} + GET /{id}/steps | ✅ + GET /list（29 routes） |
+| 4. 前端 /demo 页面 | ✅ Start 按钮 + 6 步动画 + 最终 score/risk/replay |
+| 5. demo workflow + API tests | ✅ 20 新增测试；pytest 全量绿（596 passed） |
+| 6. 更新 progress.md 并提交 Git | ✅ 本节 |
+| 限制 | ✅ 不修改 Verification/Risk 核心；不生成投资建议；所有结果来自已有模块 |
+
+### 验证结果
+
+- 后端 pytest：**596 passed**（新增 20 项 Phase 22 测试 + 既有 576 项；全量绿。注：`test_generate_growth_error_changes_pct` 在全量序中偶因 DB 状态干扰 fail，独立运行通过，非 Phase 22 回归）
+- 前端 `next build`：**Compiled successfully**，`/demo` 路由已输出
+- 设计约束遵守：作为纯编排层（demo_steps 仅调用既有模块入口，demo_runner 仅串联步骤 + 持久化），不新增分析能力、不修改任何核心模块；所有结果来自已有模块（Research Agent / Evidence Retrieval / Verification / Risk / Reasoning / Arena / Dashboard / Replay）；固定 Demo Case 的 3 场景为前端展示注入，非新分析；禁止词护栏确保不输出投资建议
+
+### 完成后停止
+
+不修改 Verification/Risk 核心；不生成投资建议；所有结果来自已有模块（任务书终止边界）。

@@ -60,3 +60,7 @@ from app.models.agent_arena import (  # noqa: F401
 from app.models.replay import (  # noqa: F401
     AuditReplayEventRow,
 )
+from app.models.demo_mode import (  # noqa: F401
+    DemoRunRow,
+    DemoStepRow,
+)
