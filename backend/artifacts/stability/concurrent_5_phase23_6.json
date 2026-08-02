@@ -1,0 +1,50 @@
+{
+  "test": "concurrent_5_demos",
+  "total_runs": 5,
+  "successful_runs": 5,
+  "success_rate": 1.0,
+  "total_duration_sec": 2.91,
+  "unique_demo_ids": 5,
+  "runs": [
+    {
+      "run": 1,
+      "demo_id": "DEMO-20260802095452-45de8703",
+      "status": "DONE",
+      "duration_ms": 2905,
+      "reliability_score": 63.22,
+      "success": true
+    },
+    {
+      "run": 2,
+      "demo_id": "DEMO-20260802095452-ba58dd53",
+      "status": "DONE",
+      "duration_ms": 2835,
+      "reliability_score": 63.22,
+      "success": true
+    },
+    {
+      "run": 3,
+      "demo_id": "DEMO-20260802095452-6362dd8a",
+      "status": "DONE",
+      "duration_ms": 2877,
+      "reliability_score": 63.22,
+      "success": true
+    },
+    {
+      "run": 4,
+      "demo_id": "DEMO-20260802095452-f03862b4",
+      "status": "DONE",
+      "duration_ms": 2850,
+      "reliability_score": 63.22,
+      "success": true
+    },
+    {
+      "run": 5,
+      "demo_id": "DEMO-20260802095452-481d913f",
+      "status": "DONE",
+      "duration_ms": 2858,
+      "reliability_score": 63.22,
+      "success": true
+    }
+  ]
+}

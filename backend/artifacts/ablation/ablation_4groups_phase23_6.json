@@ -1,0 +1,66 @@
+{
+  "phase": "23.6",
+  "ablation_groups": 4,
+  "blind_set": {
+    "total": 26,
+    "companies": [
+      "五粮液",
+      "美的集团"
+    ]
+  },
+  "same_metrics": [
+    "accuracy",
+    "macro_f1",
+    "false_positive_rate",
+    "abstention_accuracy",
+    "unsupported_claim_rate",
+    "avg_retrieval_count",
+    "avg_matched_evidence",
+    "latency"
+  ],
+  "A_retrieval_only": {
+    "accuracy": 0.231,
+    "macro_f1": 0.121,
+    "false_positive_rate": 0.0,
+    "abstention_accuracy": 0.056,
+    "unsupported_claim_rate": 0.692,
+    "avg_retrieval_count": 1.538,
+    "avg_matched_evidence": 1.538,
+    "latency_sec": 0.317,
+    "sample": 26
+  },
+  "B_retrieval_plus_verification": {
+    "accuracy": 0.192,
+    "macro_f1": 0.124,
+    "false_positive_rate": 0.0,
+    "abstention_accuracy": 0.056,
+    "unsupported_claim_rate": 0.885,
+    "avg_retrieval_count": 1.538,
+    "avg_matched_evidence": 0.308,
+    "latency_sec": 0.27,
+    "sample": 26
+  },
+  "C_full_finproof": {
+    "accuracy": 0.625,
+    "macro_f1": 0.385,
+    "false_positive_rate": 0.0,
+    "abstention_accuracy": 0.0,
+    "unsupported_claim_rate": 0.0,
+    "avg_retrieval_count": 21.0,
+    "avg_matched_evidence": 22.0,
+    "latency_sec": 0.49,
+    "sample": 8
+  },
+  "D_full_finproof_no_det_rules": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "false_positive_rate": 0.0,
+    "abstention_accuracy": 0.0,
+    "unsupported_claim_rate": 1.0,
+    "avg_retrieval_count": 0.0,
+    "avg_matched_evidence": 0.0,
+    "latency_sec": 0.001,
+    "sample": 8
+  },
+  "note": "C/D取8条样本因完整FinProof流程慢; A/B全26条; 4组使用相同指标集"
+}

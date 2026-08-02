@@ -1,0 +1,464 @@
+{
+  "phase": "23.6",
+  "oracle_retrieval_definition": "使用Gold Evidence Block作为输入(非claim文本)",
+  "real_e2e_definition": "系统自行检索Top-K Evidence并完成Verification",
+  "blind_set": {
+    "total": 26,
+    "companies": [
+      "五粮液",
+      "美的集团"
+    ]
+  },
+  "oracle_verification": {
+    "total_claims": 26,
+    "oracle_used_gold_block": 22,
+    "oracle_used_claim_text": 0,
+    "verdict_distribution": {
+      "SUPPORTED": 11,
+      "REFUTED": 9,
+      "UNABLE_TO_DETERMINE": 2,
+      "INSUFFICIENT_EVIDENCE": 4
+    },
+    "oracle_accuracy": 0.731,
+    "oracle_macro_f1": 0.414,
+    "details": [
+      {
+        "idx": 0,
+        "claim_id": "CLM-H01",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 1,
+        "claim_id": "CLM-H02",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 2,
+        "claim_id": "CLM-H03",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "REFUTED",
+        "oracle_confidence": 0.8,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 3,
+        "claim_id": "CLM-H04",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 4,
+        "claim_id": "CLM-H05",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "REFUTED",
+        "oracle_confidence": 0.8,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 5,
+        "claim_id": "CLM-H06",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 6,
+        "claim_id": "CLM-H07",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 7,
+        "claim_id": "CLM-H08",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 8,
+        "claim_id": "CLM-H09",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "REFUTED",
+        "oracle_confidence": 0.8,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 9,
+        "claim_id": "CLM-H10",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "UNABLE_TO_DETERMINE",
+        "oracle_confidence": 0.3,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 10,
+        "claim_id": "CLM-H11",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 11,
+        "claim_id": "CLM-H12",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "UNABLE_TO_DETERMINE",
+        "oracle_confidence": 0.3,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 12,
+        "claim_id": "CLM-H13",
+        "gold_evidence_count": 0,
+        "oracle_verdict": "INSUFFICIENT_EVIDENCE",
+        "oracle_confidence": 0.4,
+        "oracle_used": "NO_GOLD_EVIDENCE"
+      },
+      {
+        "idx": 13,
+        "claim_id": "CLM-H14",
+        "gold_evidence_count": 0,
+        "oracle_verdict": "INSUFFICIENT_EVIDENCE",
+        "oracle_confidence": 0.4,
+        "oracle_used": "NO_GOLD_EVIDENCE"
+      },
+      {
+        "idx": 14,
+        "claim_id": "CLM-H15",
+        "gold_evidence_count": 0,
+        "oracle_verdict": "INSUFFICIENT_EVIDENCE",
+        "oracle_confidence": 0.4,
+        "oracle_used": "NO_GOLD_EVIDENCE"
+      },
+      {
+        "idx": 15,
+        "claim_id": "CLM-H16",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "REFUTED",
+        "oracle_confidence": 0.8,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 16,
+        "claim_id": "CLM-H17",
+        "gold_evidence_count": 0,
+        "oracle_verdict": "INSUFFICIENT_EVIDENCE",
+        "oracle_confidence": 0.4,
+        "oracle_used": "NO_GOLD_EVIDENCE"
+      },
+      {
+        "idx": 17,
+        "claim_id": "CLM-001",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 18,
+        "claim_id": "CLM-002",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "REFUTED",
+        "oracle_confidence": 0.8,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 19,
+        "claim_id": "CLM-003",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 20,
+        "claim_id": "CLM-004",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "REFUTED",
+        "oracle_confidence": 0.8,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 21,
+        "claim_id": "CLM-005",
+        "gold_evidence_count": 2,
+        "oracle_verdict": "REFUTED",
+        "oracle_confidence": 0.8,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 22,
+        "claim_id": "CLM-006",
+        "gold_evidence_count": 2,
+        "oracle_verdict": "REFUTED",
+        "oracle_confidence": 0.8,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 23,
+        "claim_id": "CLM-007",
+        "gold_evidence_count": 1,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 24,
+        "claim_id": "CLM-008",
+        "gold_evidence_count": 2,
+        "oracle_verdict": "SUPPORTED",
+        "oracle_confidence": 0.98,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      },
+      {
+        "idx": 25,
+        "claim_id": "CLM-009",
+        "gold_evidence_count": 2,
+        "oracle_verdict": "REFUTED",
+        "oracle_confidence": 0.8,
+        "oracle_used": "GOLD_EVIDENCE_BLOCK"
+      }
+    ]
+  },
+  "real_e2e_verification": {
+    "total_claims": 26,
+    "verdict_distribution": {
+      "INSUFFICIENT_EVIDENCE": 18,
+      "SUPPORTED": 3,
+      "REFUTED": 5
+    },
+    "real_accuracy": 0.192,
+    "real_macro_f1": 0.124,
+    "false_positive_rate": 0.0,
+    "abstention_accuracy": 0.056,
+    "details": [
+      {
+        "idx": 0,
+        "claim_id": "CLM-H01",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 1,
+        "claim_id": "CLM-H02",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 2,
+        "claim_id": "CLM-H03",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 3,
+        "claim_id": "CLM-H04",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 4,
+        "claim_id": "CLM-H05",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 5,
+        "claim_id": "CLM-H06",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 6,
+        "claim_id": "CLM-H07",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 7,
+        "claim_id": "CLM-H08",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 8,
+        "claim_id": "CLM-H09",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 9,
+        "claim_id": "CLM-H10",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 10,
+        "claim_id": "CLM-H11",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 11,
+        "claim_id": "CLM-H12",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 12,
+        "claim_id": "CLM-H13",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 13,
+        "claim_id": "CLM-H14",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 14,
+        "claim_id": "CLM-H15",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 15,
+        "claim_id": "CLM-H16",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 16,
+        "claim_id": "CLM-H17",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      },
+      {
+        "idx": 17,
+        "claim_id": "CLM-001",
+        "real_retrieval_count": 5,
+        "real_verdict": "SUPPORTED",
+        "real_confidence": 0.98,
+        "real_matched_evidence": 1
+      },
+      {
+        "idx": 18,
+        "claim_id": "CLM-002",
+        "real_retrieval_count": 5,
+        "real_verdict": "SUPPORTED",
+        "real_confidence": 0.98,
+        "real_matched_evidence": 1
+      },
+      {
+        "idx": 19,
+        "claim_id": "CLM-003",
+        "real_retrieval_count": 5,
+        "real_verdict": "SUPPORTED",
+        "real_confidence": 0.98,
+        "real_matched_evidence": 1
+      },
+      {
+        "idx": 20,
+        "claim_id": "CLM-004",
+        "real_retrieval_count": 5,
+        "real_verdict": "REFUTED",
+        "real_confidence": 0.9,
+        "real_matched_evidence": 1
+      },
+      {
+        "idx": 21,
+        "claim_id": "CLM-005",
+        "real_retrieval_count": 5,
+        "real_verdict": "REFUTED",
+        "real_confidence": 0.8,
+        "real_matched_evidence": 1
+      },
+      {
+        "idx": 22,
+        "claim_id": "CLM-006",
+        "real_retrieval_count": 5,
+        "real_verdict": "REFUTED",
+        "real_confidence": 0.8,
+        "real_matched_evidence": 1
+      },
+      {
+        "idx": 23,
+        "claim_id": "CLM-007",
+        "real_retrieval_count": 5,
+        "real_verdict": "REFUTED",
+        "real_confidence": 0.8,
+        "real_matched_evidence": 1
+      },
+      {
+        "idx": 24,
+        "claim_id": "CLM-008",
+        "real_retrieval_count": 5,
+        "real_verdict": "REFUTED",
+        "real_confidence": 0.8,
+        "real_matched_evidence": 1
+      },
+      {
+        "idx": 25,
+        "claim_id": "CLM-009",
+        "real_retrieval_count": 0,
+        "real_verdict": "INSUFFICIENT_EVIDENCE",
+        "real_confidence": 0.4,
+        "real_matched_evidence": 0
+      }
+    ]
+  },
+  "gold_verdicts_used_only_for_eval": true,
+  "target_check": {
+    "Page Hit@5 >= 0.70": "N/A (需要page-level gold annotation)",
+    "No-result Rate <= 0.20": "0.692 (FAIL)",
+    "Oracle Macro-F1 >= 0.80": "0.414 (FAIL)",
+    "Real E2E Macro-F1 >= 0.65": "0.124 (FAIL)"
+  }
+}

@@ -320,13 +320,20 @@ def step_run_arena(session: Session, company: str, research_question: str) -> De
         from app.services.agent_arena.arena import run_arena
         run = run_arena(session, company, research_question)
         score = run.result.score.final_arena_score if run.result else 0.0
+        winner = run.result.winner if run.result else "-"
         step = _ok(
             step,
-            result=f"Arena 完成：Final Score {score:.1f} · winner {run.result.winner if run.result else '-'}",
+            result=f"Arena 完成：Final Score {score:.1f} · winner {winner}",
             output_ref=run.run_id,
             evidence=f"4 角色 · {len(run.messages)} 消息",
             source="agent_arena",
         )
+        # Phase 23.6：结构化字段（供 _compute_reliability 读取，不再解析 result 文本）
+        step.metadata = {
+            "arena_run_id": run.run_id,
+            "arena_score": float(score),
+            "arena_winner": winner,
+        }
     except Exception as exc:  # noqa: BLE101
         step = _err(step, exc)
     step.duration = int((time.time() - t0) * 1000)
@@ -346,13 +353,21 @@ def step_generate_dashboard(session: Session, company: str) -> DemoStep:
     try:
         from app.services.governance_center.dashboard import build_dashboard
         dash = build_dashboard(session, governance_id=f"DEMO-{company}")
+        overall_rel = float(dash.reliability.overall_reliability)
+        ev_cov = float(dash.reliability.evidence_coverage)
         step = _ok(
             step,
-            result=f"Dashboard 构建：reliability {dash.reliability.overall_reliability:.1f} · evidence_coverage {dash.reliability.evidence_coverage:.2f}",
+            result=f"Dashboard 构建：reliability {overall_rel:.1f} · evidence_coverage {ev_cov:.2f}",
             output_ref=dash.governance_id,
             evidence=f"6 部分聚合",
             source="governance_center",
         )
+        # Phase 23.6：结构化字段（供 _compute_reliability 读取，不再解析 result 文本）
+        step.metadata = {
+            "dashboard_id": dash.governance_id,
+            "overall_reliability": overall_rel,
+            "evidence_coverage": ev_cov,
+        }
     except Exception as exc:  # noqa: BLE101
         step = _err(step, exc)
     step.duration = int((time.time() - t0) * 1000)

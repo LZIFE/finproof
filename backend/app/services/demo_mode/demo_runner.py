@@ -172,19 +172,13 @@ def list_demos(session: Session, limit: int = 50) -> list[dict]:
 # 内部：最终输出计算
 # ---------------------------------------------------------------------------
 def _compute_reliability(arena_step: DemoStep, dashboard_step: DemoStep) -> float:
-    """AI 可靠性评分 = Arena Score × 0.6 + Dashboard reliability × 0.4。"""
-    arena_score = 0.0
-    if arena_step.result and "Final Score" in arena_step.result:
-        try:
-            arena_score = float(arena_step.result.split("Final Score")[1].split("·")[0].strip())
-        except Exception:  # noqa: BLE101
-            pass
-    dash_score = 0.0
-    if dashboard_step.result and "reliability" in dashboard_step.result:
-        try:
-            dash_score = float(dashboard_step.result.split("reliability")[1].split("·")[0].strip())
-        except Exception:  # noqa: BLE101
-            pass
+    """AI 可靠性评分 = Arena Score × 0.6 + Dashboard reliability × 0.4。
+
+    Phase 23.6 重构：从 ``DemoStep.metadata`` 读取结构化字段，
+    不再从 ``result`` 文本正则解析。兼容旧数据：metadata 缺失时回退 0.0。
+    """
+    arena_score = float(arena_step.metadata.get("arena_score", 0.0)) if arena_step.metadata else 0.0
+    dash_score = float(dashboard_step.metadata.get("overall_reliability", 0.0)) if dashboard_step.metadata else 0.0
     return arena_score * 0.6 + dash_score * 0.4
 
 

@@ -1,0 +1,191 @@
+{
+  "test": "consecutive_20_demos",
+  "total_runs": 20,
+  "successful_runs": 20,
+  "success_rate": 1.0,
+  "duration_p50_ms": 599.0,
+  "duration_p95_ms": 780,
+  "total_duration_sec": 12.68,
+  "runs": [
+    {
+      "run": 1,
+      "demo_id": "DEMO-20260802095338-fc04a328",
+      "status": "DONE",
+      "duration_ms": 1011,
+      "reliability_score": 63.1,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 2,
+      "demo_id": "DEMO-20260802095339-c83b7e23",
+      "status": "DONE",
+      "duration_ms": 650,
+      "reliability_score": 63.12,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 3,
+      "demo_id": "DEMO-20260802095340-a6f55968",
+      "status": "DONE",
+      "duration_ms": 590,
+      "reliability_score": 63.13,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 4,
+      "demo_id": "DEMO-20260802095341-b2e98916",
+      "status": "DONE",
+      "duration_ms": 578,
+      "reliability_score": 63.14,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 5,
+      "demo_id": "DEMO-20260802095341-d23b4976",
+      "status": "DONE",
+      "duration_ms": 586,
+      "reliability_score": 63.15,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 6,
+      "demo_id": "DEMO-20260802095342-aee78731",
+      "status": "DONE",
+      "duration_ms": 601,
+      "reliability_score": 63.16,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 7,
+      "demo_id": "DEMO-20260802095342-e3a0bc50",
+      "status": "DONE",
+      "duration_ms": 629,
+      "reliability_score": 63.17,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 8,
+      "demo_id": "DEMO-20260802095343-89584591",
+      "status": "DONE",
+      "duration_ms": 586,
+      "reliability_score": 63.17,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 9,
+      "demo_id": "DEMO-20260802095344-f943e2f6",
+      "status": "DONE",
+      "duration_ms": 585,
+      "reliability_score": 63.18,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 10,
+      "demo_id": "DEMO-20260802095344-b0780005",
+      "status": "DONE",
+      "duration_ms": 594,
+      "reliability_score": 63.18,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 11,
+      "demo_id": "DEMO-20260802095345-b4218baf",
+      "status": "DONE",
+      "duration_ms": 653,
+      "reliability_score": 63.19,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 12,
+      "demo_id": "DEMO-20260802095345-0bf6cb13",
+      "status": "DONE",
+      "duration_ms": 780,
+      "reliability_score": 63.19,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 13,
+      "demo_id": "DEMO-20260802095346-1b11614c",
+      "status": "DONE",
+      "duration_ms": 589,
+      "reliability_score": 63.2,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 14,
+      "demo_id": "DEMO-20260802095347-efda42e6",
+      "status": "DONE",
+      "duration_ms": 612,
+      "reliability_score": 63.2,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 15,
+      "demo_id": "DEMO-20260802095347-5bc92fa8",
+      "status": "DONE",
+      "duration_ms": 612,
+      "reliability_score": 63.2,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 16,
+      "demo_id": "DEMO-20260802095348-b89ddbe7",
+      "status": "DONE",
+      "duration_ms": 588,
+      "reliability_score": 63.21,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 17,
+      "demo_id": "DEMO-20260802095349-409e39a5",
+      "status": "DONE",
+      "duration_ms": 594,
+      "reliability_score": 63.21,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 18,
+      "demo_id": "DEMO-20260802095349-4fbeb891",
+      "status": "DONE",
+      "duration_ms": 607,
+      "reliability_score": 63.21,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 19,
+      "demo_id": "DEMO-20260802095350-d4a38d1d",
+      "status": "DONE",
+      "duration_ms": 597,
+      "reliability_score": 63.21,
+      "steps_ok": 8,
+      "success": true
+    },
+    {
+      "run": 20,
+      "demo_id": "DEMO-20260802095350-2ddb5802",
+      "status": "DONE",
+      "duration_ms": 624,
+      "reliability_score": 63.22,
+      "steps_ok": 8,
+      "success": true
+    }
+  ]
+}
