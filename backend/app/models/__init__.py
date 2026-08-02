@@ -64,3 +64,6 @@ from app.models.demo_mode import (  # noqa: F401
     DemoRunRow,
     DemoStepRow,
 )
+from app.models.reliability_improvement import (  # noqa: F401
+    ReliabilityReportRow,
+)

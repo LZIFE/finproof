@@ -22,6 +22,7 @@ from app.api.arena import router as arena_router
 from app.api.governance_center import router as governance_router
 from app.api.replay import router as replay_router
 from app.api.demo import router as demo_router
+from app.api.reliability import router as reliability_router
 from app.api.audit import router as audit_router
 from app.api.claims import router as claims_router
 from app.api.documents import router as documents_router
@@ -70,6 +71,7 @@ def create_app() -> FastAPI:
     app.include_router(governance_router)
     app.include_router(replay_router)
     app.include_router(demo_router)
+    app.include_router(reliability_router)
     return app
 
 

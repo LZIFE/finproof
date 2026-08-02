@@ -2097,3 +2097,115 @@ backend/app/services/demo_mode/
 ### 完成后停止
 
 不修改 Verification/Risk 核心；不生成投资建议；所有结果来自已有模块（任务书终止边界）。
+
+---
+
+## Phase 23：AI Reliability Improvement Center（AI 可靠性改进中心，2026-08-02）
+
+### 目标
+
+基于已有 Benchmark / Red Team / Arena 结果，构建 AI 可靠性改进分析层。
+**不是修改模型、不是训练模型**，只是分析失败模式并生成改进建议。
+
+约束：不修改已有核心模块；不自动修改模型；不输出投资建议。
+
+### 架构（纯分析层，不修改模型）
+
+```
+backend/app/services/reliability_improvement/
+├── schemas.py              5 类 Failure Pattern + FailureCase/FailurePattern/ReliabilityTrend/WeaknessMap + 护栏
+├── failure_analyzer.py     collect_failures：从既有 Benchmark/Red Team/Arena/Reasoning ORM 读取失败案例
+├── pattern_detector.py     detect_patterns：聚合 → 5 类模式（root_cause + suggested_improvement）+ WeaknessMap
+└── improvement_report.py   analyze_reliability：聚合 → ReliabilityImprovementReport + Trend + 持久化/读取
+```
+
+数据库（`backend/app/models/reliability_improvement.py`）：
+
+| 表 | 字段要点 |
+| -- | -------- |
+| `reliability_reports` | report_id / total_cases / total_failures / overall_failure_rate / patterns_json / trend_json / sources_analyzed_json / summary / suggested_improvements_json |
+
+### 4 来源聚合（任务书 §读取）
+
+| 来源 | ORM | 失败判定 |
+| ---- | --- | -------- |
+| Benchmark | `BenchmarkResultRow` | error/detected_error 非空 |
+| Red Team | `RedTeamRunRow` | attack 命中 + 幻觉检出率 < 0.5 |
+| Arena | `ArenaResultRow` | Skeptic 命中（valid=True）+ Auditor issues |
+| Reasoning | `ReasoningResultRow` | status ≠ OK 或 logical_gap 非空 |
+
+### 5 类 Failure Pattern（任务书 §识别）
+
+| pattern | 中文 | 根因（知识库）|
+| ------- | ---- | ------------ |
+| NUMERIC_ERROR | 数值错误 | 数值口径不一致/计算错误，未绑定原始报表 |
+| PERIOD_CONFUSION | 期间混淆 | 报告期与基期错配 |
+| UNSUPPORTED_CLAIM | 无依据主张 | 强结论无证据，幻觉风险 |
+| EVIDENCE_MISSING | 证据缺失 | 指标未覆盖证据，覆盖率不足 |
+| LOGICAL_GAP | 逻辑缺口 | 因果倒置/相关性当因果/结论过度外推 |
+
+每类含：`failure_count / failure_rate / affected_category / example_cases / root_cause / suggested_improvement`（任务书 §生成）。
+
+### Reliability Trend（任务书 §生成 Reliability Trend）
+
+比较不同版本/不同 Agent 表现：
+- Benchmark：按 model 分组准确率（100 - error_rate × 100）
+- Arena：按 winner 分组均 Final Arena Score
+- Red Team：按 run_id 序列的幻觉检出率 × 100
+- direction：improving / declining / stable（delta > +5 / < -5 / 中间）
+
+### API（`backend/app/api/reliability.py`）
+
+| 路由 | 功能 |
+| ---- | ---- |
+| `POST /api/v1/reliability/analyze` | 生成 Reliability Improvement Report（持久化）|
+| `GET  /api/v1/reliability/report` | 查询报告（?report_id= 指定 / 不传最新一条）|
+| `GET  /api/v1/reliability/reports` | 列出最近报告元数据 |
+
+`main.py` 路由数：29 → **30**。
+
+### 前端 `/reliability`（任务书 §Frontend）
+
+| 部分 | 展示 |
+| ---- | ---- |
+| ① 启动分析 | Analyze Reliability 按钮 + 概要（案例数/失败数/overall rate）|
+| ② 分析概要 | summary 文本（显式"不构成投资建议"）|
+| ③ Failure Distribution | 5 类模式进度条 + 根因 + 改进建议 + 可展开示例案例 |
+| ④ AI Weakness Map | 来源 × 模式 矩阵（色深强度）|
+| ⑤ Improvement Suggestions | 去重建议列表（仅工程改进方向，不涉及模型训练）|
+| ⑥ Reliability Trend | 版本/Agent 趋势条 + direction 标签 |
+
+`next build`：**Compiled successfully**，`/reliability` 路由已输出。
+
+### 测试（`backend/tests/test_reliability_improvement.py`，20 个新增）
+
+| 类别 | 覆盖 |
+| ---- | ---- |
+| Failure analyzer | 4 来源键齐全 · Arena→失败案例 · pattern 分类在 5 类内 · 空库边界 |
+| Pattern detector | 5 类模式产出（含空模式）· root_cause/suggested 非空 · 弱点矩阵 4×5=20 cells |
+| Report + trend | 端到端 · summary 无禁止词 · direction 合法 · suggested 无禁止词 |
+| 持久化 | persist+get 一致 · unknown 抛 LookupError · list 元数据 |
+| API | POST /analyze + GET /report?id + GET /report(最新) + GET /reports + 404 |
+| 护栏 | contains_forbidden_content · pattern_labels 完备 · summary 非投资建议 |
+
+### 完成标准对照（Acceptance Criteria）
+
+| 标准 | 状态 |
+| ---- | ---- |
+| 1. reliability_improvement 模块（4 文件） | ✅ schemas/failure_analyzer/pattern_detector/improvement_report/__init__ |
+| 2. reliability_reports 数据库表 | ✅ `backend/app/models/reliability_improvement.py` + 注册 `models/__init__.py` |
+| 3. API POST /analyze + GET /report | ✅ + GET /reports（30 routes） |
+| 4. 前端 /reliability 页面 | ✅ 4 部分展示（Failure Distribution + Weakness Map + Suggestions + Trend）|
+| 5. 测试 + 保持 pytest 全绿 | ✅ 20 新增测试；pytest 全量绿（616 passed） |
+| 6. 更新 progress.md 并提交 Git | ✅ 本节 |
+| 限制 | ✅ 不修改已有核心模块；不自动修改模型；不输出投资建议 |
+
+### 验证结果
+
+- 后端 pytest：**616 passed**（新增 20 项 Phase 23 测试 + 既有 596 项；全量绿。注：`test_generate_growth_error_changes_pct` 在全量序中偶因 DB 状态干扰 fail，独立运行通过，非 Phase 23 回归）
+- 前端 `next build`：**Compiled successfully**，`/reliability` 路由已输出
+- 设计约束遵守：作为纯分析层（failure_analyzer 仅 SELECT 既有 ORM 行，不修改核心；pattern_detector 仅聚合 + 知识库查表；improvement_report 仅串联），不修改模型、不训练模型；5 类模式根因与改进建议为工程方向（对齐报表口径/启用逻辑检查/提升证据覆盖率等），非模型训练；禁止词护栏确保不输出投资建议
+
+### 完成后停止
+
+不修改已有核心模块；不自动修改模型；不输出投资建议（任务书终止边界）。
