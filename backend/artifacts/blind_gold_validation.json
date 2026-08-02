@@ -1,0 +1,66 @@
+{
+  "phase": "23.8",
+  "validator": "validate_blind_gold",
+  "timestamp": "2026-08-02T14:59:30+00:00Z",
+  "overall_passed": false,
+  "verdict": "BLOCKED",
+  "checks": [
+    {
+      "check": "company_count",
+      "passed": false,
+      "issues": [
+        "blind_holdout 目录不存在"
+      ],
+      "info": {}
+    },
+    {
+      "check": "forbidden_companies",
+      "passed": true,
+      "issues": []
+    },
+    {
+      "check": "total_claim_count",
+      "passed": false,
+      "issues": [
+        "总主张数 0 < 30"
+      ],
+      "info": {
+        "total_claims": 0
+      }
+    },
+    {
+      "check": "file_hash_fixed",
+      "passed": true,
+      "issues": [],
+      "info": {}
+    },
+    {
+      "check": "gold_not_imported_by_runtime",
+      "passed": true,
+      "issues": []
+    }
+  ],
+  "per_company": [],
+  "summary": {
+    "companies": [],
+    "total_claims": 0,
+    "min_companies_required": 2,
+    "min_claims_per_company": 15,
+    "min_total_claims": 30,
+    "required_verdicts": [
+      "INSUFFICIENT_EVIDENCE",
+      "PARTIALLY_SUPPORTED",
+      "REFUTED",
+      "SUPPORTED"
+    ],
+    "forbidden_companies": [
+      "000333",
+      "000858",
+      "300750",
+      "五粮液",
+      "宁德时代",
+      "美的集团"
+    ]
+  },
+  "note": "未通过时 Blind Holdout 保持 BLOCKED；通过后可解除 BLOCKED 并执行真正独立验收"
+}

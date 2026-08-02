@@ -1,0 +1,4030 @@
+{
+  "phase": "23.8",
+  "script": "phase23_8_oracle_case_diagnosis",
+  "total_claims": 43,
+  "correct_count": 26,
+  "error_count": 17,
+  "failure_distribution": {
+    "THOUSAND_SEPARATOR_ERROR": 1,
+    "SEMANTIC_OVERREACH": 6,
+    "MULTIPLE_NUMBER_AMBIGUITY": 3,
+    "EVIDENCE_INCOMPLETE": 1,
+    "VERDICT_MAPPING_ERROR": 4,
+    "PARTIAL_BOUNDARY_ERROR": 2
+  },
+  "cases": [
+    {
+      "claim_id": "CLM-001",
+      "company": "美的集团",
+      "claim_text": "公司2025年实现营业收入4564.52亿元，同比增长12.11%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "document_id": "annual_report.pdf",
+      "page": 9,
+      "block_id": "EVD-001",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            2,
+            6
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "4564.52亿元",
+          "normalized_value": 4564.52,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            13,
+            22
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "12.11%",
+          "normalized_value": 12.11,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            27,
+            33
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "456,451,731",
+          "normalized_value": 456451731.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            21
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "407,149,600",
+          "normalized_value": 407149600.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            21,
+            33
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "12.11%",
+          "normalized_value": 12.11,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            33,
+            39
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 4564.51731,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-002",
+      "company": "美的集团",
+      "claim_text": "营业总收入为4564.52亿元，与营业收入基本持平",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "REFUTED",
+      "evidence_text": "一、营业总收入 458,502,407 409,084,266",
+      "document_id": "annual_report.pdf",
+      "page": 135,
+      "block_id": "EVD-002",
+      "extracted_claim_values": [
+        {
+          "raw_text": "4564.52亿元",
+          "normalized_value": 4564.52,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            6,
+            15
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "458,502,407",
+          "normalized_value": 458502407.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            8,
+            20
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "409,084,266",
+          "normalized_value": 409084266.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            20,
+            31
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "total_operating_revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:mismatch",
+      "calculated_value": null,
+      "confidence": 0.8,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-003",
+      "company": "美的集团",
+      "claim_text": "归母净利润439.45亿元",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "document_id": "annual_report.pdf",
+      "page": 9,
+      "block_id": "EVD-003",
+      "extracted_claim_values": [
+        {
+          "raw_text": "439.45亿元",
+          "normalized_value": 439.45,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            5,
+            13
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "43,945,411",
+          "normalized_value": 43945411.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            18,
+            29
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "38,537,237",
+          "normalized_value": 38537237.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            29,
+            40
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "14.03%",
+          "normalized_value": 14.03,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            40,
+            46
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "net_profit_attributable",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 439.45411,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-004",
+      "company": "美的集团",
+      "claim_text": "归母净利润439.45亿元，同比增长38.02%",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "REFUTED",
+      "evidence_text": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "document_id": "annual_report.pdf",
+      "page": 9,
+      "block_id": "EVD-004",
+      "extracted_claim_values": [
+        {
+          "raw_text": "439.45亿元",
+          "normalized_value": 439.45,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            5,
+            13
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "38.02%",
+          "normalized_value": 38.02,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            18,
+            24
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "43,945,411",
+          "normalized_value": 43945411.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            18,
+            29
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "38,537,237",
+          "normalized_value": 38537237.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            29,
+            40
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "14.03%",
+          "normalized_value": 14.03,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            40,
+            46
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "yoy_growth_net_profit",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "%",
+      "evidence_unit": "%",
+      "rule_id": "numeric:mismatch",
+      "calculated_value": null,
+      "confidence": 0.8,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-005",
+      "company": "美的集团",
+      "claim_text": "报告期内毛利率26.4%",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "REFUTED",
+      "evidence_text": "456,451,731 407,149,600",
+      "document_id": "annual_report.pdf",
+      "page": 135,
+      "block_id": "EVD-005",
+      "extracted_claim_values": [
+        {
+          "raw_text": "26.4%",
+          "normalized_value": 26.4,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            7,
+            12
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "456,451,731",
+          "normalized_value": 456451731.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            0,
+            12
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "407,149,600",
+          "normalized_value": 407149600.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            12,
+            23
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "(335,989,528) ",
+          "normalized_value": 335989528.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "negative_paren",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            0,
+            14
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "(299,584,935)",
+          "normalized_value": 299584935.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "negative_paren",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            14,
+            27
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "gross_margin",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "%",
+      "evidence_unit": "%",
+      "rule_id": "numeric:mismatch",
+      "calculated_value": null,
+      "confidence": 0.8,
+      "failure_category": "THOUSAND_SEPARATOR_ERROR",
+      "failure_reason": "千分位分隔符导致数值抽取错误，正确数值被误判为不匹配"
+    },
+    {
+      "claim_id": "CLM-006",
+      "company": "美的集团",
+      "claim_text": "毛利率26.4%，较上年提升0.7个百分点",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "REFUTED",
+      "evidence_text": "456,451,731 407,149,600",
+      "document_id": "annual_report.pdf",
+      "page": 135,
+      "block_id": "EVD-007",
+      "extracted_claim_values": [
+        {
+          "raw_text": "26.4%",
+          "normalized_value": 26.4,
+          "scale": "",
+          "currency": "",
+          "unit": "个百分点",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            3,
+            8
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "0.7",
+          "normalized_value": 0.7,
+          "scale": "",
+          "currency": "",
+          "unit": "个百分点",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            14,
+            17
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "456,451,731",
+          "normalized_value": 456451731.0,
+          "scale": "",
+          "currency": "",
+          "unit": "个百分点",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            0,
+            12
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "407,149,600",
+          "normalized_value": 407149600.0,
+          "scale": "",
+          "currency": "",
+          "unit": "个百分点",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            12,
+            23
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "(335,989,528) ",
+          "normalized_value": 335989528.0,
+          "scale": "",
+          "currency": "",
+          "unit": "个百分点",
+          "percentage_type": "",
+          "sign": "negative_paren",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            0,
+            14
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "(299,584,935)",
+          "normalized_value": 299584935.0,
+          "scale": "",
+          "currency": "",
+          "unit": "个百分点",
+          "percentage_type": "",
+          "sign": "negative_paren",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            14,
+            27
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "gross_margin_change",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "个百分点",
+      "evidence_unit": "个百分点",
+      "rule_id": "numeric:mismatch",
+      "calculated_value": null,
+      "confidence": 0.8,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-007",
+      "company": "美的集团",
+      "claim_text": "2025年第一季度，公司实现营业收入1278.39亿元，同比增长20.49%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "document_id": "q1_report.pdf",
+      "page": 2,
+      "block_id": "EVD-009",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            0,
+            4
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "1278.39亿元",
+          "normalized_value": 1278.39,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            18,
+            27
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "20.49%",
+          "normalized_value": 20.49,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            32,
+            38
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "127,838,538",
+          "normalized_value": 127838538.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            21
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "106,101,612",
+          "normalized_value": 106101612.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            21,
+            33
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "20.49%",
+          "normalized_value": 20.49,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            33,
+            39
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025Q1",
+      "evidence_period": "2025Q1",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 1278.3853800000002,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-008",
+      "company": "美的集团",
+      "claim_text": "2025年上半年，公司营业总收入2523.31亿元，同比增长15.7%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "一、营业总收入 252,331,494 218,121,839",
+      "document_id": "half_year_report.pdf",
+      "page": 96,
+      "block_id": "EVD-010",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            0,
+            4
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "2523.31亿元",
+          "normalized_value": 2523.31,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            16,
+            25
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "15.7%",
+          "normalized_value": 15.7,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            30,
+            35
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "252,331,494",
+          "normalized_value": 252331494.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            8,
+            20
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "218,121,839",
+          "normalized_value": 218121839.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            20,
+            31
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            0,
+            5
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "2523 亿元",
+          "normalized_value": 2523.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            24
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "15.7%",
+          "normalized_value": 15.7,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            29,
+            34
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "total_operating_revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025H1",
+      "evidence_period": "2025H1",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 2523.0,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-009",
+      "company": "美的集团",
+      "claim_text": "第二季度单季实现营业收入2523.31亿元",
+      "claim_type": "scope",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "evidence_text": "一、营业总收入 252,331,494 218,121,839",
+      "document_id": "half_year_report.pdf",
+      "page": 96,
+      "block_id": "EVD-012",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2523.31亿元",
+          "normalized_value": 2523.31,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            12,
+            21
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "252,331,494",
+          "normalized_value": 252331494.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            8,
+            20
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "218,121,839",
+          "normalized_value": 218121839.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            20,
+            31
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "127,838,538",
+          "normalized_value": 127838538.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            8,
+            20
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "106,101,612",
+          "normalized_value": 106101612.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            20,
+            32
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "240,751",
+          "normalized_value": 240751.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            32,
+            39
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "quarterly_revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025Q2",
+      "evidence_period": "2025Q2",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "semantic:scope",
+      "calculated_value": null,
+      "confidence": 0.6,
+      "failure_category": "SEMANTIC_OVERREACH",
+      "failure_reason": "Semantic Verifier 覆盖了确定性数值冲突，REFUTED 应优先于 PARTIAL"
+    },
+    {
+      "claim_id": "CLM-010",
+      "company": "美的集团",
+      "claim_text": "第二季度归母净利润260.14亿元",
+      "claim_type": "scope",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "evidence_text": "归属于母公司股东的净利润 26,013,690 20,804,176",
+      "document_id": "half_year_report.pdf",
+      "page": 96,
+      "block_id": "EVD-014",
+      "extracted_claim_values": [
+        {
+          "raw_text": "260.14亿元",
+          "normalized_value": 260.14,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            17
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "26,013,690",
+          "normalized_value": 26013690.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            13,
+            24
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "20,804,176",
+          "normalized_value": 20804176.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            24,
+            34
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "12,422,233",
+          "normalized_value": 12422233.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            13,
+            24
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "9,000,007",
+          "normalized_value": 9000007.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            24,
+            34
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "245,043",
+          "normalized_value": 245043.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            34,
+            41
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "quarterly_net_profit_attributable",
+      "evidence_metric": "",
+      "claimed_period": "2025Q2",
+      "evidence_period": "2025Q2",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "semantic:scope",
+      "calculated_value": null,
+      "confidence": 0.6,
+      "failure_category": "SEMANTIC_OVERREACH",
+      "failure_reason": "Semantic Verifier 覆盖了确定性数值冲突，REFUTED 应优先于 PARTIAL"
+    },
+    {
+      "claim_id": "CLM-011",
+      "company": "美的集团",
+      "claim_text": "实现归母净利润124.22亿元，同比增长38.02%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+      "document_id": "q1_report.pdf",
+      "page": 2,
+      "block_id": "EVD-016",
+      "extracted_claim_values": [
+        {
+          "raw_text": "124.22亿元",
+          "normalized_value": 124.22,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            7,
+            15
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "38.02%",
+          "normalized_value": 38.02,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            20,
+            26
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "12,422,233",
+          "normalized_value": 12422233.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            18,
+            29
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "9,000,007",
+          "normalized_value": 9000007.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            29,
+            39
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "38.02%",
+          "normalized_value": 38.02,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            39,
+            45
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "net_profit_attributable",
+      "evidence_metric": "",
+      "claimed_period": "2025Q1",
+      "evidence_period": "2025Q1",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 124.22233000000001,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-012",
+      "company": "美的集团",
+      "claim_text": "基本每股收益5.80元，同比增长6.62%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "基本每股收益（元/股） 5.80 5.44 6.62%",
+      "document_id": "annual_report.pdf",
+      "page": 9,
+      "block_id": "EVD-017",
+      "extracted_claim_values": [
+        {
+          "raw_text": "5.80元",
+          "normalized_value": 5.8,
+          "scale": "1",
+          "currency": "CNY",
+          "unit": "元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            6,
+            11
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "6.62%",
+          "normalized_value": 6.62,
+          "scale": "",
+          "currency": "",
+          "unit": "元/股",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            16,
+            21
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "5.80",
+          "normalized_value": 5.8,
+          "scale": "",
+          "currency": "",
+          "unit": "元/股",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            12,
+            17
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "5.44",
+          "normalized_value": 5.44,
+          "scale": "",
+          "currency": "",
+          "unit": "元/股",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            22
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "6.62%",
+          "normalized_value": 6.62,
+          "scale": "",
+          "currency": "",
+          "unit": "元/股",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            22,
+            27
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "basic_eps",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "元/股",
+      "evidence_unit": "元/股",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 5.8,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-013",
+      "company": "美的集团",
+      "claim_text": "上半年基本每股收益3.41元",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "基本每股收益 人民币元/股 3.41 3.02",
+      "document_id": "half_year_report.pdf",
+      "page": 173,
+      "block_id": "EVD-018",
+      "extracted_claim_values": [
+        {
+          "raw_text": "3.41元",
+          "normalized_value": 3.41,
+          "scale": "1",
+          "currency": "CNY",
+          "unit": "元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            14
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "3.41",
+          "normalized_value": 3.41,
+          "scale": "",
+          "currency": "",
+          "unit": "元/股",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            14,
+            19
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "3.02",
+          "normalized_value": 3.02,
+          "scale": "",
+          "currency": "",
+          "unit": "元/股",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            19,
+            23
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "basic_eps",
+      "evidence_metric": "",
+      "claimed_period": "2025H1",
+      "evidence_period": "2025H1",
+      "claimed_unit": "元/股",
+      "evidence_unit": "元/股",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 3.41,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-014",
+      "company": "美的集团",
+      "claim_text": "全年经营活动现金流量净额533.46亿元，同比下降11.84%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "document_id": "annual_report.pdf",
+      "page": 9,
+      "block_id": "EVD-019",
+      "extracted_claim_values": [
+        {
+          "raw_text": "533.46亿元",
+          "normalized_value": 533.46,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            12,
+            20
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "11.84%",
+          "normalized_value": 11.84,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            25,
+            31
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "53,345,930",
+          "normalized_value": 53345930.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            18,
+            29
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "60,511,572",
+          "normalized_value": 60511572.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            29,
+            40
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-11.84%",
+          "normalized_value": -11.84,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            40,
+            47
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "operating_cash_flow",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 533.4593000000001,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-015",
+      "company": "美的集团",
+      "claim_text": "根据公司2025年一季度报告，2025年上半年公司营业收入同比增长20.49%",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "营业总收入2523 亿元，同比增长15.7%",
+      "document_id": "half_year_report.pdf",
+      "page": 17,
+      "block_id": "EVD-020",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            4,
+            8
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            15,
+            19
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "20.49%",
+          "normalized_value": 20.49,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            33,
+            39
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "2523 亿元",
+          "normalized_value": 2523.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            5,
+            12
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "15.7%",
+          "normalized_value": 15.7,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            22
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "127,838,538",
+          "normalized_value": 127838538.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            21
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "106,101,612",
+          "normalized_value": 106101612.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            21,
+            33
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "20.49%",
+          "normalized_value": 20.49,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            33,
+            39
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "yoy_growth_revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025H1",
+      "evidence_period": "2025H1",
+      "claimed_unit": "%",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 20.49,
+      "confidence": 0.98,
+      "failure_category": "MULTIPLE_NUMBER_AMBIGUITY",
+      "failure_reason": "Evidence 含多个数字，系统误选了接近主张的错误数字"
+    },
+    {
+      "claim_id": "CLM-016",
+      "company": "美的集团",
+      "claim_text": "根据公司2025年3月31日发布的2025年年度报告",
+      "claim_type": "business_fact",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "evidence_text": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+      "document_id": "annual_report.pdf",
+      "page": 1,
+      "block_id": "EVD-022",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            4,
+            8
+          ],
+          "extraction_confidence": 0.5
+        },
+        {
+          "raw_text": "31",
+          "normalized_value": 31.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            11,
+            13
+          ],
+          "extraction_confidence": 0.5
+        },
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            21
+          ],
+          "extraction_confidence": 0.5
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            10,
+            15
+          ],
+          "extraction_confidence": 0.5
+        },
+        {
+          "raw_text": "2026",
+          "normalized_value": 2026.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            21,
+            26
+          ],
+          "extraction_confidence": 0.5
+        }
+      ],
+      "claimed_metric": "publication_date",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": null,
+      "evidence_unit": "",
+      "rule_id": "semantic:business_fact",
+      "calculated_value": null,
+      "confidence": 0.6,
+      "failure_category": "SEMANTIC_OVERREACH",
+      "failure_reason": "Semantic Verifier 覆盖了确定性数值冲突，REFUTED 应优先于 PARTIAL"
+    },
+    {
+      "claim_id": "CLM-017",
+      "company": "美的集团",
+      "claim_text": "公司2025年实现营业收入4071.50亿元",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "document_id": "annual_report.pdf",
+      "page": 9,
+      "block_id": "EVD-023",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            2,
+            6
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "4071.50亿元",
+          "normalized_value": 4071.5,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            13,
+            22
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "456,451,731",
+          "normalized_value": 456451731.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            21
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "407,149,600",
+          "normalized_value": 407149600.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            21,
+            33
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "12.11%",
+          "normalized_value": 12.11,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            33,
+            39
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 4071.4960000000005,
+      "confidence": 0.98,
+      "failure_category": "MULTIPLE_NUMBER_AMBIGUITY",
+      "failure_reason": "Evidence 含多个数字，系统误选了接近主张的错误数字"
+    },
+    {
+      "claim_id": "CLM-018",
+      "company": "美的集团",
+      "claim_text": "全年经营现金流净额5334.59亿元",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "REFUTED",
+      "evidence_text": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "document_id": "annual_report.pdf",
+      "page": 9,
+      "block_id": "EVD-024",
+      "extracted_claim_values": [
+        {
+          "raw_text": "5334.59亿元",
+          "normalized_value": 5334.59,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            18
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "53,345,930",
+          "normalized_value": 53345930.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            18,
+            29
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "60,511,572",
+          "normalized_value": 60511572.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            29,
+            40
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-11.84%",
+          "normalized_value": -11.84,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            40,
+            47
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "operating_cash_flow",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:mismatch",
+      "calculated_value": null,
+      "confidence": 0.8,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-019",
+      "company": "美的集团",
+      "claim_text": "公司持续深化\"国内高端品牌和海外OBM优先\"战略",
+      "claim_type": "business_fact",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_text": "支撑国内高端品牌和海外OBM 优先战略",
+      "document_id": "half_year_report.pdf",
+      "page": 17,
+      "block_id": "EVD-025",
+      "extracted_claim_values": [],
+      "extracted_evidence_values": [],
+      "claimed_metric": "overseas_obm_strategy",
+      "evidence_metric": "",
+      "claimed_period": "2025H1",
+      "evidence_period": "2025H1",
+      "claimed_unit": null,
+      "evidence_unit": "",
+      "rule_id": "semantic:business_fact",
+      "calculated_value": null,
+      "confidence": 0.4,
+      "failure_category": "EVIDENCE_INCOMPLETE",
+      "failure_reason": "Evidence 中无数值抽取结果，但 Gold 标注为 SUPPORTED（抽取器遗漏或单位未识别）"
+    },
+    {
+      "claim_id": "CLM-020",
+      "company": "美的集团",
+      "claim_text": "海外业务已成为公司利润增长的核心引擎",
+      "claim_type": "causality",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_text": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%",
+      "document_id": "half_year_report.pdf",
+      "page": 17,
+      "block_id": "EVD-026",
+      "extracted_claim_values": [],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "2523 亿元",
+          "normalized_value": 2523.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            5,
+            12
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "15.7%",
+          "normalized_value": 15.7,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            22
+          ],
+          "extraction_confidence": 0.5
+        },
+        {
+          "raw_text": "260 亿元",
+          "normalized_value": 260.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            30,
+            36
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "25.0%",
+          "normalized_value": 25.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            41,
+            46
+          ],
+          "extraction_confidence": 0.5
+        }
+      ],
+      "claimed_metric": "profit_driver_attribution",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": null,
+      "evidence_unit": "亿元",
+      "rule_id": "semantic:causality",
+      "calculated_value": null,
+      "confidence": 0.4,
+      "failure_category": "SEMANTIC_OVERREACH",
+      "failure_reason": "Semantic Verifier 对 REFUTED 的因果/业务事实误判为证据不足，应识别冲突"
+    },
+    {
+      "claim_id": "CLM-021",
+      "company": "美的集团",
+      "claim_text": "海外市场收入已贡献公司过半利润",
+      "claim_type": "causality",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "predicted_verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_text": "",
+      "document_id": "",
+      "page": null,
+      "block_id": "",
+      "extracted_claim_values": [],
+      "extracted_evidence_values": [],
+      "claimed_metric": "overseas_profit_share",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": null,
+      "evidence_unit": "",
+      "rule_id": "semantic:causality",
+      "calculated_value": null,
+      "confidence": 0.4,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-022",
+      "company": "美的集团",
+      "claim_text": "机器人业务毛利率高于行业平均水平20个百分点",
+      "claim_type": "comparison",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "predicted_verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_text": "",
+      "document_id": "",
+      "page": null,
+      "block_id": "",
+      "extracted_claim_values": [
+        {
+          "raw_text": "20",
+          "normalized_value": 20.0,
+          "scale": "",
+          "currency": "",
+          "unit": "个百分点",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            16,
+            18
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [],
+      "claimed_metric": "robot_margin_vs_industry",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "个百分点",
+      "evidence_unit": "",
+      "rule_id": "semantic:comparison",
+      "calculated_value": null,
+      "confidence": 0.4,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-023",
+      "company": "美的集团",
+      "claim_text": "公司营业收入将突破5000亿元",
+      "claim_type": "forecast",
+      "expected_verdict": "OPINION_OR_FORECAST",
+      "predicted_verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_text": "",
+      "document_id": "",
+      "page": null,
+      "block_id": "",
+      "extracted_claim_values": [
+        {
+          "raw_text": "5000亿元",
+          "normalized_value": 5000.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            15
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [],
+      "claimed_metric": "revenue_forecast",
+      "evidence_metric": "",
+      "claimed_period": "2026FY",
+      "evidence_period": "2026FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "",
+      "rule_id": "semantic:forecast",
+      "calculated_value": null,
+      "confidence": 0.4,
+      "failure_category": "VERDICT_MAPPING_ERROR",
+      "failure_reason": "forecast 类的 OPINION_OR_FORECAST verdict 未在系统实现，误判为 INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-024",
+      "company": "美的集团",
+      "claim_text": "公司2025年收入增速超过15%",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "PARTIALLY_SUPPORTED",
+      "predicted_verdict": "REFUTED",
+      "evidence_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "document_id": "annual_report.pdf",
+      "page": 9,
+      "block_id": "EVD-027",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            2,
+            6
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "15%",
+          "normalized_value": 15.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            13,
+            16
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "456,451,731",
+          "normalized_value": 456451731.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            21
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "407,149,600",
+          "normalized_value": 407149600.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            21,
+            33
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "12.11%",
+          "normalized_value": 12.11,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            33,
+            39
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "2523 亿元",
+          "normalized_value": 2523.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            5,
+            12
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "15.7%",
+          "normalized_value": 15.7,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            22
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "yoy_growth_revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "%",
+      "evidence_unit": "%",
+      "rule_id": "numeric:mismatch",
+      "calculated_value": null,
+      "confidence": 0.8,
+      "failure_category": "PARTIAL_BOUNDARY_ERROR",
+      "failure_reason": "主张含多个组成部分，部分得到支持但被整体判为 REFUTED（应判 PARTIAL）"
+    },
+    {
+      "claim_id": "CLM-025",
+      "company": "美的集团",
+      "claim_text": "2025年第四季度单季营业收入超过1200亿元",
+      "claim_type": "scope",
+      "expected_verdict": "UNABLE_TO_DETERMINE",
+      "predicted_verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_text": "",
+      "document_id": "",
+      "page": null,
+      "block_id": "",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            0,
+            4
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "1200亿元",
+          "normalized_value": 1200.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            23
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [],
+      "claimed_metric": "quarterly_revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025Q4",
+      "evidence_period": "2025Q4",
+      "claimed_unit": "亿元",
+      "evidence_unit": "",
+      "rule_id": "semantic:scope",
+      "calculated_value": null,
+      "confidence": 0.4,
+      "failure_category": "VERDICT_MAPPING_ERROR",
+      "failure_reason": "scope 类 UNABLE_TO_DETERMINE（无法判定口径）误判为 INSUFFICIENT_EVIDENCE（证据不足）"
+    },
+    {
+      "claim_id": "CLM-026",
+      "company": "美的集团",
+      "claim_text": "上半年扣非归母净利润262亿元，同比增长30.0%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "实现扣非归母净利润262 亿元，同比增长30.0%",
+      "document_id": "half_year_report.pdf",
+      "page": 17,
+      "block_id": "EVD-029",
+      "extracted_claim_values": [
+        {
+          "raw_text": "262亿元",
+          "normalized_value": 262.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            10,
+            15
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "30.0%",
+          "normalized_value": 30.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            20,
+            25
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "262 亿元",
+          "normalized_value": 262.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            15
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "30.0%",
+          "normalized_value": 30.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            20,
+            25
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "deducted_net_profit",
+      "evidence_metric": "",
+      "claimed_period": "2025H1",
+      "evidence_period": "2025H1",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 262.0,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H01",
+      "company": "五粮液",
+      "claim_text": "公司2025年实现营业收入405.29亿元，同比下降54.55%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H01",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            2,
+            6
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "405.29亿元",
+          "normalized_value": 405.29,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            13,
+            21
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "54.55%",
+          "normalized_value": 54.55,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            26,
+            32
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "40,528,509,770.23",
+          "normalized_value": 40528509770.23,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            8,
+            26
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "89,175,178,322.70",
+          "normalized_value": 89175178322.7,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            26,
+            44
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-54.55%",
+          "normalized_value": -54.55,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            44,
+            51
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 405.28509770230005,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H02",
+      "company": "五粮液",
+      "claim_text": "归母净利润89.54亿元",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H02",
+      "extracted_claim_values": [
+        {
+          "raw_text": "89.54亿元",
+          "normalized_value": 89.54,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            5,
+            12
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "8,954,257,202.51",
+          "normalized_value": 8954257202.51,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            34
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "31,853,172,533.98",
+          "normalized_value": 31853172533.98,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            34,
+            52
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-71.89%",
+          "normalized_value": -71.89,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            52,
+            59
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "net_profit_attributable",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 89.5425720251,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H03",
+      "company": "五粮液",
+      "claim_text": "归母净利润89.54亿元，同比下降38.02%",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "REFUTED",
+      "evidence_text": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H03",
+      "extracted_claim_values": [
+        {
+          "raw_text": "89.54亿元",
+          "normalized_value": 89.54,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            5,
+            12
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "38.02%",
+          "normalized_value": 38.02,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            23
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "8,954,257,202.51",
+          "normalized_value": 8954257202.51,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            34
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "31,853,172,533.98",
+          "normalized_value": 31853172533.98,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            34,
+            52
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-71.89%",
+          "normalized_value": -71.89,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            52,
+            59
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "yoy_growth_net_profit",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "%",
+      "evidence_unit": "%",
+      "rule_id": "numeric:mismatch",
+      "calculated_value": null,
+      "confidence": 0.8,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H04",
+      "company": "五粮液",
+      "claim_text": "全年经营活动现金流量净额297.06亿元，同比下降12.47%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H04",
+      "extracted_claim_values": [
+        {
+          "raw_text": "297.06亿元",
+          "normalized_value": 297.06,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            12,
+            20
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "12.47%",
+          "normalized_value": 12.47,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            25,
+            31
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "29,706,259,919.13",
+          "normalized_value": 29706259919.13,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            35
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "33,939,755,192.78",
+          "normalized_value": 33939755192.78,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            35,
+            53
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-12.47%",
+          "normalized_value": -12.47,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            53,
+            60
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "operating_cash_flow",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 297.0625991913,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "company": "五粮液",
+      "claim_text": "公司2025年经营活动现金流量净额297.06亿元，同比增长12.47%",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "REFUTED",
+      "evidence_text": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H05",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            2,
+            6
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "297.06亿元",
+          "normalized_value": 297.06,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            25
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "12.47%",
+          "normalized_value": 12.47,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            30,
+            36
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "29,706,259,919.13",
+          "normalized_value": 29706259919.13,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            35
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "33,939,755,192.78",
+          "normalized_value": 33939755192.78,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            35,
+            53
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-12.47%",
+          "normalized_value": -12.47,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            53,
+            60
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "yoy_growth_ocf",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "%",
+      "evidence_unit": "%",
+      "rule_id": "numeric:mismatch",
+      "calculated_value": null,
+      "confidence": 0.8,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H06",
+      "company": "五粮液",
+      "claim_text": "基本每股收益8.21元",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "基本每股收益（元/股） 2.3068 8.2062 -71.89%",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H06",
+      "extracted_claim_values": [
+        {
+          "raw_text": "8.21元",
+          "normalized_value": 8.21,
+          "scale": "1",
+          "currency": "CNY",
+          "unit": "元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            6,
+            11
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "2.3068",
+          "normalized_value": 2.3068,
+          "scale": "",
+          "currency": "",
+          "unit": "元/股",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            12,
+            19
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "8.2062",
+          "normalized_value": 8.2062,
+          "scale": "",
+          "currency": "",
+          "unit": "元/股",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            19,
+            26
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-71.89%",
+          "normalized_value": -71.89,
+          "scale": "",
+          "currency": "",
+          "unit": "元/股",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            26,
+            33
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "basic_eps",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "元/股",
+      "evidence_unit": "元/股",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 8.2062,
+      "confidence": 0.98,
+      "failure_category": "MULTIPLE_NUMBER_AMBIGUITY",
+      "failure_reason": "Evidence 含多个数字，系统误选了接近主张的错误数字"
+    },
+    {
+      "claim_id": "CLM-H07",
+      "company": "五粮液",
+      "claim_text": "加权平均净资产收益率6.89%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "加权平均净资产收益率 6.89% 23.35% 减少16.46 个百分点",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H07",
+      "extracted_claim_values": [
+        {
+          "raw_text": "6.89%",
+          "normalized_value": 6.89,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            10,
+            15
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "6.89%",
+          "normalized_value": 6.89,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            11,
+            16
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "23.35%",
+          "normalized_value": 23.35,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            23
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "16.46",
+          "normalized_value": 16.46,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            26,
+            32
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "roe",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "%",
+      "evidence_unit": "%",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 6.89,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H08",
+      "company": "五粮液",
+      "claim_text": "2025年末总资产1899.84亿元，同比增长0.92%",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "总资产（元） 189,984,270,815.47 188,252,218,704.17 0.92%",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H08",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            0,
+            4
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "1899.84亿元",
+          "normalized_value": 1899.84,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            18
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "0.92%",
+          "normalized_value": 0.92,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            23,
+            28
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "189,984,270,815.47",
+          "normalized_value": 189984270815.47,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            7,
+            26
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "188,252,218,704.17",
+          "normalized_value": 188252218704.17,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            26,
+            45
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "0.92%",
+          "normalized_value": 0.92,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            45,
+            50
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "total_assets",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 1899.8427081547,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "company": "五粮液",
+      "claim_text": "归母净资产同比增长10.02%",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "REFUTED",
+      "evidence_text": "归属于上市公司股东的净资产（元） 119,932,271,234.99 133,285,282,015.97 -10.02%",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H09",
+      "extracted_claim_values": [
+        {
+          "raw_text": "10.02%",
+          "normalized_value": 10.02,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            15
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "119,932,271,234.99",
+          "normalized_value": 119932271234.99,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            36
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "133,285,282,015.97",
+          "normalized_value": 133285282015.97,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            36,
+            55
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-10.02%",
+          "normalized_value": -10.02,
+          "scale": "",
+          "currency": "",
+          "unit": "%",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            55,
+            62
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "yoy_growth_net_assets",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "%",
+      "evidence_unit": "%",
+      "rule_id": "numeric:mismatch",
+      "calculated_value": null,
+      "confidence": 0.8,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "company": "五粮液",
+      "claim_text": "根据公司2025年3月31日发布的2025年年度报告",
+      "claim_type": "business_fact",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "evidence_text": "2026 年4 月30 日",
+      "document_id": "annual_report.pdf",
+      "page": 1,
+      "block_id": "EVD-H10",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            4,
+            8
+          ],
+          "extraction_confidence": 0.5
+        },
+        {
+          "raw_text": "31",
+          "normalized_value": 31.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            11,
+            13
+          ],
+          "extraction_confidence": 0.5
+        },
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            17,
+            21
+          ],
+          "extraction_confidence": 0.5
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "2026",
+          "normalized_value": 2026.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            0,
+            5
+          ],
+          "extraction_confidence": 0.5
+        },
+        {
+          "raw_text": "30",
+          "normalized_value": 30.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            9,
+            12
+          ],
+          "extraction_confidence": 0.5
+        }
+      ],
+      "claimed_metric": "publication_date",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": null,
+      "evidence_unit": "",
+      "rule_id": "semantic:business_fact",
+      "calculated_value": null,
+      "confidence": 0.6,
+      "failure_category": "SEMANTIC_OVERREACH",
+      "failure_reason": "Semantic Verifier 覆盖了确定性数值冲突，REFUTED 应优先于 PARTIAL"
+    },
+    {
+      "claim_id": "CLM-H11",
+      "company": "五粮液",
+      "claim_text": "扣非归母净利润88.16亿元",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "SUPPORTED",
+      "evidence_text": "归属于上市公司股东的扣除非经常性损益的净利润（元） 8,815,635,943.27 31,741,959,276.27 -72.23%",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H11",
+      "extracted_claim_values": [
+        {
+          "raw_text": "88.16亿元",
+          "normalized_value": 88.16,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            7,
+            14
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "8,815,635,943.27",
+          "normalized_value": 8815635943.27,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            26,
+            43
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "31,741,959,276.27",
+          "normalized_value": 31741959276.27,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            43,
+            61
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-72.23%",
+          "normalized_value": -72.23,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            61,
+            68
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "deducted_net_profit",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:exact_value",
+      "calculated_value": 88.1563594327,
+      "confidence": 0.98,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "company": "五粮液",
+      "claim_text": "宜宾五粮液股份有限公司在深圳证券交易所上市，股票代码000858",
+      "claim_type": "business_fact",
+      "expected_verdict": "SUPPORTED",
+      "predicted_verdict": "PARTIALLY_SUPPORTED",
+      "evidence_text": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所",
+      "document_id": "annual_report.pdf",
+      "page": 6,
+      "block_id": "EVD-H12",
+      "extracted_claim_values": [
+        {
+          "raw_text": "000858",
+          "normalized_value": 858.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            26,
+            32
+          ],
+          "extraction_confidence": 0.5
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "000858",
+          "normalized_value": 858.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            14,
+            21
+          ],
+          "extraction_confidence": 0.5
+        }
+      ],
+      "claimed_metric": "listing_info",
+      "evidence_metric": "",
+      "claimed_period": null,
+      "evidence_period": null,
+      "claimed_unit": null,
+      "evidence_unit": "",
+      "rule_id": "semantic:business_fact",
+      "calculated_value": null,
+      "confidence": 0.6,
+      "failure_category": "PARTIAL_BOUNDARY_ERROR",
+      "failure_reason": "完整匹配被降级为部分匹配（容差或边界过严）"
+    },
+    {
+      "claim_id": "CLM-H13",
+      "company": "五粮液",
+      "claim_text": "公司业绩下滑主要由白酒行业深度调整所致",
+      "claim_type": "causality",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_text": "",
+      "document_id": "",
+      "page": null,
+      "block_id": "",
+      "extracted_claim_values": [],
+      "extracted_evidence_values": [],
+      "claimed_metric": "profit_driver_attribution",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": null,
+      "evidence_unit": "",
+      "rule_id": "semantic:causality",
+      "calculated_value": null,
+      "confidence": 0.4,
+      "failure_category": "SEMANTIC_OVERREACH",
+      "failure_reason": "Semantic Verifier 对 REFUTED 的因果/业务事实误判为证据不足，应识别冲突"
+    },
+    {
+      "claim_id": "CLM-H14",
+      "company": "五粮液",
+      "claim_text": "预计2026年公司营业收入将企稳回升",
+      "claim_type": "forecast",
+      "expected_verdict": "OPINION_OR_FORECAST",
+      "predicted_verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_text": "",
+      "document_id": "",
+      "page": null,
+      "block_id": "",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2026",
+          "normalized_value": 2026.0,
+          "scale": "",
+          "currency": "",
+          "unit": "",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            2,
+            6
+          ],
+          "extraction_confidence": 0.5
+        }
+      ],
+      "extracted_evidence_values": [],
+      "claimed_metric": "revenue_forecast",
+      "evidence_metric": "",
+      "claimed_period": "2026FY",
+      "evidence_period": "2026FY",
+      "claimed_unit": null,
+      "evidence_unit": "",
+      "rule_id": "semantic:forecast",
+      "calculated_value": null,
+      "confidence": 0.4,
+      "failure_category": "VERDICT_MAPPING_ERROR",
+      "failure_reason": "forecast 类的 OPINION_OR_FORECAST verdict 未在系统实现，误判为 INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H15",
+      "company": "五粮液",
+      "claim_text": "我们估计公司2025年第四季度单季营业收入超过120亿元",
+      "claim_type": "scope",
+      "expected_verdict": "UNABLE_TO_DETERMINE",
+      "predicted_verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_text": "",
+      "document_id": "",
+      "page": null,
+      "block_id": "",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            6,
+            10
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "120亿元",
+          "normalized_value": 120.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            23,
+            28
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [],
+      "claimed_metric": "quarterly_revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025Q4",
+      "evidence_period": "2025Q4",
+      "claimed_unit": "亿元",
+      "evidence_unit": "",
+      "rule_id": "semantic:scope",
+      "calculated_value": null,
+      "confidence": 0.4,
+      "failure_category": "VERDICT_MAPPING_ERROR",
+      "failure_reason": "scope 类 UNABLE_TO_DETERMINE（无法判定口径）误判为 INSUFFICIENT_EVIDENCE（证据不足）"
+    },
+    {
+      "claim_id": "CLM-H16",
+      "company": "五粮液",
+      "claim_text": "公司2025年营业收入4052.85亿元",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "predicted_verdict": "REFUTED",
+      "evidence_text": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+      "document_id": "annual_report.pdf",
+      "page": 7,
+      "block_id": "EVD-H16",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            2,
+            6
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "4052.85亿元",
+          "normalized_value": 4052.85,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            11,
+            20
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "raw_text": "40,528,509,770.23",
+          "normalized_value": 40528509770.23,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            8,
+            26
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "89,175,178,322.70",
+          "normalized_value": 89175178322.7,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            26,
+            44
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "-54.55%",
+          "normalized_value": -54.55,
+          "scale": "1e8",
+          "currency": "CNY",
+          "unit": "亿元",
+          "percentage_type": "percentage",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            44,
+            51
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "claimed_metric": "revenue",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "亿元",
+      "evidence_unit": "亿元",
+      "rule_id": "numeric:mismatch",
+      "calculated_value": null,
+      "confidence": 0.8,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "company": "五粮液",
+      "claim_text": "公司2025年单瓶产品平均出厂价超过1000元",
+      "claim_type": "business_fact",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "predicted_verdict": "INSUFFICIENT_EVIDENCE",
+      "evidence_text": "",
+      "document_id": "",
+      "page": null,
+      "block_id": "",
+      "extracted_claim_values": [
+        {
+          "raw_text": "2025",
+          "normalized_value": 2025.0,
+          "scale": "1",
+          "currency": "CNY",
+          "unit": "元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            2,
+            6
+          ],
+          "extraction_confidence": 0.85
+        },
+        {
+          "raw_text": "1000元",
+          "normalized_value": 1000.0,
+          "scale": "1",
+          "currency": "CNY",
+          "unit": "元",
+          "percentage_type": "",
+          "sign": "plain",
+          "metric": "",
+          "period": "",
+          "source_span": [
+            18,
+            23
+          ],
+          "extraction_confidence": 0.85
+        }
+      ],
+      "extracted_evidence_values": [],
+      "claimed_metric": "avg_selling_price",
+      "evidence_metric": "",
+      "claimed_period": "2025FY",
+      "evidence_period": "2025FY",
+      "claimed_unit": "元",
+      "evidence_unit": "",
+      "rule_id": "semantic:business_fact",
+      "calculated_value": null,
+      "confidence": 0.4,
+      "failure_category": "OK",
+      "failure_reason": "预测与 Gold 一致"
+    }
+  ],
+  "note": "Development Set ONLY (美的+宁德+五粮液); Blind Holdout BLOCKED; 不修改 Gold Verdict"
+}

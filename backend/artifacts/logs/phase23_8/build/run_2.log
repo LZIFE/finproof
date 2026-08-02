@@ -1,0 +1,55 @@
+
+> finproof-frontend@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.22
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 1072ms
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/26) ...
+   Generating static pages (6/26) 
+   Generating static pages (12/26) 
+   Generating static pages (19/26) 
+ ✓ Generating static pages (26/26)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                      784 B         103 kB
+├ ○ /_not-found                            990 B         103 kB
+├ ○ /arena                               3.03 kB         105 kB
+├ ○ /audit                               2.75 kB         105 kB
+├ ○ /benchmark                           2.67 kB         105 kB
+├ ƒ /claims/[claimId]                    1.99 kB         107 kB
+├ ○ /committee                           2.98 kB         105 kB
+├ ○ /copilot                             3.48 kB         106 kB
+├ ○ /dashboard                            3.2 kB         105 kB
+├ ○ /demo                                   3 kB         105 kB
+├ ○ /documents                           1.74 kB         107 kB
+├ ƒ /documents/[documentId]              2.14 kB         108 kB
+├ ƒ /documents/[documentId]/claims       1.13 kB         107 kB
+├ ○ /evidence-retrievals                 2.19 kB         104 kB
+├ ○ /governance                             2 kB         104 kB
+├ ○ /intelligence                        2.74 kB         105 kB
+├ ○ /investigation                       2.65 kB         105 kB
+├ ○ /investment                          1.95 kB         104 kB
+├ ○ /knowledge-graph                     2.54 kB         105 kB
+├ ○ /portfolio                           2.11 kB         104 kB
+├ ○ /reasoning                           2.93 kB         105 kB
+├ ○ /red-team                            2.78 kB         105 kB
+├ ○ /reliability                         3.07 kB         105 kB
+├ ○ /replay                               2.3 kB         104 kB
+├ ○ /research-agent                      3.08 kB         105 kB
+├ ○ /simulation                          3.51 kB         106 kB
+└ ○ /verifications                       2.22 kB         104 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/611-856c2d1aa6ec1510.js       45.9 kB
+  ├ chunks/ebf0c473-91500a9b869337da.js  54.2 kB
+  └ other shared chunks (total)          1.92 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

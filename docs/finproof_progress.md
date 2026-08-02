@@ -2649,3 +2649,116 @@ backend/app/services/reliability_improvement/
 - `backend/artifacts/security/phase23_7_prompt_injection.json`
 - `backend/artifacts/phase23_7_acceptance.json`
 - `backend/artifacts/logs/phase23_7/pytest/run_{1-5}.log` + `build/run_{1-3}.log`
+
+---
+
+## Phase 23.8 核心核验引擎修复与 Blind Holdout 接入准备（2026-08-02）
+
+- **基线 commit：** `197af6f`（Phase 23.7 修复后）
+- **本阶段性质：** 仅修复 Evidence Retrieval 与 Financial Verification 两层核心，不新增 Agent/Dashboard/报告页面/比赛包装
+
+### Oracle Verification 逐案例诊断（43 条主张 22 字段）
+
+- 产物：`backend/artifacts/oracle_diagnosis/phase23_8_cases.json`
+- 43 条主张全部输出 22 字段诊断 + 错误分类
+- 17 条错误分为 6 类：SEMANTIC_OVERREACH×6 / VERDICT_MAPPING×4 / MULTIPLE_NUMBER×3 / PARTIAL_BOUNDARY×2 / THOUSAND_SEPARATOR×1 / EVIDENCE_INCOMPLETE×1
+
+### 金融数值解析重构（FinancialValue）
+
+- 模块：`backend/app/services/verification/financial_value.py`（新建，13 字段）
+- 支持：千分位（中英文逗号/全角､，）/ 单位（亿元~billion）/ 百分比/百分点/basis points / 正负号/括号负数 / 同比增长下降亏损扩大收窄 / 多数字 metric+period+unit+scope+source_span 绑定
+- **不简单选 Evidence 中第一个数字**（find_best_match 综合评分）
+- 测试：42 passed
+
+### 期间解析重构（PeriodContext）
+
+- 模块：`backend/app/services/verification/period_context.py`（新建，10 字段）
+- standalone vs cumulative 区分 + 单季度推导（Q2 standalone = H1 cumulative - Q1 cumulative）
+- DerivedValue 含 formula/input_values/calculated_value/evidence_ids/tolerance
+- 测试：17 passed
+
+### 指标和口径解析重构（metric_aliases + ScopeContext）
+
+- 模块：`backend/app/services/verification/metric_scope.py`（新建）
+- 版本化 metric_aliases（v23.8.0，20+ 指标，覆盖营业收入/净利润/归母/扣非/合并/经营现金流/毛利率/净利率/EPS/基本/稀释每股收益/海外国内分部收入/应收账款存货等）
+- ScopeContext（consolidated/parent_attributable/non_controlling_interest/adjusted/reported/segment/geography/product）
+- **不同口径不得仅因数字接近而判 SUPPORTED**
+- 测试：44 passed
+
+### Verdict 边界与 8 步决策顺序
+
+- 模块：`backend/app/services/verification/verdict_decision.py`（新建）
+- 四类 Verdict 统一定义（SUPPORTED/REFUTED/PARTIALLY_SUPPORTED/INSUFFICIENT_EVIDENCE）
+- 8 步决策顺序：evidence_availability → entity_match → metric_match → period_match → unit_scope_match → numeric_calculation → semantic_completeness → verdict_mapping
+- **guard_semantic_not_override_numeric**：REFUTED 优先，不让 Semantic 覆盖确定性数值冲突
+- 测试：16 passed
+
+### Evidence Retrieval Top-10 候选诊断
+
+- 产物：`backend/artifacts/retrieval/phase23_8_candidates.json`
+- 每条 Development Claim 输出 Top 10 完整候选诊断（15 字段）
+- 实现：公司实体 hard filter / metric alias query expansion / 数字标准化检索 / exact numeric match boost / metric 附近数字 boost / BM25 与语义分数融合 / metadata reranking / wrong-company/period/metric penalty / no-result fallback / Top-K 去重
+- Page Hit@1 0.744（PASS）/ Page Hit@5 0.628（FAIL）/ No-result Rate 0.256（FAIL）
+
+### 公司留一交叉验证（3 折，标注为 Development Cross-validation）
+
+- 产物：`backend/artifacts/cross_validation/phase23_8_company_leave_one_out.json`
+- **明确标注：这是 Development Cross-validation，不是真正 Blind Holdout**
+- Fold 1（eval 美的）：Oracle Macro-F1 0.303 / Real E2E Macro-F1 0.0 / 泄漏检查 False
+- Fold 2（eval 宁德）：SKIPPED（无 Gold 标注）
+- Fold 3（eval 五粮液）：Oracle Macro-F1 0.331 / Real E2E Macro-F1 0.0 / 泄漏检查 False
+- 平均 Oracle Macro-F1 0.317（目标 ≥0.70 FAIL）/ 平均 Real E2E Macro-F1 0.0（目标 ≥0.55 FAIL）
+
+### Blind Holdout 数据接入工具
+
+- 脚本：`backend/scripts/prepare_holdout_company.py`（新建）
+- 文档：`docs/blind_holdout_data_request.md`（新建）
+- 自动完成：复制 PDF → SHA256 → manifest → 解析 PDF → document/page/block → 建索引 → 真实 Claim Extraction（禁止读 gold_claims）→ 导出待人工标注模板
+- human_gold_* 字段默认为空，**Agent 不得自动写入 human_gold_verdict**
+
+### Blind Gold 校验器
+
+- 脚本：`backend/scripts/validate_blind_gold.py`（新建）
+- 校验 11 项（公司数/禁用公司/主张数/verdict 覆盖/block 真实/evidence 一致/verdict 非空/hash 固定/无重复/护盾）
+- **当前状态：BLOCKED**（blind_holdout 目录不存在，无两家全新公司财报）
+
+### pytest 与 build
+
+- pytest：**736 passed**（5 次连续全量绿，0 failed, 0 flaky）
+- 前端 build：**3 次 Compiled successfully**
+- Development Oracle 评测连续 2 次结果完全一致（total=43, error=17）
+
+### 未修复问题
+
+1. Blind Holdout BLOCKED：仓库无两家全新公司真实财报 PDF，无法执行真正独立验收
+2. Oracle Verification Macro-F1 0.315 远低于目标 0.80
+3. Evidence Retrieval No-result Rate 0.256 高于目标 0.15
+4. 三折公司留一平均 Oracle Macro-F1 0.317 远低于目标 0.70
+5. 43 条主张中 17 条错误未完全修复（SEMANTIC_OVERREACH×6 / VERDICT_MAPPING×4 / MULTIPLE_NUMBER×3 等）
+6. Real E2E / Blind Oracle / Blind Real E2E / 消融实验均因 BLOCKED 未执行
+
+### 评级与建议
+
+- **最终评级：FAIL**（Development 指标 0/8 达标，Blind Holdout BLOCKED）
+- **参赛建议：C（需修复）** — 不具备参赛条件，需用户补充两家全新公司财报 + Gold 标注
+
+### 交付产物
+
+- `docs/phase23_8_core_engine_repair.md`（本阶段验收文档）
+- `docs/blind_holdout_data_request.md`（Blind Holdout 数据请求清单）
+- `backend/scripts/phase23_8_oracle_case_diagnosis.py`（Oracle 逐案例诊断）
+- `backend/scripts/phase23_8_retrieval_candidates.py`（Retrieval 候选诊断）
+- `backend/scripts/phase23_8_company_leave_one_out.py`（公司留一交叉验证）
+- `backend/scripts/phase23_8_acceptance.py`（验收脚本）
+- `backend/scripts/prepare_holdout_company.py`（Blind Holdout 数据接入工具）
+- `backend/scripts/validate_blind_gold.py`（Blind Gold 校验器）
+- `backend/app/services/verification/financial_value.py`（FinancialValue）
+- `backend/app/services/verification/period_context.py`（PeriodContext）
+- `backend/app/services/verification/metric_scope.py`（metric_aliases + ScopeContext）
+- `backend/app/services/verification/verdict_decision.py`（Verdict 边界 + 8 步决策）
+- `backend/artifacts/oracle_diagnosis/phase23_8_cases.json`
+- `backend/artifacts/retrieval/phase23_8_candidates.json`
+- `backend/artifacts/cross_validation/phase23_8_company_leave_one_out.json`
+- `backend/artifacts/blind_gold_validation.json`
+- `backend/artifacts/phase23_8_acceptance.json`
+- `backend/artifacts/logs/phase23_8/pytest/run_{1-5}.log` + `build/run_{1-3}.log` + `oracle_run_{1-2}.log`

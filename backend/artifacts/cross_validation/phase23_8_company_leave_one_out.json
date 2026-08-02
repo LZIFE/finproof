@@ -1,0 +1,225 @@
+{
+  "phase": "23.8",
+  "method": "Company Leave-One-Out Cross-validation",
+  "explicit_note": "这是 Development Cross-validation，不是真正 Blind Holdout",
+  "folds": [
+    {
+      "fold": 1,
+      "train_companies": [
+        "宁德时代",
+        "五粮液"
+      ],
+      "eval_company": "美的集团",
+      "eval_claim_count": 26,
+      "oracle_accuracy": 0.577,
+      "oracle_macro_f1": 0.303,
+      "oracle_per_class_f1": {
+        "OPINION_OR_FORECAST": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "REFUTED": {
+          "precision": 0.667,
+          "recall": 0.4,
+          "f1": 0.5,
+          "support": 10
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "precision": 0.333,
+          "recall": 1.0,
+          "f1": 0.5,
+          "support": 2
+        },
+        "UNABLE_TO_DETERMINE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "SUPPORTED": {
+          "precision": 0.818,
+          "recall": 0.818,
+          "f1": 0.818,
+          "support": 11
+        },
+        "PARTIALLY_SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        }
+      },
+      "oracle_no_result_rate": 0.154,
+      "real_e2e_accuracy": 0.0,
+      "real_e2e_macro_f1": 0.0,
+      "real_e2e_per_class_f1": {
+        "ERROR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "OPINION_OR_FORECAST": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "REFUTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 10
+        },
+        "UNABLE_TO_DETERMINE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        },
+        "PARTIALLY_SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        }
+      },
+      "real_e2e_no_result_rate": 1.0,
+      "leakage_check": {
+        "leakage_found": false,
+        "issues": []
+      },
+      "note": "Development Cross-validation，不是真正 Blind Holdout",
+      "page_hit_at_5_note": "Page Hit@5 需完整 Retrieval 候选诊断（见 phase23_8_retrieval_candidates.json），此处用 no_result_rate 代理"
+    },
+    {
+      "fold": 2,
+      "eval_company": "宁德时代",
+      "status": "SKIPPED",
+      "reason": "宁德时代 无 Gold 标注（宁德时代仅作训练公司占位）",
+      "note": "Development Cross-validation，不是真正 Blind Holdout"
+    },
+    {
+      "fold": 3,
+      "train_companies": [
+        "美的集团",
+        "宁德时代"
+      ],
+      "eval_company": "五粮液",
+      "eval_claim_count": 17,
+      "oracle_accuracy": 0.647,
+      "oracle_macro_f1": 0.331,
+      "oracle_per_class_f1": {
+        "OPINION_OR_FORECAST": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "REFUTED": {
+          "precision": 1.0,
+          "recall": 0.571,
+          "f1": 0.727,
+          "support": 7
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "precision": 0.25,
+          "recall": 1.0,
+          "f1": 0.4,
+          "support": 1
+        },
+        "UNABLE_TO_DETERMINE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "SUPPORTED": {
+          "precision": 0.857,
+          "recall": 0.857,
+          "f1": 0.857,
+          "support": 7
+        },
+        "PARTIALLY_SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      },
+      "oracle_no_result_rate": 0.235,
+      "real_e2e_accuracy": 0.0,
+      "real_e2e_macro_f1": 0.0,
+      "real_e2e_per_class_f1": {
+        "ERROR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "OPINION_OR_FORECAST": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "REFUTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 7
+        },
+        "UNABLE_TO_DETERMINE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "INSUFFICIENT_EVIDENCE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 7
+        }
+      },
+      "real_e2e_no_result_rate": 1.0,
+      "leakage_check": {
+        "leakage_found": false,
+        "issues": []
+      },
+      "note": "Development Cross-validation，不是真正 Blind Holdout",
+      "page_hit_at_5_note": "Page Hit@5 需完整 Retrieval 候选诊断（见 phase23_8_retrieval_candidates.json），此处用 no_result_rate 代理"
+    }
+  ],
+  "averages": {
+    "avg_oracle_accuracy": 0.612,
+    "avg_oracle_macro_f1": 0.317,
+    "avg_real_e2e_accuracy": 0.0,
+    "avg_real_e2e_macro_f1": 0.0,
+    "avg_oracle_target": ">= 0.70",
+    "avg_e2e_target": ">= 0.55",
+    "avg_oracle_met": false,
+    "avg_e2e_met": false
+  },
+  "fold2_skipped_reason": "宁德时代无 Gold 标注（仓库仅含 Benchmark/Arena 调试 PDF，无 gold_claims.json）"
+}
