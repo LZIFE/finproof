@@ -28,7 +28,7 @@ _UNIT_TO_YI = {
 # 无需换算的单位（直接按原值比较）
 _DIRECT_UNITS = {"%", "PERCENT", "个百分点", "pp", "元/股"}
 
-_VALUE_TOLERANCE = 0.005  # 相对容差 0.5%
+_VALUE_TOLERANCE = 0.005  # 相对容差 0.5%（Phase 23.7 恢复：收紧到 0.1% 导致负数+千分位回归）
 
 
 def unit_to_yi(unit: str | None) -> float | None:

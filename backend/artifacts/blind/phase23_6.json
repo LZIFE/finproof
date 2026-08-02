@@ -1,0 +1,311 @@
+{
+  "section": "blind_test_first",
+  "blind_set_total": 26,
+  "companies": [
+    "五粮液",
+    "美的集团"
+  ],
+  "claims_per_company": {
+    "五粮液": 17,
+    "美的集团": 9
+  },
+  "verdict_distribution": {
+    "INSUFFICIENT_EVIDENCE": 18,
+    "SUPPORTED": 3,
+    "REFUTED": 5
+  },
+  "avg_retrieval_count": 1.538,
+  "avg_matched_evidence": 0.308,
+  "claims_with_zero_retrieval": 18,
+  "supported_rate": 0.115,
+  "refuted_rate": 0.192,
+  "results": [
+    {
+      "idx": 0,
+      "claim_id": "CLM-H01",
+      "entity": "五粮液",
+      "metric": "revenue",
+      "claim_type": "raw_number",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 1,
+      "claim_id": "CLM-H02",
+      "entity": "五粮液",
+      "metric": "net_profit_attributable",
+      "claim_type": "raw_number",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 2,
+      "claim_id": "CLM-H03",
+      "entity": "五粮液",
+      "metric": "yoy_growth_net_profit",
+      "claim_type": "calculated_financial_metric",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 3,
+      "claim_id": "CLM-H04",
+      "entity": "五粮液",
+      "metric": "operating_cash_flow",
+      "claim_type": "raw_number",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 4,
+      "claim_id": "CLM-H05",
+      "entity": "五粮液",
+      "metric": "yoy_growth_ocf",
+      "claim_type": "calculated_financial_metric",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 5,
+      "claim_id": "CLM-H06",
+      "entity": "五粮液",
+      "metric": "basic_eps",
+      "claim_type": "raw_number",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 6,
+      "claim_id": "CLM-H07",
+      "entity": "五粮液",
+      "metric": "roe",
+      "claim_type": "raw_number",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 7,
+      "claim_id": "CLM-H08",
+      "entity": "五粮液",
+      "metric": "total_assets",
+      "claim_type": "raw_number",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 8,
+      "claim_id": "CLM-H09",
+      "entity": "五粮液",
+      "metric": "yoy_growth_net_assets",
+      "claim_type": "calculated_financial_metric",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 9,
+      "claim_id": "CLM-H10",
+      "entity": "五粮液",
+      "metric": "publication_date",
+      "claim_type": "business_fact",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 10,
+      "claim_id": "CLM-H11",
+      "entity": "五粮液",
+      "metric": "deducted_net_profit",
+      "claim_type": "raw_number",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 11,
+      "claim_id": "CLM-H12",
+      "entity": "五粮液",
+      "metric": "listing_info",
+      "claim_type": "business_fact",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 12,
+      "claim_id": "CLM-H13",
+      "entity": "五粮液",
+      "metric": "profit_driver_attribution",
+      "claim_type": "causality",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 13,
+      "claim_id": "CLM-H14",
+      "entity": "五粮液",
+      "metric": "revenue_forecast",
+      "claim_type": "forecast",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 14,
+      "claim_id": "CLM-H15",
+      "entity": "五粮液",
+      "metric": "quarterly_revenue",
+      "claim_type": "scope",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 15,
+      "claim_id": "CLM-H16",
+      "entity": "五粮液",
+      "metric": "revenue",
+      "claim_type": "raw_number",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 16,
+      "claim_id": "CLM-H17",
+      "entity": "五粮液",
+      "metric": "avg_selling_price",
+      "claim_type": "business_fact",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    },
+    {
+      "idx": 17,
+      "claim_id": "CLM-001",
+      "entity": "美的集团",
+      "metric": "revenue",
+      "claim_type": "raw_number",
+      "retrieval_count": 5,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98,
+      "matched_evidence_count": 1
+    },
+    {
+      "idx": 18,
+      "claim_id": "CLM-002",
+      "entity": "美的集团",
+      "metric": "total_operating_revenue",
+      "claim_type": "raw_number",
+      "retrieval_count": 5,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98,
+      "matched_evidence_count": 1
+    },
+    {
+      "idx": 19,
+      "claim_id": "CLM-003",
+      "entity": "美的集团",
+      "metric": "net_profit_attributable",
+      "claim_type": "raw_number",
+      "retrieval_count": 5,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98,
+      "matched_evidence_count": 1
+    },
+    {
+      "idx": 20,
+      "claim_id": "CLM-004",
+      "entity": "美的集团",
+      "metric": "yoy_growth_net_profit",
+      "claim_type": "calculated_financial_metric",
+      "retrieval_count": 5,
+      "verification_status": "REFUTED",
+      "confidence": 0.9,
+      "matched_evidence_count": 1
+    },
+    {
+      "idx": 21,
+      "claim_id": "CLM-005",
+      "entity": "美的集团",
+      "metric": "gross_margin",
+      "claim_type": "calculated_financial_metric",
+      "retrieval_count": 5,
+      "verification_status": "REFUTED",
+      "confidence": 0.8,
+      "matched_evidence_count": 1
+    },
+    {
+      "idx": 22,
+      "claim_id": "CLM-006",
+      "entity": "美的集团",
+      "metric": "gross_margin_change",
+      "claim_type": "calculated_financial_metric",
+      "retrieval_count": 5,
+      "verification_status": "REFUTED",
+      "confidence": 0.8,
+      "matched_evidence_count": 1
+    },
+    {
+      "idx": 23,
+      "claim_id": "CLM-007",
+      "entity": "美的集团",
+      "metric": "revenue",
+      "claim_type": "raw_number",
+      "retrieval_count": 5,
+      "verification_status": "REFUTED",
+      "confidence": 0.8,
+      "matched_evidence_count": 1
+    },
+    {
+      "idx": 24,
+      "claim_id": "CLM-008",
+      "entity": "美的集团",
+      "metric": "total_operating_revenue",
+      "claim_type": "raw_number",
+      "retrieval_count": 5,
+      "verification_status": "REFUTED",
+      "confidence": 0.8,
+      "matched_evidence_count": 1
+    },
+    {
+      "idx": 25,
+      "claim_id": "CLM-009",
+      "entity": "美的集团",
+      "metric": "quarterly_revenue",
+      "claim_type": "scope",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4,
+      "matched_evidence_count": 0
+    }
+  ],
+  "duration_sec": 0.51
+}

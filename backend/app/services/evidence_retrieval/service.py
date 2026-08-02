@@ -45,7 +45,8 @@ def filter_documents(session: Session, claim: dict) -> list[Document]:
     排序：主张期间类型匹配的财报优先（2025H1 → 半年报、2025FY → 年报、2025Q1 → 一季报），
     其余同公司文档按期间类型距离兜底。
     """
-    entity = (claim.get("entity_name") or "").strip()
+    # Phase 23.7：兼容 gold_claims 的 `entity` 字段（原仅读 `entity_name` 导致公司过滤失效）
+    entity = (claim.get("entity_name") or claim.get("entity") or claim.get("company") or "").strip()
     stock = (claim.get("stock_code") or "").strip()
     q = session.query(Document).filter(Document.document_role == "SOURCE_DOCUMENT")
     if entity:

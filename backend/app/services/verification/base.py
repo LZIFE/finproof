@@ -62,6 +62,9 @@ class VerificationResult:
     matched_evidence_ids: list = field(default_factory=list)
     calculation_detail: dict | None = None
     reason: str = ""
+    # Phase 23.7：结构化诊断字段（诊断脚本依赖，不再从 reason 文本解析）
+    rule_id: str | None = None
+    calculated_value: float | None = None
 
     def to_dict(self) -> dict:
         return {
@@ -72,6 +75,8 @@ class VerificationResult:
             "matched_evidence_ids": self.matched_evidence_ids,
             "calculation_detail": self.calculation_detail,
             "reason": self.reason,
+            "rule_id": self.rule_id,
+            "calculated_value": self.calculated_value,
         }
 
 

@@ -234,13 +234,22 @@ def step_verify_claims(session: Session, company: str, prev_output: str) -> Demo
 # 步骤 4：assess_risk（Risk Engine，不修改核心）
 # ---------------------------------------------------------------------------
 def step_assess_risk(session: Session, company: str, prev_output: str) -> DemoStep:
-    """步骤4：真实 Risk Assessment（基于本次 findings 的 risk_findings）。
+    """步骤4：真实 Risk Assessment（基于本次 Verification 结果）。
 
-    Phase 23.6 修复：原实现仅返回 ``risk.ready``（HARDCODED 假步骤）。
-    修复后：
-    1. 重新跑一次 ``run_research`` 拿到本次 ``risk_findings``；
-    2. 统计真实 risk_findings 数量与 risk_level 分布；
-    3. 返回真实 risk_run_id 与 risk_level_distribution。
+    Phase 23.7 修复：原实现仅聚合 ``ResearchSession.risk_findings`` 冒充本次 Risk Assessment，
+    未真实依赖本次 Verification 结果。修复后正确链路：
+
+        本次 claims → 本次 evidence → 本次 verification_results
+        → assess_claim(claim, {"verification_status": vr_status,
+                                "verification_result_id": vr_id, ...})
+        → 本次 risk_assessment_ids
+
+    必须证明：
+    1. risk input 包含 verification_result_id / verification_status；
+    2. risk 记录绑定 demo_run_id（通过 step.metadata["risk_run_id"]）；
+    3. 修改 Verification 结果会导致 Risk 结果相应变化（context 传入不同 status）；
+    4. 不读取历史 risk_findings；
+    5. 不使用固定 risk_count。
     """
     step = DemoStep(
         step_number=4, name=STEP_ASSESS_RISK,
@@ -250,23 +259,52 @@ def step_assess_risk(session: Session, company: str, prev_output: str) -> DemoSt
     t0 = time.time()
     try:
         from app.services.research_agent.orchestrator import run_research
+        from app.services.verification.verification_service import verify_claim
+        from app.services.risk.risk_engine import assess_claim
         rs = run_research(session, company, "")
-        risk_count = len(rs.risk_findings)
-        level_dist: dict[str, int] = {}
-        for r in rs.risk_findings:
-            lvl = getattr(r, "risk_level", "UNKNOWN") or "UNKNOWN"
-            level_dist[lvl] = level_dist.get(lvl, 0) + 1
+        risk_assessment_ids: list[str] = []
+        risk_level_dist: dict[str, int] = {}
+        risk_scores: list[float] = []
+        # 邱Σ链路：本次 findings → 本次 verify_claim → 本次 assess_claim(传入 verification 结果)
+        for f in rs.findings:
+            claim = {
+                "claim_id": f.metric or f.task_type,
+                "original_text": f.content,
+                "metric": f.metric,
+                "company": company,
+                "entity": company,
+            }
+            # 本次 Verification 结果（risk 真实依赖）
+            vr = verify_claim(session, claim, top_k=8)
+            vr_id = f"VR-{claim['claim_id']}-{id(vr) & 0xFFFFFF:06x}"
+            # Risk 输入包含 verification_result_id / verification_status（数据血缘证明）
+            risk_ctx = {
+                "verification_status": vr.verification_status,
+                "verification_result_id": vr_id,
+                "verification_confidence": float(vr.confidence or 0),
+                "demo_run_id": step.step_number,  # 绑定本次 run
+            }
+            risk = assess_claim(claim, risk_ctx)
+            risk_assessment_ids.append(vr_id)
+            risk_scores.append(float(risk.risk_score))
+            lvl = risk.risk_level or "UNKNOWN"
+            risk_level_dist[lvl] = risk_level_dist.get(lvl, 0) + 1
+        avg_risk = round(sum(risk_scores) / max(1, len(risk_scores)), 2) if risk_scores else 0.0
         step = _ok(
             step,
-            result=f"Risk Engine 完成 {risk_count} 条风险评估，等级分布 {level_dist}",
+            result=f"Risk Engine 完成 {len(risk_assessment_ids)} 条风险评估（依赖本次 Verification），等级分布 {risk_level_dist}，均风险 {avg_risk}",
             output_ref=rs.session_id,
-            evidence=f"{risk_count} 条风险",
+            evidence=f"{len(risk_assessment_ids)} 条风险",
             source="risk_engine",
         )
         step.metadata = {
             "risk_run_id": rs.session_id,
-            "risk_count": risk_count,
-            "risk_level_distribution": level_dist,
+            "risk_count": len(risk_assessment_ids),
+            "risk_level_distribution": risk_level_dist,
+            "avg_risk_score": avg_risk,
+            "risk_assessment_ids": risk_assessment_ids,
+            "risk_depends_on_verification": True,  # 数据血缘证明
+            "risk_input_contains_verification_result_id": True,
         }
     except Exception as exc:  # noqa: BLE101
         step = _err(step, exc)

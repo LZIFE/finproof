@@ -1,0 +1,58 @@
+"""FinProof Red Team Tests（Phase 14）。
+
+覆盖（任务书 §8）：
+- attack generation     攻击生成（5 种攻击类型）
+- detection accuracy    检测准确率
+- benchmark calculation 指标与 Reliability Score 计算
+- API                   POST /attacks、/detection、/stress-test、GET /runs
+- frontend              （前端测试由 pnpm build 覆盖）
+
+保持已有测试全部通过。
+"""
+
+from __future__ import annotations
+
+from fastapi.testclient import TestClient
+
+from app.main import app
+from app.db import SessionLocal, init_db
+from app.services.red_team import (
+    detect_hallucination,
+    detect_batch,
+    generate_attack,
+    generate_attacks,
+    attack_distribution,
+    compute_metrics,
+    compute_reliability_score,
+    run_stress_test,
+    get_run,
+    list_runs,
+)
+from app.services.red_team.schemas import (
+    ATTACK_FORECAST_AS_FACT,
+    ATTACK_GROWTH_ERROR,
+    ATTACK_NUMERIC_HALLUCINATION,
+    ATTACK_PERIOD_CONFUSION,
+    ATTACK_UNSUPPORTED_STRATEGIC,
+    AttackCase,
+    DetectionResult,
+    StressTestMetrics,
+)
+
+
+def _fresh_db():
+    init_db()
+
+
+# ---------------------------------------------------------------------------
+# 1. Attack Generation 测试
+# ---------------------------------------------------------------------------
+def test_generate_numeric_hallucination_changes_number():
+    case = generate_attack(
+        original_claim="2024年净利润438亿",
+        attack_type=ATTACK_NUMERIC_HALLUCINATION,
+        company="美的集团",
+        stock_code="000333",
+    )
+    assert case.attack_type == ATTACK_NUMERIC_HALLUCINATION
+    assert case.original_claim =

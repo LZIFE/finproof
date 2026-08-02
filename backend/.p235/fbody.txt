@@ -1,0 +1,24 @@
+def _attack_growth(claim: str, **ctx) -> str:
+    """增长错误：将增长率大幅篡改。"""
+    pct_match = re.search(r"(\d+\.?\d*)\s*%", claim)
+    if pct_match:
+        target = pct_match.group(1)
+        try:
+            val = float(target)
+        except ValueError:
+            return claim
+        factor = random.uniform(2.0, 3.5)
+        new_val = round(val * factor, 1)
+        return claim.replace(target, str(new_val), 1)
+    return claim
+
+
+# ---------------------------------------------------------------------------
+# 无证据战略主张：将具体事实夸大为战略核心
+# ---------------------------------------------------------------------------
+_STRATEGIC_TEMPLATES = [
+    "海外业务成为利润核心引擎",
+    "机器人业务是公司未来增长的核心驱动力",
+    "新能源业务已经构成公司的战略支柱",
+]
+

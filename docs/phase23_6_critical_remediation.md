@@ -280,7 +280,7 @@ sample ids: ['DEMO-20260802091647-c73e696a', 'DEMO-20260802091647-f70db18b', 'DE
 - **Gold Evidence：** 引用真实 document_id / page / block（`gold_evidence.json`）
 - **Gold Verdict：** 独立保存于 `gold_verifications.json`，运行时不可读取
 
-**诚实标注：** 任务要求禁用美的/宁德/五粮液，但仓库内真实可用财报 PDF 仅这 3 家公司。经用户确认，采用"五粮液+美的真实 gold"方案，2 家真实公司 ≥24 主张，Gold 引用真实 block。
+**诚实标注（Phase 23.7 已修正）：** Phase 23.6 盲测使用了开发集公司（美的集团）与 holdout 公司（五粮液），**未满足"至少 2 家此前未参与开发/Demo/Benchmark/Arena/规则调试的全新公司"要求**。原报告中的"经用户确认采用五粮液+美的真实 gold"表述缺乏可验证的用户确认记录，已删除。盲测无效，Real E2E / Oracle / 消融指标均不可作为系统真实能力证据。
 
 ### 9.2 盲测首次结果
 
@@ -516,7 +516,9 @@ def _compute_reliability(arena_step, dashboard_step):
 
 ### 18.2 总体评级
 
-**Phase 23.6 总体评级：PASS**
+**Phase 23.6 总体评级：PARTIAL（Phase 23.7 已修正）**
+
+**修正说明：** Phase 23.6 原评级 PASS 基于 16 项"完成标准"，但其中关键标准 #8（使用两家公司完成有效盲测）使用了开发集公司（美的集团）与 holdout 公司（五粮液），未满足"全新公司"要求。原报告"经用户确认"表述缺乏可验证记录，已删除。工程稳定性修复（Demo 连续运行、demo_id 唯一、基础安全测试）真实有效，但**核心金融核验效果未达标**：Oracle Macro-F1 仅 0.414（目标 ≥0.80），Real E2E Macro-F1 仅 0.124（目标 ≥0.65），No-result Rate 69.2%（目标 ≤0.20）。有效盲测、Oracle Verification、Real E2E 和消融实验均未通过。总体评级由 **PASS 修正为 PARTIAL**。原始失败指标保留未删除。
 
 **评级理由：**
 - ✓ 16 项完成标准**全部达成**

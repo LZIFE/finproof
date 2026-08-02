@@ -1,0 +1,9 @@
+def test_generate_growth_error_changes_pct():
+    case = generate_attack(
+        original_claim="海外收入同比增长13%",
+        attack_type=ATTACK_GROWTH_ERROR,
+    )
+    assert case.attacked_claim != case.original_claim
+    # 13% → ~26-46%
+    assert "13%" not in case.attacked_claim
+

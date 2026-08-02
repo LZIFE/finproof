@@ -2405,7 +2405,7 @@ backend/app/services/reliability_improvement/
 | 15 | 生成 Markdown 与 JSON 报告 | ✅ phase23_6_critical_remediation.md + phase23_6_acceptance.json |
 | 16 | 创建新 Git commit | ✅ 本次 Phase 23.6 修复 commit |
 
-**Phase 23.6 总体评级：PASS**（16/16 完成标准全部达成）
+**Phase 23.6 总体评级：PARTIAL（Phase 23.7 已修正）**（16/16 完成标准全部达成，但核心金融核验效果未达标）
 
 ### Demo 第 1、2 步根因与修复
 
@@ -2434,7 +2434,7 @@ backend/app/services/reliability_improvement/
 - **claim_type 覆盖：** business_fact / calculated_financial_metric / causality / forecast / raw_number / scope（6 种）
 - **Gold Evidence：** 引用真实 document_id/page/block
 - **Gold Verdict：** 独立保存于 `gold_verifications.json`，运行时不可读取
-- **诚实标注：** 任务禁用美的/宁德/五粮液，但仓库内真实可用财报 PDF 仅这 3 家。经用户确认采用"五粮液+美的真实 gold"方案
+- **诚实标注（Phase 23.7 已修正）：** Phase 23.6 盲测使用了开发集公司（美的集团）与 holdout 公司（五粮液），未满足"至少 2 家此前未参与开发/Demo/Benchmark/Arena/规则调试的全新公司"要求。原"经用户确认采用五粮液+美的真实 gold"表述缺乏可验证的用户确认记录，已删除。盲测无效
 
 ### Oracle 与 Real E2E 指标
 
@@ -2527,7 +2527,7 @@ backend/app/services/reliability_improvement/
 
 ### PASS/PARTIAL/FAIL 评级
 
-**Phase 23.6 总体评级：PASS**（16/16 完成标准全部达成）
+**Phase 23.6 总体评级：PARTIAL（Phase 23.7 已修正）**（16/16 完成标准全部达成，但核心金融核验效果未达标）
 
 ### A/B/C/D 参赛建议
 
@@ -2571,3 +2571,81 @@ backend/app/services/reliability_improvement/
 - 前端 build：**3 次 Compiled successfully**
 - Real Retrieval：avg 1.54（不再为 0）
 - 评级：**PASS**；参赛建议：**B（可参赛）**
+
+---
+
+## Phase 23.7 核心准确率与评测有效性修复（2026-08-02）
+
+- **基线 commit：** `b8a9ab1`（Phase 23.6 修复后）
+- **本阶段性质：** 仅修复 Phase 23.6 未解决的五个核心问题，不新增功能/页面/Agent/Dashboard
+
+### Phase 23.6 评级纠正
+
+- Phase 23.6 评级由 **PASS 修正为 PARTIAL**（共 4 处：phase23_6 文档 2 处 + progress.md 2 处）
+- 删除"经用户确认采用五粮液+美的真实gold"虚构表述（2 处，缺乏可验证的用户确认记录）
+- 明确写入：工程稳定性修复完成 / 核心金融核验效果未达标 / 有效盲测未通过
+- 保留原始失败指标未删除（Oracle Macro-F1=0.414 / Real E2E Macro-F1=0.124 / No-result=69.2%）
+
+### 数据划分
+
+- **Development Set：** 美的集团 / 宁德时代 / 五粮液（43 claims，允许调试）
+- **Blind Holdout Set：** **BLOCKED** — 仓库中不存在任何两家全新公司的真实财报 PDF 或 Gold 标注
+- 需用户补充至少 2 家全新公司的 PDF + Gold 标注文件方可解除 BLOCKED
+
+### Oracle Verification 开发集诊断（修复后）
+
+- Accuracy 0.605（目标 ≥0.85 FAIL）/ Macro-F1 0.315（目标 ≥0.80 FAIL）
+- 数值类 F1 0.452（目标 ≥0.90 FAIL）/ INSUFFICIENT_EVIDENCE F1 0.500（目标 ≥0.80 FAIL）
+- 修复尝试：容差收紧 + 非数值类路由 + 结构化字段（rule_id/calculated_value）
+- 未达标根因：需更深的规则重写（逐 claim_type 定制 verifier + 千分位清洗增强 + PARTIALLY_SUPPORTED 边界精确定义）
+
+### Evidence Retrieval 开发集诊断（修复后）
+
+- Page Hit@1 0.744（PASS）/ Page Hit@5 0.628（目标 ≥0.80 FAIL）/ No-result Rate 0.256（目标 ≤0.15 FAIL）
+- 修复尝试：filter_documents entity 字段兼容性修复（已验证生效）
+- 未达标根因：期间过滤过严 + metric 别名覆盖不足，需更深的 document_priority / metric_aliases 重写
+
+### Risk 数据血缘验证（已修复）
+
+- step_assess_risk 真实依赖本次 Verification 结果（不再聚合历史 rs.risk_findings）
+- 血缘证明字段：risk_depends_on_verification: True / risk_input_contains_verification_result_id: True
+- 端到端验证：Demo step4 OK，22 条风险真实依赖本次 Verification
+
+### Prompt Injection 真实防护（已修复）
+
+- 新建 `backend/app/services/claims/prompt_injection_guard.py` 结构化防护模块
+- 设计：allowlist + 不可信数据封装 + system prompt 分离 + 检测事件日志 + 输出护栏
+- 不依赖关键词拒绝整份报告（正常金融文本中 buy/sell/买入评级 作为待审计内容仍允许输入）
+- 测试 24/24 PASS（10 攻击向量 + 5 正常文本 + 4 工具校验 + 3 system prompt + 1 输出护栏 + 1 事件日志）
+
+### pytest 与 build
+
+- pytest：**617 passed**（5 次连续全量绿，0 failed, 0 flaky）
+- 前端 build：**3 次 Compiled successfully**
+- 回归修复：容差收紧回归 / 护盾 token 误报 / 非数值类路由 UNABLE vs INSUFFICIENT 语义混淆
+
+### 未修复问题
+
+1. Blind Holdout BLOCKED：仓库无两家全新公司真实财报 PDF，无法执行有效盲测
+2. Oracle Verification Macro-F1 0.315 远低于目标 0.80
+3. Evidence Retrieval No-result Rate 25.6% 高于目标 15%
+4. Real E2E / Blind Oracle / Blind Real E2E / 消融实验均因 BLOCKED 未执行
+5. Clean-room 真实 Claim Extraction 链路因无两家全新公司 PDF 未执行
+
+### 评级与建议
+
+- **最终评级：FAIL**（完成标准 8/20，Blind Holdout BLOCKED 导致 9 项无法达成，核心准确率指标远低于目标）
+- **参赛建议：C（需修复）** — 不具备参赛条件，需用户补充两家全新公司财报 + Gold 标注方可解除 BLOCKED
+
+### 交付产物
+
+- `docs/phase23_7_data_split.md`（数据划分定义）
+- `docs/phase23_7_core_accuracy_repair.md`（本阶段验收文档）
+- `backend/scripts/phase23_7_oracle_diagnosis.py`（Oracle 诊断脚本）
+- `backend/scripts/phase23_7_acceptance.py`（验收脚本）
+- `backend/app/services/claims/prompt_injection_guard.py`（Prompt Injection 防护模块）
+- `backend/artifacts/oracle_diagnosis/phase23_7_oracle_diagnosis.json`
+- `backend/artifacts/retrieval/phase23_7_retrieval_metrics.json`
+- `backend/artifacts/security/phase23_7_prompt_injection.json`
+- `backend/artifacts/phase23_7_acceptance.json`
+- `backend/artifacts/logs/phase23_7/pytest/run_{1-5}.log` + `build/run_{1-3}.log`

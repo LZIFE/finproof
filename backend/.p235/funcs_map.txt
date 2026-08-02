@@ -1,0 +1,7 @@
+_ATTACK_FUNCS = {
+    ATTACK_NUMERIC_HALLUCINATION: _attack_numeric,
+    ATTACK_PERIOD_CONFUSION: _attack_period,
+    ATTACK_GROWTH_ERROR: _attack_growth,
+    ATTACK_UNSUPPORTED_STRATEGIC: _attack_strategic,
+    ATTACK_FORECAST_AS_FACT: _attack_forecast_as_fact,
+}

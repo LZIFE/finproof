@@ -1,0 +1,70 @@
+{
+  "section": "data_leak_audit",
+  "phase_dirs_audited": [
+    "agent_arena",
+    "financial_reasoning",
+    "governance_center",
+    "red_team",
+    "reliability_improvement",
+    "research_agent",
+    "benchmark",
+    "audit_trail",
+    "autonomous_agent",
+    "intelligence",
+    "copilot",
+    "investment_committee",
+    "knowledge_graph",
+    "monitoring",
+    "portfolio",
+    "claims",
+    "evaluation"
+  ],
+  "leak_findings": {
+    "benchmark": [
+      {
+        "file": "benchmark/dataset.py",
+        "token": "gold_evidence",
+        "line": "Evidence First：每条案例的 gold_evidence 必须可追溯（source/text）。"
+      },
+      {
+        "file": "benchmark/schemas.py",
+        "token": "gold_evidence",
+        "line": "- BenchmarkCase       评测案例（claim/category/gold_evidence/gold_result/risk_type）"
+      },
+      {
+        "file": "benchmark/evaluator.py",
+        "token": "gold_evidence",
+        "line": "evidence = case.gold_evidence or []"
+      }
+    ],
+    "claims": [
+      {
+        "file": "claims/guard.py",
+        "token": "gold_verifications",
+        "line": "- data/demo/annotations/（gold_claims/gold_evidence/gold_verifications）"
+      },
+      {
+        "file": "claims/guard.py",
+        "token": "gold_evidence",
+        "line": "- data/demo/annotations/（gold_claims/gold_evidence/gold_verifications）"
+      },
+      {
+        "file": "claims/guard.py",
+        "token": "data/holdout",
+        "line": "- data/holdout/annotations/（盲测金标准）"
+      },
+      {
+        "file": "claims/guard.py",
+        "token": "data/demo/annotations",
+        "line": "- data/demo/annotations/（gold_claims/gold_evidence/gold_verifications）"
+      }
+    ]
+  },
+  "anti_leak_mechanisms": {
+    "claims_guard_assert_extraction_isolated": true,
+    "verification_base_anti_gold_declaration": true
+  },
+  "verdict": "FAIL",
+  "note": "benchmark/claims 中的 gold_* 是 BenchmarkCase 数据结构合法字段或 FORBIDDEN_TOKENS 防护列表,非推理路径泄漏",
+  "duration_sec": 0.03
+}

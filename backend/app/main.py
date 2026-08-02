@@ -19,7 +19,7 @@ from app.api.reasoning import router as reasoning_router
 from app.api.research import router as research_router
 from app.api.simulation import router as simulation_router
 from app.api.arena import router as arena_router
-from app.api.governance_center import router as governance_router
+from app.api.governance_center import router as governance_center_router
 from app.api.replay import router as replay_router
 from app.api.demo import router as demo_router
 from app.api.reliability import router as reliability_router
@@ -69,6 +69,7 @@ def create_app() -> FastAPI:
     app.include_router(simulation_router)
     app.include_router(arena_router)
     app.include_router(governance_router)
+    app.include_router(governance_center_router)
     app.include_router(replay_router)
     app.include_router(demo_router)
     app.include_router(reliability_router)

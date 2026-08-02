@@ -1,0 +1,4 @@
+ASSIGN_L23|attacked_claim = _ATTACK_FUNCS[attack_type](original_claim)
+ASSIGN_L27|attacked_value = _extract_number(attacked_claim)
+ASSIGN_L29|period_attacked = _extract_period(attacked_claim)
+ASSIGN_L38|attacked_claim=attacked_claim,

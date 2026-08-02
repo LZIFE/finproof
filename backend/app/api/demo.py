@@ -51,12 +51,20 @@ class DemoStartRequest(BaseModel):
             return v
         if _CONTROL_CHARS_RE.search(v):
             raise ValueError("输入含非法控制字符")
-        # 反射型 XSS 防护：拒绝带 HTML/JS 标签的输入
+        # 反反射型 XSS 防护：拒绝带 HTML/JS 标签的输入
         if _DANGEROUSMarkup.search(v):
             raise ValueError("输入含非法标记（拒绝 XSS 向量）")
-        # Prompt Injection 防护：拒绝含 BUY/SELL/买入/卖出 等投资建议指令的输入
-        if _FORBIDDEN_ADVICE_RE.search(v):
-            raise ValueError("输入含投资建议禁用词（拒绝 Prompt Injection）")
+        # Phase 23.7：Prompt Injection 真实防护——不依赖关键词拒绝整份报告，
+        # 仅检测并记录注入尝试（正常金融文本中的 buy/sell/买入评级 作为待审计内容仍允许输入）。
+        from app.services.claims.prompt_injection_guard import (
+            prompt_injection_detection_event,
+        )
+        detection = prompt_injection_detection_event(v or "", source="demo_start_input")
+        if detection.detected:
+            # 检测到注入指令：可保存与展示，但不执行（不拒绝整份报告，仅拒绝该指令字段）
+            raise ValueError(
+                f"检测到 Prompt Injection 指令（已记录审计事件，拒绝执行）：{','.join(detection.categories[:3])}"
+            )
         return v
 
 
