@@ -1,0 +1,253 @@
+{
+  "section": "ablation_study",
+  "ablation_groups": 3,
+  "blind_claims": 23,
+  "companies": [
+    "五粮液",
+    "美的集团"
+  ],
+  "A_RAG_ONLY": {
+    "total": 23,
+    "verdict_distribution": {
+      "INSUFFICIENT_EVIDENCE": 23
+    },
+    "avg_confidence": 0.4,
+    "supported_rate": 0.0,
+    "duration_sec": 0.01,
+    "raw": [
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      },
+      {
+        "retrieval_count": 0,
+        "verification_status": "INSUFFICIENT_EVIDENCE",
+        "confidence": 0.4
+      }
+    ]
+  },
+  "B_FULL_FINPROOF": {
+    "demo_id": "DEMO-20260802085004",
+    "status": "DONE",
+    "reliability_score": 38.52,
+    "steps_count": 8,
+    "duration_sec": 0.16
+  },
+  "C_NO_RAG_ORACLE": {
+    "total": 23,
+    "verdict_distribution": {
+      "SUPPORTED": 18,
+      "REFUTED": 1,
+      "UNABLE_TO_DETERMINE": 4
+    },
+    "avg_confidence": 0.854,
+    "supported_rate": 0.783,
+    "duration_sec": 0.0,
+    "raw": [
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "REFUTED",
+        "confidence": 0.8
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "UNABLE_TO_DETERMINE",
+        "confidence": 0.3
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "UNABLE_TO_DETERMINE",
+        "confidence": 0.3
+      },
+      {
+        "verification_status": "UNABLE_TO_DETERMINE",
+        "confidence": 0.3
+      },
+      {
+        "verification_status": "UNABLE_TO_DETERMINE",
+        "confidence": 0.3
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      },
+      {
+        "verification_status": "SUPPORTED",
+        "confidence": 0.98
+      }
+    ]
+  },
+  "interpretation": {
+    "A": "Clean-room真实端到端",
+    "B": "完整8步Pipeline",
+    "C": "oracle上界(完美检索)"
+  },
+  "duration_sec": 0.64
+}

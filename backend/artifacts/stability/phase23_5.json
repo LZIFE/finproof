@@ -1,0 +1,100 @@
+{
+  "section": "stability_10runs",
+  "total_runs": 10,
+  "successful_runs": 1,
+  "success_rate": 0.1,
+  "duration_p50_ms": 34,
+  "duration_p95_ms": 34,
+  "duration_min_ms": 34,
+  "duration_max_ms": 34,
+  "total_duration_sec": 0.42,
+  "reliability_scores": [
+    38.52
+  ],
+  "runs": [
+    {
+      "run": 1,
+      "status": "HTTP_ERR",
+      "duration_ms": 39,
+      "http_status": 422,
+      "success": false,
+      "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+    },
+    {
+      "run": 2,
+      "status": "HTTP_ERR",
+      "duration_ms": 86,
+      "http_status": 422,
+      "success": false,
+      "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+    },
+    {
+      "run": 3,
+      "status": "HTTP_ERR",
+      "duration_ms": 65,
+      "http_status": 422,
+      "success": false,
+      "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+    },
+    {
+      "run": 4,
+      "status": "HTTP_ERR",
+      "duration_ms": 34,
+      "http_status": 422,
+      "success": false,
+      "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+    },
+    {
+      "run": 5,
+      "demo_id": "DEMO-20260802085005",
+      "status": "DONE",
+      "duration_ms": 34,
+      "reliability_score": 38.52,
+      "steps_ok": 6,
+      "steps_total": 8,
+      "http_status": 201,
+      "success": true
+    },
+    {
+      "run": 6,
+      "status": "HTTP_ERR",
+      "duration_ms": 31,
+      "http_status": 422,
+      "success": false,
+      "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+    },
+    {
+      "run": 7,
+      "status": "HTTP_ERR",
+      "duration_ms": 28,
+      "http_status": 422,
+      "success": false,
+      "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+    },
+    {
+      "run": 8,
+      "status": "HTTP_ERR",
+      "duration_ms": 29,
+      "http_status": 422,
+      "success": false,
+      "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+    },
+    {
+      "run": 9,
+      "status": "HTTP_ERR",
+      "duration_ms": 32,
+      "http_status": 422,
+      "success": false,
+      "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+    },
+    {
+      "run": 10,
+      "status": "HTTP_ERR",
+      "duration_ms": 38,
+      "http_status": 422,
+      "success": false,
+      "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+    }
+  ],
+  "duration_sec": 0.42
+}

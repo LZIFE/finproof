@@ -1,0 +1,1068 @@
+{
+  "phase": "23.5",
+  "title": "FinProof 全项目独立验收审计",
+  "audit_date": "2026-08-02T08:50:03+00:00Z",
+  "baseline_commit": "c26584b",
+  "sections": {
+    "blind": {
+      "section": "blind_test",
+      "blind_set_total": 23,
+      "companies": [
+        "五粮液",
+        "美的集团"
+      ],
+      "claims_per_company": {
+        "五粮液": 17,
+        "美的集团": 6
+      },
+      "verification_status_distribution": {
+        "INSUFFICIENT_EVIDENCE": 23
+      },
+      "avg_confidence": 0.4,
+      "avg_retrieval_count": 0.0,
+      "claims_with_zero_retrieval": 23,
+      "results": [
+        {
+          "idx": 0,
+          "claim_id": "CLM-H01",
+          "entity": "五粮液",
+          "metric": "revenue",
+          "value": 405.29,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 1,
+          "claim_id": "CLM-H02",
+          "entity": "五粮液",
+          "metric": "net_profit_attributable",
+          "value": 89.54,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 2,
+          "claim_id": "CLM-H03",
+          "entity": "五粮液",
+          "metric": "yoy_growth_net_profit",
+          "value": 38.02,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 3,
+          "claim_id": "CLM-H04",
+          "entity": "五粮液",
+          "metric": "operating_cash_flow",
+          "value": 297.06,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 4,
+          "claim_id": "CLM-H05",
+          "entity": "五粮液",
+          "metric": "yoy_growth_ocf",
+          "value": 12.47,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 5,
+          "claim_id": "CLM-H06",
+          "entity": "五粮液",
+          "metric": "basic_eps",
+          "value": 8.21,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 6,
+          "claim_id": "CLM-H07",
+          "entity": "五粮液",
+          "metric": "roe",
+          "value": 6.89,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 7,
+          "claim_id": "CLM-H08",
+          "entity": "五粮液",
+          "metric": "total_assets",
+          "value": 1899.84,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 8,
+          "claim_id": "CLM-H09",
+          "entity": "五粮液",
+          "metric": "yoy_growth_net_assets",
+          "value": 10.02,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 9,
+          "claim_id": "CLM-H10",
+          "entity": "五粮液",
+          "metric": "publication_date",
+          "value": null,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 10,
+          "claim_id": "CLM-H11",
+          "entity": "五粮液",
+          "metric": "deducted_net_profit",
+          "value": 88.16,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 11,
+          "claim_id": "CLM-H12",
+          "entity": "五粮液",
+          "metric": "listing_info",
+          "value": null,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 12,
+          "claim_id": "CLM-H13",
+          "entity": "五粮液",
+          "metric": "profit_driver_attribution",
+          "value": null,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 13,
+          "claim_id": "CLM-H14",
+          "entity": "五粮液",
+          "metric": "revenue_forecast",
+          "value": null,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 14,
+          "claim_id": "CLM-H15",
+          "entity": "五粮液",
+          "metric": "quarterly_revenue",
+          "value": 120,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 15,
+          "claim_id": "CLM-H16",
+          "entity": "五粮液",
+          "metric": "revenue",
+          "value": 4052.85,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 16,
+          "claim_id": "CLM-H17",
+          "entity": "五粮液",
+          "metric": "avg_selling_price",
+          "value": 1000,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 17,
+          "claim_id": "CLM-001",
+          "entity": "美的集团",
+          "metric": "revenue",
+          "value": 4564.52,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 18,
+          "claim_id": "CLM-002",
+          "entity": "美的集团",
+          "metric": "total_operating_revenue",
+          "value": 4564.52,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 19,
+          "claim_id": "CLM-003",
+          "entity": "美的集团",
+          "metric": "net_profit_attributable",
+          "value": 439.45,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 20,
+          "claim_id": "CLM-004",
+          "entity": "美的集团",
+          "metric": "yoy_growth_net_profit",
+          "value": 38.02,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 21,
+          "claim_id": "CLM-005",
+          "entity": "美的集团",
+          "metric": "gross_margin",
+          "value": 26.4,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        },
+        {
+          "idx": 22,
+          "claim_id": "CLM-006",
+          "entity": "美的集团",
+          "metric": "gross_margin_change",
+          "value": 0.7,
+          "retrieval_count": 0,
+          "verification_status": "INSUFFICIENT_EVIDENCE",
+          "confidence": 0.4
+        }
+      ],
+      "duration_sec": 0.41
+    },
+    "oracle": {
+      "section": "oracle_vs_real_retrieval",
+      "blind_set": {
+        "total": 23,
+        "companies": [
+          "五粮液",
+          "美的集团"
+        ]
+      },
+      "oracle_verification_metrics": {
+        "total_claims": 23,
+        "verdict_distribution": {
+          "SUPPORTED": 18,
+          "REFUTED": 1,
+          "UNABLE_TO_DETERMINE": 4
+        },
+        "avg_oracle_confidence": 0.854,
+        "oracle_supported_rate": 0.783,
+        "note": "Oracle=用claim自带文本作完美证据的理想上界,非系统能力",
+        "details": [
+          {
+            "idx": 0,
+            "claim_id": "CLM-H01",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 1,
+            "claim_id": "CLM-H02",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 2,
+            "claim_id": "CLM-H03",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 3,
+            "claim_id": "CLM-H04",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 4,
+            "claim_id": "CLM-H05",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 5,
+            "claim_id": "CLM-H06",
+            "oracle_verdict": "REFUTED",
+            "oracle_confidence": 0.8
+          },
+          {
+            "idx": 6,
+            "claim_id": "CLM-H07",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 7,
+            "claim_id": "CLM-H08",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 8,
+            "claim_id": "CLM-H09",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 9,
+            "claim_id": "CLM-H10",
+            "oracle_verdict": "UNABLE_TO_DETERMINE",
+            "oracle_confidence": 0.3
+          },
+          {
+            "idx": 10,
+            "claim_id": "CLM-H11",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 11,
+            "claim_id": "CLM-H12",
+            "oracle_verdict": "UNABLE_TO_DETERMINE",
+            "oracle_confidence": 0.3
+          },
+          {
+            "idx": 12,
+            "claim_id": "CLM-H13",
+            "oracle_verdict": "UNABLE_TO_DETERMINE",
+            "oracle_confidence": 0.3
+          },
+          {
+            "idx": 13,
+            "claim_id": "CLM-H14",
+            "oracle_verdict": "UNABLE_TO_DETERMINE",
+            "oracle_confidence": 0.3
+          },
+          {
+            "idx": 14,
+            "claim_id": "CLM-H15",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 15,
+            "claim_id": "CLM-H16",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 16,
+            "claim_id": "CLM-H17",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 17,
+            "claim_id": "CLM-001",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 18,
+            "claim_id": "CLM-002",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 19,
+            "claim_id": "CLM-003",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 20,
+            "claim_id": "CLM-004",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 21,
+            "claim_id": "CLM-005",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          },
+          {
+            "idx": 22,
+            "claim_id": "CLM-006",
+            "oracle_verdict": "SUPPORTED",
+            "oracle_confidence": 0.98
+          }
+        ]
+      },
+      "real_retrieval_e2e_metrics": {
+        "total_claims": 23,
+        "verdict_distribution": {
+          "INSUFFICIENT_EVIDENCE": 23
+        },
+        "avg_retrieval_count": 0.0,
+        "avg_confidence": 0.4,
+        "claims_with_zero_retrieval": 23,
+        "real_supported_rate": 0.0,
+        "note": "Real Retrieval=Clean-room空DB真实端到端路径",
+        "details": [
+          {
+            "idx": 0,
+            "claim_id": "CLM-H01",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 1,
+            "claim_id": "CLM-H02",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 2,
+            "claim_id": "CLM-H03",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 3,
+            "claim_id": "CLM-H04",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 4,
+            "claim_id": "CLM-H05",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 5,
+            "claim_id": "CLM-H06",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 6,
+            "claim_id": "CLM-H07",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 7,
+            "claim_id": "CLM-H08",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 8,
+            "claim_id": "CLM-H09",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 9,
+            "claim_id": "CLM-H10",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 10,
+            "claim_id": "CLM-H11",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 11,
+            "claim_id": "CLM-H12",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 12,
+            "claim_id": "CLM-H13",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 13,
+            "claim_id": "CLM-H14",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 14,
+            "claim_id": "CLM-H15",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 15,
+            "claim_id": "CLM-H16",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 16,
+            "claim_id": "CLM-H17",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 17,
+            "claim_id": "CLM-001",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 18,
+            "claim_id": "CLM-002",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 19,
+            "claim_id": "CLM-003",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 20,
+            "claim_id": "CLM-004",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 21,
+            "claim_id": "CLM-005",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "idx": 22,
+            "claim_id": "CLM-006",
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          }
+        ]
+      },
+      "gap_analysis": {
+        "oracle_supported": 18,
+        "real_supported": 0,
+        "gap_pct": 0.783
+      },
+      "duration_sec": 0.01
+    },
+    "leak": {
+      "section": "data_leak_audit",
+      "phase_dirs_audited": [
+        "agent_arena",
+        "financial_reasoning",
+        "governance_center",
+        "red_team",
+        "reliability_improvement",
+        "research_agent",
+        "benchmark",
+        "audit_trail",
+        "autonomous_agent",
+        "intelligence",
+        "copilot",
+        "investment_committee",
+        "knowledge_graph",
+        "monitoring",
+        "portfolio",
+        "claims",
+        "evaluation"
+      ],
+      "leak_findings": {
+        "benchmark": [
+          {
+            "file": "benchmark/dataset.py",
+            "token": "gold_evidence",
+            "line": "Evidence First：每条案例的 gold_evidence 必须可追溯（source/text）。"
+          },
+          {
+            "file": "benchmark/schemas.py",
+            "token": "gold_evidence",
+            "line": "- BenchmarkCase       评测案例（claim/category/gold_evidence/gold_result/risk_type）"
+          },
+          {
+            "file": "benchmark/evaluator.py",
+            "token": "gold_evidence",
+            "line": "evidence = case.gold_evidence or []"
+          }
+        ],
+        "claims": [
+          {
+            "file": "claims/guard.py",
+            "token": "gold_verifications",
+            "line": "- data/demo/annotations/（gold_claims/gold_evidence/gold_verifications）"
+          },
+          {
+            "file": "claims/guard.py",
+            "token": "gold_evidence",
+            "line": "- data/demo/annotations/（gold_claims/gold_evidence/gold_verifications）"
+          },
+          {
+            "file": "claims/guard.py",
+            "token": "data/holdout",
+            "line": "- data/holdout/annotations/（盲测金标准）"
+          },
+          {
+            "file": "claims/guard.py",
+            "token": "data/demo/annotations",
+            "line": "- data/demo/annotations/（gold_claims/gold_evidence/gold_verifications）"
+          }
+        ]
+      },
+      "anti_leak_mechanisms": {
+        "claims_guard_assert_extraction_isolated": true,
+        "verification_base_anti_gold_declaration": true
+      },
+      "verdict": "FAIL",
+      "note": "benchmark/claims 中的 gold_* 是 BenchmarkCase 数据结构合法字段或 FORBIDDEN_TOKENS 防护列表,非推理路径泄漏",
+      "duration_sec": 0.03
+    },
+    "ablation": {
+      "section": "ablation_study",
+      "ablation_groups": 3,
+      "blind_claims": 23,
+      "companies": [
+        "五粮液",
+        "美的集团"
+      ],
+      "A_RAG_ONLY": {
+        "total": 23,
+        "verdict_distribution": {
+          "INSUFFICIENT_EVIDENCE": 23
+        },
+        "avg_confidence": 0.4,
+        "supported_rate": 0.0,
+        "duration_sec": 0.01,
+        "raw": [
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          },
+          {
+            "retrieval_count": 0,
+            "verification_status": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4
+          }
+        ]
+      },
+      "B_FULL_FINPROOF": {
+        "demo_id": "DEMO-20260802085004",
+        "status": "DONE",
+        "reliability_score": 38.52,
+        "steps_count": 8,
+        "duration_sec": 0.16
+      },
+      "C_NO_RAG_ORACLE": {
+        "total": 23,
+        "verdict_distribution": {
+          "SUPPORTED": 18,
+          "REFUTED": 1,
+          "UNABLE_TO_DETERMINE": 4
+        },
+        "avg_confidence": 0.854,
+        "supported_rate": 0.783,
+        "duration_sec": 0.0,
+        "raw": [
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "REFUTED",
+            "confidence": 0.8
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "UNABLE_TO_DETERMINE",
+            "confidence": 0.3
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "UNABLE_TO_DETERMINE",
+            "confidence": 0.3
+          },
+          {
+            "verification_status": "UNABLE_TO_DETERMINE",
+            "confidence": 0.3
+          },
+          {
+            "verification_status": "UNABLE_TO_DETERMINE",
+            "confidence": 0.3
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          },
+          {
+            "verification_status": "SUPPORTED",
+            "confidence": 0.98
+          }
+        ]
+      },
+      "interpretation": {
+        "A": "Clean-room真实端到端",
+        "B": "完整8步Pipeline",
+        "C": "oracle上界(完美检索)"
+      },
+      "duration_sec": 0.64
+    },
+    "security": {
+      "section": "security_tests",
+      "total_tests": 7,
+      "passed": 4,
+      "failed": 3,
+      "results": [
+        {
+          "test": "1_Prompt_Injection",
+          "pass": false,
+          "detail": "status=422, forbidden_in_output=True"
+        },
+        {
+          "test": "2_XSS",
+          "pass": false,
+          "detail": "status=422, script_leaked_in_output=True"
+        },
+        {
+          "test": "3_Path_Traversal",
+          "pass": true,
+          "detail": "status=422, system_file_leaked=False"
+        },
+        {
+          "test": "4_Wrong_MIME",
+          "pass": true,
+          "detail": "no upload endpoint found"
+        },
+        {
+          "test": "5_Corrupt_PDF",
+          "pass": true,
+          "detail": "no upload endpoint"
+        },
+        {
+          "test": "6_Illegal_ID",
+          "pass": false,
+          "detail": "id='../../etc/passwd' -> 404; id=''; DROP TABLE demos;--' -> 404; id='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' -> 404; id='null' -> 404; id='undefined' -> 404"
+        },
+        {
+          "test": "7_SQL_Injection",
+          "pass": true,
+          "detail": "payload='1' OR '1'='1' -> 422; payload=''; DROP TABLE demo_runs;-' -> 422; payload='1 UNION SELECT * FROM use' -> 422; payload='' OR 1=1 --' -> 422"
+        }
+      ],
+      "duration_sec": 0.12
+    },
+    "stability": {
+      "section": "stability_10runs",
+      "total_runs": 10,
+      "successful_runs": 1,
+      "success_rate": 0.1,
+      "duration_p50_ms": 34,
+      "duration_p95_ms": 34,
+      "duration_min_ms": 34,
+      "duration_max_ms": 34,
+      "total_duration_sec": 0.42,
+      "reliability_scores": [
+        38.52
+      ],
+      "runs": [
+        {
+          "run": 1,
+          "status": "HTTP_ERR",
+          "duration_ms": 39,
+          "http_status": 422,
+          "success": false,
+          "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+        },
+        {
+          "run": 2,
+          "status": "HTTP_ERR",
+          "duration_ms": 86,
+          "http_status": 422,
+          "success": false,
+          "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+        },
+        {
+          "run": 3,
+          "status": "HTTP_ERR",
+          "duration_ms": 65,
+          "http_status": 422,
+          "success": false,
+          "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+        },
+        {
+          "run": 4,
+          "status": "HTTP_ERR",
+          "duration_ms": 34,
+          "http_status": 422,
+          "success": false,
+          "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+        },
+        {
+          "run": 5,
+          "demo_id": "DEMO-20260802085005",
+          "status": "DONE",
+          "duration_ms": 34,
+          "reliability_score": 38.52,
+          "steps_ok": 6,
+          "steps_total": 8,
+          "http_status": 201,
+          "success": true
+        },
+        {
+          "run": 6,
+          "status": "HTTP_ERR",
+          "duration_ms": 31,
+          "http_status": 422,
+          "success": false,
+          "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+        },
+        {
+          "run": 7,
+          "status": "HTTP_ERR",
+          "duration_ms": 28,
+          "http_status": 422,
+          "success": false,
+          "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+        },
+        {
+          "run": 8,
+          "status": "HTTP_ERR",
+          "duration_ms": 29,
+          "http_status": 422,
+          "success": false,
+          "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+        },
+        {
+          "run": 9,
+          "status": "HTTP_ERR",
+          "duration_ms": 32,
+          "http_status": 422,
+          "success": false,
+          "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+        },
+        {
+          "run": 10,
+          "status": "HTTP_ERR",
+          "duration_ms": 38,
+          "http_status": 422,
+          "success": false,
+          "body_sample": "{\"detail\":\"演示启动失败: (sqlite3.IntegrityError) UNIQUE constraint failed: demo_runs.demo_id\\n[SQL: INSERT INTO demo_runs (demo_id, company, report_id, status, current_step, reliability_score, arena_run_id"
+        }
+      ],
+      "duration_sec": 0.42
+    }
+  },
+  "total_duration_sec": 1.63
+}

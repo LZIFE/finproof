@@ -1,0 +1,44 @@
+{
+  "section": "security_tests",
+  "total_tests": 7,
+  "passed": 4,
+  "failed": 3,
+  "results": [
+    {
+      "test": "1_Prompt_Injection",
+      "pass": false,
+      "detail": "status=422, forbidden_in_output=True"
+    },
+    {
+      "test": "2_XSS",
+      "pass": false,
+      "detail": "status=422, script_leaked_in_output=True"
+    },
+    {
+      "test": "3_Path_Traversal",
+      "pass": true,
+      "detail": "status=422, system_file_leaked=False"
+    },
+    {
+      "test": "4_Wrong_MIME",
+      "pass": true,
+      "detail": "no upload endpoint found"
+    },
+    {
+      "test": "5_Corrupt_PDF",
+      "pass": true,
+      "detail": "no upload endpoint"
+    },
+    {
+      "test": "6_Illegal_ID",
+      "pass": false,
+      "detail": "id='../../etc/passwd' -> 404; id=''; DROP TABLE demos;--' -> 404; id='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' -> 404; id='null' -> 404; id='undefined' -> 404"
+    },
+    {
+      "test": "7_SQL_Injection",
+      "pass": true,
+      "detail": "payload='1' OR '1'='1' -> 422; payload=''; DROP TABLE demo_runs;-' -> 422; payload='1 UNION SELECT * FROM use' -> 422; payload='' OR 1=1 --' -> 422"
+    }
+  ],
+  "duration_sec": 0.12
+}

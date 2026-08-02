@@ -1,0 +1,57 @@
+{
+  "total_tests": 7,
+  "passed": 4,
+  "failed": 3,
+  "duration_sec": 0.23,
+  "results": [
+    {
+      "test": "1_Prompt_Injection",
+      "pass": false,
+      "detail": "status=201, forbidden_in_output=True",
+      "status_code": 201,
+      "payload_sample": "report_id含提示注入"
+    },
+    {
+      "test": "2_XSS",
+      "pass": false,
+      "detail": "status=422, script_leaked_in_output=True",
+      "status_code": 422,
+      "payload_sample": "company=<script>alert('XSS')</script>"
+    },
+    {
+      "test": "3_Path_Traversal",
+      "pass": true,
+      "detail": "status=422, system_file_leaked=False",
+      "status_code": 422,
+      "payload_sample": "report_id=../../../../etc/passwd"
+    },
+    {
+      "test": "4_Wrong_MIME",
+      "pass": true,
+      "detail": "no upload endpoint found",
+      "status_code": null,
+      "payload_sample": "fake_pdf with text content"
+    },
+    {
+      "test": "5_Corrupt_PDF",
+      "pass": true,
+      "detail": "no upload endpoint",
+      "status_code": null,
+      "payload_sample": "corrupt binary pdf"
+    },
+    {
+      "test": "6_Illegal_ID",
+      "pass": false,
+      "detail": "id='../../etc/passwd' -> 404; id=''; DROP TABLE demos;--' -> 404; id='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' -> 404; id='\u0000\u0001\u0002' -> EXC Invalid non-printable ASCII character in URL, '\\x00' at position 13.; id='null' -> 404",
+      "status_code": null,
+      "payload_sample": "6 illegal ids"
+    },
+    {
+      "test": "7_SQL_Injection",
+      "pass": true,
+      "detail": "payload='1' OR '1'='1' -> 422; payload=''; DROP TABLE demo_runs;-' -> 422; payload='1 UNION SELECT * FROM use' -> 422; payload='' OR 1=1 --' -> 422",
+      "status_code": null,
+      "payload_sample": "4 sqli payloads"
+    }
+  ]
+}

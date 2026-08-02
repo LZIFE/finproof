@@ -1,0 +1,370 @@
+{
+  "ablation_groups": 3,
+  "blind_claims": 23,
+  "companies": [
+    "五粮液(17)",
+    "美的集团(6)"
+  ],
+  "A_RAG_ONLY": {
+    "label": "A: RAG-only (retrieval + verification)",
+    "total": 23,
+    "verdict_distribution": {
+      "INSUFFICIENT_EVIDENCE": 23
+    },
+    "avg_retrieval_count": 0.0,
+    "avg_confidence": 0.4,
+    "claims_zero_retrieval": 23,
+    "supported_rate": 0.0
+  },
+  "B_FULL_FINPROOF": {
+    "label": "B: Full FinProof",
+    "demo_runs": 1,
+    "reliability_score": 38.52,
+    "duration_sec": 0.1
+  },
+  "C_NO_RAG_ORACLE": {
+    "label": "C: No-RAG (oracle-only, skip retrieval)",
+    "total": 23,
+    "verdict_distribution": {
+      "SUPPORTED": 18,
+      "REFUTED": 1,
+      "UNABLE_TO_DETERMINE": 4
+    },
+    "avg_retrieval_count": 0.0,
+    "avg_confidence": 0.854,
+    "claims_zero_retrieval": 23,
+    "supported_rate": 0.783
+  },
+  "timing_sec": {
+    "A": 0.03,
+    "B": 0.1,
+    "C": 0.0
+  },
+  "raw_A": [
+    {
+      "idx": 0,
+      "claim_id": "CLM-H01",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 1,
+      "claim_id": "CLM-H02",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 2,
+      "claim_id": "CLM-H03",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 3,
+      "claim_id": "CLM-H04",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 4,
+      "claim_id": "CLM-H05",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 5,
+      "claim_id": "CLM-H06",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 6,
+      "claim_id": "CLM-H07",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 7,
+      "claim_id": "CLM-H08",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 8,
+      "claim_id": "CLM-H09",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 9,
+      "claim_id": "CLM-H10",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 10,
+      "claim_id": "CLM-H11",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 11,
+      "claim_id": "CLM-H12",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 12,
+      "claim_id": "CLM-H13",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 13,
+      "claim_id": "CLM-H14",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 14,
+      "claim_id": "CLM-H15",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 15,
+      "claim_id": "CLM-H16",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 16,
+      "claim_id": "CLM-H17",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 17,
+      "claim_id": "CLM-001",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 18,
+      "claim_id": "CLM-002",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 19,
+      "claim_id": "CLM-003",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 20,
+      "claim_id": "CLM-004",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 21,
+      "claim_id": "CLM-005",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    },
+    {
+      "idx": 22,
+      "claim_id": "CLM-006",
+      "retrieval_count": 0,
+      "verification_status": "INSUFFICIENT_EVIDENCE",
+      "confidence": 0.4
+    }
+  ],
+  "raw_C": [
+    {
+      "idx": 0,
+      "claim_id": "CLM-H01",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 1,
+      "claim_id": "CLM-H02",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 2,
+      "claim_id": "CLM-H03",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 3,
+      "claim_id": "CLM-H04",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 4,
+      "claim_id": "CLM-H05",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 5,
+      "claim_id": "CLM-H06",
+      "retrieval_count": 0,
+      "verification_status": "REFUTED",
+      "confidence": 0.8
+    },
+    {
+      "idx": 6,
+      "claim_id": "CLM-H07",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 7,
+      "claim_id": "CLM-H08",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 8,
+      "claim_id": "CLM-H09",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 9,
+      "claim_id": "CLM-H10",
+      "retrieval_count": 0,
+      "verification_status": "UNABLE_TO_DETERMINE",
+      "confidence": 0.3
+    },
+    {
+      "idx": 10,
+      "claim_id": "CLM-H11",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 11,
+      "claim_id": "CLM-H12",
+      "retrieval_count": 0,
+      "verification_status": "UNABLE_TO_DETERMINE",
+      "confidence": 0.3
+    },
+    {
+      "idx": 12,
+      "claim_id": "CLM-H13",
+      "retrieval_count": 0,
+      "verification_status": "UNABLE_TO_DETERMINE",
+      "confidence": 0.3
+    },
+    {
+      "idx": 13,
+      "claim_id": "CLM-H14",
+      "retrieval_count": 0,
+      "verification_status": "UNABLE_TO_DETERMINE",
+      "confidence": 0.3
+    },
+    {
+      "idx": 14,
+      "claim_id": "CLM-H15",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 15,
+      "claim_id": "CLM-H16",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 16,
+      "claim_id": "CLM-H17",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 17,
+      "claim_id": "CLM-001",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 18,
+      "claim_id": "CLM-002",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 19,
+      "claim_id": "CLM-003",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 20,
+      "claim_id": "CLM-004",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 21,
+      "claim_id": "CLM-005",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    },
+    {
+      "idx": 22,
+      "claim_id": "CLM-006",
+      "retrieval_count": 0,
+      "verification_status": "SUPPORTED",
+      "confidence": 0.98
+    }
+  ],
+  "interpretation": "A=Clean-room真实端到端,B=完整8步Pipeline,C=oracle上界"
+}
