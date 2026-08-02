@@ -39,7 +39,11 @@ def start_demo(session: Session, company: str, report_id: str = "") -> DemoRun:
     if not company:
         company = DEMO_COMPANY  # 固定 Demo Case（任务书 §Demo Case）
 
-    demo_id = f"DEMO-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
+    # Phase 23.6 修复：原 demo_id = DEMO-{秒级时间戳} 在同秒连续启动时重复，
+    # 触发 demo_runs.demo_id UNIQUE 约束冲突导致 HTTP 422。
+    # 修复：加入 uuid4 短后缀保证全局唯一，支持连续/并发运行。
+    import uuid as _uuid
+    demo_id = f"DEMO-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}-{_uuid.uuid4().hex[:8]}"
     run = DemoRun(
         demo_id=demo_id,
         company=company,

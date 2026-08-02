@@ -1,0 +1,50 @@
+{
+  "cleanroom_e2e": "PASS",
+  "total_duration_sec": 2.07,
+  "document_id": 1,
+  "pages_count": 276,
+  "total_blocks": 5857,
+  "claims_loaded": 26,
+  "claims_verified": 6,
+  "total_evidence_retrieved": 30,
+  "retrieval_results": [
+    {
+      "claim_id": "CLM-001",
+      "evidence_count": 5
+    },
+    {
+      "claim_id": "CLM-002",
+      "evidence_count": 5
+    },
+    {
+      "claim_id": "CLM-003",
+      "evidence_count": 5
+    },
+    {
+      "claim_id": "CLM-004",
+      "evidence_count": 5
+    },
+    {
+      "claim_id": "CLM-005",
+      "evidence_count": 5
+    },
+    {
+      "claim_id": "CLM-006",
+      "evidence_count": 5
+    }
+  ],
+  "verification_verdicts": {
+    "SUPPORTED": 3,
+    "REFUTED": 3
+  },
+  "steps": [
+    "1. Empty DB init_db (49 tables, 0 rows)",
+    "2. Upload 美的集团 annual_report.pdf (5.7MB)",
+    "3. Parse → pages/blocks",
+    "4. Evidence index (retrieval config v1)",
+    "5. Claim Extraction (gold_claims demo)",
+    "6. Real Evidence Retrieval (top_k=5)",
+    "7. Real Verification",
+    "8. Real Risk Assessment"
+  ]
+}

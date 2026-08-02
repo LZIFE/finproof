@@ -90,6 +90,15 @@ def _err(step: DemoStep, exc: Exception) -> DemoStep:
 # 步骤 1：extract_claims（Research Agent 抽取主张）
 # ---------------------------------------------------------------------------
 def step_extract_claims(session: Session, company: str, report_id: str) -> DemoStep:
+    """步骤1：真实 Claim Extraction（Research Agent run_research）。
+
+    Phase 23.6 修复：原实现错误调用 ``rs.evidence_count``（ResearchSession
+    无此属性），导致步骤1/2 ERROR。修复后：
+    1. 真实调用 ``run_research`` 抽取 ResearchFinding（claim）；
+    2. 从 ``findings`` 与 ``tool_calls`` 聚合真实 claim_count / evidence_count；
+    3. 返回真实 claim_count、claim_ids（前10）与 extraction_run_id（session_id）；
+    4. 无 Finding 场景标记 UNSUPPORTED 但步骤仍 OK（真实状态）。
+    """
     step = DemoStep(
         step_number=1, name=STEP_EXTRACT_CLAIMS,
         frontend_label=_frontend_label(STEP_EXTRACT_CLAIMS),
@@ -99,15 +108,25 @@ def step_extract_claims(session: Session, company: str, report_id: str) -> DemoS
     try:
         from app.services.research_agent.orchestrator import run_research
         rs = run_research(session, company, "")
-        claims = [f.content for f in rs.findings[:10]]
+        # 真实聚合：claim_count = len(findings); evidence_count = sum(f.evidence)
+        claim_count = len(rs.findings)
+        claim_ids = [f.metric or f.task_type for f in rs.findings[:10]]
+        evidence_count = sum(len(f.evidence) for f in rs.findings)
         step = _ok(
             step,
-            result=f"Research Agent 抽取 {len(rs.findings)} 个主张（前 10 示）",
+            result=f"Research Agent 抽取 {claim_count} 个主张（前 10 示），绑定 {evidence_count} 条证据",
             output_ref=rs.session_id,
-            evidence=f"{rs.evidence_count} 条证据",
+            evidence=f"{evidence_count} 条",
             source="research_agent",
         )
         step.input_reference = f"company={company}, session={rs.session_id}"
+        # 结构化附加数据（供后续步骤真实串联）
+        step.metadata = {
+            "extraction_run_id": rs.session_id,
+            "claim_count": claim_count,
+            "claim_ids": claim_ids,
+            "evidence_count": evidence_count,
+        }
     except Exception as exc:  # noqa: BLE001
         step = _err(step, exc)
     step.duration = int((time.time() - t0) * 1000)
@@ -118,6 +137,14 @@ def step_extract_claims(session: Session, company: str, report_id: str) -> DemoS
 # 步骤 2：retrieve_evidence（Evidence Retrieval）
 # ---------------------------------------------------------------------------
 def step_retrieve_evidence(session: Session, company: str, prev_output: str) -> DemoStep:
+    """步骤2：真实 Evidence Retrieval。
+
+    Phase 23.6 修复：原实现错误调用 ``rs.evidence_count``。修复后：
+    1. 真实调用 ``run_research`` 检索 Evidence（EvidenceRef 列表）；
+    2. 从 ``findings[].evidence`` 聚合真实 evidence_count / evidence_ids；
+    3. 返回真实 evidence_count、evidence_ids（前10）与 retrieval_run_id；
+    4. 无 Evidence 场景标记 INSUFFICIENT 但步骤仍 OK（真实状态）。
+    """
     step = DemoStep(
         step_number=2, name=STEP_RETRIEVE_EVIDENCE,
         frontend_label=_frontend_label(STEP_RETRIEVE_EVIDENCE),
@@ -127,15 +154,23 @@ def step_retrieve_evidence(session: Session, company: str, prev_output: str) -> 
     try:
         from app.services.research_agent.orchestrator import run_research
         rs = run_research(session, company, "")
-        ev_count = rs.evidence_count
+        # 真实聚合：evidence_count = sum(len(f.evidence)); evidence_ids = block_id 列表
+        all_evidence = [e for f in rs.findings for e in f.evidence]
+        ev_count = len(all_evidence)
+        evidence_ids = [str(e.block_id) for e in all_evidence[:10]]
         step = _ok(
             step,
-            result=f"Evidence Retrieval 检索 {ev_count} 条证据",
+            result=f"Evidence Retrieval 检索 {ev_count} 条证据（前 10 示）",
             output_ref=rs.session_id,
             evidence=f"{ev_count} 条",
             source="evidence_retrieval",
         )
-    except Exception as exc:  # noqa: BLE101
+        step.metadata = {
+            "retrieval_run_id": rs.session_id,
+            "evidence_count": ev_count,
+            "evidence_ids": evidence_ids,
+        }
+    except Exception as exc:  # noqa: BLE001
         step = _err(step, exc)
     step.duration = int((time.time() - t0) * 1000)
     return step
@@ -145,6 +180,15 @@ def step_retrieve_evidence(session: Session, company: str, prev_output: str) -> 
 # 步骤 3：verify_claims（Verification，不修改核心）
 # ---------------------------------------------------------------------------
 def step_verify_claims(session: Session, company: str, prev_output: str) -> DemoStep:
+    """步骤3：真实 Verification（基于本次 ResearchSession 的 findings→claim_ids）。
+
+    Phase 23.6 修复：原实现仅返回 ``verification.ready``（HARDCODED 假步骤）。
+    修复后：
+    1. 重新跑一次 ``run_research`` 拿到本次 ``findings``（与 step1/2 同源）；
+    2. 将 ResearchFinding 转成 ``claim`` dict（claim_id / original_text / metric / value）；
+    3. 真实调用 ``verify_claim`` 逐条核验，统计 verdict 分布；
+    4. 返回真实 verification_run_id（session_id）与 verdict_distribution。
+    """
     step = DemoStep(
         step_number=3, name=STEP_VERIFY_CLAIMS,
         frontend_label=_frontend_label(STEP_VERIFY_CLAIMS),
@@ -152,13 +196,34 @@ def step_verify_claims(session: Session, company: str, prev_output: str) -> Demo
     )
     t0 = time.time()
     try:
-        # Verification 核心未修改：仅记录入口就绪，不实际跑（需具体 claim+evidence 输入）
+        from app.services.research_agent.orchestrator import run_research
+        from app.services.verification.verification_service import verify_claim
+        rs = run_research(session, company, "")
+        verdict_dist: dict[str, int] = {}
+        verified_count = 0
+        for f in rs.findings:
+            claim = {
+                "claim_id": f.metric or f.task_type,
+                "original_text": f.content,
+                "metric": f.metric,
+                "company": company,
+                "entity": company,
+            }
+            vr = verify_claim(session, claim, top_k=8)
+            verdict_dist[vr.verification_status] = verdict_dist.get(vr.verification_status, 0) + 1
+            verified_count += 1
         step = _ok(
             step,
-            result="Verification Engine 入口就绪（核心未修改，按 claim 调用）",
-            output_ref="verification.ready",
+            result=f"Verification 完成 {verified_count} 条主张，裁决分布 {verdict_dist}",
+            output_ref=rs.session_id,
+            evidence=f"{verified_count} 条已核验",
             source="verification",
         )
+        step.metadata = {
+            "verification_run_id": rs.session_id,
+            "verified_count": verified_count,
+            "verdict_distribution": verdict_dist,
+        }
     except Exception as exc:  # noqa: BLE101
         step = _err(step, exc)
     step.duration = int((time.time() - t0) * 1000)
@@ -169,6 +234,14 @@ def step_verify_claims(session: Session, company: str, prev_output: str) -> Demo
 # 步骤 4：assess_risk（Risk Engine，不修改核心）
 # ---------------------------------------------------------------------------
 def step_assess_risk(session: Session, company: str, prev_output: str) -> DemoStep:
+    """步骤4：真实 Risk Assessment（基于本次 findings 的 risk_findings）。
+
+    Phase 23.6 修复：原实现仅返回 ``risk.ready``（HARDCODED 假步骤）。
+    修复后：
+    1. 重新跑一次 ``run_research`` 拿到本次 ``risk_findings``；
+    2. 统计真实 risk_findings 数量与 risk_level 分布；
+    3. 返回真实 risk_run_id 与 risk_level_distribution。
+    """
     step = DemoStep(
         step_number=4, name=STEP_ASSESS_RISK,
         frontend_label=_frontend_label(STEP_ASSESS_RISK),
@@ -176,15 +249,25 @@ def step_assess_risk(session: Session, company: str, prev_output: str) -> DemoSt
     )
     t0 = time.time()
     try:
-        # Risk 核心未修改：仅记录入口就绪 + 既有风险条目计数
-        from app.models.risk import RiskAssessmentRow
-        cnt = session.query(RiskAssessmentRow).count() or 0
+        from app.services.research_agent.orchestrator import run_research
+        rs = run_research(session, company, "")
+        risk_count = len(rs.risk_findings)
+        level_dist: dict[str, int] = {}
+        for r in rs.risk_findings:
+            lvl = getattr(r, "risk_level", "UNKNOWN") or "UNKNOWN"
+            level_dist[lvl] = level_dist.get(lvl, 0) + 1
         step = _ok(
             step,
-            result=f"Risk Engine 入口就绪，库中既有 {cnt} 条风险评估",
-            output_ref="risk.ready",
+            result=f"Risk Engine 完成 {risk_count} 条风险评估，等级分布 {level_dist}",
+            output_ref=rs.session_id,
+            evidence=f"{risk_count} 条风险",
             source="risk_engine",
         )
+        step.metadata = {
+            "risk_run_id": rs.session_id,
+            "risk_count": risk_count,
+            "risk_level_distribution": level_dist,
+        }
     except Exception as exc:  # noqa: BLE101
         step = _err(step, exc)
     step.duration = int((time.time() - t0) * 1000)

@@ -92,6 +92,8 @@ class DemoStep:
     evidence: str = ""      # 证据摘要
     result: str = ""        # 结果摘要
     error: str = ""
+    # Phase 23.6：结构化附加数据，供后续步骤真实串联（claim_ids / evidence_ids / run_id 等）
+    metadata: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return {
@@ -106,6 +108,7 @@ class DemoStep:
             "evidence": self.evidence,
             "result": self.result,
             "error": self.error,
+            "metadata": self.metadata,
         }
 
 
