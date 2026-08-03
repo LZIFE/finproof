@@ -35,9 +35,11 @@ ScopeType = Literal[
 
 # 中文口径 → ScopeType
 _SCOPE_CN_MAP: dict[str, ScopeType] = {
-    "合并": "consolidated",
-    "归母": "parent_attributable",
+    "归属于上市公司股东的净利润": "parent_attributable",
+    "归属于上市公司股东": "parent_attributable",
     "归属于母公司": "parent_attributable",
+    "归母": "parent_attributable",
+    "合并": "consolidated",
     "少数股东": "non_controlling_interest",
     "扣非": "adjusted",
     "调整后": "adjusted",
@@ -172,6 +174,9 @@ METRIC_ALIASES: dict[str, tuple[str, ...]] = {
     ),
     "total_assets": (
         "总资产", "资产总额", "total_assets",
+    ),
+    "roe": (
+        "加权平均净资产收益率", "净资产收益率", "加权净资产收益率", "ROE", "roe",
     ),
     "total_liabilities": (
         "总负债", "负债总额", "total_liabilities",

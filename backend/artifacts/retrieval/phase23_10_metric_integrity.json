@@ -1,0 +1,32 @@
+{
+  "phase": "23.10",
+  "script": "phase23_10_metric_integrity",
+  "verdict": "VALID",
+  "checks": {
+    "0<=Hit1<=Hit3<=Hit5": true,
+    "0<=BlockHit1<=BlockHit3<=BlockHit5": true,
+    "Recall1<=Recall3<=Recall5": true,
+    "CandidateRecall50>=Recall5": true,
+    "same_total_claims_denominator": true,
+    "no_result_claims_not_removed": true,
+    "determinism_twice_identical": true
+  },
+  "determinism_detail": {},
+  "metrics_snapshot": {
+    "page_hit_1": 0.2857,
+    "page_hit_3": 0.4857,
+    "page_hit_5": 0.5429,
+    "block_hit_1": 0.2571,
+    "block_hit_3": 0.4571,
+    "block_hit_5": 0.5143,
+    "recall_at_1": 0.25,
+    "recall_at_3": 0.425,
+    "recall_at_5": 0.475,
+    "stage_a_page_recall_50": 0.8571,
+    "stage_a_block_recall_50": 0.8,
+    "mrr_page": 0.2857,
+    "no_result_rate": 0.0,
+    "top5_duplicate_rate": 0.0
+  },
+  "note": "任何不变量失败 → 整份 Retrieval 评测判 INVALID"
+}

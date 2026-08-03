@@ -1,0 +1,3758 @@
+{
+  "phase": "23.10",
+  "script": "phase23_10_e2e",
+  "pipeline": "Stage A(Top50) → Stage B(Top5) → core_verify + multi_evidence",
+  "total": 43,
+  "correct": 20,
+  "accuracy": 0.4651,
+  "macro_f1": 0.511,
+  "per_class_f1": {
+    "INSUFFICIENT_EVIDENCE": {
+      "tp": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "OPINION_OR_FORECAST": {
+      "tp": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "PARTIALLY_SUPPORTED": {
+      "tp": 1,
+      "precision": 0.1667,
+      "recall": 1.0,
+      "f1": 0.2857
+    },
+    "REFUTED": {
+      "tp": 12,
+      "precision": 0.8,
+      "recall": 0.7059,
+      "f1": 0.75
+    },
+    "SUPPORTED": {
+      "tp": 4,
+      "precision": 1.0,
+      "recall": 0.2222,
+      "f1": 0.3636
+    },
+    "UNABLE_TO_DETERMINE": {
+      "tp": 1,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6667
+    }
+  },
+  "abstention_accuracy": 0.1667,
+  "false_positive_rate": 0.0,
+  "false_negative_rate": 0.7778,
+  "unsupported_claim_rate": 0.3256,
+  "no_result_rate": 0.0,
+  "error_decomposition": {
+    "retrieval_failure": 13,
+    "verification_failure": 10,
+    "both_failure": 0
+  },
+  "error_claims": [
+    {
+      "claim_id": "CLM-001",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "gold_page_in_top5": true
+    },
+    {
+      "claim_id": "CLM-002",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-003",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "gold_page_in_top5": true
+    },
+    {
+      "claim_id": "CLM-004",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "growth:no_growth_data",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-005",
+      "gold": "SUPPORTED",
+      "pred": "REFUTED",
+      "rule": "ratio:derived",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-009",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "period:no_evidence",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-010",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "period:no_evidence",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-012",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "gold_page_in_top5": true
+    },
+    {
+      "claim_id": "CLM-013",
+      "gold": "SUPPORTED",
+      "pred": "REFUTED",
+      "rule": "numeric:prior_year_value_used",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-014",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "gold_page_in_top5": true
+    },
+    {
+      "claim_id": "CLM-019",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "semantic:keyword_coverage_insufficient",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-021",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "semantic:causal_partial",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-022",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "numeric:threshold_components",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-025",
+      "gold": "UNABLE_TO_DETERMINE",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "numeric:threshold_components",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-H01",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "gold_page_in_top5": true
+    },
+    {
+      "claim_id": "CLM-H02",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-H03",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "growth:no_growth_data",
+      "gold_page_in_top5": true
+    },
+    {
+      "claim_id": "CLM-H04",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "gold_page_in_top5": false
+    },
+    {
+      "claim_id": "CLM-H07",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "gold_page_in_top5": true
+    },
+    {
+      "claim_id": "CLM-H08",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "gold_page_in_top5": true
+    },
+    {
+      "claim_id": "CLM-H11",
+      "gold": "SUPPORTED",
+      "pred": "REFUTED",
+      "rule": "numeric:mismatch_metric_row",
+      "gold_page_in_top5": true
+    },
+    {
+      "claim_id": "CLM-H12",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "semantic:listing_partial",
+      "gold_page_in_top5": true
+    },
+    {
+      "claim_id": "CLM-H17",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "numeric:threshold_components",
+      "gold_page_in_top5": false
+    }
+  ],
+  "targets": {
+    "Accuracy >= 0.75": false,
+    "Macro-F1 >= 0.65": false,
+    "retrieval_failure <= 5": false,
+    "verification_failure <= 2": false,
+    "both_failure <= 1": true
+  },
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          1172,
+          4329,
+          495,
+          189
+        ],
+        "rejected_evidence_ids": [
+          508
+        ],
+        "rejection_reasons": {
+          "508": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 1172,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 4329,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 495,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 508,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 189,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-002",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          1172,
+          4329,
+          495,
+          189
+        ],
+        "rejected_evidence_ids": [
+          508
+        ],
+        "rejection_reasons": {
+          "508": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 1172,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 4329,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 495,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 508,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 189,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-003",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          495,
+          190
+        ],
+        "rejected_evidence_ids": [
+          6265,
+          6266,
+          5970
+        ],
+        "rejection_reasons": {
+          "6265": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "6266": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "5970": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 495,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 190,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6265,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6266,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5970,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-004",
+      "dataset": "demo",
+      "claim_type": "calculated_financial_metric",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "growth:no_growth_data",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          5581,
+          495,
+          6265,
+          6266,
+          7722
+        ],
+        "rejection_reasons": {
+          "5581": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "495": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "6265": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "6266": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "7722": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 5581,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 495,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6265,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6266,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 7722,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-005",
+      "dataset": "demo",
+      "claim_type": "calculated_financial_metric",
+      "gold": "SUPPORTED",
+      "pred": "REFUTED",
+      "rule": "ratio:derived",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          4346,
+          5210,
+          5581,
+          4329,
+          191
+        ],
+        "rejection_reasons": {
+          "4346": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "5210": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "5581": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4329": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "191": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 4346,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5210,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5581,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4329,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 191,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-006",
+      "dataset": "demo",
+      "claim_type": "calculated_financial_metric",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "ratio:derived",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          4346,
+          4329,
+          5581,
+          16,
+          5401
+        ],
+        "rejection_reasons": {
+          "4346": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4329": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "5581": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "16": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "5401": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 4346,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4329,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 5581,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 16,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 5401,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-007",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "rule": "numeric:exact_value",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          14637
+        ],
+        "rejected_evidence_ids": [
+          235,
+          255,
+          508,
+          1172
+        ],
+        "rejection_reasons": {
+          "235": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "255": "INSUFFICIENT_EVIDENCE: 叙述段提及指标但无具体数据",
+          "508": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "1172": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 235,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 255,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4,
+            "reason": "叙述段提及指标但无具体数据",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 508,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 1172,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 14637,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "SUPPORTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-008",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "rule": "numeric:exact_value",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          7088,
+          6265
+        ],
+        "rejected_evidence_ids": [
+          6221,
+          7180,
+          6563
+        ],
+        "rejection_reasons": {
+          "6221": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "7180": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "6563": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 7088,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6265,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6221,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 7180,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6563,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "SUPPORTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-009",
+      "dataset": "demo",
+      "claim_type": "scope",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "period:no_evidence",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          508,
+          1172,
+          4329,
+          4346,
+          495
+        ],
+        "rejection_reasons": {
+          "508": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "1172": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4329": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4346": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "495": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 508,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 1172,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4329,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4346,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 495,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-010",
+      "dataset": "demo",
+      "claim_type": "scope",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "period:no_evidence",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          5581,
+          495,
+          6266,
+          17,
+          5462
+        ],
+        "rejection_reasons": {
+          "5581": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "495": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "6266": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "17": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "5462": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 5581,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 495,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 6266,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 17,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 5462,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-011",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "rule": "numeric:exact_value",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          14638
+        ],
+        "rejected_evidence_ids": [
+          236,
+          237,
+          495,
+          6265
+        ],
+        "rejection_reasons": {
+          "236": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "237": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "495": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "6265": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 236,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 237,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 14638,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 495,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6265,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "SUPPORTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-012",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          193
+        ],
+        "rejected_evidence_ids": [
+          5462,
+          5973,
+          4478,
+          8775
+        ],
+        "rejection_reasons": {
+          "5462": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "5973": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "4478": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "8775": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 193,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5462,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5973,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 4478,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 8775,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-013",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "REFUTED",
+      "rule": "numeric:prior_year_value_used",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          5973
+        ],
+        "rejected_evidence_ids": [
+          8775,
+          5462,
+          14641,
+          193
+        ],
+        "rejection_reasons": {
+          "8775": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "5462": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "14641": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "193": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 8775,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5973,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5462,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 14641,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 193,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-014",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          192
+        ],
+        "rejected_evidence_ids": [
+          5972,
+          5493,
+          8780,
+          14821
+        ],
+        "rejection_reasons": {
+          "5972": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "5493": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "8780": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "14821": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 192,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5972,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5493,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 8780,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 14821,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-015",
+      "dataset": "demo",
+      "claim_type": "calculated_financial_metric",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "growth:mismatch",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          7180,
+          7088,
+          6563,
+          7005,
+          6221
+        ],
+        "rejection_reasons": {
+          "7180": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "7088": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "6563": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "7005": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "6221": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 7180,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 7088,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6563,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 7005,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6221,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-016",
+      "dataset": "demo",
+      "claim_type": "business_fact",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "semantic:publication_date_conflict",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          4040,
+          4817,
+          4823,
+          4825,
+          4826
+        ],
+        "rejection_reasons": {
+          "4040": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4817": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4823": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4825": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4826": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 4040,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4817,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4823,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4825,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4826,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-017",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "numeric:prior_year_value_used",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          189
+        ],
+        "rejected_evidence_ids": [
+          1172,
+          508,
+          4346,
+          4329
+        ],
+        "rejection_reasons": {
+          "1172": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "508": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "4346": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "4329": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 1172,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 508,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 189,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 4346,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 4329,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-018",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "numeric:mismatch_metric_row",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          192,
+          5493,
+          5972,
+          238,
+          8780
+        ],
+        "rejection_reasons": {
+          "192": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "5493": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "5972": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "238": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "8780": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 192,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5493,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 5972,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 238,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 8780,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-019",
+      "dataset": "demo",
+      "claim_type": "business_fact",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "semantic:keyword_coverage_insufficient",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          9095,
+          9087,
+          7917,
+          9088,
+          7916
+        ],
+        "rejection_reasons": {
+          "9095": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "9087": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "7917": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "9088": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "7916": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 9095,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 9087,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 7917,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 9088,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 7916,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-020",
+      "dataset": "demo",
+      "claim_type": "causality",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "semantic:causal_overreach",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          5581,
+          137,
+          7722,
+          8775,
+          4508
+        ],
+        "rejection_reasons": {
+          "5581": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "137": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "7722": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "8775": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4508": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 5581,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 137,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 7722,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 8775,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4508,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-021",
+      "dataset": "demo",
+      "claim_type": "causality",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "semantic:causal_partial",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          5581,
+          137,
+          7722,
+          8775,
+          4555
+        ],
+        "rejection_reasons": {
+          "5581": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "137": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "7722": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "8775": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4555": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 5581,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 137,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 7722,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 8775,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4555,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "PARTIALLY_SUPPORTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-022",
+      "dataset": "demo",
+      "claim_type": "comparison",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "numeric:threshold_components",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          4329,
+          16,
+          5401,
+          4555,
+          4740
+        ],
+        "rejection_reasons": {
+          "4329": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "16": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "5401": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4555": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4740": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 4329,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 16,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 5401,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4555,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4740,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "PARTIALLY_SUPPORTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-023",
+      "dataset": "demo",
+      "claim_type": "forecast",
+      "gold": "OPINION_OR_FORECAST",
+      "pred": "OPINION_OR_FORECAST",
+      "rule": "verdict:forecast",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          508,
+          1172,
+          4329,
+          4346,
+          1210
+        ],
+        "rejection_reasons": {
+          "508": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "1172": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4329": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4346": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "1210": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 508,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 1172,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4329,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4346,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 1210,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "OPINION_OR_FORECAST",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-024",
+      "dataset": "demo",
+      "claim_type": "calculated_financial_metric",
+      "gold": "PARTIALLY_SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "numeric:threshold_components",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          508,
+          1210,
+          4346,
+          4329,
+          1172
+        ],
+        "rejection_reasons": {
+          "508": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "1210": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "4346": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "4329": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "1172": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 508,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 1210,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 4346,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 4329,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 1172,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "PARTIALLY_SUPPORTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-025",
+      "dataset": "demo",
+      "claim_type": "scope",
+      "gold": "UNABLE_TO_DETERMINE",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "numeric:threshold_components",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          1172,
+          508,
+          4329,
+          4346,
+          1210
+        ],
+        "rejection_reasons": {
+          "1172": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "508": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4329": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "4346": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "1210": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 1172,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 508,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4329,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 4346,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 1210,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "PARTIALLY_SUPPORTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-026",
+      "dataset": "demo",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "SUPPORTED",
+      "rule": "numeric:exact_value",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          6266
+        ],
+        "rejected_evidence_ids": [
+          6265,
+          7722,
+          8775,
+          237
+        ],
+        "rejection_reasons": {
+          "6265": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "7722": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "8775": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "237": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 6266,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 6265,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 7722,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 8775,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 237,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "SUPPORTED",
+        "aggregation_rule": "1 条证据 SUPPORTED（高置信）且无冲突 → SUPPORTED"
+      }
+    },
+    {
+      "claim_id": "CLM-H01",
+      "dataset": "holdout",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          10188,
+          10497,
+          10029,
+          11642
+        ],
+        "rejected_evidence_ids": [
+          10176
+        ],
+        "rejection_reasons": {
+          "10176": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 10188,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 10497,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 10029,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 11642,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 10176,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-H02",
+      "dataset": "holdout",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          10188
+        ],
+        "rejected_evidence_ids": [
+          11939,
+          10056,
+          11994,
+          11995
+        ],
+        "rejection_reasons": {
+          "11939": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "10056": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11994": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11995": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 10188,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 11939,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 10056,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11994,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11995,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-H03",
+      "dataset": "holdout",
+      "claim_type": "calculated_financial_metric",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "growth:no_growth_data",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          10188,
+          10030,
+          11171,
+          11179,
+          11174
+        ],
+        "rejection_reasons": {
+          "10188": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "10030": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "11171": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "11179": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "11174": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 10188,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 10030,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 11171,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 11179,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 11174,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-H04",
+      "dataset": "holdout",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 2,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          10378,
+          12096
+        ],
+        "rejection_reasons": {
+          "10378": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "12096": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 10378,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 12096,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-H05",
+      "dataset": "holdout",
+      "claim_type": "calculated_financial_metric",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "growth:direction_conflict",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          10033,
+          9986,
+          10030,
+          10038,
+          10029
+        ],
+        "rejection_reasons": {
+          "10033": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "9986": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10030": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10038": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10029": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 10033,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 9986,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10030,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10038,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10029,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-H06",
+      "dataset": "holdout",
+      "claim_type": "raw_number",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "numeric:prior_year_value_used",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 4,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          10034
+        ],
+        "rejected_evidence_ids": [
+          14606,
+          11962,
+          11421
+        ],
+        "rejection_reasons": {
+          "14606": "INSUFFICIENT_EVIDENCE: 叙述段提及指标但无具体数据",
+          "11962": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "11421": "INSUFFICIENT_EVIDENCE: 叙述段提及指标但无具体数据"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 10034,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 14606,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4,
+            "reason": "叙述段提及指标但无具体数据",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11962,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 11421,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4,
+            "reason": "叙述段提及指标但无具体数据",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-H07",
+      "dataset": "holdout",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 3,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          10036
+        ],
+        "rejected_evidence_ids": [
+          14605,
+          14603
+        ],
+        "rejection_reasons": {
+          "14605": "INSUFFICIENT_EVIDENCE: 叙述段提及指标但无具体数据",
+          "14603": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 10036,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 14605,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.4,
+            "reason": "叙述段提及指标但无具体数据",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 14603,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-H08",
+      "dataset": "holdout",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "rule": "numeric:exact_value",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [
+          10037
+        ],
+        "rejected_evidence_ids": [
+          11619,
+          11177,
+          11178,
+          12460
+        ],
+        "rejection_reasons": {
+          "11619": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11177": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11178": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "12460": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 10037,
+            "verdict": "SUPPORTED",
+            "confidence": 0.95,
+            "reason": "指标+数值匹配",
+            "metric_hit": true,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 11619,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11177,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11178,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 12460,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "INSUFFICIENT_EVIDENCE",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-H09",
+      "dataset": "holdout",
+      "claim_type": "calculated_financial_metric",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "growth:direction_conflict",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          10036,
+          10038,
+          9986,
+          10030,
+          10033
+        ],
+        "rejection_reasons": {
+          "10036": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "10038": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "9986": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10030": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10033": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 10036,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 10038,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 9986,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10030,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10033,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-H10",
+      "dataset": "holdout",
+      "claim_type": "business_fact",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "semantic:publication_date_conflict",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          9986,
+          11538,
+          12660,
+          10030,
+          10036
+        ],
+        "rejection_reasons": {
+          "9986": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11538": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "12660": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10030": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10036": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 9986,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11538,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 12660,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10030,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10036,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-H11",
+      "dataset": "holdout",
+      "claim_type": "raw_number",
+      "gold": "SUPPORTED",
+      "pred": "REFUTED",
+      "rule": "numeric:mismatch_metric_row",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          10188,
+          10056,
+          10030,
+          11939,
+          11934
+        ],
+        "rejection_reasons": {
+          "10188": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10056": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10030": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11939": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11934": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 10188,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10056,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10030,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11939,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11934,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-H12",
+      "dataset": "holdout",
+      "claim_type": "business_fact",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "semantic:listing_partial",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": true,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          9986,
+          10121,
+          10124,
+          11538,
+          11222
+        ],
+        "rejection_reasons": {
+          "9986": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10121": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10124": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11538": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11222": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 9986,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10121,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10124,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11538,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11222,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "PARTIALLY_SUPPORTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-H13",
+      "dataset": "holdout",
+      "claim_type": "causality",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "semantic:causal_overreach",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          9986,
+          10188,
+          11222,
+          11538,
+          10030
+        ],
+        "rejection_reasons": {
+          "9986": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10188": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11222": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "11538": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10030": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 9986,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10188,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11222,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 11538,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10030,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-H14",
+      "dataset": "holdout",
+      "claim_type": "forecast",
+      "gold": "OPINION_OR_FORECAST",
+      "pred": "OPINION_OR_FORECAST",
+      "rule": "verdict:forecast",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          14299,
+          14297,
+          9986,
+          10188,
+          12587
+        ],
+        "rejection_reasons": {
+          "14299": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "14297": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "9986": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10188": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "12587": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 14299,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 14297,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 9986,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10188,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 12587,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": false,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "OPINION_OR_FORECAST",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-H15",
+      "dataset": "holdout",
+      "claim_type": "scope",
+      "gold": "UNABLE_TO_DETERMINE",
+      "pred": "UNABLE_TO_DETERMINE",
+      "rule": "verdict:estimation_unable",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          14297,
+          14299,
+          10176,
+          10188,
+          10497
+        ],
+        "rejection_reasons": {
+          "14297": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "14299": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10176": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10188": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联",
+          "10497": "INSUFFICIENT_EVIDENCE: 证据与主张无明确关联"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 14297,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 14299,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10176,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10188,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10497,
+            "verdict": "INSUFFICIENT_EVIDENCE",
+            "confidence": 0.3,
+            "reason": "证据与主张无明确关联",
+            "metric_hit": false,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "UNABLE_TO_DETERMINE",
+        "aggregation_rule": "全部证据不足 → 弃权 INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "claim_id": "CLM-H16",
+      "dataset": "holdout",
+      "claim_type": "raw_number",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "rule": "numeric:mismatch_metric_row",
+      "correct": true,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          14299,
+          14297,
+          10188,
+          10497,
+          10176
+        ],
+        "rejection_reasons": {
+          "14299": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "14297": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "10188": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "10497": "REFUTED: 同指标行数值与主张不符（数值冲突）",
+          "10176": "REFUTED: 同指标行数值与主张不符（数值冲突）"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 14299,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 14297,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 10188,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 10497,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          },
+          {
+            "evidence_id": 10176,
+            "verdict": "REFUTED",
+            "confidence": 0.85,
+            "reason": "同指标行数值与主张不符（数值冲突）",
+            "metric_hit": true,
+            "value_hit": false,
+            "period_hit": true,
+            "is_noise": false
+          }
+        ],
+        "aggregate_verdict": "REFUTED",
+        "aggregation_rule": "存在确定性数值冲突 → 冲突保留为 REFUTED（不被低质量叙述块覆盖）"
+      }
+    },
+    {
+      "claim_id": "CLM-H17",
+      "dataset": "holdout",
+      "claim_type": "business_fact",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "PARTIALLY_SUPPORTED",
+      "rule": "numeric:threshold_components",
+      "correct": false,
+      "no_result": false,
+      "retrieved": 5,
+      "gold_page_in_top5": false,
+      "retrieval_error": null,
+      "multi_evidence": {
+        "selected_evidence_ids": [],
+        "rejected_evidence_ids": [
+          12432,
+          12442,
+          14297,
+          10269,
+          12438
+        ],
+        "rejection_reasons": {
+          "12432": "PARTIALLY_SUPPORTED: 数值匹配但指标标签未命中",
+          "12442": "PARTIALLY_SUPPORTED: 数值匹配但指标标签未命中",
+          "14297": "PARTIALLY_SUPPORTED: 数值匹配但指标标签未命中",
+          "10269": "PARTIALLY_SUPPORTED: 数值匹配但指标标签未命中",
+          "12438": "PARTIALLY_SUPPORTED: 数值匹配但指标标签未命中"
+        },
+        "evidence_level_verdicts": [
+          {
+            "evidence_id": 12432,
+            "verdict": "PARTIALLY_SUPPORTED",
+            "confidence": 0.55,
+            "reason": "数值匹配但指标标签未命中",
+            "metric_hit": false,
+            "value_hit": true,
+            "period_hit": false,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 12442,
+            "verdict": "PARTIALLY_SUPPORTED",
+            "confidence": 0.55,
+            "reason": "数值匹配但指标标签未命中",
+            "metric_hit": false,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 14297,
+            "verdict": "PARTIALLY_SUPPORTED",
+            "confidence": 0.55,
+            "reason": "数值匹配但指标标签未命中",
+            "metric_hit": false,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 10269,
+            "verdict": "PARTIALLY_SUPPORTED",
+            "confidence": 0.55,
+            "reason": "数值匹配但指标标签未命中",
+            "metric_hit": false,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": true
+          },
+          {
+            "evidence_id": 12438,
+            "verdict": "PARTIALLY_SUPPORTED",
+            "confidence": 0.55,
+            "reason": "数值匹配但指标标签未命中",
+            "metric_hit": false,
+            "value_hit": true,
+            "period_hit": true,
+            "is_noise": true
+          }
+        ],
+        "aggregate_verdict": "PARTIALLY_SUPPORTED",
+        "aggregation_rule": "5 条证据 PARTIAL（数值/指标部分命中）→ PARTIALLY_SUPPORTED"
+      }
+    }
+  ]
+}

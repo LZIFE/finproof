@@ -1,0 +1,2321 @@
+{
+  "phase": "23.10",
+  "script": "phase23_10_metamorphic_eval",
+  "note": "变形测试不读取 gold_verifications 作为输入；gold 仅用于判断 base 是否正确（invariance 仅对 base 正确的 claim 计数）",
+  "stats": {
+    "invariance": {
+      "total": 81,
+      "pass": 81
+    },
+    "contradiction": {
+      "total": 143,
+      "pass": 129
+    },
+    "removal": {
+      "total": 35,
+      "pass": 33,
+      "conf_decrease": 33,
+      "to_insufficient": 31
+    }
+  },
+  "rates": {
+    "invariance": 1.0,
+    "contradiction": 0.9021,
+    "removal": 0.9429
+  },
+  "targets": {
+    "invariance >= 0.90": true,
+    "contradiction >= 0.90": true,
+    "removal >= 0.85": true
+  },
+  "all_met": true,
+  "failures": [
+    {
+      "claim_id": "CLM-001",
+      "transform": "百分比改为百分点",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-005",
+      "transform": "百分比改为百分点",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-005",
+      "transform": "年度改半年度",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-007",
+      "transform": "百分比改为百分点",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-008",
+      "transform": "百分比改为百分点",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-011",
+      "transform": "百分比改为百分点",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-012",
+      "transform": "百分比改为百分点",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-014",
+      "transform": "百分比改为百分点",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-015",
+      "transform": "删除关键Evidence句子",
+      "kind": "removal",
+      "base": "REFUTED",
+      "new": "REFUTED",
+      "gold": "REFUTED"
+    },
+    {
+      "claim_id": "CLM-019",
+      "transform": "主体公司替换",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-024",
+      "transform": "百分比改为百分点",
+      "kind": "contradiction",
+      "base": "PARTIALLY_SUPPORTED",
+      "new": "PARTIALLY_SUPPORTED",
+      "gold": "PARTIALLY_SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-024",
+      "transform": "年度改半年度",
+      "kind": "contradiction",
+      "base": "PARTIALLY_SUPPORTED",
+      "new": "PARTIALLY_SUPPORTED",
+      "gold": "PARTIALLY_SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-024",
+      "transform": "主体公司替换",
+      "kind": "contradiction",
+      "base": "PARTIALLY_SUPPORTED",
+      "new": "PARTIALLY_SUPPORTED",
+      "gold": "PARTIALLY_SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-024",
+      "transform": "删除关键Evidence句子",
+      "kind": "removal",
+      "base": "PARTIALLY_SUPPORTED",
+      "new": "REFUTED",
+      "gold": "PARTIALLY_SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-026",
+      "transform": "百分比改为百分点",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "transform": "主体公司替换",
+      "kind": "contradiction",
+      "base": "SUPPORTED",
+      "new": "SUPPORTED",
+      "gold": "SUPPORTED"
+    }
+  ],
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-002",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-003",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "归母净利润改合并净利润",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-004",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "归母净利润改合并净利润",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-005",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "Evidence段落顺序变化",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-006",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "Evidence段落顺序变化",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-007",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "期间Q1改Q2",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-008",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "Evidence段落顺序变化",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-009",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "Evidence段落顺序变化",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "期间Q1改Q2",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-010",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "Evidence段落顺序变化",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "期间Q1改Q2",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "归母净利润改合并净利润",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-011",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "期间Q1改Q2",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "归母净利润改合并净利润",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-012",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-013",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-014",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-015",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "Evidence段落顺序变化",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-016",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-017",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-018",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-019",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-020",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-021",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "base": "INSUFFICIENT_EVIDENCE",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "INSUFFICIENT_EVIDENCE",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "INSUFFICIENT_EVIDENCE",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "INSUFFICIENT_EVIDENCE",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-022",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "base": "INSUFFICIENT_EVIDENCE",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "INSUFFICIENT_EVIDENCE",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "INSUFFICIENT_EVIDENCE",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "INSUFFICIENT_EVIDENCE",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-023",
+      "gold": "OPINION_OR_FORECAST",
+      "base": "OPINION_OR_FORECAST",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "OPINION_OR_FORECAST",
+          "new": "OPINION_OR_FORECAST",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "OPINION_OR_FORECAST",
+          "new": "OPINION_OR_FORECAST",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "OPINION_OR_FORECAST",
+          "new": "OPINION_OR_FORECAST",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "OPINION_OR_FORECAST",
+          "new": "OPINION_OR_FORECAST",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-024",
+      "gold": "PARTIALLY_SUPPORTED",
+      "base": "PARTIALLY_SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "PARTIALLY_SUPPORTED",
+          "new": "PARTIALLY_SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "Evidence段落顺序变化",
+          "kind": "invariance",
+          "base": "PARTIALLY_SUPPORTED",
+          "new": "PARTIALLY_SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "PARTIALLY_SUPPORTED",
+          "new": "PARTIALLY_SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "PARTIALLY_SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "PARTIALLY_SUPPORTED",
+          "new": "PARTIALLY_SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "PARTIALLY_SUPPORTED",
+          "new": "PARTIALLY_SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "PARTIALLY_SUPPORTED",
+          "new": "PARTIALLY_SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "PARTIALLY_SUPPORTED",
+          "new": "REFUTED",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-025",
+      "gold": "UNABLE_TO_DETERMINE",
+      "base": "UNABLE_TO_DETERMINE",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "UNABLE_TO_DETERMINE",
+          "new": "UNABLE_TO_DETERMINE",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "UNABLE_TO_DETERMINE",
+          "new": "UNABLE_TO_DETERMINE",
+          "passed": false
+        },
+        {
+          "transform": "期间Q1改Q2",
+          "kind": "contradiction",
+          "base": "UNABLE_TO_DETERMINE",
+          "new": "UNABLE_TO_DETERMINE",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "UNABLE_TO_DETERMINE",
+          "new": "UNABLE_TO_DETERMINE",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-026",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "归母净利润改合并净利润",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H01",
+      "gold": "SUPPORTED",
+      "base": "REFUTED",
+      "base_correct": false,
+      "cases": [
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H02",
+      "gold": "SUPPORTED",
+      "base": "REFUTED",
+      "base_correct": false,
+      "cases": [
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "归母净利润改合并净利润",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H03",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "归母净利润改合并净利润",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H04",
+      "gold": "SUPPORTED",
+      "base": "REFUTED",
+      "base_correct": false,
+      "cases": [
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H05",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H06",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H07",
+      "gold": "SUPPORTED",
+      "base": "REFUTED",
+      "base_correct": false,
+      "cases": [
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H08",
+      "gold": "SUPPORTED",
+      "base": "REFUTED",
+      "base_correct": false,
+      "cases": [
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H09",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "百分比改为百分点",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "归母净利润改合并净利润",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H10",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H11",
+      "gold": "SUPPORTED",
+      "base": "REFUTED",
+      "base_correct": false,
+      "cases": [
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "归母净利润改合并净利润",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H12",
+      "gold": "SUPPORTED",
+      "base": "SUPPORTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "句子顺序变化",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": true
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "SUPPORTED",
+          "new": "SUPPORTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "SUPPORTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H13",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H14",
+      "gold": "OPINION_OR_FORECAST",
+      "base": "OPINION_OR_FORECAST",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "OPINION_OR_FORECAST",
+          "new": "OPINION_OR_FORECAST",
+          "passed": true
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "OPINION_OR_FORECAST",
+          "new": "OPINION_OR_FORECAST",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "OPINION_OR_FORECAST",
+          "new": "OPINION_OR_FORECAST",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H15",
+      "gold": "UNABLE_TO_DETERMINE",
+      "base": "UNABLE_TO_DETERMINE",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "UNABLE_TO_DETERMINE",
+          "new": "UNABLE_TO_DETERMINE",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "UNABLE_TO_DETERMINE",
+          "new": "UNABLE_TO_DETERMINE",
+          "passed": false
+        },
+        {
+          "transform": "期间Q1改Q2",
+          "kind": "contradiction",
+          "base": "UNABLE_TO_DETERMINE",
+          "new": "UNABLE_TO_DETERMINE",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "UNABLE_TO_DETERMINE",
+          "new": "UNABLE_TO_DETERMINE",
+          "passed": false
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H16",
+      "gold": "REFUTED",
+      "base": "REFUTED",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "添加无关数字干扰",
+          "kind": "invariance",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "REFUTED",
+          "new": "REFUTED",
+          "passed": false
+        },
+        {
+          "transform": "删除关键Evidence句子",
+          "kind": "removal",
+          "base": "REFUTED",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H17",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "base": "INSUFFICIENT_EVIDENCE",
+      "base_correct": true,
+      "cases": [
+        {
+          "transform": "同义改写数字不变",
+          "kind": "invariance",
+          "base": "INSUFFICIENT_EVIDENCE",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": true
+        },
+        {
+          "transform": "主张数字改变(+10%)",
+          "kind": "contradiction",
+          "base": "INSUFFICIENT_EVIDENCE",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": false
+        },
+        {
+          "transform": "年度改半年度",
+          "kind": "contradiction",
+          "base": "INSUFFICIENT_EVIDENCE",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": false
+        },
+        {
+          "transform": "主体公司替换",
+          "kind": "contradiction",
+          "base": "INSUFFICIENT_EVIDENCE",
+          "new": "INSUFFICIENT_EVIDENCE",
+          "passed": false
+        }
+      ]
+    }
+  ]
+}

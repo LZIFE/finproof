@@ -2818,3 +2818,62 @@ backend/app/services/reliability_improvement/
 - `backend/artifacts/e2e/phase23_9_development_e2e.json`
 - `backend/artifacts/cross_validation/phase23_9_company_leave_one_out.json`
 - `backend/tests/test_phase23_9_integration.py`（10 项集成测试，全通过）
+
+---
+
+## Phase 23.10：Table-aware Retrieval 与 E2E 鲁棒性修复 — ⚠️ 已执行（Development READY 未达成）
+
+> 基线 commit：`bf6089e`（Phase 23.9）
+> 日期：2026-08-03
+
+### 结果摘要
+
+| 指标 | 值 | 目标 | 达标 |
+| --- | --- | --- | --- |
+| Oracle Accuracy | 1.000 | ≥0.90 | ✅ |
+| Oracle Macro-F1 | 1.000 | ≥0.85 | ✅ |
+| Metamorphic invariance | 1.000 | ≥0.90 | ✅ |
+| Metamorphic contradiction | 0.902 | ≥0.90 | ✅ |
+| Metamorphic removal | 0.943 | ≥0.85 | ✅ |
+| 泄漏审计 | CLEAN | 无生产 Gold 读取 | ✅ |
+| Hit@K 单调性不变量 | 全部通过 | 必须 | ✅ |
+| No-result Rate | 0.000 | ≤0.05 | ✅ |
+| Candidate Page Recall@50 | 0.857 | ≥0.95 | ❌ |
+| Candidate Block Recall@50 | 0.800 | ≥0.90 | ❌ |
+| Page Hit@5 | 0.543 | ≥0.80 | ❌ |
+| Block Hit@5 | 0.514 | ≥0.70 | ❌ |
+| Recall@5 | 0.475 | ≥0.80 | ❌ |
+| MRR(page) | 0.286 | ≥0.60 | ❌ |
+| Real E2E Accuracy | 0.465 | ≥0.75 | ❌ |
+| Real E2E Macro-F1 | 0.511 | ≥0.65 | ❌ |
+
+### 关键动作
+
+- Oracle 反过拟合审计 CLEAN；Metamorphic 12 类变形全部达标（修复 Verification
+  的 period/metric/entity/unit 真实匹配、ratio 路径 entity 检查、scope 关键词、roe 别名）。
+- TableContext 重建（y0 行分桶 + 结构化字段 + Enriched Evidence Text）、
+  Claim Query Planner（7 类 query + 贡献追踪）、两阶段检索
+  （Stage A Top50 高召回 + Stage B Table-aware Reranker 14 特征 4 惩罚）。
+- 13 个 Retrieval Failure 逐条诊断、Hard Negative 分类、公司留一权重调优
+  （Fold A/B 互验无泄漏）、候选去重多样性、多 Evidence Verification。
+- 指标完整性检查 VALID（单调性/同一分母/确定性全通过）。
+
+### 未达标与后续
+
+检索指标（Candidate Recall@50/Hit@5/Recall@5/MRR）与 Real E2E 未达标，
+**Development Engine 不标记 READY**。Stage A Recall@50 从基线提升至 0.857，
+剩余漏召集中在 quarterly 跨文档、语义类、holdout 现金流表述；
+Real E2E Accuracy 0.465 较 Phase 23.9 回退（Stage B 噪声证据使 verification_failure
+从 2 → 10）。全部未命中 claim 与 Top20 候选诊断保留在产物中，不缩小样本、不改 Gold。
+
+### 交付产物
+
+- `docs/phase23_10_table_aware_retrieval.md`
+- `backend/scripts/phase23_10_{acceptance,reranker_eval,metamorphic_eval,leakage_audit,failure_diagnosis,hard_negative,leave_one_company_out,e2e,metric_integrity}.py`
+- `backend/app/services/evidence_retrieval/{table_context,query_planner,stage_retrieval}.py`
+- `backend/app/services/verification/multi_evidence.py`
+- `backend/artifacts/phase23_10_acceptance.json`
+- `backend/artifacts/integrity/phase23_10_{oracle_leakage_audit,metamorphic_results}.json`
+- `backend/artifacts/retrieval/phase23_10_{failure_diagnosis,candidates,metrics,hard_negatives,leave_one_company_out,metric_integrity}.json`
+- `backend/artifacts/e2e/phase23_10_development_e2e.json`
+- `backend/tests/test_phase23_10_retrieval.py`（12 类测试，全通过）

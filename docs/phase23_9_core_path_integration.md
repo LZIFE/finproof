@@ -95,3 +95,19 @@ Real E2E 中验证阶段对真实检索噪声证据的鲁棒性不足。
 - backend/artifacts/e2e/phase23_9_development_e2e.json
 - backend/artifacts/cross_validation/phase23_9_company_leave_one_out.json
 - tests/test_phase23_9_integration.py（10 项集成测试，全通过）
+
+---
+
+## Phase 23.10 后续状态（2026-08-03）
+
+Phase 23.10（Table-aware Retrieval 与 E2E 鲁棒性修复）对本文档未达标项的处理：
+
+- 检索指标（Page Hit@5 / Block Hit@5 / Recall@5 / MRR）与 Real E2E Accuracy 仍未达标，
+  Development Engine 不标记 READY，详见 `docs/phase23_10_table_aware_retrieval.md`。
+- Phase 23.10 关键进展：Oracle 泄漏审计 CLEAN、Metamorphic 12 类变形全部达标、
+  Stage A Candidate Recall@50 从基线提升至 0.857、No-result Rate 降至 0.0、
+  指标完整性检查 VALID（单调性/同一分母/确定性全通过）。
+- Real E2E Accuracy 0.465 较本阶段 0.628 回退（Stage B Top5 噪声证据使
+  verification_failure 从 2 → 10），全部错误 claim 与 Top20 候选诊断保留在
+  `backend/artifacts/retrieval/phase23_10_failure_diagnosis.json` 与
+  `backend/artifacts/e2e/phase23_10_development_e2e.json`，未缩小样本、未改 Gold。

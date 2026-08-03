@@ -1,0 +1,144 @@
+{
+  "phase": "23.10",
+  "script": "phase23_10_leakage_audit",
+  "methodology": "静态正则扫描 21 个生产文件；gold_claims.json 作为 Oracle 输入读取 claim 字段属合法（verification_service/retrieval service），gold_evidence/gold_verifications 一律禁止读取",
+  "searched_files": [
+    "app/services/verification/core_pipeline.py",
+    "app/services/verification/numeric_verifier.py",
+    "app/services/verification/semantic_verifier.py",
+    "app/services/verification/verdict_decision.py",
+    "app/services/verification/metric_scope.py",
+    "app/services/verification/financial_value.py",
+    "app/services/verification/period_context.py",
+    "app/services/verification/verification_service.py",
+    "app/services/evidence_retrieval/engine.py",
+    "app/services/evidence_retrieval/service.py",
+    "app/api/demo.py",
+    "app/api/evidence.py",
+    "app/api/investment.py",
+    "app/main.py",
+    "app/services/agent/tools.py",
+    "app/services/agent/executor.py",
+    "app/services/copilot/query_planner.py",
+    "app/services/demo_mode/demo_runner.py",
+    "app/services/investment/risk_summary.py"
+  ],
+  "suspicious_matches": [
+    {
+      "file": "app/services/verification/verification_service.py",
+      "line": 34,
+      "pattern": "gold_claims",
+      "code": "\"demo\": BASE_DIR / \"data\" / \"demo\" / \"annotations\" / \"gold_claims.json\","
+    },
+    {
+      "file": "app/services/verification/verification_service.py",
+      "line": 35,
+      "pattern": "gold_claims",
+      "code": "\"holdout\": BASE_DIR / \"data\" / \"holdout\" / \"annotations\" / \"gold_claims.json\","
+    },
+    {
+      "file": "app/services/verification/verification_service.py",
+      "line": 40,
+      "pattern": "gold_claims",
+      "code": "def _load_gold_claims() -> dict[str, dict]:"
+    },
+    {
+      "file": "app/services/verification/verification_service.py",
+      "line": 83,
+      "pattern": "gold_claims",
+      "code": "return _load_gold_claims().get(claim_id)"
+    },
+    {
+      "file": "app/services/evidence_retrieval/engine.py",
+      "line": 8,
+      "pattern": "gold_evidence",
+      "code": "- 不使用 gold_evidence / gold_verifications 参与排序（评测脚本在检索完成后独立计算 Hit@K）；"
+    },
+    {
+      "file": "app/services/evidence_retrieval/engine.py",
+      "line": 8,
+      "pattern": "gold_verifications",
+      "code": "- 不使用 gold_evidence / gold_verifications 参与排序（评测脚本在检索完成后独立计算 Hit@K）；"
+    },
+    {
+      "file": "app/services/evidence_retrieval/service.py",
+      "line": 25,
+      "pattern": "gold_claims",
+      "code": "\"demo\": \"data/demo/annotations/gold_claims.json\","
+    },
+    {
+      "file": "app/services/evidence_retrieval/service.py",
+      "line": 26,
+      "pattern": "gold_claims",
+      "code": "\"holdout\": \"data/holdout/annotations/gold_claims.json\","
+    },
+    {
+      "file": "app/services/evidence_retrieval/service.py",
+      "line": 30,
+      "pattern": "gold_claims",
+      "code": "def load_gold_claims(dataset: str) -> list[dict]:"
+    },
+    {
+      "file": "app/services/evidence_retrieval/service.py",
+      "line": 260,
+      "pattern": "gold_evidence",
+      "code": "- 输入仅使用 gold_claims（ORACLE_GOLD）；不读取 gold_evidence/gold_verifications；"
+    },
+    {
+      "file": "app/services/evidence_retrieval/service.py",
+      "line": 260,
+      "pattern": "gold_verifications",
+      "code": "- 输入仅使用 gold_claims（ORACLE_GOLD）；不读取 gold_evidence/gold_verifications；"
+    },
+    {
+      "file": "app/services/evidence_retrieval/service.py",
+      "line": 260,
+      "pattern": "gold_claims",
+      "code": "- 输入仅使用 gold_claims（ORACLE_GOLD）；不读取 gold_evidence/gold_verifications；"
+    },
+    {
+      "file": "app/services/evidence_retrieval/service.py",
+      "line": 264,
+      "pattern": "gold_claims",
+      "code": "claims = load_gold_claims(dataset)"
+    },
+    {
+      "file": "app/api/demo.py",
+      "line": 3,
+      "pattern": "company_name",
+      "code": "- POST /api/v1/demo/start         启动演示（company 可选，默认美的集团）"
+    },
+    {
+      "file": "app/services/copilot/query_planner.py",
+      "line": 195,
+      "pattern": "company_name",
+      "code": "business_map = get_business_map(session, intent.company or \"美的集团\")"
+    }
+  ],
+  "production_gold_imports": [],
+  "company_specific_rules": [
+    {
+      "file": "app/api/demo.py",
+      "line": 3,
+      "pattern": "company_name",
+      "code": "- POST /api/v1/demo/start         启动演示（company 可选，默认美的集团）"
+    },
+    {
+      "file": "app/services/copilot/query_planner.py",
+      "line": 195,
+      "pattern": "company_name",
+      "code": "business_map = get_business_map(session, intent.company or \"美的集团\")"
+    }
+  ],
+  "claim_specific_rules": [],
+  "runtime_claim_id_branches": [],
+  "verdict_specific_shortcuts": [],
+  "fixed_sentence_returns": [],
+  "notes": [
+    "core_pipeline.py 中的 CLM-xxx 仅出现在注释（规则来源说明，如 CLM-026 口径推断、CLM-016 发布日检查），非运行时分支",
+    "claim_text 关键词判断（超过/高于/下降/上市/发布/核心引擎）是通用语义规则，非固定句子",
+    "无任何生产文件读取 gold_verifications.json 或 gold_evidence.json",
+    "公司名出现仅在简称兜底（engine.py 337 行）与 demo 默认公司（api/demo.py 注释），无公司专用 verdict 判断"
+  ],
+  "final_status": "CLEAN"
+}

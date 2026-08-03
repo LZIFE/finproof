@@ -1,0 +1,109 @@
+{
+  "phase": "23.10",
+  "script": "phase23_10_leave_one_company_out",
+  "method": "Fold A/B 公司留一：训练公司选权重 → 冻结 → 验证公司评估",
+  "folds": [
+    {
+      "fold": "A",
+      "train_company": "五粮液",
+      "eval_company": "美的集团",
+      "train_metric": {
+        "page_hit_1": 0.4615,
+        "page_hit_3": 0.6923,
+        "page_hit_5": 0.6923,
+        "mrr_page": 0.4615,
+        "no_result_rate": 0.0
+      },
+      "chosen_weight_name": "default",
+      "chosen_weights": {
+        "lexical": 0.1,
+        "semantic": 0.1,
+        "entity": 0.1,
+        "metric": 0.15,
+        "numeric": 0.15,
+        "period": 0.1,
+        "unit": 0.05,
+        "scope": 0.05,
+        "table_title": 0.05,
+        "row_header": 0.1,
+        "column_header": 0.05,
+        "neighboring_context": 0.05,
+        "document_type": 0.03,
+        "source_priority": 0.02
+      },
+      "eval_metric": {
+        "page_hit_1": 0.1818,
+        "page_hit_3": 0.3636,
+        "page_hit_5": 0.4545,
+        "mrr_page": 0.1818,
+        "no_result_rate": 0.0
+      },
+      "leakage_note": "权重仅在训练公司上选择并冻结，验证公司结果未回传修改权重"
+    },
+    {
+      "fold": "B",
+      "train_company": "美的集团",
+      "eval_company": "五粮液",
+      "train_metric": {
+        "page_hit_1": 0.1818,
+        "page_hit_3": 0.3636,
+        "page_hit_5": 0.4545,
+        "mrr_page": 0.1818,
+        "no_result_rate": 0.0
+      },
+      "chosen_weight_name": "default",
+      "chosen_weights": {
+        "lexical": 0.1,
+        "semantic": 0.1,
+        "entity": 0.1,
+        "metric": 0.15,
+        "numeric": 0.15,
+        "period": 0.1,
+        "unit": 0.05,
+        "scope": 0.05,
+        "table_title": 0.05,
+        "row_header": 0.1,
+        "column_header": 0.05,
+        "neighboring_context": 0.05,
+        "document_type": 0.03,
+        "source_priority": 0.02
+      },
+      "eval_metric": {
+        "page_hit_1": 0.4615,
+        "page_hit_3": 0.6923,
+        "page_hit_5": 0.6923,
+        "mrr_page": 0.4615,
+        "no_result_rate": 0.0
+      },
+      "leakage_note": "权重仅在训练公司上选择并冻结，验证公司结果未回传修改权重"
+    }
+  ],
+  "stable_weights": {
+    "lexical": 0.1,
+    "semantic": 0.1,
+    "entity": 0.1,
+    "metric": 0.15,
+    "numeric": 0.15,
+    "period": 0.1,
+    "unit": 0.05,
+    "scope": 0.05,
+    "table_title": 0.05,
+    "row_header": 0.1,
+    "column_header": 0.05,
+    "neighboring_context": 0.05,
+    "document_type": 0.03,
+    "source_priority": 0.02
+  },
+  "full_development_with_stable_weights": {
+    "page_hit_1": 0.2857,
+    "page_hit_3": 0.4857,
+    "page_hit_5": 0.5429,
+    "mrr_page": 0.2857,
+    "no_result_rate": 0.0
+  },
+  "targets": {
+    "Page Hit@5 >= 0.80 (full)": false,
+    "MRR >= 0.60 (full)": false,
+    "No-result <= 0.05 (full)": true
+  }
+}

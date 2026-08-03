@@ -1,0 +1,3594 @@
+{
+  "phase": "23.10",
+  "total": 35,
+  "per_claim_top10": [
+    {
+      "claim_id": "CLM-001",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          9
+        ]
+      ],
+      "gold_blocks": [
+        189
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": true,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": true,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 1172,
+          "page": 41,
+          "document_id": 1,
+          "final_score": 0.9796,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4",
+            "q5",
+            "q6"
+          ],
+          "text": "化等。美的集团在2025 年收入达人民币4,585 亿元，并连续十年跻身《财富》世界500 强榜单，彰显其\n"
+        },
+        {
+          "rank": 2,
+          "block_id": 4329,
+          "page": 127,
+          "document_id": 1,
+          "final_score": 0.9227,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "text": " \n参见财务报表附注二（26）（a）收入之销售商\n品会计政策、附注四（48）营业收入和营业成\n本及附注八分部报告。 \n "
+        },
+        {
+          "rank": 3,
+          "block_id": 495,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.8849,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6",
+            "q7"
+          ],
+          "text": "营业总收入4,585 亿元，同比增长12%，实现归母净利润439.5 亿元，同比增长14%，实现扣非归母净利\n"
+        },
+        {
+          "rank": 4,
+          "block_id": 508,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.8205,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6"
+          ],
+          "text": "销收入55%以上。其中，在下沉市场美的系产品零售规模突破300 亿元，市场份额位居行业第一，实现市\n"
+        },
+        {
+          "rank": 5,
+          "block_id": 189,
+          "page": 9,
+          "document_id": 1,
+          "final_score": 0.8197,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "营业收入（千元） \n456,451,731 \n407,149,600 \n12.11% \n372,037,280 \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-002",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          135
+        ]
+      ],
+      "gold_blocks": [
+        4442
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 1172,
+          "page": 41,
+          "document_id": 1,
+          "final_score": 0.9853,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4",
+            "q5",
+            "q6"
+          ],
+          "text": "化等。美的集团在2025 年收入达人民币4,585 亿元，并连续十年跻身《财富》世界500 强榜单，彰显其\n"
+        },
+        {
+          "rank": 2,
+          "block_id": 4329,
+          "page": 127,
+          "document_id": 1,
+          "final_score": 0.926,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "text": " \n参见财务报表附注二（26）（a）收入之销售商\n品会计政策、附注四（48）营业收入和营业成\n本及附注八分部报告。 \n "
+        },
+        {
+          "rank": 3,
+          "block_id": 495,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.8553,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6"
+          ],
+          "text": "营业总收入4,585 亿元，同比增长12%，实现归母净利润439.5 亿元，同比增长14%，实现扣非归母净利\n"
+        },
+        {
+          "rank": 4,
+          "block_id": 508,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.8313,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6"
+          ],
+          "text": "销收入55%以上。其中，在下沉市场美的系产品零售规模突破300 亿元，市场份额位居行业第一，实现市\n"
+        },
+        {
+          "rank": 5,
+          "block_id": 189,
+          "page": 9,
+          "document_id": 1,
+          "final_score": 0.818,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "营业收入（千元） \n456,451,731 \n407,149,600 \n12.11% \n372,037,280 \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-003",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          9
+        ]
+      ],
+      "gold_blocks": [
+        190
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": false,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 495,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.9,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6",
+            "q_text"
+          ],
+          "text": "营业总收入4,585 亿元，同比增长12%，实现归母净利润439.5 亿元，同比增长14%，实现扣非归母净利\n"
+        },
+        {
+          "rank": 2,
+          "block_id": 190,
+          "page": 9,
+          "document_id": 1,
+          "final_score": 0.8346,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "归属于上市公司股东的净利润（千元） \n43,945,411 \n38,537,237 \n14.03% \n33,719,93"
+        },
+        {
+          "rank": 3,
+          "block_id": 6265,
+          "page": 17,
+          "document_id": 2,
+          "final_score": 0.7269,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6",
+            "q_text"
+          ],
+          "text": "态势。2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增\n"
+        },
+        {
+          "rank": 4,
+          "block_id": 6266,
+          "page": 17,
+          "document_id": 2,
+          "final_score": 0.7269,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6",
+            "q_text"
+          ],
+          "text": "长25.0%，实现扣非归母净利润262 亿元，同比增长30.0%。 \n"
+        },
+        {
+          "rank": 5,
+          "block_id": 5970,
+          "page": 7,
+          "document_id": 2,
+          "final_score": 0.6846,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "归属于上市公司股东的净利润（千元） \n26,013,690 \n20,804,176 \n25.04% \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-004",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          9
+        ]
+      ],
+      "gold_blocks": [
+        190
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 5581,
+          "page": 247,
+          "document_id": 1,
+          "final_score": 0.7917,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "广东美的智慧家零售有限公司 \n中国,佛山市 \n中国,佛山市 \n家电销售 \n95% \n5% \n设立 \n \n(b) \n本集团"
+        },
+        {
+          "rank": 2,
+          "block_id": 495,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.7625,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6",
+            "q7",
+            "q_text"
+          ],
+          "text": "营业总收入4,585 亿元，同比增长12%，实现归母净利润439.5 亿元，同比增长14%，实现扣非归母净利\n"
+        },
+        {
+          "rank": 3,
+          "block_id": 6265,
+          "page": 17,
+          "document_id": 2,
+          "final_score": 0.75,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6",
+            "q7",
+            "q_text"
+          ],
+          "text": "态势。2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增\n"
+        },
+        {
+          "rank": 4,
+          "block_id": 6266,
+          "page": 17,
+          "document_id": 2,
+          "final_score": 0.75,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6",
+            "q7",
+            "q_text"
+          ],
+          "text": "长25.0%，实现扣非归母净利润262 亿元，同比增长30.0%。 \n"
+        },
+        {
+          "rank": 5,
+          "block_id": 7722,
+          "page": 63,
+          "document_id": 2,
+          "final_score": 0.7333,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q5"
+          ],
+          "text": "公司2025 年中期利润分配方案为：以截至本报告披露之日公司总股本7,675,588,172 股扣除回购专户上已回购股份"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-005",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          135
+        ]
+      ],
+      "gold_blocks": [
+        4443
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 4346,
+          "page": 128,
+          "document_id": 1,
+          "final_score": 0.7583,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q4",
+            "q5"
+          ],
+          "text": " \n于 2025 年 12 月 31 日，美的集团合并资产\n负债表中的商誉的账面价值约为人民币\n34,256,859 千"
+        },
+        {
+          "rank": 2,
+          "block_id": 5210,
+          "page": 206,
+          "document_id": 1,
+          "final_score": 0.675,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q5"
+          ],
+          "text": "2025 年  \n2024 年 \n \n12 月31 日  \n12 月31 日 \n \n  \n \n 商誉- \n \n \nKUK"
+        },
+        {
+          "rank": 3,
+          "block_id": 5581,
+          "page": 247,
+          "document_id": 1,
+          "final_score": 0.625,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "广东美的智慧家零售有限公司 \n中国,佛山市 \n中国,佛山市 \n家电销售 \n95% \n5% \n设立 \n \n(b) \n本集团"
+        },
+        {
+          "rank": 4,
+          "block_id": 4329,
+          "page": 127,
+          "document_id": 1,
+          "final_score": 0.6167,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": " \n参见财务报表附注二（26）（a）收入之销售商\n品会计政策、附注四（48）营业收入和营业成\n本及附注八分部报告。 \n "
+        },
+        {
+          "rank": 5,
+          "block_id": 191,
+          "page": 9,
+          "document_id": 1,
+          "final_score": 0.55,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "归属于上市公司股东的扣除非经常性损\n益的净利润（千元） \n41,267,233 \n35,741,418 \n15.46% "
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-006",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          135
+        ]
+      ],
+      "gold_blocks": [
+        4443
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 4346,
+          "page": 128,
+          "document_id": 1,
+          "final_score": 0.6452,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q4"
+          ],
+          "text": " \n于 2025 年 12 月 31 日，美的集团合并资产\n负债表中的商誉的账面价值约为人民币\n34,256,859 千"
+        },
+        {
+          "rank": 2,
+          "block_id": 4329,
+          "page": 127,
+          "document_id": 1,
+          "final_score": 0.6024,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": " \n参见财务报表附注二（26）（a）收入之销售商\n品会计政策、附注四（48）营业收入和营业成\n本及附注八分部报告。 \n "
+        },
+        {
+          "rank": 3,
+          "block_id": 5581,
+          "page": 247,
+          "document_id": 1,
+          "final_score": 0.5786,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "广东美的智慧家零售有限公司 \n中国,佛山市 \n中国,佛山市 \n家电销售 \n95% \n5% \n设立 \n \n(b) \n本集团"
+        },
+        {
+          "rank": 4,
+          "block_id": 16,
+          "page": 2,
+          "document_id": 1,
+          "final_score": 0.5333,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "加剧。尽管如此，风雨中归来，美的依然实现了业绩历史新高，2025 年营业总收入4,585 亿\n"
+        },
+        {
+          "rank": 5,
+          "block_id": 5401,
+          "page": 225,
+          "document_id": 1,
+          "final_score": 0.5071,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "2025 年度 \n \n2024 年度 \n \n其他业务收入 \n其他业务成本 \n其他业务收入 \n其他业务成本 \n \n \n \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-007",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          4,
+          2
+        ]
+      ],
+      "gold_blocks": [
+        14637
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": true,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": true,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 235,
+          "page": 11,
+          "document_id": 1,
+          "final_score": 0.6376,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "营业收入 \n127,838,538 \n123,285,176 \n111,933,037 \n93,394,980 \n"
+        },
+        {
+          "rank": 2,
+          "block_id": 255,
+          "page": 11,
+          "document_id": 1,
+          "final_score": 0.5955,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1"
+          ],
+          "text": "的应收款项减值准备转回、索赔收入、罚款\n"
+        },
+        {
+          "rank": 3,
+          "block_id": 508,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.2122,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6"
+          ],
+          "text": "销收入55%以上。其中，在下沉市场美的系产品零售规模突破300 亿元，市场份额位居行业第一，实现市\n"
+        },
+        {
+          "rank": 4,
+          "block_id": 1172,
+          "page": 41,
+          "document_id": 1,
+          "final_score": 0.2122,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4",
+            "q5",
+            "q6"
+          ],
+          "text": "化等。美的集团在2025 年收入达人民币4,585 亿元，并连续十年跻身《财富》世界500 强榜单，彰显其\n"
+        },
+        {
+          "rank": 5,
+          "block_id": 14637,
+          "page": 2,
+          "document_id": 4,
+          "final_score": 0.2094,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "营业收入（千元） \n127,838,538 \n106,101,612 \n20.49% \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-008",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          2,
+          17
+        ],
+        [
+          2,
+          96
+        ]
+      ],
+      "gold_blocks": [
+        6265,
+        8775
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": false,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 7088,
+          "page": 43,
+          "document_id": 2,
+          "final_score": 0.9729,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q4",
+            "q5",
+            "q6"
+          ],
+          "text": "化等。美的集团在2025 年上半年收入达人民币2,523 亿元，并连续十年跻身《财富》世界500 强榜单，彰\n"
+        },
+        {
+          "rank": 2,
+          "block_id": 6265,
+          "page": 17,
+          "document_id": 2,
+          "final_score": 0.935,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q5",
+            "q6",
+            "q7",
+            "q_text"
+          ],
+          "text": "态势。2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增\n"
+        },
+        {
+          "rank": 3,
+          "block_id": 6221,
+          "page": 16,
+          "document_id": 2,
+          "final_score": 0.7314,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q5",
+            "q6"
+          ],
+          "text": "2025 年上半年中国中央空调市场不含税销售收入为691 亿元，同比下滑5.5%，其中国内销售占比约为\n"
+        },
+        {
+          "rank": 4,
+          "block_id": 7180,
+          "page": 46,
+          "document_id": 2,
+          "final_score": 0.7136,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1"
+          ],
+          "text": "务收入已达到智能家居业务海外收入的45%以上，主要以东芝、美的及Comfee 品牌为主，OBM 产品在\n"
+        },
+        {
+          "rank": 5,
+          "block_id": 6563,
+          "page": 27,
+          "document_id": 2,
+          "final_score": 0.6814,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q7"
+          ],
+          "text": "2025 年上半年，海外自有品牌电商销售收入延续高增长态势，同比增长超过30%。面对美国关税等\n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-009",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          2,
+          96
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "gold_blocks": [
+        8775,
+        14807
+      ],
+      "stage_a_page_recall_50": false,
+      "stage_a_block_recall_50": false,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 508,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.1776,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6",
+            "q7"
+          ],
+          "text": "销收入55%以上。其中，在下沉市场美的系产品零售规模突破300 亿元，市场份额位居行业第一，实现市\n"
+        },
+        {
+          "rank": 2,
+          "block_id": 1172,
+          "page": 41,
+          "document_id": 1,
+          "final_score": 0.1734,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4",
+            "q5",
+            "q6"
+          ],
+          "text": "化等。美的集团在2025 年收入达人民币4,585 亿元，并连续十年跻身《财富》世界500 强榜单，彰显其\n"
+        },
+        {
+          "rank": 3,
+          "block_id": 4329,
+          "page": 127,
+          "document_id": 1,
+          "final_score": 0.1505,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q4"
+          ],
+          "text": " \n参见财务报表附注二（26）（a）收入之销售商\n品会计政策、附注四（48）营业收入和营业成\n本及附注八分部报告。 \n "
+        },
+        {
+          "rank": 4,
+          "block_id": 4346,
+          "page": 128,
+          "document_id": 1,
+          "final_score": 0.1476,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": " \n于 2025 年 12 月 31 日，美的集团合并资产\n负债表中的商誉的账面价值约为人民币\n34,256,859 千"
+        },
+        {
+          "rank": 5,
+          "block_id": 495,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.1369,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6",
+            "q7"
+          ],
+          "text": "营业总收入4,585 亿元，同比增长12%，实现归母净利润439.5 亿元，同比增长14%，实现扣非归母净利\n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-010",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          2,
+          96
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "gold_blocks": [
+        8775,
+        14808
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 5581,
+          "page": 247,
+          "document_id": 1,
+          "final_score": 0.1376,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "广东美的智慧家零售有限公司 \n中国,佛山市 \n中国,佛山市 \n家电销售 \n95% \n5% \n设立 \n \n(b) \n本集团"
+        },
+        {
+          "rank": 2,
+          "block_id": 495,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.1349,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6"
+          ],
+          "text": "营业总收入4,585 亿元，同比增长12%，实现归母净利润439.5 亿元，同比增长14%，实现扣非归母净利\n"
+        },
+        {
+          "rank": 3,
+          "block_id": 6266,
+          "page": 17,
+          "document_id": 2,
+          "final_score": 0.1349,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6"
+          ],
+          "text": "长25.0%，实现扣非归母净利润262 亿元，同比增长30.0%。 \n"
+        },
+        {
+          "rank": 4,
+          "block_id": 17,
+          "page": 2,
+          "document_id": 1,
+          "final_score": 0.1331,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6"
+          ],
+          "text": "元，归母净利润439.5 亿元，收入和利润均实现了双位数增长。海外收入1,959 亿元，同比\n"
+        },
+        {
+          "rank": 5,
+          "block_id": 5462,
+          "page": 231,
+          "document_id": 1,
+          "final_score": 0.1234,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "单位 \n2025 年度  \n2024 年度 \n \n \n  \n \n归属于母公司普通股股东的合并净利润 \n人民币千元 \n43"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-011",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          4,
+          2
+        ]
+      ],
+      "gold_blocks": [
+        14638
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": false,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 236,
+          "page": 11,
+          "document_id": 1,
+          "final_score": 0.6389,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "归属于上市公司股东的净利润 \n12,422,233 \n13,591,457 \n11,869,693 \n6,062,028"
+        },
+        {
+          "rank": 2,
+          "block_id": 237,
+          "page": 11,
+          "document_id": 1,
+          "final_score": 0.4889,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "归属于上市公司股东的扣除非经\n常性损益的净利润 \n12,749,867 \n13,485,532 \n10,904,681 "
+        },
+        {
+          "rank": 3,
+          "block_id": 14638,
+          "page": 2,
+          "document_id": 4,
+          "final_score": 0.2113,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "归属于上市公司股东的净利润（千元） \n12,422,233 \n9,000,007 \n38.02% \n"
+        },
+        {
+          "rank": 4,
+          "block_id": 495,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.2043,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6",
+            "q7",
+            "q_text"
+          ],
+          "text": "营业总收入4,585 亿元，同比增长12%，实现归母净利润439.5 亿元，同比增长14%，实现扣非归母净利\n"
+        },
+        {
+          "rank": 5,
+          "block_id": 6265,
+          "page": 17,
+          "document_id": 2,
+          "final_score": 0.2032,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6",
+            "q7",
+            "q_text"
+          ],
+          "text": "态势。2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增\n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-012",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          9
+        ]
+      ],
+      "gold_blocks": [
+        193
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 15,
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": true,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 1.0,
+      "mrr_block": 1.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 193,
+          "page": 9,
+          "document_id": 1,
+          "final_score": 0.9262,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "基本每股收益（元/股） \n5.80 \n5.44 \n6.62% \n4.93 \n"
+        },
+        {
+          "rank": 2,
+          "block_id": 5462,
+          "page": 231,
+          "document_id": 1,
+          "final_score": 0.7762,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q5"
+          ],
+          "text": "单位 \n2025 年度  \n2024 年度 \n \n \n  \n \n归属于母公司普通股股东的合并净利润 \n人民币千元 \n43"
+        },
+        {
+          "rank": 3,
+          "block_id": 5973,
+          "page": 7,
+          "document_id": 2,
+          "final_score": 0.7571,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "基本每股收益（元/股） \n3.41 \n3.02 \n12.91% \n"
+        },
+        {
+          "rank": 4,
+          "block_id": 4478,
+          "page": 136,
+          "document_id": 1,
+          "final_score": 0.7262,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "总额 \n \n782,218 \n(145,267) \n- \n- \n \n \n \n \n \n七、每股收益 \n \n \n \n \n \n"
+        },
+        {
+          "rank": 5,
+          "block_id": 8775,
+          "page": 96,
+          "document_id": 2,
+          "final_score": 0.7214,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q5"
+          ],
+          "text": "项 目 \n附注 \n2025 年半年度 \n2024 年半年度 2025 年半年度2024 年半年度\n合并 \n合并 \n公司 "
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-013",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          2,
+          173
+        ]
+      ],
+      "gold_blocks": [
+        9553
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 15,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 8775,
+          "page": 96,
+          "document_id": 2,
+          "final_score": 0.6707,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "项 目 \n附注 \n2025 年半年度 \n2024 年半年度 2025 年半年度2024 年半年度\n合并 \n合并 \n公司 "
+        },
+        {
+          "rank": 2,
+          "block_id": 5973,
+          "page": 7,
+          "document_id": 2,
+          "final_score": 0.2291,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "基本每股收益（元/股） \n3.41 \n3.02 \n12.91% \n"
+        },
+        {
+          "rank": 3,
+          "block_id": 5462,
+          "page": 231,
+          "document_id": 1,
+          "final_score": 0.1862,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "单位 \n2025 年度  \n2024 年度 \n \n \n  \n \n归属于母公司普通股股东的合并净利润 \n人民币千元 \n43"
+        },
+        {
+          "rank": 4,
+          "block_id": 14641,
+          "page": 2,
+          "document_id": 4,
+          "final_score": 0.1841,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "基本每股收益（元/股） \n1.64 \n1.31 \n25.19% \n"
+        },
+        {
+          "rank": 5,
+          "block_id": 193,
+          "page": 9,
+          "document_id": 1,
+          "final_score": 0.1819,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "基本每股收益（元/股） \n5.80 \n5.44 \n6.62% \n4.93 \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-014",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          9
+        ]
+      ],
+      "gold_blocks": [
+        192
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 8,
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": true,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 1.0,
+      "mrr_block": 1.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 192,
+          "page": 9,
+          "document_id": 1,
+          "final_score": 0.8274,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "经营活动产生的现金流量净额（千元） \n53,345,930 \n60,511,572 \n-11.84% \n57,902,6"
+        },
+        {
+          "rank": 2,
+          "block_id": 5972,
+          "page": 7,
+          "document_id": 2,
+          "final_score": 0.6742,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "经营活动产生的现金流量净额（千元） \n37,281,015 \n33,488,170 \n11.33% \n"
+        },
+        {
+          "rank": 3,
+          "block_id": 5493,
+          "page": 234,
+          "document_id": 1,
+          "final_score": 0.6677,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "2025 年度  \n2024 年度 \n \n  \n \n净利润 \n44,520,196 \n38,757,214 \n 加：资产"
+        },
+        {
+          "rank": 4,
+          "block_id": 8780,
+          "page": 97,
+          "document_id": 2,
+          "final_score": 0.6677,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "销售商品、提供劳务收到的现金 \n225,290,399 \n191,846,137 \n- \n- \n发放贷款及垫款净减少额 "
+        },
+        {
+          "rank": 5,
+          "block_id": 14821,
+          "page": 10,
+          "document_id": 4,
+          "final_score": 0.6677,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "合并 \n合并 \n公司 \n公司 \n一、经营活动产生的现金流量： \n \n \n \n \n销售商品、提供劳务收到的现金 \n109,"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-015",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          2,
+          17
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "gold_blocks": [
+        6265,
+        14637
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 7180,
+          "page": 46,
+          "document_id": 2,
+          "final_score": 0.7581,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5"
+          ],
+          "text": "务收入已达到智能家居业务海外收入的45%以上，主要以东芝、美的及Comfee 品牌为主，OBM 产品在\n"
+        },
+        {
+          "rank": 2,
+          "block_id": 7088,
+          "page": 43,
+          "document_id": 2,
+          "final_score": 0.7337,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q4",
+            "q5"
+          ],
+          "text": "化等。美的集团在2025 年上半年收入达人民币2,523 亿元，并连续十年跻身《财富》世界500 强榜单，彰\n"
+        },
+        {
+          "rank": 3,
+          "block_id": 6563,
+          "page": 27,
+          "document_id": 2,
+          "final_score": 0.6965,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q5",
+            "q7"
+          ],
+          "text": "2025 年上半年，海外自有品牌电商销售收入延续高增长态势，同比增长超过30%。面对美国关税等\n"
+        },
+        {
+          "rank": 4,
+          "block_id": 7005,
+          "page": 41,
+          "document_id": 2,
+          "final_score": 0.6965,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q5"
+          ],
+          "text": "人的国内市场销量份额稳步提升并达到9.4%，库卡中国在2025 年上半年实现销售收入和订单规模双增长，\n"
+        },
+        {
+          "rank": 5,
+          "block_id": 6221,
+          "page": 16,
+          "document_id": 2,
+          "final_score": 0.694,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q5"
+          ],
+          "text": "2025 年上半年中国中央空调市场不含税销售收入为691 亿元，同比下滑5.5%，其中国内销售占比约为\n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-016",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          1
+        ]
+      ],
+      "gold_blocks": [
+        4
+      ],
+      "stage_a_page_recall_50": false,
+      "stage_a_block_recall_50": false,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 4040,
+          "page": 118,
+          "document_id": 1,
+          "final_score": 0.6231,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "美的控股有限公司 \n何享健 \n2002 年08 月05 日 \n914406067429989733 \n"
+        },
+        {
+          "rank": 2,
+          "block_id": 4817,
+          "page": 178,
+          "document_id": 1,
+          "final_score": 0.6231,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q4"
+          ],
+          "text": " \n \n \n湖北美的洗衣机有限公司 \nGR202342000522 2023 年10 月16 日 \n三年 \n四川科陆新能"
+        },
+        {
+          "rank": 3,
+          "block_id": 4823,
+          "page": 179,
+          "document_id": 1,
+          "final_score": 0.6231,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "《高新技术 \n企业证书》编号 \n证书取得日期 有效期 \n \n \n \n库卡机器人(广东)有限公司 \nGR202344010"
+        },
+        {
+          "rank": 4,
+          "block_id": 4825,
+          "page": 179,
+          "document_id": 1,
+          "final_score": 0.6231,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "司 \nGR202344017927 2023 年12 月28 日 \n三年 \n广东威灵电机制造有限公司 \nGR202344"
+        },
+        {
+          "rank": 5,
+          "block_id": 4826,
+          "page": 179,
+          "document_id": 1,
+          "final_score": 0.6231,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "合肥美的生物医疗有限公司 \nGR202434005999 2024 年11 月28 日 \n三年 \n芜湖美的厨卫电器制造有"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-017",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          9
+        ]
+      ],
+      "gold_blocks": [
+        189
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": false,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 1172,
+          "page": 41,
+          "document_id": 1,
+          "final_score": 0.847,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4",
+            "q5",
+            "q6"
+          ],
+          "text": "化等。美的集团在2025 年收入达人民币4,585 亿元，并连续十年跻身《财富》世界500 强榜单，彰显其\n"
+        },
+        {
+          "rank": 2,
+          "block_id": 508,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.8424,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6",
+            "q7"
+          ],
+          "text": "销收入55%以上。其中，在下沉市场美的系产品零售规模突破300 亿元，市场份额位居行业第一，实现市\n"
+        },
+        {
+          "rank": 3,
+          "block_id": 189,
+          "page": 9,
+          "document_id": 1,
+          "final_score": 0.8227,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "营业收入（千元） \n456,451,731 \n407,149,600 \n12.11% \n372,037,280 \n"
+        },
+        {
+          "rank": 4,
+          "block_id": 4346,
+          "page": 128,
+          "document_id": 1,
+          "final_score": 0.7818,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": " \n于 2025 年 12 月 31 日，美的集团合并资产\n负债表中的商誉的账面价值约为人民币\n34,256,859 千"
+        },
+        {
+          "rank": 5,
+          "block_id": 4329,
+          "page": 127,
+          "document_id": 1,
+          "final_score": 0.7773,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "text": " \n参见财务报表附注二（26）（a）收入之销售商\n品会计政策、附注四（48）营业收入和营业成\n本及附注八分部报告。 \n "
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-018",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          9
+        ]
+      ],
+      "gold_blocks": [
+        192
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 8,
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": true,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 1.0,
+      "mrr_block": 1.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 192,
+          "page": 9,
+          "document_id": 1,
+          "final_score": 0.6833,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "经营活动产生的现金流量净额（千元） \n53,345,930 \n60,511,572 \n-11.84% \n57,902,6"
+        },
+        {
+          "rank": 2,
+          "block_id": 5493,
+          "page": 234,
+          "document_id": 1,
+          "final_score": 0.6778,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "2025 年度  \n2024 年度 \n \n  \n \n净利润 \n44,520,196 \n38,757,214 \n 加：资产"
+        },
+        {
+          "rank": 3,
+          "block_id": 5972,
+          "page": 7,
+          "document_id": 2,
+          "final_score": 0.6778,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "经营活动产生的现金流量净额（千元） \n37,281,015 \n33,488,170 \n11.33% \n"
+        },
+        {
+          "rank": 4,
+          "block_id": 238,
+          "page": 11,
+          "document_id": 1,
+          "final_score": 0.6722,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "经营活动产生的现金流量净额 \n14,320,968 \n22,960,047 \n19,785,070 \n-3,720,15"
+        },
+        {
+          "rank": 5,
+          "block_id": 8780,
+          "page": 97,
+          "document_id": 2,
+          "final_score": 0.6722,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "销售商品、提供劳务收到的现金 \n225,290,399 \n191,846,137 \n- \n- \n发放贷款及垫款净减少额 "
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-019",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          2,
+          17
+        ]
+      ],
+      "gold_blocks": [
+        6267
+      ],
+      "stage_a_page_recall_50": false,
+      "stage_a_block_recall_50": false,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 9095,
+          "page": 138,
+          "document_id": 2,
+          "final_score": 0.56,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": " \n \n \n佛山市美的清湖净水设备有限公司 \nGR202444001161 2024/11/19 \n三年 \n库卡工业自动"
+        },
+        {
+          "rank": 2,
+          "block_id": 9087,
+          "page": 137,
+          "document_id": 2,
+          "final_score": 0.5517,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q4"
+          ],
+          "text": "湖北美的电冰箱有限公司 \nGR202342000311 2023/10/16 \n三年 \n北京合康新能变频技术有限公司 \n"
+        },
+        {
+          "rank": 3,
+          "block_id": 7917,
+          "page": 69,
+          "document_id": 2,
+          "final_score": 0.5475,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "13 \n邯郸美的智能厨电制造有限公司 \nhttp://121.29.48.71:8080/#/fill/detail?e"
+        },
+        {
+          "rank": 4,
+          "block_id": 9088,
+          "page": 137,
+          "document_id": 2,
+          "final_score": 0.5475,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "上海瑞仕格医疗科技有限公司 \nGR202331005355 2023/12/12 \n三年 \n美的威灵电机技术(上海)有限"
+        },
+        {
+          "rank": 5,
+          "block_id": 7916,
+          "page": 69,
+          "document_id": 2,
+          "final_score": 0.5433,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "12 \n邯郸美的制冷设备有限公司 \nhttp://121.29.48.71:8080/#/fill/detail?enp"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-020",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          2,
+          17
+        ]
+      ],
+      "gold_blocks": [],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": false,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 5581,
+          "page": 247,
+          "document_id": 1,
+          "final_score": 0.5833,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "广东美的智慧家零售有限公司 \n中国,佛山市 \n中国,佛山市 \n家电销售 \n95% \n5% \n设立 \n \n(b) \n本集团"
+        },
+        {
+          "rank": 2,
+          "block_id": 137,
+          "page": 8,
+          "document_id": 1,
+          "final_score": 0.5556,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "股票简称 \n美的集团 \n股票代码 \n000333（A 股）、0300（H 股） \n"
+        },
+        {
+          "rank": 3,
+          "block_id": 7722,
+          "page": 63,
+          "document_id": 2,
+          "final_score": 0.5,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q5"
+          ],
+          "text": "公司2025 年中期利润分配方案为：以截至本报告披露之日公司总股本7,675,588,172 股扣除回购专户上已回购股份"
+        },
+        {
+          "rank": 4,
+          "block_id": 8775,
+          "page": 96,
+          "document_id": 2,
+          "final_score": 0.5,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q5"
+          ],
+          "text": "项 目 \n附注 \n2025 年半年度 \n2024 年半年度 2025 年半年度2024 年半年度\n合并 \n合并 \n公司 "
+        },
+        {
+          "rank": 5,
+          "block_id": 4508,
+          "page": 142,
+          "document_id": 1,
+          "final_score": 0.4944,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q5"
+          ],
+          "text": "项目 \n \n股本 \n资本公积 \n减：库存股 \n其他综合收益 \n盈余公积 \n未分配利润 \n股东权益合计 \n \n \n \n \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-024",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          17
+        ]
+      ],
+      "gold_blocks": [
+        189,
+        6265
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 508,
+          "page": 20,
+          "document_id": 1,
+          "final_score": 0.7875,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5"
+          ],
+          "text": "销收入55%以上。其中，在下沉市场美的系产品零售规模突破300 亿元，市场份额位居行业第一，实现市\n"
+        },
+        {
+          "rank": 2,
+          "block_id": 1210,
+          "page": 42,
+          "document_id": 1,
+          "final_score": 0.7813,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5"
+          ],
+          "text": "智能家居业务海外收入的45%以上，主要以东芝、美的及Comfee 品牌为主，OBM 产品在众多海外市场\n"
+        },
+        {
+          "rank": 3,
+          "block_id": 4346,
+          "page": 128,
+          "document_id": 1,
+          "final_score": 0.775,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4",
+            "q5"
+          ],
+          "text": " \n于 2025 年 12 月 31 日，美的集团合并资产\n负债表中的商誉的账面价值约为人民币\n34,256,859 千"
+        },
+        {
+          "rank": 4,
+          "block_id": 4329,
+          "page": 127,
+          "document_id": 1,
+          "final_score": 0.7625,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q4",
+            "q5"
+          ],
+          "text": " \n参见财务报表附注二（26）（a）收入之销售商\n品会计政策、附注四（48）营业收入和营业成\n本及附注八分部报告。 \n "
+        },
+        {
+          "rank": 5,
+          "block_id": 1172,
+          "page": 41,
+          "document_id": 1,
+          "final_score": 0.75,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4",
+            "q5"
+          ],
+          "text": "化等。美的集团在2025 年收入达人民币4,585 亿元，并连续十年跻身《财富》世界500 强榜单，彰显其\n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-026",
+      "dataset": "demo",
+      "gold_pages": [
+        [
+          2,
+          17
+        ]
+      ],
+      "gold_blocks": [
+        6266
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": true,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 1.0,
+      "mrr_block": 1.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 6266,
+          "page": 17,
+          "document_id": 2,
+          "final_score": 0.8897,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6",
+            "q7"
+          ],
+          "text": "长25.0%，实现扣非归母净利润262 亿元，同比增长30.0%。 \n"
+        },
+        {
+          "rank": 2,
+          "block_id": 6265,
+          "page": 17,
+          "document_id": 2,
+          "final_score": 0.5937,
+          "gold_page_hit": true,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q5",
+            "q6",
+            "q7"
+          ],
+          "text": "态势。2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增\n"
+        },
+        {
+          "rank": 3,
+          "block_id": 7722,
+          "page": 63,
+          "document_id": 2,
+          "final_score": 0.515,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "公司2025 年中期利润分配方案为：以截至本报告披露之日公司总股本7,675,588,172 股扣除回购专户上已回购股份"
+        },
+        {
+          "rank": 4,
+          "block_id": 8775,
+          "page": 96,
+          "document_id": 2,
+          "final_score": 0.495,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "项 目 \n附注 \n2025 年半年度 \n2024 年半年度 2025 年半年度2024 年半年度\n合并 \n合并 \n公司 "
+        },
+        {
+          "rank": 5,
+          "block_id": 237,
+          "page": 11,
+          "document_id": 1,
+          "final_score": 0.491,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "归属于上市公司股东的扣除非经\n常性损益的净利润 \n12,749,867 \n13,485,532 \n10,904,681 "
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H01",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10029
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": false,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 10188,
+          "page": 12,
+          "document_id": 3,
+          "final_score": 0.95,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6",
+            "q7"
+          ],
+          "text": "报告期内，公司围绕酿酒生产、质量提升、市场营销、品牌建设等重点工作持续强基础、补短板、\n蓄动能，为后续经营改善创造条件。"
+        },
+        {
+          "rank": 2,
+          "block_id": 10497,
+          "page": 21,
+          "document_id": 3,
+          "final_score": 0.95,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6",
+            "q7"
+          ],
+          "text": "实际完成：2025 年，白酒行业进入深度调整周期，公司主动应市调整，主动帮助渠道纾压解困。公\n司实现营业总收入405.2"
+        },
+        {
+          "rank": 3,
+          "block_id": 10029,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.8188,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "营业收入（元） \n40,528,509,770.23 \n89,175,178,322.70 \n-54.55% \n83,2"
+        },
+        {
+          "rank": 4,
+          "block_id": 11642,
+          "page": 49,
+          "document_id": 3,
+          "final_score": 0.8188,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "为人民币4,052,850.98 万元。营业收入是公\n"
+        },
+        {
+          "rank": 5,
+          "block_id": 10176,
+          "page": 11,
+          "document_id": 3,
+          "final_score": 0.7906,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6",
+            "q7"
+          ],
+          "text": "报告期内，面临多重超预期因素冲击，白酒行业进入全面深度调整的“深水区”，存量竞争持续加\n剧，行业发展格局加快演进。根据国"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H02",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10030
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 43,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 10188,
+          "page": 12,
+          "document_id": 3,
+          "final_score": 0.9417,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6"
+          ],
+          "text": "报告期内，公司围绕酿酒生产、质量提升、市场营销、品牌建设等重点工作持续强基础、补短板、\n蓄动能，为后续经营改善创造条件。"
+        },
+        {
+          "rank": 2,
+          "block_id": 11939,
+          "page": 57,
+          "document_id": 3,
+          "final_score": 0.6833,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "1.归属于母公司股东的净利润 \n8,954,257,202.51 \n31,853,172,533.98 \n"
+        },
+        {
+          "rank": 3,
+          "block_id": 10056,
+          "page": 8,
+          "document_id": 3,
+          "final_score": 0.525,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "归属于上市公司股东的扣\n除非经常性损益的净利润 \n4,417,458,056.53 \n194,094,150.38 \n1"
+        },
+        {
+          "rank": 4,
+          "block_id": 11994,
+          "page": 58,
+          "document_id": 3,
+          "final_score": 0.5167,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "四、净利润（净亏损以“－”号填\n列） \n24,571,439,269.25 \n23,057,405,950.28 \n"
+        },
+        {
+          "rank": 5,
+          "block_id": 11995,
+          "page": 58,
+          "document_id": 3,
+          "final_score": 0.5167,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "（一）持续经营净利润（净亏损以\n“－”号填列） \n24,571,439,269.25 \n23,057,405,950.2"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H03",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10030
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 43,
+      "page_hit_1": false,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": false,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 10188,
+          "page": 12,
+          "document_id": 3,
+          "final_score": 0.808,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6",
+            "q7"
+          ],
+          "text": "报告期内，公司围绕酿酒生产、质量提升、市场营销、品牌建设等重点工作持续强基础、补短板、\n蓄动能，为后续经营改善创造条件。"
+        },
+        {
+          "rank": 2,
+          "block_id": 10030,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.7239,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "归属于上市公司股东的\n净利润（元） \n8,954,257,202.51 \n31,853,172,533.98 \n-71."
+        },
+        {
+          "rank": 3,
+          "block_id": 11171,
+          "page": 35,
+          "document_id": 3,
+          "final_score": 0.6891,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "1、重大缺陷：损失占净利润比例≥5%。 \n"
+        },
+        {
+          "rank": 4,
+          "block_id": 11179,
+          "page": 35,
+          "document_id": 3,
+          "final_score": 0.6891,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "3、一般缺陷：损失占净利润比例＜3%。 \n"
+        },
+        {
+          "rank": 5,
+          "block_id": 11174,
+          "page": 35,
+          "document_id": 3,
+          "final_score": 0.6848,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "2、重要缺陷：3%≤损失占净利润比例＜\n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H04",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10033
+      ],
+      "stage_a_page_recall_50": false,
+      "stage_a_block_recall_50": false,
+      "stage_a_count": 4,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 2,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 10378,
+          "page": 17,
+          "document_id": 3,
+          "final_score": 0.6742,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "经营活动产生的现金流量净额 \n29,706,259,919.13 \n33,939,755,192.78 \n-12.47%"
+        },
+        {
+          "rank": 2,
+          "block_id": 12096,
+          "page": 61,
+          "document_id": 3,
+          "final_score": 0.1694,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q_fallback"
+          ],
+          "text": "经营活动产生的现金流量净额 \n3,601,186,122.73 \n680,777,326.02 \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H05",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10033
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": true,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 1.0,
+      "mrr_block": 1.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 10033,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.5778,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "经营活动产生的现金流\n量净额（元） \n29,706,259,919.13 \n33,939,755,192.78 \n-12"
+        },
+        {
+          "rank": 2,
+          "block_id": 9986,
+          "page": 6,
+          "document_id": 3,
+          "final_score": 0.5583,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q4",
+            "q5"
+          ],
+          "text": "股票简称 \n五粮液 \n股票代码 \n000858 \n"
+        },
+        {
+          "rank": 3,
+          "block_id": 10030,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.5583,
+          "gold_page_hit": true,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "归属于上市公司股东的\n净利润（元） \n8,954,257,202.51 \n31,853,172,533.98 \n-71."
+        },
+        {
+          "rank": 4,
+          "block_id": 10038,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.5556,
+          "gold_page_hit": true,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "归属于上市公司股东的\n净资产（元） \n119,932,271,234.99 133,285,282,015.97 \n-1"
+        },
+        {
+          "rank": 5,
+          "block_id": 10029,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.5528,
+          "gold_page_hit": true,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "营业收入（元） \n40,528,509,770.23 \n89,175,178,322.70 \n-54.55% \n83,2"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H06",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10034
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 5,
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": true,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 1.0,
+      "mrr_block": 1.0,
+      "no_result": false,
+      "retrieved": 4,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 10034,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 1.0,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q_text"
+          ],
+          "text": "基本每股收益（元/股） \n2.3068 \n8.2062 \n-71.89% \n7.7830 \n"
+        },
+        {
+          "rank": 2,
+          "block_id": 14606,
+          "page": 141,
+          "document_id": 3,
+          "final_score": 0.1391,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q_text"
+          ],
+          "text": "基本每股收益（元/股） \n稀释每股收益（元/股） \n"
+        },
+        {
+          "rank": 3,
+          "block_id": 11962,
+          "page": 57,
+          "document_id": 3,
+          "final_score": 0.1295,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q_text"
+          ],
+          "text": "（一）基本每股收益 \n2.3068 \n8.2062 \n"
+        },
+        {
+          "rank": 4,
+          "block_id": 11421,
+          "page": 42,
+          "document_id": 3,
+          "final_score": 0.0914,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q_text"
+          ],
+          "text": "股份变动对最近一年和最近一期基本每股收益和稀释每股收益、归属于公司普通股股东的每股净资\n产等财务指标的影响 \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H07",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10036
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 3,
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": true,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 1.0,
+      "mrr_block": 1.0,
+      "no_result": false,
+      "retrieved": 3,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 10036,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 1.0,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q_text"
+          ],
+          "text": "加权平均净资产收益率 \n6.89% \n23.35% \n减少16.46 个百分点 \n25.06% \n \n2025 年末 \n"
+        },
+        {
+          "rank": 2,
+          "block_id": 14605,
+          "page": 141,
+          "document_id": 3,
+          "final_score": 0.125,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q_text"
+          ],
+          "text": "报告期利润 \n加权平均净资产收益率 \n"
+        },
+        {
+          "rank": 3,
+          "block_id": 14603,
+          "page": 141,
+          "document_id": 3,
+          "final_score": 0.087,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5"
+          ],
+          "text": "□适用 不适用 \n2、净资产收益率及每股收益 \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H08",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10037
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 10,
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": true,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 1.0,
+      "mrr_block": 1.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 10037,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.825,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1"
+          ],
+          "text": "总资产（元） \n189,984,270,815.47 188,252,218,704.17 \n0.92% \n165,43"
+        },
+        {
+          "rank": 2,
+          "block_id": 11619,
+          "page": 48,
+          "document_id": 3,
+          "final_score": 0.5821,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q3"
+          ],
+          "text": "占资产总额66.86%，系五粮液股份的主要资\n"
+        },
+        {
+          "rank": 3,
+          "block_id": 11177,
+          "page": 35,
+          "document_id": 3,
+          "final_score": 0.475,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q3"
+          ],
+          "text": "﹤错报≤净利润的10%；资产总额的1%\n"
+        },
+        {
+          "rank": 4,
+          "block_id": 11178,
+          "page": 35,
+          "document_id": 3,
+          "final_score": 0.4714,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q3"
+          ],
+          "text": "﹤错报≤资产总额的3%。 \n"
+        },
+        {
+          "rank": 5,
+          "block_id": 12460,
+          "page": 72,
+          "document_id": 3,
+          "final_score": 0.1564,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1"
+          ],
+          "text": "重要的合营企业或联营企业 \n长期股权投资金额占合并财务报表总资产的1%以上 \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H09",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10038
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": false,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 1.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 10036,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.7233,
+          "gold_page_hit": true,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "加权平均净资产收益率 \n6.89% \n23.35% \n减少16.46 个百分点 \n25.06% \n \n2025 年末 \n"
+        },
+        {
+          "rank": 2,
+          "block_id": 10038,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.7167,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "归属于上市公司股东的\n净资产（元） \n119,932,271,234.99 133,285,282,015.97 \n-1"
+        },
+        {
+          "rank": 3,
+          "block_id": 9986,
+          "page": 6,
+          "document_id": 3,
+          "final_score": 0.5633,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q4",
+            "q5"
+          ],
+          "text": "股票简称 \n五粮液 \n股票代码 \n000858 \n"
+        },
+        {
+          "rank": 4,
+          "block_id": 10030,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.5533,
+          "gold_page_hit": true,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "归属于上市公司股东的\n净利润（元） \n8,954,257,202.51 \n31,853,172,533.98 \n-71."
+        },
+        {
+          "rank": 5,
+          "block_id": 10033,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.5533,
+          "gold_page_hit": true,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5"
+          ],
+          "text": "经营活动产生的现金流\n量净额（元） \n29,706,259,919.13 \n33,939,755,192.78 \n-12"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H10",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          1
+        ]
+      ],
+      "gold_blocks": [
+        9927
+      ],
+      "stage_a_page_recall_50": false,
+      "stage_a_block_recall_50": false,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 9986,
+          "page": 6,
+          "document_id": 3,
+          "final_score": 0.5654,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q4"
+          ],
+          "text": "股票简称 \n五粮液 \n股票代码 \n000858 \n"
+        },
+        {
+          "rank": 2,
+          "block_id": 11538,
+          "page": 45,
+          "document_id": 3,
+          "final_score": 0.5269,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "宜宾发展控股集团有限公司 \n韩成珂 \n1999 年08 月04 日 \n915115007118234259 \n在宜宾市人"
+        },
+        {
+          "rank": 3,
+          "block_id": 12660,
+          "page": 85,
+          "document_id": 3,
+          "final_score": 0.5269,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q4",
+            "q5"
+          ],
+          "text": "2、税收优惠 \n（1）增值税 \n2007 年1 月，四川省宜宾环球格拉斯玻璃制造有限公司取得四川省民政厅颁发的“福企证字"
+        },
+        {
+          "rank": 4,
+          "block_id": 10030,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.5039,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "归属于上市公司股东的\n净利润（元） \n8,954,257,202.51 \n31,853,172,533.98 \n-71."
+        },
+        {
+          "rank": 5,
+          "block_id": 10036,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.5039,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "加权平均净资产收益率 \n6.89% \n23.35% \n减少16.46 个百分点 \n25.06% \n \n2025 年末 \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H11",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10031
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": false,
+      "stage_a_count": 43,
+      "page_hit_1": false,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 10188,
+          "page": 12,
+          "document_id": 3,
+          "final_score": 0.6214,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3",
+            "q5",
+            "q6"
+          ],
+          "text": "报告期内，公司围绕酿酒生产、质量提升、市场营销、品牌建设等重点工作持续强基础、补短板、\n蓄动能，为后续经营改善创造条件。"
+        },
+        {
+          "rank": 2,
+          "block_id": 10056,
+          "page": 8,
+          "document_id": 3,
+          "final_score": 0.5286,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "归属于上市公司股东的扣\n除非经常性损益的净利润 \n4,417,458,056.53 \n194,094,150.38 \n1"
+        },
+        {
+          "rank": 3,
+          "block_id": 10030,
+          "page": 7,
+          "document_id": 3,
+          "final_score": 0.5214,
+          "gold_page_hit": true,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "归属于上市公司股东的\n净利润（元） \n8,954,257,202.51 \n31,853,172,533.98 \n-71."
+        },
+        {
+          "rank": 4,
+          "block_id": 11939,
+          "page": 57,
+          "document_id": 3,
+          "final_score": 0.5143,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "1.归属于母公司股东的净利润 \n8,954,257,202.51 \n31,853,172,533.98 \n"
+        },
+        {
+          "rank": 5,
+          "block_id": 11934,
+          "page": 57,
+          "document_id": 3,
+          "final_score": 0.5071,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q3"
+          ],
+          "text": "五、净利润（净亏损以“－”号填列） \n9,317,113,184.68 \n33,193,460,484.32 \n"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H12",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          6
+        ]
+      ],
+      "gold_blocks": [
+        9986
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "block_hit_1": true,
+      "block_hit_3": true,
+      "block_hit_5": true,
+      "mrr_page": 1.0,
+      "mrr_block": 1.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 9986,
+          "page": 6,
+          "document_id": 3,
+          "final_score": 0.5288,
+          "gold_page_hit": true,
+          "gold_block_hit": true,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "text": "股票简称 \n五粮液 \n股票代码 \n000858 \n"
+        },
+        {
+          "rank": 2,
+          "block_id": 10121,
+          "page": 10,
+          "document_id": 3,
+          "final_score": 0.4663,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "text": "其中：五粮液产品 \n27,936,099,726.56 \n2,919,602,981.19 \n89.55% \n-58.8"
+        },
+        {
+          "rank": 3,
+          "block_id": 10124,
+          "page": 10,
+          "document_id": 3,
+          "final_score": 0.4569,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "text": "区域 \n五粮液经销商数量 \n比上年同期增减(数量) \n变化原因（超过30%） \n"
+        },
+        {
+          "rank": 4,
+          "block_id": 11538,
+          "page": 45,
+          "document_id": 3,
+          "final_score": 0.385,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q4"
+          ],
+          "text": "宜宾发展控股集团有限公司 \n韩成珂 \n1999 年08 月04 日 \n915115007118234259 \n在宜宾市人"
+        },
+        {
+          "rank": 5,
+          "block_id": 11222,
+          "page": 36,
+          "document_id": 3,
+          "final_score": 0.3788,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q2",
+            "q4"
+          ],
+          "text": "7 \n河南五谷春酒业股份有限公司 \nhttp://222.143.24.250:8247/enpInfo/enpOver"
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-H16",
+      "dataset": "holdout",
+      "gold_pages": [
+        [
+          3,
+          7
+        ]
+      ],
+      "gold_blocks": [
+        10029
+      ],
+      "stage_a_page_recall_50": true,
+      "stage_a_block_recall_50": true,
+      "stage_a_count": 50,
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "block_hit_1": false,
+      "block_hit_3": false,
+      "block_hit_5": false,
+      "mrr_page": 0.0,
+      "mrr_block": 0.0,
+      "no_result": false,
+      "retrieved": 5,
+      "top5_duplicate_rate": 0.0,
+      "error": null,
+      "top10": [
+        {
+          "rank": 1,
+          "block_id": 14299,
+          "page": 133,
+          "document_id": 3,
+          "final_score": 0.79,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "期末公司存放于财务公司的存款余额共计47,977,245,153.26 元，其中票据保证金4,000,000.00 元，"
+        },
+        {
+          "rank": 2,
+          "block_id": 14297,
+          "page": 133,
+          "document_id": 3,
+          "final_score": 0.785,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q4"
+          ],
+          "text": "合计 \n \n945,474,538.21 1,100,152,892.92 \n注1：公司于2023 年12 月31 日与"
+        },
+        {
+          "rank": 3,
+          "block_id": 10188,
+          "page": 12,
+          "document_id": 3,
+          "final_score": 0.7833,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6"
+          ],
+          "text": "报告期内，公司围绕酿酒生产、质量提升、市场营销、品牌建设等重点工作持续强基础、补短板、\n蓄动能，为后续经营改善创造条件。"
+        },
+        {
+          "rank": 4,
+          "block_id": 10497,
+          "page": 21,
+          "document_id": 3,
+          "final_score": 0.7783,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6"
+          ],
+          "text": "实际完成：2025 年，白酒行业进入深度调整周期，公司主动应市调整，主动帮助渠道纾压解困。公\n司实现营业总收入405.2"
+        },
+        {
+          "rank": 5,
+          "block_id": 10176,
+          "page": 11,
+          "document_id": 3,
+          "final_score": 0.7683,
+          "gold_page_hit": false,
+          "gold_block_hit": false,
+          "query_contributions": [
+            "q1",
+            "q5",
+            "q6"
+          ],
+          "text": "报告期内，面临多重超预期因素冲击，白酒行业进入全面深度调整的“深水区”，存量竞争持续加\n剧，行业发展格局加快演进。根据国"
+        }
+      ]
+    }
+  ]
+}

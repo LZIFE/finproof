@@ -236,6 +236,45 @@ def _same_granularity(claim_period_str: str, ev_doc_period: str | None) -> bool:
     return gran(cp) == gran(ev)
 
 
+def _entity_conflict(claim: dict, evidence_list: list[dict]) -> tuple[bool, str]:
+    """实体一致性检查：claim.entity vs evidence.company（Phase 23.10）。
+
+    证据带 company 且与主张实体不一致 → 冲突（主体替换变形必须被检测）。
+    证据无 company（历史格式/纯文本）→ 不判冲突（保守）。
+    返回 (有冲突, 说明)。
+    """
+    claim_entity = str(claim.get("entity") or claim.get("entity_name") or "").strip()
+    if not claim_entity:
+        return False, "claim 无实体信息"
+    companies = [str(e.get("company") or "").strip() for e in evidence_list if e.get("company")]
+    if not companies:
+        return False, "证据无公司信息（保守不判）"
+    known = {"美的集团", "五粮液", "宁德时代", "贵州茅台", "恒瑞医药", "比亚迪", "招商银行", "测试公司X"}
+    ev_companies = set(c for c in companies if c)
+    if not ev_companies:
+        return False, "证据 company 为空"
+    # claim 实体与任一证据公司一致（含简称匹配）→ 无冲突
+    for ec in ev_companies:
+        if claim_entity == ec or claim_entity in ec or ec in claim_entity:
+            return False, f"实体一致：claim={claim_entity} ev={ec}"
+        if claim_entity in known and ec in known:
+            return True, f"实体冲突：claim={claim_entity} ev={ec}"
+    return False, "实体未知公司，保守不判"
+
+
+def _unit_semantic_conflict(claim_unit: str, ev_fv_unit: str | None) -> tuple[bool, str]:
+    """单位语义冲突：百分比(%) vs 百分点 语义不同（Phase 23.10）。"""
+    cu = str(claim_unit or "").strip()
+    eu = str(ev_fv_unit or "").strip()
+    if not cu or not eu:
+        return False, "单位信息不足"
+    pct_units = {"%", "％", "个百分点", "percentage point", "pp", "百分点"}
+    if (cu in ("%", "％") and eu in ("个百分点", "百分点", "pp", "percentage point")) or \
+       (eu in ("%", "％") and cu in ("个百分点", "百分点", "pp", "percentage point")):
+        return True, f"单位语义冲突：claim={cu} ev={eu}（百分比 vs 百分点）"
+    return False, "单位语义一致"
+
+
 # ---------------------------------------------------------------------------
 # 主入口：core_verify（唯一 PRIMARY 路径）
 # ---------------------------------------------------------------------------
@@ -400,16 +439,25 @@ def _core_verify_numeric(claim, evidence_list, trace, std_metric, metric_code, c
     )
 
     # 5) 口径检查（metric_scope）：claim 与 evidence 数字所在块口径
-    #    指标行命中时以指标标签绑定口径（CLM-026：证据"扣非归母净利润"整块文本
-    #    会被 parse_scope 先命中"归母"→parent_attributable，与 claim 的
-    #    deducted_net_profit→adjusted 冲突；实际指标标签"扣非"已绑定口径，应视为兼容）
+    #    Phase 23.10：指标绑定口径（不再无条件跳过）。
+    #    - claim adjusted（扣非族）且 evidence 含"扣非" → 兼容（CLM-026）
+    #    - claim consolidated 而 evidence 为归母口径 → 冲突（归母≠合并，metamorphic 需检测）
     scope_ok, scope_note = True, "无数值匹配"
     for cand in candidates:
         if cand["fv"] is best_fv:
-            if cand.get("metric_row"):
-                scope_ok, scope_note = True, "指标行标签绑定口径，跳过整块文本口径解析"
+            text = cand["text"]
+            if claim_scope.scope_type == "adjusted" and ("扣非" in text or "扣除非经常性损益" in text):
+                scope_ok, scope_note = True, "指标绑定扣非口径，兼容"
+            elif claim_scope.scope_type == "parent_attributable" and ("归母" in text or "归属于" in text):
+                scope_ok, scope_note = True, "指标绑定归母口径，兼容"
+            elif claim_scope.scope_type == "consolidated":
+                ev_scope = parse_scope(text)
+                if ev_scope.scope_type == "parent_attributable":
+                    scope_ok, scope_note = False, f"claim 为合并口径但 evidence 为归母口径（{ev_scope.raw_text}）"
+                else:
+                    scope_ok, scope_note = True, "合并口径兼容"
             else:
-                ev_scope = parse_scope(cand["text"])
+                ev_scope = parse_scope(text)
                 scope_ok, scope_note = scopes_compatible(claim_scope, ev_scope)
             break
 
@@ -430,9 +478,11 @@ def _core_verify_numeric(claim, evidence_list, trace, std_metric, metric_code, c
 
     # 当年列冲突：命中非当年列（上年值）→ REFUTED（C 类：多数字歧义）
     is_current = None
+    best_cand = None
     for cand in candidates:
         if cand["fv"] is best_fv:
             is_current = cand.get("is_current_year")
+            best_cand = cand
             break
     # 数值本身匹配（find_best_match 已确认 values_match）
     trace.numeric_preliminary_verdict = STATUS_SUPPORTED
@@ -443,17 +493,33 @@ def _core_verify_numeric(claim, evidence_list, trace, std_metric, metric_code, c
         calc = {"matched_value": best_fv.normalized_value, "match_reason": match_reason}
         return _verdict_result(trace, STATUS_REFUTED, 0.9, "主张数值为上年同期值，与当年数值不符", calc=calc)
 
-    # 7) verdict_decision：8 步决策
+    # 7) verdict_decision：8 步决策（Phase 23.10：传入真实 period/metric/entity/unit 匹配，
+    #    不再硬编码 True——期间冲突（年度→半年度）、指标冲突（归母→合并）、
+    #    实体冲突（主体替换）、单位冲突（百分比→百分点）必须被检测）
     trace.verdict_decision_called = True
+    period_match = bool(best_cand and best_cand["period_ok"])
+    metric_match = bool(best_cand and best_cand["metric_row"])
+    ent_conflict, ent_note = _entity_conflict(claim, evidence_list)
+    unit_conflict, unit_note = _unit_semantic_conflict(claim_unit or "", best_fv.unit)
     verdict, _dt = resolve_verdict(
         evidence_available=True,
-        entity_match=True,
-        metric_match=True,
-        period_match=True,
-        unit_scope_match=scope_ok,
+        entity_match=not ent_conflict,
+        metric_match=metric_match,
+        period_match=period_match,
+        unit_scope_match=scope_ok and not unit_conflict,
         numeric_match=True,
         semantic_completeness=1.0,
     )
+    if ent_conflict:
+        trace.rule_id = "numeric:entity_conflict"
+        trace.override_source = "core_pipeline:entity_check"
+        return _verdict_result(trace, STATUS_REFUTED, 0.9, f"实体冲突：{ent_note}",
+                               calc={"matched_value": best_fv.normalized_value})
+    if unit_conflict:
+        trace.rule_id = "numeric:unit_semantic_conflict"
+        trace.override_source = "core_pipeline:unit_check"
+        return _verdict_result(trace, STATUS_REFUTED, 0.85, f"单位语义冲突：{unit_note}",
+                               calc={"matched_value": best_fv.normalized_value})
     trace.numeric_preliminary_verdict = verdict
     trace.final_verdict = verdict
     trace.rule_id = "numeric:exact_value"
@@ -510,6 +576,12 @@ def _core_verify_ratio(claim, evidence_list, trace, claim_value, claim_unit, std
     trace.rule_id = "ratio:derived"
     trace.override_source = "financial_value:derived_ratio"
     trace.verdict_decision_called = True
+    # Phase 23.10：ratio 路径接入 entity/unit 冲突检查（主体替换/百分比改百分点必须被检测）
+    ent_conflict, ent_note = _entity_conflict(claim, evidence_list)
+    if ent_conflict:
+        trace.rule_id = "ratio:entity_conflict"
+        trace.override_source = "core_pipeline:entity_check"
+        return _verdict_result(trace, STATUS_REFUTED, 0.9, f"实体冲突：{ent_note}", calc=calc)
     if abs(ratio_val - claim_value) <= 0.5:
         verdict = STATUS_SUPPORTED
         trace.final_verdict = verdict

@@ -1,0 +1,82 @@
+{
+  "phase": "23.10",
+  "script": "phase23_10_acceptance",
+  "generated_artifacts": {
+    "leakage_audit": true,
+    "metamorphic": true,
+    "failure_diagnosis": true,
+    "metrics": true,
+    "hard_negatives": true,
+    "leave_one_out": true,
+    "metric_integrity": true,
+    "e2e": true
+  },
+  "missing_artifacts": [],
+  "key_numbers": {
+    "oracle_accuracy": 1.0,
+    "oracle_macro_f1": 1.0,
+    "metamorphic_rates": {
+      "invariance": 1.0,
+      "contradiction": 0.9021,
+      "removal": 0.9429
+    },
+    "stage_a_page_recall_50": 0.8571,
+    "stage_a_block_recall_50": 0.8,
+    "page_hit_5": 0.5429,
+    "block_hit_5": 0.5143,
+    "recall_at_5": 0.475,
+    "mrr_page": 0.2857,
+    "no_result_rate": 0.0,
+    "e2e_accuracy": 0.4651,
+    "e2e_macro_f1": 0.511,
+    "e2e_error_decomposition": {
+      "retrieval_failure": 13,
+      "verification_failure": 10,
+      "both_failure": 0
+    }
+  },
+  "acceptance_checks": {
+    "1_leakage_audit_clean": true,
+    "2_no_claim_specific_hardcode": true,
+    "3_metamorphic_invariance_ge90": true,
+    "4_metamorphic_contradiction_ge90": true,
+    "5_candidate_page_recall50_ge095": false,
+    "6_candidate_block_recall50_ge090": false,
+    "7_page_hit5_ge080": false,
+    "8_block_hit5_ge070": false,
+    "9_recall5_ge080": false,
+    "10_mrr_ge060": false,
+    "11_no_result_le005": true,
+    "12_e2e_accuracy_ge075": false,
+    "13_e2e_macro_f1_ge065": false,
+    "14_retrieval_failure_le5": false,
+    "15_oracle_accuracy_ge090": true,
+    "16_oracle_macro_f1_ge085": true,
+    "17_hitk_monotonicity": true,
+    "18_loo_no_leakage": true
+  },
+  "passed_checks": [
+    "1_leakage_audit_clean",
+    "2_no_claim_specific_hardcode",
+    "3_metamorphic_invariance_ge90",
+    "4_metamorphic_contradiction_ge90",
+    "11_no_result_le005",
+    "15_oracle_accuracy_ge090",
+    "16_oracle_macro_f1_ge085",
+    "17_hitk_monotonicity",
+    "18_loo_no_leakage"
+  ],
+  "failed_checks": [
+    "5_candidate_page_recall50_ge095",
+    "6_candidate_block_recall50_ge090",
+    "7_page_hit5_ge080",
+    "8_block_hit5_ge070",
+    "9_recall5_ge080",
+    "10_mrr_ge060",
+    "12_e2e_accuracy_ge075",
+    "13_e2e_macro_f1_ge065",
+    "14_retrieval_failure_le5"
+  ],
+  "readiness": "NOT_READY",
+  "readiness_note": "READY 需同时满足 18 项检查无 False + 产物齐全 + 外部验证（pytest×5/build×3/评测×2/新 commit）"
+}
