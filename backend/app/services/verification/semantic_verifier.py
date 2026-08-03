@@ -1,7 +1,10 @@
 """金融语义核验与证据充分性分析（Phase 4B.2）。
 
-Semantic Claim → Evidence Requirement 规则 → Evidence Coverage 评分 → 结论。
+[DEPRECATED] Phase 23.9 起主链改走 core_pipeline._core_verify_semantic（PRIMARY 路径，
+整合 verdict_decision 守卫，禁止覆盖确定性 REFUTED）。本模块保留为 LEGACY：
+仅单元测试与历史诊断脚本调用，禁止生产入口（copilot/agent/demo/risk）调用。
 
+原始职责（Phase 4B.2）：Semantic Claim → Evidence Requirement 规则 → Evidence Coverage 评分 → 结论。
 保持 Evidence First 原则：不判断真假，只判断证据是否足够支撑主张。
 - 证据覆盖全部要求维度 → SUPPORTED
 - 覆盖部分 → PARTIALLY_SUPPORTED

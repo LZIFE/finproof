@@ -1,0 +1,1016 @@
+{
+  "phase": "23.9",
+  "script": "phase23_9_call_trace",
+  "entry_point": "verify_claim → _select_verifier → verifier → VerificationResult",
+  "expected_chain": [
+    {
+      "expected_link": "verification_service.verify_claim",
+      "called": true,
+      "call_count": 5,
+      "status": "INTEGRATED"
+    },
+    {
+      "expected_link": "verification_service._select_verifier",
+      "called": true,
+      "call_count": 5,
+      "status": "INTEGRATED"
+    },
+    {
+      "expected_link": "numeric_verifier.verify_exact_value",
+      "called": true,
+      "call_count": 47,
+      "status": "INTEGRATED"
+    },
+    {
+      "expected_link": "financial_value.extract_financial_values",
+      "called": false,
+      "call_count": 0,
+      "status": "NOT_INTEGRATED"
+    },
+    {
+      "expected_link": "financial_value.values_match",
+      "called": false,
+      "call_count": 0,
+      "status": "NOT_INTEGRATED"
+    },
+    {
+      "expected_link": "financial_value.find_best_match",
+      "called": false,
+      "call_count": 0,
+      "status": "NOT_INTEGRATED"
+    },
+    {
+      "expected_link": "period_context.parse_period",
+      "called": false,
+      "call_count": 0,
+      "status": "NOT_INTEGRATED"
+    },
+    {
+      "expected_link": "period_context.periods_compatible",
+      "called": false,
+      "call_count": 0,
+      "status": "NOT_INTEGRATED"
+    },
+    {
+      "expected_link": "metric_scope.normalize_metric",
+      "called": false,
+      "call_count": 0,
+      "status": "NOT_INTEGRATED"
+    },
+    {
+      "expected_link": "metric_scope.scopes_compatible",
+      "called": false,
+      "call_count": 0,
+      "status": "NOT_INTEGRATED"
+    },
+    {
+      "expected_link": "verdict_decision.resolve_verdict",
+      "called": false,
+      "call_count": 0,
+      "status": "NOT_INTEGRATED"
+    },
+    {
+      "expected_link": "verdict_decision.guard_semantic_not_override_numeric",
+      "called": false,
+      "call_count": 0,
+      "status": "NOT_INTEGRATED"
+    },
+    {
+      "expected_link": "semantic_verifier.verify_semantic_support",
+      "called": true,
+      "call_count": 11,
+      "status": "INTEGRATED"
+    }
+  ],
+  "nodes": [
+    {
+      "module": "evidence_checker",
+      "function": "_evidence_coverage",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "evidence_checker",
+      "function": "verify_multi_evidence",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "evidence_checker",
+      "function": "verify_semantic",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "evidence_retrieval.engine",
+      "function": "_block_value_hits",
+      "caller": {
+        "app.services.evidence_retrieval.engine.score_block": 500
+      },
+      "input_types": {
+        "str": 1000,
+        "float": 500
+      },
+      "output_types": {
+        "tuple": 500
+      },
+      "call_count_total": 500,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "evidence_retrieval.engine",
+      "function": "iter_numbers",
+      "caller": {
+        "app.services.evidence_retrieval.engine._block_value_hits": 500
+      },
+      "input_types": {
+        "str": 500
+      },
+      "output_types": {
+        "generator": 500
+      },
+      "call_count_total": 500,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "evidence_retrieval.engine",
+      "function": "score_block",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "evidence_retrieval.engine",
+      "function": "values_compatible",
+      "caller": {
+        "app.services.evidence_retrieval.engine._block_value_hits": 619
+      },
+      "input_types": {
+        "float": 1238,
+        "str": 619
+      },
+      "output_types": {
+        "bool": 619
+      },
+      "call_count_total": 619,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "financial_value",
+      "function": "extract_financial_values",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "financial_value",
+      "function": "find_best_match",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "financial_value",
+      "function": "values_match",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "growth_verifier",
+      "function": "_claim_metric_tokens",
+      "caller": {
+        "app.services.verification.growth_verifier._growth_evidence_order": 1
+      },
+      "input_types": {
+        "dict": 1
+      },
+      "output_types": {
+        "set": 1
+      },
+      "call_count_total": 1,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "growth_verifier",
+      "function": "_extract_current_prev",
+      "caller": {
+        "app.services.verification.growth_verifier.verify_growth_rate": 2
+      },
+      "input_types": {
+        "str": 2
+      },
+      "output_types": {
+        "NoneType": 1,
+        "tuple": 1
+      },
+      "call_count_total": 2,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "growth_verifier",
+      "function": "_growth_evidence_order",
+      "caller": {
+        "app.services.verification.verification_service._select_verifier": 1
+      },
+      "input_types": {
+        "list": 1,
+        "dict": 1
+      },
+      "output_types": {
+        "list": 1
+      },
+      "call_count_total": 1,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "growth_verifier",
+      "function": "verify_growth_rate",
+      "caller": {
+        "app.services.verification.verification_service._select_verifier": 1
+      },
+      "input_types": {
+        "list": 2,
+        "dict": 1
+      },
+      "output_types": {
+        "VerificationResult": 1
+      },
+      "call_count_total": 1,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": true,
+      "verdict_outputs": {
+        "REFUTED": 1
+      },
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "metric_scope",
+      "function": "metrics_compatible",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "metric_scope",
+      "function": "normalize_metric",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "metric_scope",
+      "function": "parse_scope",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "metric_scope",
+      "function": "query_expansion",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "metric_scope",
+      "function": "scopes_compatible",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "numeric_verifier",
+      "function": "_evidence_has_numbers",
+      "caller": {
+        "app.services.verification.numeric_verifier.<genexpr>": 11
+      },
+      "input_types": {
+        "str": 11
+      },
+      "output_types": {
+        "bool": 11
+      },
+      "call_count_total": 11,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "numeric_verifier",
+      "function": "_find_matching_number",
+      "caller": {
+        "app.services.verification.numeric_verifier.verify_exact_value": 41
+      },
+      "input_types": {
+        "str": 82,
+        "float": 38,
+        "int": 3
+      },
+      "output_types": {
+        "tuple": 21,
+        "NoneType": 20
+      },
+      "call_count_total": 41,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "numeric_verifier",
+      "function": "verify_exact_value",
+      "caller": {
+        "__main__.build_call_graph": 43,
+        "app.services.verification.verification_service._select_verifier": 4
+      },
+      "input_types": {
+        "list": 51,
+        "dict": 47
+      },
+      "output_types": {
+        "VerificationResult": 47
+      },
+      "call_count_total": 47,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": true,
+      "verdict_outputs": {
+        "SUPPORTED": 21,
+        "REFUTED": 11,
+        "PARTIALLY_SUPPORTED": 5,
+        "INSUFFICIENT_EVIDENCE": 10
+      },
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "period_context",
+      "function": "derive_q3_standalone",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "period_context",
+      "function": "derive_standalone_quarter",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "period_context",
+      "function": "parse_period",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "period_context",
+      "function": "periods_compatible",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "period_verifier",
+      "function": "_first_number_yi",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "period_verifier",
+      "function": "verify_period_conflict",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "period_verifier",
+      "function": "verify_period_quarter",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "semantic_verifier",
+      "function": "analyze_coverage",
+      "caller": {
+        "app.services.verification.semantic_verifier.verify_semantic_support": 11
+      },
+      "input_types": {
+        "dict": 11,
+        "list": 11
+      },
+      "output_types": {
+        "tuple": 11
+      },
+      "call_count_total": 11,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "semantic_verifier",
+      "function": "classify_semantic_type",
+      "caller": {
+        "app.services.verification.semantic_verifier.analyze_coverage": 11
+      },
+      "input_types": {
+        "dict": 11
+      },
+      "output_types": {
+        "str": 11
+      },
+      "call_count_total": 11,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "semantic_verifier",
+      "function": "verify_causal",
+      "caller": {
+        "app.services.verification.numeric_verifier.verify_exact_value": 3
+      },
+      "input_types": {
+        "list": 6,
+        "dict": 3
+      },
+      "output_types": {
+        "VerificationResult": 3
+      },
+      "call_count_total": 3,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": true,
+      "verdict_outputs": {
+        "INSUFFICIENT_EVIDENCE": 3
+      },
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "semantic_verifier",
+      "function": "verify_comparison",
+      "caller": {
+        "app.services.verification.numeric_verifier.verify_exact_value": 1
+      },
+      "input_types": {
+        "list": 2,
+        "dict": 1
+      },
+      "output_types": {
+        "VerificationResult": 1
+      },
+      "call_count_total": 1,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": true,
+      "verdict_outputs": {
+        "INSUFFICIENT_EVIDENCE": 1
+      },
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "semantic_verifier",
+      "function": "verify_semantic_support",
+      "caller": {
+        "app.services.verification.numeric_verifier.verify_exact_value": 11
+      },
+      "input_types": {
+        "list": 22,
+        "dict": 11
+      },
+      "output_types": {
+        "VerificationResult": 11
+      },
+      "call_count_total": 11,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": true,
+      "verdict_outputs": {
+        "PARTIALLY_SUPPORTED": 5,
+        "INSUFFICIENT_EVIDENCE": 6
+      },
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "verdict_decision",
+      "function": "guard_semantic_not_override_numeric",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "verdict_decision",
+      "function": "resolve_verdict",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "verification_service",
+      "function": "_select_verifier",
+      "caller": {
+        "app.services.verification.verification_service.verify_claim": 5
+      },
+      "input_types": {
+        "dict": 5,
+        "list": 5
+      },
+      "output_types": {
+        "VerificationResult": 5
+      },
+      "call_count_total": 5,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": true,
+      "verdict_outputs": {
+        "SUPPORTED": 3,
+        "REFUTED": 2
+      },
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "verification_service",
+      "function": "fetch_evidence",
+      "caller": {
+        "app.services.verification.verification_service.verify_claim": 5
+      },
+      "input_types": {
+        "Session": 5,
+        "dict": 5
+      },
+      "output_types": {
+        "list": 5
+      },
+      "call_count_total": 5,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "INTEGRATED"
+    },
+    {
+      "module": "verification_service",
+      "function": "load_claim",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "verification_service",
+      "function": "run_verification",
+      "caller": {},
+      "input_types": {},
+      "output_types": {},
+      "call_count_total": 0,
+      "called_in_oracle_43": false,
+      "affects_final_verdict": false,
+      "verdict_outputs": {},
+      "integration_status": "NOT_INTEGRATED"
+    },
+    {
+      "module": "verification_service",
+      "function": "verify_claim",
+      "caller": {
+        "__main__.build_call_graph": 5
+      },
+      "input_types": {
+        "Session": 5,
+        "dict": 5
+      },
+      "output_types": {
+        "VerificationResult": 5
+      },
+      "call_count_total": 5,
+      "called_in_oracle_43": true,
+      "affects_final_verdict": true,
+      "verdict_outputs": {
+        "SUPPORTED": 3,
+        "REFUTED": 2
+      },
+      "integration_status": "INTEGRATED"
+    }
+  ],
+  "answers_to_7_questions": {
+    "q1_financial_value_called_by_real_verify_claim": {
+      "answer": false,
+      "detail": "verify_exact_value 的 _find_matching_number 使用 evidence_retrieval.engine 旧正则（iter_numbers/_clean_numbers），未调用 financial_value 模块"
+    },
+    "q2_period_context_participates_in_final_period_decision": {
+      "answer": false,
+      "detail": "period_verifier.verify_period_quarter 使用 engine._first_number_yi 旧逻辑，未使用 PeriodContext"
+    },
+    "q3_metric_scope_result_enters_verdict_decision": {
+      "answer": false,
+      "detail": "metric_scope 与 verdict_decision 均未被主链调用"
+    },
+    "q4_verdict_decision_decides_final_status": {
+      "answer": false,
+      "detail": "最终 status 由旧 verifier 直接构造 VerificationResult，未经 verdict_decision"
+    },
+    "q5_semantic_verifier_overrides_numeric_verifier": {
+      "answer": true,
+      "detail": "verify_exact_value 对非数值类 claim_type 路由到 semantic_verifier，存在 Semantic 覆盖数值冲突风险（SEMANTIC_OVERREACH 错误的来源）"
+    },
+    "q6_legacy_number_parsing_bypasses_new_modules": {
+      "answer": true,
+      "detail": "numeric_verifier/period_verifier/growth_verifier 均使用 engine 旧正则解析数字，绕过 financial_value 新模块"
+    },
+    "q7_new_modules_dead_integration_test_only": {
+      "answer": true,
+      "detail": "financial_value / period_context / metric_scope / verdict_decision 四个 Phase 23.8 新模块未被主链调用，仅单元测试调用 → dead integration"
+    }
+  },
+  "oracle_43_sampled": [
+    {
+      "claim_id": "CLM-001",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-002",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "REFUTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-003",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-004",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "REFUTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-005",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "REFUTED",
+      "gold_evidence_count": 2
+    },
+    {
+      "claim_id": "CLM-006",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "REFUTED",
+      "gold_evidence_count": 2
+    },
+    {
+      "claim_id": "CLM-007",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-008",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 2
+    },
+    {
+      "claim_id": "CLM-009",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "PARTIALLY_SUPPORTED",
+      "gold_evidence_count": 2
+    },
+    {
+      "claim_id": "CLM-010",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "PARTIALLY_SUPPORTED",
+      "gold_evidence_count": 2
+    },
+    {
+      "claim_id": "CLM-011",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-012",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-013",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-014",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-015",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 2
+    },
+    {
+      "claim_id": "CLM-016",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "PARTIALLY_SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-017",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-018",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "REFUTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-019",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-020",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-021",
+      "gold_verdict": "INSUFFICIENT_EVIDENCE",
+      "oracle_prediction": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_count": 0
+    },
+    {
+      "claim_id": "CLM-022",
+      "gold_verdict": "INSUFFICIENT_EVIDENCE",
+      "oracle_prediction": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_count": 0
+    },
+    {
+      "claim_id": "CLM-023",
+      "gold_verdict": "OPINION_OR_FORECAST",
+      "oracle_prediction": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_count": 0
+    },
+    {
+      "claim_id": "CLM-024",
+      "gold_verdict": "PARTIALLY_SUPPORTED",
+      "oracle_prediction": "REFUTED",
+      "gold_evidence_count": 2
+    },
+    {
+      "claim_id": "CLM-025",
+      "gold_verdict": "UNABLE_TO_DETERMINE",
+      "oracle_prediction": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_count": 0
+    },
+    {
+      "claim_id": "CLM-026",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H01",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H02",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H03",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "REFUTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H04",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H05",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "REFUTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H06",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H07",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H08",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H09",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "REFUTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H10",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "PARTIALLY_SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H11",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H12",
+      "gold_verdict": "SUPPORTED",
+      "oracle_prediction": "PARTIALLY_SUPPORTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H13",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_count": 0
+    },
+    {
+      "claim_id": "CLM-H14",
+      "gold_verdict": "OPINION_OR_FORECAST",
+      "oracle_prediction": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_count": 0
+    },
+    {
+      "claim_id": "CLM-H15",
+      "gold_verdict": "UNABLE_TO_DETERMINE",
+      "oracle_prediction": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_count": 0
+    },
+    {
+      "claim_id": "CLM-H16",
+      "gold_verdict": "REFUTED",
+      "oracle_prediction": "REFUTED",
+      "gold_evidence_count": 1
+    },
+    {
+      "claim_id": "CLM-H17",
+      "gold_verdict": "INSUFFICIENT_EVIDENCE",
+      "oracle_prediction": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_count": 0
+    }
+  ],
+  "methodology": "运行时插桩：包装全部验证模块函数，在真实 43 条 Oracle 评测（Gold Evidence Block 输入）下统计调用；另抽样 5 条走真实 verify_claim（含检索）验证主链入口可达。",
+  "note": "若新模块 (financial_value/period_context/metric_scope/verdict_decision) 状态为 NOT_INTEGRATED，不得声称已修复——需在 Phase 23.9 主链重构中接入。"
+}

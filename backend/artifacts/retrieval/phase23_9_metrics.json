@@ -1,0 +1,91 @@
+{
+  "phase": "23.9",
+  "script": "phase23_9_retrieval_metrics",
+  "definition": {
+    "total_claims": "全部有 Gold Evidence 的 Development Claims（固定分母）",
+    "page_hit_at_k": "Top K 内至少命中一个 Gold Page 的 claim 数 / total_claims",
+    "block_hit_at_k": "Top K 内至少命中一个 Gold Block 的 claim 数 / total_claims",
+    "recall_at_k": "Top K 内命中的 Gold Evidence 数 / Gold Evidence 总数",
+    "no_result_rate": "返回 0 候选的 claim 数 / total_claims",
+    "mrr": "每 claim 首个 Gold 命中的倒数排名均值（未命中计 0）"
+  },
+  "gold_block_resolution": {
+    "BLOCK_MATCHED": 41,
+    "PAGE_ONLY": 1,
+    "NOT_INDEXED": 0,
+    "PAGE_NOT_PARSED": 0
+  },
+  "dataset": "Development Set (demo 美的 + holdout 五粮液)",
+  "metrics_run_1": {
+    "page_hit_at_1": 0.2571,
+    "page_hit_at_3": 0.4857,
+    "page_hit_at_5": 0.5429,
+    "block_hit_at_1": 0.2286,
+    "block_hit_at_3": 0.4571,
+    "block_hit_at_5": 0.4857,
+    "recall_at_1": 0.2143,
+    "recall_at_3": 0.4048,
+    "recall_at_5": 0.4524,
+    "mrr_page": 0.3686,
+    "mrr_block": 0.3303,
+    "no_result_rate": 0.0286
+  },
+  "metrics_run_2": {
+    "page_hit_at_1": 0.2571,
+    "page_hit_at_3": 0.4857,
+    "page_hit_at_5": 0.5429,
+    "block_hit_at_1": 0.2286,
+    "block_hit_at_3": 0.4571,
+    "block_hit_at_5": 0.4857,
+    "recall_at_1": 0.2143,
+    "recall_at_3": 0.4048,
+    "recall_at_5": 0.4524,
+    "mrr_page": 0.3686,
+    "mrr_block": 0.3303,
+    "no_result_rate": 0.0286
+  },
+  "invariants": [
+    {
+      "name": "0 <= Page Hit@1 <= Page Hit@3 <= Page Hit@5 <= 1",
+      "passed": true,
+      "detail": "Hit@1=0.2571 Hit@3=0.4857 Hit@5=0.5429"
+    },
+    {
+      "name": "0 <= Block Hit@1 <= Block Hit@3 <= Block Hit@5 <= 1",
+      "passed": true,
+      "detail": "BlockHit@1=0.2286 BlockHit@3=0.4571 BlockHit@5=0.4857"
+    },
+    {
+      "name": "Recall@1 <= Recall@3 <= Recall@5",
+      "passed": true,
+      "detail": "Recall@1=0.2143 Recall@3=0.4048 Recall@5=0.4524"
+    },
+    {
+      "name": "No-result Rate 与空候选 claim 数量完全一致",
+      "passed": true,
+      "detail": "empty=1 no_result_count=1 rate=0.0286"
+    }
+  ],
+  "determinism_check": {
+    "name": "同一输入连续运行两次结果一致（确定性）",
+    "passed": true,
+    "detail": "两次运行全部指标一致"
+  },
+  "all_invariants_passed": true,
+  "previous_metrics": {
+    "old_metrics_file": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/retrieval/phase23_7_retrieval_metrics.json",
+    "invalid_reasons": [
+      "Page Hit@1=0.744 > Page Hit@3=0.674 > Page Hit@5=0.628，违反 Hit@K 单调性",
+      "per-claim top10 candidate_id 全为 '?'，命中判定未使用真实 block id/page，无法复核",
+      "分母不可验证（疑为 K 依赖分母），不符合统一定义（total_claims 固定为全部有 Gold Evidence 的 claim）"
+    ],
+    "verdict": "INVALID"
+  },
+  "targets": {
+    "Page Hit@5 >= 0.80": "0.543 (FAIL)",
+    "Block Hit@5 >= 0.70": "0.486 (FAIL)",
+    "Recall@5 >= 0.80": "0.452 (FAIL)",
+    "MRR >= 0.60": "0.369 (FAIL)",
+    "No-result Rate <= 0.15": "0.029 (PASS)"
+  }
+}

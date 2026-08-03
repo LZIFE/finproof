@@ -1,5 +1,11 @@
 """数字事实验证器（Phase 4B.1）：绝对值核验（EXACT_VALUE_CHECK）。
 
+[DEPRECATED] Phase 23.9 起主链改走 core_pipeline.core_verify（PRIMARY 路径）。
+本模块保留为 LEGACY：仅单元测试 (tests/test_verification.py) 与历史诊断脚本
+(scripts/phase23_5/6/7/8) 调用，不再被生产入口 verification_service._select_verifier 调用。
+- 新代码请使用 app.services.verification.financial_value 抽数与 core_pipeline 核验。
+- 禁止在生产入口（copilot/agent/demo/risk）调用本模块函数。
+
 支持单位转换（千元/万元/元/亿元/列单位/页单位），保存 calculation_detail。
 """
 

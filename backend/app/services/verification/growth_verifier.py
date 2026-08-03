@@ -1,5 +1,10 @@
 """增长率验证器（Phase 4B.1）：同比/环比增长率核验（GROWTH_RATE_CHECK）。
 
+[DEPRECATED] Phase 23.9 起主链改走 core_pipeline._core_verify_growth（PRIMARY 路径，
+使用 FinancialValue/PeriodContext 模块）。本模块保留为 LEGACY：仅单元测试与历史诊断脚本
+调用，禁止生产入口（copilot/agent/demo/risk）调用。
+
+原始职责（Phase 4B.1）：GROWTH_RATE_CHECK——同比/环比增长率核验：
 从证据中提取当前期与上年同期数值，计算 (cur − prev) / prev × 100%，
 与主张增长率比较（允许 ±0.5 个百分点误差）。
 """

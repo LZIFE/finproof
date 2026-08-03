@@ -217,6 +217,10 @@ def metric_aliases(metric_code: str | None, metric: str | None) -> set[str]:
     家族隔离：别名按 metric_code 精确匹配（归母净利润家族不含"净利润"，
     净利润家族不含"归母净利润"），防止跨指标误匹配。
     """
+    # metric 字段可能直接存英文代码（金标准格式，如 total_operating_revenue），
+    # 此时 metric_code 为空也要查表（Phase 23.9 修复：CLM-002 等英文代码 claim 的 metric_score）
+    if metric_code is None and metric and not re.search(r"[\u4e00-\u9fff]", str(metric)):
+        metric_code = str(metric)
     names: set[str] = set()
     if metric and re.search(r"[\u4e00-\u9fff]", str(metric)):
         names.add(metric)  # 仅收中文指标名（英文代码走 metric_code 路径）
@@ -247,6 +251,31 @@ def metric_hits(block_text: str, aliases: set[str]) -> list[str]:
     """返回块中命中的指标别名（按名称长度降序，长名优先）。"""
     hits = [a for a in aliases if a and a in block_text]
     return sorted(hits, key=lambda a: -len(a))
+
+
+def metric_value_adjacency(block_text: str, aliases: set[str]) -> float:
+    """指标名后是否紧跟数字（财务数据行特征）：返回命中的指标名数（0 = 无邻接数字）。
+
+    财务数据行：指标名后 N 字符内出现数字 → 数据行；叙述块：指标名后跟文字 → 非数据行。
+    """
+    if not aliases:
+        return 0.0
+    cleaned = _clean_numbers(block_text)
+    count = 0
+    for alias in sorted(aliases, key=lambda a: -len(a)):
+        if not alias:
+            continue
+        idx = 0
+        while True:
+            pos = cleaned.find(alias, idx)
+            if pos < 0:
+                break
+            tail = cleaned[pos + len(alias):pos + len(alias) + 40]
+            if re.search(r"\d", tail):
+                count += 1
+                break
+            idx = pos + 1
+    return float(count)
 
 
 # ---------------------------------------------------------------- 期间匹配
@@ -332,11 +361,11 @@ def text_similarity(claim_text: str, block_text: str) -> float:
 
 # 基础五分量（Phase 4A 原始方案）+ 阶段2/3/4A.6 新增加成项（page/table/section/evidence_quality，可配置）
 DEFAULT_WEIGHTS = {
-    "metric": 0.30,
-    "value": 0.25,
-    "period": 0.20,
+    "metric": 0.35,
+    "value": 0.30,
+    "period": 0.15,
     "entity": 0.10,
-    "text": 0.15,
+    "text": 0.10,
     "page": 0.10,
     "table": 0.05,
     "section": 0.10,
@@ -344,6 +373,8 @@ DEFAULT_WEIGHTS = {
 }
 # 防止"相同数字、不同指标/期间"排名过高：指标未命中但数值命中的候选施加惩罚系数
 _METRIC_MISS_VALUE_HIT_PENALTY = 0.5
+# period 不兼容时降权但不归零：有期间主张但块+文档都未命中 → 倒扣 penalty（乘 0.3）
+_PERIOD_MISS_PENALTY = 0.3
 
 
 # 管理层讨论/经营分析章节关键词（无数字语义主张的 document_section_bonus）
@@ -431,7 +462,10 @@ def score_block(
     section_bonus: float = 0.0,
     evidence_quality: float = 0.0,
 ) -> dict:
-    """对单个文本块计算解释性分数。返回组件分 + 总分 + 命中项。"""
+    """对单个文本块计算解释性分数。返回组件分 + 总分 + 命中项。
+
+    权重让 metric/value 主导；period 不兼容时降权但不归零（rerank penalty 原则）。
+    """
     w = {**DEFAULT_WEIGHTS, **(weights or {})}
     aliases = metric_aliases(claim.get("metric_code"), claim.get("metric"))
     hits = metric_hits(block_text, aliases)
@@ -458,6 +492,13 @@ def score_block(
         + w["entity"] * entity_score
         + w["text"] * text_score
     )
+    # metric+value 同时命中时给协同加成（财务数据行简洁命中 > 叙述块冗余命中）
+    if metric_score == 1.0 and value_score == 1.0:
+        final += w.get("metric_value_synergy", 0.45)
+    # period 不兼容时降权但不归零：有期间主张但块+文档都未命中 → 倒扣 penalty
+    claim_period = claim.get("period")
+    if claim_period and period_score == 0.0:
+        final *= _PERIOD_MISS_PENALTY
     # 无数字语义主张：管理层讨论/经营分析章节加分（document_section_bonus）
     if claim_value is None and section_bonus > 0:
         final += w.get("section", 0.10) * section_bonus

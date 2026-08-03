@@ -117,45 +117,29 @@ def fetch_evidence(session: Session, claim: dict, top_k: int = 5) -> list[dict]:
 
 
 def _select_verifier(claim: dict, evidence: list[dict]) -> VerificationResult:
-    """按主张类型选择验证器（确定性规则，无 LLM 自由判断）。"""
-    claim_id = claim.get("claim_id") or claim.get("claim_uid") or "?"
-    value, _unit = claim_value_of(claim)
-    ct = (claim.get("claim_type") or "").upper()
-    metric = claim.get("metric") or ""
-    metric_code = claim.get("metric_code")
-    # 金标准格式：metric 字段存代码（如 yoy_growth_net_profit）→ 提取为 metric_code
-    if not metric_code and not re.search(r"[\u4e00-\u9fff]", str(metric)):
-        metric_code = metric
-    code = (metric_code or "").lower()
-    period = str(claim.get("period") or "").upper()
-    texts = [e["text"] for e in evidence]
-    ids = [e["evidence_id"] for e in evidence]
+    """按主张类型选择验证器（确定性规则，无 LLM 自由判断）。
 
-    # 1) 增长率主张（claim_type 或指标代码含 yoy/growth）→ 增长率验证（指标+期间匹配证据优先）
-    if "GROWTH" in ct or "yoy" in code or "growth" in code or "qoq" in code:
-        from app.services.verification.growth_verifier import _growth_evidence_order
+    Phase 23.9：主链切换到 core_pipeline（PRIMARY 路径）。
+    core_verify 整合 FinancialValue / PeriodContext / metric_scope /
+    verdict_decision / semantic_verifier，并在 VerificationResult 上附带
+    integration_trace（供 43 条 Oracle trace 脚本读取）。
+    旧 verify_exact_value 等验证器保留为 LEGACY（仅测试与诊断脚本使用）。
+    """
+    from app.services.verification.core_pipeline import IntegrationTrace, core_verify
 
-        return verify_growth_rate(claim, texts, ids, evidence_ordered=_growth_evidence_order(evidence, claim))
-    # 2) 单季推算主张（Q2/Q3/Q4 且带数值）→ 期间验证
-    if value is not None and any(p in period for p in ("Q2", "Q3", "Q4")):
-        return verify_period_quarter(claim, texts, ids)
-    # 3) 数值主张 → 绝对值验证
-    if value is not None:
-        return verify_exact_value(claim, texts, ids)
-    # 4) 无数字语义主张 → 语义核验（Phase 4B.2：按语义类型路由 因果/比较/证据充分性）
-    from app.services.verification.semantic_verifier import (
-        classify_semantic_type,
-        verify_causal,
-        verify_comparison,
-        verify_semantic_support,
-    )
-
-    stype = classify_semantic_type(claim)
-    if stype == "CAUSAL_CLAIM":
-        return verify_causal(claim, texts, ids)
-    if stype == "COMPARATIVE_CLAIM":
-        return verify_comparison(claim, texts, ids)
-    return verify_semantic_support(claim, texts, ids)
+    evidence_list = [
+        {
+            "evidence_id": e.get("evidence_id") or e.get("block_id"),
+            "block_id": e.get("block_id"),
+            "text": e.get("text", ""),
+            "doc_period": e.get("doc_period"),
+            "document_name": e.get("document_name"),
+            "page": e.get("page_number"),
+        }
+        for e in evidence
+    ]
+    trace = IntegrationTrace(claim_id=claim.get("claim_id") or claim.get("claim_uid") or "?")
+    return core_verify(claim, evidence_list, trace)
 
 
 def verify_claim(session: Session, claim: dict, top_k: int = 8) -> VerificationResult:

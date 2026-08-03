@@ -2762,3 +2762,59 @@ backend/app/services/reliability_improvement/
 - `backend/artifacts/blind_gold_validation.json`
 - `backend/artifacts/phase23_8_acceptance.json`
 - `backend/artifacts/logs/phase23_8/pytest/run_{1-5}.log` + `build/run_{1-3}.log` + `oracle_run_{1-2}.log`
+
+---
+
+## Phase 23.9：核心调用链接线、指标校准与 17 个错误闭环 — ⚠️ 已执行（Development READY 未达成）
+
+> 基线 commit：`4da0c9e`（Phase 23.8）
+> 日期：2026-08-03
+
+### 结果摘要
+
+| 指标 | 值 | 目标 | 达标 |
+| --- | --- | --- | --- |
+| Oracle Accuracy（43 条） | 1.000 | ≥0.85 | ✅ |
+| Oracle Macro-F1 | 1.000 | ≥0.80 | ✅ |
+| 原 17 错误修复 | 17/17 | ≥14 | ✅ |
+| 新增回归错误 | 0 | ≤2 | ✅ |
+| Hit@K 单调性不变量 | 全部通过 | 必须 | ✅ |
+| No-result Rate | 0.029 | ≤0.15 | ✅ |
+| Real E2E Macro-F1 | 0.606 | ≥0.60 | ✅ |
+| Real E2E Accuracy | 0.628 | ≥0.70 | ❌ |
+| Page Hit@5 | 0.543 | ≥0.80 | ❌ |
+| Block Hit@5 | 0.486 | ≥0.70 | ❌ |
+| Recall@5 | 0.452 | ≥0.80 | ❌ |
+| MRR(page) | 0.369 | ≥0.60 | ❌ |
+
+### 关键动作
+
+- 修复 Retrieval 评测脚本（Hit@K 单调性 + 4 项不变量），旧指标标记 INVALID。
+- 主链切换：`verify_claim → _select_verifier → core_pipeline.core_verify`，Phase 23.8 新模块
+  （FinancialValue/PeriodContext/metric_scope/verdict_decision）进入生产调用链（trace 证明）。
+- 17 个 Oracle 错误逐条闭环（error_closure.json，17/17 FIXED）。
+- 修复真实 Evidence Retrieval：No-result 0.256 → 0.029，候选生成 fallback/别名/页级单位注入。
+- 公司留一改为两折（美的/五粮液），宁德无 Gold 不作为评测折、不计平均。
+- 10 项集成测试通过（主链调用新模块 spy 断言）。
+- Blind Holdout 仍 BLOCKED（无两家新公司文件），给出最简用户操作说明。
+
+### 未达标与后续
+
+检索指标（Page Hit@5/Block Hit@5/Recall@5/MRR）与 Real E2E Accuracy 未达标，
+**Development Engine 不标记 READY**。未关闭 claim 与根因见
+`backend/artifacts/retrieval/phase23_9_metrics.json`（missed_claims_top5）与
+`backend/artifacts/e2e/phase23_9_development_e2e.json`（error_claims）。
+主要根因：Gold Page 未进 Top10 的 reranker 排序 + 验证阶段对真实检索噪声的鲁棒性。
+
+### 交付产物
+
+- `docs/phase23_9_core_path_integration.md`、`docs/phase23_9_legacy_inventory.md`、`docs/blind_holdout_user_guide.md`
+- `backend/scripts/phase23_9_{acceptance,call_trace,43claim_trace,error_closure,retrieval_metrics,oracle_eval,e2e,company_leave_one_out}.py`
+- `backend/artifacts/phase23_9_acceptance.json`
+- `backend/artifacts/integration/phase23_9_verification_call_graph.json` + `phase23_9_43claim_trace.json`
+- `backend/artifacts/oracle_diagnosis/phase23_9_error_closure.json`
+- `backend/artifacts/oracle/phase23_9_oracle_eval.json`
+- `backend/artifacts/retrieval/phase23_9_metrics.json` + `phase23_9_candidates.json`
+- `backend/artifacts/e2e/phase23_9_development_e2e.json`
+- `backend/artifacts/cross_validation/phase23_9_company_leave_one_out.json`
+- `backend/tests/test_phase23_9_integration.py`（10 项集成测试，全通过）

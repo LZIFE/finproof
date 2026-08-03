@@ -1,0 +1,6 @@
+saved: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/oracle/phase23_9_oracle_eval.json
+total=43 correct=43 accuracy=1.0 macro_f1=1.0
+per-class F1: {'INSUFFICIENT_EVIDENCE': 1.0, 'OPINION_OR_FORECAST': 1.0, 'PARTIALLY_SUPPORTED': 1.0, 'REFUTED': 1.0, 'SUPPORTED': 1.0, 'UNABLE_TO_DETERMINE': 1.0}
+per-type F1: {'raw_number': 1.0, 'calculated_financial_metric': 1.0, 'scope': 1.0, 'business_fact': 1.0, 'causality': 1.0, 'comparison': 1.0, 'forecast': 1.0}
+17-err fixed: 17/17 | regressions: 0
+targets: {'Accuracy >= 0.85': True, 'Macro-F1 >= 0.80': True, '数值类F1 >= 0.90': True, 'INSUFFICIENT_EVIDENCE F1 >= 0.80': True, '原17错误修复 >= 14': True, '新回归 <= 2': True}

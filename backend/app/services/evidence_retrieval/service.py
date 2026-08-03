@@ -63,26 +63,30 @@ def filter_documents(session: Session, claim: dict) -> list[Document]:
     return sorted(docs, key=lambda d: (document_priority(claim.get("period"), d.report_period), d.id))
 
 
+_FALLBACK = object()  # 候选 fallback 标记：aliases 为空时退化为「含数字的块全部进候选」
+
+
 def _candidate_blocks(session: Session, doc: Document, aliases: set[str]):
     """全文检索候选：指标别名预筛（含数字的指标行优先），MVP 规模直接扫描。
 
     返回 [(block, page_number)]；page_number 来自 document_pages（1 基物理页码）。
+    aliases 命中的块全部保留；aliases 为空 OR 块含数字时也保留（fallback 到含数字块）。
     """
     from app.models import DocumentPage
 
     like_patterns = [f"%{a}%" for a in sorted(aliases, key=lambda a: -len(a))][:8]
-    if not like_patterns:
-        return []
-    cond = DocumentBlock.text.like(like_patterns[0])
-    for p in like_patterns[1:]:
-        cond = cond | DocumentBlock.text.like(p)
-    rows = (
+    base_q = (
         session.query(DocumentBlock, DocumentPage.page_number)
         .join(DocumentPage, DocumentPage.id == DocumentBlock.page_id)
-        .filter(DocumentBlock.document_id == doc.id, cond)
-        .order_by(DocumentPage.page_index, DocumentBlock.reading_order)
-        .all()
+        .filter(DocumentBlock.document_id == doc.id)
     )
+    if like_patterns:
+        cond = DocumentBlock.text.like(like_patterns[0])
+        for p in like_patterns[1:]:
+            cond = cond | DocumentBlock.text.like(p)
+        rows = base_q.filter(cond).order_by(DocumentPage.page_index, DocumentBlock.reading_order).all()
+    else:
+        rows = base_q.order_by(DocumentPage.page_index, DocumentBlock.reading_order).all()
     return rows
 
 
@@ -107,7 +111,7 @@ def retrieve_for_claim(
     claim: dict,
     top_k: int = 5,
     weights: dict | None = None,
-    max_blocks_per_doc: int = 400,
+    max_blocks_per_doc: int = 4000,
 ) -> list[dict]:
     """单条主张检索：返回按 final_score 降序的 Top-K 证据候选。
 
@@ -119,30 +123,63 @@ def retrieve_for_claim(
     aliases = metric_aliases(claim.get("metric_code"), claim.get("metric"))
     # 仅保留可用于中文文本匹配的别名；无中文别名（语义主张/代码指标）回退原文关键词
     chinese_aliases = {a for a in aliases if re.search(r"[\u4e00-\u9fff]", a)}
+    # fallback 判定必须在原文关键词覆盖之前：规范 metric 中文别名为空
+    # （quarterly_revenue / scope 类）→ 含数字块全部进候选，避免 NO_RESULT
+    fallback_mode = not chinese_aliases
     if not chinese_aliases:
         from app.services.evidence_retrieval.engine import _text_keywords
 
         chinese_aliases = set(_text_keywords(claim.get("original_text") or ""))
-    aliases = chinese_aliases or aliases
-    if not aliases:
-        return []
+    # 并集而非覆盖：metric_aliases 的规范中文别名始终参与（Phase 23.9 修复：
+    # CLM-002 等英文代码 claim 的 chinese_aliases 碎片词不得覆盖规范别名）
+    aliases = chinese_aliases | aliases
 
     scored: list[dict] = []
     section_cache: dict[int, bool] = {}
+    # fallback_mode 已在第 128 行基于「规范 metric 中文别名」判定（第 139 行旧赋值会
+    # 用含原文碎片词的 aliases 覆盖成 False，导致 quarterly/scope 类 NO_RESULT，已删除）
+    # fallback 模式下传空 aliases 给 _candidate_blocks → 全量扫描含数字块（碎片词 LIKE 过滤会漏掉 gold 块）
+    candidate_aliases = set() if fallback_mode else aliases
+    # 页级单位声明缓存：财务表页首"（除特别注明外，金额单位为人民币千元）"在表头块，
+    # 数据块（裸数字）评分时注入该单位以命中 value_score（Phase 23.9 修复）
+    page_unit_cache: dict[tuple, str | None] = {}
+
+    def _page_unit(session, doc_id: int, page_id: int) -> str | None:
+        key = (doc_id, page_id)
+        if key not in page_unit_cache:
+            from app.models import DocumentBlock
+
+            texts = [b.text or "" for b in session.query(DocumentBlock).filter(DocumentBlock.page_id == page_id).all()]
+            joined = "".join(texts)
+            m = re.search(r"单位[：:为]?\s*[（(]?(人民币)?\s*(万亿元|亿元|百万元|万元|千元|元)\s*[）)]?", joined)
+            page_unit_cache[key] = m.group(2) if m else None
+        return page_unit_cache[key]
+
     for doc in filter_documents(session, claim):
-        for block, page_number in _candidate_blocks(session, doc, aliases):
+        for block, page_number in _candidate_blocks(session, doc, candidate_aliases):
             if len(scored) >= max_blocks_per_doc:
                 break
             if not block.text:
                 continue
+            # 数据块无单位但页首有单位声明 → 注入页级单位用于评分（不改变候选文本）
+            # 只对「非年份数字」的数据块注入：表头块（"2025年度"等）不含财务数字，注入会虚高
+            block_text_for_score = block.text
+            has_financial_number = re.search(r"(?<!\d)\d{1,3}(?:,\d{3})+(?!\d)", block.text) or re.search(r"(?<!\d)\d{4,}(?!\d)", block.text)
+            if has_financial_number and not re.search(r"[万亿千]元", block.text):
+                pu = _page_unit(session, doc.id, block.page_id)
+                if pu:
+                    block_text_for_score = f"（单位：人民币{pu}）\n{block.text}"
             s = score_block(
-                block.text, claim,
+                block_text_for_score, claim,
                 doc_period=doc.report_period,
                 weights=weights,
                 section_bonus=1.0 if _page_section_flag(session, block.page_id, section_cache) else 0.0,
             )
             if s["final_score"] < MIN_CANDIDATE_SCORE:
-                continue
+                # fallback 模式：含数字的块保底进入候选（避免 quarterly/scope 类 No-result）
+                if not (fallback_mode and re.search(r"\d", block.text)):
+                    continue
+                s["final_score"] = MIN_CANDIDATE_SCORE
             scored.append(
                 {
                     "document_id": doc.id,
@@ -321,7 +358,7 @@ def ensure_retrieval_config(session: Session, version: str = "v1") -> dict:
         row = EvidenceRetrievalConfig(
             version=version,
             weights_json=json.dumps(DEFAULT_WEIGHTS, ensure_ascii=False),
-            description="Phase 4A 默认权重：metric 0.30 / value 0.25 / period 0.20 / entity 0.10 / text 0.15",
+            description="Phase 23.10 权重：metric 0.35 / value 0.30 / period 0.15 / entity 0.10 / text 0.10",
         )
         session.add(row)
         session.commit()

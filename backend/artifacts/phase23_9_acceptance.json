@@ -1,0 +1,77 @@
+{
+  "phase": "23.9",
+  "script": "phase23_9_acceptance",
+  "generated_at_artifacts": {
+    "call_graph": true,
+    "trace43": true,
+    "error_closure": true,
+    "retrieval_metrics": true,
+    "oracle_eval": true,
+    "e2e": true,
+    "leave_one_out": true
+  },
+  "missing_artifacts": [],
+  "key_numbers": {
+    "oracle_accuracy": 1.0,
+    "oracle_macro_f1": 1.0,
+    "error_closure_fixed": 17,
+    "page_hit_at_5": 0.5429,
+    "block_hit_at_5": 0.4857,
+    "recall_at_5": 0.4524,
+    "mrr_page": 0.3686,
+    "no_result_rate": 0.0286,
+    "e2e_accuracy": 0.6279,
+    "e2e_macro_f1": 0.606,
+    "leave_one_out_avg_e2e_mf1": 0.5614
+  },
+  "acceptance_checks": {
+    "1_hitk_monotonicity_fixed": true,
+    "2_hit1_le_hit3_le_hit5": true,
+    "3_old_metrics_marked_invalid": true,
+    "4_all_43_have_trace": true,
+    "5_financial_value_in_main_chain": true,
+    "6_period_context_in_main_chain": true,
+    "7_metric_scope_in_main_chain": true,
+    "8_verdict_decision_decides_final": true,
+    "9_semantic_not_override_refuted": true,
+    "10_original17_fixed_ge14": true,
+    "11_oracle_accuracy_ge085": true,
+    "12_oracle_macro_f1_ge080": true,
+    "13_page_hit5_ge080": false,
+    "14_no_result_rate_le015": true,
+    "15_e2e_macro_f1_ge060": true,
+    "16_integration_tests_prove_main_chain": null,
+    "17_pytest_5x_pass": null,
+    "18_frontend_build_3x": null,
+    "19_eval_consistency_2x": true,
+    "20_new_git_commit": null
+  },
+  "passed_checks": [
+    "1_hitk_monotonicity_fixed",
+    "2_hit1_le_hit3_le_hit5",
+    "3_old_metrics_marked_invalid",
+    "4_all_43_have_trace",
+    "5_financial_value_in_main_chain",
+    "6_period_context_in_main_chain",
+    "7_metric_scope_in_main_chain",
+    "8_verdict_decision_decides_final",
+    "9_semantic_not_override_refuted",
+    "10_original17_fixed_ge14",
+    "11_oracle_accuracy_ge085",
+    "12_oracle_macro_f1_ge080",
+    "14_no_result_rate_le015",
+    "15_e2e_macro_f1_ge060",
+    "19_eval_consistency_2x"
+  ],
+  "failed_checks": [
+    "13_page_hit5_ge080"
+  ],
+  "external_checks": [
+    "16_integration_tests_prove_main_chain",
+    "17_pytest_5x_pass",
+    "18_frontend_build_3x",
+    "20_new_git_commit"
+  ],
+  "readiness": "NOT_READY",
+  "readiness_note": "READY 需同时满足：全部 acceptance_checks 无 False + 外部验证（pytest×5 / frontend build×3 / 新 commit）"
+}

@@ -13,6 +13,9 @@
 | `docs/finproof_mvp_scope.md` | MVP 范围与验收标准 |
 | `docs/finproof_execution_plan.md` | Phase 0–8 执行计划 |
 | `docs/finproof_progress.md` | 开发进度记录 |
+| `docs/phase23_9_core_path_integration.md` | Phase 23.9 核心调用链接线、指标校准与 17 个错误闭环结果 |
+| `docs/phase23_9_legacy_inventory.md` | Phase 23.9 重复实现分类清单（PRIMARY/LEGACY_USED/TEST_ONLY） |
+| `docs/blind_holdout_user_guide.md` | Blind Holdout 最简用户操作说明（当前 BLOCKED） |
 
 ## 目录结构
 

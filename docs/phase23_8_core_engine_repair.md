@@ -263,3 +263,22 @@ Fold 2 SKIPPED 原因：宁德时代无 Gold 标注（仓库仅含 Benchmark/Are
 | `backend/artifacts/logs/phase23_8/build/run_{1-3}.log` | 新建 | 3 次 build 日志 |
 | `backend/artifacts/logs/phase23_8/oracle_run_{1-2}.log` | 新建 | 2 次 Development 评测日志 |
 | `docs/finproof_progress.md` | 修改 | 追加 Phase 23.8 记录 |
+
+---
+
+## Phase 23.9 后续校准（2026-08-03）
+
+Phase 23.9（commit 待定）对本文档所述内容做了以下校准，详见 `docs/phase23_9_core_path_integration.md`：
+
+1. **Retrieval 指标 INVALID**：Phase 23.8 引用的 Page Hit@1(0.744) > Hit@5(0.628)
+   违反 Hit@K 单调性，已判定 INVALID 并重算（新脚本 `phase23_9_retrieval_metrics.py`，
+   4 项不变量全部通过）。
+2. **主链切换**：`_select_verifier` 现路由到 `core_pipeline.core_verify`，
+   FinancialValue/PeriodContext/metric_scope/verdict_decision 经 43 条 trace 证明进入生产调用链
+   （`phase23_9_verification_call_graph.json`）。
+3. **17 个 Oracle 错误闭环**：`phase23_9_error_closure.json` 记录 17/17 FIXED，
+   Oracle Accuracy=1.0 / Macro-F1=1.0。
+4. **公司留一修正**：宁德时代无 Gold → 明确改为两折公司留一（美的/五粮液），
+   SKIPPED 不计入平均；本文件原"三折"表述不再使用。
+5. **旧验证器标记 DEPRECATED**：numeric/period/growth/semantic/evidence_checker 保留为
+   LEGACY（测试/历史诊断脚本），生产入口禁止调用（见 `docs/phase23_9_legacy_inventory.md`）。

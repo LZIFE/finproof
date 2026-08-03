@@ -1,5 +1,10 @@
 """证据充分性与多证据组合检查器（Phase 4B.1）。
 
+[DEPRECATED] Phase 23.9 起主链改走 core_pipeline._core_verify_semantic / _core_verify_threshold
+（PRIMARY 路径）。本模块保留为 LEGACY：仅单元测试与历史诊断脚本调用，
+禁止生产入口（copilot/agent/demo/risk）调用。
+
+原始职责：
 - verify_semantic：无数字语义主张——证据含相关业务描述才可判断，
   仅收入数字/无业务说明 → INSUFFICIENT_EVIDENCE（不强制判断）；
 - verify_multi_evidence：多证据组合——主张需多个证据维度（数据+同比+业务说明）。

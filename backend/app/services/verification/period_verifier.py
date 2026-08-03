@@ -1,6 +1,10 @@
 """期间一致性验证器（Phase 4B.1）：PERIOD_CHECK。
 
-支持：
+[DEPRECATED] Phase 23.9 起主链改走 core_pipeline._core_verify_quarter（PRIMARY 路径，
+使用 PeriodContext 模块）。本模块保留为 LEGACY：仅单元测试与历史诊断脚本调用，
+禁止生产入口（copilot/agent/demo/risk）调用。
+
+原始职责（Phase 4B.1）：PERIOD_CHECK——期间一致性验证：
 - Q2 = H1 − Q1 单季推算（如 Q2 收入 = H1 − Q1）；
 - 期间口径冲突检测（claim_period_mismatch → REFUTED）。
 """
