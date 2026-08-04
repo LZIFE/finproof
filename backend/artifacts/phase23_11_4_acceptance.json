@@ -1,0 +1,45 @@
+{
+  "phase": "23.11.4",
+  "script": "phase23_11_4_acceptance",
+  "description": "Phase 23.11.4 Unified Acceptance: Gold contract, Core Verify fixes, trusted Oracle",
+  "cohorts": {
+    "total": 43,
+    "evidence_bearing": 35,
+    "intentional_insufficient": 3,
+    "annotation_blocked": 5,
+    "oracle_evaluable": 35,
+    "sum_check": 43
+  },
+  "single_gold": {
+    "sample_count": 35,
+    "correct": 27,
+    "accuracy": 0.7714
+  },
+  "core_verify_fixes": {
+    "financial_value_unit_extraction": "PASS — paren unit extraction (千元) fixed",
+    "period_match_fallback": "PASS — doc_period fallback to claim_period",
+    "aggregation_conflict": "PASS — mixed REFUTED+SUPPORTED now CONFLICT"
+  },
+  "metrics": {
+    "single_gold_accuracy": 0.7714,
+    "intentional_insufficient_count": 3,
+    "annotation_blocked_count": 5
+  },
+  "completion_status": {
+    "gold_inventory": "PASS",
+    "cohorts_established": "PASS",
+    "gold_matching_block_level": "PASS",
+    "single_gold_input_contract": "PASS",
+    "core_verify_diagnosis": "PASS",
+    "verifier_paths": "PASS",
+    "core_verify_fix": "PASS",
+    "verdict_mapping": "PASS",
+    "single_gold_eval": "PASS",
+    "isolation_experiment": "PASS",
+    "aggregation_fix": "PASS",
+    "noisy_oracle": "PASS",
+    "real_e2e": "PASS",
+    "anti_overfit": "PASS",
+    "tests": "PASS"
+  }
+}

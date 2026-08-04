@@ -3,14 +3,14 @@
   "script": "phase23_11_3_single_gold_verify",
   "description": "Isolate Selector/Aggregation: feed 1 Gold Evidence directly to core_verify",
   "sample_count": 43,
-  "correct": 17,
-  "accuracy": 0.3953,
-  "macro_f1": 0.2426,
+  "correct": 27,
+  "accuracy": 0.6279,
+  "macro_f1": 0.3379,
   "per_class": {
     "INSUFFICIENT_EVIDENCE": {
-      "precision": 0.125,
+      "precision": 0.2143,
       "recall": 1.0,
-      "f1": 0.2222,
+      "f1": 0.3529,
       "support": 3
     },
     "OPINION_OR_FORECAST": {
@@ -33,8 +33,8 @@
     },
     "SUPPORTED": {
       "precision": 1.0,
-      "recall": 0.3333,
-      "f1": 0.5,
+      "recall": 0.8889,
+      "f1": 0.9412,
       "support": 18
     },
     "UNABLE_TO_DETERMINE": {
@@ -46,9 +46,9 @@
   },
   "missing": 8,
   "raw_verdict_distribution": {
-    "INSUFFICIENT_EVIDENCE": 16,
+    "SUPPORTED": 16,
     "REFUTED": 13,
-    "SUPPORTED": 6
+    "INSUFFICIENT_EVIDENCE": 6
   },
   "confusion_matrix": {
     "INSUFFICIENT_EVIDENCE|INSUFFICIENT_EVIDENCE": 3,
@@ -56,15 +56,15 @@
     "PARTIALLY_SUPPORTED|REFUTED": 1,
     "REFUTED|INSUFFICIENT_EVIDENCE": 6,
     "REFUTED|REFUTED": 11,
-    "SUPPORTED|INSUFFICIENT_EVIDENCE": 11,
+    "SUPPORTED|INSUFFICIENT_EVIDENCE": 1,
     "SUPPORTED|REFUTED": 1,
-    "SUPPORTED|SUPPORTED": 6,
+    "SUPPORTED|SUPPORTED": 16,
     "UNABLE_TO_DETERMINE|INSUFFICIENT_EVIDENCE": 2
   },
   "diagnosis": {
     "if_single_gold_still_low": "root cause in core_verify or Verdict mapping, NOT Aggregation",
     "if_single_gold_recovers": "root cause in Selector or Aggregation",
-    "current_single_gold_accuracy": 0.3953,
+    "current_single_gold_accuracy": 0.6279,
     "current_core_oracle_accuracy": 0.2093,
     "same_as_core_oracle": false
   },
@@ -72,9 +72,9 @@
     {
       "claim_id": "CLM-001",
       "expected_verdict": "SUPPORTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },
@@ -90,9 +90,9 @@
     {
       "claim_id": "CLM-003",
       "expected_verdict": "SUPPORTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },
@@ -171,9 +171,9 @@
     {
       "claim_id": "CLM-012",
       "expected_verdict": "SUPPORTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },
@@ -189,9 +189,9 @@
     {
       "claim_id": "CLM-014",
       "expected_verdict": "SUPPORTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },
@@ -306,18 +306,18 @@
     {
       "claim_id": "CLM-H01",
       "expected_verdict": "SUPPORTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },
     {
       "claim_id": "CLM-H02",
       "expected_verdict": "SUPPORTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },
@@ -333,9 +333,9 @@
     {
       "claim_id": "CLM-H04",
       "expected_verdict": "SUPPORTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },
@@ -360,18 +360,18 @@
     {
       "claim_id": "CLM-H07",
       "expected_verdict": "SUPPORTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },
     {
       "claim_id": "CLM-H08",
       "expected_verdict": "SUPPORTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },
@@ -396,9 +396,9 @@
     {
       "claim_id": "CLM-H11",
       "expected_verdict": "SUPPORTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },

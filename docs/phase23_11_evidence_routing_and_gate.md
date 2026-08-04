@@ -272,3 +272,17 @@ Phase 23.11.2 修复后，瓶颈明确转移到 core_verify 聚合（33 条 AGGR
 - **Single-Gold 验证**：Accuracy=0.3953，确认 core_verify 对财务表格"千元"单位数值提取不完整。
 - **统一 Verdict 映射**：`normalize_verdict_for_evaluation`，22 种状态 + 24 对抗用例，0 冲突。
 - **20 项标准逐项核对**：12/20 PASS（#1-5,14-20），8/20 FAIL（#6-13）。**Phase 23.11.3 标记 PARTIAL，不标记 Competition-Usable**。
+
+## Phase 23.11.4 Gold契约与Core Verify修复接续（2026-08-04）
+
+Phase 23.11.3 修复后，CORE_VERIFY 首次分歧从 33 条降至 17 条，但 Single-Gold Accuracy 仅 0.3953。Phase 23.11.4（`docs/phase23_11_4_gold_contract_and_core_verify.md`）完成：
+
+- **Gold Inventory 审计**：43/35/8/5/3 数量矛盾解释（3 intentional INSUFFICIENT + 5 missing annotation = 8）
+- **三个评测队列**：Evidence-bearing (35) / Intentional Insufficient (3) / Annotation-blocked (5)
+- **Block-level Gold 匹配**：将 page-level 匹配改为 text-based block-level 匹配
+- **FinancialValue 括号单位提取修复**：支持"（千元）"等括号内单位
+- **Period Match 回退**：evidence 无 doc_period 时回退到 claim_period
+- **Aggregation 冲突检测**：REFUTED+SUPPORTED 混合证据不再归为 ALL_INSUFFICIENT
+- **Single-Gold Accuracy**：0.3953 → **0.6279**（43 条），Evidence-bearing 35 条 **0.7714**
+- **CORE_VERIFY 错误**：17 → **7 条**
+- **CORE_ORACLE Accuracy**：0.4419 → **0.6744**

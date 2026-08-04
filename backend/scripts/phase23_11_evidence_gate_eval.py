@@ -40,8 +40,8 @@ def _load_labeled_claims() -> tuple[list[dict], list[dict]]:
         load_canonical_claims,
     )
 
-    # Build page lookup from gold_evidence.json (EVD-id → page).
-    gold_page_by_evd: dict[str, int] = {}
+    # Build text lookup from gold_evidence.json (EVD-id → evidence_text).
+    gold_text_by_evd: dict[str, str] = {}
     data_root = Path(__file__).resolve().parent.parent.parent / "data"
     for ds in ("demo", "holdout"):
         ge_path = data_root / ds / "annotations" / "gold_evidence.json"
@@ -50,9 +50,9 @@ def _load_labeled_claims() -> tuple[list[dict], list[dict]]:
         ge_data = _json.loads(ge_path.read_text(encoding="utf-8"))
         for ev in ge_data.get("evidence", []):
             eid = str(ev.get("evidence_id") or "")
-            page = ev.get("page")
-            if eid and isinstance(page, int):
-                gold_page_by_evd[eid] = page
+            txt = str(ev.get("evidence_text", "") or "").strip()
+            if eid and txt:
+                gold_text_by_evd[eid] = txt
 
     canonical, _issues = load_canonical_claims()
     claims: list[dict] = []
@@ -64,10 +64,10 @@ def _load_labeled_claims() -> tuple[list[dict], list[dict]]:
         d["gold_verdict"] = cc.expected_verdict
         geids = cc.gold_evidence_ids or []
         d["gold_evidence_ids"] = [str(x) for x in geids]
-        # gold_pages: page numbers of gold evidence, for page-level matching
-        d["gold_pages"] = sorted({
-            gold_page_by_evd[eid] for eid in geids
-            if eid in gold_page_by_evd
+        # gold_texts: normalized evidence texts for block-level matching
+        d["gold_texts"] = sorted({
+            gold_text_by_evd.get(eid, "").strip()
+            for eid in geids if eid in gold_text_by_evd
         })
         claims.append(d)
     return claims, []
@@ -131,20 +131,38 @@ def run_gate_eval() -> int:
             accepted_ids = {r.evidence_id for r in gate_results if r.accepted}
             all_cand_ids = {c.get("evidence_id") for c in candidates}
 
-            # Gold matching: candidates whose page is in gold_pages are
-            # treated as gold-relevant. Gold EVD-ids have no block_id, so
-            # page-level matching is the reliable signal.
+            # Gold matching: text-based block-level matching.
+            # Each candidate's text is checked against gold_texts.
+            # A candidate is gold if its text CONTAINS the gold evidence text
+            # (or vice versa — normalized comparison).
+            # Page-level matching is ONLY used as auxiliary diagnosis, NOT
+            # for gold determination (Phase 23.11.4 §3).
             cand_by_eid = {c.get("evidence_id"): c for c in candidates}
+            gold_texts = set(claim.get("gold_texts") or [])
+
+            def _normalize(t: str) -> str:
+                """Normalize text for comparison: strip, collapse whitespace."""
+                import re
+                return re.sub(r'\s+', ' ', t).strip()
 
             def _is_gold_cand(r_eid: str) -> bool:
-                # direct EVD-id match (rare, but possible if upstream
-                # propagates gold ids)
+                # direct EVD-id match
                 if r_eid in gold_eids:
                     return True
-                # page-level match: candidate page ∈ gold_pages
+                # text-based block-level matching
                 cand = cand_by_eid.get(r_eid)
-                if cand and cand.get("page") in gold_pages:
-                    return True
+                if not cand:
+                    return False
+                cand_text = _normalize(cand.get("text", "") or "")
+                if not cand_text:
+                    return False
+                for gt in gold_texts:
+                    gt_norm = _normalize(gt)
+                    if not gt_norm:
+                        continue
+                    # Check mutual containment
+                    if gt_norm in cand_text or cand_text in gt_norm:
+                        return True
                 return False
 
             # Count accepted/rejected vs gold/noise at candidate level
@@ -163,16 +181,20 @@ def run_gate_eval() -> int:
                         rejected_noise_count += 1
 
             # Gold evidence acceptance (recall of gold evidence by gate)
-            # For each gold page, check whether any candidate on that page
-            # was accepted.
-            accepted_pages = {
-                cand_by_eid[eid].get("page")
+            # For each gold text, check whether any accepted candidate's text
+            # matches (block-level text matching, NOT page-level).
+            # Page-level is ONLY auxiliary diagnosis (Phase 23.11.4 §3).
+            accepted_texts = {
+                _normalize(cand_by_eid[eid].get("text", "") or "")
                 for eid in accepted_ids
                 if eid in cand_by_eid
             }
-            for gpage in gold_pages:
+            for gt in gold_texts:
+                gt_norm = _normalize(gt)
+                if not gt_norm:
+                    continue
                 gold_evidence_total += 1
-                if gpage in accepted_pages:
+                if any(gt_norm in at or at in gt_norm for at in accepted_texts if at):
                     gold_evidence_accepted += 1
                 else:
                     gold_evidence_rejected += 1

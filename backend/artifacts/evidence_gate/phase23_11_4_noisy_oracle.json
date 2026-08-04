@@ -1,0 +1,4340 @@
+{
+  "phase": "23.11.3",
+  "script": "phase23_11_3_noisy_diagnosis",
+  "description": "每条 Hard Negative 标明确冲突标签 + Gate 误接原因诊断",
+  "total_noise": 215,
+  "accepted_noise": 102,
+  "accepted_noise_rate": 0.4744,
+  "noise_tag_counts": {
+    "WRONG_PERIOD": 43,
+    "WRONG_METRIC": 43,
+    "WRONG_SCOPE": 43,
+    "SIMILAR_VALUE_WRONG_METRIC": 43,
+    "NARRATIVE_MENTION_ONLY": 43
+  },
+  "accepted_per_tag": {
+    "NARRATIVE_MENTION_ONLY": 43,
+    "WRONG_METRIC": 26,
+    "SIMILAR_VALUE_WRONG_METRIC": 26,
+    "WRONG_SCOPE": 5,
+    "WRONG_PERIOD": 2
+  },
+  "rejected_per_tag": {
+    "WRONG_PERIOD": 41,
+    "WRONG_METRIC": 17,
+    "WRONG_SCOPE": 38,
+    "SIMILAR_VALUE_WRONG_METRIC": 17
+  },
+  "noise_tags": [
+    "WRONG_ENTITY",
+    "WRONG_METRIC",
+    "WRONG_PERIOD",
+    "WRONG_SCOPE",
+    "WRONG_UNIT",
+    "SIMILAR_VALUE_WRONG_METRIC",
+    "NARRATIVE_MENTION_ONLY"
+  ],
+  "forbidden_note": "Gate must NOT read _noise_tag; it judges from content only. Tag is diagnosis-only.",
+  "per_noise": [
+    {
+      "claim_id": "CLM-001",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "revenue 4564.52 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-001",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "net_profit 4564.52 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-001",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) revenue 4564.52 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-001",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "net_profit 4336.29 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-001",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-002",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "total_operating_revenue 4564.52 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-002",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 4564.52 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-002",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) total_operating_revenue 4564.52 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-002",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 4336.29 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-002",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-003",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "net_profit_attributable 439.45 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-003",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 439.45 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-003",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) net_profit_attributable 439.45 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-003",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 417.48 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-003",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-004",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "yoy_growth_net_profit 38.02 % 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-004",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 38.02 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-004",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) yoy_growth_net_profit 38.02 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-004",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 36.12 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-004",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-005",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "gross_margin 26.4 % 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-005",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 26.4 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-005",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) gross_margin 26.4 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-005",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 25.08 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-005",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-006",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "gross_margin_change 0.7 个百分点 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-006",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 0.7 个百分点 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-006",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) gross_margin_change 0.7 个百分点 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-006",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 0.66 个百分点 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-006",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-007",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "revenue 1278.39 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-007",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "net_profit 1278.39 亿元 2025Q1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-007",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) revenue 1278.39 亿元 2025Q1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-007",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "net_profit 1214.47 亿元 2025Q1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-007",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-008",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "total_operating_revenue 2523.31 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-008",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 2523.31 亿元 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-008",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) total_operating_revenue 2523.31 亿元 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-008",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 2397.14 亿元 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-008",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-009",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "quarterly_revenue 2523.31 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-009",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 2523.31 亿元 2025Q2",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-009",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) quarterly_revenue 2523.31 亿元 2025Q2",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-009",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 2397.14 亿元 2025Q2",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-009",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-010",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "quarterly_net_profit_attributable 260.14 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-010",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 260.14 亿元 2025Q2",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-010",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) quarterly_net_profit_attributable 260.14 亿元 2025Q2",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-010",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 247.13 亿元 2025Q2",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-010",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-011",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "net_profit_attributable 124.22 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-011",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 124.22 亿元 2025Q1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-011",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) net_profit_attributable 124.22 亿元 2025Q1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-011",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 118.01 亿元 2025Q1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-011",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-012",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "basic_eps 5.8 元/股 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-012",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 5.8 元/股 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-012",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) basic_eps 5.8 元/股 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-012",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 5.51 元/股 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-012",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-013",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "basic_eps 3.41 元/股 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-013",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 3.41 元/股 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-013",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) basic_eps 3.41 元/股 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-013",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 3.24 元/股 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-013",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-014",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "operating_cash_flow 533.46 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-014",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 533.46 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-014",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) operating_cash_flow 533.46 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-014",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 506.79 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-014",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-015",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "yoy_growth_revenue 20.49 % 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-015",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 20.49 % 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-015",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) yoy_growth_revenue 20.49 % 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-015",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 19.47 % 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-015",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-016",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "publication_date None 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.267,
+        "rejection_reason": "quality score 0.267 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-016",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.645,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-016",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) publication_date None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.3217,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "other"
+    },
+    {
+      "claim_id": "CLM-016",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.645,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-016",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.505,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-017",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "revenue 4071.5 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-017",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "net_profit 4071.5 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-017",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) revenue 4071.5 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-017",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "net_profit 3867.92 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-017",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-018",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "operating_cash_flow 5334.59 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-018",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 5334.59 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-018",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) operating_cash_flow 5334.59 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-018",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 5067.86 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-018",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-019",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "overseas_obm_strategy None 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.267,
+        "rejection_reason": "quality score 0.267 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-019",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.645,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-019",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) overseas_obm_strategy None 亿元 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.3217,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "other"
+    },
+    {
+      "claim_id": "CLM-019",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.645,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-019",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.505,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-020",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "profit_driver_attribution None 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.225,
+        "rejection_reason": "quality score 0.225 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-020",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.575,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-020",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) profit_driver_attribution None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.2763,
+        "rejection_reason": "quality score 0.276 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-020",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.575,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-020",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.435,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-021",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "overseas_profit_share None 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.225,
+        "rejection_reason": "quality score 0.225 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-021",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.575,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-021",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) overseas_profit_share None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.2763,
+        "rejection_reason": "quality score 0.276 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-021",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.575,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-021",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.435,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-022",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "robot_margin_vs_industry 20 个百分点 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-022",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 20 个百分点 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-022",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) robot_margin_vs_industry 20 个百分点 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-022",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 19.0 个百分点 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-022",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-023",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "revenue_forecast 5000 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-023",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 5000 亿元 2026FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-023",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) revenue_forecast 5000 亿元 2026FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-023",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 4750.0 亿元 2026FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-023",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-024",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "yoy_growth_revenue 15 % 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-024",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 15 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-024",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) yoy_growth_revenue 15 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-024",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 14.25 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-024",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-025",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "quarterly_revenue 1200 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-025",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 1200 亿元 2025Q4",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-025",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) quarterly_revenue 1200 亿元 2025Q4",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-025",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 1140.0 亿元 2025Q4",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-025",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-026",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "deducted_net_profit 262 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-026",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 262 亿元 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-026",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) deducted_net_profit 262 亿元 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-026",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 248.9 亿元 2025H1",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-026",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H01",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "revenue 405.29 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H01",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "net_profit 405.29 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H01",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) revenue 405.29 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H01",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "net_profit 385.03 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H01",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H02",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "net_profit_attributable 89.54 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H02",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 89.54 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H02",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) net_profit_attributable 89.54 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H02",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 85.06 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H02",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H03",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "yoy_growth_net_profit 38.02 % 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H03",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 38.02 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H03",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) yoy_growth_net_profit 38.02 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H03",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 36.12 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H03",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H04",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "operating_cash_flow 297.06 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H04",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 297.06 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H04",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) operating_cash_flow 297.06 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H04",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 282.21 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H04",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "yoy_growth_ocf 12.47 % 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H05",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 12.47 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) yoy_growth_ocf 12.47 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H05",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 11.85 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H06",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "basic_eps 8.21 元/股 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H06",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 8.21 元/股 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H06",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) basic_eps 8.21 元/股 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H06",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 7.8 元/股 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H06",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H07",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "roe 6.89 % 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H07",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 6.89 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H07",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) roe 6.89 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H07",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 6.55 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H07",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H08",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "total_assets 1899.84 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H08",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 1899.84 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H08",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) total_assets 1899.84 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H08",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 1804.85 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H08",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "yoy_growth_net_assets 10.02 % 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H09",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 10.02 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) yoy_growth_net_assets 10.02 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H09",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 9.52 % 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "publication_date None 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.267,
+        "rejection_reason": "quality score 0.267 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H10",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.645,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) publication_date None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.3217,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "other"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.645,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.505,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H11",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "deducted_net_profit 88.16 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H11",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 88.16 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H11",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) deducted_net_profit 88.16 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H11",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 83.75 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H11",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "listing_info None 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.505,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate period_state=UNKNOWN (not MISMATCH); missing year extraction"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.505,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) listing_info None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.2307,
+        "rejection_reason": "quality score 0.231 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H12",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.505,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.505,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H13",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "profit_driver_attribution None 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.225,
+        "rejection_reason": "quality score 0.225 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H13",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.575,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H13",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) profit_driver_attribution None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.2763,
+        "rejection_reason": "quality score 0.276 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H13",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.575,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H13",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.435,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H14",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "revenue_forecast None 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.267,
+        "rejection_reason": "quality score 0.267 below medium threshold 0.3"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H14",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2026FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.645,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H14",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) revenue_forecast None 亿元 2026FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.3217,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "other"
+    },
+    {
+      "claim_id": "CLM-H14",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue None 亿元 2026FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.645,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H14",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.505,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H15",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "quarterly_revenue 120 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H15",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 120 亿元 2025Q4",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H15",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) quarterly_revenue 120 亿元 2025Q4",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H15",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 114.0 亿元 2025Q4",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.675,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H15",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H16",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "revenue 4052.85 亿元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "period mismatch: candidate mentions different period"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H16",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "net_profit 4052.85 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H16",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) revenue 4052.85 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.1,
+        "rejection_reason": "scope mismatch: candidate mentions different scope"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H16",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "net_profit 3850.21 亿元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "MISMATCH",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": false,
+        "final_quality_score": 0.0,
+        "rejection_reason": "metric mismatch: candidate mentions different metric"
+      },
+      "accepted": false,
+      "false_acceptance_reason": ""
+    },
+    {
+      "claim_id": "CLM-H16",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "noise_type": "WRONG_PERIOD",
+      "conflict_field": "period",
+      "noise_text": "avg_selling_price 1000 元 2023FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MISMATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.405,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "other"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "noise_type": "WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 1000 元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "noise_type": "WRONG_SCOPE",
+      "conflict_field": "scope",
+      "noise_text": "(归母) avg_selling_price 1000 元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MISMATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.4713,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "other"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "noise_type": "SIMILAR_VALUE_WRONG_METRIC",
+      "conflict_field": "metric",
+      "noise_text": "revenue 950.0 元 2025FY",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "MATCH",
+        "unit": "MATCH",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.875,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "Gate metric_state=UNKNOWN/MATCH (not MISMATCH); metric_aliases too lenient"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "noise_type": "NARRATIVE_MENTION_ONLY",
+      "conflict_field": "none",
+      "noise_text": "公司本期持续推进产品结构优化与渠道升级",
+      "parsed_mismatch": {
+        "entity": "UNKNOWN",
+        "metric": "UNKNOWN",
+        "period": "UNKNOWN",
+        "unit": "UNKNOWN",
+        "scope": "MATCH"
+      },
+      "gate_result": {
+        "accepted": true,
+        "final_quality_score": 0.43,
+        "rejection_reason": ""
+      },
+      "accepted": true,
+      "false_acceptance_reason": "narrative noise accepted because no MISMATCH on entity/metric/period (all UNKNOWN soft penalty)"
+    }
+  ]
+}

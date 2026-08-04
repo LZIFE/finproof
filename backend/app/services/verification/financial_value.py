@@ -178,6 +178,18 @@ def extract_financial_values(
         results.append(fv)
         occupied.append(m.span())
 
+    # 2. 预提取括号内单位（如"营业收入(千元) 456,451,731"），Phase 23.11.4 §7
+    # 括号单位出现在数字之前，正则无法捕获（正则只匹配数字后的单位）
+    # NFKC 已将全角（）转为半角()
+    _PAREN_UNIT_RE = re.compile(r"\((" + _UNIT_PATTERN + r")\)\s*")
+    paren_units = {}
+    for pu in _PAREN_UNIT_RE.finditer(normalized):
+        # Associate this unit with the next number(s) in the text
+        # Find the next number occurrence after this unit
+        next_num = _PLAIN_RE.search(normalized, pu.end())
+        if next_num:
+            paren_units[next_num.start()] = pu.group(1)
+
     # 2. 再匹配普通数值（跳过括号区域）
     for m in _PLAIN_RE.finditer(normalized):
         if any(_overlap(m.span(), r) for r in occupied):
@@ -188,7 +200,13 @@ def extract_financial_values(
             val = float(num_str)
         except ValueError:
             continue
-        unit = m.group(2) or context_unit or ""
+        # Check if a paren-unit was found near this number
+        paren_unit = None
+        for pos, pu in sorted(paren_units.items()):
+            if abs(pos - m.start()) < 20:  # within 20 chars
+                paren_unit = pu
+                break
+        unit = m.group(2) or paren_unit or context_unit or ""
         pct = m.group(3) or ""
         sign = _detect_sign(normalized, m.span(), val)
         pct_type = _classify_pct(pct)

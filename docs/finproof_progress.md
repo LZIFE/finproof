@@ -3433,3 +3433,99 @@ Phase 23.11 最终报告被驳回：20项标准声称"7/20达标（#1-5,14-19）
 - `backend/artifacts/aggregation/phase23_11_3_criteria_audit.json`
 - `backend/artifacts/evidence_gate/phase23_11_3_noisy_oracle_diagnosis.json`
 - `backend/artifacts/e2e/phase23_11_3_real_e2e.json`
+
+---
+
+## Phase 23.11.4：Gold契约清理、Core Verify修复与可信Oracle重建 — ⚠️ PARTIAL（不标记 Competition-Usable）
+
+> 基线 commit：`7a25d97`（Phase 23.11.3）
+> 日期：2026-08-04
+
+### 关键动作
+
+- **Gold Inventory 审计**：43 条逐条分类，明确 43/35/8/5/3 数量矛盾：35 条有 Gold Evidence，3 条 intentional INSUFFICIENT，5 条 missing annotation（非 INSUFFICIENT）
+- **三个评测队列**：Evidence-bearing (35) / Intentional Insufficient (3) / Annotation-blocked (5)
+- **Block-level Gold 匹配**：将 page-level 匹配改为 text-based block-level 匹配（`evidence_gate_eval.py`）
+- **FinancialValue 括号单位提取修复**：新增括号内单位预提取，支持"（千元）"等前缀单位
+- **Period Match 回退**：evidence 无 doc_period 时回退到 claim_period
+- **Aggregation 冲突检测修复**：REFUTED+SUPPORTED 混合证据不再归为 ALL_INSUFFICIENT
+- **统一 Verdict 枚举**：InternalVerdict（7 类）+ EvaluationVerdict（4 类），INVALID_INPUT 不进入 Accuracy 分母
+- **反过拟合保护**：两折公司留一验证（对称结果）
+
+### 结果摘要
+
+| 指标 | Phase 23.11.3 | Phase 23.11.4 | 目标 | 达标 |
+| --- | --- | --- | --- | --- |
+| Single-Gold Accuracy (43) | 0.3953 | 0.6279 | — | — |
+| Evidence-bearing Acc (35) | — | 0.7714 | ≥0.85 | ❌ |
+| CORE_ORACLE Accuracy | 0.4419 | 0.6744 | ≥0.85 | ❌ |
+| CORE_VERIFY errors | 17 | 7 | ≤3 | ❌ |
+| Single-Gold SUPPORTED | 6 | 16 | — | ✅ |
+| Macro-F1 | 0.2426 | 0.3379 | ≥0.80 | ❌ |
+
+### 20 项完成标准核对
+
+| # | 标准 | 状态 |
+| --- | --- | --- |
+| 1 | 43条 Gold Inventory 全部分类 | ✅ |
+| 2 | 43/35/8/5 数量矛盾解释 | ✅ |
+| 3 | annotation-blocked 不进入 Oracle 分母 | ✅ |
+| 4 | intentional insufficient 与缺失标注分离 | ✅ |
+| 5 | Gold 匹配改为 block-level | ✅ |
+| 6 | Single-Gold 使用 CanonicalEvidence | ✅ |
+| 7 | 17 条 CORE_VERIFY 全部有根因 | ✅ |
+| 8 | 至少修复 14/17 条 CORE_VERIFY | ❌（7 条修复） |
+| 9 | Single-Gold Accuracy ≥0.85 | ❌（0.7714） |
+| 10 | Single-Gold Macro-F1 ≥0.80 | ❌（0.3379） |
+| 11 | Numeric F1 ≥0.90 | ❌ |
+| 12 | Intentional Insufficient F1 ≥0.80 | ❌ |
+| 13 | A/B/C/D 使用相同样本 | ✅ |
+| 14 | CORE_ORACLE Accuracy ≥0.85 | ❌（0.6744） |
+| 15 | CORE_ORACLE Macro-F1 ≥0.80 | ❌ |
+| 16 | NOISY Gate Precision ≥0.80 | ❌（0.0625） |
+| 17 | NOISY Gate Recall ≥0.90 | ❌ |
+| 18 | Accepted Noise Rate ≤0.15 | ❌（0.4744） |
+| 19 | Real E2E Accuracy ≥0.70 | ❌（0.3256） |
+| 20 | Real E2E Macro-F1 ≥0.60 | ❌（0.4238） |
+| 21 | pytest 连续5次通过 | ✅ |
+| 22 | frontend build 连续3次成功 | ✅ |
+| 23 | 评测连续2次一致 | ✅ |
+| 24 | Leakage Audit CLEAN | ✅ |
+| 25 | 创建新 Git commit | ✅ |
+
+**Phase 23.11.4 标记 PARTIAL，不标记 Competition-Usable**。核心修复有效（CORE_VERIFY 从 17→7，Accuracy 从 0.4419→0.6744）但未达到正式指标。
+
+### 验证执行
+
+| 验证项 | 次数 | 结果 |
+| --- | --- | --- |
+| 全量 pytest | 连续 5 次 | 845 passed，一致 |
+| frontend build | 连续 3 次 | 成功，一致 |
+| Single-Gold | 连续 2 次 | accuracy=0.6279，一致 |
+| A/B/C/D 隔离实验 | 连续 2 次 | 一致 |
+| CORE_ORACLE | 连续 2 次 | accuracy=0.6744，一致 |
+| NOISY_ORACLE | 连续 2 次 | accepted_noise_rate=0.4744，一致 |
+| REAL_E2E | 连续 2 次 | accuracy=0.3256，一致 |
+
+### 交付产物
+
+- `docs/phase23_11_4_gold_contract_and_core_verify.md`
+- `backend/scripts/phase23_11_4_acceptance.py`
+- `backend/scripts/phase23_11_4_gold_inventory.py`
+- `backend/scripts/phase23_11_4_core_diagnosis.py`
+- `backend/scripts/phase23_11_4_isolation_eval.py`
+- `backend/scripts/phase23_11_4_anti_overfit.py`
+- `backend/artifacts/phase23_11_4_acceptance.json`
+- `backend/artifacts/phase23_11_4_anti_overfit.json`
+- `backend/artifacts/gold_contract/phase23_11_4_gold_inventory.json`
+- `backend/artifacts/gold_contract/phase23_11_4_single_gold_inputs.json`
+- `backend/artifacts/core_verify/phase23_11_4_error_diagnosis.json`
+- `backend/artifacts/core_verify/phase23_11_4_single_gold_eval.json`
+- `backend/artifacts/core_verify/phase23_11_4_isolation_results.json`
+- `backend/artifacts/evidence_gate/phase23_11_4_noisy_oracle.json`
+- `backend/artifacts/e2e/phase23_11_4_real_e2e.json`
+- `backend/app/services/evaluation_cohorts.py`
+- `backend/app/services/evaluation_claim_schema.py`（INVALID_INPUT + InternalVerdict/EvaluationVerdict）
+- `backend/app/services/verification/core_pipeline.py`（route→verifier 映射 + period 回退）
+- `backend/app/services/verification/financial_value.py`（括号单位提取）
+- `backend/app/services/evidence_aggregation.py`（冲突检测修复）

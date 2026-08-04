@@ -1,0 +1,3854 @@
+{
+  "phase": "23.11.4",
+  "script": "phase23_11_4_single_gold_inputs",
+  "description": "Evidence-bearing claims CanonicalEvidence完整性审计",
+  "total_evidence_bearing": 35,
+  "total_lost_fields": 35,
+  "total_derived_fields": 169,
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-001",
+        "evidence_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+        "page": 9,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+        "evidence_id": "EVD-001",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-001",
+          "adapted_value": "EVD-001",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "revenue",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -8490508248332055319,
+        "adapted_text_hash": -8490508248332055319,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-002",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-002",
+        "evidence_text": "一、营业总收入 458,502,407 409,084,266",
+        "page": 135,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "一、营业总收入 458,502,407 409,084,266",
+        "evidence_id": "EVD-002",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-002",
+          "adapted_value": "EVD-002",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "一、营业总收入 458,502,407 409,084,266",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "一、营业总收入 458,502,407 409,084,266",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "total_operating_revenue",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 5358235880271858051,
+        "adapted_text_hash": 5358235880271858051,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-003",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-003",
+        "evidence_text": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+        "page": 9,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+        "evidence_id": "EVD-003",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-003",
+          "adapted_value": "EVD-003",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "net_profit_attributable",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -3590762462766704361,
+        "adapted_text_hash": -3590762462766704361,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-004",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-004",
+        "evidence_text": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+        "page": 9,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+        "evidence_id": "EVD-004",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-004",
+          "adapted_value": "EVD-004",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "yoy_growth_net_profit",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "%",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -3590762462766704361,
+        "adapted_text_hash": -3590762462766704361,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-005",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-005",
+        "evidence_text": "456,451,731 407,149,600",
+        "page": 135,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "456,451,731 407,149,600",
+        "evidence_id": "EVD-005",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-005",
+          "adapted_value": "EVD-005",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "456,451,731 407,149,600",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "456,451,731 407,149,600",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "gross_margin",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "%",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -381294270694600346,
+        "adapted_text_hash": -381294270694600346,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-006",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-007",
+        "evidence_text": "456,451,731 407,149,600",
+        "page": 135,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "456,451,731 407,149,600",
+        "evidence_id": "EVD-007",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-007",
+          "adapted_value": "EVD-007",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "456,451,731 407,149,600",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "456,451,731 407,149,600",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "gross_margin_change",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "个百分点",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -381294270694600346,
+        "adapted_text_hash": -381294270694600346,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-007",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-009",
+        "evidence_text": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+        "page": 2,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+        "evidence_id": "EVD-009",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-009",
+          "adapted_value": "EVD-009",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "revenue",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025Q1",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 2110378917626097701,
+        "adapted_text_hash": 2110378917626097701,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-008",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-010",
+        "evidence_text": "一、营业总收入 252,331,494 218,121,839",
+        "page": 96,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "一、营业总收入 252,331,494 218,121,839",
+        "evidence_id": "EVD-010",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-010",
+          "adapted_value": "EVD-010",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "一、营业总收入 252,331,494 218,121,839",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "一、营业总收入 252,331,494 218,121,839",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "total_operating_revenue",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025H1",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -7687379822356032850,
+        "adapted_text_hash": -7687379822356032850,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-009",
+      "claim_type": "scope",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-012",
+        "evidence_text": "一、营业总收入 252,331,494 218,121,839",
+        "page": 96,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "一、营业总收入 252,331,494 218,121,839",
+        "evidence_id": "EVD-012",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-012",
+          "adapted_value": "EVD-012",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "一、营业总收入 252,331,494 218,121,839",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "一、营业总收入 252,331,494 218,121,839",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "quarterly_revenue",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025Q2",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -7687379822356032850,
+        "adapted_text_hash": -7687379822356032850,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-010",
+      "claim_type": "scope",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-014",
+        "evidence_text": "归属于母公司股东的净利润 26,013,690 20,804,176",
+        "page": 96,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "归属于母公司股东的净利润 26,013,690 20,804,176",
+        "evidence_id": "EVD-014",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-014",
+          "adapted_value": "EVD-014",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "归属于母公司股东的净利润 26,013,690 20,804,176",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "归属于母公司股东的净利润 26,013,690 20,804,176",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "quarterly_net_profit_attributable",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025Q2",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -6085782375602991326,
+        "adapted_text_hash": -6085782375602991326,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-011",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-016",
+        "evidence_text": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+        "page": 2,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+        "evidence_id": "EVD-016",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-016",
+          "adapted_value": "EVD-016",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "net_profit_attributable",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025Q1",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -7641987398667283753,
+        "adapted_text_hash": -7641987398667283753,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-012",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-017",
+        "evidence_text": "基本每股收益（元/股） 5.80 5.44 6.62%",
+        "page": 9,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "基本每股收益（元/股） 5.80 5.44 6.62%",
+        "evidence_id": "EVD-017",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-017",
+          "adapted_value": "EVD-017",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "基本每股收益（元/股） 5.80 5.44 6.62%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "基本每股收益（元/股） 5.80 5.44 6.62%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "basic_eps",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "元/股",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -3997427506554383219,
+        "adapted_text_hash": -3997427506554383219,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-013",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-018",
+        "evidence_text": "基本每股收益 人民币元/股 3.41 3.02",
+        "page": 173,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_statement_note",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "基本每股收益 人民币元/股 3.41 3.02",
+        "evidence_id": "EVD-018",
+        "evidence_type": "financial_statement_note"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-018",
+          "adapted_value": "EVD-018",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "基本每股收益 人民币元/股 3.41 3.02",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "基本每股收益 人民币元/股 3.41 3.02",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_statement_note",
+          "adapted_value": "financial_statement_note",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "basic_eps",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025H1",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "元/股",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -5519807800119505922,
+        "adapted_text_hash": -5519807800119505922,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-014",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-019",
+        "evidence_text": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+        "page": 9,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+        "evidence_id": "EVD-019",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-019",
+          "adapted_value": "EVD-019",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "operating_cash_flow",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -6554726728095508689,
+        "adapted_text_hash": -6554726728095508689,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-015",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-020",
+        "evidence_text": "营业总收入2523 亿元，同比增长15.7%",
+        "page": 17,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "management_discussion",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "营业总收入2523 亿元，同比增长15.7%",
+        "evidence_id": "EVD-020",
+        "evidence_type": "management_discussion"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-020",
+          "adapted_value": "EVD-020",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "营业总收入2523 亿元，同比增长15.7%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "营业总收入2523 亿元，同比增长15.7%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "management_discussion",
+          "adapted_value": "management_discussion",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "yoy_growth_revenue",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025H1",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "%",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -3383218891769278405,
+        "adapted_text_hash": -3383218891769278405,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-016",
+      "claim_type": "business_fact",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-022",
+        "evidence_text": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+        "page": 1,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "management_discussion",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+        "evidence_id": "EVD-022",
+        "evidence_type": "management_discussion"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-022",
+          "adapted_value": "EVD-022",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "management_discussion",
+          "adapted_value": "management_discussion",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "publication_date",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": null,
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -8559958335859743031,
+        "adapted_text_hash": -8559958335859743031,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-017",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-023",
+        "evidence_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+        "page": 9,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+        "evidence_id": "EVD-023",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-023",
+          "adapted_value": "EVD-023",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "revenue",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -8490508248332055319,
+        "adapted_text_hash": -8490508248332055319,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-018",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-024",
+        "evidence_text": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+        "page": 9,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+        "evidence_id": "EVD-024",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-024",
+          "adapted_value": "EVD-024",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "operating_cash_flow",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -6554726728095508689,
+        "adapted_text_hash": -6554726728095508689,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-019",
+      "claim_type": "business_fact",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-025",
+        "evidence_text": "支撑国内高端品牌和海外OBM 优先战略",
+        "page": 17,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "management_discussion",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "支撑国内高端品牌和海外OBM 优先战略",
+        "evidence_id": "EVD-025",
+        "evidence_type": "management_discussion"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-025",
+          "adapted_value": "EVD-025",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "支撑国内高端品牌和海外OBM 优先战略",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "支撑国内高端品牌和海外OBM 优先战略",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "management_discussion",
+          "adapted_value": "management_discussion",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "overseas_obm_strategy",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025H1",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": null,
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -2242028791037541801,
+        "adapted_text_hash": -2242028791037541801,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-020",
+      "claim_type": "causality",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-026",
+        "evidence_text": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%",
+        "page": 17,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "management_discussion",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%",
+        "evidence_id": "EVD-026",
+        "evidence_type": "management_discussion"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-026",
+          "adapted_value": "EVD-026",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "management_discussion",
+          "adapted_value": "management_discussion",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "profit_driver_attribution",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": null,
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -1928666434465689113,
+        "adapted_text_hash": -1928666434465689113,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-024",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "PARTIALLY_SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-027",
+        "evidence_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+        "page": 9,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+        "evidence_id": "EVD-027",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-027",
+          "adapted_value": "EVD-027",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "yoy_growth_revenue",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "%",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -8490508248332055319,
+        "adapted_text_hash": -8490508248332055319,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-026",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-029",
+        "evidence_text": "实现扣非归母净利润262 亿元，同比增长30.0%",
+        "page": 17,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "management_discussion",
+        "company": "美的集团"
+      },
+      "canonical_evidence": {
+        "text": "实现扣非归母净利润262 亿元，同比增长30.0%",
+        "evidence_id": "EVD-029",
+        "evidence_type": "management_discussion"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-029",
+          "adapted_value": "EVD-029",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "实现扣非归母净利润262 亿元，同比增长30.0%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "实现扣非归母净利润262 亿元，同比增长30.0%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "management_discussion",
+          "adapted_value": "management_discussion",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "deducted_net_profit",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025H1",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 7125599297327175872,
+        "adapted_text_hash": 7125599297327175872,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H01",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H01",
+        "evidence_text": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+        "evidence_id": "EVD-H01",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H01",
+          "adapted_value": "EVD-H01",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "revenue",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -7709296952724054542,
+        "adapted_text_hash": -7709296952724054542,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H02",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H02",
+        "evidence_text": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+        "evidence_id": "EVD-H02",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H02",
+          "adapted_value": "EVD-H02",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "net_profit_attributable",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 7742805502402773426,
+        "adapted_text_hash": 7742805502402773426,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H03",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H03",
+        "evidence_text": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+        "evidence_id": "EVD-H03",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H03",
+          "adapted_value": "EVD-H03",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "yoy_growth_net_profit",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "%",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 7742805502402773426,
+        "adapted_text_hash": 7742805502402773426,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H04",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H04",
+        "evidence_text": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+        "evidence_id": "EVD-H04",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H04",
+          "adapted_value": "EVD-H04",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "operating_cash_flow",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 845817935149273926,
+        "adapted_text_hash": 845817935149273926,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H05",
+        "evidence_text": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+        "evidence_id": "EVD-H05",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H05",
+          "adapted_value": "EVD-H05",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "yoy_growth_ocf",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "%",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 845817935149273926,
+        "adapted_text_hash": 845817935149273926,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H06",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H06",
+        "evidence_text": "基本每股收益（元/股） 2.3068 8.2062 -71.89%",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "基本每股收益（元/股） 2.3068 8.2062 -71.89%",
+        "evidence_id": "EVD-H06",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H06",
+          "adapted_value": "EVD-H06",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "基本每股收益（元/股） 2.3068 8.2062 -71.89%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "基本每股收益（元/股） 2.3068 8.2062 -71.89%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "basic_eps",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "元/股",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 1713246455971159575,
+        "adapted_text_hash": 1713246455971159575,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H07",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H07",
+        "evidence_text": "加权平均净资产收益率 6.89% 23.35% 减少16.46 个百分点",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "加权平均净资产收益率 6.89% 23.35% 减少16.46 个百分点",
+        "evidence_id": "EVD-H07",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H07",
+          "adapted_value": "EVD-H07",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "加权平均净资产收益率 6.89% 23.35% 减少16.46 个百分点",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "加权平均净资产收益率 6.89% 23.35% 减少16.46 个百分点",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "roe",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "%",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 3633368550409915194,
+        "adapted_text_hash": 3633368550409915194,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H08",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H08",
+        "evidence_text": "总资产（元） 189,984,270,815.47 188,252,218,704.17 0.92%",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "总资产（元） 189,984,270,815.47 188,252,218,704.17 0.92%",
+        "evidence_id": "EVD-H08",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H08",
+          "adapted_value": "EVD-H08",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "总资产（元） 189,984,270,815.47 188,252,218,704.17 0.92%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "总资产（元） 189,984,270,815.47 188,252,218,704.17 0.92%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "total_assets",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 1825243735486027146,
+        "adapted_text_hash": 1825243735486027146,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H09",
+        "evidence_text": "归属于上市公司股东的净资产（元） 119,932,271,234.99 133,285,282,015.97 -10.02%",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "归属于上市公司股东的净资产（元） 119,932,271,234.99 133,285,282,015.97 -10.02%",
+        "evidence_id": "EVD-H09",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H09",
+          "adapted_value": "EVD-H09",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "归属于上市公司股东的净资产（元） 119,932,271,234.99 133,285,282,015.97 -10.02%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "归属于上市公司股东的净资产（元） 119,932,271,234.99 133,285,282,015.97 -10.02%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "yoy_growth_net_assets",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "%",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -3345046143116463831,
+        "adapted_text_hash": -3345046143116463831,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "claim_type": "business_fact",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H10",
+        "evidence_text": "2026 年4 月30 日",
+        "page": 1,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "management_discussion",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "2026 年4 月30 日",
+        "evidence_id": "EVD-H10",
+        "evidence_type": "management_discussion"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H10",
+          "adapted_value": "EVD-H10",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "2026 年4 月30 日",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "2026 年4 月30 日",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "management_discussion",
+          "adapted_value": "management_discussion",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "publication_date",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": null,
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 672162578006151450,
+        "adapted_text_hash": 672162578006151450,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H11",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H11",
+        "evidence_text": "归属于上市公司股东的扣除非经常性损益的净利润（元） 8,815,635,943.27 31,741,959,276.27 -72.23%",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "归属于上市公司股东的扣除非经常性损益的净利润（元） 8,815,635,943.27 31,741,959,276.27 -72.23%",
+        "evidence_id": "EVD-H11",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H11",
+          "adapted_value": "EVD-H11",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "归属于上市公司股东的扣除非经常性损益的净利润（元） 8,815,635,943.27 31,741,959,276.27 -72.23%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "归属于上市公司股东的扣除非经常性损益的净利润（元） 8,815,635,943.27 31,741,959,276.27 -72.23%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "deducted_net_profit",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": 7011628294671461230,
+        "adapted_text_hash": 7011628294671461230,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "claim_type": "business_fact",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H12",
+        "evidence_text": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所",
+        "page": 6,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "management_discussion",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所",
+        "evidence_id": "EVD-H12",
+        "evidence_type": "management_discussion"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H12",
+          "adapted_value": "EVD-H12",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "management_discussion",
+          "adapted_value": "management_discussion",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "listing_info",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": null,
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": null,
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -8285930438827290786,
+        "adapted_text_hash": -8285930438827290786,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    },
+    {
+      "claim_id": "CLM-H16",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "original_gold_fields": {
+        "evidence_id": "EVD-H16",
+        "evidence_text": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+        "page": 7,
+        "document_id": null,
+        "block_id": "",
+        "evidence_type": "financial_table",
+        "company": "五粮液"
+      },
+      "canonical_evidence": {
+        "text": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+        "evidence_id": "EVD-H16",
+        "evidence_type": "financial_table"
+      },
+      "field_audit": {
+        "evidence_id": {
+          "field": "evidence_id",
+          "original_value": "EVD-H16",
+          "adapted_value": "EVD-H16",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "evidence_text": {
+          "field": "evidence_text",
+          "original_value": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+          "adapted_value": null,
+          "lost": true,
+          "derived": false,
+          "defaulted": false
+        },
+        "text": {
+          "field": "text",
+          "original_value": null,
+          "adapted_value": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+          "lost": false,
+          "derived": true,
+          "defaulted": true
+        },
+        "evidence_type": {
+          "field": "evidence_type",
+          "original_value": "financial_table",
+          "adapted_value": "financial_table",
+          "lost": false,
+          "derived": false,
+          "defaulted": false
+        },
+        "metric": {
+          "field": "metric",
+          "original_value": null,
+          "adapted_value": "revenue",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "period": {
+          "field": "period",
+          "original_value": null,
+          "adapted_value": "2025FY",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "unit": {
+          "field": "unit",
+          "original_value": null,
+          "adapted_value": "亿元",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        },
+        "scope": {
+          "field": "scope",
+          "original_value": null,
+          "adapted_value": "consolidated",
+          "lost": false,
+          "derived": true,
+          "defaulted": false
+        }
+      },
+      "lost_fields": [
+        "evidence_text"
+      ],
+      "derived_fields": [
+        "text",
+        "metric",
+        "period",
+        "unit",
+        "scope"
+      ],
+      "defaulted_fields": [
+        "text"
+      ],
+      "adapter_error": null,
+      "adapter_warnings": [
+        "Field 'evidence_text' LOST during adaptation",
+        "Some fields lost"
+      ],
+      "text_continuity": {
+        "original_text_hash": -7709296952724054542,
+        "adapted_text_hash": -7709296952724054542,
+        "text_matches": true,
+        "text_lost": false
+      },
+      "status": "WARNING"
+    }
+  ]
+}

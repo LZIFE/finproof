@@ -276,8 +276,53 @@ def _unit_semantic_conflict(claim_unit: str, ev_fv_unit: str | None) -> tuple[bo
 
 
 # ---------------------------------------------------------------------------
-# 主入口：core_verify（唯一 PRIMARY 路径）
+# Route → Verifier 映射（Phase 23.11.4 §6）
+# 确保6类路由使用正确的验证路径，统一进入VerdictDecision
 # ---------------------------------------------------------------------------
+ROUTE_TO_VERIFIER: dict[str, str] = {
+    "STRUCTURED_NUMERIC": "numeric",
+    "TABLE_METRIC": "numeric",
+    "PERIOD_COMPARISON": "period_comparison",
+    "SCOPE_VALIDATION": "scope_validation",
+    "NARRATIVE_FACT": "semantic",
+    "CAUSALITY": "causality",
+    "FORECAST": "forecast",
+    "INSUFFICIENTLY_PARSED": "semantic",
+}
+
+
+def get_verifier_for_route(route: str, ct: str, metric_code: str, claim_value,
+                           claim_text: str, period_str: str) -> str:
+    """Map route to verifier type (§6).
+
+    Returns one of: numeric, period_comparison, scope_validation,
+    semantic, causality, forecast, multi_component, insufficient.
+    """
+    # Explicit route override
+    if route in ROUTE_TO_VERIFIER:
+        verifier = ROUTE_TO_VERIFIER[route]
+        # Special cases within routes
+        if verifier == "numeric" and "growth" in metric_code or "yoy" in metric_code or "qoq" in metric_code:
+            return "period_comparison"
+        if verifier == "numeric" and any(p in period_str.upper() for p in ("Q2", "Q3", "Q4")):
+            return "period_comparison"
+        return verifier
+
+    # Fallback: claim_type-based (existing logic)
+    ct = (ct or "").upper()
+    if ct == "FORECAST" or "forecast" in metric_code or "预计" in claim_text:
+        return "forecast"
+    if any(m in claim_text for m in ("导致", "推动", "主要由于", "主要系", "得益于", "带动")):
+        return "causality"
+    if any(m in claim_text for m in ("同比", "环比", "较上年")):
+        return "period_comparison"
+    non_numeric = {"BUSINESS_FACT", "CAUSALITY", "CAUSAL_CLAIM", "COMPARISON",
+                   "COMPARATIVE_CLAIM", "OPINION", "TREND", "STRATEGIC_CLAIM", "SCOPE"}
+    if claim_value is None and ct in non_numeric:
+        return "semantic"
+    if claim_value is not None:
+        return "numeric"
+    return "semantic"
 def core_verify(claim: dict, evidence_list: list[dict], trace: IntegrationTrace | None = None) -> VerificationResult:
     """核心验证管线（PRIMARY）。
 
@@ -408,6 +453,10 @@ def _core_verify_numeric(claim, evidence_list, trace, std_metric, metric_code, c
         fvs = _extract_evidence_fvs(text, metric_code or std_metric, str(claim.get("period") or ""))
         ev_period = parse_period(_doc_period_of(e) or "")
         trace.period_context_called = True
+        # Phase 23.11.4 §7: when evidence has no doc_period (most common case),
+        # fall back to claim period for compatibility check
+        if ev_period.fiscal_year is None and ev_period.fiscal_quarter is None:
+            ev_period = claim_period
         period_ok, period_note = periods_compatible(claim_period, ev_period)
         metric_row = any(l and l in text for l in labels)
         # 当年列：指标行内第一个非年份数字为 current year，其余显式标记为 False（C 类修复）

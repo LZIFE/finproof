@@ -195,9 +195,18 @@ def aggregate_evidence(
             result.confidence = max((ev.evidence_confidence for ev in supported), default=0.5)
         return result
 
-    # §4 全弃权
+    # §4 全弃权或冲突（Phase 23.11.4 §11: 混合REFUTED+SUPPORTED非high-quality也应标记冲突）
     if insufficient and not supported and not refuted and not partial:
         _set("INSUFFICIENT_EVIDENCE", RULE_ALL_INSUFFICIENT, "all evidence INSUFFICIENT")
+        return result
+    if supported and refuted:
+        # Mixed REFUTED+SUPPORTED evidence (any quality) → conflict
+        result.conflict_detected = True
+        _set(
+            "CONFLICTING_EVIDENCE", RULE_CONFLICT,
+            "mixed SUPPORTED and REFUTED evidence; conflict cannot be resolved by majority vote",
+            conflict_ids=[ev.evidence_id for ev in supported + refuted],
+        )
         return result
 
     # Fallback

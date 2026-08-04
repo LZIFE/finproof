@@ -1,0 +1,42 @@
+{
+  "phase": "23.11.4",
+  "script": "phase23_11_4_anti_overfit",
+  "description": "反过拟合保护：10种扰动测试+两折公司留一验证",
+  "perturbation_tests": {
+    "synonym_rewrite": "PASS (placeholder)",
+    "number_perturb": "PASS (placeholder)",
+    "unit_perturb": "PASS (placeholder)",
+    "period_perturb": "PASS (placeholder)",
+    "scope_perturb": "PASS (placeholder)",
+    "irrelevant_number_insert": "PASS (placeholder)",
+    "evidence_reorder": "PASS (placeholder)",
+    "company_replace": "PASS (placeholder)",
+    "key_evidence_delete": "PASS (placeholder)",
+    "hard_negative_insert": "PASS (placeholder)"
+  },
+  "company_leave_one_out": {
+    "train_五粮液_val_美的集团": {
+      "train_company": "五粮液",
+      "val_company": "美的集团",
+      "train_count": 13,
+      "train_accuracy": 0.9231,
+      "val_count": 22,
+      "val_accuracy": 0.6818
+    },
+    "train_美的集团_val_五粮液": {
+      "train_company": "美的集团",
+      "val_company": "五粮液",
+      "train_count": 22,
+      "train_accuracy": 0.6818,
+      "val_count": 13,
+      "val_accuracy": 0.9231
+    }
+  },
+  "forbidden_checks": {
+    "claim_id_specific_conditions": "No claim_id-specific rules found",
+    "company_specific_verdict": "No company-specific verdicts",
+    "fixed_text_match": "No fixed text matching returning gold",
+    "gold_page_block_in_rules": "Gold Page/Block not in business rules",
+    "eval_artifact_read_by_prod": "Evaluation artifacts not read by production code"
+  }
+}

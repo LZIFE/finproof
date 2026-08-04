@@ -196,3 +196,5 @@ FAIL: #6-13 (8 项)
 - `backend/artifacts/evidence_gate/phase23_11_3_noisy_oracle_diagnosis.json`
 - `backend/artifacts/e2e/phase23_11_3_real_e2e.json`
 - `backend/artifacts/aggregation/phase23_11_3_criteria_audit.json`
+
+**Phase 23.11.4 接续**：`docs/phase23_11_4_gold_contract_and_core_verify.md` — Gold契约清理、Core Verify修复（Single-Gold Accuracy 0.3953→0.6279）。

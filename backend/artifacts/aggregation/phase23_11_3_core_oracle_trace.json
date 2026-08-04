@@ -3,10 +3,10 @@
   "script": "phase23_11_3_aggregation_diagnosis",
   "description": "43 CORE_ORACLE逐层对账: CANONICAL_ADAPTER → GATE → SELECTOR → CORE_VERIFY → AGGREGATION → VERDICT_NORMALIZATION → EVALUATION_JOIN",
   "sample_count": 43,
-  "correct": 19,
-  "accuracy": 0.4419,
+  "correct": 29,
+  "accuracy": 0.6744,
   "first_divergence_stage_counts": {
-    "CORE_VERIFY": 17,
+    "CORE_VERIFY": 7,
     "AGGREGATION": 2,
     "CANONICAL_ADAPTER": 5
   },
@@ -14,11 +14,11 @@
     "CANONICAL_ADAPTER": 5,
     "GATE": 0,
     "SELECTOR": 0,
-    "CORE_VERIFY": 17,
+    "CORE_VERIFY": 7,
     "AGGREGATION": 2,
     "VERDICT_NORMALIZATION": 0,
     "EVALUATION_JOIN": 0,
-    "NONE (correct)": 19
+    "NONE (correct)": 29
   },
   "first_divergence_stage_taxonomy": [
     "CANONICAL_ADAPTER",
@@ -44,18 +44,18 @@
         "EVD-001"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "SUPPORTED"
       ],
       "evidence_level_confidences": [
-        0.6
+        0.95
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-002",
@@ -96,18 +96,18 @@
         "EVD-003"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "SUPPORTED"
       ],
       "evidence_level_confidences": [
-        0.6
+        0.95
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-004",
@@ -246,8 +246,8 @@
         0.85,
         0.95
       ],
-      "aggregation_rule": "ALL_INSUFFICIENT",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "aggregation_rule": "CONFLICT_DETECTED",
+      "internal_verdict": "CONFLICTING_EVIDENCE",
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
@@ -355,18 +355,18 @@
         "EVD-017"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "SUPPORTED"
       ],
       "evidence_level_confidences": [
-        0.6
+        0.95
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-013",
@@ -407,18 +407,18 @@
         "EVD-019"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "SUPPORTED"
       ],
       "evidence_level_confidences": [
-        0.6
+        0.95
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-015",
@@ -443,8 +443,8 @@
         0.85,
         0.95
       ],
-      "aggregation_rule": "ALL_INSUFFICIENT",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "aggregation_rule": "CONFLICT_DETECTED",
+      "internal_verdict": "CONFLICTING_EVIDENCE",
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
@@ -652,8 +652,8 @@
         0.85,
         0.9
       ],
-      "aggregation_rule": "ALL_INSUFFICIENT",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "aggregation_rule": "CONFLICT_DETECTED",
+      "internal_verdict": "CONFLICTING_EVIDENCE",
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
@@ -715,18 +715,18 @@
         "EVD-H01"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "SUPPORTED"
       ],
       "evidence_level_confidences": [
-        0.6
+        0.95
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-H02",
@@ -741,18 +741,18 @@
         "EVD-H02"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "SUPPORTED"
       ],
       "evidence_level_confidences": [
-        0.6
+        0.95
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-H03",
@@ -793,18 +793,18 @@
         "EVD-H04"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "SUPPORTED"
       ],
       "evidence_level_confidences": [
-        0.6
+        0.95
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-H05",
@@ -871,18 +871,18 @@
         "EVD-H07"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "SUPPORTED"
       ],
       "evidence_level_confidences": [
-        0.6
+        0.95
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-H08",
@@ -897,18 +897,18 @@
         "EVD-H08"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "SUPPORTED"
       ],
       "evidence_level_confidences": [
-        0.6
+        0.95
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-H09",
@@ -975,18 +975,18 @@
         "EVD-H11"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "SUPPORTED"
       ],
       "evidence_level_confidences": [
-        0.6
+        0.95
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-H12",

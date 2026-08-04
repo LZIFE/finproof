@@ -1,0 +1,793 @@
+{
+  "phase": "23.11.4",
+  "script": "phase23_11_4_core_diagnosis",
+  "description": "17条CORE_VERIFY错误逐条根因诊断",
+  "total_examined": 17,
+  "fixable": 17,
+  "non_fixable": 0,
+  "root_cause_counts": {},
+  "per_claim": [
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 4564.52,
+          "unit": "亿元"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 456451731.0,
+          "unit": "亿元",
+          "period": "2025FY"
+        },
+        {
+          "value": 407149600.0,
+          "unit": "亿元",
+          "period": "2025FY"
+        },
+        {
+          "value": 12.11,
+          "unit": "亿元",
+          "period": "2025FY"
+        }
+      ],
+      "claim_metric": "revenue",
+      "evidence_metric": "",
+      "claim_period": "2025FY",
+      "evidence_period": "",
+      "claim_unit": "亿元",
+      "evidence_unit": "亿元",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "rule_id": "numeric:exact_value",
+      "confidence": 0.0,
+      "first_wrong_function": "find_best_match",
+      "root_cause": "MULTIPLE_NUMBER_BINDING_ERROR",
+      "proposed_generic_fix": "Improve find_best_match to handle multi-column financial tables with unit conversion",
+      "regression_test": "Single-gold verify for CLM-001 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-001",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "canonical_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "correct": false
+    },
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 439.45,
+          "unit": "亿元"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 43945411.0,
+          "unit": "亿元",
+          "period": "2025FY"
+        },
+        {
+          "value": 38537237.0,
+          "unit": "亿元",
+          "period": "2025FY"
+        },
+        {
+          "value": 14.03,
+          "unit": "亿元",
+          "period": "2025FY"
+        }
+      ],
+      "claim_metric": "net_profit_attributable",
+      "evidence_metric": "",
+      "claim_period": "2025FY",
+      "evidence_period": "",
+      "claim_unit": "亿元",
+      "evidence_unit": "亿元",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "rule_id": "numeric:exact_value",
+      "confidence": 0.0,
+      "first_wrong_function": "find_best_match",
+      "root_cause": "MULTIPLE_NUMBER_BINDING_ERROR",
+      "proposed_generic_fix": "Improve find_best_match to handle multi-column financial tables with unit conversion",
+      "regression_test": "Single-gold verify for CLM-003 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-003",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "canonical_evidence": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "correct": false
+    },
+    {
+      "selected_verifier": "growth_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 38.02,
+          "unit": "%"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 43945411.0,
+          "unit": "%",
+          "period": "2025FY"
+        },
+        {
+          "value": 38537237.0,
+          "unit": "%",
+          "period": "2025FY"
+        },
+        {
+          "value": 14.03,
+          "unit": "%",
+          "period": "2025FY"
+        }
+      ],
+      "claim_metric": "yoy_growth_net_profit",
+      "evidence_metric": "",
+      "claim_period": "2025FY",
+      "evidence_period": "",
+      "claim_unit": "%",
+      "evidence_unit": "%",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "rule_id": "growth:no_growth_data",
+      "confidence": 0.0,
+      "first_wrong_function": "find_best_match",
+      "root_cause": "MULTIPLE_NUMBER_BINDING_ERROR",
+      "proposed_generic_fix": "Improve find_best_match to handle multi-column financial tables with unit conversion",
+      "regression_test": "Single-gold verify for CLM-004 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-004",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "gold_evidence": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "canonical_evidence": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "correct": false
+    },
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 26.4,
+          "unit": "%"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 456451731.0,
+          "unit": "%",
+          "period": "2025FY"
+        },
+        {
+          "value": 407149600.0,
+          "unit": "%",
+          "period": "2025FY"
+        }
+      ],
+      "claim_metric": "gross_margin",
+      "evidence_metric": "",
+      "claim_period": "2025FY",
+      "evidence_period": "",
+      "claim_unit": "%",
+      "evidence_unit": "%",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "rule_id": "numeric:no_match",
+      "confidence": 0.0,
+      "first_wrong_function": "find_best_match",
+      "root_cause": "MULTIPLE_NUMBER_BINDING_ERROR",
+      "proposed_generic_fix": "Improve find_best_match to handle multi-column financial tables with unit conversion",
+      "regression_test": "Single-gold verify for CLM-005 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-005",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence": "456,451,731 407,149,600",
+      "canonical_evidence": "456,451,731 407,149,600",
+      "correct": false
+    },
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 0.7,
+          "unit": "个百分点"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 456451731.0,
+          "unit": "个百分点",
+          "period": "2025FY"
+        },
+        {
+          "value": 407149600.0,
+          "unit": "个百分点",
+          "period": "2025FY"
+        }
+      ],
+      "claim_metric": "gross_margin_change",
+      "evidence_metric": "",
+      "claim_period": "2025FY",
+      "evidence_period": "",
+      "claim_unit": "个百分点",
+      "evidence_unit": "个百分点",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "rule_id": "numeric:no_match",
+      "confidence": 0.0,
+      "first_wrong_function": "find_best_match",
+      "root_cause": "MULTIPLE_NUMBER_BINDING_ERROR",
+      "proposed_generic_fix": "Improve find_best_match to handle multi-column financial tables with unit conversion",
+      "regression_test": "Single-gold verify for CLM-006 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-006",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "gold_evidence": "456,451,731 407,149,600",
+      "canonical_evidence": "456,451,731 407,149,600",
+      "correct": false
+    },
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 1278.39,
+          "unit": "亿元"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 127838538.0,
+          "unit": "亿元",
+          "period": "2025Q1"
+        },
+        {
+          "value": 106101612.0,
+          "unit": "亿元",
+          "period": "2025Q1"
+        },
+        {
+          "value": 20.49,
+          "unit": "亿元",
+          "period": "2025Q1"
+        }
+      ],
+      "claim_metric": "revenue",
+      "evidence_metric": "",
+      "claim_period": "2025Q1",
+      "evidence_period": "",
+      "claim_unit": "亿元",
+      "evidence_unit": "亿元",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "rule_id": "numeric:exact_value",
+      "confidence": 0.0,
+      "first_wrong_function": "claim_router",
+      "root_cause": "CLAIM_TYPE_ROUTE_WRONG",
+      "proposed_generic_fix": "Verify claim_type routing produces correct verifier dispatch",
+      "regression_test": "Single-gold verify for CLM-007 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-007",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "canonical_evidence": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "correct": true
+    },
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 2523.31,
+          "unit": "亿元"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 252331494.0,
+          "unit": "亿元",
+          "period": "2025H1"
+        },
+        {
+          "value": 218121839.0,
+          "unit": "亿元",
+          "period": "2025H1"
+        }
+      ],
+      "claim_metric": "total_operating_revenue",
+      "evidence_metric": "",
+      "claim_period": "2025H1",
+      "evidence_period": "",
+      "claim_unit": "亿元",
+      "evidence_unit": "亿元",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "rule_id": "numeric:mismatch_metric_row",
+      "confidence": 0.0,
+      "first_wrong_function": "verdict_decision",
+      "root_cause": "VERDICT_NORMALIZATION_ERROR",
+      "proposed_generic_fix": "Check numeric comparison tolerance and unit conversion",
+      "regression_test": "Single-gold verify for CLM-008 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-008",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence": "一、营业总收入 252,331,494 218,121,839",
+      "canonical_evidence": "一、营业总收入 252,331,494 218,121,839",
+      "correct": false
+    },
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 260.14,
+          "unit": "亿元"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 26013690.0,
+          "unit": "亿元",
+          "period": "2025Q2"
+        },
+        {
+          "value": 20804176.0,
+          "unit": "亿元",
+          "period": "2025Q2"
+        }
+      ],
+      "claim_metric": "quarterly_net_profit_attributable",
+      "evidence_metric": "",
+      "claim_period": "2025Q2",
+      "evidence_period": "",
+      "claim_unit": "亿元",
+      "evidence_unit": "亿元",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "rule_id": "period:no_evidence",
+      "confidence": 0.0,
+      "first_wrong_function": "find_best_match",
+      "root_cause": "MULTIPLE_NUMBER_BINDING_ERROR",
+      "proposed_generic_fix": "Improve find_best_match to handle multi-column financial tables with unit conversion",
+      "regression_test": "Single-gold verify for CLM-010 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-010",
+      "claim_type": "scope",
+      "expected_verdict": "REFUTED",
+      "gold_evidence": "归属于母公司股东的净利润 26,013,690 20,804,176",
+      "canonical_evidence": "归属于母公司股东的净利润 26,013,690 20,804,176",
+      "correct": false
+    },
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 124.22,
+          "unit": "亿元"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 12422233.0,
+          "unit": "亿元",
+          "period": "2025Q1"
+        },
+        {
+          "value": 9000007.0,
+          "unit": "亿元",
+          "period": "2025Q1"
+        },
+        {
+          "value": 38.02,
+          "unit": "亿元",
+          "period": "2025Q1"
+        }
+      ],
+      "claim_metric": "net_profit_attributable",
+      "evidence_metric": "",
+      "claim_period": "2025Q1",
+      "evidence_period": "",
+      "claim_unit": "亿元",
+      "evidence_unit": "亿元",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "rule_id": "numeric:exact_value",
+      "confidence": 0.0,
+      "first_wrong_function": "claim_router",
+      "root_cause": "CLAIM_TYPE_ROUTE_WRONG",
+      "proposed_generic_fix": "Verify claim_type routing produces correct verifier dispatch",
+      "regression_test": "Single-gold verify for CLM-011 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-011",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+      "canonical_evidence": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+      "correct": true
+    },
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 5.8,
+          "unit": "元/股"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 5.8,
+          "unit": "元/股",
+          "period": "2025FY"
+        },
+        {
+          "value": 5.44,
+          "unit": "元/股",
+          "period": "2025FY"
+        },
+        {
+          "value": 6.62,
+          "unit": "元/股",
+          "period": "2025FY"
+        }
+      ],
+      "claim_metric": "basic_eps",
+      "evidence_metric": "",
+      "claim_period": "2025FY",
+      "evidence_period": "",
+      "claim_unit": "元/股",
+      "evidence_unit": "元/股",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "rule_id": "numeric:exact_value",
+      "confidence": 0.0,
+      "first_wrong_function": "find_best_match",
+      "root_cause": "MULTIPLE_NUMBER_BINDING_ERROR",
+      "proposed_generic_fix": "Improve find_best_match to handle multi-column financial tables with unit conversion",
+      "regression_test": "Single-gold verify for CLM-012 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-012",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence": "基本每股收益（元/股） 5.80 5.44 6.62%",
+      "canonical_evidence": "基本每股收益（元/股） 5.80 5.44 6.62%",
+      "correct": false
+    },
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 533.46,
+          "unit": "亿元"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 53345930.0,
+          "unit": "亿元",
+          "period": "2025FY"
+        },
+        {
+          "value": 60511572.0,
+          "unit": "亿元",
+          "period": "2025FY"
+        },
+        {
+          "value": 11.84,
+          "unit": "亿元",
+          "period": "2025FY"
+        }
+      ],
+      "claim_metric": "operating_cash_flow",
+      "evidence_metric": "",
+      "claim_period": "2025FY",
+      "evidence_period": "",
+      "claim_unit": "亿元",
+      "evidence_unit": "亿元",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "rule_id": "numeric:exact_value",
+      "confidence": 0.0,
+      "first_wrong_function": "find_best_match",
+      "root_cause": "MULTIPLE_NUMBER_BINDING_ERROR",
+      "proposed_generic_fix": "Improve find_best_match to handle multi-column financial tables with unit conversion",
+      "regression_test": "Single-gold verify for CLM-014 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-014",
+      "claim_type": "raw_number",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "canonical_evidence": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "correct": false
+    },
+    {
+      "selected_verifier": "growth_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 20.49,
+          "unit": "%"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 2523.0,
+          "unit": "亿元",
+          "period": "2025H1"
+        },
+        {
+          "value": 15.7,
+          "unit": "%",
+          "period": "2025H1"
+        }
+      ],
+      "claim_metric": "yoy_growth_revenue",
+      "evidence_metric": "",
+      "claim_period": "2025H1",
+      "evidence_period": "",
+      "claim_unit": "%",
+      "evidence_unit": "亿元",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "rule_id": "growth:mismatch",
+      "confidence": 0.0,
+      "first_wrong_function": "claim_router",
+      "root_cause": "CLAIM_TYPE_ROUTE_WRONG",
+      "proposed_generic_fix": "Verify claim_type routing produces correct verifier dispatch",
+      "regression_test": "Single-gold verify for CLM-015 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-015",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "REFUTED",
+      "gold_evidence": "营业总收入2523 亿元，同比增长15.7%",
+      "canonical_evidence": "营业总收入2523 亿元，同比增长15.7%",
+      "correct": true
+    },
+    {
+      "selected_verifier": "semantic_verifier",
+      "extracted_claim_values": [
+        {
+          "value": null,
+          "unit": null
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 2025.0,
+          "unit": "",
+          "period": "2025FY"
+        },
+        {
+          "value": 2026.0,
+          "unit": "",
+          "period": "2025FY"
+        },
+        {
+          "value": 3.0,
+          "unit": "",
+          "period": "2025FY"
+        }
+      ],
+      "claim_metric": "publication_date",
+      "evidence_metric": "",
+      "claim_period": "2025FY",
+      "evidence_period": "",
+      "claim_unit": "",
+      "evidence_unit": "",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "rule_id": "semantic:publication_date_conflict",
+      "confidence": 0.0,
+      "first_wrong_function": "claim_router",
+      "root_cause": "CLAIM_TYPE_ROUTE_WRONG",
+      "proposed_generic_fix": "Verify claim_type routing produces correct verifier dispatch",
+      "regression_test": "Single-gold verify for CLM-016 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-016",
+      "claim_type": "business_fact",
+      "expected_verdict": "REFUTED",
+      "gold_evidence": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+      "canonical_evidence": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+      "correct": true
+    },
+    {
+      "selected_verifier": "semantic_verifier",
+      "extracted_claim_values": [
+        {
+          "value": null,
+          "unit": null
+        }
+      ],
+      "extracted_evidence_values": [],
+      "claim_metric": "overseas_obm_strategy",
+      "evidence_metric": "",
+      "claim_period": "2025H1",
+      "evidence_period": "",
+      "claim_unit": "",
+      "evidence_unit": "",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "rule_id": "semantic:keyword_coverage_supported",
+      "confidence": 0.0,
+      "first_wrong_function": "claim_router",
+      "root_cause": "CLAIM_TYPE_ROUTE_WRONG",
+      "proposed_generic_fix": "Verify claim_type routing produces correct verifier dispatch",
+      "regression_test": "Single-gold verify for CLM-019 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-019",
+      "claim_type": "business_fact",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence": "支撑国内高端品牌和海外OBM 优先战略",
+      "canonical_evidence": "支撑国内高端品牌和海外OBM 优先战略",
+      "correct": true
+    },
+    {
+      "selected_verifier": "growth_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 15,
+          "unit": "%"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 456451731.0,
+          "unit": "%",
+          "period": "2025FY"
+        },
+        {
+          "value": 407149600.0,
+          "unit": "%",
+          "period": "2025FY"
+        },
+        {
+          "value": 12.11,
+          "unit": "%",
+          "period": "2025FY"
+        }
+      ],
+      "claim_metric": "yoy_growth_revenue",
+      "evidence_metric": "",
+      "claim_period": "2025FY",
+      "evidence_period": "",
+      "claim_unit": "%",
+      "evidence_unit": "%",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "rule_id": "numeric:threshold_components",
+      "confidence": 0.0,
+      "first_wrong_function": "claim_router",
+      "root_cause": "CLAIM_TYPE_ROUTE_WRONG",
+      "proposed_generic_fix": "Verify claim_type routing produces correct verifier dispatch",
+      "regression_test": "Single-gold verify for CLM-024 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-024",
+      "claim_type": "calculated_financial_metric",
+      "expected_verdict": "PARTIALLY_SUPPORTED",
+      "gold_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "canonical_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "correct": false
+    },
+    {
+      "selected_verifier": "semantic_verifier",
+      "extracted_claim_values": [
+        {
+          "value": null,
+          "unit": null
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 858.0,
+          "unit": "",
+          "period": ""
+        }
+      ],
+      "claim_metric": "listing_info",
+      "evidence_metric": "",
+      "claim_period": "",
+      "evidence_period": "",
+      "claim_unit": "",
+      "evidence_unit": "",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "rule_id": "semantic:listing_all_components",
+      "confidence": 0.0,
+      "first_wrong_function": "claim_router",
+      "root_cause": "CLAIM_TYPE_ROUTE_WRONG",
+      "proposed_generic_fix": "Verify claim_type routing produces correct verifier dispatch",
+      "regression_test": "Single-gold verify for CLM-H12 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-H12",
+      "claim_type": "business_fact",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所",
+      "canonical_evidence": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所",
+      "correct": true
+    },
+    {
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 4052.85,
+          "unit": "亿元"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 40528509770.23,
+          "unit": "亿元",
+          "period": "2025FY"
+        },
+        {
+          "value": 89175178322.7,
+          "unit": "亿元",
+          "period": "2025FY"
+        },
+        {
+          "value": 54.55,
+          "unit": "亿元",
+          "period": "2025FY"
+        }
+      ],
+      "claim_metric": "revenue",
+      "evidence_metric": "",
+      "claim_period": "2025FY",
+      "evidence_period": "",
+      "claim_unit": "亿元",
+      "evidence_unit": "亿元",
+      "claim_scope": "consolidated",
+      "evidence_scope": "",
+      "raw_core_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "rule_id": "numeric:mismatch_metric_row",
+      "confidence": 0.0,
+      "first_wrong_function": "claim_router",
+      "root_cause": "CLAIM_TYPE_ROUTE_WRONG",
+      "proposed_generic_fix": "Verify claim_type routing produces correct verifier dispatch",
+      "regression_test": "Single-gold verify for CLM-H16 returns correct verdict",
+      "status": "TO_FIX",
+      "claim_id": "CLM-H16",
+      "claim_type": "raw_number",
+      "expected_verdict": "REFUTED",
+      "gold_evidence": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+      "canonical_evidence": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+      "correct": true
+    }
+  ]
+}
