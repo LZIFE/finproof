@@ -222,3 +222,27 @@ Real E2E Accuracy = 0.000，Coverage = 0.115，Abstentions = 23/26。
 **但 Real E2E 未达标**（Accuracy=0.000，Coverage=0.115），根因是 acceptance 脚本的 claim 字段映射问题（`gold`/`gold_verdict` 字段缺失、26 vs 43 claim 数量不一致），非 Verification 引擎失败。
 
 **不标记 Competition-Usable**。Blind Holdout 继续 BLOCKED。完成后停止，不开发 Phase 24。
+
+---
+
+## Phase 23.11.1 评测链路修复（2026-08-04）
+
+Phase 23.11 宣布完成后被驳回：Real E2E Accuracy=0.000、Coverage=0.115、acceptance 脚本存在 claim 字段映射错误、26 与 43 样本不一致、NOISY_ORACLE 缺少正式指标、只执行了局部测试、未提供 commit hash。
+
+Phase 23.11.1（`docs/phase23_11_1_evaluation_repair.md`）修复了评测链路：
+
+- **根因 1（26 vs 43）**：Phase 23.11 acceptance 只读 `load_gold_claims("demo")` 单数据集（26 条），Phase 23.9 Oracle 遍历 `["demo","holdout"]` 两数据集（43 条）。新建 `evaluation_claim_schema.load_canonical_claims` 遍历两数据集 → 43 条。
+- **根因 2（字段缺失）**：`expected_verdict` 在 `gold_verifications.json` 的 `verifications[]`，不在 `gold_claims.json` 的 `claims[]`。acceptance 脚本读错字段 → fallback "UNKNOWN" → Accuracy=0.000。新建适配器按 `claim_id` 连接 claims + verifications + evidence，**绝不**静默默认。
+- **根因 3（Verdict 映射不统一）**：新建 `normalize_verdict(status)` 唯一映射函数，所有脚本必须使用。
+
+**Phase 23.11.1 修复后真实指标**（43 条，连续 2 次一致）：
+
+| 模式 | Accuracy | Macro-F1 | missing | 关键 |
+| --- | --- | --- | --- | --- |
+| CORE_ORACLE | 0.2093 | 0.3934 | 0 | Gold 必经 Gate，37 条被拒（GATE_REJECTED_GOLD） |
+| NOISY_ORACLE | 0.2093 | 0.3934 | 0 | Gate Precision=1.0, Accepted Noise=0.0, 但 Gate Recall=0.1395 |
+| REAL_E2E | 0.2093 | 0.3934 | 0 | coverage=0.1395, selective_accuracy=1.0, abstention=37 |
+
+Real E2E Accuracy 从 0.000 → 0.2093（不再因字段映射错误得 0 分），但 Accuracy / Macro-F1 / coverage 仍**未达标**，主因是 **Evidence Gate 阈值过严**（Gate Recall=0.1395，拒绝 86% 正确 Gold Evidence），需留一公司交叉验证调优，非 Verification 引擎失败。
+
+**Phase 23.11 标记 PARTIAL，不标记 Competition-Usable**。完成后停止，不开发 Phase 24。

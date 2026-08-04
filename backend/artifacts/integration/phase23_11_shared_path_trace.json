@@ -1,0 +1,14 @@
+{
+  "modes": {
+    "real_e2e": {
+      "input_claim_count": 43,
+      "evidence_source": "retrieval",
+      "verify_evidence_set_call_count": 43,
+      "gate_call_count": 43,
+      "selector_call_count": 43,
+      "core_verify_call_count": 43,
+      "output_result_count": 43,
+      "missing_result_count": 0
+    }
+  }
+}

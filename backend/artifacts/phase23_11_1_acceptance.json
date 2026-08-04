@@ -1,0 +1,91 @@
+{
+  "phase": "23.11.1",
+  "schema_validation": {
+    "passed": true,
+    "total_claims": 43,
+    "unique_claim_ids": 43,
+    "expected_verdicts_all_present": true,
+    "verdicts_normalized": true,
+    "oracle_and_e2e_same_ids": true,
+    "issues": [],
+    "verdict_distribution": {
+      "SUPPORTED": 18,
+      "REFUTED": 17,
+      "INSUFFICIENT_EVIDENCE": 3,
+      "OPINION_OR_FORECAST": 2,
+      "PARTIALLY_SUPPORTED": 1,
+      "UNABLE_TO_DETERMINE": 2
+    }
+  },
+  "modes": {
+    "real_e2e": {
+      "mode": "real_e2e",
+      "sample_count": 43,
+      "correct": 9,
+      "accuracy": 0.2093,
+      "macro_f1": 0.3934,
+      "per_class": {
+        "INSUFFICIENT_EVIDENCE": {
+          "precision": 0.0811,
+          "recall": 1.0,
+          "f1": 0.15
+        },
+        "OPINION_OR_FORECAST": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "PARTIALLY_SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "REFUTED": {
+          "precision": 1.0,
+          "recall": 0.1176,
+          "f1": 0.2105
+        },
+        "SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "UNABLE_TO_DETERMINE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "confusion_matrix": {
+        "INSUFFICIENT_EVIDENCE|INSUFFICIENT_EVIDENCE": 3,
+        "OPINION_OR_FORECAST|OPINION_OR_FORECAST": 2,
+        "PARTIALLY_SUPPORTED|INSUFFICIENT_EVIDENCE": 1,
+        "REFUTED|INSUFFICIENT_EVIDENCE": 15,
+        "REFUTED|REFUTED": 2,
+        "SUPPORTED|INSUFFICIENT_EVIDENCE": 18,
+        "UNABLE_TO_DETERMINE|UNABLE_TO_DETERMINE": 2
+      },
+      "missing_result_count": 0,
+      "path_counts": {
+        "input_claim_count": 43,
+        "evidence_source": "retrieval",
+        "verify_evidence_set_call_count": 43,
+        "gate_call_count": 43,
+        "selector_call_count": 43,
+        "core_verify_call_count": 43,
+        "output_result_count": 43,
+        "missing_result_count": 0
+      },
+      "coverage": 0.1395,
+      "selective_accuracy": 1.0,
+      "abstention_rate": 0.8605,
+      "abstention_accuracy": 0.0811,
+      "fpr": 0.0,
+      "fnr": 1.0,
+      "retrieval_failure": 1,
+      "gate_failure": 25,
+      "verification_failure": 0,
+      "aggregation_failure": 0
+    }
+  }
+}

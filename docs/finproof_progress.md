@@ -2942,3 +2942,94 @@ Real E2E Accuracy = 0.000，Coverage = 0.115，**不标记 Competition-Usable**�
 - `backend/artifacts/evidence_gate/phase23_11_gate_metrics.json`（内嵌）
 - `backend/artifacts/cross_validation/phase23_11_leave_one_company_out.json`
 - `backend/tests/test_phase23_11_{claim_router,evidence_gate,fact_index,evidence_selector,integration,required_integration,regression_recovery}.py`（62 tests，全通过）
+
+---
+
+## Phase 23.11.1：评测链路修复与真实 E2E 结果 — ⚠️ PARTIAL（不标记 Competition-Usable）
+
+> 基线 commit：`837c8f5`（Phase 23.11）
+> 日期：2026-08-04
+
+### 驳回原因
+
+Phase 23.11 宣布完成后被驳回：Real E2E Accuracy=0.000、Coverage=0.115、acceptance 脚本存在 claim 字段映射错误、26 与 43 样本不一致、NOISY_ORACLE 缺少正式指标、只执行局部测试、未提供 commit hash。
+
+### 根因定位
+
+| 根因 | 说明 |
+| --- | --- |
+| 26 vs 43 | Phase 23.11 acceptance 只读 `load_gold_claims("demo")` 单数据集（26 条）；Phase 23.9 Oracle 遍历 `["demo","holdout"]` 两数据集（43 条） |
+| 字段缺失 | `expected_verdict` 在 `gold_verifications.json` 的 `verifications[]`，不在 `gold_claims.json` 的 `claims[]`；acceptance 脚本读错字段 → fallback "UNKNOWN" → Accuracy=0.000 |
+| Verdict 映射不统一 | 各脚本各自做 status 映射（PARTIAL/UNABLE/OPINION 等遗留别名），无统一函数 |
+
+### 关键动作
+
+- **Canonical Evaluation Claim Schema**（`backend/app/services/evaluation_claim_schema.py`）：12 字段 Canonical，`load_canonical_claims` 遍历 demo+holdout → 43 条，适配器按 `claim_id` 连接 claims + verifications + evidence，遇缺失记录 `ValidationIssue` **绝不**静默默认。
+- **统一 Verdict 映射**：`normalize_verdict(status)` 唯一映射函数，6 类 Canonical Verdict，未知状态 `raise ValueError`。
+- **数据校验**：`validate_schema` 检查 total=43 / claim_id 唯一 / expected_verdict 非空 / verdicts 归一化。校验通过（passed=True，0 issues）。
+- **统一评测脚本**（`backend/scripts/phase23_11_1_acceptance.py`）：三模式全 43 条，同一 `load_canonical_claims`，同一 `verify_evidence_set`，NOISY_ORACLE 构造 hard negatives（wrong-period/wrong-metric/wrong-scope/similar-value/narrative noise）。
+- **37 条 Abstention 逐条诊断**：0 条由字段映射错误造成；21 gate 全拒 + 15 selector 空 + 1 检索无候选。
+
+### 结果摘要（43 条，连续 2 次一致）
+
+| 模式 | Accuracy | Macro-F1 | missing | 关键 |
+| --- | --- | --- | --- | --- |
+| CORE_ORACLE | 0.2093 | 0.3934 | 0 | Gold 必经 Gate，37 条被拒（GATE_REJECTED_GOLD） |
+| NOISY_ORACLE | 0.2093 | 0.3934 | 0 | Gate Precision=1.0, Accepted Noise=0.0, Gate Recall=0.1395 |
+| REAL_E2E | 0.2093 | 0.3934 | 0 | coverage=0.1395, selective_accuracy=1.0, abstention=37 |
+
+| 指标 | 值 | 目标 | 达标 |
+| --- | --- | --- | --- |
+| Real E2E Accuracy | 0.2093 | ≥0.70 | ❌ |
+| Real E2E Macro-F1 | 0.3934 | ≥0.60 | ❌ |
+| coverage | 0.1395 | ≥0.65 | ❌ |
+| selective_accuracy | 1.0000 | ≥0.80 | ✅ |
+| Gate Precision | 1.0000 | ≥0.80 | ✅ |
+| Accepted Noise Rate | 0.0000 | ≤0.15 | ✅ |
+| Gate Recall | 0.1395 | ≥0.85 | ❌ |
+| 三模式 output=43, missing=0 | ✅ | 必须 | ✅ |
+
+### 未达标分析
+
+Real E2E Accuracy 从 0.000 → 0.2093（不再因字段映射错误得 0 分），但 Accuracy / Macro-F1 / coverage 仍**未达标**。主因是 **Evidence Gate 阈值过严**（Gate Recall=0.1395，拒绝 86% 正确 Gold Evidence），37 条 abstain 中 21 条因 Gate 全拒、15 条因 Selector 空。selective_accuracy=1.0 说明只要 Gate 放行，core_verify 100% 正确——问题集中在 Gate �阈值调优，非 Verification 引擎失败。
+
+### 验证执行
+
+| 验证项 | 次数 | 结果 |
+| --- | --- | --- |
+| 全量 pytest | 连续 5 次 | 820 passed，一致 |
+| frontend build | 连续 3 次 | 成功，一致 |
+| CORE_ORACLE | 连续 2 次 | accuracy=0.2093，一致 |
+| NOISY_ORACLE | 连续 2 次 | accuracy=0.2093，一致 |
+| REAL_E2E | 连续 2 次 | accuracy=0.2093，一致 |
+
+### 完成标准对照
+
+| # | 标准 | 状态 |
+| --- | --- | --- |
+| 1 | Claim schema 校验通过 | ✅ |
+| 2 | Oracle 与 Real E2E 同一 43 条 claim_id | ✅ |
+| 3 | 三种模式均输出 43 条结果 | ✅ |
+| 4 | missing_result_count=0 | ✅ |
+| 5 | 三种模式共享 verify_evidence_set | ✅ |
+| 6 | CORE_ORACLE 完整正式指标 | ✅ |
+| 7 | NOISY_ORACLE 完整正式指标 | ✅ |
+| 8 | REAL_E2E 不再因字段映射错误得 0 分 | ✅ |
+| 9 | 全量 pytest 连续 5 次通过 | ✅ |
+| 10 | frontend build 连续 3 次成功 | ✅ |
+| 11 | 三种评测连续 2 次结果一致 | ✅ |
+| 12 | 创建新 Git commit 并提供 hash | ✅ |
+
+理想指标未达标（Accuracy/Macro-F1/coverage），**Phase 23.11 标记 PARTIAL，不标记 Competition-Usable**。
+
+### 交付产物
+
+- `docs/phase23_11_1_evaluation_repair.md`
+- `backend/app/services/evaluation_claim_schema.py`
+- `backend/scripts/phase23_11_1_acceptance.py`
+- `backend/artifacts/evaluation/phase23_11_claim_schema_validation.json`
+- `backend/artifacts/evaluation/phase23_11_{core_oracle,noisy_oracle}.json`
+- `backend/artifacts/integration/phase23_11_shared_path_trace.json`
+- `backend/artifacts/e2e/phase23_11_{real_e2e,abstention_diagnosis}.json`
+- `backend/artifacts/phase23_11_1_acceptance.json`
+- `backend/artifacts/logs/phase23_11_1/`（pytest×5 + frontend×3 + 评测×6 logs）

@@ -1,0 +1,501 @@
+{
+  "mode": "real_e2e",
+  "sample_count": 43,
+  "correct": 9,
+  "accuracy": 0.2093,
+  "macro_f1": 0.3934,
+  "per_class": {
+    "INSUFFICIENT_EVIDENCE": {
+      "precision": 0.0811,
+      "recall": 1.0,
+      "f1": 0.15
+    },
+    "OPINION_OR_FORECAST": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "PARTIALLY_SUPPORTED": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "REFUTED": {
+      "precision": 1.0,
+      "recall": 0.1176,
+      "f1": 0.2105
+    },
+    "SUPPORTED": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "UNABLE_TO_DETERMINE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "confusion_matrix": {
+    "INSUFFICIENT_EVIDENCE|INSUFFICIENT_EVIDENCE": 3,
+    "OPINION_OR_FORECAST|OPINION_OR_FORECAST": 2,
+    "PARTIALLY_SUPPORTED|INSUFFICIENT_EVIDENCE": 1,
+    "REFUTED|INSUFFICIENT_EVIDENCE": 15,
+    "REFUTED|REFUTED": 2,
+    "SUPPORTED|INSUFFICIENT_EVIDENCE": 18,
+    "UNABLE_TO_DETERMINE|UNABLE_TO_DETERMINE": 2
+  },
+  "missing_result_count": 0,
+  "path_counts": {
+    "input_claim_count": 43,
+    "evidence_source": "retrieval",
+    "verify_evidence_set_call_count": 43,
+    "gate_call_count": 43,
+    "selector_call_count": 43,
+    "core_verify_call_count": 43,
+    "output_result_count": 43,
+    "missing_result_count": 0
+  },
+  "coverage": 0.1395,
+  "selective_accuracy": 1.0,
+  "abstention_rate": 0.8605,
+  "abstention_accuracy": 0.0811,
+  "fpr": 0.0,
+  "fnr": 1.0,
+  "retrieval_failure": 1,
+  "gate_failure": 25,
+  "verification_failure": 0,
+  "aggregation_failure": 0,
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 2,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-002",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 2,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-003",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "SCOPE_VALIDATION",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 1,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-004",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 2,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-005",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "TABLE_METRIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-006",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-007",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-008",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 1,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-009",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-010",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "SCOPE_VALIDATION",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-011",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 1,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-012",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-013",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-014",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-015",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-016",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "NARRATIVE_FACT",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-017",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 1,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-018",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-019",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "NARRATIVE_FACT",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-020",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "correct": true,
+      "route": "INSUFFICIENTLY_PARSED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "abstention": false
+    },
+    {
+      "claim_id": "CLM-021",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "route": "INSUFFICIENTLY_PARSED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-022",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-023",
+      "gold": "OPINION_OR_FORECAST",
+      "pred": "OPINION_OR_FORECAST",
+      "correct": true,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": false
+    },
+    {
+      "claim_id": "CLM-024",
+      "gold": "PARTIALLY_SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 2,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-025",
+      "gold": "UNABLE_TO_DETERMINE",
+      "pred": "UNABLE_TO_DETERMINE",
+      "correct": true,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": false
+    },
+    {
+      "claim_id": "CLM-026",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 2,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H01",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H02",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "SCOPE_VALIDATION",
+      "candidates_before_gate": 2,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H03",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H04",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H05",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H06",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 5,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H07",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "TABLE_METRIC",
+      "candidates_before_gate": 3,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H08",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 4,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H09",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H10",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "NARRATIVE_FACT",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H11",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "SCOPE_VALIDATION",
+      "candidates_before_gate": 0,
+      "candidates_after_gate": 0,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H12",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "NARRATIVE_FACT",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H13",
+      "gold": "REFUTED",
+      "pred": "REFUTED",
+      "correct": true,
+      "route": "INSUFFICIENTLY_PARSED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "abstention": false
+    },
+    {
+      "claim_id": "CLM-H14",
+      "gold": "OPINION_OR_FORECAST",
+      "pred": "OPINION_OR_FORECAST",
+      "correct": true,
+      "route": "FORECAST",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": false
+    },
+    {
+      "claim_id": "CLM-H15",
+      "gold": "UNABLE_TO_DETERMINE",
+      "pred": "UNABLE_TO_DETERMINE",
+      "correct": true,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "abstention": false
+    },
+    {
+      "claim_id": "CLM-H16",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 1,
+      "abstention": true
+    },
+    {
+      "claim_id": "CLM-H17",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "route": "NARRATIVE_FACT",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "abstention": true
+    }
+  ]
+}

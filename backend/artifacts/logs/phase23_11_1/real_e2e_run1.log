@@ -1,0 +1,5 @@
+Schema validation: passed=True total=43
+Running REAL_E2E...
+  accuracy=0.2093 macro_f1=0.3934 coverage=0.1395 missing=0
+  abstentions diagnosed: 37
+Acceptance summary written to /Users/z1/Documents/trae_projects/finproof/backend/artifacts/phase23_11_1_acceptance.json

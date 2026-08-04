@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "total_claims": 43,
+  "unique_claim_ids": 43,
+  "expected_verdicts_all_present": true,
+  "verdicts_normalized": true,
+  "oracle_and_e2e_same_ids": true,
+  "issues": [],
+  "verdict_distribution": {
+    "SUPPORTED": 18,
+    "REFUTED": 17,
+    "INSUFFICIENT_EVIDENCE": 3,
+    "OPINION_OR_FORECAST": 2,
+    "PARTIALLY_SUPPORTED": 1,
+    "UNABLE_TO_DETERMINE": 2
+  }
+}
