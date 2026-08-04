@@ -1,0 +1,757 @@
+{
+  "phase": "23.11.2",
+  "script": "phase23_11_2_threshold_calibration",
+  "description": "Leave-one-company-out Pareto calibration (§8)",
+  "fold_definition": {
+    "fold_a": {
+      "train": "五粮液 (holdout, 17)",
+      "validate": "美的集团 (demo, 26)"
+    },
+    "fold_b": {
+      "train": "美的集团 (demo, 26)",
+      "validate": "五粮液 (holdout, 17)"
+    }
+  },
+  "tunable_parameters": [
+    "medium_quality_threshold",
+    "high_quality_threshold",
+    "ambiguity_margin"
+  ],
+  "forbidden": [
+    "claim_id专用阈值",
+    "公司专用阈值",
+    "Gold Page/Block特征",
+    "验证集反复调参",
+    "直接将全部阈值设为0"
+  ],
+  "pareto_targets": [
+    "Gate Precision",
+    "Gate Recall",
+    "Accepted Noise Rate",
+    "Rejected Gold Rate",
+    "Coverage",
+    "Selective Accuracy"
+  ],
+  "chosen_threshold": {
+    "medium_quality_threshold": 0.3,
+    "high_quality_threshold": 0.5,
+    "ambiguity_margin": 0.05
+  },
+  "chosen_rationale": "Highest Pareto score 0.3891 on Fold A train (五粮液). Validated ONCE on Fold A validation (美的集团): recall=1.0, coverage=0.1154, macro_f1=0.3903. Fold B reverse confirms: train 美的 recall=1.0, validate 五粮液 recall=1.0. Stability: stable (相邻阈值 pareto变化 < 0.05).",
+  "fold_a_train_metrics": {
+    "accuracy": 0.2353,
+    "macro_f1": 0.4767,
+    "gate_precision": 0.2708,
+    "gate_recall": 1.0,
+    "accepted_noise_rate": 0.6863,
+    "rejected_gold_rate": 0.0,
+    "coverage": 0.1765,
+    "selective_accuracy": 1.3333
+  },
+  "fold_a_valid_metrics": {
+    "accuracy": 0.1923,
+    "macro_f1": 0.3903,
+    "gate_precision": 0.2973,
+    "gate_recall": 1.0,
+    "accepted_noise_rate": 0.6667,
+    "rejected_gold_rate": 0.0,
+    "coverage": 0.1154,
+    "selective_accuracy": 1.6667
+  },
+  "fold_b_train_metrics": {
+    "accuracy": 0.1923,
+    "macro_f1": 0.3903,
+    "gate_precision": 0.2973,
+    "gate_recall": 1.0,
+    "accepted_noise_rate": 0.6667,
+    "rejected_gold_rate": 0.0,
+    "coverage": 0.1154,
+    "selective_accuracy": 1.6667
+  },
+  "fold_b_valid_metrics": {
+    "accuracy": 0.2353,
+    "macro_f1": 0.4767,
+    "gate_precision": 0.2708,
+    "gate_recall": 1.0,
+    "accepted_noise_rate": 0.6863,
+    "rejected_gold_rate": 0.0,
+    "coverage": 0.1765,
+    "selective_accuracy": 1.3333
+  },
+  "stability": "stable",
+  "overfitting_check": "stable",
+  "threshold_curve": [
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.1,
+        "high_quality_threshold": 0.5,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.1,
+        "high_quality_threshold": 0.5,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.1,
+        "high_quality_threshold": 0.6,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.1,
+        "high_quality_threshold": 0.6,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.1,
+        "high_quality_threshold": 0.7,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.1,
+        "high_quality_threshold": 0.7,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.2,
+        "high_quality_threshold": 0.5,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.2,
+        "high_quality_threshold": 0.5,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.2,
+        "high_quality_threshold": 0.6,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.2,
+        "high_quality_threshold": 0.6,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.2,
+        "high_quality_threshold": 0.7,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.2,
+        "high_quality_threshold": 0.7,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.25,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7647,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2821,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.7179,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3713
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.3,
+        "high_quality_threshold": 0.5,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.3,
+        "high_quality_threshold": 0.5,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.3,
+        "high_quality_threshold": 0.6,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.3,
+        "high_quality_threshold": 0.6,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.3,
+        "high_quality_threshold": 0.7,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.3,
+        "high_quality_threshold": 0.7,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.4,
+        "high_quality_threshold": 0.5,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.4,
+        "high_quality_threshold": 0.5,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.4,
+        "high_quality_threshold": 0.6,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.4,
+        "high_quality_threshold": 0.6,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.4,
+        "high_quality_threshold": 0.7,
+        "ambiguity_margin": 0.05
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    },
+    {
+      "thresholds": {
+        "medium_quality_threshold": 0.4,
+        "high_quality_threshold": 0.7,
+        "ambiguity_margin": 0.1
+      },
+      "fold_a_train_wuliangye": {
+        "accuracy": 0.2353,
+        "macro_f1": 0.4767,
+        "gate_precision": 0.2708,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6863,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1765,
+        "selective_accuracy": 1.3333
+      },
+      "fold_a_valid_midea": {
+        "accuracy": 0.1923,
+        "macro_f1": 0.3903,
+        "gate_precision": 0.2973,
+        "gate_recall": 1.0,
+        "accepted_noise_rate": 0.6667,
+        "rejected_gold_rate": 0.0,
+        "coverage": 0.1154,
+        "selective_accuracy": 1.6667
+      },
+      "pareto_score": 0.3891
+    }
+  ]
+}

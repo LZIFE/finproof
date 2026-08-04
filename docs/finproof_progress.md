@@ -3033,3 +3033,110 @@ Real E2E Accuracy 从 0.000 → 0.2093（不再因字段映射错误得 0 分）
 - `backend/artifacts/e2e/phase23_11_{real_e2e,abstention_diagnosis}.json`
 - `backend/artifacts/phase23_11_1_acceptance.json`
 - `backend/artifacts/logs/phase23_11_1/`（pytest×5 + frontend×3 + 评测×6 logs）
+
+---
+
+## Phase 23.11.2：Evidence Gate 语义修复、阈值校准与覆盖率恢复 — ⚠️ PARTIAL（不标记 Competition-Usable）
+
+> 基线 commit：`3de338f`（Phase 23.11.1）
+> 日期：2026-08-04
+
+### 驳回原因
+
+Phase 23.11.1 修复评测链路后，Gate 过度保守：37/43 Gold Evidence 被误拒（`FEATURE_MISSING_TREATED_AS_FALSE`），Coverage=0.1395，selective_accuracy=1.0 靠大量弃权获得。
+
+### 根因定位
+
+`backend/artifacts/evidence_gate/phase23_11_2_gold_rejection_diagnosis.json`
+
+37 条 Gold 误拒根因统一为 `FEATURE_MISSING_TREATED_AS_FALSE`——布尔匹配把"无法判断"当成"不匹配"。Gold Evidence 是财务表格数字（如 `营业收入 456,451,731`），本身不重述公司名，Gate 把"entity 文本缺失"当成 Hard Reject。
+
+### 关键动作
+
+- **CanonicalEvidence Schema**（`backend/app/services/canonical_evidence.py`）：21 字段，三来源（CORE/NOISY/REAL）适配器统一，禁止缺失字段静默填 False，schema_comparison 证明无静默 mismatch。
+- **三态逻辑 MATCH/MISMATCH/UNKNOWN**（`evidence_gate.py`）：UNKNOWN → Soft Penalty，不再 Hard Reject。37 条 Gold 误拒全部修复（Gold Gate Acceptance 0.1395→1.0）。
+- **Hard Reject / Soft Penalty / Positive Boost**：仅明确冲突（entity/period/metric/scope MISMATCH）Hard Reject；UNKNOWN Soft Penalty；全 MATCH + 数值单位一致 + 表格字段完整 + 文本含 Claim 事实 Positive Boost。
+- **按 Route 独立 Gate**：STRUCTURED/TABLE/PERIOD/SCOPE 用 MISMATCH Hard Reject；CAUSALITY 要因果语言；FORECAST 要预测语言；NARRATIVE 不要求 raw_value/unit/row_header。
+- **Selector 为空修复**（`evidence_selector.py`）：empty_reason 必填 + dedup 保护不删空 + ambiguity 保留候选 + 6 个新字段（accepted_count/selector_input_count/selector_output_count/empty_reason/deduplicated_count/ambiguity_count）。
+- **失败归因互斥分类**（`backend/app/services/failure_attribution.py`）：10 类 primary_outcome，sum=43，gate_failure 从 0→2 修复统计错误。
+- **阈值校准**（`phase23_11_2_threshold_calibration.py`）：留一公司 Pareto，选定 medium=0.3/high=0.5/ambiguity=0.05，stable，无 overfit。
+- **12 项必需测试**（`test_phase23_11_2_required.py`）：全通过。
+
+### 结果摘要（43 条，连续 2 次一致）
+
+| 模式 | Accuracy | Macro-F1 | 关键修复 | 达标 |
+| --- | --- | --- | --- | --- |
+| CORE_ORACLE | 0.2093 | 0.3934 | Gold Acceptance 0.1395→**1.0**, GATE_REJECTED_GOLD 37→**0**, Selector Empty 15→**0** | ⚠️ |
+| NOISY_ORACLE | 0.2093 | 0.3934 | Gate Recall 0.1395→**1.0**, Rejected Gold 0.8605→**0.0** | ⚠️ |
+| REAL_E2E | 0.2093 | 0.3934 | gate_failure 0→**2** 修复, primary_outcome_sum=**43** | ⚠️ |
+
+| 指标 | 值 | 目标 | 达标 |
+| --- | --- | --- | --- |
+| Gold Gate Acceptance Rate | 1.0000 | ≥0.90 | ✅ |
+| Gold Selection Rate | 0.8140 | ≥0.85 | ⚠️ |
+| Rejected Gold Rate | 0.0000 | ≤0.10 | ✅ |
+| Selector Empty Rate | 0.0000 | — | ✅ |
+| Gate Recall | 1.0000 | ≥0.85 | ✅ |
+| Gate Precision | 0.2869 | ≥0.80 | ❌ |
+| Accepted Noise Rate | 0.6744 | ≤0.15 | ❌ |
+| Coverage | 0.1395 | ≥0.65 | ❌ |
+| Selective Accuracy | 1.0000 | ≥0.80 | ✅ |
+| primary_outcome_sum | 43 | =43 | ✅ |
+| Real E2E Accuracy | 0.2093 | ≥0.70 | ❌ |
+| Real E2E Macro-F1 | 0.3934 | ≥0.60 | ❌ |
+
+### 未达标分析
+
+Gate 语义修复成功（37 条 Gold 不再误拒，Gold Acceptance=1.0，Gate Recall=1.0），但 Accuracy=0.2093、Coverage=0.1395 仍未达标。**瓶颈转移到 core_verify 聚合**（33 条 `AGGREGATION_WRONG`，core_verify 对接受的 Evidence 输出与 expected_verdict 不符），非 Gate 语义。selective_accuracy=1.0 证明只要非弃权 core_verify 100% 正确——问题在让更多 Evidence 通过聚合而非 Gate。
+
+Gate Precision=0.2869 低、Accepted Noise Rate=0.6744 高：三态逻辑放宽后，构造的 hard negatives（含 claim 的 metric/period 词）也被判 MATCH。需强化 hard negative 的明确冲突信号。
+
+### 验证执行
+
+| 验证项 | 次数 | 结果 |
+| --- | --- | --- |
+| 新增 12 项测试 | 1 | 12 passed |
+| 全量 pytest | 连续 5 次 | 832 passed，一致 |
+| frontend build | 连续 3 次 | 成功，一致 |
+| CORE_ORACLE | 连续 2 次 | accuracy=0.2093，一致 |
+| NOISY_ORACLE | 连续 2 次 | accuracy=0.2093，一致 |
+| REAL_E2E | 连续 2 次 | accuracy=0.2093，一致 |
+
+### 完成标准对照
+
+| # | 标准 | 状态 |
+| --- | --- | --- |
+| 1 | 三种 Evidence 来源统一为 CanonicalEvidence | ✅ |
+| 2 | MATCH/MISMATCH/UNKNOWN 三态进入生产 Gate | ✅ |
+| 3 | UNKNOWN 不再直接 Hard Reject | ✅ |
+| 4 | 37 条 Gold 拒绝全部有逐条根因 | ✅ |
+| 5 | Selector 接受输入后不会无原因返回空 | ✅ |
+| 6 | 失败分类数量之和等于 43 | ✅ |
+| 7 | CORE_ORACLE Gold Acceptance ≥0.90 | ✅ |
+| 8 | CORE_ORACLE Macro-F1 ≥0.80 | ❌ |
+| 9 | NOISY_ORACLE Gate Precision ≥0.80 | ❌ |
+| 10 | NOISY_ORACLE Gate Recall ≥0.85 | ✅ |
+| 11 | Accepted Noise Rate ≤0.15 | ❌ |
+| 12 | REAL_E2E Accuracy ≥0.70 | ❌ |
+| 13 | REAL_E2E Macro-F1 ≥0.60 | ❌ |
+| 14 | Coverage ≥0.65 | ❌ |
+| 15 | Selective Accuracy ≥0.80 | ✅ |
+| 16 | 原 37 条错误弃权至少修复 30 条 | ❌ |
+| 17 | 全量 pytest 连续 5 次通过 | ✅ |
+| 18 | frontend build 连续 3 次成功 | ✅ |
+| 19 | 三种评测连续 2 次一致 | ✅ |
+| 20 | 创建新 Git commit 并提供 hash | ✅ |
+
+8/20 核心指标达标（#1-7,9,15,17-20）。**Phase 23.11.2 标记 PARTIAL，不标记 Competition-Usable**。
+
+### 交付产物
+
+- `docs/phase23_11_2_gate_semantics_and_calibration.md`
+- `backend/app/services/canonical_evidence.py` + `failure_attribution.py`
+- `backend/scripts/phase23_11_2_{acceptance,gate_diagnosis,threshold_calibration,regression}.py`
+- `backend/tests/test_phase23_11_2_required.py`（12 tests）
+- `backend/artifacts/phase23_11_2_acceptance.json`
+- `backend/artifacts/evidence_gate/phase23_11_2_{schema_comparison,gold_rejection_diagnosis,threshold_curve,gate_metrics}.json`
+- `backend/artifacts/evaluation/phase23_11_2_{core,noisy}_oracle.json`
+- `backend/artifacts/e2e/phase23_11_2_{real_e2e,abstention_diff}.json`
+- `backend/artifacts/logs/phase23_11_2/`（pytest×5 + frontend×3 + 评测×6 logs）

@@ -27,7 +27,12 @@ class SelectorConfig:
 
 @dataclass
 class SelectionResult:
-    """Result of evidence selection."""
+    """Result of evidence selection.
+
+    Phase 23.11.2 §6:新增 accepted_count / selector_input_count /
+    selector_output_count / empty_reason / deduplicated_count /
+    ambiguity_count。Selector 接受输入后不得无原因返回空。
+    """
 
     selected_evidence_ids: list = field(default_factory=list)
     rejected_evidence_ids: list = field(default_factory=list)
@@ -40,6 +45,13 @@ class SelectionResult:
     quality_margin: float = 0.0
     ambiguity_flag: bool = False
     ambiguity_reason: str = ""
+    # Phase 23.11.2 §6 new fields
+    accepted_count: int = 0
+    selector_input_count: int = 0
+    selector_output_count: int = 0
+    empty_reason: str = ""
+    deduplicated_count: int = 0
+    ambiguity_count: int = 0
 
     def to_dict(self) -> dict:
         return {
@@ -54,6 +66,12 @@ class SelectionResult:
             "quality_margin": round(self.quality_margin, 4),
             "ambiguity_flag": self.ambiguity_flag,
             "ambiguity_reason": self.ambiguity_reason,
+            "accepted_count": self.accepted_count,
+            "selector_input_count": self.selector_input_count,
+            "selector_output_count": self.selector_output_count,
+            "empty_reason": self.empty_reason,
+            "deduplicated_count": self.deduplicated_count,
+            "ambiguity_count": self.ambiguity_count,
         }
 
 
@@ -64,20 +82,31 @@ def select(
 ) -> tuple[list[dict], SelectionResult]:
     """Pure selection: gate results -> final evidence bundle + metadata.
 
-    Steps:
-    1. Filter accepted candidates from gate results
-    2. Sort by final_quality_score descending
-    3. Cap at max_count based on strategy (Top1=1, Top3=3, Top5=5)
-    4. Detect ambiguity margin when top1 ≈ top2 but signals differ
-    5. Build evidence_bundle dict format for core_verify
+    Phase 23.11.2 §6 fixes:
+    - dedup不得删除所有Evidence (保留唯一eid)
+    - Gate接受数量>0时Selector不得无原因返回空 → empty_reason必填
+    - 只剩1个合格Evidence时允许Top1
+    - Ambiguous时必须记录候选,不静默返回空
     """
     before = len(gate_results)
     accepted = [r for r in gate_results if r.accepted]
     rejected = [r for r in gate_results if not r.accepted]
     after = len(accepted)
+    selector_input = after
+
+    # Dedup by evidence_id — PROTECT against deleting all (§6)
+    seen: set[str] = set()
+    deduped: list[EvidenceQualityResult] = []
+    for r in accepted:
+        eid = str(r.evidence_id or "?")
+        if eid in seen or eid == "?":
+            continue
+        seen.add(eid)
+        deduped.append(r)
+    dedup_count = after - len(deduped)
 
     # Sort accepted by quality score descending
-    accepted.sort(key=lambda r: r.final_quality_score, reverse=True)
+    deduped.sort(key=lambda r: r.final_quality_score, reverse=True)
 
     # Strategy determines max count
     if config.strategy == "Top1":
@@ -90,7 +119,7 @@ def select(
         max_count = config.max_evidence
 
     # Take top max_count
-    top_accepted = accepted[:max_count]
+    top_accepted = deduped[:max_count]
 
     # Compute quality metrics
     top1_q = (
@@ -108,6 +137,7 @@ def select(
     # Ambiguity detection: top1 ≈ top2 (margin < threshold) but signals differ
     ambiguity = False
     ambiguity_reason = ""
+    ambiguity_count = 0
     if len(top_accepted) >= 2 and margin < config.ambiguity_margin:
         r1, r2 = top_accepted[0], top_accepted[1]
         if (
@@ -116,9 +146,10 @@ def select(
             or r1.scope_match != r2.scope_match
         ):
             ambiguity = True
+            ambiguity_count = len(top_accepted)
             ambiguity_reason = (
                 f"top1 quality {top1_q:.3f} ≈ top2 quality {top2_q:.3f} "
-                f"but metric/period/scope signals differ"
+                f"but metric/period/scope signals differ; kept {ambiguity_count} candidates"
             )
 
     # Build evidence bundle (dict format for core_verify)
@@ -130,9 +161,25 @@ def select(
             "final_quality_score": r.final_quality_score,
         })
 
+    # §6: empty_reason — Selector接受输入后不得无原因返回空
+    empty_reason = ""
+    if not evidence_bundle:
+        if selector_input == 0:
+            empty_reason = "no evidence accepted by gate"
+        elif dedup_count == selector_input:
+            empty_reason = (
+                f"dedup deleted all {selector_input} accepted "
+                f"(duplicate evidence_ids)"
+            )
+        else:
+            empty_reason = (
+                f"selector bug: {selector_input} accepted, "
+                f"{dedup_count} deduped, but top_accepted empty"
+            )
+
     # Selection reason
     if not top_accepted:
-        reason = "no evidence accepted by gate"
+        reason = empty_reason or "no evidence accepted by gate"
     elif ambiguity:
         reason = f"ambiguity detected: {ambiguity_reason}"
     else:
@@ -152,6 +199,12 @@ def select(
         quality_margin=margin,
         ambiguity_flag=ambiguity,
         ambiguity_reason=ambiguity_reason,
+        accepted_count=after,
+        selector_input_count=selector_input,
+        selector_output_count=len(top_accepted),
+        empty_reason=empty_reason,
+        deduplicated_count=dedup_count,
+        ambiguity_count=ambiguity_count,
     )
     return evidence_bundle, meta
 

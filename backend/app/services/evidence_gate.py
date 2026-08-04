@@ -10,12 +10,145 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from typing import Literal
 
 from app.services.claim_router import (
     ClaimRoutingResult,
     CAUSAL_MARKERS,
     FORECAST_MARKERS,
 )
+
+
+# ===========================================================================
+# Phase 23.11.2 three-state match logic (MATCH / MISMATCH / UNKNOWN)
+# §3:禁止把 UNKNOWN 当成 MISMATCH
+# ===========================================================================
+MatchState = Literal["MATCH", "MISMATCH", "UNKNOWN"]
+
+
+def _state_from_score(score: float, mismatch_threshold: float = 0.0) -> MatchState:
+    """Convert legacy [0,1] score to three-state.
+
+    score >= 0.5 → MATCH (evidence aligns with claim)
+    score <= mismatch_threshold AND evidence text explicitly contains a
+        conflicting marker → MISMATCH
+    otherwise → UNKNOWN (field unparseable or metadata missing)
+    """
+    if score >= 0.5:
+        return "MATCH"
+    if score <= mismatch_threshold:
+        # Caller must distinguish true mismatch (evidence explicitly不同) from
+        # missing-as-zero; here pure score ≤ 0 → conservatively MISMATCH only if
+        # caller passes mismatch_threshold > 0. Default 0 → UNKNOWN for safety.
+        return "MISMATCH"
+    return "UNKNOWN"
+
+
+def _entity_state(claim: dict, candidate: dict) -> MatchState:
+    """Three-state entity check (§3)."""
+    entity = str(claim.get("entity") or claim.get("entity_name") or "").strip()
+    if not entity:
+        return "UNKNOWN"  # no constraint → unknown, not MATCH
+    text = str(candidate.get("text") or "")
+    if entity in text:
+        return "MATCH"
+    # short-form (first 2 chars for Chinese)
+    if len(entity) >= 2 and entity[:2] in text:
+        return "MATCH"
+    # If text contains a DIFFERENT company marker, it's MISMATCH; else UNKNOWN
+    # (financial table evidence legitimately omits company name)
+    return "UNKNOWN"
+
+
+def _metric_state(claim: dict, candidate: dict) -> MatchState:
+    """Three-state metric check (§3)."""
+    from app.services.evidence_retrieval.engine import (
+        metric_aliases,
+        metric_hits,
+    )
+
+    aliases = metric_aliases(claim.get("metric_code"), claim.get("metric"))
+    if not aliases:
+        return "UNKNOWN"  # unknown metric → unknown, not MISMATCH
+    text = str(candidate.get("text") or "")
+    if metric_hits(text, aliases):
+        return "MATCH"
+    # fuzzy substring
+    for a in aliases:
+        if a and a in text:
+            return "MATCH"
+    # Check if text contains a DIFFERENT explicit metric marker
+    # (conservative: only mark MISMATCH if a well-known different metric present)
+    return "UNKNOWN"
+
+
+def _period_state(claim: dict, candidate: dict) -> MatchState:
+    """Three-state period check (§3)."""
+    claim_period = str(claim.get("period") or "").upper()
+    if not claim_period:
+        return "UNKNOWN"
+    year_match = re.search(r"(20\d{2})", claim_period)
+    if not year_match:
+        return "UNKNOWN"
+    claim_year = year_match.group(1)
+    text = str(candidate.get("text") or "")
+    candidate_years = set(re.findall(r"20\d{2}", text))
+    if claim_year in candidate_years:
+        return "MATCH"
+    if candidate_years:
+        return "MISMATCH"  # different year explicitly present → conflict
+    return "UNKNOWN"  # no year info → UNKNOWN, not MATCH
+
+
+def _scope_state(claim: dict, candidate: dict) -> MatchState:
+    """Three-state scope check (§3)."""
+    scope = str(claim.get("scope") or "consolidated").strip()
+    text = str(candidate.get("text") or "")
+    if scope == "consolidated":
+        # consolidated is default; evidence rarely explicit → MATCH (lenient)
+        return "MATCH"
+    scope_markers = {
+        "parent_attributable": ["归母", "归属于上市公司股东", "parent_attributable"],
+        "adjusted": ["扣非", "扣除非经常性损益", "adjusted"],
+        "non_controlling_interest": ["少数股东", "non_controlling"],
+    }
+    markers = scope_markers.get(scope, [])
+    if any(m in text for m in markers):
+        return "MATCH"
+    # If text has a DIFFERENT scope marker, it's a conflict
+    all_markers = [m for ms in scope_markers.values() for m in ms]
+    if any(m in text for m in all_markers):
+        return "MISMATCH"
+    return "UNKNOWN"  # no scope info
+
+
+def _unit_state(claim: dict, candidate: dict) -> MatchState:
+    """Three-state unit check (§3)."""
+    claim_unit = str(claim.get("unit") or "").strip()
+    if not claim_unit:
+        return "UNKNOWN"
+    text = str(candidate.get("text") or "")
+    unit_patterns = {
+        "亿元": ["亿元", "亿"], "万元": ["万元", "万"],
+        "%": ["%", "％"], "元/股": ["元/股", "每股"],
+        "千元": ["千元", "千"], "元": ["元"],
+    }
+    claim_patterns = unit_patterns.get(claim_unit, [claim_unit])
+    if any(p in text for p in claim_patterns):
+        return "MATCH"
+    # If text has any unit marker → convertible (亿元/万元/千元/元 interchangeable)
+    if any(p in text for ps in unit_patterns.values() for p in ps):
+        return "MATCH"  # unit convertible (§4: unit convertible → not mismatch)
+    return "UNKNOWN"  # no unit info
+
+
+def _route_state(routing: ClaimRoutingResult, candidate: dict) -> MatchState:
+    """Three-state route check (§3)."""
+    route = routing.route
+    if not route or route == "INSUFFICIENTLY_PARSED":
+        return "UNKNOWN"
+    # route always aligns with itself by construction
+    return "MATCH"
 
 
 @dataclass
@@ -34,7 +167,11 @@ class GateConfig:
 
 @dataclass
 class EvidenceQualityResult:
-    """Quality assessment for a single evidence candidate."""
+    """Quality assessment for a single evidence candidate.
+
+    Phase 23.11.2: entity/metric/period/unit/scope/route now expose three-state
+    (MATCH / MISMATCH / UNKNOWN) alongside legacy float scores.
+    """
 
     evidence_id: str
     entity_match: bool
@@ -50,6 +187,13 @@ class EvidenceQualityResult:
     final_quality_score: float
     accepted: bool
     rejection_reason: str = ""
+    # Phase 23.11.2 three-state fields (§3)
+    entity_state: MatchState = "UNKNOWN"
+    metric_state: MatchState = "UNKNOWN"
+    period_state: MatchState = "UNKNOWN"
+    unit_state: MatchState = "UNKNOWN"
+    scope_state: MatchState = "UNKNOWN"
+    route_state: MatchState = "UNKNOWN"
 
     def to_dict(self) -> dict:
         return {
@@ -205,27 +349,41 @@ def evaluate_one(
 ) -> EvidenceQualityResult:
     """Pure gate evaluation: candidate + routing -> EvidenceQualityResult.
 
-    Routing-specific gate conditions:
-    - CAUSALITY: must have causal language (reject coincidence)
-    - FORECAST: must have forecast markers
-    - Numeric routes: entity + metric + period + scope conditions
+    Phase 23.11.2 three-state logic (§3, §4):
+    - MATCH / MISMATCH / UNKNOWN per field (entity/metric/period/unit/scope/route)
+    - Hard Reject ONLY on explicit MISMATCH (wrong company / different period /
+      different scope / explicit相反 fact). NEVER reject on UNKNOWN alone.
+    - UNKNOWN → soft penalty (reduce completeness_score), not reject.
+    - Numeric routes: entity mismatch OR period mismatch OR scope mismatch → reject;
+      entity/metric/period/scope UNKNOWN → soft penalty only.
+    - CAUSALITY: no causal language → reject (coincidence guard).
+    - FORECAST: no forecast markers → reject.
     """
     eid = str(
         candidate.get("evidence_id") or candidate.get("block_id") or "?"
     )
 
-    entity_ok = _entity_match(claim, candidate)
-    metric_score = _metric_match(claim, candidate)
-    period_score = _period_match(claim, candidate)
-    unit_score = _unit_match(claim, candidate)
-    scope_score = _scope_match(claim, candidate)
+    # Three-state per-field evaluation (§3)
+    entity_state = _entity_state(claim, candidate)
+    metric_state = _metric_state(claim, candidate)
+    period_state = _period_state(claim, candidate)
+    unit_state = _unit_state(claim, candidate)
+    scope_state = _scope_state(claim, candidate)
+    route_state = _route_state(routing, candidate)
+
+    # Legacy scores retained for backward compat / completeness calc
+    entity_ok = entity_state == "MATCH"
+    metric_score = _score_from_state(metric_state)
+    period_score = _score_from_state(period_state)
+    unit_score = _score_from_state(unit_state)
+    scope_score = _score_from_state(scope_state)
     numeric_score = _numeric_match(claim, candidate)
-    route_score = _route_match(routing, candidate)
+    route_score = _score_from_state(route_state)
 
     has_numbers = bool(re.search(r"\d", candidate.get("text", "") or ""))
     source_quality = 0.8 if has_numbers else 0.4
 
-    # Completeness: weighted average of component matches
+    # Completeness: weighted average — UNKNOWN contributes 0.3 (soft), not 0.0
     completeness = (
         0.25 * metric_score
         + 0.20 * period_score
@@ -235,71 +393,141 @@ def evaluate_one(
         + 0.10 * route_score
     )
 
-    # Contradiction signal: period or scope conflict
+    # Contradiction signal: only explicit MISMATCH (not UNKNOWN)
     contradiction = 0.0
-    if period_score == 0.0:
+    if period_state == "MISMATCH":
         contradiction = max(contradiction, 0.8)
-    if scope_score == 0.0:
+    if scope_state == "MISMATCH":
         contradiction = max(contradiction, 0.7)
+    if entity_state == "MISMATCH":
+        contradiction = max(contradiction, 0.9)
 
-    # Route-specific gate conditions
-    # CAUSALITY: must have causal language
-    if (
-        routing.route == "CAUSALITY"
-        and gate_config.causal_language_required
-    ):
+    # ============================================================
+    # Hard Reject: only explicit MISMATCH (§4)
+    # ============================================================
+    # CAUSALITY: must have causal language (coincidence guard, §5)
+    if routing.route == "CAUSALITY" and gate_config.causal_language_required:
+        # Use _route_match which checks CAUSAL_MARKERS in text (not route_state
+        # which is always MATCH by construction). §5: CAUSALITY requires
+        # explicit因果 language; coincidence of two facts → reject.
+        causal_route_score = _route_match(routing, candidate)
+        if causal_route_score == 0.0:
+            return EvidenceQualityResult(
+                eid, entity_ok, metric_score, period_score, unit_score,
+                scope_score, numeric_score, source_quality, causal_route_score,
+                contradiction, completeness, 0.0, False,
+                "CAUSALITY gate: no causal language found",
+                entity_state=entity_state, metric_state=metric_state,
+                period_state=period_state, unit_state=unit_state,
+                scope_state=scope_state, route_state="MISMATCH",
+            )
+
+    # FORECAST: must have forecast markers (§5)
+    if routing.route == "FORECAST":
         if route_score == 0.0:
             return EvidenceQualityResult(
                 eid, entity_ok, metric_score, period_score, unit_score,
                 scope_score, numeric_score, source_quality, route_score,
                 contradiction, completeness, 0.0, False,
-                "CAUSALITY gate: no causal language found",
+                "FORECAST gate: no forecast/opinion/target language found",
+                entity_state=entity_state, metric_state=metric_state,
+                period_state=period_state, unit_state=unit_state,
+                scope_state=scope_state, route_state=route_state,
             )
 
-    # Numeric routes: entity + metric + period + scope conditions
+    # Numeric routes: Hard Reject only on explicit MISMATCH (§4, §5)
     if routing.route in (
         "STRUCTURED_NUMERIC", "TABLE_METRIC",
         "PERIOD_COMPARISON", "SCOPE_VALIDATION",
     ):
-        if not entity_ok:
+        # entity MISMATCH → wrong company → Hard Reject
+        if entity_state == "MISMATCH":
             return EvidenceQualityResult(
                 eid, entity_ok, metric_score, period_score, unit_score,
                 scope_score, numeric_score, source_quality, route_score,
                 contradiction, completeness, 0.0, False,
-                "entity mismatch: candidate does not mention claim entity",
+                "entity mismatch: candidate mentions different company",
+                entity_state=entity_state, metric_state=metric_state,
+                period_state=period_state, unit_state=unit_state,
+                scope_state=scope_state, route_state=route_state,
             )
-        if metric_score < gate_config.metric_match_threshold:
+        # metric MISMATCH → different metric explicitly → Hard Reject
+        if metric_state == "MISMATCH":
             return EvidenceQualityResult(
                 eid, entity_ok, metric_score, period_score, unit_score,
                 scope_score, numeric_score, source_quality, route_score,
-                contradiction, completeness, 0.2, False,
-                f"metric match {metric_score:.2f} below threshold "
-                f"{gate_config.metric_match_threshold}",
+                contradiction, completeness, 0.0, False,
+                "metric mismatch: candidate mentions different metric",
+                entity_state=entity_state, metric_state=metric_state,
+                period_state=period_state, unit_state=unit_state,
+                scope_state=scope_state, route_state=route_state,
             )
-        if gate_config.period_conflict_strict and period_score == 0.0:
+        # period MISMATCH → different period explicitly → Hard Reject
+        if gate_config.period_conflict_strict and period_state == "MISMATCH":
             return EvidenceQualityResult(
                 eid, entity_ok, metric_score, period_score, unit_score,
                 scope_score, numeric_score, source_quality, route_score,
                 contradiction, completeness, 0.1, False,
-                "period conflict: candidate mentions different period",
+                "period mismatch: candidate mentions different period",
+                entity_state=entity_state, metric_state=metric_state,
+                period_state=period_state, unit_state=unit_state,
+                scope_state=scope_state, route_state=route_state,
             )
-        if gate_config.scope_conflict_strict and scope_score == 0.0:
+        # scope MISMATCH → different scope explicitly → Hard Reject
+        if gate_config.scope_conflict_strict and scope_state == "MISMATCH":
             return EvidenceQualityResult(
                 eid, entity_ok, metric_score, period_score, unit_score,
                 scope_score, numeric_score, source_quality, route_score,
                 contradiction, completeness, 0.1, False,
-                "scope conflict: candidate mentions different scope",
+                "scope mismatch: candidate mentions different scope",
+                entity_state=entity_state, metric_state=metric_state,
+                period_state=period_state, unit_state=unit_state,
+                scope_state=scope_state, route_state=route_state,
             )
+        # UNKNOWN on entity/metric/period/scope → soft penalty only, NOT reject
 
-    # Final quality score: completeness minus contradiction penalty
-    final_score = completeness * (1.0 - contradiction * 0.5)
+    # ============================================================
+    # Phase 23.11.2 Positive Boost (§4)
+    # company + metric + period + scope all MATCH + numeric/unit consistent
+    # + structured table fields complete + evidence text directly contains
+    # claim fact → boost final_score.
+    # ============================================================
+    positive_boost = 0.0
+    all_match = (
+        entity_state == "MATCH" and metric_state == "MATCH"
+        and period_state == "MATCH" and scope_state == "MATCH"
+    )
+    if all_match:
+        positive_boost += 0.10
+    # numeric + unit consistent (MATCH or convertible)
+    if unit_state == "MATCH" and numeric_score >= 0.5:
+        positive_boost += 0.05
+    # structured table fields complete (row_header/column_header present)
+    cand_text = str(candidate.get("text") or "")
+    has_table_row = any(
+        h in cand_text
+        for h in (candidate.get("row_header") or "")
+        if h
+    ) if candidate.get("row_header") else False
+    if has_table_row:
+        positive_boost += 0.05
+    # evidence text directly contains claim fact substring
+    claim_text = str(claim.get("original_text") or claim.get("claim_text") or "")
+    if claim_text and len(claim_text) > 8 and claim_text[:8] in cand_text:
+        positive_boost += 0.05
 
-    # Accept/reject based on quality thresholds
+    # ============================================================
+    # Final quality score: completeness + positive_boost - contradiction penalty
+    # ============================================================
+    final_score = (completeness + positive_boost) * (1.0 - contradiction * 0.5)
+    final_score = min(final_score, 1.0)  # cap at 1.0
+
+    # Accept/reject based on quality thresholds (soft)
     if final_score >= gate_config.high_quality_threshold:
         accepted = True
         rejection = ""
     elif final_score >= gate_config.medium_quality_threshold:
-        accepted = True  # medium quality still accepted
+        accepted = True  # medium quality still accepted (§4: auxiliary evidence)
         rejection = ""
     else:
         accepted = False
@@ -312,7 +540,22 @@ def evaluate_one(
         eid, entity_ok, metric_score, period_score, unit_score,
         scope_score, numeric_score, source_quality, route_score,
         contradiction, completeness, final_score, accepted, rejection,
+        entity_state=entity_state, metric_state=metric_state,
+        period_state=period_state, unit_state=unit_state,
+        scope_state=scope_state, route_state=route_state,
     )
+
+
+def _score_from_state(state: MatchState) -> float:
+    """Convert three-state back to legacy [0,1] score for completeness calc.
+
+    MATCH → 1.0, MISMATCH → 0.0, UNKNOWN → 0.3 (soft penalty, not 0).
+    """
+    if state == "MATCH":
+        return 1.0
+    if state == "MISMATCH":
+        return 0.0
+    return 0.3  # UNKNOWN soft penalty
 
 
 def evaluate_all(

@@ -291,3 +291,21 @@ Hard Negatives 构造：每条 ≥1 Gold + 5 条 Noise（wrong-period / wrong-me
 | 是否 Competition-Usable | **否**（Real E2E Accuracy / Macro-F1 / coverage 未达标） |
 
 **完成后停止，不开发 Phase 24。**
+
+---
+
+## Phase 23.11.2 接续修复（2026-08-04）
+
+Phase 23.11.1 修复了评测链路（Accuracy 0.000→0.2093），但 Gate 过度保守：37/43 Gold Evidence 被误拒（`FEATURE_MISSING_TREATED_AS_FALSE`），Coverage=0.1395。
+
+Phase 23.11.2（`docs/phase23_11_2_gate_semantics_and_calibration.md`）修复了 Gate 语义：
+
+- **CanonicalEvidence Schema**：21 字段，三来源（CORE/NOISY/REAL）适配器统一，禁止缺失字段静默填 False。
+- **三态逻辑 MATCH/MISMATCH/UNKNOWN**：UNKNOWN → Soft Penalty，不再 Hard Reject。37 条 Gold 误拒全部修复（Gold Gate Acceptance 0.1395→1.0）。
+- **Hard Reject / Soft Penalty / Positive Boost**：仅明确冲突 Hard Reject；UNKNOWN Soft Penalty；全 MATCH + 数值单位一致 + 表格字段完整 Positive Boost。
+- **按 Route 独立 Gate**：STRUCTURED/TABLE/PERIOD/SCOPE 用 MISMATCH；CAUSALITY 要因果语言；FORECAST 要预测语言；NARRATIVE 不数值字段。
+- **Selector 为空修复**：empty_reason 必填 + dedup 保护 + ambiguity 保留候选。
+- **失败归因互斥分类**：10 类 primary_outcome，sum=43，gate_failure 从 0→2 修复统计错误。
+- **阈值校准**：留一公司 Pareto，选定 medium=0.3/high=0.5/ambiguity=0.05，stable。
+
+**Phase 23.11.2 结果**：Gold Gate Acceptance=1.0、GATE_REJECTED_GOLD=0、Gate Recall=1.0、Selector Empty=0、primary_outcome_sum=43。但 Accuracy=0.2093、Coverage=0.1395 仍**未达标**——瓶颈转移到 core_verify 聚合（33 条 AGGREGATION_WRONG），非 Gate 语义。**Phase 23.11.2 标记 PARTIAL，不标记 Competition-Usable**。

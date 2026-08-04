@@ -63,9 +63,17 @@
   "fpr": 0.0,
   "fnr": 1.0,
   "retrieval_failure": 1,
-  "gate_failure": 25,
+  "gate_failure": 2,
   "verification_failure": 0,
   "aggregation_failure": 0,
+  "primary_outcome_distribution": {
+    "AGGREGATION_WRONG": 33,
+    "SUCCESS": 4,
+    "CORRECT_ABSTENTION": 5,
+    "RETRIEVAL_NO_CANDIDATE": 1
+  },
+  "primary_outcome_sum": 43,
+  "primary_outcome_sum_equals_total": true,
   "per_claim": [
     {
       "claim_id": "CLM-001",
@@ -74,8 +82,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 2,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-002",
@@ -84,8 +93,9 @@
       "correct": false,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 2,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-003",
@@ -94,8 +104,9 @@
       "correct": false,
       "route": "SCOPE_VALIDATION",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 1,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-004",
@@ -104,8 +115,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 2,
-      "abstention": true
+      "candidates_after_gate": 8,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-005",
@@ -114,8 +126,9 @@
       "correct": false,
       "route": "TABLE_METRIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-006",
@@ -124,8 +137,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 8,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-007",
@@ -134,8 +148,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-008",
@@ -144,8 +159,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 1,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-009",
@@ -154,8 +170,9 @@
       "correct": false,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-010",
@@ -164,8 +181,9 @@
       "correct": false,
       "route": "SCOPE_VALIDATION",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-011",
@@ -174,8 +192,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 1,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-012",
@@ -184,8 +203,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-013",
@@ -194,8 +214,9 @@
       "correct": false,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-014",
@@ -204,8 +225,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-015",
@@ -214,8 +236,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-016",
@@ -225,7 +248,8 @@
       "route": "NARRATIVE_FACT",
       "candidates_before_gate": 10,
       "candidates_after_gate": 10,
-      "abstention": true
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-017",
@@ -234,8 +258,9 @@
       "correct": false,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 1,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-018",
@@ -244,8 +269,9 @@
       "correct": false,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-019",
@@ -255,7 +281,8 @@
       "route": "NARRATIVE_FACT",
       "candidates_before_gate": 10,
       "candidates_after_gate": 10,
-      "abstention": true
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-020",
@@ -265,7 +292,8 @@
       "route": "INSUFFICIENTLY_PARSED",
       "candidates_before_gate": 10,
       "candidates_after_gate": 10,
-      "abstention": false
+      "abstention": false,
+      "primary_outcome": "SUCCESS"
     },
     {
       "claim_id": "CLM-021",
@@ -275,7 +303,8 @@
       "route": "INSUFFICIENTLY_PARSED",
       "candidates_before_gate": 10,
       "candidates_after_gate": 9,
-      "abstention": true
+      "abstention": true,
+      "primary_outcome": "CORRECT_ABSTENTION"
     },
     {
       "claim_id": "CLM-022",
@@ -284,8 +313,9 @@
       "correct": true,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 9,
+      "abstention": true,
+      "primary_outcome": "CORRECT_ABSTENTION"
     },
     {
       "claim_id": "CLM-023",
@@ -295,7 +325,8 @@
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
       "candidates_after_gate": 0,
-      "abstention": false
+      "abstention": false,
+      "primary_outcome": "SUCCESS"
     },
     {
       "claim_id": "CLM-024",
@@ -304,8 +335,9 @@
       "correct": false,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 2,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-025",
@@ -314,8 +346,9 @@
       "correct": true,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": false
+      "candidates_after_gate": 10,
+      "abstention": false,
+      "primary_outcome": "CORRECT_ABSTENTION"
     },
     {
       "claim_id": "CLM-026",
@@ -324,8 +357,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 2,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 2,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H01",
@@ -334,8 +368,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H02",
@@ -344,8 +379,9 @@
       "correct": false,
       "route": "SCOPE_VALIDATION",
       "candidates_before_gate": 2,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 2,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H03",
@@ -354,8 +390,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H04",
@@ -364,8 +401,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H05",
@@ -374,8 +412,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 9,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H06",
@@ -384,8 +423,9 @@
       "correct": false,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 5,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 3,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H07",
@@ -394,8 +434,9 @@
       "correct": false,
       "route": "TABLE_METRIC",
       "candidates_before_gate": 3,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 3,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H08",
@@ -404,8 +445,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 4,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 4,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H09",
@@ -414,8 +456,9 @@
       "correct": false,
       "route": "PERIOD_COMPARISON",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H10",
@@ -425,7 +468,8 @@
       "route": "NARRATIVE_FACT",
       "candidates_before_gate": 10,
       "candidates_after_gate": 9,
-      "abstention": true
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H11",
@@ -435,7 +479,8 @@
       "route": "SCOPE_VALIDATION",
       "candidates_before_gate": 0,
       "candidates_after_gate": 0,
-      "abstention": true
+      "abstention": true,
+      "primary_outcome": "RETRIEVAL_NO_CANDIDATE"
     },
     {
       "claim_id": "CLM-H12",
@@ -445,7 +490,8 @@
       "route": "NARRATIVE_FACT",
       "candidates_before_gate": 10,
       "candidates_after_gate": 10,
-      "abstention": true
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H13",
@@ -455,7 +501,8 @@
       "route": "INSUFFICIENTLY_PARSED",
       "candidates_before_gate": 10,
       "candidates_after_gate": 9,
-      "abstention": false
+      "abstention": false,
+      "primary_outcome": "SUCCESS"
     },
     {
       "claim_id": "CLM-H14",
@@ -465,7 +512,8 @@
       "route": "FORECAST",
       "candidates_before_gate": 10,
       "candidates_after_gate": 0,
-      "abstention": false
+      "abstention": false,
+      "primary_outcome": "SUCCESS"
     },
     {
       "claim_id": "CLM-H15",
@@ -474,8 +522,9 @@
       "correct": true,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 0,
-      "abstention": false
+      "candidates_after_gate": 10,
+      "abstention": false,
+      "primary_outcome": "CORRECT_ABSTENTION"
     },
     {
       "claim_id": "CLM-H16",
@@ -484,8 +533,9 @@
       "correct": false,
       "route": "STRUCTURED_NUMERIC",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 1,
-      "abstention": true
+      "candidates_after_gate": 9,
+      "abstention": true,
+      "primary_outcome": "AGGREGATION_WRONG"
     },
     {
       "claim_id": "CLM-H17",
@@ -494,8 +544,9 @@
       "correct": true,
       "route": "NARRATIVE_FACT",
       "candidates_before_gate": 10,
-      "candidates_after_gate": 9,
-      "abstention": true
+      "candidates_after_gate": 10,
+      "abstention": true,
+      "primary_outcome": "CORRECT_ABSTENTION"
     }
   ]
 }

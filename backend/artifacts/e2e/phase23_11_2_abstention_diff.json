@@ -1,0 +1,1021 @@
+{
+  "phase": "23.11.2",
+  "script": "phase23_11_2_regression",
+  "description": "Per-claim diff of 37 original abstentions: Phase 23.11.1 vs 23.11.2",
+  "baseline": {
+    "phase23_11_1_abstentions": 37,
+    "phase23_11_1_commit": "3de338f"
+  },
+  "summary": {
+    "total_original_abstentions": 37,
+    "fixed_count": 0,
+    "still_abstain_count": 37,
+    "regression_count": 0,
+    "target_min_fixed": 30,
+    "target_max_noise_regressions": 3,
+    "fixed_target_met": false,
+    "noise_regression_target_met": true
+  },
+  "regressions_listed": [],
+  "diff": [
+    {
+      "claim_id": "CLM-001",
+      "company": "美的集团",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-002",
+      "company": "美的集团",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-003",
+      "company": "美的集团",
+      "route": "SCOPE_VALIDATION",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-004",
+      "company": "美的集团",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 8,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 8
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-005",
+      "company": "美的集团",
+      "route": "TABLE_METRIC",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-006",
+      "company": "美的集团",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 8,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 8
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-007",
+      "company": "美的集团",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-008",
+      "company": "美的集团",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-009",
+      "company": "美的集团",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-010",
+      "company": "美的集团",
+      "route": "SCOPE_VALIDATION",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-011",
+      "company": "美的集团",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-012",
+      "company": "美的集团",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-013",
+      "company": "美的集团",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-014",
+      "company": "美的集团",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-015",
+      "company": "美的集团",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-016",
+      "company": "美的集团",
+      "route": "NARRATIVE_FACT",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-017",
+      "company": "美的集团",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-018",
+      "company": "美的集团",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-019",
+      "company": "美的集团",
+      "route": "NARRATIVE_FACT",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-021",
+      "company": "美的集团",
+      "route": "INSUFFICIENTLY_PARSED",
+      "gold_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 9,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 9
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-022",
+      "company": "美的集团",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 9,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 9
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-024",
+      "company": "美的集团",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_verdict": "PARTIALLY_SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-026",
+      "company": "美的集团",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 2,
+        "candidates_after": 2,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 2,
+        "candidates_after": 2
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H01",
+      "company": "五粮液",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H02",
+      "company": "五粮液",
+      "route": "SCOPE_VALIDATION",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 2,
+        "candidates_after": 2,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 2,
+        "candidates_after": 2
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H03",
+      "company": "五粮液",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H04",
+      "company": "五粮液",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H05",
+      "company": "五粮液",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 9,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 9
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H06",
+      "company": "五粮液",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 5,
+        "candidates_after": 3,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 5,
+        "candidates_after": 3
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H07",
+      "company": "五粮液",
+      "route": "TABLE_METRIC",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 3,
+        "candidates_after": 3,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 3,
+        "candidates_after": 3
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H08",
+      "company": "五粮液",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 4,
+        "candidates_after": 4,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 4,
+        "candidates_after": 4
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H09",
+      "company": "五粮液",
+      "route": "PERIOD_COMPARISON",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H10",
+      "company": "五粮液",
+      "route": "NARRATIVE_FACT",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 9,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 9
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H11",
+      "company": "五粮液",
+      "route": "SCOPE_VALIDATION",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 0,
+        "candidates_after": 0,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 0,
+        "candidates_after": 0
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "no candidates retrieved",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H12",
+      "company": "五粮液",
+      "route": "NARRATIVE_FACT",
+      "gold_verdict": "SUPPORTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H16",
+      "company": "五粮液",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_verdict": "REFUTED",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 9,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 9
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    },
+    {
+      "claim_id": "CLM-H17",
+      "company": "五粮液",
+      "route": "NARRATIVE_FACT",
+      "gold_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_verdict": "INSUFFICIENT_EVIDENCE",
+      "new_verdict": "INSUFFICIENT_EVIDENCE",
+      "old_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10,
+        "selected_count": 0
+      },
+      "new_gate_result": {
+        "candidates_before": 10,
+        "candidates_after": 10
+      },
+      "old_selector_result": {
+        "selected_count": 0
+      },
+      "new_selector_result": {
+        "selected_count": 0
+      },
+      "old_abstention_reason": "selector returned empty",
+      "fixed": false,
+      "regression": false,
+      "still_abstain": true
+    }
+  ]
+}

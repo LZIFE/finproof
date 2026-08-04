@@ -1,0 +1,15 @@
+{
+  "accuracy": 0.2093,
+  "macro_f1": 0.3934,
+  "gate_precision": 0.2869,
+  "gate_recall": 1.0,
+  "accepted_noise_rate": 0.6744,
+  "rejected_gold_rate": 0.0,
+  "coverage": 0.1395,
+  "selective_accuracy": 1.5,
+  "chosen_threshold": {
+    "medium_quality_threshold": 0.3,
+    "high_quality_threshold": 0.5,
+    "ambiguity_margin": 0.05
+  }
+}

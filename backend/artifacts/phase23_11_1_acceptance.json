@@ -83,9 +83,17 @@
       "fpr": 0.0,
       "fnr": 1.0,
       "retrieval_failure": 1,
-      "gate_failure": 25,
+      "gate_failure": 2,
       "verification_failure": 0,
-      "aggregation_failure": 0
+      "aggregation_failure": 0,
+      "primary_outcome_distribution": {
+        "AGGREGATION_WRONG": 33,
+        "SUCCESS": 4,
+        "CORRECT_ABSTENTION": 5,
+        "RETRIEVAL_NO_CANDIDATE": 1
+      },
+      "primary_outcome_sum": 43,
+      "primary_outcome_sum_equals_total": true
     }
   }
 }

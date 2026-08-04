@@ -246,3 +246,19 @@ Phase 23.11.1（`docs/phase23_11_1_evaluation_repair.md`）修复了评测链路
 Real E2E Accuracy 从 0.000 → 0.2093（不再因字段映射错误得 0 分），但 Accuracy / Macro-F1 / coverage 仍**未达标**，主因是 **Evidence Gate 阈值过严**（Gate Recall=0.1395，拒绝 86% 正确 Gold Evidence），需留一公司交叉验证调优，非 Verification 引擎失败。
 
 **Phase 23.11 标记 PARTIAL，不标记 Competition-Usable**。完成后停止，不开发 Phase 24。
+
+---
+
+## Phase 23.11.2 Gate 语义修复接续（2026-08-04）
+
+Phase 23.11.1 修复评测链路后，Gate 过度保守（37/43 Gold 误拒）。Phase 23.11.2（`docs/phase23_11_2_gate_semantics_and_calibration.md`）修复 Gate 语义：
+
+- **CanonicalEvidence Schema**（21 字段，三来源适配器统一）
+- **三态逻辑 MATCH/MISMATCH/UNKNOWN**（UNKNOWN 不再 Hard Reject，37 条 Gold 误拒全修复，Gold Gate Acceptance 0.1395→1.0）
+- **Hard Reject / Soft Penalty / Positive Boost**（仅明确冲突 Hard Reject）
+- **按 Route 独立 Gate**（CAUSALITY 要因果语言；FORECAST 要预测语言；NARRATIVE 不数值字段）
+- **Selector 为空修复**（empty_reason + dedup 保护）
+- **失败归因互斥分类**（10 类 primary_outcome，sum=43，gate_failure 0→2 修复统计错误）
+- **阈值校准**（留一公司 Pareto，medium=0.3/high=0.5/ambiguity=0.05，stable）
+
+**结果**：Gold Gate Acceptance=1.0、GATE_REJECTED_GOLD=0、Gate Recall=1.0、Selector Empty=0、primary_outcome_sum=43。但 Accuracy=0.2093、Coverage=0.1395 仍未达标——瓶颈转移到 core_verify 聚合（33 条 AGGREGATION_WRONG），非 Gate 语义。**Phase 23.11.2 标记 PARTIAL，不标记 Competition-Usable**。

@@ -1,0 +1,852 @@
+{
+  "fields": {
+    "evidence_id": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "company": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "document_id": {
+      "core_oracle": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 0,
+        "missing": 2,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "page": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "block_id": {
+      "core_oracle": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 0,
+        "missing": 2,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "text": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "evidence_type": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 1,
+        "missing": 1,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "route": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "metric": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "period": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "unit": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "scope": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "entity": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "raw_value": {
+      "core_oracle": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 0,
+        "missing": 2,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "normalized_value": {
+      "core_oracle": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 0,
+        "missing": 2,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "table_title": {
+      "core_oracle": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 0,
+        "missing": 2,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "row_header": {
+      "core_oracle": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 0,
+        "missing": 2,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "column_header": {
+      "core_oracle": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 0,
+        "missing": 2,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 0,
+        "missing": 1,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "source_block_ids": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 0,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "metadata_completeness": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    },
+    "extraction_source": {
+      "core_oracle": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "noisy_oracle": {
+        "present": 2,
+        "missing": 0,
+        "parsed": 2,
+        "type_mismatch": 0,
+        "default_value": 0
+      },
+      "real_e2e": {
+        "present": 1,
+        "missing": 0,
+        "parsed": 1,
+        "type_mismatch": 0,
+        "default_value": 0
+      }
+    }
+  },
+  "sources": [
+    {
+      "source": "core_oracle",
+      "total": 1,
+      "present_count": {
+        "evidence_id": 1,
+        "company": 1,
+        "document_id": 0,
+        "page": 1,
+        "block_id": 0,
+        "text": 1,
+        "evidence_type": 1,
+        "route": 1,
+        "metric": 1,
+        "period": 1,
+        "unit": 1,
+        "scope": 1,
+        "entity": 1,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 1,
+        "metadata_completeness": 1,
+        "extraction_source": 1
+      },
+      "missing_count": {
+        "evidence_id": 0,
+        "company": 0,
+        "document_id": 1,
+        "page": 0,
+        "block_id": 1,
+        "text": 0,
+        "evidence_type": 0,
+        "route": 0,
+        "metric": 0,
+        "period": 0,
+        "unit": 0,
+        "scope": 0,
+        "entity": 0,
+        "raw_value": 1,
+        "normalized_value": 1,
+        "table_title": 1,
+        "row_header": 1,
+        "column_header": 1,
+        "source_block_ids": 0,
+        "metadata_completeness": 0,
+        "extraction_source": 0
+      },
+      "parsed_count": {
+        "evidence_id": 1,
+        "company": 1,
+        "document_id": 0,
+        "page": 1,
+        "block_id": 0,
+        "text": 1,
+        "evidence_type": 1,
+        "route": 1,
+        "metric": 1,
+        "period": 1,
+        "unit": 1,
+        "scope": 1,
+        "entity": 1,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 0,
+        "metadata_completeness": 1,
+        "extraction_source": 1
+      },
+      "type_mismatch_count": {
+        "evidence_id": 0,
+        "company": 0,
+        "document_id": 0,
+        "page": 0,
+        "block_id": 0,
+        "text": 0,
+        "evidence_type": 0,
+        "route": 0,
+        "metric": 0,
+        "period": 0,
+        "unit": 0,
+        "scope": 0,
+        "entity": 0,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 0,
+        "metadata_completeness": 0,
+        "extraction_source": 0
+      },
+      "default_value_count": {
+        "evidence_id": 0,
+        "company": 0,
+        "document_id": 0,
+        "page": 0,
+        "block_id": 0,
+        "text": 0,
+        "evidence_type": 0,
+        "route": 0,
+        "metric": 0,
+        "period": 0,
+        "unit": 0,
+        "scope": 0,
+        "entity": 0,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 0,
+        "metadata_completeness": 0,
+        "extraction_source": 0
+      }
+    },
+    {
+      "source": "noisy_oracle",
+      "total": 2,
+      "present_count": {
+        "evidence_id": 2,
+        "company": 2,
+        "document_id": 0,
+        "page": 2,
+        "block_id": 0,
+        "text": 2,
+        "evidence_type": 1,
+        "route": 2,
+        "metric": 2,
+        "period": 2,
+        "unit": 2,
+        "scope": 2,
+        "entity": 2,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 2,
+        "metadata_completeness": 2,
+        "extraction_source": 2
+      },
+      "missing_count": {
+        "evidence_id": 0,
+        "company": 0,
+        "document_id": 2,
+        "page": 0,
+        "block_id": 2,
+        "text": 0,
+        "evidence_type": 1,
+        "route": 0,
+        "metric": 0,
+        "period": 0,
+        "unit": 0,
+        "scope": 0,
+        "entity": 0,
+        "raw_value": 2,
+        "normalized_value": 2,
+        "table_title": 2,
+        "row_header": 2,
+        "column_header": 2,
+        "source_block_ids": 0,
+        "metadata_completeness": 0,
+        "extraction_source": 0
+      },
+      "parsed_count": {
+        "evidence_id": 2,
+        "company": 2,
+        "document_id": 0,
+        "page": 2,
+        "block_id": 0,
+        "text": 1,
+        "evidence_type": 1,
+        "route": 2,
+        "metric": 2,
+        "period": 2,
+        "unit": 2,
+        "scope": 2,
+        "entity": 2,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 0,
+        "metadata_completeness": 2,
+        "extraction_source": 2
+      },
+      "type_mismatch_count": {
+        "evidence_id": 0,
+        "company": 0,
+        "document_id": 0,
+        "page": 0,
+        "block_id": 0,
+        "text": 0,
+        "evidence_type": 0,
+        "route": 0,
+        "metric": 0,
+        "period": 0,
+        "unit": 0,
+        "scope": 0,
+        "entity": 0,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 0,
+        "metadata_completeness": 0,
+        "extraction_source": 0
+      },
+      "default_value_count": {
+        "evidence_id": 0,
+        "company": 0,
+        "document_id": 0,
+        "page": 0,
+        "block_id": 0,
+        "text": 0,
+        "evidence_type": 0,
+        "route": 0,
+        "metric": 0,
+        "period": 0,
+        "unit": 0,
+        "scope": 0,
+        "entity": 0,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 0,
+        "metadata_completeness": 0,
+        "extraction_source": 0
+      }
+    },
+    {
+      "source": "real_e2e",
+      "total": 1,
+      "present_count": {
+        "evidence_id": 1,
+        "company": 1,
+        "document_id": 1,
+        "page": 1,
+        "block_id": 1,
+        "text": 1,
+        "evidence_type": 1,
+        "route": 1,
+        "metric": 1,
+        "period": 1,
+        "unit": 1,
+        "scope": 1,
+        "entity": 1,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 1,
+        "metadata_completeness": 1,
+        "extraction_source": 1
+      },
+      "missing_count": {
+        "evidence_id": 0,
+        "company": 0,
+        "document_id": 0,
+        "page": 0,
+        "block_id": 0,
+        "text": 0,
+        "evidence_type": 0,
+        "route": 0,
+        "metric": 0,
+        "period": 0,
+        "unit": 0,
+        "scope": 0,
+        "entity": 0,
+        "raw_value": 1,
+        "normalized_value": 1,
+        "table_title": 1,
+        "row_header": 1,
+        "column_header": 1,
+        "source_block_ids": 0,
+        "metadata_completeness": 0,
+        "extraction_source": 0
+      },
+      "parsed_count": {
+        "evidence_id": 1,
+        "company": 1,
+        "document_id": 1,
+        "page": 1,
+        "block_id": 1,
+        "text": 1,
+        "evidence_type": 1,
+        "route": 1,
+        "metric": 1,
+        "period": 1,
+        "unit": 1,
+        "scope": 1,
+        "entity": 1,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 0,
+        "metadata_completeness": 1,
+        "extraction_source": 1
+      },
+      "type_mismatch_count": {
+        "evidence_id": 0,
+        "company": 0,
+        "document_id": 0,
+        "page": 0,
+        "block_id": 0,
+        "text": 0,
+        "evidence_type": 0,
+        "route": 0,
+        "metric": 0,
+        "period": 0,
+        "unit": 0,
+        "scope": 0,
+        "entity": 0,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 0,
+        "metadata_completeness": 0,
+        "extraction_source": 0
+      },
+      "default_value_count": {
+        "evidence_id": 0,
+        "company": 0,
+        "document_id": 0,
+        "page": 0,
+        "block_id": 0,
+        "text": 0,
+        "evidence_type": 0,
+        "route": 0,
+        "metric": 0,
+        "period": 0,
+        "unit": 0,
+        "scope": 0,
+        "entity": 0,
+        "raw_value": 0,
+        "normalized_value": 0,
+        "table_title": 0,
+        "row_header": 0,
+        "column_header": 0,
+        "source_block_ids": 0,
+        "metadata_completeness": 0,
+        "extraction_source": 0
+      }
+    }
+  ],
+  "summary": {
+    "silent_default_forbidden": true,
+    "missing_becomes_None_not_False": true,
+    "all_sources_use_same_CanonicalEvidence": true,
+    "field_count": 21
+  }
+}

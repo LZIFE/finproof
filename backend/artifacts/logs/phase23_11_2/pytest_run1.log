@@ -1,0 +1,472 @@
+........................................................................ [  8%]
+........................................................................ [ 17%]
+........................................................................ [ 25%]
+........................................................................ [ 34%]
+........................................................................ [ 43%]
+........................................................................ [ 51%]
+........................................................................ [ 60%]
+........................................................................ [ 69%]
+........................................................................ [ 77%]
+........................................................................ [ 86%]
+........................................................................ [ 95%]
+........................................                                 [100%]
+=============================== warnings summary ===============================
+../../../../../../opt/anaconda3/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /opt/anaconda3/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+tests/test_agent.py: 108 warnings
+tests/test_agent_arena.py: 48 warnings
+tests/test_audit_trail.py: 5 warnings
+tests/test_autonomous_agent.py: 25 warnings
+tests/test_benchmark.py: 308 warnings
+tests/test_claim_service.py: 94 warnings
+tests/test_claims_api.py: 46 warnings
+tests/test_demo_claim_extraction.py: 375 warnings
+tests/test_demo_integration.py: 53220 warnings
+tests/test_demo_mode.py: 742 warnings
+tests/test_document_service.py: 59 warnings
+tests/test_documents_api.py: 65 warnings
+tests/test_evidence_retrieval.py: 132 warnings
+tests/test_financial_simulation.py: 48 warnings
+tests/test_governance_center.py: 80 warnings
+tests/test_intelligence.py: 26 warnings
+tests/test_investment.py: 93 warnings
+tests/test_investment_committee.py: 360 warnings
+tests/test_knowledge_graph.py: 194 warnings
+tests/test_monitoring.py: 14 warnings
+tests/test_phase23_10_retrieval.py: 77430 warnings
+tests/test_phase23_11_fact_index.py: 4 warnings
+tests/test_phase23_9_integration.py: 46458 warnings
+tests/test_phase36.py: 24 warnings
+tests/test_phase36b.py: 21 warnings
+tests/test_portfolio.py: 6 warnings
+tests/test_reliability_improvement.py: 56 warnings
+tests/test_replay.py: 166 warnings
+tests/test_research_agent.py: 32 warnings
+tests/test_risk.py: 34 warnings
+  /opt/anaconda3/lib/python3.12/site-packages/sqlalchemy/sql/schema.py:3624: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+tests/test_agent.py: 4 warnings
+tests/test_claim_service.py: 9 warnings
+tests/test_claims_api.py: 6 warnings
+tests/test_demo_claim_extraction.py: 3 warnings
+tests/test_investment.py: 4 warnings
+tests/test_investment_committee.py: 16 warnings
+tests/test_knowledge_graph.py: 5 warnings
+tests/test_phase36b.py: 3 warnings
+tests/test_risk.py: 2 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/claim_service.py:324: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow()
+
+tests/test_agent_arena.py: 4 warnings
+tests/test_demo_mode.py: 14 warnings
+tests/test_governance_center.py: 5 warnings
+tests/test_reliability_improvement.py: 7 warnings
+tests/test_replay.py: 10 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/agent_arena/arena.py:42: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    run_id = f"ARENA-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:18]}"
+
+tests/test_agent_arena.py: 36 warnings
+tests/test_demo_mode.py: 98 warnings
+tests/test_governance_center.py: 35 warnings
+tests/test_reliability_improvement.py: 49 warnings
+tests/test_replay.py: 70 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/agent_arena/schemas.py:343: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_agent_arena.py: 6 warnings
+tests/test_demo_mode.py: 70 warnings
+tests/test_financial_simulation.py: 6 warnings
+tests/test_governance_center.py: 10 warnings
+tests/test_reliability_improvement.py: 7 warnings
+tests/test_replay.py: 11 warnings
+tests/test_research_agent.py: 4 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/research_agent/orchestrator.py:54: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    session_id = f"RESEARCH-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:18]}"
+
+tests/test_agent_arena.py: 78 warnings
+tests/test_demo_mode.py: 910 warnings
+tests/test_financial_simulation.py: 78 warnings
+tests/test_governance_center.py: 130 warnings
+tests/test_reliability_improvement.py: 91 warnings
+tests/test_replay.py: 143 warnings
+tests/test_research_agent.py: 93 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/research_agent/schemas.py:319: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_agent_arena.py: 6 warnings
+tests/test_demo_mode.py: 70 warnings
+tests/test_financial_simulation.py: 6 warnings
+tests/test_governance_center.py: 10 warnings
+tests/test_reliability_improvement.py: 7 warnings
+tests/test_replay.py: 11 warnings
+tests/test_research_agent.py: 4 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/research_agent/orchestrator.py:130: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_agent_arena.py: 6 warnings
+tests/test_demo_mode.py: 70 warnings
+tests/test_financial_simulation.py: 6 warnings
+tests/test_governance_center.py: 10 warnings
+tests/test_reliability_improvement.py: 7 warnings
+tests/test_replay.py: 11 warnings
+tests/test_research_agent.py: 4 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/research_agent/orchestrator.py:151: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    row.finished_at = datetime.utcnow()
+
+tests/test_agent_arena.py: 48 warnings
+tests/test_demo_mode.py: 560 warnings
+tests/test_financial_simulation.py: 48 warnings
+tests/test_governance_center.py: 80 warnings
+tests/test_reliability_improvement.py: 56 warnings
+tests/test_replay.py: 88 warnings
+tests/test_research_agent.py: 32 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/research_agent/orchestrator.py:169: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    finished_at=datetime.utcnow() if rs.tasks_status.get(spec.task_type) in (TASK_DONE, TASK_SKIPPED) else None,
+
+tests/test_agent_arena.py: 4 warnings
+tests/test_demo_mode.py: 14 warnings
+tests/test_governance_center.py: 5 warnings
+tests/test_reliability_improvement.py: 7 warnings
+tests/test_replay.py: 10 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/agent_arena/arena.py:83: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    result_id=f"AR-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:16]}",
+
+tests/test_agent_arena.py: 4 warnings
+tests/test_demo_mode.py: 14 warnings
+tests/test_governance_center.py: 5 warnings
+tests/test_reliability_improvement.py: 7 warnings
+tests/test_replay.py: 10 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/agent_arena/arena.py:128: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_agent_arena.py: 4 warnings
+tests/test_demo_mode.py: 14 warnings
+tests/test_governance_center.py: 5 warnings
+tests/test_reliability_improvement.py: 7 warnings
+tests/test_replay.py: 10 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/agent_arena/arena.py:129: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    finished_at=datetime.utcnow(),
+
+tests/test_agent_arena.py: 16 warnings
+tests/test_demo_mode.py: 56 warnings
+tests/test_governance_center.py: 20 warnings
+tests/test_reliability_improvement.py: 28 warnings
+tests/test_replay.py: 40 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/agent_arena/arena.py:146: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_agent_arena.py: 4 warnings
+tests/test_demo_mode.py: 14 warnings
+tests/test_governance_center.py: 5 warnings
+tests/test_reliability_improvement.py: 7 warnings
+tests/test_replay.py: 10 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/agent_arena/arena.py:160: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_agent_arena.py: 5 warnings
+tests/test_demo_mode.py: 14 warnings
+tests/test_financial_reasoning.py: 5 warnings
+tests/test_governance_center.py: 3 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_reasoning/reasoning_service.py:52: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    run_id = f"REASON-RUN-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:18]}"
+
+tests/test_agent_arena.py: 17 warnings
+tests/test_demo_mode.py: 28 warnings
+tests/test_financial_reasoning.py: 51 warnings
+tests/test_governance_center.py: 6 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_reasoning/schemas.py:275: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_agent_arena.py: 5 warnings
+tests/test_demo_mode.py: 14 warnings
+tests/test_financial_reasoning.py: 5 warnings
+tests/test_governance_center.py: 3 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_reasoning/reasoning_service.py:142: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_agent_arena.py: 12 warnings
+tests/test_demo_mode.py: 14 warnings
+tests/test_financial_reasoning.py: 23 warnings
+tests/test_governance_center.py: 3 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_reasoning/reasoning_service.py:165: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_audit_trail.py::test_log_audit_and_get
+tests/test_audit_trail.py::test_list_logs_filters
+tests/test_audit_trail.py::test_list_logs_filters
+tests/test_audit_trail.py::test_list_logs_filters
+tests/test_audit_trail.py::test_governance_api_endpoints
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/audit_trail/logger.py:39: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = datetime.utcnow()
+
+tests/test_autonomous_agent.py: 48 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/autonomous_agent/schemas.py:248: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_autonomous_agent.py::test_run_investigation_persists_steps_and_evidence
+tests/test_autonomous_agent.py::test_get_investigation_round_trip
+tests/test_autonomous_agent.py::test_list_investigations
+tests/test_autonomous_agent.py::test_investigation_api_start_and_get
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/autonomous_agent/executor.py:57: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    trace_id = f"TRACE-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:18]}"
+
+tests/test_autonomous_agent.py::test_upsert_and_get_memory
+tests/test_autonomous_agent.py::test_resolve_issue_moves_to_resolved
+tests/test_autonomous_agent.py::test_resolve_issue_moves_to_resolved
+tests/test_autonomous_agent.py::test_list_memories
+tests/test_autonomous_agent.py::test_investigation_api_start_and_get
+tests/test_autonomous_agent.py::test_investigation_api_memory_lookup
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/autonomous_agent/memory.py:52: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = datetime.utcnow()
+
+tests/test_benchmark.py::test_run_benchmark_with_seed_cases
+tests/test_benchmark.py::test_save_and_get_report_persistence
+tests/test_benchmark.py::test_benchmark_api_run_and_get
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/benchmark/evaluator.py:406: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    run_id=f"RUN-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}",
+
+tests/test_benchmark.py::test_run_benchmark_with_seed_cases
+tests/test_benchmark.py::test_save_and_get_report_persistence
+tests/test_benchmark.py::test_benchmark_api_run_and_get
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/benchmark/schemas.py:241: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_copilot.py: 33 warnings
+tests/test_financial_reasoning.py: 1 warning
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/copilot/schemas.py:246: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_copilot.py: 26 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/copilot/query_planner.py:134: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    "claim_id": f"C-COPILOT-{datetime.utcnow().strftime('%H%M%S%f')[:12]}",
+
+tests/test_copilot.py: 9 warnings
+tests/test_financial_reasoning.py: 1 warning
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/copilot/router.py:151: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = datetime.utcnow()
+
+tests/test_demo_mode.py: 14 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/demo_mode/demo_runner.py:46: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    demo_id = f"DEMO-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}-{_uuid.uuid4().hex[:8]}"
+
+tests/test_demo_mode.py: 28 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/demo_mode/schemas.py:163: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_demo_mode.py: 14 warnings
+tests/test_governance_center.py: 12 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/governance_center/schemas.py:342: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_demo_mode.py: 28 warnings
+tests/test_replay.py: 13 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/replay/schemas.py:140: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_demo_mode.py: 14 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/demo_mode/demo_runner.py:246: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_demo_mode.py: 14 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/demo_mode/demo_runner.py:247: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    finished_at=datetime.utcnow(),
+
+tests/test_demo_mode.py: 112 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/demo_mode/demo_runner.py:267: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_financial_simulation.py::test_run_simulation_end_to_end_easy
+tests/test_financial_simulation.py::test_run_simulation_hard_has_hidden_risks_in_scenario
+tests/test_financial_simulation.py::test_run_simulation_persists
+tests/test_financial_simulation.py::test_api_create_run_and_get
+tests/test_financial_simulation.py::test_api_list_runs
+tests/test_financial_simulation.py::test_api_create_rejects_unknown_type
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_simulation/simulator.py:43: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    scenario_id = f"SCEN-{scenario_type[0]}-{difficulty[0]}-{datetime.utcnow().strftime('%H%M%S')}"
+
+tests/test_financial_simulation.py::test_run_simulation_end_to_end_easy
+tests/test_financial_simulation.py::test_run_simulation_hard_has_hidden_risks_in_scenario
+tests/test_financial_simulation.py::test_run_simulation_persists
+tests/test_financial_simulation.py::test_run_simulation_by_id_demo
+tests/test_financial_simulation.py::test_api_create_run_and_get
+tests/test_financial_simulation.py::test_api_list_runs
+tests/test_financial_simulation.py::test_api_create_rejects_unknown_type
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_simulation/simulator.py:45: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    run_id = f"SIM-RUN-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:18]}"
+
+tests/test_financial_simulation.py: 48 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_simulation/schemas.py:318: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_financial_simulation.py::test_run_simulation_end_to_end_easy
+tests/test_financial_simulation.py::test_run_simulation_hard_has_hidden_risks_in_scenario
+tests/test_financial_simulation.py::test_run_simulation_persists
+tests/test_financial_simulation.py::test_run_simulation_by_id_demo
+tests/test_financial_simulation.py::test_api_create_run_and_get
+tests/test_financial_simulation.py::test_api_list_runs
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_simulation/simulator.py:131: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    start = datetime.utcnow()
+
+tests/test_financial_simulation.py::test_run_simulation_end_to_end_easy
+tests/test_financial_simulation.py::test_run_simulation_hard_has_hidden_risks_in_scenario
+tests/test_financial_simulation.py::test_run_simulation_persists
+tests/test_financial_simulation.py::test_run_simulation_by_id_demo
+tests/test_financial_simulation.py::test_api_create_run_and_get
+tests/test_financial_simulation.py::test_api_list_runs
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_simulation/simulator.py:154: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    agent_record.duration_sec = (datetime.utcnow() - start).total_seconds()
+
+tests/test_financial_simulation.py::test_run_simulation_end_to_end_easy
+tests/test_financial_simulation.py::test_run_simulation_hard_has_hidden_risks_in_scenario
+tests/test_financial_simulation.py::test_run_simulation_persists
+tests/test_financial_simulation.py::test_run_simulation_by_id_demo
+tests/test_financial_simulation.py::test_api_create_run_and_get
+tests/test_financial_simulation.py::test_api_list_runs
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_simulation/evaluator.py:68: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    result_id = f"SIMRES-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:16]}"
+
+tests/test_financial_simulation.py::test_run_simulation_end_to_end_easy
+tests/test_financial_simulation.py::test_run_simulation_hard_has_hidden_risks_in_scenario
+tests/test_financial_simulation.py::test_run_simulation_persists
+tests/test_financial_simulation.py::test_run_simulation_by_id_demo
+tests/test_financial_simulation.py::test_api_create_run_and_get
+tests/test_financial_simulation.py::test_api_list_runs
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_simulation/simulator.py:208: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_financial_simulation.py::test_run_simulation_end_to_end_easy
+tests/test_financial_simulation.py::test_run_simulation_hard_has_hidden_risks_in_scenario
+tests/test_financial_simulation.py::test_run_simulation_persists
+tests/test_financial_simulation.py::test_run_simulation_by_id_demo
+tests/test_financial_simulation.py::test_api_create_run_and_get
+tests/test_financial_simulation.py::test_api_list_runs
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_simulation/simulator.py:209: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    finished_at=datetime.utcnow(),
+
+tests/test_financial_simulation.py: 30 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_simulation/simulator.py:226: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_financial_simulation.py::test_run_simulation_end_to_end_easy
+tests/test_financial_simulation.py::test_run_simulation_hard_has_hidden_risks_in_scenario
+tests/test_financial_simulation.py::test_run_simulation_persists
+tests/test_financial_simulation.py::test_run_simulation_by_id_demo
+tests/test_financial_simulation.py::test_api_create_run_and_get
+tests/test_financial_simulation.py::test_api_list_runs
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/financial_simulation/simulator.py:242: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_governance_center.py::test_build_dashboard_default_governance_id
+tests/test_governance_center.py::test_api_post_dashboard
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/governance_center/dashboard.py:31: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    governance_id = f"GOV-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
+
+tests/test_governance_center.py::test_run_governance_pipeline_end_to_end
+tests/test_governance_center.py::test_pipeline_stage_status_records_skip
+tests/test_governance_center.py::test_conclusion_never_investment_advice
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/governance_center/executive_report.py:47: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    report_id=f"GOV-RPT-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}",
+
+tests/test_intelligence.py: 20 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/intelligence/fact_extractor.py:80: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_intelligence.py::test_run_investigation_end_to_end
+tests/test_intelligence.py::test_save_and_get_report_persistence
+tests/test_intelligence.py::test_intelligence_api_run_and_get
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/intelligence/intelligence_agent.py:50: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_investment_committee.py: 44 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/investment_committee/supervisor_agent.py:69: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_knowledge_graph.py: 23 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/knowledge_graph/schemas.py:350: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_monitoring.py::test_run_monitoring_generates_alerts
+tests/test_monitoring.py::test_update_alert_status
+tests/test_monitoring.py::test_monitoring_api_endpoints
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/monitoring/detector.py:271: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    alert_id = f"ALT-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:18]}"
+
+tests/test_monitoring.py::test_update_alert_status
+tests/test_monitoring.py::test_monitoring_api_endpoints
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/monitoring/detector.py:257: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    row.updated_at = datetime.utcnow()
+
+tests/test_portfolio.py::test_build_snapshot_persists_and_lists
+tests/test_portfolio.py::test_portfolio_api_endpoints
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/portfolio/aggregator.py:180: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    snapshot.created_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_red_team.py::test_generate_numeric_hallucination_changes_number
+tests/test_red_team.py::test_generate_period_confusion_changes_period
+tests/test_red_team.py::test_generate_growth_error_changes_pct
+tests/test_red_team.py::test_generate_unsupported_strategic_replaces_text
+tests/test_red_team.py::test_generate_forecast_as_fact_changes_tense
+tests/test_red_team.py::test_api_generate_attack
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/red_team/attack_generator.py:219: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    case_id = f"ATC-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')[:16]}"
+
+tests/test_red_team.py::test_run_stress_test_persists_and_queries
+tests/test_red_team.py::test_get_run_by_id
+tests/test_red_team.py::test_api_stress_test_and_list_runs
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/red_team/stress_test.py:216: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    run_id = f"RT-RUN-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
+
+tests/test_red_team.py::test_run_stress_test_persists_and_queries
+tests/test_red_team.py::test_get_run_by_id
+tests/test_red_team.py::test_api_stress_test_and_list_runs
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/red_team/schemas.py:223: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_red_team.py::test_run_stress_test_persists_and_queries
+tests/test_red_team.py::test_get_run_by_id
+tests/test_red_team.py::test_api_stress_test_and_list_runs
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/red_team/stress_test.py:248: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_red_team.py: 26 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/red_team/stress_test.py:270: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_red_team.py: 26 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/red_team/stress_test.py:283: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=datetime.utcnow(),
+
+tests/test_reliability_improvement.py: 10 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/reliability_improvement/improvement_report.py:68: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    report_id=f"REL-IMPROVE-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}",
+
+tests/test_reliability_improvement.py: 10 warnings
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/reliability_improvement/schemas.py:241: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+
+tests/test_reliability_improvement.py::test_persist_and_get_report_consistency
+tests/test_reliability_improvement.py::test_list_reports_metadata
+tests/test_reliability_improvement.py::test_api_analyze
+tests/test_reliability_improvement.py::test_api_get_report_by_id
+tests/test_reliability_improvement.py::test_api_get_report_latest
+tests/test_reliability_improvement.py::test_api_list_reports
+  /Users/z1/Documents/trae_projects/finproof/backend/app/services/reliability_improvement/improvement_report.py:192: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at=_dt.utcnow(),
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+832 passed, 184674 warnings in 78.71s (0:01:18)
+sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute

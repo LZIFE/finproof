@@ -414,6 +414,9 @@ def run_real_e2e(
     verification_failure = 0
     aggregation_failure = 0
     ves_calls = gate_calls = sel_calls = cv_calls = 0
+    # Phase 23.11.2 §7: mutually-exclusive primary outcomes (sum MUST = 43)
+    from app.services.failure_attribution import classify_outcome, summarize_outcomes
+    claim_outcomes: list = []
 
     for cc in claims:
         raw = raw_by_id.get(cc.claim_id, {})
@@ -458,13 +461,25 @@ def run_real_e2e(
             abstentions += 1
         else:
             coverage_count += 1
-        # failure classification
+        # failure classification (legacy counters, retained for backward compat)
         if ctx.trace:
             gate_meta = ctx.trace.detail.get("phase23_11_gate", {})
             if gate_meta.get("candidates_after_gate", 0) == 0 and candidates:
                 gate_failure += 1
         if pred != gold and pred != "INSUFFICIENT_EVIDENCE":
             verification_failure += 1
+        # Phase 23.11.2 §7: primary outcome classification (mutually-exclusive)
+        sel_meta = ctx.trace.detail.get("phase23_11_selector", {}) if ctx.trace else {}
+        outcome = classify_outcome(
+            claim_id=cc.claim_id, pred=pred, gold=gold,
+            candidates_before_gate=ctx.candidates_before_gate,
+            candidates_after_gate=ctx.candidates_after_gate,
+            selector_input_count=sel_meta.get("selector_input_count", 0),
+            selector_output_count=sel_meta.get("selector_output_count", 0),
+            selector_empty_reason=sel_meta.get("empty_reason", ""),
+            selected_ids=sel_meta.get("selected_evidence_ids", []),
+        )
+        claim_outcomes.append(outcome)
         confusion[(gold, pred)] += 1
         pred_counter[pred] += 1
         gold_counter[gold] += 1
@@ -474,12 +489,14 @@ def run_real_e2e(
             "candidates_before_gate": ctx.candidates_before_gate,
             "candidates_after_gate": ctx.candidates_after_gate,
             "abstention": pred == "INSUFFICIENT_EVIDENCE",
+            "primary_outcome": outcome.primary_outcome,
         })
 
     total = len(claims)
     accuracy = correct / total if total else 0.0
     coverage = coverage_count / total if total else 0.0
     abstention_rate = abstentions / total if total else 0.0
+    outcome_summary = summarize_outcomes(claim_outcomes)
     # selective accuracy: accuracy among non-abstained
     selective_correct = sum(1 for r in rows if r["correct"] and not r["abstention"])
     selective_total = sum(1 for r in rows if not r["abstention"])
@@ -508,6 +525,10 @@ def run_real_e2e(
             "gate_failure": gate_failure,
             "verification_failure": verification_failure,
             "aggregation_failure": aggregation_failure,
+            # Phase 23.11.2 §7: mutually-exclusive primary outcome distribution
+            "primary_outcome_distribution": outcome_summary["outcome_counts"],
+            "primary_outcome_sum": outcome_summary["outcome_sum"],
+            "primary_outcome_sum_equals_total": outcome_summary["sum_equals_total"],
         },
         path_counts={
             "input_claim_count": len(claims), "evidence_source": "retrieval",
