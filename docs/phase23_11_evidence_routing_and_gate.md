@@ -262,3 +262,13 @@ Phase 23.11.1 修复评测链路后，Gate 过度保守（37/43 Gold 误拒）�
 - **阈值校准**（留一公司 Pareto，medium=0.3/high=0.5/ambiguity=0.05，stable）
 
 **结果**：Gold Gate Acceptance=1.0、GATE_REJECTED_GOLD=0、Gate Recall=1.0、Selector Empty=0、primary_outcome_sum=43。但 Accuracy=0.2093、Coverage=0.1395 仍未达标——瓶颈转移到 core_verify 聚合（33 条 AGGREGATION_WRONG），非 Gate 语义。**Phase 23.11.2 标记 PARTIAL，不标记 Competition-Usable**。
+
+## Phase 23.11.3 聚合契约接续（2026-08-04）
+
+Phase 23.11.2 修复后，瓶颈明确转移到 core_verify 聚合（33 条 AGGREGATION_WRONG）。Phase 23.11.3（`docs/phase23_11_3_aggregation_contract.md`）建立结构化 Evidence 验证契约（EvidenceVerificationResult + ClaimAggregationResult），完成逐层真值对账：
+
+- **43 条 CORE_ORACLE 逐层对账**：first_divergence_stage—CORE_VERIFY=17, CANONICAL_ADAPTER=5, AGGREGATION=2。禁止统一归为 AGGREGATION_WRONG。
+- **四级隔离实验**：A（Direct Core Verify）=0.3953 → B（+Gate）=0.4651 → C（+Selector）=0.4651 → D（+Aggregation）=0.3721。首次错误发生在 Stage A（core_verify 自身），而非 Aggregation。
+- **Single-Gold 验证**：Accuracy=0.3953，确认 core_verify 对财务表格"千元"单位数值提取不完整。
+- **统一 Verdict 映射**：`normalize_verdict_for_evaluation`，22 种状态 + 24 对抗用例，0 冲突。
+- **20 项标准逐项核对**：12/20 PASS（#1-5,14-20），8/20 FAIL（#6-13）。**Phase 23.11.3 标记 PARTIAL，不标记 Competition-Usable**。

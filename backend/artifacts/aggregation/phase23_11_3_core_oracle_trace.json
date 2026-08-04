@@ -6,17 +6,18 @@
   "correct": 19,
   "accuracy": 0.4419,
   "first_divergence_stage_counts": {
-    "EVALUATION_JOIN": 21,
-    "CORE_VERIFY": 3
+    "CORE_VERIFY": 17,
+    "AGGREGATION": 2,
+    "CANONICAL_ADAPTER": 5
   },
   "stage_error_summary": {
-    "CANONICAL_ADAPTER": 0,
+    "CANONICAL_ADAPTER": 5,
     "GATE": 0,
     "SELECTOR": 0,
-    "CORE_VERIFY": 3,
-    "AGGREGATION": 0,
+    "CORE_VERIFY": 17,
+    "AGGREGATION": 2,
     "VERDICT_NORMALIZATION": 0,
-    "EVALUATION_JOIN": 21,
+    "EVALUATION_JOIN": 0,
     "NONE (correct)": 19
   },
   "first_divergence_stage_taxonomy": [
@@ -53,8 +54,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-002",
@@ -105,8 +106,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-004",
@@ -131,8 +132,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-005",
@@ -162,8 +163,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-006",
@@ -193,8 +194,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-007",
@@ -250,8 +251,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "AGGREGATION",
+      "root_cause": "aggregation真值表错误 (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-009",
@@ -281,8 +282,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-010",
@@ -312,8 +313,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-011",
@@ -364,8 +365,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-013",
@@ -416,8 +417,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-015",
@@ -447,8 +448,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "AGGREGATION",
+      "root_cause": "aggregation真值表错误 (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-016",
@@ -594,7 +595,7 @@
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": true,
       "first_divergence_stage": "NONE",
-      "root_cause": "correct"
+      "root_cause": "correct abstention (no gold evidence, gold=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-022",
@@ -610,7 +611,7 @@
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": true,
       "first_divergence_stage": "NONE",
-      "root_cause": "correct"
+      "root_cause": "correct abstention (no gold evidence, gold=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-023",
@@ -625,8 +626,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=OPINION_OR_FORECAST, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CANONICAL_ADAPTER",
+      "root_cause": "gold-data gap: gold_evidence.json has no evidence for claim; pipeline abstains (gold=OPINION_OR_FORECAST)"
     },
     {
       "claim_id": "CLM-024",
@@ -672,8 +673,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=UNABLE_TO_DETERMINE, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CANONICAL_ADAPTER",
+      "root_cause": "gold-data gap: gold_evidence.json has no evidence for claim; pipeline abstains (gold=UNABLE_TO_DETERMINE)"
     },
     {
       "claim_id": "CLM-026",
@@ -724,8 +725,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-H02",
@@ -750,8 +751,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-H03",
@@ -776,8 +777,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-H04",
@@ -802,8 +803,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-H05",
@@ -880,8 +881,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-H08",
@@ -906,8 +907,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-H09",
@@ -984,8 +985,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
     },
     {
       "claim_id": "CLM-H12",
@@ -1026,8 +1027,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CANONICAL_ADAPTER",
+      "root_cause": "gold-data gap: gold_evidence.json has no evidence for claim; pipeline abstains (gold=REFUTED)"
     },
     {
       "claim_id": "CLM-H14",
@@ -1042,8 +1043,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=OPINION_OR_FORECAST, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CANONICAL_ADAPTER",
+      "root_cause": "gold-data gap: gold_evidence.json has no evidence for claim; pipeline abstains (gold=OPINION_OR_FORECAST)"
     },
     {
       "claim_id": "CLM-H15",
@@ -1058,8 +1059,8 @@
       "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": false,
-      "first_divergence_stage": "EVALUATION_JOIN",
-      "root_cause": "evaluation join wrong (gold=UNABLE_TO_DETERMINE, pred=INSUFFICIENT_EVIDENCE)"
+      "first_divergence_stage": "CANONICAL_ADAPTER",
+      "root_cause": "gold-data gap: gold_evidence.json has no evidence for claim; pipeline abstains (gold=UNABLE_TO_DETERMINE)"
     },
     {
       "claim_id": "CLM-H16",
@@ -1101,7 +1102,7 @@
       "final_prediction": "INSUFFICIENT_EVIDENCE",
       "correct": true,
       "first_divergence_stage": "NONE",
-      "root_cause": "correct"
+      "root_cause": "correct abstention (no gold evidence, gold=INSUFFICIENT_EVIDENCE)"
     }
   ]
 }

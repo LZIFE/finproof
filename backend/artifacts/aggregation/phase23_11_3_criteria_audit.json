@@ -1,0 +1,141 @@
+{
+  "phase": "23.11.3",
+  "description": "20项完成标准逐项核对（纠正上一轮'7/20达标'与'#1-5、#14-19达标'的算术错误：5+6=11≠7，真实应为12/20）",
+  "previous_report_claim": {
+    "claimed": "7/20达标（#1-5,14-19）",
+    "claimed_items": ["#1-5", "#14-19"],
+    "claimed_item_count": 11,
+    "arithmetic_error": "5+6=11项 ≠ 7项，报告计数自相矛盾"
+  },
+  "corrected_audit": [
+    {
+      "no": 1, "criterion": "Claim Router进入真实主链",
+      "executed": true, "status": "PASS",
+      "evidence": "backend/app/services/verification/verification_service.py verify_evidence_set 调用 route_claim；tests/test_phase23_11_3_required_coverage.py test_full_pipeline_integration 通过",
+      "artifact": "backend/app/services/claim_router.py; backend/tests/test_phase23_11_3_required_coverage.py"
+    },
+    {
+      "no": 2, "criterion": "Structured与Narrative Retrieval真实分流",
+      "executed": true, "status": "PASS",
+      "evidence": "retrieve_via_channels Channel A/B 按路由分发；structured_metrics.json(n=34)+narrative_metrics.json(n=6)",
+      "artifact": "backend/app/services/evidence_retrieval/service.py; backend/artifacts/retrieval/phase23_11_{structured,narrative}_metrics.json"
+    },
+    {
+      "no": 3, "criterion": "Evidence Gate进入Verification之前",
+      "executed": true, "status": "PASS",
+      "evidence": "verify_evidence_set 在 core_verify 前调用 evaluate_all；path_counts gate_call_count=43",
+      "artifact": "backend/artifacts/evaluation/phase23_11_core_oracle.json path_counts"
+    },
+    {
+      "no": 4, "criterion": "不再把全部Top5直接交给Verification",
+      "executed": true, "status": "PASS",
+      "evidence": "Selector Top1/Top3/Top5，max_evidence=3；dev_e2e 3 strategies 全部 max_evidence<=3",
+      "artifact": "backend/app/services/evidence_selector.py; backend/artifacts/e2e/phase23_11_development_e2e.json"
+    },
+    {
+      "no": 5, "criterion": "Phase 23.10退化案例完成逐Claim解释",
+      "executed": true, "status": "PASS",
+      "evidence": "regression_diff.json diff[]=43条逐claim；11 regressions + 12 persistent + 4 improvements",
+      "artifact": "backend/artifacts/e2e/phase23_11_regression_diff.json"
+    },
+    {
+      "no": 6, "criterion": "Phase 23.9正确但Phase 23.10错误的案例至少恢复80%",
+      "executed": true, "status": "FAIL",
+      "evidence": "recovery_target_pct=47.8%（11条回归仅恢复部分，<80%）",
+      "artifact": "backend/artifacts/e2e/phase23_11_regression_diff.json summary.recovery_target_pct"
+    },
+    {
+      "no": 7, "criterion": "Evidence Gate precision ≥0.80",
+      "executed": true, "status": "FAIL",
+      "evidence": "precision=0.0625（accepted_gold=19 / accepted_total=304）",
+      "artifact": "backend/artifacts/evidence_gate/phase23_11_gate_metrics.json metrics.precision"
+    },
+    {
+      "no": 8, "criterion": "accepted_noise_rate ≤0.15",
+      "executed": true, "status": "FAIL",
+      "evidence": "accepted_noise_rate=0.9375",
+      "artifact": "backend/artifacts/evidence_gate/phase23_11_gate_metrics.json metrics.accepted_noise_rate"
+    },
+    {
+      "no": 9, "criterion": "Real E2E Accuracy ≥0.70",
+      "executed": true, "status": "FAIL",
+      "evidence": "accuracy=0.3256 (14/43)",
+      "artifact": "backend/artifacts/e2e/phase23_11_development_e2e.json strategies[gate].accuracy"
+    },
+    {
+      "no": 10, "criterion": "Real E2E Macro-F1 ≥0.60",
+      "executed": true, "status": "FAIL",
+      "evidence": "macro_f1=0.4238",
+      "artifact": "backend/artifacts/e2e/phase23_11_development_e2e.json strategies[gate].macro_f1"
+    },
+    {
+      "no": 11, "criterion": "selective_accuracy ≥0.80",
+      "executed": true, "status": "FAIL",
+      "evidence": "真实非弃权样本 selective_accuracy=0.3256（43条全部有输出，无选择性优势）",
+      "artifact": "backend/artifacts/e2e/phase23_11_development_e2e.json strategies[gate]"
+    },
+    {
+      "no": 12, "criterion": "coverage ≥0.65",
+      "executed": true, "status": "FAIL",
+      "evidence": "coverage=0.4651 (20/43)",
+      "artifact": "backend/artifacts/e2e/phase23_11_development_e2e.json strategies[gate].coverage"
+    },
+    {
+      "no": 13, "criterion": "verification错误 ≤3",
+      "executed": true, "status": "FAIL",
+      "evidence": "verification_failures=29（Top3/Gate策略）",
+      "artifact": "backend/artifacts/e2e/phase23_11_development_e2e.json strategies[gate].verification_failures"
+    },
+    {
+      "no": 14, "criterion": "Oracle Accuracy保持≥0.90",
+      "executed": true, "status": "PASS",
+      "evidence": "phase23_9_oracle_eval accuracy=1.0（43/43，Gold Block 直接 core_verify）",
+      "artifact": "backend/artifacts/oracle/phase23_9_oracle_eval.json"
+    },
+    {
+      "no": 15, "criterion": "Oracle Macro-F1保持≥0.85",
+      "executed": true, "status": "PASS",
+      "evidence": "macro_f1=1.0",
+      "artifact": "backend/artifacts/oracle/phase23_9_oracle_eval.json"
+    },
+    {
+      "no": 16, "criterion": "Metamorphic测试继续达标",
+      "executed": true, "status": "PASS",
+      "evidence": "invariance=1.0, contradiction=0.9021, removal=0.9429, all_met=True",
+      "artifact": "backend/artifacts/integrity/phase23_10_metamorphic_results.json rates/all_met"
+    },
+    {
+      "no": 17, "criterion": "pytest连续5次通过",
+      "executed": true, "status": "PASS",
+      "evidence": "845 passed × 5（文档记载；本轮重新执行见 phase23_11_3_acceptance.json）",
+      "artifact": "docs/finproof_progress.md §Phase 23.11 最终 验证结果"
+    },
+    {
+      "no": 18, "criterion": "frontend build连续3次成功",
+      "executed": true, "status": "PASS",
+      "evidence": "成功 × 3（文档记载；本轮重新执行见 phase23_11_3_acceptance.json）",
+      "artifact": "docs/finproof_progress.md §Phase 23.11 最终 验证结果"
+    },
+    {
+      "no": 19, "criterion": "E2E连续2次一致",
+      "executed": true, "status": "PASS",
+      "evidence": "一致 × 2（文档记载；本轮重新执行见 phase23_11_3_acceptance.json）",
+      "artifact": "docs/finproof_progress.md §Phase 23.11 最终 验证结果"
+    },
+    {
+      "no": 20, "criterion": "创建新Git commit",
+      "executed": true, "status": "PASS",
+      "evidence": "commit 8702ba0e0cf2c20c96dd3aa8a4207cd928fd02a9 (feat(phase23.11))",
+      "artifact": "git rev-parse HEAD"
+    }
+  ],
+  "corrected_summary": {
+    "PASS": ["#1", "#2", "#3", "#4", "#5", "#14", "#15", "#16", "#17", "#18", "#19", "#20"],
+    "FAIL": ["#6", "#7", "#8", "#9", "#10", "#11", "#12", "#13"],
+    "pass_count": 12,
+    "fail_count": 8,
+    "total": 20,
+    "pass_ratio": "12/20（非7/20，非11/20）",
+    "conclusion": "Phase 23.11 不标记 Competition-Usable；Gate Precision 0.062 与 Real E2E 0.326 为主要未达标项"
+  }
+}

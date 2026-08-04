@@ -21,6 +21,7 @@ from typing import Literal
 from app.services.verification_contract import (
     EvidenceVerificationResult, ClaimAggregationResult,
 )
+from app.services.evaluation_claim_schema import normalize_verdict_for_evaluation
 
 
 # Aggregation rule IDs (§4)
@@ -32,6 +33,10 @@ RULE_CONFLICT = "CONFLICT_DETECTED"
 RULE_ALL_INSUFFICIENT = "ALL_INSUFFICIENT"
 RULE_EMPTY = "EMPTY_SELECTION"
 RULE_NOISE_ONLY = "NOISE_ONLY"
+
+# Evidence types considered narrative / qualitative (low-confidence narrative
+# evidence must NOT override structured financial evidence, §8)
+NARRATIVE_TYPE_MARKERS = ("narrative", "qualitative", "text", "mention", "commentary")
 
 
 def _is_high_quality(ev: EvidenceVerificationResult) -> bool:
@@ -46,15 +51,26 @@ def _is_high_quality(ev: EvidenceVerificationResult) -> bool:
     return core_match
 
 
+def _is_narrative_low_confidence(ev: EvidenceVerificationResult) -> bool:
+    """Low-confidence narrative evidence (§8): must NOT override structured
+    financial evidence. Narrative type + confidence below high-quality bar."""
+    etype = str(ev.evidence_type or "").lower()
+    is_narrative = any(m in etype for m in NARRATIVE_TYPE_MARKERS)
+    return is_narrative and ev.evidence_confidence < 0.6
+
+
 def _is_noise(ev: EvidenceVerificationResult) -> bool:
-    """Noise = Gate accepted but与核心 metric/period/scope 无关 (UNKNOWN on core)."""
-    return (
+    """Noise = Gate accepted but与核心 metric/period/scope 无关 (UNKNOWN on core),
+    OR low-confidence narrative that must not participate (§8)."""
+    unrelated = (
         ev.metric_match == "UNKNOWN" and ev.period_match == "UNKNOWN"
         and ev.scope_match == "UNKNOWN"
-    ) or (
+    )
+    mismatched = (
         ev.metric_match == "MISMATCH" or ev.period_match == "MISMATCH"
         or ev.scope_match == "MISMATCH"
     )
+    return unrelated or mismatched or _is_narrative_low_confidence(ev)
 
 
 def aggregate_evidence(
@@ -86,6 +102,8 @@ def aggregate_evidence(
         else:
             decisive.append(ev)
     result.accepted_but_non_decisive = non_decisive_noise_ids
+    result.decisive_evidence_ids = [ev.evidence_id for ev in decisive]
+    result.non_decisive_evidence_ids = list(non_decisive_noise_ids)
 
     # If only noise → INSUFFICIENT (noise 不参与聚合)
     if not decisive:
@@ -108,12 +126,24 @@ def aggregate_evidence(
     result.high_confidence_supported_count = sum(1 for ev in supported if _is_high_quality(ev))
     result.high_confidence_refuted_count = sum(1 for ev in refuted if _is_high_quality(ev))
 
+    def _set(verdict: str, rule: str, reason: str = "", conflict_ids: list | None = None):
+        result.aggregation_rule = rule
+        result.internal_verdict = verdict
+        # 唯一外部评测映射 (§5) — 禁止自行映射
+        result.external_verdict = normalize_verdict_for_evaluation(verdict)
+        if reason:
+            result.abstention_reason = reason
+        if conflict_ids:
+            result.conflict_evidence_ids = list(conflict_ids)
+
     # §4 single evidence
     if len(decisive) == 1:
         ev = decisive[0]
         result.aggregation_rule = RULE_SINGLE_EVIDENCE
         result.internal_verdict = ev.evidence_verdict or "INSUFFICIENT_EVIDENCE"
-        result.external_verdict = ev.evidence_verdict or "INSUFFICIENT_EVIDENCE"
+        result.external_verdict = normalize_verdict_for_evaluation(
+            ev.evidence_verdict or "INSUFFICIENT_EVIDENCE"
+        )
         result.confidence = ev.evidence_confidence
         return result
 
@@ -121,69 +151,57 @@ def aggregate_evidence(
     hq_refuted = [ev for ev in refuted if _is_high_quality(ev)]
     if hq_refuted:
         # 不得被多个低质量 SUPPORTED 覆盖
-        result.aggregation_rule = RULE_REFUTED_PRIORITY
-        result.internal_verdict = "REFUTED"
-        result.external_verdict = "REFUTED"
         result.confidence = max(ev.evidence_confidence for ev in hq_refuted)
         # Check if also high-quality SUPPORTED → conflict
         hq_supported = [ev for ev in supported if _is_high_quality(ev)]
         if hq_supported:
             result.conflict_detected = True
-            result.aggregation_rule = RULE_CONFLICT
-            result.internal_verdict = "CONFLICTING_EVIDENCE"
-            result.external_verdict = "INSUFFICIENT_EVIDENCE"
-            result.abstention_reason = (
+            _set(
+                "CONFLICTING_EVIDENCE", RULE_CONFLICT,
                 "high-quality SUPPORTED + high-quality REFUTED conflict; "
-                "cannot resolve by majority vote"
+                "cannot resolve by majority vote",
+                conflict_ids=[ev.evidence_id for ev in hq_supported + hq_refuted],
             )
+        else:
+            _set("REFUTED", RULE_REFUTED_PRIORITY)
         return result
 
     # §4 证据冲突: high-quality SUPPORTED + high-quality REFUTED 同时
     hq_supported = [ev for ev in supported if _is_high_quality(ev)]
     if hq_supported and hq_refuted:
         result.conflict_detected = True
-        result.aggregation_rule = RULE_CONFLICT
-        result.internal_verdict = "CONFLICTING_EVIDENCE"
-        result.external_verdict = "INSUFFICIENT_EVIDENCE"
-        result.abstention_reason = "conflict between high-quality SUPPORTED and REFUTED"
+        _set(
+            "CONFLICTING_EVIDENCE", RULE_CONFLICT,
+            "conflict between high-quality SUPPORTED and REFUTED",
+            conflict_ids=[ev.evidence_id for ev in hq_supported + hq_refuted],
+        )
         return result
 
-    # §4 明确支持: 所有高质量 Evidence 一致 SUPPORTED
-    if hq_supported and not refuted and not partial:
-        result.aggregation_rule = RULE_ALL_SUPPORTED
-        result.internal_verdict = "SUPPORTED"
-        result.external_verdict = "SUPPORTED"
+    # §4 明确支持: 所有高质量 Evidence 一致 SUPPORTED (无 REFUTED / PARTIAL /
+    # INSUFFICIENT 混合 — 否则属于多组成部分部分支持)
+    if hq_supported and not refuted and not partial and not insufficient:
+        _set("SUPPORTED", RULE_ALL_SUPPORTED)
         result.confidence = max(ev.evidence_confidence for ev in hq_supported)
         return result
 
     # §4 部分支持: 部分 SUPPORTED + 其余缺失 + 无冲突 → PARTIALLY_SUPPORTED
     if (supported or partial) and not refuted:
         if partial or (insufficient and supported):
-            result.aggregation_rule = RULE_PARTIAL
-            result.internal_verdict = "PARTIALLY_SUPPORTED"
-            result.external_verdict = "PARTIALLY_SUPPORTED"
+            _set("PARTIALLY_SUPPORTED", RULE_PARTIAL)
             result.confidence = max((ev.evidence_confidence for ev in supported + partial), default=0.5)
         else:
             # all decisive are SUPPORTED (no partial, no insufficient)
-            result.aggregation_rule = RULE_ALL_SUPPORTED
-            result.internal_verdict = "SUPPORTED"
-            result.external_verdict = "SUPPORTED"
+            _set("SUPPORTED", RULE_ALL_SUPPORTED)
             result.confidence = max((ev.evidence_confidence for ev in supported), default=0.5)
         return result
 
     # §4 全弃权
     if insufficient and not supported and not refuted and not partial:
-        result.aggregation_rule = RULE_ALL_INSUFFICIENT
-        result.internal_verdict = "INSUFFICIENT_EVIDENCE"
-        result.external_verdict = "INSUFFICIENT_EVIDENCE"
-        result.abstention_reason = "all evidence INSUFFICIENT"
+        _set("INSUFFICIENT_EVIDENCE", RULE_ALL_INSUFFICIENT, "all evidence INSUFFICIENT")
         return result
 
     # Fallback
-    result.aggregation_rule = RULE_ALL_INSUFFICIENT
-    result.internal_verdict = "INSUFFICIENT_EVIDENCE"
-    result.external_verdict = "INSUFFICIENT_EVIDENCE"
-    result.abstention_reason = "unhandled aggregation case"
+    _set("INSUFFICIENT_EVIDENCE", RULE_ALL_INSUFFICIENT, "unhandled aggregation case")
     return result
 
 

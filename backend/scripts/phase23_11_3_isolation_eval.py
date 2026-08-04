@@ -36,6 +36,8 @@ from app.services.evidence_gate import GateConfig, evaluate_all
 from app.services.evidence_selector import SelectorConfig, select
 from app.services.verification.core_pipeline import IntegrationTrace, core_verify
 from app.services.verification.base import VerificationResult
+from app.services.verification_contract import EvidenceVerificationResult
+from app.services.evidence_aggregation import aggregate_evidence
 
 ART = BACKEND / "artifacts"
 AGG_DIR = ART / "aggregation"
@@ -261,55 +263,54 @@ def stage_d_full(claims, raw_by, gold_ev_by):
             if e:
                 b["text"] = str(e.get("evidence_text") or e.get("text") or "")
         # Evidence-level verify: core_verify on each single evidence
-        evidence_verdicts = []
+        # Build EvidenceVerificationResult (共享契约, 不只传字符串摘要)
+        ev_results = []
         for b in bundle_sel:
             trace = IntegrationTrace(claim_id=cc.claim_id)
             try:
                 r = core_verify(claim, [b], trace)
-                ev = r.verification_status
+                ev_raw = r.verification_status
+                ev_conf = r.confidence
+                rule_id = getattr(trace, "rule_id", "") or ""
+                calc_val = getattr(r, "calculated_value", None)
             except Exception:
-                ev = "INSUFFICIENT_EVIDENCE"
-            evidence_verdicts.append(normalize_verdict_for_evaluation(ev))
-        # Aggregation (§4 真值表)
-        pred = _aggregate(evidence_verdicts, bundle_sel, gate_results)
+                ev_raw = "INSUFFICIENT_EVIDENCE"; ev_conf = 0.2
+                rule_id = ""; calc_val = None
+            ev_norm = normalize_verdict_for_evaluation(ev_raw)
+            gate_r = next((g for g in gate_results if g.evidence_id == b.get("evidence_id")), None)
+            ev_results.append(EvidenceVerificationResult(
+                claim_id=cc.claim_id,
+                evidence_id=str(b.get("evidence_id") or "?"),
+                evidence_text=str(b.get("text", ""))[:200],
+                evidence_type=str(b.get("evidence_type", "")),
+                gate_quality_score=gate_r.final_quality_score if gate_r else 0.0,
+                gate_status="ACCEPTED" if gate_r and gate_r.accepted else "REJECTED",
+                selector_rank=1,
+                entity_match=gate_r.entity_state if gate_r else "UNKNOWN",
+                metric_match=gate_r.metric_state if gate_r else "UNKNOWN",
+                period_match=gate_r.period_state if gate_r else "UNKNOWN",
+                unit_match=gate_r.unit_state if gate_r else "UNKNOWN",
+                scope_match=gate_r.scope_state if gate_r else "UNKNOWN",
+                numeric_match="UNKNOWN",
+                evidence_verdict=ev_norm, evidence_confidence=ev_conf,
+                rule_id=rule_id, calculated_value=calc_val,
+            ))
+        # Aggregation (§4 真值表, 共享契约)
+        agg = aggregate_evidence(cc.claim_id, ev_results)
+        pred = agg.external_verdict
         if pred == cc.expected_verdict: correct += 1
         confusion[(cc.expected_verdict, pred)] += 1
         pred_c[pred] += 1; gold_c[cc.expected_verdict] += 1
-        rows.append({"claim_id": cc.claim_id, "pred": pred,
-                     "evidence_verdicts": evidence_verdicts})
+        rows.append({
+            "claim_id": cc.claim_id, "pred": pred,
+            "evidence_verdicts": [r.evidence_verdict for r in ev_results],
+            "aggregation_rule": agg.aggregation_rule,
+            "conflict_detected": agg.conflict_detected,
+            "decisive_evidence_ids": agg.decisive_evidence_ids,
+            "non_decisive_evidence_ids": agg.non_decisive_evidence_ids,
+            "conflict_evidence_ids": agg.conflict_evidence_ids,
+        })
     return _metrics(claims, rows, correct, missing, confusion, pred_c, gold_c), rows
-
-
-def _aggregate(evidence_verdicts: list[str], bundle_sel: list[dict], gate_results: list) -> str:
-    """§4 aggregation真值表.
-
-    - 明确反驳优先 (high-quality REFUTED) 不得被低质量 SUPPORTED 覆盖
-    - 所有高质量 SUPPORTED 一致 → SUPPORTED
-    - 部分 SUPPORTED + 缺失 + 无冲突 → PARTIALLY_SUPPORTED
-    - 高质量 SUPPORTED + REFUTED 同时 → conflict → INSUFFICIENT_EVIDENCE
-    """
-    if not evidence_verdicts:
-        return "INSUFFICIENT_EVIDENCE"
-    supported = [v for v in evidence_verdicts if v == "SUPPORTED"]
-    refuted = [v for v in evidence_verdicts if v == "REFUTED"]
-    partial = [v for v in evidence_verdicts if v == "PARTIALLY_SUPPORTED"]
-    insufficient = [v for v in evidence_verdicts if v == "INSUFFICIENT_EVIDENCE"]
-    # 明确反驳优先: high-quality REFUTED exists
-    if refuted and not supported:
-        return "REFUTED"
-    # 所有一致 SUPPORTED
-    if supported and not refuted and not partial:
-        return "SUPPORTED"
-    # 部分 SUPPORTED + 缺失 + 无冲突
-    if (supported or partial) and not refuted:
-        return "PARTIALLY_SUPPORTED" if partial else "SUPPORTED"
-    # 冲突: SUPPORTED + REFUTED 同时
-    if supported and refuted:
-        return "INSUFFICIENT_EVIDENCE"  # conflict → 弃权
-    # 全弃权
-    if insufficient and not supported and not refuted and not partial:
-        return "INSUFFICIENT_EVIDENCE"
-    return "INSUFFICIENT_EVIDENCE"
 
 
 def main() -> int:

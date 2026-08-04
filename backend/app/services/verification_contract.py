@@ -110,6 +110,10 @@ class ClaimAggregationResult:
     abstention_reason: str = ""
     # Non-decisive noise tracking
     accepted_but_non_decisive: list = field(default_factory=list)
+    # §8 explicit ID sets (output required by phase23_11_3)
+    decisive_evidence_ids: list = field(default_factory=list)
+    non_decisive_evidence_ids: list = field(default_factory=list)
+    conflict_evidence_ids: list = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -129,6 +133,9 @@ class ClaimAggregationResult:
             "confidence": round(self.confidence, 4),
             "abstention_reason": self.abstention_reason,
             "accepted_but_non_decisive": self.accepted_but_non_decisive,
+            "decisive_evidence_ids": self.decisive_evidence_ids,
+            "non_decisive_evidence_ids": self.non_decisive_evidence_ids,
+            "conflict_evidence_ids": self.conflict_evidence_ids,
         }
 
 

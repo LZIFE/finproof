@@ -20,6 +20,7 @@
 | `docs/phase23_11_evidence_routing_and_gate.md` | Phase 23.11 Evidence Routing、Precision Gate 与真实 E2E 止损修复 |
 | `docs/phase23_11_1_evaluation_repair.md` | Phase 23.11.1 评测链路修复与真实 E2E 结果 |
 | `docs/phase23_11_2_gate_semantics_and_calibration.md` | Phase 23.11.2 Evidence Gate 语义修复、阈值校准与真实 E2E 恢复 |
+| `docs/phase23_11_3_aggregation_contract.md` | Phase 23.11.3 Evidence 聚合契约、Verdict 映射与逐层真值对账 |
 
 ## 目录结构
 

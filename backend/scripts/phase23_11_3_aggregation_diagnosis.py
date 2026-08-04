@@ -37,6 +37,7 @@ from app.services.verification_contract import (
     STAGE_EVALUATION_JOIN,
 )
 from app.services.verification.core_pipeline import IntegrationTrace, core_verify
+from app.services.evidence_aggregation import RULE_EMPTY
 
 ART = BACKEND / "artifacts"
 AGG_DIR = ART / "aggregation"
@@ -113,6 +114,46 @@ def diagnose() -> int:
         claim = _build_claim(cc, raw)
         gold = cc.expected_verdict
 
+        # ------------------------------------------------------------------
+        # Data-gap guard: NO gold evidence for this claim
+        # ------------------------------------------------------------------
+        if not gold_ev:
+            # Pipeline abstains (empty selection → INSUFFICIENT_EVIDENCE)
+            final_prediction = "INSUFFICIENT_EVIDENCE"
+            is_correct = final_prediction == gold
+            if is_correct:
+                first_div = STAGE_NONE
+                root = "correct abstention (no gold evidence, gold=INSUFFICIENT_EVIDENCE)"
+            else:
+                # gold expects a definite/non-abstention class but annotations
+                # provide no evidence — input data gap, NOT a pipeline stage bug.
+                first_div = STAGE_CANONICAL_ADAPTER
+                root = (
+                    f"gold-data gap: gold_evidence.json has no evidence for claim; "
+                    f"pipeline abstains (gold={gold})"
+                )
+            if first_div != STAGE_NONE:
+                stage_error_counter[first_div] += 1
+            if is_correct:
+                correct += 1
+            rows.append({
+                "claim_id": cid,
+                "expected_verdict": gold,
+                "gold_evidence_ids": [],
+                "gate_accepted_ids": [],
+                "selector_selected_ids": [],
+                "evidence_level_verdicts": [],
+                "evidence_level_confidences": [],
+                "aggregation_rule": RULE_EMPTY,
+                "internal_verdict": "INSUFFICIENT_EVIDENCE",
+                "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+                "final_prediction": final_prediction,
+                "correct": is_correct,
+                "first_divergence_stage": first_div,
+                "root_cause": root,
+            })
+            continue
+
         # Stage 1: CANONICAL_ADAPTER
         ce_list, _ = adapt_core_oracle(gold_ev, claim, route_claim(claim).route)
         adapter_ok = len(ce_list) == len(gold_ev) and all(ce.text for ce in ce_list)
@@ -125,7 +166,7 @@ def diagnose() -> int:
         gate_accepted = [c for c, r in zip(gold_ev, gate_results) if r.accepted]
         gate_accepted_ids = [str(c.get("evidence_id") or "?") for c in gate_accepted]
         # gate divergence: gold exists but全部被拒
-        gate_divg = bool(gold_ev) and not gate_accepted
+        gate_divg = not gate_accepted
 
         # Stage 3: SELECTOR
         bundle_sel, sel_meta = select(gate_results, routing, SEL_CFG)
@@ -133,7 +174,7 @@ def diagnose() -> int:
         gold_ids_set = {str(e.get("evidence_id") or "?") for e in gold_ev}
         gold_selected = any(str(x) in gold_ids_set for x in sel_ids)
         # selector divergence: gate有accepted gold但selector没选任何gold
-        selector_divg = bool(gate_accepted) and not gold_selected
+        selector_divg = not gold_selected
 
         # Stage 4: CORE_VERIFY (single-evidence-level on each selected)
         # Fill text into bundle
@@ -148,7 +189,6 @@ def diagnose() -> int:
         # evidence-level verdicts
         evidence_level_verdicts = []
         evidence_level_confidences = []
-        core_verify_divg = False
         for b in bundle_sel:
             trace = IntegrationTrace(claim_id=cid)
             try:
@@ -160,14 +200,6 @@ def diagnose() -> int:
             ev_norm = normalize_verdict_for_evaluation(ev_raw)
             evidence_level_verdicts.append(ev_norm)
             evidence_level_confidences.append(round(ev_conf, 4))
-        # core_verify divergence: any selected gold evidence's evidence-level verdict
-        # does NOT match the claim's expected verdict (single-evidence correctness)
-        if bundle_sel:
-            # If single gold selected, its evidence verdict should align with expected
-            for ev_norm in evidence_level_verdicts:
-                if ev_norm != gold and ev_norm != "INSUFFICIENT_EVIDENCE":
-                    core_verify_divg = True
-                    break
 
         # Stage 5: AGGREGATION (§4 真值表)
         from app.services.evidence_aggregation import aggregate_evidence
@@ -191,30 +223,19 @@ def diagnose() -> int:
             ))
         agg_result = aggregate_evidence(cid, ev_results)
         internal_verdict = agg_result.internal_verdict
-        # aggregation divergence: aggregation output differs from the best
-        # single-evidence verdict (i.e., aggregation made it WORSE)
-        aggregation_divg = False
-        if bundle_sel and evidence_level_verdicts:
-            # If any single evidence verdict was correct, aggregation should preserve it
-            any_single_correct = any(v == gold for v in evidence_level_verdicts)
-            if any_single_correct and internal_verdict != gold:
-                aggregation_divg = True
 
         # Stage 6: VERDICT_NORMALIZATION
         external_verdict = normalize_verdict_for_evaluation(internal_verdict)
-        # normalization divergence: normalized != internal (mapping changed it)
-        norm_divg = external_verdict != internal_verdict and internal_verdict not in (
-            "CONFLICTING_EVIDENCE", "AMBIGUOUS_EVIDENCE",
-        )
 
-        # Stage 7: EVALUATION_JOIN (final prediction == external_verdict)
+        # Stage 7: EVALUATION_JOIN
         final_prediction = external_verdict
         is_correct = final_prediction == gold
         if is_correct:
             correct += 1
-        eval_join_divg = (not is_correct) and (not norm_divg) and (not aggregation_divg) and (not core_verify_divg) and (not selector_divg) and (not gate_divg) and (not adapter_divg)
 
-        # Determine first_divergence_stage
+        # ------------------------------------------------------------------
+        # Honest first-divergence attribution (逐层对账, NOT AGGREGATION_WRONG dump)
+        # ------------------------------------------------------------------
         first_div = STAGE_NONE
         if adapter_divg:
             first_div = STAGE_CANONICAL_ADAPTER
@@ -222,16 +243,28 @@ def diagnose() -> int:
             first_div = STAGE_GATE
         elif selector_divg:
             first_div = STAGE_SELECTOR
-        elif core_verify_divg:
-            first_div = STAGE_CORE_VERIFY
-        elif aggregation_divg:
-            first_div = STAGE_AGGREGATION
-        elif norm_divg:
-            first_div = STAGE_VERDICT_NORMALIZATION
-        elif eval_join_divg:
-            first_div = STAGE_EVALUATION_JOIN
-        else:
+        elif is_correct:
             first_div = STAGE_NONE
+        else:
+            # Not correct. Attribute to the FIRST stage that diverged.
+            # (a) no selected evidence → cannot happen here (gate_divg/selector_divg handled)
+            # (b) evidence-level: does any selected gold evidence's verdict match gold?
+            any_single_correct = any(v == gold for v in evidence_level_verdicts)
+            if not bundle_sel or not any_single_correct:
+                # core_verify never produced the gold verdict at evidence level
+                # (includes ALL-ABSTAIN case: gold wants a definite verdict but
+                #  core_verify abstained on every selected evidence)
+                first_div = STAGE_CORE_VERIFY
+            elif internal_verdict != gold:
+                # a correct single-evidence verdict existed but aggregation
+                # produced a different verdict (or conflict→abstention)
+                first_div = STAGE_AGGREGATION
+            elif external_verdict != internal_verdict:
+                # internal was correct but normalization mapping changed it
+                first_div = STAGE_VERDICT_NORMALIZATION
+            else:
+                # residual join mismatch (gold label normalization differs, etc.)
+                first_div = STAGE_EVALUATION_JOIN
 
         if first_div != STAGE_NONE:
             stage_error_counter[first_div] += 1

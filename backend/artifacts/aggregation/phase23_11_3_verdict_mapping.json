@@ -1,0 +1,245 @@
+{
+  "phase": "23.11.3",
+  "script": "phase23_11_3_verdict_mapping",
+  "description": "§5 唯一 Verdict 映射函数 normalize_verdict_for_evaluation 的完整映射表与全状态覆盖测试",
+  "canonical_verdicts": [
+    "INSUFFICIENT_EVIDENCE",
+    "OPINION_OR_FORECAST",
+    "PARTIALLY_SUPPORTED",
+    "REFUTED",
+    "SUPPORTED",
+    "UNABLE_TO_DETERMINE"
+  ],
+  "mapping_table": {
+    "INSUFFICIENT_EVIDENCE (canonical)": "INSUFFICIENT_EVIDENCE",
+    "OPINION_OR_FORECAST (canonical)": "OPINION_OR_FORECAST",
+    "PARTIALLY_SUPPORTED (canonical)": "PARTIALLY_SUPPORTED",
+    "REFUTED (canonical)": "REFUTED",
+    "SUPPORTED (canonical)": "SUPPORTED",
+    "UNABLE_TO_DETERMINE (canonical)": "UNABLE_TO_DETERMINE",
+    "FORECAST (internal/legacy)": "OPINION_OR_FORECAST",
+    "INSUFFICIENT (internal/legacy)": "INSUFFICIENT_EVIDENCE",
+    "INSUFFICIENT_EVIDENCE (internal/legacy)": "INSUFFICIENT_EVIDENCE",
+    "NO_EVIDENCE (internal/legacy)": "INSUFFICIENT_EVIDENCE",
+    "OPINION (internal/legacy)": "OPINION_OR_FORECAST",
+    "OPINION_OR_FORECAST (internal/legacy)": "OPINION_OR_FORECAST",
+    "PARTIAL (internal/legacy)": "PARTIALLY_SUPPORTED",
+    "PARTIALLY (internal/legacy)": "PARTIALLY_SUPPORTED",
+    "PARTIALLY_SUPPORTED (internal/legacy)": "PARTIALLY_SUPPORTED",
+    "REFUTED (internal/legacy)": "REFUTED",
+    "SUPPORTED (internal/legacy)": "SUPPORTED",
+    "UNABLE (internal/legacy)": "UNABLE_TO_DETERMINE",
+    "UNABLE_TO_DETERMINE (internal/legacy)": "UNABLE_TO_DETERMINE",
+    "UNDETERMINED (internal/legacy)": "UNABLE_TO_DETERMINE",
+    "AMBIGUOUS (extended)": "INSUFFICIENT_EVIDENCE",
+    "AMBIGUOUS_EVIDENCE (extended)": "INSUFFICIENT_EVIDENCE",
+    "CONFLICT (extended)": "INSUFFICIENT_EVIDENCE",
+    "CONFLICTING_EVIDENCE (extended)": "INSUFFICIENT_EVIDENCE",
+    "ERROR (extended)": "INSUFFICIENT_EVIDENCE",
+    "NONE (extended)": "INSUFFICIENT_EVIDENCE",
+    "PENDING (extended)": "INSUFFICIENT_EVIDENCE",
+    "UNKNOWN (extended)": "INSUFFICIENT_EVIDENCE"
+  },
+  "coverage_test": {
+    "statuses_tested": 22,
+    "adversarial_cases": 24,
+    "total_cases": 46,
+    "violations": [],
+    "pass": true
+  },
+  "rules": {
+    "single_function": "Oracle/Noisy Oracle/Real E2E/confusion matrix/API must all call normalize_verdict_for_evaluation",
+    "forbidden": [
+      "scripts implement their own mapping",
+      "string contains judgement",
+      "UNKNOWN default → SUPPORTED",
+      "OPINION_OR_FORECAST → SUPPORTED"
+    ]
+  },
+  "per_case": [
+    {
+      "input": "AMBIGUOUS",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "AMBIGUOUS_EVIDENCE",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "CONFLICT",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "CONFLICTING_EVIDENCE",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "ERROR",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "FORECAST",
+      "output": "OPINION_OR_FORECAST"
+    },
+    {
+      "input": "INSUFFICIENT",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "INSUFFICIENT_EVIDENCE",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "NONE",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "NO_EVIDENCE",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "OPINION",
+      "output": "OPINION_OR_FORECAST"
+    },
+    {
+      "input": "OPINION_OR_FORECAST",
+      "output": "OPINION_OR_FORECAST"
+    },
+    {
+      "input": "PARTIAL",
+      "output": "PARTIALLY_SUPPORTED"
+    },
+    {
+      "input": "PARTIALLY",
+      "output": "PARTIALLY_SUPPORTED"
+    },
+    {
+      "input": "PARTIALLY_SUPPORTED",
+      "output": "PARTIALLY_SUPPORTED"
+    },
+    {
+      "input": "PENDING",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "REFUTED",
+      "output": "REFUTED"
+    },
+    {
+      "input": "SUPPORTED",
+      "output": "SUPPORTED"
+    },
+    {
+      "input": "UNABLE",
+      "output": "UNABLE_TO_DETERMINE"
+    },
+    {
+      "input": "UNABLE_TO_DETERMINE",
+      "output": "UNABLE_TO_DETERMINE"
+    },
+    {
+      "input": "UNDETERMINED",
+      "output": "UNABLE_TO_DETERMINE"
+    },
+    {
+      "input": "UNKNOWN",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "''",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "None",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "' '",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'SUPPORTED'",
+      "output": "SUPPORTED"
+    },
+    {
+      "input": "'supported'",
+      "output": "SUPPORTED"
+    },
+    {
+      "input": "'  Refuted  '",
+      "output": "REFUTED"
+    },
+    {
+      "input": "'PARTIAL'",
+      "output": "PARTIALLY_SUPPORTED"
+    },
+    {
+      "input": "'INSUFFICIENT'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'UNABLE'",
+      "output": "UNABLE_TO_DETERMINE"
+    },
+    {
+      "input": "'UNDETERMINED'",
+      "output": "UNABLE_TO_DETERMINE"
+    },
+    {
+      "input": "'OPINION'",
+      "output": "OPINION_OR_FORECAST"
+    },
+    {
+      "input": "'FORECAST'",
+      "output": "OPINION_OR_FORECAST"
+    },
+    {
+      "input": "'CONFLICT'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'CONFLICTING_EVIDENCE'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'AMBIGUOUS'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'AMBIGUOUS_EVIDENCE'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'UNKNOWN'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'NONE'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'PENDING'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'ERROR'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'NO_EVIDENCE'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'PARTIALLY'",
+      "output": "PARTIALLY_SUPPORTED"
+    },
+    {
+      "input": "'GARBAGE_STATUS'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "input": "'MIXED_OR_UNKNOWN'",
+      "output": "INSUFFICIENT_EVIDENCE"
+    }
+  ]
+}
