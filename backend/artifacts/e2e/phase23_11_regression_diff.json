@@ -1,0 +1,619 @@
+{
+  "phase": "23.11",
+  "description": "Phase 23.9 vs Phase 23.10 per-claim regression diff",
+  "baseline_commits": {
+    "phase23_9": "bf6089e",
+    "phase23_10": "3dada2c"
+  },
+  "summary": {
+    "total_claims": 43,
+    "regressions_p9_correct_p10_wrong": 11,
+    "persistent_failures_both_wrong": 12,
+    "improvements_p9_wrong_p10_correct": 4,
+    "recovery_target_pct": 47.8
+  },
+  "diff": [
+    {
+      "claim_id": "CLM-001",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "1172",
+        "4329",
+        "495",
+        "189"
+      ],
+      "ranking_change": "+['1172', '189', '4329', '495']",
+      "evidence_noise_added": [
+        "1172",
+        "189",
+        "4329",
+        "495"
+      ],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-002",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "1172",
+        "4329",
+        "495",
+        "189"
+      ],
+      "ranking_change": "+['1172', '189', '4329', '495']",
+      "evidence_noise_added": [
+        "1172",
+        "189",
+        "4329",
+        "495"
+      ],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-003",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "495",
+        "190"
+      ],
+      "ranking_change": "+['190', '495']",
+      "evidence_noise_added": [
+        "190",
+        "495"
+      ],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-004",
+      "phase23_9_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-005",
+      "phase23_9_verdict": "REFUTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-006",
+      "phase23_9_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Phase 23.9 wrong, Phase 23.10 correct (improvement)",
+      "phase23_11_expected_fix": "Maintain Phase 23.10 correctness"
+    },
+    {
+      "claim_id": "CLM-007",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "SUPPORTED",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "14637"
+      ],
+      "ranking_change": "+['14637']",
+      "evidence_noise_added": [
+        "14637"
+      ],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-008",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "SUPPORTED",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "7088",
+        "6265"
+      ],
+      "ranking_change": "+['6265', '7088']",
+      "evidence_noise_added": [
+        "6265",
+        "7088"
+      ],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-009",
+      "phase23_9_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-010",
+      "phase23_9_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-011",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "SUPPORTED",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "14638"
+      ],
+      "ranking_change": "+['14638']",
+      "evidence_noise_added": [
+        "14638"
+      ],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-012",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "193"
+      ],
+      "ranking_change": "+['193']",
+      "evidence_noise_added": [
+        "193"
+      ],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-013",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "5973"
+      ],
+      "ranking_change": "+['5973']",
+      "evidence_noise_added": [
+        "5973"
+      ],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-014",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "192"
+      ],
+      "ranking_change": "+['192']",
+      "evidence_noise_added": [
+        "192"
+      ],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-015",
+      "phase23_9_verdict": "REFUTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-016",
+      "phase23_9_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Phase 23.9 wrong, Phase 23.10 correct (improvement)",
+      "phase23_11_expected_fix": "Maintain Phase 23.10 correctness"
+    },
+    {
+      "claim_id": "CLM-017",
+      "phase23_9_verdict": "REFUTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "189"
+      ],
+      "ranking_change": "+['189']",
+      "evidence_noise_added": [
+        "189"
+      ],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-018",
+      "phase23_9_verdict": "REFUTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-019",
+      "phase23_9_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-020",
+      "phase23_9_verdict": "REFUTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-021",
+      "phase23_9_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_10_verdict": "PARTIALLY_SUPPORTED",
+      "gold_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-022",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "PARTIALLY_SUPPORTED",
+      "gold_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-023",
+      "phase23_9_verdict": "OPINION_OR_FORECAST",
+      "phase23_10_verdict": "OPINION_OR_FORECAST",
+      "gold_verdict": "OPINION_OR_FORECAST",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-024",
+      "phase23_9_verdict": "PARTIALLY_SUPPORTED",
+      "phase23_10_verdict": "PARTIALLY_SUPPORTED",
+      "gold_verdict": "PARTIALLY_SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-025",
+      "phase23_9_verdict": "PARTIALLY_SUPPORTED",
+      "phase23_10_verdict": "PARTIALLY_SUPPORTED",
+      "gold_verdict": "UNABLE_TO_DETERMINE",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-026",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "SUPPORTED",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "6266"
+      ],
+      "ranking_change": "+['6266']",
+      "evidence_noise_added": [
+        "6266"
+      ],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-H01",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "10188",
+        "10497",
+        "10029",
+        "11642"
+      ],
+      "ranking_change": "+['10029', '10188', '10497', '11642']",
+      "evidence_noise_added": [
+        "10029",
+        "10188",
+        "10497",
+        "11642"
+      ],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-H02",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "10188"
+      ],
+      "ranking_change": "+['10188']",
+      "evidence_noise_added": [
+        "10188"
+      ],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-H03",
+      "phase23_9_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-H04",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "phase23_9_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Phase 23.9 wrong, Phase 23.10 correct (improvement)",
+      "phase23_11_expected_fix": "Maintain Phase 23.10 correctness"
+    },
+    {
+      "claim_id": "CLM-H06",
+      "phase23_9_verdict": "REFUTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "10034"
+      ],
+      "ranking_change": "+['10034']",
+      "evidence_noise_added": [
+        "10034"
+      ],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-H07",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "10036"
+      ],
+      "ranking_change": "+['10036']",
+      "evidence_noise_added": [
+        "10036"
+      ],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-H08",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [
+        "10037"
+      ],
+      "ranking_change": "+['10037']",
+      "evidence_noise_added": [
+        "10037"
+      ],
+      "failure_reason": "Phase 23.9 correct, Phase 23.10 wrong (regression)",
+      "phase23_11_expected_fix": "Restore Phase 23.9 verdict via routing + gate"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "phase23_9_verdict": "SUPPORTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Phase 23.9 wrong, Phase 23.10 correct (improvement)",
+      "phase23_11_expected_fix": "Maintain Phase 23.10 correctness"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "phase23_9_verdict": "REFUTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-H11",
+      "phase23_9_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "phase23_9_verdict": "PARTIALLY_SUPPORTED",
+      "phase23_10_verdict": "PARTIALLY_SUPPORTED",
+      "gold_verdict": "SUPPORTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    },
+    {
+      "claim_id": "CLM-H13",
+      "phase23_9_verdict": "REFUTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-H14",
+      "phase23_9_verdict": "OPINION_OR_FORECAST",
+      "phase23_10_verdict": "OPINION_OR_FORECAST",
+      "gold_verdict": "OPINION_OR_FORECAST",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-H15",
+      "phase23_9_verdict": "UNABLE_TO_DETERMINE",
+      "phase23_10_verdict": "UNABLE_TO_DETERMINE",
+      "gold_verdict": "UNABLE_TO_DETERMINE",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-H16",
+      "phase23_9_verdict": "REFUTED",
+      "phase23_10_verdict": "REFUTED",
+      "gold_verdict": "REFUTED",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases correct (no regression)",
+      "phase23_11_expected_fix": "Maintain correctness with Phase 23.11 pipeline"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "phase23_9_verdict": "PARTIALLY_SUPPORTED",
+      "phase23_10_verdict": "PARTIALLY_SUPPORTED",
+      "gold_verdict": "INSUFFICIENT_EVIDENCE",
+      "phase23_9_evidence": [],
+      "phase23_10_evidence": [],
+      "ranking_change": "",
+      "evidence_noise_added": [],
+      "failure_reason": "Both phases wrong (persistent failure)",
+      "phase23_11_expected_fix": "Apply Phase 23.11 routing + gate to recover"
+    }
+  ]
+}

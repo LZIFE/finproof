@@ -375,3 +375,122 @@ def load_weights(session: Session, version: str = "v1") -> dict:
 
         return {**DEFAULT_WEIGHTS, **json.loads(row.weights_json)}
     return dict(DEFAULT_WEIGHTS)
+
+
+# ===========================================================================
+# Phase 23.11: Channel dispatch (retrieve_via_channels)
+# ===========================================================================
+
+# Route types that prefer structured fact index (Channel A)
+_STRUCTURED_ROUTES = frozenset({
+    "STRUCTURED_NUMERIC", "TABLE_METRIC",
+    "PERIOD_COMPARISON", "SCOPE_VALIDATION",
+})
+# Route types that prefer narrative evidence (Channel B)
+_NARRATIVE_ROUTES = frozenset({
+    "NARRATIVE_FACT", "CAUSALITY", "FORECAST",
+})
+
+
+def retrieve_via_channels(
+    session: Session,
+    claim: dict,
+    routing,
+    top_k: int = 5,
+    weights: dict | None = None,
+) -> list[dict]:
+    """Channel dispatch hook (Phase 23.11).
+
+    Routes claims to Channel A (structured fact index) or Channel B
+    (narrative BM25+semantic) based on ClaimRoutingResult.route.
+
+    Structured routes: Channel A primary, Channel B supplementary.
+    Narrative routes: Channel B primary, Channel A supplementary.
+    INSUFFICIENTLY_PARSED: Channel B fallback.
+
+    Returns merged + deduplicated candidate list (dict format compatible
+    with verify_evidence_set).
+    """
+    route = routing.route
+    candidates: list[dict] = []
+
+    # Channel A: Structured Fact Retrieval (FinancialFactIndex)
+    from app.services.financial_fact_index import query_facts
+
+    # Channel B: Narrative Evidence Retrieval (existing retrieve_for_claim)
+    def _narrative_candidates() -> list[dict]:
+        raw = retrieve_for_claim(session, claim, top_k=top_k, weights=weights)
+        # Normalize to verify_evidence_set candidate format
+        out = []
+        for c in raw:
+            out.append({
+                "evidence_id": str(c.get("block_id") or "?"),
+                "block_id": c.get("block_id"),
+                "text": c.get("block_text", "") or "",
+                "page": c.get("page_number"),
+                "page_number": c.get("page_number"),
+                "document_id": c.get("document_id"),
+                "final_score": c.get("final_score", 0.0),
+                "metric_score": c.get("metric_score", 0.0),
+                "value_score": c.get("value_score", 0.0),
+                "period_score": c.get("period_score", 0.0),
+                "evidence_type": c.get("evidence_type", "UNKNOWN"),
+            })
+        return out
+
+    # Channel A query
+    def _structured_candidates() -> list[dict]:
+        facts = query_facts(session, claim, routing, top_k=top_k)
+        # Normalize to verify_evidence_set candidate format
+        out = []
+        for f in facts:
+            out.append({
+                "evidence_id": f.get("evidence_id") or "?",
+                "text": f.get("text", "") or "",
+                "page": f.get("page"),
+                "page_number": f.get("page"),
+                "document_id": f.get("document_id"),
+                "table_id": f.get("table_id"),
+                "row_header": f.get("row_header"),
+                "period_header": f.get("period_header"),
+                "unit": f.get("unit"),
+                "scope": f.get("scope"),
+                "normalized_value": f.get("normalized_value"),
+                "final_score": f.get("final_score", 0.0),
+                "channel": "A_structured",
+            })
+        return out
+
+    # Dispatch based on route
+    if route in _STRUCTURED_ROUTES:
+        # Channel A primary
+        candidates.extend(_structured_candidates())
+        # Channel B supplementary (narrative context)
+        candidates.extend(_narrative_candidates())
+    elif route in _NARRATIVE_ROUTES:
+        # Channel B primary
+        candidates.extend(_narrative_candidates())
+        # Channel A supplementary (numeric context)
+        candidates.extend(_structured_candidates())
+    else:
+        # INSUFFICIENTLY_PARSED: Channel B fallback only
+        candidates.extend(_narrative_candidates())
+
+    # Deduplicate by evidence_id (Channel A + B may overlap)
+    seen: set[str] = set()
+    deduped: list[dict] = []
+    for c in candidates:
+        eid = str(c.get("evidence_id") or "?")
+        if eid in seen or eid == "?":
+            continue
+        seen.add(eid)
+        deduped.append(c)
+
+    # Sort by final_score descending, take top_k
+    deduped.sort(key=lambda c: c.get("final_score", 0.0), reverse=True)
+    return deduped[:top_k]
+
+
+__all__ = [
+    "retrieve_via_channels",
+]

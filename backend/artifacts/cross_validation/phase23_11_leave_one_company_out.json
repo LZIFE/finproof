@@ -1,0 +1,32 @@
+{
+  "phase": "23.11",
+  "script": "phase23_11_leave_one_company_out",
+  "description": "Two-fold leave-one-company-out CV (五粮液 <-> 美的集团)",
+  "claim_counts": {
+    "五粮液": 0,
+    "美的集团": 26,
+    "other": 0,
+    "total": 26
+  },
+  "tunable_parameters": [
+    "metric_match_threshold",
+    "high_quality_threshold",
+    "medium_quality_threshold",
+    "ambiguity_margin",
+    "strategy (Top1/Top3)"
+  ],
+  "forbidden": [
+    "claim-specific parameters",
+    "company-specific parameters",
+    "Gold Page features",
+    "block_id features",
+    "repeated tuning on validation set"
+  ],
+  "fold_a": {
+    "error": "missing 五粮液 or 美的集团 claims"
+  },
+  "fold_b": {
+    "error": "missing 美的集团 or 五粮液 claims"
+  },
+  "stable_weights": {}
+}

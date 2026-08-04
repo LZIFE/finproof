@@ -235,3 +235,127 @@ def run_verification(
                 )
             )
     return results
+
+
+# ===========================================================================
+# Phase 23.11: Canonical verify_evidence_set entry (shared by all 3 modes)
+# ===========================================================================
+
+from app.services.claim_router import route_claim as _route_claim, ClaimRoutingResult  # noqa: E402
+from app.services.evidence_gate import evaluate_all as _gate_evaluate_all  # noqa: E402
+from app.services.evidence_selector import select as _selector_select  # noqa: E402
+from app.services.verification.core_pipeline import (  # noqa: E402
+    IntegrationTrace,
+    core_verify,
+)
+
+
+def verify_evidence_set(
+    claim: dict,
+    evidence_candidates: list[dict],
+    routing_result: "ClaimRoutingResult",
+    verification_context,
+) -> VerificationResult:
+    """Canonical verification entry (Phase 23.11).
+
+    Runs: Evidence Gate -> Evidence Selector -> core_verify.
+    Shared by CORE_ORACLE, NOISY_ORACLE, REAL_E2E.
+    Gold Evidence must pass through Gate and Selector; if Gold is rejected,
+    result is INSUFFICIENT_EVIDENCE (GATE_REJECTED_GOLD), do NOT bypass.
+    """
+    # Initialize trace if not provided
+    if verification_context.trace is None:
+        verification_context.trace = IntegrationTrace(
+            claim_id=str(claim.get("claim_id") or claim.get("claim_uid") or "?")
+        )
+    trace = verification_context.trace
+
+    # Record candidates before gate
+    verification_context.candidates_before_gate = len(evidence_candidates)
+
+    # Step 1: Evidence Gate (pure)
+    gate_results = _gate_evaluate_all(
+        claim, evidence_candidates, routing_result,
+        verification_context.gate_config,
+    )
+    verification_context.candidates_after_gate = sum(
+        1 for r in gate_results if r.accepted
+    )
+
+    # Record gate step in trace
+    trace.detail["phase23_11_gate"] = {
+        "evidence_source": verification_context.evidence_source,
+        "candidates_before_gate": verification_context.candidates_before_gate,
+        "candidates_after_gate": verification_context.candidates_after_gate,
+        "gate_results": [r.to_dict() for r in gate_results],
+    }
+
+    # Step 2: Evidence Selector (pure)
+    evidence_bundle, selection_meta = _selector_select(
+        gate_results, routing_result, verification_context.selector_config,
+    )
+    trace.detail["phase23_11_selector"] = selection_meta.to_dict()
+
+    # Step 3: core_verify (UNCHANGED) with gated evidence
+    final = core_verify(claim, evidence_bundle, trace)
+
+    # Attach routing + selection metadata to trace
+    trace.detail["phase23_11_routing"] = routing_result.to_dict()
+    trace.detail["phase23_11_final"] = {
+        "verification_status": final.verification_status,
+        "confidence": final.confidence,
+    }
+
+    return final
+
+
+def verify_core_oracle(
+    claim: dict,
+    gold_evidence: dict,
+    routing: "ClaimRoutingResult",
+    ctx,
+) -> VerificationResult:
+    """CORE_ORACLE: Gold Evidence -> Gate -> Selector -> core_verify.
+
+    If Gold is rejected by Gate, result is INSUFFICIENT_EVIDENCE
+    (GATE_REJECTED_GOLD), do NOT bypass to protect Oracle 1.0.
+    """
+    return verify_evidence_set(claim, [gold_evidence], routing, ctx)
+
+
+def verify_noisy_oracle(
+    claim: dict,
+    gold_plus_negatives: list[dict],
+    routing: "ClaimRoutingResult",
+    ctx,
+) -> VerificationResult:
+    """NOISY_ORACLE: Gold + Hard Negatives -> Gate -> Selector -> core_verify."""
+    return verify_evidence_set(claim, gold_plus_negatives, routing, ctx)
+
+
+def verify_real_e2e(
+    claim: dict,
+    routing: "ClaimRoutingResult",
+    ctx,
+    session: Session,
+    top_k: int = 5,
+) -> VerificationResult:
+    """REAL_E2E: Claim Router -> Retrieval -> Gate -> Selector -> core_verify."""
+    candidates = retrieve_for_claim(session, claim, top_k=top_k)
+    return verify_evidence_set(claim, candidates, routing, ctx)
+
+
+def verify_claim_production(
+    claim: dict,
+    session: Session,
+    top_k: int = 5,
+) -> VerificationResult:
+    """Production main chain (Phase 23.11).
+
+    Used by real API, Demo, and Real E2E. Unified entry.
+    """
+    from app.services.verification_context import VerificationContext
+
+    routing = _route_claim(claim)
+    ctx = VerificationContext(evidence_source="real_e2e")
+    return verify_real_e2e(claim, routing, ctx, session, top_k=top_k)

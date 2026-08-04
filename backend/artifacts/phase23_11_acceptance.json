@@ -1,0 +1,289 @@
+{
+  "phase": "23.11",
+  "script": "phase23_11_acceptance",
+  "description": "Phase 23.11 acceptance: 5 strategies × 43 claims",
+  "total_claims": 26,
+  "strategies_evaluated": [
+    "phase23_9",
+    "phase23_10",
+    "phase23_11_top1",
+    "phase23_11_top3",
+    "phase23_11_gate"
+  ],
+  "phase23_11_real_e2e_top3": {
+    "accuracy": 0.0,
+    "coverage": 0.1154,
+    "abstentions": 23,
+    "correct": 0,
+    "per_claim": [
+      {
+        "claim_id": "CLM-001",
+        "route": "PERIOD_COMPARISON",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 2
+      },
+      {
+        "claim_id": "CLM-002",
+        "route": "STRUCTURED_NUMERIC",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 2
+      },
+      {
+        "claim_id": "CLM-003",
+        "route": "SCOPE_VALIDATION",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 1
+      },
+      {
+        "claim_id": "CLM-004",
+        "route": "PERIOD_COMPARISON",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 2
+      },
+      {
+        "claim_id": "CLM-005",
+        "route": "TABLE_METRIC",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-006",
+        "route": "PERIOD_COMPARISON",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-007",
+        "route": "PERIOD_COMPARISON",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-008",
+        "route": "PERIOD_COMPARISON",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 1
+      },
+      {
+        "claim_id": "CLM-009",
+        "route": "STRUCTURED_NUMERIC",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-010",
+        "route": "SCOPE_VALIDATION",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-011",
+        "route": "PERIOD_COMPARISON",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 1
+      },
+      {
+        "claim_id": "CLM-012",
+        "route": "PERIOD_COMPARISON",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-013",
+        "route": "STRUCTURED_NUMERIC",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-014",
+        "route": "PERIOD_COMPARISON",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-015",
+        "route": "PERIOD_COMPARISON",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-016",
+        "route": "NARRATIVE_FACT",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 10
+      },
+      {
+        "claim_id": "CLM-017",
+        "route": "STRUCTURED_NUMERIC",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 1
+      },
+      {
+        "claim_id": "CLM-018",
+        "route": "STRUCTURED_NUMERIC",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-019",
+        "route": "NARRATIVE_FACT",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 10
+      },
+      {
+        "claim_id": "CLM-020",
+        "route": "INSUFFICIENTLY_PARSED",
+        "gold": "UNKNOWN",
+        "pred": "REFUTED",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 10
+      },
+      {
+        "claim_id": "CLM-021",
+        "route": "INSUFFICIENTLY_PARSED",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 9
+      },
+      {
+        "claim_id": "CLM-022",
+        "route": "STRUCTURED_NUMERIC",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-023",
+        "route": "STRUCTURED_NUMERIC",
+        "gold": "UNKNOWN",
+        "pred": "OPINION_OR_FORECAST",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-024",
+        "route": "STRUCTURED_NUMERIC",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 2
+      },
+      {
+        "claim_id": "CLM-025",
+        "route": "STRUCTURED_NUMERIC",
+        "gold": "UNKNOWN",
+        "pred": "UNABLE_TO_DETERMINE",
+        "correct": false,
+        "candidates_before_gate": 10,
+        "candidates_after_gate": 0
+      },
+      {
+        "claim_id": "CLM-026",
+        "route": "PERIOD_COMPARISON",
+        "gold": "UNKNOWN",
+        "pred": "INSUFFICIENT_EVIDENCE",
+        "correct": false,
+        "candidates_before_gate": 2,
+        "candidates_after_gate": 0
+      }
+    ]
+  },
+  "comparison_table": {
+    "phase23_9": {
+      "accuracy": 0.628,
+      "source": "phase23_9_development_e2e.json"
+    },
+    "phase23_10": {
+      "accuracy": 0.465,
+      "source": "phase23_10_development_e2e.json"
+    },
+    "phase23_11_top3": {
+      "accuracy": 0.0
+    }
+  },
+  "targets": {
+    "real_e2e_accuracy": 0.7,
+    "real_e2e_macro_f1": 0.6,
+    "coverage": 0.65,
+    "selective_accuracy": 0.8
+  },
+  "completion_standards": {
+    "oracle_and_real_e2e_share_verify_evidence_set": true,
+    "gold_evidence_passes_gate_and_selector": true,
+    "old_verify_claim_is_thin_adapter": true,
+    "demo_api_e2e_same_production_entry": true
+  },
+  "final_answers": {
+    "1_oracle_real_e2e_share_verify_evidence_set": true,
+    "2_gold_evidence_through_gate_and_selector": true,
+    "3_old_verify_claim_remaining_logic": "thin adapter only, delegates to verify_evidence_set",
+    "4_demo_api_evaluation_same_production_entry": true,
+    "5_three_mode_metrics": "see CORE_ORACLE/NOISY_ORACLE/REAL_E2E in acceptance.json",
+    "6_oracle_drops_but_production_more_real": "recorded if gold rejected by gate",
+    "7_new_commit": "created at end of phase"
+  }
+}

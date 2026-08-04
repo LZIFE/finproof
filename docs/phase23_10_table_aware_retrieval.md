@@ -118,3 +118,15 @@ Real E2E Accuracy 0.465 较 Phase 23.9（0.628）回退——主因是 Stage B T
 - backend/app/services/evidence_retrieval/table_context.py / query_planner.py / stage_retrieval.py
 - backend/app/services/verification/multi_evidence.py
 - backend/tests/test_phase23_10_retrieval.py（12 类测试，全通过）
+
+## 五、Phase 23.11 退化修复
+
+Phase 23.11（`docs/phase23_11_evidence_routing_and_gate.md`）针对本阶段的退化做了：
+
+- **Claim Router**（`backend/app/services/claim_router.py`）：8 路由类型，将 STRUCTURED_NUMERIC / TABLE_METRIC / PERIOD_COMPARISON / SCOPE_VALIDATION 路由到结构化 Fact Index，将 NARRATIVE_FACT / CAUSALITY / FORECAST 路由到叙述通道。
+- **Evidence Precision Gate**（`backend/app/services/evidence_gate.py`）：按路由阈值过滤候选，拒绝错误期间 / 错误口径 / 纯巧合两事实。
+- **Evidence Selector**（`backend/app/services/evidence_selector.py`）：Top1 / Top3 / Top5 三策略，最多 3 条 Evidence，检测歧义 margin。
+- **统一 Canonical 入口**（`verify_evidence_set`）：CORE_ORACLE / NOISY_ORACLE / REAL_E2E 共享同一 Gate + Selector + core_verify；Gold Evidence 必须经过 Gate 和 Selector。
+- **Phase 23.9→23.10 退化逐 Claim diff**：`backend/artifacts/e2e/phase23_11_regression_diff.json`，43 条 claim，11 regressions，12 persistent，4 improvements。
+
+Phase 23.10 的 Real E2E Accuracy 0.465 退化主因是 Stage B Top5 引入更多噪声证据（verification_failure 2 → 10）。Phase 23.11 通过 Evidence Gate + Selector 限制噪声进入 Verification。

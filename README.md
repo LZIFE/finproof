@@ -17,6 +17,7 @@
 | `docs/phase23_9_legacy_inventory.md` | Phase 23.9 重复实现分类清单（PRIMARY/LEGACY_USED/TEST_ONLY） |
 | `docs/blind_holdout_user_guide.md` | Blind Holdout 最简用户操作说明（当前 BLOCKED） |
 | `docs/phase23_10_table_aware_retrieval.md` | Phase 23.10 Table-aware Retrieval 与 E2E 鲁棒性修复结果 |
+| `docs/phase23_11_evidence_routing_and_gate.md` | Phase 23.11 Evidence Routing、Precision Gate 与真实 E2E 止损修复 |
 
 ## 目录结构
 
