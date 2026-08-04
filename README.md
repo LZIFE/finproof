@@ -67,6 +67,17 @@ pnpm dev            # 默认 http://localhost:3000
 - Phase 0（脚手架）：后端 FastAPI + `/health` + SQLite 连接 + pytest；前端 Next.js 最小首页 + 后端健康状态。
 - Phase 1（演示数据）：候选公司筛选、真实披露文件归档、预埋错误研报、金标准与校验脚本。详见 `docs/finproof_progress.md`。
 
+## 当前阶段（Phase 23.11，PARTIAL — 不标记 Competition-Usable）
+
+- **Claim Router**（8 routes）、**Financial Fact Index**、**Channel A/B 双检索**、**Evidence Precision Gate**、**Evidence Selector (Top1/Top3/Top5)**、**Evidence Margin/弃权** 全部进入真实主链。
+- **Oracle**：Accuracy=1.0，Macro-F1=1.0（连续 2 次一致）。
+- **Real E2E**：Accuracy=0.326，Macro-F1=0.424，coverage=0.465，abstentions=23（连续 2 次一致）。
+- **Metamorphic**：invariance=1.0，contradiction=0.9021，removal=0.9429，all_met=True。
+- **pytest**：845 passed ×5；**frontend build**：success ×3。
+- **Blind Holdout**：仍 BLOCKED（需补充两家全新公司 PDF 与待审计报告）。
+
+**未达标**：Real E2E Accuracy 0.326 < 0.70；Evidence Gate precision 0.062 < 0.80；accepted_noise_rate 0.938 > 0.15；coverage 0.465 < 0.65。按 §十五，若真实 E2E 仍低于 0.60，不得继续新增检索特征、不得标记 Competition-Usable，必须选择更窄的比赛演示范围并明确标注不支持的 Claim 类型。
+
 ## 架构原则（摘要）
 
 FinProof 为**混合核验架构**：数字格式化、单位/币种、同比/环比、累计转单季、比率与差异比较由**确定性程序**负责；主张拆解、语义识别、证据支持关系判断、因果/预测检测、修订建议由**大模型**负责；无 API Key 时走明确标识的 **Mock 模式**（输出带"Mock"标识，不伪装为真实模型结果）。详见 `docs/finproof_audit.md` 6.5 节。

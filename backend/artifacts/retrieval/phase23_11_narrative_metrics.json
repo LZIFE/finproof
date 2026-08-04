@@ -1,0 +1,139 @@
+{
+  "phase": "23.11",
+  "script": "phase23_11_narrative_metrics",
+  "description": "Channel B Narrative Evidence Retrieval metrics",
+  "channel": "B_narrative",
+  "eligible_routes": [
+    "CAUSALITY",
+    "FORECAST",
+    "NARRATIVE_FACT"
+  ],
+  "total_evaluated": 6,
+  "metrics": {
+    "page_hit_at_1": 0.1667,
+    "page_hit_at_3": 0.1667,
+    "page_hit_at_5": 0.1667,
+    "block_hit_at_1": 0.1667,
+    "block_hit_at_3": 0.1667,
+    "block_hit_at_5": 0.1667,
+    "recall_at_5": 0.1667,
+    "mrr": 0.1667
+  },
+  "counts": {
+    "page_hit_1": 1,
+    "page_hit_3": 1,
+    "page_hit_5": 1,
+    "block_hit_1": 1,
+    "block_hit_3": 1,
+    "block_hit_5": 1,
+    "recall_at_5": 1
+  },
+  "targets": {
+    "page_hit_at_5": 0.75,
+    "block_hit_at_5": 0.65,
+    "recall_at_5": 0.7,
+    "mrr": 0.4
+  },
+  "per_claim": [
+    {
+      "claim_id": "CLM-016",
+      "route": "NARRATIVE_FACT",
+      "gold_pages": [
+        1
+      ],
+      "top5_pages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "page_hit_1": true,
+      "page_hit_3": true,
+      "page_hit_5": true,
+      "mrr": 1.0
+    },
+    {
+      "claim_id": "CLM-019",
+      "route": "NARRATIVE_FACT",
+      "gold_pages": [
+        17
+      ],
+      "top5_pages": [
+        36,
+        96,
+        97,
+        102,
+        103
+      ],
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "mrr": 0.0
+    },
+    {
+      "claim_id": "CLM-H10",
+      "route": "NARRATIVE_FACT",
+      "gold_pages": [
+        1
+      ],
+      "top5_pages": [
+        2,
+        48,
+        70,
+        119
+      ],
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "mrr": 0.0
+    },
+    {
+      "claim_id": "CLM-H12",
+      "route": "NARRATIVE_FACT",
+      "gold_pages": [
+        6
+      ],
+      "top5_pages": [
+        48,
+        70,
+        71
+      ],
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "mrr": 0.0
+    },
+    {
+      "claim_id": "CLM-H14",
+      "route": "FORECAST",
+      "gold_pages": [],
+      "top5_pages": [
+        2,
+        48,
+        70,
+        119
+      ],
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "mrr": 0.0
+    },
+    {
+      "claim_id": "CLM-H17",
+      "route": "NARRATIVE_FACT",
+      "gold_pages": [],
+      "top5_pages": [
+        7,
+        8,
+        48,
+        70,
+        119
+      ],
+      "page_hit_1": false,
+      "page_hit_3": false,
+      "page_hit_5": false,
+      "mrr": 0.0
+    }
+  ]
+}

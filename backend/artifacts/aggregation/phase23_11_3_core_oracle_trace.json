@@ -1,0 +1,1107 @@
+{
+  "phase": "23.11.3",
+  "script": "phase23_11_3_aggregation_diagnosis",
+  "description": "43 CORE_ORACLE逐层对账: CANONICAL_ADAPTER → GATE → SELECTOR → CORE_VERIFY → AGGREGATION → VERDICT_NORMALIZATION → EVALUATION_JOIN",
+  "sample_count": 43,
+  "correct": 19,
+  "accuracy": 0.4419,
+  "first_divergence_stage_counts": {
+    "EVALUATION_JOIN": 21,
+    "CORE_VERIFY": 3
+  },
+  "stage_error_summary": {
+    "CANONICAL_ADAPTER": 0,
+    "GATE": 0,
+    "SELECTOR": 0,
+    "CORE_VERIFY": 3,
+    "AGGREGATION": 0,
+    "VERDICT_NORMALIZATION": 0,
+    "EVALUATION_JOIN": 21,
+    "NONE (correct)": 19
+  },
+  "first_divergence_stage_taxonomy": [
+    "CANONICAL_ADAPTER",
+    "GATE",
+    "SELECTOR",
+    "CORE_VERIFY",
+    "AGGREGATION",
+    "VERDICT_NORMALIZATION",
+    "EVALUATION_JOIN",
+    "NONE"
+  ],
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-001"
+      ],
+      "gate_accepted_ids": [
+        "EVD-001"
+      ],
+      "selector_selected_ids": [
+        "EVD-001"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.6
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-002",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-002"
+      ],
+      "gate_accepted_ids": [
+        "EVD-002"
+      ],
+      "selector_selected_ids": [
+        "EVD-002"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED"
+      ],
+      "evidence_level_confidences": [
+        0.85
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-003",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-003"
+      ],
+      "gate_accepted_ids": [
+        "EVD-003"
+      ],
+      "selector_selected_ids": [
+        "EVD-003"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.6
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-004",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-004"
+      ],
+      "gate_accepted_ids": [
+        "EVD-004"
+      ],
+      "selector_selected_ids": [
+        "EVD-004"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.4
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-005",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-005",
+        "EVD-006"
+      ],
+      "gate_accepted_ids": [
+        "EVD-005",
+        "EVD-006"
+      ],
+      "selector_selected_ids": [
+        "EVD-005",
+        "EVD-006"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE",
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.4,
+        0.4
+      ],
+      "aggregation_rule": "ALL_INSUFFICIENT",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-006",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-007",
+        "EVD-008"
+      ],
+      "gate_accepted_ids": [
+        "EVD-007",
+        "EVD-008"
+      ],
+      "selector_selected_ids": [
+        "EVD-007",
+        "EVD-008"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE",
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.4,
+        0.4
+      ],
+      "aggregation_rule": "ALL_INSUFFICIENT",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-007",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-009"
+      ],
+      "gate_accepted_ids": [
+        "EVD-009"
+      ],
+      "selector_selected_ids": [
+        "EVD-009"
+      ],
+      "evidence_level_verdicts": [
+        "SUPPORTED"
+      ],
+      "evidence_level_confidences": [
+        0.95
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-008",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-010",
+        "EVD-011"
+      ],
+      "gate_accepted_ids": [
+        "EVD-010",
+        "EVD-011"
+      ],
+      "selector_selected_ids": [
+        "EVD-010",
+        "EVD-011"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED",
+        "SUPPORTED"
+      ],
+      "evidence_level_confidences": [
+        0.85,
+        0.95
+      ],
+      "aggregation_rule": "ALL_INSUFFICIENT",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-009",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-012",
+        "EVD-013"
+      ],
+      "gate_accepted_ids": [
+        "EVD-012",
+        "EVD-013"
+      ],
+      "selector_selected_ids": [
+        "EVD-012",
+        "EVD-013"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE",
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.4,
+        0.4
+      ],
+      "aggregation_rule": "ALL_INSUFFICIENT",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-010",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-014",
+        "EVD-015"
+      ],
+      "gate_accepted_ids": [
+        "EVD-014",
+        "EVD-015"
+      ],
+      "selector_selected_ids": [
+        "EVD-014",
+        "EVD-015"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE",
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.4,
+        0.4
+      ],
+      "aggregation_rule": "ALL_INSUFFICIENT",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-011",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-016"
+      ],
+      "gate_accepted_ids": [
+        "EVD-016"
+      ],
+      "selector_selected_ids": [
+        "EVD-016"
+      ],
+      "evidence_level_verdicts": [
+        "SUPPORTED"
+      ],
+      "evidence_level_confidences": [
+        0.95
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-012",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-017"
+      ],
+      "gate_accepted_ids": [
+        "EVD-017"
+      ],
+      "selector_selected_ids": [
+        "EVD-017"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.6
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-013",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-018"
+      ],
+      "gate_accepted_ids": [
+        "EVD-018"
+      ],
+      "selector_selected_ids": [
+        "EVD-018"
+      ],
+      "evidence_level_verdicts": [
+        "SUPPORTED"
+      ],
+      "evidence_level_confidences": [
+        0.95
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-014",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-019"
+      ],
+      "gate_accepted_ids": [
+        "EVD-019"
+      ],
+      "selector_selected_ids": [
+        "EVD-019"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.6
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-015",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-020",
+        "EVD-021"
+      ],
+      "gate_accepted_ids": [
+        "EVD-020",
+        "EVD-021"
+      ],
+      "selector_selected_ids": [
+        "EVD-020",
+        "EVD-021"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED",
+        "SUPPORTED"
+      ],
+      "evidence_level_confidences": [
+        0.85,
+        0.95
+      ],
+      "aggregation_rule": "ALL_INSUFFICIENT",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-016",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-022"
+      ],
+      "gate_accepted_ids": [
+        "EVD-022"
+      ],
+      "selector_selected_ids": [
+        "EVD-022"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED"
+      ],
+      "evidence_level_confidences": [
+        0.9
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-017",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-023"
+      ],
+      "gate_accepted_ids": [
+        "EVD-023"
+      ],
+      "selector_selected_ids": [
+        "EVD-023"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED"
+      ],
+      "evidence_level_confidences": [
+        0.9
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-018",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-024"
+      ],
+      "gate_accepted_ids": [
+        "EVD-024"
+      ],
+      "selector_selected_ids": [
+        "EVD-024"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED"
+      ],
+      "evidence_level_confidences": [
+        0.85
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-019",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-025"
+      ],
+      "gate_accepted_ids": [
+        "EVD-025"
+      ],
+      "selector_selected_ids": [
+        "EVD-025"
+      ],
+      "evidence_level_verdicts": [
+        "SUPPORTED"
+      ],
+      "evidence_level_confidences": [
+        0.8
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-020",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-026"
+      ],
+      "gate_accepted_ids": [
+        "EVD-026"
+      ],
+      "selector_selected_ids": [
+        "EVD-026"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED"
+      ],
+      "evidence_level_confidences": [
+        0.85
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-021",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_ids": [],
+      "gate_accepted_ids": [],
+      "selector_selected_ids": [],
+      "evidence_level_verdicts": [],
+      "evidence_level_confidences": [],
+      "aggregation_rule": "EMPTY_SELECTION",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-022",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_ids": [],
+      "gate_accepted_ids": [],
+      "selector_selected_ids": [],
+      "evidence_level_verdicts": [],
+      "evidence_level_confidences": [],
+      "aggregation_rule": "EMPTY_SELECTION",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-023",
+      "expected_verdict": "OPINION_OR_FORECAST",
+      "gold_evidence_ids": [],
+      "gate_accepted_ids": [],
+      "selector_selected_ids": [],
+      "evidence_level_verdicts": [],
+      "evidence_level_confidences": [],
+      "aggregation_rule": "EMPTY_SELECTION",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=OPINION_OR_FORECAST, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-024",
+      "expected_verdict": "PARTIALLY_SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-027",
+        "EVD-028"
+      ],
+      "gate_accepted_ids": [
+        "EVD-027",
+        "EVD-028"
+      ],
+      "selector_selected_ids": [
+        "EVD-027",
+        "EVD-028"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED",
+        "SUPPORTED"
+      ],
+      "evidence_level_confidences": [
+        0.85,
+        0.9
+      ],
+      "aggregation_rule": "ALL_INSUFFICIENT",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "CORE_VERIFY",
+      "root_cause": "core_verify evidence-level verdict wrong (gold=PARTIALLY_SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-025",
+      "expected_verdict": "UNABLE_TO_DETERMINE",
+      "gold_evidence_ids": [],
+      "gate_accepted_ids": [],
+      "selector_selected_ids": [],
+      "evidence_level_verdicts": [],
+      "evidence_level_confidences": [],
+      "aggregation_rule": "EMPTY_SELECTION",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=UNABLE_TO_DETERMINE, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-026",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-029"
+      ],
+      "gate_accepted_ids": [
+        "EVD-029"
+      ],
+      "selector_selected_ids": [
+        "EVD-029"
+      ],
+      "evidence_level_verdicts": [
+        "SUPPORTED"
+      ],
+      "evidence_level_confidences": [
+        0.95
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-H01",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-H01"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H01"
+      ],
+      "selector_selected_ids": [
+        "EVD-H01"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.6
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-H02",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-H02"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H02"
+      ],
+      "selector_selected_ids": [
+        "EVD-H02"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.6
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-H03",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-H03"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H03"
+      ],
+      "selector_selected_ids": [
+        "EVD-H03"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.4
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-H04",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-H04"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H04"
+      ],
+      "selector_selected_ids": [
+        "EVD-H04"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.6
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-H05"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H05"
+      ],
+      "selector_selected_ids": [
+        "EVD-H05"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED"
+      ],
+      "evidence_level_confidences": [
+        0.9
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-H06",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-H06"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H06"
+      ],
+      "selector_selected_ids": [
+        "EVD-H06"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED"
+      ],
+      "evidence_level_confidences": [
+        0.9
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-H07",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-H07"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H07"
+      ],
+      "selector_selected_ids": [
+        "EVD-H07"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.6
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-H08",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-H08"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H08"
+      ],
+      "selector_selected_ids": [
+        "EVD-H08"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.6
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-H09"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H09"
+      ],
+      "selector_selected_ids": [
+        "EVD-H09"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED"
+      ],
+      "evidence_level_confidences": [
+        0.9
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-H10"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H10"
+      ],
+      "selector_selected_ids": [
+        "EVD-H10"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED"
+      ],
+      "evidence_level_confidences": [
+        0.9
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-H11",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-H11"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H11"
+      ],
+      "selector_selected_ids": [
+        "EVD-H11"
+      ],
+      "evidence_level_verdicts": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_level_confidences": [
+        0.6
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=SUPPORTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "expected_verdict": "SUPPORTED",
+      "gold_evidence_ids": [
+        "EVD-H12"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H12"
+      ],
+      "selector_selected_ids": [
+        "EVD-H12"
+      ],
+      "evidence_level_verdicts": [
+        "SUPPORTED"
+      ],
+      "evidence_level_confidences": [
+        0.9
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "SUPPORTED",
+      "normalized_external_verdict": "SUPPORTED",
+      "final_prediction": "SUPPORTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-H13",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [],
+      "gate_accepted_ids": [],
+      "selector_selected_ids": [],
+      "evidence_level_verdicts": [],
+      "evidence_level_confidences": [],
+      "aggregation_rule": "EMPTY_SELECTION",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-H14",
+      "expected_verdict": "OPINION_OR_FORECAST",
+      "gold_evidence_ids": [],
+      "gate_accepted_ids": [],
+      "selector_selected_ids": [],
+      "evidence_level_verdicts": [],
+      "evidence_level_confidences": [],
+      "aggregation_rule": "EMPTY_SELECTION",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=OPINION_OR_FORECAST, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-H15",
+      "expected_verdict": "UNABLE_TO_DETERMINE",
+      "gold_evidence_ids": [],
+      "gate_accepted_ids": [],
+      "selector_selected_ids": [],
+      "evidence_level_verdicts": [],
+      "evidence_level_confidences": [],
+      "aggregation_rule": "EMPTY_SELECTION",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "first_divergence_stage": "EVALUATION_JOIN",
+      "root_cause": "evaluation join wrong (gold=UNABLE_TO_DETERMINE, pred=INSUFFICIENT_EVIDENCE)"
+    },
+    {
+      "claim_id": "CLM-H16",
+      "expected_verdict": "REFUTED",
+      "gold_evidence_ids": [
+        "EVD-H16"
+      ],
+      "gate_accepted_ids": [
+        "EVD-H16"
+      ],
+      "selector_selected_ids": [
+        "EVD-H16"
+      ],
+      "evidence_level_verdicts": [
+        "REFUTED"
+      ],
+      "evidence_level_confidences": [
+        0.85
+      ],
+      "aggregation_rule": "SINGLE_EVIDENCE",
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "gold_evidence_ids": [],
+      "gate_accepted_ids": [],
+      "selector_selected_ids": [],
+      "evidence_level_verdicts": [],
+      "evidence_level_confidences": [],
+      "aggregation_rule": "EMPTY_SELECTION",
+      "internal_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
+      "final_prediction": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
+    }
+  ]
+}

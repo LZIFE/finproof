@@ -24,77 +24,158 @@ GATE_DIR = BACKEND / "artifacts" / "evidence_gate"
 OUT_PATH = GATE_DIR / "phase23_11_gate_metrics.json"
 
 
+def _load_labeled_claims() -> tuple[list[dict], list[dict]]:
+    """Load 43 Development Claims joined with gold verdicts + gold evidence.
+
+    Returns (claims, per_claim_seed) where each claim dict carries:
+      claim_id, entity/company, original_text, period, metric, value,
+      unit, scope, gold (expected_verdict), gold_evidence_ids (list[str]),
+      gold_pages (list[int]) — page numbers extracted from gold_evidence.
+
+    Uses the canonical loader (evaluation_claim_schema) which joins
+    gold_claims + gold_verifications + gold_evidence by claim_id.
+    """
+    import json as _json
+    from app.services.evaluation_claim_schema import (
+        load_canonical_claims,
+    )
+
+    # Build page lookup from gold_evidence.json (EVD-id → page).
+    gold_page_by_evd: dict[str, int] = {}
+    data_root = Path(__file__).resolve().parent.parent.parent / "data"
+    for ds in ("demo", "holdout"):
+        ge_path = data_root / ds / "annotations" / "gold_evidence.json"
+        if not ge_path.exists():
+            continue
+        ge_data = _json.loads(ge_path.read_text(encoding="utf-8"))
+        for ev in ge_data.get("evidence", []):
+            eid = str(ev.get("evidence_id") or "")
+            page = ev.get("page")
+            if eid and isinstance(page, int):
+                gold_page_by_evd[eid] = page
+
+    canonical, _issues = load_canonical_claims()
+    claims: list[dict] = []
+    for cc in canonical:
+        d = cc.to_dict()
+        d["entity"] = cc.company
+        d["original_text"] = cc.claim_text
+        d["gold"] = cc.expected_verdict
+        d["gold_verdict"] = cc.expected_verdict
+        geids = cc.gold_evidence_ids or []
+        d["gold_evidence_ids"] = [str(x) for x in geids]
+        # gold_pages: page numbers of gold evidence, for page-level matching
+        d["gold_pages"] = sorted({
+            gold_page_by_evd[eid] for eid in geids
+            if eid in gold_page_by_evd
+        })
+        claims.append(d)
+    return claims, []
+
+
 def run_gate_eval() -> int:
     session = SessionLocal()
     try:
-        # Load 43 Development claims
+        claims, _ = _load_labeled_claims()
         from app.services.evidence_retrieval.service import (
-            load_gold_claims,
             retrieve_for_claim,
         )
 
-        claims = load_gold_claims("demo")
         cfg = GateConfig()
         sel_cfg = SelectorConfig(strategy="Top3", max_evidence=3)
 
-        # Per-claim gate statistics
-        tp = 0  # gold accepted
-        fn = 0  # gold rejected (gate rejected gold)
-        accepted_count = 0
-        noise_accepted = 0
-        noise_total = 0
+        # Aggregate counters
+        # Gold evidence acceptance (recall-oriented)
+        gold_evidence_total = 0  # total gold evidence ids seen across claims
+        gold_evidence_accepted = 0  # gold evidence accepted by gate
+        gold_evidence_rejected = 0  # gold evidence rejected by gate
+
+        # Candidate-level noise (precision-oriented)
+        # "noise" = a candidate that is NOT in gold_evidence_ids but is
+        # ACCEPTED by the gate. "rejected gold" = gold evidence rejected.
+        accepted_noise_count = 0  # accepted candidates that are not gold
+        accepted_total_count = 0  # all accepted candidates
+        accepted_gold_count = 0  # accepted candidates that ARE gold
+
+        rejected_noise_count = 0  # rejected candidates that are not gold
+        rejected_gold_count_total = 0  # rejected candidates that ARE gold
+
         ambiguity_count = 0
         total_claims = len(claims)
 
         per_claim: list[dict] = []
         for claim in claims:
             cid = str(claim.get("claim_id") or "?")
+            gold_eids = set(claim.get("gold_evidence_ids") or [])
+            gold_pages = set(claim.get("gold_pages") or [])
             routing = route_claim(claim)
             # Retrieve candidates via existing channel
             cands_raw = retrieve_for_claim(session, claim, top_k=10)
-            # Normalize to gate candidate format
-            candidates = []
+            # Normalize to gate candidate format; keep a text map for
+            # evidence_id lookup.
+            candidates: list[dict] = []
             for c in cands_raw:
+                eid = str(c.get("block_id") or "?")
                 candidates.append({
-                    "evidence_id": str(c.get("block_id") or "?"),
+                    "evidence_id": eid,
                     "block_id": c.get("block_id"),
                     "text": c.get("block_text", "") or "",
                     "page": c.get("page_number"),
                     "document_id": c.get("document_id"),
                 })
+
             gate_results = evaluate_all(claim, candidates, routing, cfg)
             _, meta = select(gate_results, routing, sel_cfg)
 
-            accepted_now = sum(1 for r in gate_results if r.accepted)
-            accepted_count += accepted_now
+            # Build set of accepted evidence_ids
+            accepted_ids = {r.evidence_id for r in gate_results if r.accepted}
+            all_cand_ids = {c.get("evidence_id") for c in candidates}
 
-            # Gold acceptance heuristic: if any accepted candidate matches
-            # gold page, treat as gold accepted; this is a conservative proxy.
-            # Real measurement requires gold_evidence labels per claim.
-            gold_pages = claim.get("gold_pages") or []
-            gold_accepted = False
+            # Gold matching: candidates whose page is in gold_pages are
+            # treated as gold-relevant. Gold EVD-ids have no block_id, so
+            # page-level matching is the reliable signal.
+            cand_by_eid = {c.get("evidence_id"): c for c in candidates}
+
+            def _is_gold_cand(r_eid: str) -> bool:
+                # direct EVD-id match (rare, but possible if upstream
+                # propagates gold ids)
+                if r_eid in gold_eids:
+                    return True
+                # page-level match: candidate page ∈ gold_pages
+                cand = cand_by_eid.get(r_eid)
+                if cand and cand.get("page") in gold_pages:
+                    return True
+                return False
+
+            # Count accepted/rejected vs gold/noise at candidate level
             for r in gate_results:
-                if not r.accepted:
-                    continue
-                # Match by page if available
-                cand_page = None
-                for c in candidates:
-                    if str(c.get("evidence_id")) == r.evidence_id:
-                        cand_page = c.get("page")
-                        break
-                if gold_pages and cand_page in gold_pages:
-                    gold_accepted = True
-                    break
+                is_gold = _is_gold_cand(r.evidence_id)
+                if r.accepted:
+                    accepted_total_count += 1
+                    if is_gold:
+                        accepted_gold_count += 1
+                    else:
+                        accepted_noise_count += 1
+                else:
+                    if is_gold:
+                        rejected_gold_count_total += 1
+                    else:
+                        rejected_noise_count += 1
 
-            if gold_accepted:
-                tp += 1
-            elif gate_results:
-                fn += 1
-
-            # Noise estimation: rejected candidates are potential noise
-            for r in gate_results:
-                if not r.accepted:
-                    noise_total += 1
+            # Gold evidence acceptance (recall of gold evidence by gate)
+            # For each gold page, check whether any candidate on that page
+            # was accepted.
+            accepted_pages = {
+                cand_by_eid[eid].get("page")
+                for eid in accepted_ids
+                if eid in cand_by_eid
+            }
+            for gpage in gold_pages:
+                gold_evidence_total += 1
+                if gpage in accepted_pages:
+                    gold_evidence_accepted += 1
+                else:
+                    gold_evidence_rejected += 1
 
             if meta.ambiguity_flag:
                 ambiguity_count += 1
@@ -104,17 +185,25 @@ def run_gate_eval() -> int:
                 "route": routing.route,
                 "candidates_before_gate": meta.candidates_before_gate,
                 "candidates_after_gate": meta.candidates_after_gate,
-                "accepted_count": accepted_now,
+                "accepted_count": len(accepted_ids),
                 "ambiguity_flag": meta.ambiguity_flag,
-                "gold_accepted": gold_accepted,
+                "gold_evidence_ids": sorted(gold_eids),
+                "gold_pages": sorted(gold_pages),
+                "accepted_ids": sorted(accepted_ids),
             })
 
         # Aggregate metrics
-        precision = tp / max(tp + noise_accepted, 1)
-        recall = tp / max(tp + fn, 1)
-        accepted_noise_rate = noise_accepted / max(accepted_count, 1)
-        rejected_gold_rate = fn / max(tp + fn, 1)
-        avg_selected = accepted_count / max(total_claims, 1)
+        # precision = accepted gold / all accepted
+        precision = accepted_gold_count / max(accepted_total_count, 1)
+        # recall = accepted gold / (accepted gold + rejected gold)
+        # i.e. of all gold evidence that reached the gate, how much was kept
+        denom_recall = accepted_gold_count + rejected_gold_count_total
+        recall = accepted_gold_count / max(denom_recall, 1)
+        # accepted_noise_rate = accepted noise / all accepted
+        accepted_noise_rate = accepted_noise_count / max(accepted_total_count, 1)
+        # rejected_gold_rate = rejected gold / (accepted gold + rejected gold)
+        rejected_gold_rate = rejected_gold_count_total / max(denom_recall, 1)
+        avg_selected = accepted_total_count / max(total_claims, 1)
         ambiguity_rate = ambiguity_count / max(total_claims, 1)
 
         output = {
@@ -125,6 +214,17 @@ def run_gate_eval() -> int:
                 "high_quality_threshold": cfg.high_quality_threshold,
                 "medium_quality_threshold": cfg.medium_quality_threshold,
                 "causal_language_required": cfg.causal_language_required,
+            },
+            "counts": {
+                "total_claims": total_claims,
+                "accepted_total": accepted_total_count,
+                "accepted_gold": accepted_gold_count,
+                "accepted_noise": accepted_noise_count,
+                "rejected_gold": rejected_gold_count_total,
+                "rejected_noise": rejected_noise_count,
+                "gold_evidence_total": gold_evidence_total,
+                "gold_evidence_accepted": gold_evidence_accepted,
+                "gold_evidence_rejected": gold_evidence_rejected,
             },
             "metrics": {
                 "precision": round(precision, 4),

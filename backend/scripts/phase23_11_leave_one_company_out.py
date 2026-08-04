@@ -59,11 +59,37 @@ class ParamGrid:
 
 
 def load_development_claims() -> list[dict]:
-    """Load 43 Development Claims split by company."""
-    from app.services.evidence_retrieval.service import load_gold_claims
+    """Load Development Claims joined with gold verdicts.
 
-    claims = load_gold_claims("demo")
-    return claims
+    Uses the canonical loader (evaluation_claim_schema) which joins
+    gold_claims + gold_verifications + gold_evidence by claim_id, so each
+    returned dict carries ``expected_verdict``. Falls back to the raw
+    legacy loader (which has no verdict) only if the canonical loader is
+    unavailable.
+    """
+    try:
+        from app.services.evaluation_claim_schema import (
+            load_canonical_claims,
+        )
+        canonical, _issues = load_canonical_claims()
+        claims: list[dict] = []
+        for cc in canonical:
+            d = cc.to_dict()
+            # also expose legacy fields used downstream
+            d["entity"] = cc.company
+            d["original_text"] = cc.claim_text
+            d["gold"] = cc.expected_verdict
+            d["gold_verdict"] = cc.expected_verdict
+            d["claim_text"] = cc.claim_text
+            d["company"] = cc.company
+            claims.append(d)
+        if claims:
+            return claims
+    except Exception:  # noqa: BLE001
+        pass
+    # legacy fallback (no verdicts → accuracy will be 0; recorded in output)
+    from app.services.evidence_retrieval.service import load_gold_claims
+    return load_gold_claims("demo")
 
 
 def split_by_company(claims: list[dict]) -> dict[str, list[dict]]:
@@ -85,10 +111,15 @@ def evaluate_config(
     claims: list[dict],
     gate_cfg: GateConfig,
     sel_cfg: SelectorConfig,
+    precomputed: dict | None = None,
 ) -> dict:
     """Evaluate a (gate_cfg, sel_cfg) pair on the given claims.
 
     Returns accuracy, coverage, abstentions.
+
+    If ``precomputed`` is given (keyed by claim_id), each entry must contain
+    ``candidates`` and ``routing`` so we skip retrieval + routing inside the
+    grid search.
     """
     from app.services.verification.base import VerificationResult
 
@@ -100,25 +131,31 @@ def evaluate_config(
     for claim in claims:
         cid = str(claim.get("claim_id") or "?")
         gold = str(claim.get("gold") or claim.get("gold_verdict") or "UNKNOWN")
-        routing = route_claim(claim)
+        if precomputed is not None and cid in precomputed:
+            entry = precomputed[cid]
+            routing = entry["routing"]
+            candidates = entry["candidates"]
+        else:
+            routing = route_claim(claim)
+            from app.services.evidence_retrieval.service import retrieve_for_claim
+
+            cands_raw = retrieve_for_claim(session, claim, top_k=10)
+            candidates = []
+            for c in cands_raw:
+                candidates.append({
+                    "evidence_id": str(c.get("block_id") or "?"),
+                    "block_id": c.get("block_id"),
+                    "text": c.get("block_text", "") or "",
+                    "page": c.get("page_number"),
+                    "document_id": c.get("document_id"),
+                })
+            if precomputed is not None:
+                precomputed[cid] = {"routing": routing, "candidates": candidates}
         ctx = VerificationContext(
             evidence_source="real_e2e",
             gate_config=gate_cfg,
             selector_config=sel_cfg,
         )
-        # Retrieve candidates via existing channel
-        from app.services.evidence_retrieval.service import retrieve_for_claim
-
-        cands_raw = retrieve_for_claim(session, claim, top_k=10)
-        candidates = []
-        for c in cands_raw:
-            candidates.append({
-                "evidence_id": str(c.get("block_id") or "?"),
-                "block_id": c.get("block_id"),
-                "text": c.get("block_text", "") or "",
-                "page": c.get("page_number"),
-                "document_id": c.get("document_id"),
-            })
         try:
             result = verify_evidence_set(claim, candidates, routing, ctx)
         except Exception as exc:  # noqa: BLE001
@@ -152,6 +189,10 @@ def tune_fold(
     """Tune on train_claims, freeze best config, evaluate on validate_claims.
 
     First validation only (no repeated tuning on validation set).
+
+    Retrieval + routing are run ONCE per claim and cached; the grid search
+    reuses the cached candidates so it only re-runs the (cheap) gate +
+    selector + verification per config.
     """
     grid = ParamGrid()
     best_score = -1.0
@@ -159,6 +200,10 @@ def tune_fold(
     best_sel = None
     best_train_metrics = None
     tried = []
+
+    # Pre-compute candidates + routing once for train and validate sets.
+    train_cache: dict = {}
+    validate_cache: dict = {}
 
     # Grid search on TRAINING set
     for mmt in grid.metric_match_thresholds:
@@ -179,7 +224,8 @@ def tune_fold(
                             ambiguity_margin=am,
                         )
                         train_metrics = evaluate_config(
-                            session, train_claims, gate_cfg, sel_cfg
+                            session, train_claims, gate_cfg, sel_cfg,
+                            precomputed=train_cache,
                         )
                         score = train_metrics["accuracy"]
                         tried.append({
@@ -198,7 +244,8 @@ def tune_fold(
 
     # Freeze best config, evaluate ONCE on validation set
     validate_metrics = evaluate_config(
-        session, validate_claims, best_gate, best_sel
+        session, validate_claims, best_gate, best_sel,
+        precomputed=validate_cache,
     )
 
     return {
@@ -229,15 +276,34 @@ def run_leave_one_company_out() -> int:
         midea = buckets["美的集团"]
         other = buckets["other"]
 
-        # Fold A: train on 五粮液, validate on 美的集团
-        fold_a = tune_fold(
-            session, wuliangye, midea, "A"
-        ) if wuliangye and midea else {"error": "missing 五粮液 or 美的集团 claims"}
-
-        # Fold B: train on 美的集团, validate on 五粮液
-        fold_b = tune_fold(
-            session, midea, wuliangye, "B"
-        ) if midea and wuliangye else {"error": "missing 美的集团 or 五粮液 claims"}
+        # §10: Two-fold leave-one-company-out CV (五粮液 <-> 美的集团).
+        # Fallback when only one company present in Development set:
+        # split by claim_type parity (deterministic, not company-specific)
+        # so that two-fold CV still produces frozen params + first-validation.
+        fold_a: dict
+        fold_b: dict
+        fallback_used = False
+        if wuliangye and midea:
+            fold_a = tune_fold(session, wuliangye, midea, "A")
+            fold_b = tune_fold(session, midea, wuliangye, "B")
+        else:
+            fallback_used = True
+            # deterministic parity split on claim_type hash (not claim_id)
+            train_set: list[dict] = []
+            val_set: list[dict] = []
+            for c in all_claims:
+                key = str(c.get("claim_type") or "unknown")
+                if hash(key) % 2 == 0:
+                    train_set.append(c)
+                else:
+                    val_set.append(c)
+            if not train_set or not val_set:
+                # last resort: 50/50 by index
+                mid = len(all_claims) // 2
+                train_set = all_claims[:mid]
+                val_set = all_claims[mid:]
+            fold_a = tune_fold(session, train_set, val_set, "A")
+            fold_b = tune_fold(session, val_set, train_set, "B")
 
         # Stable weights: take interval across both folds
         stable = {}
@@ -264,6 +330,13 @@ def run_leave_one_company_out() -> int:
                 "other": len(other),
                 "total": len(all_claims),
             },
+            "fallback_used": fallback_used,
+            "fallback_reason": (
+                "Development set contains only one company; "
+                "claim_type parity split used as fallback"
+                if fallback_used
+                else ""
+            ),
             "tunable_parameters": [
                 "metric_match_threshold",
                 "high_quality_threshold",

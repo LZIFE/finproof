@@ -3,11 +3,13 @@
   "script": "phase23_11_leave_one_company_out",
   "description": "Two-fold leave-one-company-out CV (五粮液 <-> 美的集团)",
   "claim_counts": {
-    "五粮液": 0,
+    "五粮液": 17,
     "美的集团": 26,
     "other": 0,
-    "total": 26
+    "total": 43
   },
+  "fallback_used": false,
+  "fallback_reason": "",
   "tunable_parameters": [
     "metric_match_threshold",
     "high_quality_threshold",
@@ -23,10 +25,85 @@
     "repeated tuning on validation set"
   ],
   "fold_a": {
-    "error": "missing 五粮液 or 美的集团 claims"
+    "fold": "A",
+    "train_company": "五粮液",
+    "validate_company": "美的集团",
+    "best_train_accuracy": 0.2353,
+    "best_train_metrics": {
+      "accuracy": 0.2353,
+      "coverage": 0.1765,
+      "abstentions": 14,
+      "correct": 4,
+      "total": 17
+    },
+    "frozen_params": {
+      "metric_match_threshold": 0.4,
+      "high_quality_threshold": 0.6,
+      "medium_quality_threshold": 0.3,
+      "ambiguity_margin": 0.03,
+      "strategy": "Top1"
+    },
+    "first_validation_metrics": {
+      "accuracy": 0.1923,
+      "coverage": 0.1154,
+      "abstentions": 23,
+      "correct": 5,
+      "total": 26
+    },
+    "grid_search_count": 162
   },
   "fold_b": {
-    "error": "missing 美的集团 or 五粮液 claims"
+    "fold": "B",
+    "train_company": "美的集团",
+    "validate_company": "五粮液",
+    "best_train_accuracy": 0.1923,
+    "best_train_metrics": {
+      "accuracy": 0.1923,
+      "coverage": 0.1154,
+      "abstentions": 23,
+      "correct": 5,
+      "total": 26
+    },
+    "frozen_params": {
+      "metric_match_threshold": 0.4,
+      "high_quality_threshold": 0.6,
+      "medium_quality_threshold": 0.3,
+      "ambiguity_margin": 0.03,
+      "strategy": "Top1"
+    },
+    "first_validation_metrics": {
+      "accuracy": 0.2353,
+      "coverage": 0.1765,
+      "abstentions": 14,
+      "correct": 4,
+      "total": 17
+    },
+    "grid_search_count": 162
   },
-  "stable_weights": {}
+  "stable_weights": {
+    "metric_match_threshold": {
+      "fold_a": 0.4,
+      "fold_b": 0.4,
+      "stable_value": 0.4
+    },
+    "high_quality_threshold": {
+      "fold_a": 0.6,
+      "fold_b": 0.6,
+      "stable_value": 0.6
+    },
+    "medium_quality_threshold": {
+      "fold_a": 0.3,
+      "fold_b": 0.3,
+      "stable_value": 0.3
+    },
+    "ambiguity_margin": {
+      "fold_a": 0.03,
+      "fold_b": 0.03,
+      "stable_value": 0.03
+    },
+    "strategy": {
+      "fold_a": "Top1",
+      "fold_b": "Top1"
+    }
+  }
 }

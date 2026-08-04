@@ -61,7 +61,12 @@ def _entity_state(claim: dict, candidate: dict) -> MatchState:
 
 
 def _metric_state(claim: dict, candidate: dict) -> MatchState:
-    """Three-state metric check (§3)."""
+    """Three-state metric check (§3, §9).
+
+    WRONG_METRIC repair: if evidence text explicitly contains a DIFFERENT
+    well-known metric keyword (net_profit / 净利润 when claim is revenue),
+    judge MISMATCH — not UNKNOWN.
+    """
     from app.services.evidence_retrieval.engine import (
         metric_aliases,
         metric_hits,
@@ -77,9 +82,39 @@ def _metric_state(claim: dict, candidate: dict) -> MatchState:
     for a in aliases:
         if a and a in text:
             return "MATCH"
-    # Check if text contains a DIFFERENT explicit metric marker
-    # (conservative: only mark MISMATCH if a well-known different metric present)
-    return "UNKNOWN"
+    # §9 WRONG_METRIC: check if text contains a DIFFERENT explicit metric marker
+    # well-known metric keywords (Chinese + English canonical)
+    well_known_metrics = {
+        "revenue": ["revenue", "营业收入", "营收", "营业总收入", "总收入"],
+        "net_profit": ["net_profit", "净利润", "净利", "归母净利润"],
+        "gross_profit": ["gross_profit", "毛利润", "毛利", "营业毛利"],
+        "operating_profit": ["operating_profit", "营业利润", "经营利润"],
+        "total_assets": ["total_assets", "总资产", "资产总额"],
+        "eps": ["eps", "每股收益", "基本每股收益"],
+        "roe": ["roe", "净资产收益率", "回报率"],
+        "roa": ["roa", "总资产收益率"],
+    }
+    claim_metric_key = str(claim.get("metric") or claim.get("metric_code") or "").lower()
+    # find which well-known group claim belongs to
+    claim_group = None
+    for key, kws in well_known_metrics.items():
+        if claim_metric_key == key or any(kw.lower() in claim_metric_key for kw in kws):
+            claim_group = key
+            break
+    # also check aliases membership
+    if claim_group is None:
+        for key, kws in well_known_metrics.items():
+            if any(kw in aliases for kw in kws):
+                claim_group = key
+                break
+    # If text contains a DIFFERENT group's keyword → MISMATCH
+    if claim_group:
+        for key, kws in well_known_metrics.items():
+            if key == claim_group:
+                continue
+            if any(kw in text for kw in kws):
+                return "MISMATCH"
+    return "UNKNOWN"  # no metric info parseable
 
 
 def _period_state(claim: dict, candidate: dict) -> MatchState:
@@ -101,24 +136,49 @@ def _period_state(claim: dict, candidate: dict) -> MatchState:
 
 
 def _scope_state(claim: dict, candidate: dict) -> MatchState:
-    """Three-state scope check (§3)."""
+    """Three-state scope check (§3, §9).
+
+    WRONG_SCOPE repair: if evidence text explicitly contains a DIFFERENT
+    scope marker (归母 vs 合并), judge MISMATCH — not UNKNOWN.
+    """
     scope = str(claim.get("scope") or "consolidated").strip()
     text = str(candidate.get("text") or "")
-    if scope == "consolidated":
-        # consolidated is default; evidence rarely explicit → MATCH (lenient)
-        return "MATCH"
-    scope_markers = {
-        "parent_attributable": ["归母", "归属于上市公司股东", "parent_attributable"],
+    # Scope markers grouped by mutually-exclusive scope
+    scope_groups = {
+        "consolidated": ["合并", "consolidated", "合并报表", "合并口径"],
+        "parent_attributable": ["归母", "归属于上市公司股东", "parent_attributable", "归属于母公司"],
         "adjusted": ["扣非", "扣除非经常性损益", "adjusted"],
-        "non_controlling_interest": ["少数股东", "non_controlling"],
+        "non_controlling_interest": ["少数股东", "non_controlling", "少数股东损益"],
     }
-    markers = scope_markers.get(scope, [])
-    if any(m in text for m in markers):
+    # find claim's group
+    claim_group = None
+    if scope in scope_groups:
+        claim_group = scope
+    else:
+        # fallback by marker presence in scope string
+        for key, markers in scope_groups.items():
+            if any(m in scope for m in markers):
+                claim_group = key
+                break
+    # if consolidated (default lenient), evidence rarely explicit → MATCH
+    if claim_group == "consolidated":
+        # but if text explicitly contains a DIFFERENT scope marker → MISMATCH
+        for key, markers in scope_groups.items():
+            if key == "consolidated":
+                continue
+            if any(m in text for m in markers):
+                return "MISMATCH"
+        return "MATCH"  # consolidated default lenient
+    # non-default scope: MATCH if claim's marker present
+    if claim_group and any(m in text for m in scope_groups[claim_group]):
         return "MATCH"
-    # If text has a DIFFERENT scope marker, it's a conflict
-    all_markers = [m for ms in scope_markers.values() for m in ms]
-    if any(m in text for m in all_markers):
-        return "MISMATCH"
+    # if text has a DIFFERENT scope marker → MISMATCH
+    if claim_group:
+        for key, markers in scope_groups.items():
+            if key == claim_group:
+                continue
+            if any(m in text for m in markers):
+                return "MISMATCH"
     return "UNKNOWN"  # no scope info
 
 
@@ -187,6 +247,9 @@ class EvidenceQualityResult:
     final_quality_score: float
     accepted: bool
     rejection_reason: str = ""
+    # Phase 23.11 fix: carry candidate text so the Selector can build a
+    # bundle that core_verify can actually read.
+    text: str = ""
     # Phase 23.11.2 three-state fields (§3)
     entity_state: MatchState = "UNKNOWN"
     metric_state: MatchState = "UNKNOWN"
@@ -362,6 +425,7 @@ def evaluate_one(
     eid = str(
         candidate.get("evidence_id") or candidate.get("block_id") or "?"
     )
+    cand_text = str(candidate.get("text") or candidate.get("block_text") or "")
 
     # Three-state per-field evaluation (§3)
     entity_state = _entity_state(claim, candidate)
@@ -417,6 +481,7 @@ def evaluate_one(
                 scope_score, numeric_score, source_quality, causal_route_score,
                 contradiction, completeness, 0.0, False,
                 "CAUSALITY gate: no causal language found",
+                text=cand_text,
                 entity_state=entity_state, metric_state=metric_state,
                 period_state=period_state, unit_state=unit_state,
                 scope_state=scope_state, route_state="MISMATCH",
@@ -430,6 +495,7 @@ def evaluate_one(
                 scope_score, numeric_score, source_quality, route_score,
                 contradiction, completeness, 0.0, False,
                 "FORECAST gate: no forecast/opinion/target language found",
+                text=cand_text,
                 entity_state=entity_state, metric_state=metric_state,
                 period_state=period_state, unit_state=unit_state,
                 scope_state=scope_state, route_state=route_state,
@@ -447,6 +513,7 @@ def evaluate_one(
                 scope_score, numeric_score, source_quality, route_score,
                 contradiction, completeness, 0.0, False,
                 "entity mismatch: candidate mentions different company",
+                text=cand_text,
                 entity_state=entity_state, metric_state=metric_state,
                 period_state=period_state, unit_state=unit_state,
                 scope_state=scope_state, route_state=route_state,
@@ -458,6 +525,7 @@ def evaluate_one(
                 scope_score, numeric_score, source_quality, route_score,
                 contradiction, completeness, 0.0, False,
                 "metric mismatch: candidate mentions different metric",
+                text=cand_text,
                 entity_state=entity_state, metric_state=metric_state,
                 period_state=period_state, unit_state=unit_state,
                 scope_state=scope_state, route_state=route_state,
@@ -469,6 +537,7 @@ def evaluate_one(
                 scope_score, numeric_score, source_quality, route_score,
                 contradiction, completeness, 0.1, False,
                 "period mismatch: candidate mentions different period",
+                text=cand_text,
                 entity_state=entity_state, metric_state=metric_state,
                 period_state=period_state, unit_state=unit_state,
                 scope_state=scope_state, route_state=route_state,
@@ -480,6 +549,7 @@ def evaluate_one(
                 scope_score, numeric_score, source_quality, route_score,
                 contradiction, completeness, 0.1, False,
                 "scope mismatch: candidate mentions different scope",
+                text=cand_text,
                 entity_state=entity_state, metric_state=metric_state,
                 period_state=period_state, unit_state=unit_state,
                 scope_state=scope_state, route_state=route_state,
@@ -540,6 +610,7 @@ def evaluate_one(
         eid, entity_ok, metric_score, period_score, unit_score,
         scope_score, numeric_score, source_quality, route_score,
         contradiction, completeness, final_score, accepted, rejection,
+        text=cand_text,
         entity_state=entity_state, metric_state=metric_state,
         period_state=period_state, unit_state=unit_state,
         scope_state=scope_state, route_state=route_state,

@@ -1,0 +1,1003 @@
+{
+  "phase": "23.11",
+  "script": "phase23_11_evidence_gate_eval",
+  "gate_config": {
+    "metric_match_threshold": 0.6,
+    "high_quality_threshold": 0.7,
+    "medium_quality_threshold": 0.4,
+    "causal_language_required": true
+  },
+  "counts": {
+    "total_claims": 43,
+    "accepted_total": 304,
+    "accepted_gold": 19,
+    "accepted_noise": 285,
+    "rejected_gold": 9,
+    "rejected_noise": 73,
+    "gold_evidence_total": 40,
+    "gold_evidence_accepted": 15,
+    "gold_evidence_rejected": 25
+  },
+  "metrics": {
+    "precision": 0.0625,
+    "recall": 0.6786,
+    "accepted_noise_rate": 0.9375,
+    "rejected_gold_rate": 0.3214,
+    "average_selected_evidence_count": 7.0698,
+    "ambiguity_rate": 0.0233
+  },
+  "targets": {
+    "precision": 0.8,
+    "accepted_noise_rate": 0.15,
+    "rejected_gold_rate": 0.15
+  },
+  "total_claims": 43,
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "accepted_count": 9,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-001"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "accepted_ids": [
+        "1172",
+        "1423",
+        "189",
+        "4329",
+        "4442",
+        "4443",
+        "5394",
+        "5596",
+        "5616"
+      ]
+    },
+    {
+      "claim_id": "CLM-002",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "accepted_count": 9,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-002"
+      ],
+      "gold_pages": [
+        135
+      ],
+      "accepted_ids": [
+        "1172",
+        "1423",
+        "189",
+        "4329",
+        "4442",
+        "4443",
+        "5394",
+        "5596",
+        "5616"
+      ]
+    },
+    {
+      "claim_id": "CLM-003",
+      "route": "SCOPE_VALIDATION",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 2,
+      "accepted_count": 2,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-003"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "accepted_ids": [
+        "4555",
+        "7722"
+      ]
+    },
+    {
+      "claim_id": "CLM-004",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 3,
+      "accepted_count": 3,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-004"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "accepted_ids": [
+        "4508",
+        "5386",
+        "5493"
+      ]
+    },
+    {
+      "claim_id": "CLM-005",
+      "route": "TABLE_METRIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-005",
+        "EVD-006"
+      ],
+      "gold_pages": [
+        135
+      ],
+      "accepted_ids": [
+        "1448",
+        "1449",
+        "4346",
+        "4352",
+        "4788",
+        "4793",
+        "5210",
+        "7453",
+        "7457",
+        "9057"
+      ]
+    },
+    {
+      "claim_id": "CLM-006",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 7,
+      "accepted_count": 7,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-007",
+        "EVD-008"
+      ],
+      "gold_pages": [
+        135
+      ],
+      "accepted_ids": [
+        "1",
+        "102",
+        "12",
+        "2425",
+        "39",
+        "69",
+        "87"
+      ]
+    },
+    {
+      "claim_id": "CLM-007",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-009"
+      ],
+      "gold_pages": [
+        2
+      ],
+      "accepted_ids": [
+        "14637",
+        "14656",
+        "14673",
+        "14697",
+        "14708",
+        "14709",
+        "14713",
+        "14714",
+        "14807",
+        "14808"
+      ]
+    },
+    {
+      "claim_id": "CLM-008",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "accepted_count": 9,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-010",
+        "EVD-011"
+      ],
+      "gold_pages": [
+        17,
+        96
+      ],
+      "accepted_ids": [
+        "5969",
+        "7088",
+        "7407",
+        "7412",
+        "7431",
+        "8775",
+        "9499",
+        "9501",
+        "9699"
+      ]
+    },
+    {
+      "claim_id": "CLM-009",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-012",
+        "EVD-013"
+      ],
+      "gold_pages": [
+        8,
+        96
+      ],
+      "accepted_ids": [
+        "4305",
+        "4333",
+        "4335",
+        "4430",
+        "4434",
+        "4441",
+        "4458",
+        "4482",
+        "4555",
+        "92"
+      ]
+    },
+    {
+      "claim_id": "CLM-010",
+      "route": "SCOPE_VALIDATION",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-014",
+        "EVD-015"
+      ],
+      "gold_pages": [
+        8,
+        96
+      ],
+      "accepted_ids": [
+        "4305",
+        "4333",
+        "4335",
+        "4430",
+        "4434",
+        "4441",
+        "4458",
+        "4482",
+        "4555",
+        "92"
+      ]
+    },
+    {
+      "claim_id": "CLM-011",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "accepted_count": 0,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-016"
+      ],
+      "gold_pages": [
+        2
+      ],
+      "accepted_ids": []
+    },
+    {
+      "claim_id": "CLM-012",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 6,
+      "accepted_count": 6,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-017"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "accepted_ids": [
+        "14641",
+        "193",
+        "3924",
+        "4478",
+        "5460",
+        "5840"
+      ]
+    },
+    {
+      "claim_id": "CLM-013",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 7,
+      "accepted_count": 7,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-018"
+      ],
+      "gold_pages": [
+        173
+      ],
+      "accepted_ids": [
+        "14641",
+        "193",
+        "4478",
+        "5973",
+        "8564",
+        "9551",
+        "9886"
+      ]
+    },
+    {
+      "claim_id": "CLM-014",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-019"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "accepted_ids": [
+        "1570",
+        "1571",
+        "1584",
+        "1585",
+        "192",
+        "238",
+        "4483",
+        "4486",
+        "5492",
+        "5493"
+      ]
+    },
+    {
+      "claim_id": "CLM-015",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "accepted_count": 9,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-020",
+        "EVD-021"
+      ],
+      "gold_pages": [
+        2,
+        17
+      ],
+      "accepted_ids": [
+        "5969",
+        "7407",
+        "7431",
+        "7449",
+        "8775",
+        "9499",
+        "9513",
+        "9870",
+        "9871"
+      ]
+    },
+    {
+      "claim_id": "CLM-016",
+      "route": "NARRATIVE_FACT",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-022"
+      ],
+      "gold_pages": [
+        1
+      ],
+      "accepted_ids": [
+        "1",
+        "102",
+        "111",
+        "12",
+        "133",
+        "166",
+        "196",
+        "39",
+        "69",
+        "87"
+      ]
+    },
+    {
+      "claim_id": "CLM-017",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": true,
+      "gold_evidence_ids": [
+        "EVD-023"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "accepted_ids": [
+        "1423",
+        "189",
+        "4329",
+        "4442",
+        "4443",
+        "5393",
+        "5394",
+        "5596",
+        "5606",
+        "5616"
+      ]
+    },
+    {
+      "claim_id": "CLM-018",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-024"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "accepted_ids": [
+        "1570",
+        "1571",
+        "1584",
+        "1585",
+        "1586",
+        "192",
+        "238",
+        "4483",
+        "4486",
+        "5493"
+      ]
+    },
+    {
+      "claim_id": "CLM-019",
+      "route": "NARRATIVE_FACT",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-025"
+      ],
+      "gold_pages": [
+        17
+      ],
+      "accepted_ids": [
+        "6857",
+        "8774",
+        "8778",
+        "8822",
+        "8830",
+        "8833",
+        "8838",
+        "8845",
+        "8853",
+        "8861"
+      ]
+    },
+    {
+      "claim_id": "CLM-020",
+      "route": "INSUFFICIENTLY_PARSED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "accepted_count": 9,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-026"
+      ],
+      "gold_pages": [
+        17
+      ],
+      "accepted_ids": [
+        "1",
+        "102",
+        "111",
+        "12",
+        "133",
+        "2425",
+        "39",
+        "69",
+        "87"
+      ]
+    },
+    {
+      "claim_id": "CLM-021",
+      "route": "INSUFFICIENTLY_PARSED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 8,
+      "accepted_count": 8,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [],
+      "gold_pages": [],
+      "accepted_ids": [
+        "1",
+        "102",
+        "111",
+        "12",
+        "2425",
+        "39",
+        "69",
+        "87"
+      ]
+    },
+    {
+      "claim_id": "CLM-022",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 8,
+      "accepted_count": 8,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [],
+      "gold_pages": [],
+      "accepted_ids": [
+        "1404",
+        "1437",
+        "1475",
+        "1507",
+        "196",
+        "233",
+        "2425",
+        "483"
+      ]
+    },
+    {
+      "claim_id": "CLM-023",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "accepted_count": 0,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [],
+      "gold_pages": [],
+      "accepted_ids": []
+    },
+    {
+      "claim_id": "CLM-024",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-027",
+        "EVD-028"
+      ],
+      "gold_pages": [
+        9,
+        17
+      ],
+      "accepted_ids": [
+        "16",
+        "4329",
+        "4442",
+        "5256",
+        "5393",
+        "5394",
+        "5395",
+        "5396",
+        "5401",
+        "8775"
+      ]
+    },
+    {
+      "claim_id": "CLM-025",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [],
+      "gold_pages": [],
+      "accepted_ids": [
+        "4305",
+        "4333",
+        "4335",
+        "4430",
+        "4434",
+        "4441",
+        "4458",
+        "4482",
+        "4555",
+        "92"
+      ]
+    },
+    {
+      "claim_id": "CLM-026",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 2,
+      "candidates_after_gate": 0,
+      "accepted_count": 0,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-029"
+      ],
+      "gold_pages": [
+        17
+      ],
+      "accepted_ids": []
+    },
+    {
+      "claim_id": "CLM-H01",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "accepted_count": 9,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H01"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": [
+        "10029",
+        "10052",
+        "10198",
+        "10199",
+        "10497",
+        "11641",
+        "11642",
+        "11896",
+        "11897"
+      ]
+    },
+    {
+      "claim_id": "CLM-H02",
+      "route": "SCOPE_VALIDATION",
+      "candidates_before_gate": 2,
+      "candidates_after_gate": 0,
+      "accepted_count": 0,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H02"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": []
+    },
+    {
+      "claim_id": "CLM-H03",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 5,
+      "accepted_count": 5,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H03"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": [
+        "11934",
+        "11936",
+        "11994",
+        "11995",
+        "13679"
+      ]
+    },
+    {
+      "claim_id": "CLM-H04",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H04"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": [
+        "10377",
+        "10378",
+        "10381",
+        "10384",
+        "12049",
+        "12050",
+        "12064",
+        "12076",
+        "13678",
+        "13696"
+      ]
+    },
+    {
+      "claim_id": "CLM-H05",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "accepted_count": 9,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H05"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": [
+        "10022",
+        "10055",
+        "10103",
+        "10144",
+        "10193",
+        "10240",
+        "11601",
+        "11602",
+        "13776"
+      ]
+    },
+    {
+      "claim_id": "CLM-H06",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 5,
+      "candidates_after_gate": 3,
+      "accepted_count": 3,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H06"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": [
+        "11421",
+        "12017",
+        "14606"
+      ]
+    },
+    {
+      "claim_id": "CLM-H07",
+      "route": "TABLE_METRIC",
+      "candidates_before_gate": 3,
+      "candidates_after_gate": 3,
+      "accepted_count": 3,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H07"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": [
+        "10036",
+        "14603",
+        "14605"
+      ]
+    },
+    {
+      "claim_id": "CLM-H08",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 4,
+      "candidates_after_gate": 4,
+      "accepted_count": 4,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H08"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": [
+        "10037",
+        "10400",
+        "10475",
+        "12460"
+      ]
+    },
+    {
+      "claim_id": "CLM-H09",
+      "route": "PERIOD_COMPARISON",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "accepted_count": 9,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H09"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": [
+        "10044",
+        "10047",
+        "12461",
+        "12462",
+        "12463",
+        "12464",
+        "12466",
+        "14609",
+        "14610"
+      ]
+    },
+    {
+      "claim_id": "CLM-H10",
+      "route": "NARRATIVE_FACT",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "accepted_count": 9,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H10"
+      ],
+      "gold_pages": [
+        1
+      ],
+      "accepted_ids": [
+        "10022",
+        "11601",
+        "11602",
+        "13776",
+        "9928",
+        "9945",
+        "9959",
+        "9970",
+        "9983"
+      ]
+    },
+    {
+      "claim_id": "CLM-H11",
+      "route": "SCOPE_VALIDATION",
+      "candidates_before_gate": 0,
+      "candidates_after_gate": 0,
+      "accepted_count": 0,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H11"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": []
+    },
+    {
+      "claim_id": "CLM-H12",
+      "route": "NARRATIVE_FACT",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H12"
+      ],
+      "gold_pages": [
+        6
+      ],
+      "accepted_ids": [
+        "11511",
+        "11601",
+        "12432",
+        "12434",
+        "12435",
+        "12437",
+        "12438",
+        "12442",
+        "13776",
+        "13832"
+      ]
+    },
+    {
+      "claim_id": "CLM-H13",
+      "route": "INSUFFICIENTLY_PARSED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "accepted_count": 9,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [],
+      "gold_pages": [],
+      "accepted_ids": [
+        "10088",
+        "11601",
+        "11602",
+        "13776",
+        "9928",
+        "9945",
+        "9959",
+        "9970",
+        "9983"
+      ]
+    },
+    {
+      "claim_id": "CLM-H14",
+      "route": "FORECAST",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "accepted_count": 0,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [],
+      "gold_pages": [],
+      "accepted_ids": []
+    },
+    {
+      "claim_id": "CLM-H15",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [],
+      "gold_pages": [],
+      "accepted_ids": [
+        "11601",
+        "11685",
+        "11799",
+        "11893",
+        "11965",
+        "12019",
+        "12081",
+        "12485",
+        "12486",
+        "9949"
+      ]
+    },
+    {
+      "claim_id": "CLM-H16",
+      "route": "STRUCTURED_NUMERIC",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 8,
+      "accepted_count": 8,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [
+        "EVD-H16"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "accepted_ids": [
+        "10132",
+        "10176",
+        "10303",
+        "10497",
+        "11239",
+        "11641",
+        "11642",
+        "14299"
+      ]
+    },
+    {
+      "claim_id": "CLM-H17",
+      "route": "NARRATIVE_FACT",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "accepted_count": 10,
+      "ambiguity_flag": false,
+      "gold_evidence_ids": [],
+      "gold_pages": [],
+      "accepted_ids": [
+        "10022",
+        "10055",
+        "10103",
+        "10144",
+        "10193",
+        "10240",
+        "10278",
+        "11601",
+        "12434",
+        "13776"
+      ]
+    }
+  ]
+}

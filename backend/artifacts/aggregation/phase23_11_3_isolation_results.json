@@ -1,0 +1,247 @@
+{
+  "phase": "23.11.3",
+  "script": "phase23_11_3_isolation_eval",
+  "description": "Four-stage isolation A/B/C/D to lock首次性能下降环节",
+  "stages": {
+    "A_direct_core_verify": {
+      "sample_count": 43,
+      "correct": 17,
+      "accuracy": 0.3953,
+      "macro_f1": 0.2426,
+      "per_class": {
+        "INSUFFICIENT_EVIDENCE": {
+          "precision": 0.125,
+          "recall": 1.0,
+          "f1": 0.2222,
+          "support": 3
+        },
+        "OPINION_OR_FORECAST": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "PARTIALLY_SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "REFUTED": {
+          "precision": 0.8462,
+          "recall": 0.6471,
+          "f1": 0.7333,
+          "support": 17
+        },
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.3333,
+          "f1": 0.5,
+          "support": 18
+        },
+        "UNABLE_TO_DETERMINE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        }
+      },
+      "missing": 8,
+      "abstention": 24,
+      "confusion_matrix": {
+        "INSUFFICIENT_EVIDENCE|INSUFFICIENT_EVIDENCE": 3,
+        "OPINION_OR_FORECAST|INSUFFICIENT_EVIDENCE": 2,
+        "PARTIALLY_SUPPORTED|REFUTED": 1,
+        "REFUTED|INSUFFICIENT_EVIDENCE": 6,
+        "REFUTED|REFUTED": 11,
+        "SUPPORTED|INSUFFICIENT_EVIDENCE": 11,
+        "SUPPORTED|REFUTED": 1,
+        "SUPPORTED|SUPPORTED": 6,
+        "UNABLE_TO_DETERMINE|INSUFFICIENT_EVIDENCE": 2
+      }
+    },
+    "B_gate_plus_core_verify": {
+      "sample_count": 43,
+      "correct": 20,
+      "accuracy": 0.4651,
+      "macro_f1": 0.4364,
+      "per_class": {
+        "INSUFFICIENT_EVIDENCE": {
+          "precision": 0.1364,
+          "recall": 1.0,
+          "f1": 0.24,
+          "support": 3
+        },
+        "OPINION_OR_FORECAST": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "PARTIALLY_SUPPORTED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "REFUTED": {
+          "precision": 1.0,
+          "recall": 0.6471,
+          "f1": 0.7857,
+          "support": 17
+        },
+        "SUPPORTED": {
+          "precision": 0.8889,
+          "recall": 0.4444,
+          "f1": 0.5926,
+          "support": 18
+        },
+        "UNABLE_TO_DETERMINE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        }
+      },
+      "missing": 8,
+      "abstention": 22,
+      "confusion_matrix": {
+        "INSUFFICIENT_EVIDENCE|INSUFFICIENT_EVIDENCE": 3,
+        "OPINION_OR_FORECAST|INSUFFICIENT_EVIDENCE": 2,
+        "PARTIALLY_SUPPORTED|PARTIALLY_SUPPORTED": 1,
+        "REFUTED|INSUFFICIENT_EVIDENCE": 5,
+        "REFUTED|REFUTED": 11,
+        "REFUTED|SUPPORTED": 1,
+        "SUPPORTED|INSUFFICIENT_EVIDENCE": 10,
+        "SUPPORTED|SUPPORTED": 8,
+        "UNABLE_TO_DETERMINE|INSUFFICIENT_EVIDENCE": 2
+      }
+    },
+    "C_gate_plus_selector_plus_core_verify": {
+      "sample_count": 43,
+      "correct": 20,
+      "accuracy": 0.4651,
+      "macro_f1": 0.4364,
+      "per_class": {
+        "INSUFFICIENT_EVIDENCE": {
+          "precision": 0.1364,
+          "recall": 1.0,
+          "f1": 0.24,
+          "support": 3
+        },
+        "OPINION_OR_FORECAST": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "PARTIALLY_SUPPORTED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "REFUTED": {
+          "precision": 1.0,
+          "recall": 0.6471,
+          "f1": 0.7857,
+          "support": 17
+        },
+        "SUPPORTED": {
+          "precision": 0.8889,
+          "recall": 0.4444,
+          "f1": 0.5926,
+          "support": 18
+        },
+        "UNABLE_TO_DETERMINE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        }
+      },
+      "missing": 8,
+      "abstention": 22,
+      "confusion_matrix": {
+        "INSUFFICIENT_EVIDENCE|INSUFFICIENT_EVIDENCE": 3,
+        "OPINION_OR_FORECAST|INSUFFICIENT_EVIDENCE": 2,
+        "PARTIALLY_SUPPORTED|PARTIALLY_SUPPORTED": 1,
+        "REFUTED|INSUFFICIENT_EVIDENCE": 5,
+        "REFUTED|REFUTED": 11,
+        "REFUTED|SUPPORTED": 1,
+        "SUPPORTED|INSUFFICIENT_EVIDENCE": 10,
+        "SUPPORTED|SUPPORTED": 8,
+        "UNABLE_TO_DETERMINE|INSUFFICIENT_EVIDENCE": 2
+      }
+    },
+    "D_full_aggregation": {
+      "sample_count": 43,
+      "correct": 16,
+      "accuracy": 0.3721,
+      "macro_f1": 0.2401,
+      "per_class": {
+        "INSUFFICIENT_EVIDENCE": {
+          "precision": 0.1111,
+          "recall": 1.0,
+          "f1": 0.2,
+          "support": 3
+        },
+        "OPINION_OR_FORECAST": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "PARTIALLY_SUPPORTED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "REFUTED": {
+          "precision": 1.0,
+          "recall": 0.5882,
+          "f1": 0.7407,
+          "support": 17
+        },
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.3333,
+          "f1": 0.5,
+          "support": 18
+        },
+        "UNABLE_TO_DETERMINE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        }
+      },
+      "missing": 8,
+      "abstention": 27,
+      "confusion_matrix": {
+        "INSUFFICIENT_EVIDENCE|INSUFFICIENT_EVIDENCE": 3,
+        "OPINION_OR_FORECAST|INSUFFICIENT_EVIDENCE": 2,
+        "PARTIALLY_SUPPORTED|INSUFFICIENT_EVIDENCE": 1,
+        "REFUTED|INSUFFICIENT_EVIDENCE": 7,
+        "REFUTED|REFUTED": 10,
+        "SUPPORTED|INSUFFICIENT_EVIDENCE": 12,
+        "SUPPORTED|SUPPORTED": 6,
+        "UNABLE_TO_DETERMINE|INSUFFICIENT_EVIDENCE": 2
+      }
+    }
+  },
+  "deltas": {
+    "A_to_B": 0.0698,
+    "B_to_C": 0.0,
+    "C_to_D": -0.093
+  },
+  "first_drop_stage": "AGGREGATION",
+  "diagnosis": {
+    "A_same_as_single_gold": true,
+    "if_B_drops": "Gate误拒Gold (GATE_REJECTED_GOLD)",
+    "if_C_drops": "Selector丢弃Gold (SELECTOR_DROPPED_GOLD)",
+    "if_D_drops": "Aggregation真值表错误 (AGGREGATION_WRONG)",
+    "current_first_drop": "AGGREGATION"
+  }
+}

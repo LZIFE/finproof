@@ -90,6 +90,77 @@ def normalize_verdict(status: str) -> str:
 
 
 # ===========================================================================
+# Phase 23.11.3 §5: normalize_verdict_for_evaluation — 唯一外部评测映射
+# ===========================================================================
+
+# Extended internal statuses that may appear in aggregation / core_verify
+# output but are NOT yet in CANONICAL_VERDICTS (conflict / ambiguous).
+_EXTENDED_TO_CANONICAL: dict[str, str] = {
+    "CONFLICTING_EVIDENCE": "INSUFFICIENT_EVIDENCE",  # §5: 无法解决冲突 → 弃权
+    "CONFLICT": "INSUFFICIENT_EVIDENCE",
+    "AMBIGUOUS_EVIDENCE": "INSUFFICIENT_EVIDENCE",  # §5: 歧义 → 弃权非默认 SUPPORTED
+    "AMBIGUOUS": "INSUFFICIENT_EVIDENCE",
+    "UNKNOWN": "INSUFFICIENT_EVIDENCE",  # §5: UNKNOWN → 弃权非 SUPPORTED
+    "NONE": "INSUFFICIENT_EVIDENCE",
+    "PENDING": "INSUFFICIENT_EVIDENCE",
+    "ERROR": "INSUFFICIENT_EVIDENCE",
+}
+
+
+def normalize_verdict_for_evaluation(status: str) -> str:
+    """Phase 23.11.3 §5 唯一函数: 内部状态 → 外部评测类别.
+
+    Oracle / Noisy Oracle / Real E2E / confusion matrix / API 必须全部调用此函数.
+    禁止: 脚本分别实现映射; 使用字符串 contains; 将 UNKNOWN 默认为 SUPPORTED;
+    将 OPINION_OR_FORECAST 随意映射为 SUPPORTED.
+
+    Mapping table (§5):
+        SUPPORTED               → SUPPORTED
+        REFUTED                 → REFUTED
+        PARTIALLY_SUPPORTED    → PARTIALLY_SUPPORTED
+        INSUFFICIENT_EVIDENCE   → INSUFFICIENT_EVIDENCE
+        UNABLE / UNABLE_TO_DETERMINE → UNABLE_TO_DETERMINE
+        OPINION_OR_FORECAST     → OPINION_OR_FORECAST
+        CONFLICTING_EVIDENCE / CONFLICT → INSUFFICIENT_EVIDENCE (冲突无法解决→弃权)
+        AMBIGUOUS_EVIDENCE / AMBIGUOUS → INSUFFICIENT_EVIDENCE (歧义→弃权非默认)
+        UNKNOWN / NONE / PENDING / ERROR → INSUFFICIENT_EVIDENCE
+    """
+    if not status or not isinstance(status, str):
+        # empty/non-string → 弃权, never SUPPORTED
+        return "INSUFFICIENT_EVIDENCE"
+    s = status.strip().upper()
+    # canonical passthrough
+    if s in CANONICAL_VERDICTS:
+        return s
+    # legacy internal → canonical (reuse normalize_verdict's table)
+    mapped = _INTERNAL_TO_CANONICAL.get(s)
+    if mapped is not None:
+        return mapped
+    # extended (conflict / ambiguous / unknown)
+    ext = _EXTENDED_TO_CANONICAL.get(s)
+    if ext is not None:
+        return ext
+    # case-insensitive fallback
+    for k, v in _INTERNAL_TO_CANONICAL.items():
+        if k.upper() == s:
+            return v
+    for k, v in _EXTENDED_TO_CANONICAL.items():
+        if k.upper() == s:
+            return v
+    # truly unknown → 弃权, never SUPPORTED (§5 禁止)
+    return "INSUFFICIENT_EVIDENCE"
+
+
+# 全状态覆盖测试 helper (§5)
+def all_known_internal_statuses() -> tuple[str, ...]:
+    """Return all internal statuses the mapping must handle (for unit tests)."""
+    return tuple(sorted(set(
+        list(_INTERNAL_TO_CANONICAL.keys()) + list(_EXTENDED_TO_CANONICAL.keys())
+        + list(CANONICAL_VERDICTS)
+    )))
+
+
+# ===========================================================================
 # Data paths
 # ===========================================================================
 

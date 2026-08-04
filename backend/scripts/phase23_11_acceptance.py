@@ -17,6 +17,7 @@ from app.db import SessionLocal
 from app.services.claim_router import route_claim
 from app.services.evidence_gate import GateConfig, evaluate_all
 from app.services.evidence_selector import SelectorConfig, select
+from app.services.evidence_retrieval.service import retrieve_for_claim
 from app.services.verification.verification_service import (
     verify_evidence_set,
 )
@@ -37,16 +38,40 @@ STRATEGIES: list[dict] = [
 ]
 
 
+def _load_labeled_claims() -> list[dict]:
+    """Load 43 Development Claims joined with gold verdicts.
+
+    Uses the canonical loader (evaluation_claim_schema) which joins
+    gold_claims + gold_verifications + gold_evidence by claim_id, so each
+    returned dict carries ``expected_verdict`` as ``gold``.
+    """
+    from app.services.evaluation_claim_schema import (
+        load_canonical_claims,
+    )
+
+    canonical, _issues = load_canonical_claims()
+    claims: list[dict] = []
+    for cc in canonical:
+        d = cc.to_dict()
+        d["entity"] = cc.company
+        d["original_text"] = cc.claim_text
+        d["claim_text"] = cc.claim_text
+        d["gold"] = cc.expected_verdict
+        d["gold_verdict"] = cc.expected_verdict
+        # legacy fields used downstream
+        d["comparison_period"] = cc.raw_claim.get("comparison_period", "")
+        d["risk_level"] = cc.raw_claim.get("risk_level", "")
+        d["report_section"] = cc.raw_claim.get("report_section", "")
+        d["currency"] = cc.raw_claim.get("currency", "")
+        d["metric_code"] = cc.raw_claim.get("metric", "")
+        claims.append(d)
+    return claims
+
+
 def run_acceptance() -> int:
     session = SessionLocal()
     try:
-        # Load 43 Development claims
-        from app.services.evidence_retrieval.service import (
-            load_gold_claims,
-            retrieve_for_claim,
-        )
-
-        claims = load_gold_claims("demo")
+        claims = _load_labeled_claims()
         total_claims = len(claims)
 
         # Phase 23.11 REAL_E2E with Top3 strategy (default)

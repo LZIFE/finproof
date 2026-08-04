@@ -1,0 +1,701 @@
+{
+  "phase": "23.11",
+  "script": "phase23_11_structured_metrics",
+  "description": "Channel A Structured Fact Retrieval metrics",
+  "channel": "A_structured",
+  "eligible_routes": [
+    "PERIOD_COMPARISON",
+    "SCOPE_VALIDATION",
+    "STRUCTURED_NUMERIC",
+    "TABLE_METRIC"
+  ],
+  "total_evaluated": 34,
+  "metrics": {
+    "fact_hit_at_1": 0.2353,
+    "fact_hit_at_3": 0.4706,
+    "page_hit_at_1": 0.2353,
+    "page_hit_at_3": 0.4706,
+    "correct_metric_rate": 0.7353,
+    "correct_period_rate": 0.7059,
+    "correct_scope_rate": 1.0
+  },
+  "counts": {
+    "fact_hit_1": 8,
+    "fact_hit_3": 16,
+    "page_hit_1": 8,
+    "page_hit_3": 16,
+    "correct_metric": 25,
+    "correct_period": 24,
+    "correct_scope": 34
+  },
+  "targets": {
+    "page_hit_at_3": 0.75,
+    "correct_metric_rate": 0.8,
+    "correct_period_rate": 0.8,
+    "correct_scope_rate": 0.8
+  },
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        9
+      ],
+      "top1_pages": [
+        127
+      ],
+      "top3_pages": [
+        41,
+        127,
+        135
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-002",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [
+        135
+      ],
+      "top1_pages": [
+        127
+      ],
+      "top3_pages": [
+        41,
+        127,
+        135
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-003",
+      "route": "SCOPE_VALIDATION",
+      "gold_pages": [
+        9
+      ],
+      "top1_pages": [
+        2
+      ],
+      "top3_pages": [
+        2,
+        9,
+        20
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": false,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-004",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        9
+      ],
+      "top1_pages": [
+        49
+      ],
+      "top3_pages": [
+        49,
+        223,
+        231
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-005",
+      "route": "TABLE_METRIC",
+      "gold_pages": [
+        135
+      ],
+      "top1_pages": [
+        206
+      ],
+      "top3_pages": [
+        128,
+        206
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-006",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        135
+      ],
+      "top1_pages": [
+        14
+      ],
+      "top3_pages": [
+        14,
+        49
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": false,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-007",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        2
+      ],
+      "top1_pages": [
+        2
+      ],
+      "top3_pages": [
+        2,
+        8
+      ],
+      "fact_hit_1": true,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": false,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-008",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        17,
+        96
+      ],
+      "top1_pages": [
+        43
+      ],
+      "top3_pages": [
+        17,
+        43,
+        96
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-009",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [
+        8,
+        96
+      ],
+      "top1_pages": [
+        5
+      ],
+      "top3_pages": [
+        5,
+        126,
+        127
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": false,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-010",
+      "route": "SCOPE_VALIDATION",
+      "gold_pages": [
+        8,
+        96
+      ],
+      "top1_pages": [
+        5
+      ],
+      "top3_pages": [
+        5,
+        126,
+        127
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": false,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-011",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        2
+      ],
+      "top1_pages": [
+        2
+      ],
+      "top3_pages": [
+        2,
+        8,
+        11
+      ],
+      "fact_hit_1": true,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": false,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-012",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        9
+      ],
+      "top1_pages": [
+        9
+      ],
+      "top3_pages": [
+        9,
+        96,
+        231
+      ],
+      "fact_hit_1": true,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-013",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [
+        173
+      ],
+      "top1_pages": [
+        7
+      ],
+      "top3_pages": [
+        7,
+        96,
+        173
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-014",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        9
+      ],
+      "top1_pages": [
+        234
+      ],
+      "top3_pages": [
+        9,
+        137,
+        234
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-015",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        2,
+        17
+      ],
+      "top1_pages": [
+        17
+      ],
+      "top3_pages": [
+        17,
+        96,
+        169
+      ],
+      "fact_hit_1": true,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-017",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [
+        9
+      ],
+      "top1_pages": [
+        135
+      ],
+      "top3_pages": [
+        135,
+        224,
+        252
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-018",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [
+        9
+      ],
+      "top1_pages": [
+        234
+      ],
+      "top3_pages": [
+        9,
+        137,
+        234
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-022",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [],
+      "top1_pages": [
+        49
+      ],
+      "top3_pages": [
+        10,
+        49,
+        76
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": false,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-023",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [],
+      "top1_pages": [
+        49
+      ],
+      "top3_pages": [
+        10,
+        11,
+        49
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": false,
+      "period_in_top3": false,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-024",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [
+        9,
+        17
+      ],
+      "top1_pages": [
+        127
+      ],
+      "top3_pages": [
+        2,
+        127,
+        135
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-025",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [],
+      "top1_pages": [
+        5
+      ],
+      "top3_pages": [
+        5,
+        126,
+        127
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": false,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-026",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        17
+      ],
+      "top1_pages": [
+        17
+      ],
+      "top3_pages": [
+        17,
+        20
+      ],
+      "fact_hit_1": true,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": false,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H01",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [
+        12
+      ],
+      "top3_pages": [
+        7,
+        12,
+        21
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H02",
+      "route": "SCOPE_VALIDATION",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [
+        12
+      ],
+      "top3_pages": [
+        12,
+        57
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H03",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [
+        12
+      ],
+      "top3_pages": [
+        7,
+        12,
+        57
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H04",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [
+        17
+      ],
+      "top3_pages": [
+        17,
+        60,
+        116
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": true,
+      "period_in_top3": false,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H05",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [
+        48
+      ],
+      "top3_pages": [
+        48,
+        70
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": false,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H06",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [
+        7
+      ],
+      "top3_pages": [
+        7,
+        57,
+        141
+      ],
+      "fact_hit_1": true,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": false,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H07",
+      "route": "TABLE_METRIC",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [
+        7
+      ],
+      "top3_pages": [
+        7,
+        141
+      ],
+      "fact_hit_1": true,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H08",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [
+        7
+      ],
+      "top3_pages": [
+        7,
+        18,
+        72
+      ],
+      "fact_hit_1": true,
+      "fact_hit_3": true,
+      "metric_in_top3": true,
+      "period_in_top3": false,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H09",
+      "route": "PERIOD_COMPARISON",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [
+        72
+      ],
+      "top3_pages": [
+        72
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": true,
+      "period_in_top3": false,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H11",
+      "route": "SCOPE_VALIDATION",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [],
+      "top3_pages": [],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": false,
+      "period_in_top3": false,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H15",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [],
+      "top1_pages": [
+        3
+      ],
+      "top3_pages": [
+        3,
+        48,
+        51
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": false,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    },
+    {
+      "claim_id": "CLM-H16",
+      "route": "STRUCTURED_NUMERIC",
+      "gold_pages": [
+        7
+      ],
+      "top1_pages": [
+        12
+      ],
+      "top3_pages": [
+        12,
+        49,
+        133
+      ],
+      "fact_hit_1": false,
+      "fact_hit_3": false,
+      "metric_in_top3": true,
+      "period_in_top3": true,
+      "scope_in_top3": true
+    }
+  ]
+}

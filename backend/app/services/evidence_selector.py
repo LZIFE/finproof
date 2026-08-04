@@ -152,12 +152,15 @@ def select(
                 f"but metric/period/scope signals differ; kept {ambiguity_count} candidates"
             )
 
-    # Build evidence bundle (dict format for core_verify)
+    # Build evidence bundle (dict format for core_verify).
+    # Phase 23.11 fix: carry candidate text so core_verify can actually
+    # read the evidence (previously "text": "" caused core_verify to
+    # return INSUFFICIENT_EVIDENCE for every claim).
     evidence_bundle = []
     for r in top_accepted:
         evidence_bundle.append({
             "evidence_id": r.evidence_id,
-            "text": "",  # filled by retrieve_via_channels
+            "text": r.text or "",
             "final_quality_score": r.final_quality_score,
         })
 
