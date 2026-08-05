@@ -1,0 +1,107 @@
+2026-08-05 15:19:40,970 [INFO] ============================================================
+2026-08-05 15:19:40,970 [INFO] Phase 23.11.6 第一轮 AI 盲审执行脚本启动 (v3)
+2026-08-05 15:19:40,970 [INFO] input:  /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json
+2026-08-05 15:19:40,970 [INFO] output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_results_agent_v3.json
+2026-08-05 15:19:40,970 [INFO] log:    /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/blind_review_v3.log
+2026-08-05 15:19:40,972 [INFO] loaded 32 review items
+2026-08-05 15:19:40,972 [INFO] injection stats: full=3 partial=29 missing=0
+2026-08-05 15:19:40,972 [WARNING] model NOT configured (need FINPROOF_LLM_API_KEY/BASE_URL/MODEL or OPENAI_API_KEY/BASE_URL/MODEL). Items will be SKIPPED_NO_MODEL.
+2026-08-05 15:19:40,972 [INFO] ----------------------------------------
+2026-08-05 15:19:40,972 [INFO] [1/32] item_id=EVD-001
+2026-08-05 15:19:40,972 [WARNING] item_id=EVD-001 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,972 [INFO] ----------------------------------------
+2026-08-05 15:19:40,972 [INFO] [2/32] item_id=EVD-002
+2026-08-05 15:19:40,972 [WARNING] item_id=EVD-002 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,972 [INFO] ----------------------------------------
+2026-08-05 15:19:40,972 [INFO] [3/32] item_id=EVD-003
+2026-08-05 15:19:40,972 [WARNING] item_id=EVD-003 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,972 [INFO] ----------------------------------------
+2026-08-05 15:19:40,972 [INFO] [4/32] item_id=EVD-004
+2026-08-05 15:19:40,972 [WARNING] item_id=EVD-004 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,972 [INFO] ----------------------------------------
+2026-08-05 15:19:40,972 [INFO] [5/32] item_id=EVD-005
+2026-08-05 15:19:40,972 [WARNING] item_id=EVD-005 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,972 [INFO] ----------------------------------------
+2026-08-05 15:19:40,972 [INFO] [6/32] item_id=EVD-006
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-006 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [7/32] item_id=EVD-007
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-007 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [8/32] item_id=EVD-008
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-008 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [9/32] item_id=EVD-009
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-009 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [10/32] item_id=EVD-013
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-013 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [11/32] item_id=EVD-015
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-015 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [12/32] item_id=EVD-016
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-016 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [13/32] item_id=EVD-017
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-017 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [14/32] item_id=EVD-019
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-019 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [15/32] item_id=EVD-021
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-021 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [16/32] item_id=EVD-022
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-022 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [17/32] item_id=EVD-023
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-023 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [18/32] item_id=EVD-024
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-024 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [19/32] item_id=EVD-027
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-027 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [20/32] item_id=EVD-H01
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-H01 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [21/32] item_id=EVD-H02
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-H02 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [22/32] item_id=EVD-H03
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-H03 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [23/32] item_id=EVD-H04
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-H04 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,973 [INFO] [24/32] item_id=EVD-H05
+2026-08-05 15:19:40,973 [WARNING] item_id=EVD-H05 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,973 [INFO] ----------------------------------------
+2026-08-05 15:19:40,974 [INFO] [25/32] item_id=EVD-H06
+2026-08-05 15:19:40,974 [WARNING] item_id=EVD-H06 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,974 [INFO] ----------------------------------------
+2026-08-05 15:19:40,974 [INFO] [26/32] item_id=EVD-H07
+2026-08-05 15:19:40,974 [WARNING] item_id=EVD-H07 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,974 [INFO] ----------------------------------------
+2026-08-05 15:19:40,974 [INFO] [27/32] item_id=EVD-H08
+2026-08-05 15:19:40,974 [WARNING] item_id=EVD-H08 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,974 [INFO] ----------------------------------------
+2026-08-05 15:19:40,974 [INFO] [28/32] item_id=EVD-H09
+2026-08-05 15:19:40,974 [WARNING] item_id=EVD-H09 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,974 [INFO] ----------------------------------------
+2026-08-05 15:19:40,974 [INFO] [29/32] item_id=EVD-H10
+2026-08-05 15:19:40,974 [WARNING] item_id=EVD-H10 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,974 [INFO] ----------------------------------------
+2026-08-05 15:19:40,974 [INFO] [30/32] item_id=EVD-H11
+2026-08-05 15:19:40,974 [WARNING] item_id=EVD-H11 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,974 [INFO] ----------------------------------------
+2026-08-05 15:19:40,974 [INFO] [31/32] item_id=EVD-H12
+2026-08-05 15:19:40,974 [WARNING] item_id=EVD-H12 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,974 [INFO] ----------------------------------------
+2026-08-05 15:19:40,974 [INFO] [32/32] item_id=EVD-H16
+2026-08-05 15:19:40,974 [WARNING] item_id=EVD-H16 SKIPPED_NO_MODEL
+2026-08-05 15:19:40,975 [INFO] ============================================================
+2026-08-05 15:19:40,975 [INFO] wrote output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_results_agent_v3.json
+2026-08-05 15:19:40,975 [INFO] stats: {"total_items": 32, "success": 0, "parse_failure": 0, "call_failure": 0, "skipped_no_model": 32, "skipped_missing_block_text": 0, "retries_total": 0}

@@ -1,0 +1,1 @@
+- finproof Block正文恢复：document_blocks.text 16/24候选为NULL，PyMuPDF重提取验证全部是真空单元格（财报表格列分隔/空白表头格，rect宽2.8-11pt）。PDF在 data/demo/source/<original_filename>，page_id==page_number==PDF物理页。document_pages.text 存有完整页文本。block_index 是按 (y0,x0) 排序后的序号，非PyMuPDF原始block_no。

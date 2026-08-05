@@ -1,0 +1,26 @@
+{
+  "phase": "23.11.6.2.1",
+  "audit_type": "candidate_bundle_dedup",
+  "total_bundles_original": 160,
+  "total_bundles_after_dedup": 159,
+  "removed_duplicate_count": 1,
+  "items_with_duplicates": [
+    {
+      "gold_evidence_id": "EVD-022",
+      "original_bundle_count": 5,
+      "deduplicated_bundle_count": 4,
+      "removed_duplicate_count": 1,
+      "duplicates": [
+        {
+          "candidate_group_id": "EVD-022-g5",
+          "source_block_ids": [
+            "12"
+          ],
+          "reason": "reconstructed_text identical"
+        }
+      ]
+    }
+  ],
+  "summary": "160 个 Bundle 检查完成：去重后 159 个，移除重复 1 个。1 条存在重复。",
+  "timestamp": "2026-08-05T15:27:57.123786+00:00"
+}

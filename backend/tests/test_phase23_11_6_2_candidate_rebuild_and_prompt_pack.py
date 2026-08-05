@@ -199,7 +199,8 @@ def test_prompt_pack_no_expected_verdict_values():
     """
     assert PROMPT_PACK_DIR.exists(), "prompt_pack dir not found"
     files = list(PROMPT_PACK_DIR.glob("*.md"))
-    assert len(files) == 32, f"expected 32 prompt files, got {len(files)}"
+    # 32 Evidence Alignment + 10 Source Recovery/Paraphrase = 42
+    assert len(files) == 42, f"expected 42 prompt files (32+10), got {len(files)}"
     for f in files:
         content = f.read_text(encoding="utf-8")
         for leak in LEAK_VERDICT_VALUES:

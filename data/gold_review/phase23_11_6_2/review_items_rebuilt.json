@@ -4148,54 +4148,6 @@
           "period_match": "UNKNOWN",
           "unit_match": "UNKNOWN",
           "scope_match": "UNKNOWN"
-        },
-        {
-          "candidate_group_id": "EVD-022-g5",
-          "document_id": 1,
-          "page": 2,
-          "source_block_ids": [
-            "12"
-          ],
-          "block_texts": [
-            {
-              "block_id": "12",
-              "block_index": 0,
-              "text": "美的集团股份有限公司2025 年年度报告全文"
-            }
-          ],
-          "reconstructed_text": "美的集团股份有限公司2025 年年度报告全文",
-          "table_title": "",
-          "section_title": "",
-          "unit_header": "",
-          "period_headers": [
-            "美的集团股份有限公司2025 年年度报告全文"
-          ],
-          "row_headers": [
-            "加剧。尽管如此，风雨中归来，美的依然实现了业绩历史新高，2025 年营业总收入4,585 亿",
-            "元，归母净利润439.5 亿元，收入和利润均实现了双位数增长。海外收入1,959 亿元，同比",
-            "须要增长，要做到数一数二、力争全球第一。次核心业务的机器人和新能源要坚定布局，把"
-          ],
-          "context_before": "",
-          "context_after": "致股东",
-          "spatial_relationship": {
-            "page": 2,
-            "block_count": 1,
-            "y_range": [
-              43.58097457885742,
-              53.543975830078125
-            ],
-            "x_range": [
-              362.95001220703125,
-              540.8099975585938
-            ]
-          },
-          "reconstruction_coverage": 0.6848,
-          "text_similarity": 0.7826,
-          "number_match": 0.5,
-          "metric_match": "UNKNOWN",
-          "period_match": "UNKNOWN",
-          "unit_match": "UNKNOWN",
-          "scope_match": "UNKNOWN"
         }
       ],
       "reviewer_choice": "",

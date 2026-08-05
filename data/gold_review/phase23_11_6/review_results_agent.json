@@ -1,0 +1,499 @@
+[
+  {
+    "item_id": "EVD-001",
+    "claim_id": "CLM-001",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "2025年营业收入4564.52亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "营业收入同比增长12.11%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "唯一候选block 169（p9）前后文为『四、注册变更情况』与『统一社会信用代码』，属公司注册信息段落，无营业收入数值，无法核验收入及增速。",
+    "review_flags": ["CONTEXT_IS_REGISTRATION_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-002",
+    "claim_id": "CLM-002",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.85,
+    "claim_components": [
+      {"component": "营业总收入4564.52亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "营业总收入与营业收入基本持平", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选均为p135利润表各块：4440仅表标题（单位千元）、4449投资收益行、4452减值损失行、4455净利润行；营业总收入458,502,407所在行（4443）不是候选，且无块含458,502,407数值，无法核验营业总收入。",
+    "review_flags": ["REQUIRED_ROW_NOT_IN_CANDIDATES"]
+  },
+  {
+    "item_id": "EVD-003",
+    "claim_id": "CLM-003",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.85,
+    "claim_components": [
+      {"component": "归母净利润439.45亿元", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选169为注册变更段；195前后为稀释每股收益行（5.76/5.42/6.27%），属EPS指标；两者均不含归母净利润43,945,411（千元），无法核验439.45亿元。",
+    "review_flags": ["METRIC_MISMATCH", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-004",
+    "claim_id": "CLM-004",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.85,
+    "claim_components": [
+      {"component": "归母净利润439.45亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "同比增长38.02%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选169为注册变更段；195为稀释每股收益行；均不含归母净利润数值43,945,411或增速38.02%，无法核验。",
+    "review_flags": ["METRIC_MISMATCH", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-005",
+    "claim_id": "CLM-005",
+    "decision": "MATCH_SINGLE_BLOCK",
+    "selected_candidate_group_ids": ["EVD-005-g2"],
+    "selected_block_ids": ["4443"],
+    "evidence_complete": true,
+    "confidence": 0.85,
+    "claim_components": [
+      {"component": "报告期内毛利率26.4%", "covered": true, "supporting_block_ids": ["4443"]}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MATCH", "period_match": "MATCH", "value_match": "MATCH", "unit_match": "MATCH", "scope_match": "MATCH", "candidate_unique": true},
+    "reason": "块4443（p135合并利润表）含营业收入456,451,731与营业成本(335,989,528)（千元，2025年度），毛利率=(456451731-335989528)/456451731≈26.4%；表头『项目/附注/2025年度/2024年度/合并』与单位『人民币千元』在前文context_before/标题块中，单块数值完整，唯一对应。",
+    "review_flags": ["MARGIN_DERIVED_FROM_ROWS"]
+  },
+  {
+    "item_id": "EVD-006",
+    "claim_id": "CLM-005",
+    "decision": "MATCH_SINGLE_BLOCK",
+    "selected_candidate_group_ids": ["EVD-006-g2"],
+    "selected_block_ids": ["4443"],
+    "evidence_complete": true,
+    "confidence": 0.85,
+    "claim_components": [
+      {"component": "报告期内毛利率26.4%", "covered": true, "supporting_block_ids": ["4443"]}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MATCH", "period_match": "MATCH", "value_match": "MATCH", "unit_match": "MATCH", "scope_match": "MATCH", "candidate_unique": true},
+    "reason": "块4443含营业成本(335,989,528)(2025年度,千元)及营业收入456,451,731，可计算毛利率26.4%；行标签『减：营业成本』在块内，单块完整唯一。",
+    "review_flags": ["MARGIN_DERIVED_FROM_ROWS"]
+  },
+  {
+    "item_id": "EVD-007",
+    "claim_id": "CLM-006",
+    "decision": "MATCH_SINGLE_BLOCK",
+    "selected_candidate_group_ids": ["EVD-007-g2"],
+    "selected_block_ids": ["4443"],
+    "evidence_complete": true,
+    "confidence": 0.8,
+    "claim_components": [
+      {"component": "毛利率26.4%", "covered": true, "supporting_block_ids": ["4443"]},
+      {"component": "较上年提升0.7个百分点", "covered": true, "supporting_block_ids": ["4443"]}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MATCH", "period_match": "MATCH", "value_match": "MATCH", "unit_match": "MATCH", "scope_match": "MATCH", "candidate_unique": true},
+    "reason": "块4443含两年营业收入(456,451,731/407,149,600)与营业成本((335,989,528)/(299,584,935))，可分别计算2025与2024毛利率及变动；两年数据齐全，单块完整，但毛利率及变动幅度需从原始行计算而非文本直接给出，故置信度略低。",
+    "review_flags": ["MARGIN_DERIVED_FROM_ROWS", "CHANGE_COMPUTED"]
+  },
+  {
+    "item_id": "EVD-008",
+    "claim_id": "CLM-006",
+    "decision": "MATCH_SINGLE_BLOCK",
+    "selected_candidate_group_ids": ["EVD-008-g2"],
+    "selected_block_ids": ["4443"],
+    "evidence_complete": true,
+    "confidence": 0.85,
+    "claim_components": [
+      {"component": "毛利率26.4%", "covered": true, "supporting_block_ids": ["4443"]},
+      {"component": "较上年提升0.7个百分点", "covered": true, "supporting_block_ids": ["4443"]}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MATCH", "period_match": "MATCH", "value_match": "MATCH", "unit_match": "MATCH", "scope_match": "MATCH", "candidate_unique": true},
+    "reason": "块4443含两年营业成本((335,989,528)/(299,584,935))与营业收入，单块即可计算毛利率及其同比变动，完整唯一。",
+    "review_flags": ["MARGIN_DERIVED_FROM_ROWS", "CHANGE_COMPUTED"]
+  },
+  {
+    "item_id": "EVD-009",
+    "claim_id": "CLM-007",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "2025年第一季度营业收入1278.39亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "同比增长20.49%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "唯一候选block 38（p2）为董事长致辞/管理层讨论文本（『培育业务要审慎观察…ToC和ToB业务形成增长接力』），无任何营业收入数值或季度数据。",
+    "review_flags": ["NARRATIVE_TEXT_ONLY", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-013",
+    "claim_id": "CLM-009",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "第二季度单季营业收入2523.31亿元", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选（p8 blocks 136/160/165）为『一、公司信息』、『三、信息披露及备置地点』、巨潮资讯网等公司基本信息块，无第二季度营业收入数值。",
+    "review_flags": ["COMPANY_INFO_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-015",
+    "claim_id": "CLM-010",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "第二季度归母净利润260.14亿元", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选（p8）为公司信息/信息披露备置地点块，无归母净利润数值。",
+    "review_flags": ["COMPANY_INFO_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-016",
+    "claim_id": "CLM-011",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "归母净利润124.22亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "同比增长38.02%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "唯一候选block 38（p2）为董事长致辞叙述文本，无归母净利润12,422,233（千元）或增速38.02%。",
+    "review_flags": ["NARRATIVE_TEXT_ONLY", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-017",
+    "claim_id": "CLM-012",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.85,
+    "claim_components": [
+      {"component": "基本每股收益5.80元", "covered": false, "supporting_block_ids": []},
+      {"component": "同比增长6.62%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选169为注册变更段；195位于稀释每股收益行（5.76/5.42/6.27%）之后，属稀释EPS而非基本EPS；候选不含基本每股收益5.80/5.44/6.62%行，口径（基本vs稀释）不符。",
+    "review_flags": ["METRIC_SCOPE_MISMATCH", "EPS_DILUTED_VS_BASIC"]
+  },
+  {
+    "item_id": "EVD-019",
+    "claim_id": "CLM-014",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "全年经营活动现金流量净额533.46亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "同比下降11.84%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选169为注册变更段、195为稀释EPS行；均不含经营活动现金流量净额53,345,930（千元）或-11.84%。",
+    "review_flags": ["NO_NUMERIC_FACT", "METRIC_MISMATCH"]
+  },
+  {
+    "item_id": "EVD-021",
+    "claim_id": "CLM-015",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "2025年上半年营业收入同比增长20.49%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "唯一候选block 38（p2）为董事长致辞叙述文本，无营业收入数值或20.49%增速。",
+    "review_flags": ["NARRATIVE_TEXT_ONLY", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-022",
+    "claim_id": "CLM-016",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.55,
+    "claim_components": [
+      {"component": "公司发布2025年年度报告", "covered": true, "supporting_block_ids": ["4", "5"]},
+      {"component": "发布时间为2025年3月31日", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "UNKNOWN", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "p1封面块4/5组合提供『美的集团股份有限公司 2025年年度报告』标题，覆盖报告身份；但候选块均无发布日期信息（gold含『2026年3月』，候选无任何日期），claim中『2025年3月31日发布』的日期组件无法核验，证据不完整。",
+    "review_flags": ["PARTIAL_COVERAGE", "MISSING_PUBLISH_DATE"]
+  },
+  {
+    "item_id": "EVD-023",
+    "claim_id": "CLM-017",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "2025年营业收入4071.50亿元", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "唯一候选block 169为注册变更段，无营业收入数值407,149,600（千元），无法核验。",
+    "review_flags": ["CONTEXT_IS_REGISTRATION_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-024",
+    "claim_id": "CLM-018",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "全年经营现金流净额5334.59亿元", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选169/195均非现金流量表块，无经营现金流数值；且claim数值5334.59亿元与gold 53,345,930千元(533.46亿元)数量级不符，但候选本身即无数据。",
+    "review_flags": ["NO_NUMERIC_FACT", "VALUE_ORDER_MISMATCH"]
+  },
+  {
+    "item_id": "EVD-027",
+    "claim_id": "CLM-024",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "2025年收入增速超过15%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "唯一候选block 169为注册变更段，无营业收入及增速数据（gold为12.11%，与claim>15%矛盾与否均无法从候选判断）。",
+    "review_flags": ["CONTEXT_IS_REGISTRATION_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H01",
+    "claim_id": "CLM-H01",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "2025年营业收入405.29亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "同比下降54.55%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选（p7 blocks 113/131）为『释义』术语表及『报告期』定义，无营业收入数值40,528,509,770.23（元）或-54.55%。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H02",
+    "claim_id": "CLM-H02",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "归母净利润89.54亿元", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选为释义块，无归母净利润8,954,257,202.51（元）数值。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H03",
+    "claim_id": "CLM-H03",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "归母净利润89.54亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "同比下降38.02%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选为释义块，无归母净利润数值或增速（gold增速为-71.89%，与claim 38.02%不符，但候选本身无任何数据）。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H04",
+    "claim_id": "CLM-H04",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "全年经营活动现金流量净额297.06亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "同比下降12.47%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选为释义块，无经营现金流净额29,706,259,919.13（元）或-12.47%。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H05",
+    "claim_id": "CLM-H05",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "经营活动现金流量净额297.06亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "同比增长12.47%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选为释义块，无经营现金流数值；gold增速为-12.47%与claim『增长12.47%』方向相反，但候选本身无数据可核验。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H06",
+    "claim_id": "CLM-H06",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "基本每股收益8.21元", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选为释义块，无基本每股收益行（gold为2.3068/8.2062元/股，与claim 8.21元口径存疑，但候选无数据）。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H07",
+    "claim_id": "CLM-H07",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "加权平均净资产收益率6.89%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选为释义块，无加权平均净资产收益率行（gold含6.89%/23.35%，但候选无此数据）。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H08",
+    "claim_id": "CLM-H08",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "2025年末总资产1899.84亿元", "covered": false, "supporting_block_ids": []},
+      {"component": "同比增长0.92%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选为释义块，无总资产189,984,270,815.47（元）或0.92%数据。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H09",
+    "claim_id": "CLM-H09",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "归母净资产同比增长10.02%", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选为释义块，无归母净资产119,932,271,234.99/133,285,282,015.97（元）数据；gold增速为-10.02%与claim正增长方向相反，但候选无数据可核验。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H10",
+    "claim_id": "CLM-H10",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.75,
+    "claim_components": [
+      {"component": "公司发布2025年年度报告", "covered": false, "supporting_block_ids": []},
+      {"component": "发布时间为2025年3月31日", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MISMATCH", "metric_match": "UNKNOWN", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选（p1 blocks 2/3/6/7/8）上下文为『美的集团股份有限公司2025年年度报告全文』——公司主体为美的集团，与claim主体五粮液不符；且无任何发布日期（gold为2026年4月30日），无法核验。",
+    "review_flags": ["COMPANY_MISMATCH", "MISSING_PUBLISH_DATE"]
+  },
+  {
+    "item_id": "EVD-H11",
+    "claim_id": "CLM-H11",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "扣非归母净利润88.16亿元", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选（p7 blocks 113/131/132）为『释义』术语表与『报告期』定义，无扣非归母净利润8,815,635,943.27（元）数值，无法核验88.16亿元。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H12",
+    "claim_id": "CLM-H12",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.85,
+    "claim_components": [
+      {"component": "在深圳证券交易所上市", "covered": false, "supporting_block_ids": []},
+      {"component": "股票代码000858", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选（p6 blocks 104/109/110）为『备查文件目录』及披露备置地点块，无股票简称/代码000858/上市交易所信息（gold为『股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所』），候选未提供任何对应事实。",
+    "review_flags": ["DOCUMENT_INDEX_SECTION", "NO_NUMERIC_FACT"]
+  },
+  {
+    "item_id": "EVD-H16",
+    "claim_id": "CLM-H16",
+    "decision": "NONE_OF_THE_ABOVE",
+    "selected_candidate_group_ids": [],
+    "selected_block_ids": [],
+    "evidence_complete": false,
+    "confidence": 0.9,
+    "claim_components": [
+      {"component": "2025年营业收入4052.85亿元", "covered": false, "supporting_block_ids": []}
+    ],
+    "checks": {"company_match": "MATCH", "metric_match": "MISMATCH", "period_match": "UNKNOWN", "value_match": "MISMATCH", "unit_match": "UNKNOWN", "scope_match": "UNKNOWN", "candidate_unique": false},
+    "reason": "候选（p7 blocks 113/131）为释义块，无营业收入40,528,509,770.23（元）数值；且claim 4052.85亿元与gold 40,528,509,770.23元(405.29亿元)数量级不符，但候选本身即无数据。",
+    "review_flags": ["GLOSSARY_SECTION", "NO_NUMERIC_FACT", "VALUE_ORDER_MISMATCH"]
+  }
+]

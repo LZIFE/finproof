@@ -1,0 +1,20 @@
+2026-08-05 15:11:20,422 [INFO] ============================================================
+2026-08-05 15:11:20,422 [INFO] Block 正文注入脚本启动
+2026-08-05 15:11:20,422 [INFO] input:  /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_items.json
+2026-08-05 15:11:20,422 [INFO] output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json
+2026-08-05 15:11:20,422 [INFO] log:    /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/block_text_injection.log
+2026-08-05 15:11:20,423 [INFO] loaded 32 review items
+2026-08-05 15:11:20,434 [INFO] preloaded coords for 86 block_ids
+2026-08-05 15:11:20,445 [INFO] doc_id=1 opened PDF: /Users/z1/Documents/trae_projects/finproof/data/demo/source/annual_report.pdf (pages=276)
+2026-08-05 15:11:20,961 [INFO] wrote output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json
+2026-08-05 15:11:20,961 [INFO] ============================================================
+2026-08-05 15:11:20,961 [INFO] Block 正文注入完成统计:
+2026-08-05 15:11:20,961 [INFO]   total items: 32
+2026-08-05 15:11:20,961 [INFO]   items full text:    3
+2026-08-05 15:11:20,961 [INFO]   items partial text: 29
+2026-08-05 15:11:20,961 [INFO]   items missing text: 0
+2026-08-05 15:11:20,961 [INFO]   total blocks processed: 86
+2026-08-05 15:11:20,961 [INFO]   blocks OK:    22
+2026-08-05 15:11:20,961 [INFO]   blocks EMPTY: 64
+2026-08-05 15:11:20,961 [INFO]   blocks MISSING: 0
+2026-08-05 15:11:20,961 [INFO]   PARTIAL item ids: ['EVD-001', 'EVD-002', 'EVD-003', 'EVD-004', 'EVD-005', 'EVD-006', 'EVD-007', 'EVD-008', 'EVD-013', 'EVD-015', 'EVD-017', 'EVD-019', 'EVD-022', 'EVD-023', 'EVD-024', 'EVD-027', 'EVD-H01', 'EVD-H02', 'EVD-H03', 'EVD-H04', 'EVD-H05', 'EVD-H06', 'EVD-H07', 'EVD-H08', 'EVD-H09', 'EVD-H10', 'EVD-H11', 'EVD-H12', 'EVD-H16']
