@@ -1,0 +1,460 @@
+{
+  "phase": "23.11.3",
+  "script": "phase23_11_3_single_gold_verify",
+  "description": "Isolate Selector/Aggregation: feed 1 Gold Evidence directly to core_verify",
+  "sample_count": 43,
+  "correct": 29,
+  "accuracy": 0.6744,
+  "macro_f1": 0.359,
+  "per_class": {
+    "INSUFFICIENT_EVIDENCE": {
+      "precision": 0.25,
+      "recall": 1.0,
+      "f1": 0.4,
+      "support": 3
+    },
+    "OPINION_OR_FORECAST": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+    },
+    "PARTIALLY_SUPPORTED": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "REFUTED": {
+      "precision": 0.8667,
+      "recall": 0.7647,
+      "f1": 0.8125,
+      "support": 17
+    },
+    "SUPPORTED": {
+      "precision": 1.0,
+      "recall": 0.8889,
+      "f1": 0.9412,
+      "support": 18
+    },
+    "UNABLE_TO_DETERMINE": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+    }
+  },
+  "missing": 8,
+  "raw_verdict_distribution": {
+    "SUPPORTED": 16,
+    "REFUTED": 15,
+    "INSUFFICIENT_EVIDENCE": 4
+  },
+  "confusion_matrix": {
+    "INSUFFICIENT_EVIDENCE|INSUFFICIENT_EVIDENCE": 3,
+    "OPINION_OR_FORECAST|INSUFFICIENT_EVIDENCE": 2,
+    "PARTIALLY_SUPPORTED|REFUTED": 1,
+    "REFUTED|INSUFFICIENT_EVIDENCE": 4,
+    "REFUTED|REFUTED": 13,
+    "SUPPORTED|INSUFFICIENT_EVIDENCE": 1,
+    "SUPPORTED|REFUTED": 1,
+    "SUPPORTED|SUPPORTED": 16,
+    "UNABLE_TO_DETERMINE|INSUFFICIENT_EVIDENCE": 2
+  },
+  "diagnosis": {
+    "if_single_gold_still_low": "root cause in core_verify or Verdict mapping, NOT Aggregation",
+    "if_single_gold_recovers": "root cause in Selector or Aggregation",
+    "current_single_gold_accuracy": 0.6744,
+    "current_core_oracle_accuracy": 0.2093,
+    "same_as_core_oracle": false
+  },
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-002",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-003",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-004",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-005",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-006",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-007",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-008",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": false,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-009",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-010",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-011",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-012",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-013",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-014",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-015",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-016",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-017",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-018",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-019",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-020",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-021",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "core_verify_raw_verdict": "NO_GOLD_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "no gold evidence available"
+    },
+    {
+      "claim_id": "CLM-022",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "core_verify_raw_verdict": "NO_GOLD_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "no gold evidence available"
+    },
+    {
+      "claim_id": "CLM-023",
+      "expected_verdict": "OPINION_OR_FORECAST",
+      "core_verify_raw_verdict": "NO_GOLD_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "no gold evidence available"
+    },
+    {
+      "claim_id": "CLM-024",
+      "expected_verdict": "PARTIALLY_SUPPORTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": false,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-025",
+      "expected_verdict": "UNABLE_TO_DETERMINE",
+      "core_verify_raw_verdict": "NO_GOLD_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "no gold evidence available"
+    },
+    {
+      "claim_id": "CLM-026",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H01",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H02",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H03",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H04",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H06",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H07",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H08",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H11",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "expected_verdict": "SUPPORTED",
+      "core_verify_raw_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H13",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "NO_GOLD_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "no gold evidence available"
+    },
+    {
+      "claim_id": "CLM-H14",
+      "expected_verdict": "OPINION_OR_FORECAST",
+      "core_verify_raw_verdict": "NO_GOLD_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "no gold evidence available"
+    },
+    {
+      "claim_id": "CLM-H15",
+      "expected_verdict": "UNABLE_TO_DETERMINE",
+      "core_verify_raw_verdict": "NO_GOLD_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "no gold evidence available"
+    },
+    {
+      "claim_id": "CLM-H16",
+      "expected_verdict": "REFUTED",
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
+      "rule_id": "",
+      "trace": "{}"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "expected_verdict": "INSUFFICIENT_EVIDENCE",
+      "core_verify_raw_verdict": "NO_GOLD_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "correct": false,
+      "rule_id": "",
+      "trace": "no gold evidence available"
+    }
+  ]
+}

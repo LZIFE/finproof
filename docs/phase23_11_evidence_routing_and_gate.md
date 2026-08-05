@@ -286,3 +286,13 @@ Phase 23.11.3 修复后，CORE_VERIFY 首次分歧从 33 条降至 17 条，但 
 - **Single-Gold Accuracy**：0.3953 → **0.6279**（43 条），Evidence-bearing 35 条 **0.7714**
 - **CORE_VERIFY 错误**：17 → **7 条**
 - **CORE_ORACLE Accuracy**：0.4419 → **0.6744**
+
+## Phase 23.11.5 Gold Evidence Grounding接续（2026-08-05）
+
+Phase 23.11.4 虽然实现了 block-level 匹配逻辑，但 42 条 Gold Evidence 的 block_id 全部为空，所有 block-level 指标不具备有效 Gold 基础。Phase 23.11.5（`docs/phase23_11_5_gold_grounding_and_core_closure.md`）完成：
+
+- **Phase 23.11.4 纠正**：Gate Precision 等指标标记为 INVALID_PENDING_GOLD_ALIGNMENT
+- **Gold Grounding Inventory**：42 条逐条匹配到 DocumentBlock（29 MULTI_BLOCK_MATCH + 13 PAGE_MATCH_BLOCK_AMBIGUOUS）
+- **有效评测 Cohort**：24 Grounded + 11 Partial + 3 Intentional + 5 Blocked
+- **Core Verify 修复**：5/7 错误修复（Growth Verifier + Ratio Verifier + Aggregation）
+- **Grounded Single-Gold Accuracy**：0.9167（22/24）

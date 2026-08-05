@@ -1,0 +1,15 @@
+{
+  "gold_version": "23.11.5",
+  "created_at": "2026-08-05T09:03:02+08:00",
+  "source_document_hashes": [],
+  "gold_claims_hash": "8d195ef2d2b3eb6a",
+  "gold_evidence_hash": "8982c202f1d243ee",
+  "gold_verifications_hash": "896049f3ca204451",
+  "grounded_claim_count": 24,
+  "blocked_claim_count": 11,
+  "reviewer": "",
+  "change_log": [
+    "Phase 23.11.5: Initial gold grounding inventory. 42 evidence entries matched to DocumentBlocks. 24 claims fully grounded (block-level). 13 entries need human review (PAGE_MATCH_BLOCK_AMBIGUOUS)."
+  ],
+  "notes": "All 42 gold evidence entries have empty block_id. Grounding based on page + text matching. Block-level Gate metrics pending human review completion."
+}

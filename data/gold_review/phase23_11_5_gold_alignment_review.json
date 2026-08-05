@@ -1,0 +1,196 @@
+[
+  {
+    "claim_id": "CLM-007",
+    "claim_text": "2025年第一季度，公司实现营业收入1278.39亿元，同比增长20.49%",
+    "expected_verdict": "SUPPORTED",
+    "original_gold_evidence_text": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+    "candidate_blocks": [
+      "38"
+    ],
+    "candidate_pages": [
+      2
+    ],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-008",
+    "claim_text": "2025年上半年，公司营业总收入2523.31亿元，同比增长15.7%",
+    "expected_verdict": "SUPPORTED",
+    "original_gold_evidence_text": "一、营业总收入 252,331,494 218,121,839",
+    "candidate_blocks": [],
+    "candidate_pages": [],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-008",
+    "claim_text": "2025年上半年，公司营业总收入2523.31亿元，同比增长15.7%",
+    "expected_verdict": "SUPPORTED",
+    "original_gold_evidence_text": "2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%",
+    "candidate_blocks": [],
+    "candidate_pages": [],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-009",
+    "claim_text": "第二季度单季实现营业收入2523.31亿元",
+    "expected_verdict": "REFUTED",
+    "original_gold_evidence_text": "一、营业总收入 252,331,494 218,121,839",
+    "candidate_blocks": [],
+    "candidate_pages": [],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-010",
+    "claim_text": "第二季度归母净利润260.14亿元",
+    "expected_verdict": "REFUTED",
+    "original_gold_evidence_text": "归属于母公司股东的净利润 26,013,690 20,804,176",
+    "candidate_blocks": [],
+    "candidate_pages": [],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-011",
+    "claim_text": "实现归母净利润124.22亿元，同比增长38.02%",
+    "expected_verdict": "SUPPORTED",
+    "original_gold_evidence_text": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+    "candidate_blocks": [
+      "38"
+    ],
+    "candidate_pages": [
+      2
+    ],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-013",
+    "claim_text": "上半年基本每股收益3.41元",
+    "expected_verdict": "SUPPORTED",
+    "original_gold_evidence_text": "基本每股收益 人民币元/股 3.41 3.02",
+    "candidate_blocks": [],
+    "candidate_pages": [],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-015",
+    "claim_text": "根据公司2025年一季度报告，2025年上半年公司营业收入同比增长20.49%",
+    "expected_verdict": "REFUTED",
+    "original_gold_evidence_text": "营业总收入2523 亿元，同比增长15.7%",
+    "candidate_blocks": [],
+    "candidate_pages": [],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-015",
+    "claim_text": "根据公司2025年一季度报告，2025年上半年公司营业收入同比增长20.49%",
+    "expected_verdict": "REFUTED",
+    "original_gold_evidence_text": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+    "candidate_blocks": [
+      "38"
+    ],
+    "candidate_pages": [
+      2
+    ],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-019",
+    "claim_text": "公司持续深化\"国内高端品牌和海外OBM优先\"战略",
+    "expected_verdict": "SUPPORTED",
+    "original_gold_evidence_text": "支撑国内高端品牌和海外OBM 优先战略",
+    "candidate_blocks": [],
+    "candidate_pages": [],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-020",
+    "claim_text": "海外业务已成为公司利润增长的核心引擎",
+    "expected_verdict": "REFUTED",
+    "original_gold_evidence_text": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%",
+    "candidate_blocks": [],
+    "candidate_pages": [],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-024",
+    "claim_text": "公司2025年收入增速超过15%",
+    "expected_verdict": "PARTIALLY_SUPPORTED",
+    "original_gold_evidence_text": "营业总收入2523 亿元，同比增长15.7%",
+    "candidate_blocks": [],
+    "candidate_pages": [],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  },
+  {
+    "claim_id": "CLM-026",
+    "claim_text": "上半年扣非归母净利润262亿元，同比增长30.0%",
+    "expected_verdict": "SUPPORTED",
+    "original_gold_evidence_text": "实现扣非归母净利润262 亿元，同比增长30.0%",
+    "candidate_blocks": [],
+    "candidate_pages": [],
+    "candidate_scores": [],
+    "candidate_context": [],
+    "selected_block_id": "",
+    "reviewer_decision": "",
+    "reviewer_rationale": "",
+    "review_status": "PENDING_REVIEW"
+  }
+]

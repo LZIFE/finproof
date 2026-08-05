@@ -775,9 +775,17 @@ def _core_verify_growth(claim, evidence_list, trace, std_metric, metric_code, ct
                                          "evidence_period": r["doc_period"]})
 
     # 无匹配：存在同期间增长率但不同值 → REFUTED
+    # Phase 23.11.5: also check if evidence has percentage values that don't match claim
+    # (even if period is not available from doc_period)
     if any(r["period_ok"] and r["metric_row"] for r in rows):
         trace.rule_id = "growth:mismatch"
         return _verdict_result(trace, STATUS_REFUTED, 0.85, "证据期间增长率与主张不一致")
+    # Phase 23.11.5: check for metric_row mismatch regardless of period
+    metric_rows = [r for r in rows if r["metric_row"]]
+    if metric_rows:
+        # Evidence has the metric but growth rate doesn't match → REFUTED
+        trace.rule_id = "growth:mismatch_metric_row"
+        return _verdict_result(trace, STATUS_REFUTED, 0.8, "证据含同指标增长率但与主张不符")
     trace.rule_id = "growth:no_growth_data"
     return _verdict_result(trace, STATUS_INSUFFICIENT, 0.4, "证据缺少可核验增长率")
 

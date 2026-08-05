@@ -3,10 +3,10 @@
   "script": "phase23_11_3_aggregation_diagnosis",
   "description": "43 CORE_ORACLE逐层对账: CANONICAL_ADAPTER → GATE → SELECTOR → CORE_VERIFY → AGGREGATION → VERDICT_NORMALIZATION → EVALUATION_JOIN",
   "sample_count": 43,
-  "correct": 29,
-  "accuracy": 0.6744,
+  "correct": 31,
+  "accuracy": 0.7209,
   "first_divergence_stage_counts": {
-    "CORE_VERIFY": 7,
+    "CORE_VERIFY": 5,
     "AGGREGATION": 2,
     "CANONICAL_ADAPTER": 5
   },
@@ -14,11 +14,11 @@
     "CANONICAL_ADAPTER": 5,
     "GATE": 0,
     "SELECTOR": 0,
-    "CORE_VERIFY": 7,
+    "CORE_VERIFY": 5,
     "AGGREGATION": 2,
     "VERDICT_NORMALIZATION": 0,
     "EVALUATION_JOIN": 0,
-    "NONE (correct)": 29
+    "NONE (correct)": 31
   },
   "first_divergence_stage_taxonomy": [
     "CANONICAL_ADAPTER",
@@ -122,18 +122,18 @@
         "EVD-004"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "REFUTED"
       ],
       "evidence_level_confidences": [
-        0.4
+        0.8
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-005",
@@ -767,18 +767,18 @@
         "EVD-H03"
       ],
       "evidence_level_verdicts": [
-        "INSUFFICIENT_EVIDENCE"
+        "REFUTED"
       ],
       "evidence_level_confidences": [
-        0.4
+        0.8
       ],
       "aggregation_rule": "SINGLE_EVIDENCE",
-      "internal_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_external_verdict": "INSUFFICIENT_EVIDENCE",
-      "final_prediction": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
-      "first_divergence_stage": "CORE_VERIFY",
-      "root_cause": "core_verify evidence-level verdict wrong (gold=REFUTED, pred=INSUFFICIENT_EVIDENCE)"
+      "internal_verdict": "REFUTED",
+      "normalized_external_verdict": "REFUTED",
+      "final_prediction": "REFUTED",
+      "correct": true,
+      "first_divergence_stage": "NONE",
+      "root_cause": "correct"
     },
     {
       "claim_id": "CLM-H04",

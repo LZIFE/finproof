@@ -1,0 +1,265 @@
+{
+  "phase": "23.11.5",
+  "script": "phase23_11_5_core_closure",
+  "description": "7 remaining CORE_VERIFY errors diagnosis",
+  "total": 7,
+  "per_claim": [
+    {
+      "claim_id": "CLM-004",
+      "claim_type": "CALCULATED_FINANCIAL_METRIC",
+      "expected_verdict": "REFUTED",
+      "grounded_gold_evidence": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "selected_verifier": "growth_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 38.02,
+          "unit": "%"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 43945411.0,
+          "unit": "千元"
+        },
+        {
+          "value": 38537237.0,
+          "unit": "千元"
+        },
+        {
+          "value": 14.03,
+          "unit": "%"
+        }
+      ],
+      "metric_match": "",
+      "period_match": "",
+      "unit_match": "",
+      "scope_match": "",
+      "component_results": [],
+      "first_wrong_function": "growth_verifier:claim_value_not_matched",
+      "root_cause": "VALUE_BINDING",
+      "generic_fix": "Growth verifier should compare claim growth rate with evidence growth rate text",
+      "regression_test": "CLM-004: evidence contains 14.03% growth, claim says 38.02% → should REFUTED",
+      "final_status": "TO_FIX"
+    },
+    {
+      "claim_id": "CLM-005",
+      "claim_type": "CALCULATED_FINANCIAL_METRIC",
+      "expected_verdict": "SUPPORTED",
+      "grounded_gold_evidence": "456,451,731 407,149,600",
+      "raw_core_verdict": "SUPPORTED",
+      "normalized_verdict": "SUPPORTED",
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 26.4,
+          "unit": "%"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 456451731.0,
+          "unit": "%"
+        },
+        {
+          "value": 407149600.0,
+          "unit": "%"
+        }
+      ],
+      "metric_match": "",
+      "period_match": "",
+      "unit_match": "",
+      "scope_match": "",
+      "component_results": [],
+      "first_wrong_function": "ratio_verifier:gross_margin_calculation",
+      "root_cause": "VALUE_EXTRACTION",
+      "generic_fix": "Ratio verifier should calculate gross margin from revenue and cost FinancialValues",
+      "regression_test": "CLM-005: gross margin calculation from revenue/cost evidence",
+      "final_status": "TO_FIX"
+    },
+    {
+      "claim_id": "CLM-006",
+      "claim_type": "CALCULATED_FINANCIAL_METRIC",
+      "expected_verdict": "REFUTED",
+      "grounded_gold_evidence": "456,451,731 407,149,600",
+      "raw_core_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "selected_verifier": "numeric_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 0.7,
+          "unit": "个百分点"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 456451731.0,
+          "unit": "个百分点"
+        },
+        {
+          "value": 407149600.0,
+          "unit": "个百分点"
+        }
+      ],
+      "metric_match": "",
+      "period_match": "",
+      "unit_match": "",
+      "scope_match": "",
+      "component_results": [],
+      "first_wrong_function": "ratio_verifier:gross_margin_calculation",
+      "root_cause": "VALUE_EXTRACTION",
+      "generic_fix": "Ratio verifier should calculate gross margin from revenue and cost FinancialValues",
+      "regression_test": "CLM-006: gross margin calculation from revenue/cost evidence",
+      "final_status": "TO_FIX"
+    },
+    {
+      "claim_id": "CLM-009",
+      "claim_type": "SCOPE",
+      "expected_verdict": "REFUTED",
+      "grounded_gold_evidence": "一、营业总收入 252,331,494 218,121,839",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "selected_verifier": "period_comparison",
+      "extracted_claim_values": [
+        {
+          "value": 2523.31,
+          "unit": "亿元"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 252331494.0,
+          "unit": "亿元"
+        },
+        {
+          "value": 218121839.0,
+          "unit": "亿元"
+        }
+      ],
+      "metric_match": "",
+      "period_match": "",
+      "unit_match": "",
+      "scope_match": "",
+      "component_results": [],
+      "first_wrong_function": "period_comparison:quarterly_vs_annual",
+      "root_cause": "PERIOD",
+      "generic_fix": "Period comparison should detect quarterly vs annual mismatch and handle single-quarter derivation",
+      "regression_test": "CLM-009: quarterly claim vs annual evidence period mismatch",
+      "final_status": "TO_FIX"
+    },
+    {
+      "claim_id": "CLM-010",
+      "claim_type": "SCOPE",
+      "expected_verdict": "REFUTED",
+      "grounded_gold_evidence": "归属于母公司股东的净利润 26,013,690 20,804,176",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "selected_verifier": "period_comparison",
+      "extracted_claim_values": [
+        {
+          "value": 260.14,
+          "unit": "亿元"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 26013690.0,
+          "unit": "亿元"
+        },
+        {
+          "value": 20804176.0,
+          "unit": "亿元"
+        }
+      ],
+      "metric_match": "",
+      "period_match": "",
+      "unit_match": "",
+      "scope_match": "",
+      "component_results": [],
+      "first_wrong_function": "period_comparison:quarterly_vs_annual",
+      "root_cause": "PERIOD",
+      "generic_fix": "Period comparison should detect quarterly vs annual mismatch and handle single-quarter derivation",
+      "regression_test": "CLM-010: quarterly claim vs annual evidence period mismatch",
+      "final_status": "TO_FIX"
+    },
+    {
+      "claim_id": "CLM-024",
+      "claim_type": "CALCULATED_FINANCIAL_METRIC",
+      "expected_verdict": "PARTIALLY_SUPPORTED",
+      "grounded_gold_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "raw_core_verdict": "PARTIALLY_SUPPORTED",
+      "normalized_verdict": "PARTIALLY_SUPPORTED",
+      "selected_verifier": "growth_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 15,
+          "unit": "%"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 456451731.0,
+          "unit": "千元"
+        },
+        {
+          "value": 407149600.0,
+          "unit": "千元"
+        },
+        {
+          "value": 12.11,
+          "unit": "%"
+        }
+      ],
+      "metric_match": "",
+      "period_match": "",
+      "unit_match": "",
+      "scope_match": "",
+      "component_results": [],
+      "first_wrong_function": "aggregation:mixed_evidence",
+      "root_cause": "MULTI_COMPONENT",
+      "generic_fix": "Aggregation should handle mixed REFUTED+SUPPORTED as PARTIALLY_SUPPORTED for threshold claims",
+      "regression_test": "CLM-024: evidence shows 12.11% and 15.7% growth, threshold claim 'over 15%' → PARTIALLY_SUPPORTED",
+      "final_status": "TO_FIX"
+    },
+    {
+      "claim_id": "CLM-H03",
+      "claim_type": "CALCULATED_FINANCIAL_METRIC",
+      "expected_verdict": "REFUTED",
+      "grounded_gold_evidence": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+      "raw_core_verdict": "INSUFFICIENT_EVIDENCE",
+      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
+      "selected_verifier": "growth_verifier",
+      "extracted_claim_values": [
+        {
+          "value": 38.02,
+          "unit": "%"
+        }
+      ],
+      "extracted_evidence_values": [
+        {
+          "value": 8954257202.51,
+          "unit": "元"
+        },
+        {
+          "value": 31853172533.98,
+          "unit": "元"
+        },
+        {
+          "value": 71.89,
+          "unit": "%"
+        }
+      ],
+      "metric_match": "",
+      "period_match": "",
+      "unit_match": "",
+      "scope_match": "",
+      "component_results": [],
+      "first_wrong_function": "growth_verifier:claim_value_not_matched",
+      "root_cause": "VALUE_BINDING",
+      "generic_fix": "Growth verifier should compare claim growth rate with evidence growth rate text",
+      "regression_test": "CLM-H03: evidence shows -71.89% growth, claim says -38.02% → should REFUTED",
+      "final_status": "TO_FIX"
+    }
+  ]
+}

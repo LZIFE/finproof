@@ -3529,3 +3529,51 @@ Phase 23.11 最终报告被驳回：20项标准声称"7/20达标（#1-5,14-19）
 - `backend/app/services/verification/core_pipeline.py`（route→verifier 映射 + period 回退）
 - `backend/app/services/verification/financial_value.py`（括号单位提取）
 - `backend/app/services/evidence_aggregation.py`（冲突检测修复）
+
+---
+
+## Phase 23.11.5：Gold Evidence Grounding与Core错误闭环结果 — ⚠️ PARTIAL（不标记 Competition-Usable）
+
+> 基线 commit：`45bc440`（Phase 23.11.4）
+> 日期：2026-08-05
+
+### 纠正内容
+
+Phase 23.11.4 虽然实现了 block-level 匹配逻辑，但 42 条 Gold Evidence 的 block_id 全部为空，document_id 均为 None。因此所有依赖 block-level 的指标标记为 INVALID_PENDING_GOLD_ALIGNMENT。
+
+### 关键动作
+
+- **Gold Grounding Inventory**：42 条证据逐条匹配到 DocumentBlock（29 MULTI_BLOCK_MATCH + 13 PAGE_MATCH_BLOCK_AMBIGUOUS）
+- **有效评测 Cohort**：24 Grounded + 11 Partial + 3 Intentional Insufficient + 5 Annotation-blocked
+- **Core Verify 修复**：5/7 错误修复（Growth Verifier→REFUTED + Ratio Verifier + Aggregation）
+- **Gold 数据版本管理**：gold_manifest.json 创建
+
+### 结果摘要
+
+| 指标 | Phase 23.11.4 | Phase 23.11.5 | 目标 | 达标 |
+| --- | --- | --- | --- | --- |
+| CORE_ORACLE Accuracy | 0.6744 | 0.7209 | ≥0.85 | ❌ |
+| CORE_VERIFY errors | 7 | 5 | ≤3 | ❌ |
+| Grounded Single-Gold Acc | — | 0.9167 | ≥0.85 | ✅ |
+| Grounded SUPPORTED F1 | — | 0.9565 | ≥0.85 | ✅ |
+| Grounded REFUTED F1 | — | 0.9565 | ≥0.85 | ✅ |
+| Gate Precision | 0.0625(INVALID) | INVALID | ≥0.80 | ❌ |
+| REAL_E2E Accuracy | 0.3256 | 0.3256 | ≥0.70 | ❌ |
+
+### 交付产物
+
+- `docs/phase23_11_5_gold_grounding_and_core_closure.md`
+- `backend/scripts/phase23_11_5_acceptance.py`
+- `backend/scripts/phase23_11_5_align_gold_evidence.py`
+- `backend/scripts/phase23_11_5_core_closure.py`
+- `backend/scripts/phase23_11_5_noisy_oracle.py`
+- `backend/artifacts/phase23_11_5_acceptance.json`
+- `backend/artifacts/gold_contract/phase23_11_5_grounding_inventory.json`
+- `backend/artifacts/gold_contract/phase23_11_5_single_gold_inputs.json`
+- `backend/artifacts/core_verify/phase23_11_5_remaining_errors.json`
+- `backend/artifacts/core_verify/phase23_11_5_single_gold_eval.json`
+- `backend/artifacts/core_verify/phase23_11_5_isolation_results.json`
+- `backend/artifacts/evidence_gate/phase23_11_5_noisy_oracle.json`
+- `backend/artifacts/e2e/phase23_11_5_real_e2e.json`
+- `data/gold_manifest.json`
+- `data/gold_review/phase23_11_5_gold_alignment_review.json`

@@ -3,14 +3,14 @@
   "script": "phase23_11_3_single_gold_verify",
   "description": "Isolate Selector/Aggregation: feed 1 Gold Evidence directly to core_verify",
   "sample_count": 43,
-  "correct": 27,
-  "accuracy": 0.6279,
-  "macro_f1": 0.3379,
+  "correct": 29,
+  "accuracy": 0.6744,
+  "macro_f1": 0.359,
   "per_class": {
     "INSUFFICIENT_EVIDENCE": {
-      "precision": 0.2143,
+      "precision": 0.25,
       "recall": 1.0,
-      "f1": 0.3529,
+      "f1": 0.4,
       "support": 3
     },
     "OPINION_OR_FORECAST": {
@@ -26,9 +26,9 @@
       "support": 1
     },
     "REFUTED": {
-      "precision": 0.8462,
-      "recall": 0.6471,
-      "f1": 0.7333,
+      "precision": 0.8667,
+      "recall": 0.7647,
+      "f1": 0.8125,
       "support": 17
     },
     "SUPPORTED": {
@@ -47,15 +47,15 @@
   "missing": 8,
   "raw_verdict_distribution": {
     "SUPPORTED": 16,
-    "REFUTED": 13,
-    "INSUFFICIENT_EVIDENCE": 6
+    "REFUTED": 15,
+    "INSUFFICIENT_EVIDENCE": 4
   },
   "confusion_matrix": {
     "INSUFFICIENT_EVIDENCE|INSUFFICIENT_EVIDENCE": 3,
     "OPINION_OR_FORECAST|INSUFFICIENT_EVIDENCE": 2,
     "PARTIALLY_SUPPORTED|REFUTED": 1,
-    "REFUTED|INSUFFICIENT_EVIDENCE": 6,
-    "REFUTED|REFUTED": 11,
+    "REFUTED|INSUFFICIENT_EVIDENCE": 4,
+    "REFUTED|REFUTED": 13,
     "SUPPORTED|INSUFFICIENT_EVIDENCE": 1,
     "SUPPORTED|REFUTED": 1,
     "SUPPORTED|SUPPORTED": 16,
@@ -64,7 +64,7 @@
   "diagnosis": {
     "if_single_gold_still_low": "root cause in core_verify or Verdict mapping, NOT Aggregation",
     "if_single_gold_recovers": "root cause in Selector or Aggregation",
-    "current_single_gold_accuracy": 0.6279,
+    "current_single_gold_accuracy": 0.6744,
     "current_core_oracle_accuracy": 0.2093,
     "same_as_core_oracle": false
   },
@@ -99,9 +99,9 @@
     {
       "claim_id": "CLM-004",
       "expected_verdict": "REFUTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },
@@ -324,9 +324,9 @@
     {
       "claim_id": "CLM-H03",
       "expected_verdict": "REFUTED",
-      "core_verify_raw_verdict": "INSUFFICIENT_EVIDENCE",
-      "normalized_verdict": "INSUFFICIENT_EVIDENCE",
-      "correct": false,
+      "core_verify_raw_verdict": "REFUTED",
+      "normalized_verdict": "REFUTED",
+      "correct": true,
       "rule_id": "",
       "trace": "{}"
     },

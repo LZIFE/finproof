@@ -22,6 +22,7 @@
 | `docs/phase23_11_2_gate_semantics_and_calibration.md` | Phase 23.11.2 Evidence Gate 语义修复、阈值校准与真实 E2E 恢复 |
 | `docs/phase23_11_3_aggregation_contract.md` | Phase 23.11.3 Evidence 聚合契约、Verdict 映射与逐层真值对账 |
 | `docs/phase23_11_4_gold_contract_and_core_verify.md` | Phase 23.11.4 Gold契约清理、Core Verify修复与可信Oracle重建 |
+| `docs/phase23_11_5_gold_grounding_and_core_closure.md` | Phase 23.11.5 Gold Evidence Grounding与Core错误闭环结果 |
 
 ## 目录结构
 

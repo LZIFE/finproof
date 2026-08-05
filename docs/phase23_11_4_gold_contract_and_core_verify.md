@@ -17,6 +17,17 @@
 
 **关键发现**：gold_evidence.json 中 42 条证据的 block_id 全部为空，无法进行 block-level 精确匹配。
 
+**Phase 23.11.5 纠正**：虽然代码实现了 block-level 匹配逻辑，但 42 条 Gold Evidence 的 block_id 均为空。因此 Phase 23.11.4 的以下指标不具备有效 Gold 基础，标记为 INVALID_PENDING_GOLD_ALIGNMENT：
+- Gate Precision（报告值 0.0625，基于 page-level 匹配）
+- Accepted Noise Rate（报告值 0.4744）
+- Gate Recall
+- Rejected Gold Rate
+- Gold Top1/Top3 Rate
+- Block Hit@K
+- Gold Selection Rate
+
+"Gold 匹配改为 block-level" 只能标记为代码能力完成，数据标注未完成。Phase 23.11.4 总体仍为 PARTIAL。
+
 ### Gold Evidence 状态分布
 
 | 状态 | 数量 |

@@ -1,0 +1,52 @@
+{
+  "phase": "23.11.5",
+  "script": "phase23_11_5_acceptance",
+  "description": "Phase 23.11.5 Acceptance: Grounded Gold Evidence + Core Error Closure",
+  "cohorts": {
+    "total": 43,
+    "grounded_evidence": 24,
+    "blocked": 11,
+    "intentional_insufficient": 3,
+    "annotation_blocked": 5
+  },
+  "single_gold_grounded": {
+    "sample_count": 24,
+    "correct": 22,
+    "accuracy": 0.9167,
+    "macro_f1": 0.6377,
+    "per_class": {
+      "INSUFFICIENT_EVIDENCE": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0
+      },
+      "REFUTED": {
+        "precision": 1.0,
+        "recall": 0.9167,
+        "f1": 0.9565,
+        "support": 12
+      },
+      "SUPPORTED": {
+        "precision": 1.0,
+        "recall": 0.9167,
+        "f1": 0.9565,
+        "support": 12
+      }
+    }
+  },
+  "completion_status": {
+    "gold_inventory": "PASS",
+    "grounding_matching": "PASS",
+    "human_review_file": "PASS",
+    "cohorts_established": "PASS",
+    "core_verify_fixes": "22/24 fixed",
+    "macro_f1_improvement": "PASS",
+    "single_gold_rerun": "PASS",
+    "isolation_rerun": "PASS",
+    "noisy_oracle": "PASS",
+    "real_e2e": "PASS",
+    "gold_manifest": "PASS",
+    "tests": "PASS"
+  }
+}

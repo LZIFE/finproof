@@ -1,0 +1,6 @@
+{
+  "phase": "23.11.5",
+  "script": "phase23_11_5_noisy_oracle",
+  "sample_count": 24,
+  "note": "Grounded cohort only. Gate metrics still INVALID_PENDING_GOLD_ALIGNMENT due to empty block_id."
+}
