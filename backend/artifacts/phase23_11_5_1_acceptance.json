@@ -1,0 +1,40 @@
+{
+  "phase": "23.11.5.1",
+  "script": "phase23_11_5_1_acceptance",
+  "description": "Phase 23.11.5.1 Grounding Integrity Audit acceptance",
+  "result": "PARTIAL",
+  "grounding_verdict": "GROUNDING_INCOMPLETE",
+  "evidence_audit": {
+    "HUMAN_REVIEW_REQUIRED": 32,
+    "NOT_FOUND": 10
+  },
+  "evidence_sum_check": true,
+  "claim_cohort": {
+    "total_claims": 43,
+    "oracle_evaluable_claims": 0,
+    "blocked_pending_review": 35,
+    "intentional_insufficient": 3,
+    "annotation_blocked": 5
+  },
+  "review_file": {
+    "total_items": 42,
+    "reviewer_fields_empty": true
+  },
+  "metrics_status": "INVALID_PENDING_HUMAN_GOLD_REVIEW",
+  "completion_criteria": {
+    "1_create_all_files": true,
+    "2_all_42_audited": true,
+    "3_auto_confirmed_have_block_ids": true,
+    "4_auto_confirmed_unique": true,
+    "5_fuzzy_not_auto_confirmed": true,
+    "6_29_multi_block_reclassified": true,
+    "7_24_grounded_revalidated": true,
+    "8_review_file_generated": true,
+    "9_core_error_identity_explained": true,
+    "10_metrics_denominator_clear": true,
+    "11_invalid_metrics_frozen": true,
+    "12_pytest_5x": "PENDING",
+    "13_build_3x": "PENDING",
+    "14_new_commit": "PENDING"
+  }
+}

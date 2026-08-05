@@ -1,15 +1,29 @@
 {
   "gold_version": "23.11.5",
+  "grounding_version": "23.11.5.1",
+  "grounding_commit": "PENDING_COMMIT",
   "created_at": "2026-08-05T09:03:02+08:00",
+  "updated_at": "2026-08-05T10:19:24+08:00",
   "source_document_hashes": [],
   "gold_claims_hash": "8d195ef2d2b3eb6a",
   "gold_evidence_hash": "8982c202f1d243ee",
   "gold_verifications_hash": "896049f3ca204451",
-  "grounded_claim_count": 24,
-  "blocked_claim_count": 11,
+  "grounding_stats": {
+    "total_gold_evidence": 42,
+    "auto_confirmed_exact": 0,
+    "auto_confirmed_normalized": 0,
+    "auto_confirmed_multi_block": 0,
+    "human_review_required": 32,
+    "not_found": 10,
+    "oracle_evaluable_claim_count": 0,
+    "blocked_claim_count": 43
+  },
+  "review_file_hash": "eb486b2769699b592b34fbcbe161e137841d2d10eeec8a09d4fc16b9b2594216",
+  "grounding_audit_hash": "b7ebebdab3679d2ab6b8e6c38297e109bd80f9a2e2f200c61941796f8c023bd9",
   "reviewer": "",
   "change_log": [
-    "Phase 23.11.5: Initial gold grounding inventory. 42 evidence entries matched to DocumentBlocks. 24 claims fully grounded (block-level). 13 entries need human review (PAGE_MATCH_BLOCK_AMBIGUOUS)."
+    "Phase 23.11.5: Initial gold grounding inventory. 42 evidence entries matched to DocumentBlocks. 24 claims fully grounded (block-level). 13 entries need human review (PAGE_MATCH_BLOCK_AMBIGUOUS).",
+    "Phase 23.11.5.1: Strict grounding integrity audit. 42/42 gold evidence block_id empty. 0 AUTO_CONFIRMED (no unique exact/normalized block match), 32 HUMAN_REVIEW_REQUIRED, 10 NOT_FOUND. 0 claims ORACLE_EVALUABLE. All prior block-level metrics remain INVALID_PENDING_HUMAN_GOLD_REVIEW."
   ],
-  "notes": "All 42 gold evidence entries have empty block_id. Grounding based on page + text matching. Block-level Gate metrics pending human review completion."
+  "notes": "Phase 23.11.5.1 strict audit: fuzzy matches are NEVER auto-confirmed. All 42 gold evidence entries require human review or are not found."
 }

@@ -1,0 +1,38 @@
+{
+  "phase": "23.11.5.1",
+  "description": "Core错误统计矛盾解释 + Evidence/Claim数量分离",
+  "core_error_identity": {
+    "original_error_claim_ids": ["CLM-004", "CLM-005", "CLM-006", "CLM-009", "CLM-010", "CLM-024", "CLM-H03"],
+    "original_count": 7,
+    "fixed_claim_ids": ["CLM-004", "CLM-H03"],
+    "fixed_count": 2,
+    "remaining_error_claim_ids": ["CLM-005", "CLM-006", "CLM-009", "CLM-010", "CLM-024"],
+    "remaining_count": 5,
+    "regression_claim_ids": [],
+    "identity_check": "7 = 2 + 5 + 0 ✓",
+    "contradiction_explanation": "上一轮报告称'修复5/7'是基于Single-Gold单证据路径的验证；但CORE_ORACLE全管线(Gate→Selector→evidence-level verify)下，CLM-005/006/024因多证据选择与ratio推导未触发仍失败。真实全管线修复为2/7，当前错误5条。",
+    "path_difference": {
+      "single_gold_fixed": ["CLM-004", "CLM-005", "CLM-006", "CLM-024", "CLM-H03"],
+      "core_oracle_fixed": ["CLM-004", "CLM-H03"],
+      "reason": "CLM-005/006需要revenue+cost两条证据才能推导毛利率，CLM-024阈值组件在evidence-level路径下未正确触发"
+    }
+  },
+  "evidence_claim_count_separation": {
+    "gold_evidence_records": 42,
+    "auto_confirmed_evidence": 0,
+    "human_review_evidence": 32,
+    "not_found_evidence": 10,
+    "evidence_bearing_claims": 35,
+    "oracle_evaluable_claims": 0,
+    "blocked_claims": 43,
+    "note": "Evidence数量(42)与Claim数量(43)不得混用。当前0条Evidence可AUTO_CONFIRMED，0条Claim可ORACLE_EVALUABLE。"
+  },
+  "grounding_status_summary": {
+    "AUTO_CONFIRMED_EXACT": 0,
+    "AUTO_CONFIRMED_NORMALIZED": 0,
+    "AUTO_CONFIRMED_MULTI_BLOCK": 0,
+    "HUMAN_REVIEW_REQUIRED": 32,
+    "NOT_FOUND": 10,
+    "sum": 42
+  }
+}

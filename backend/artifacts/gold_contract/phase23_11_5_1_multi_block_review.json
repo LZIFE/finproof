@@ -1,0 +1,527 @@
+[
+  {
+    "gold_evidence_id": "EVD-001",
+    "claim_id": "CLM-001",
+    "candidate_count": 1,
+    "candidate_block_ids": [
+      "169"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 35.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "1 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-002",
+    "claim_id": "CLM-002",
+    "candidate_count": 4,
+    "candidate_block_ids": [
+      "4440",
+      "4449",
+      "4452",
+      "4455"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 26.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "4 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-003",
+    "claim_id": "CLM-003",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "169",
+      "195"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 42.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-004",
+    "claim_id": "CLM-004",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "169",
+      "195"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 42.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-005",
+    "claim_id": "CLM-005",
+    "candidate_count": 5,
+    "candidate_block_ids": [
+      "4440",
+      "4443",
+      "4449",
+      "4452",
+      "4455"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 19.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "5 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-006",
+    "claim_id": "CLM-005",
+    "candidate_count": 5,
+    "candidate_block_ids": [
+      "4440",
+      "4443",
+      "4449",
+      "4452",
+      "4455"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 23.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "5 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-007",
+    "claim_id": "CLM-006",
+    "candidate_count": 5,
+    "candidate_block_ids": [
+      "4440",
+      "4443",
+      "4449",
+      "4452",
+      "4455"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 19.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "5 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-008",
+    "claim_id": "CLM-006",
+    "candidate_count": 5,
+    "candidate_block_ids": [
+      "4440",
+      "4443",
+      "4449",
+      "4452",
+      "4455"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 23.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "5 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-013",
+    "claim_id": "CLM-009",
+    "candidate_count": 3,
+    "candidate_block_ids": [
+      "136",
+      "160",
+      "165"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 34.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "3 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-015",
+    "claim_id": "CLM-010",
+    "candidate_count": 3,
+    "candidate_block_ids": [
+      "136",
+      "160",
+      "165"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 36.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "3 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-017",
+    "claim_id": "CLM-012",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "169",
+      "195"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 27.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-019",
+    "claim_id": "CLM-014",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "169",
+      "195"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 43.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-022",
+    "claim_id": "CLM-016",
+    "candidate_count": 10,
+    "candidate_block_ids": [
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 30.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "10 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-023",
+    "claim_id": "CLM-017",
+    "candidate_count": 1,
+    "candidate_block_ids": [
+      "169"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 35.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "1 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-024",
+    "claim_id": "CLM-018",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "169",
+      "195"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 43.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-027",
+    "claim_id": "CLM-024",
+    "candidate_count": 1,
+    "candidate_block_ids": [
+      "169"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 35.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "1 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H01",
+    "claim_id": "CLM-H01",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "113",
+      "131"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 45.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H02",
+    "claim_id": "CLM-H02",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "113",
+      "131"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 53.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H03",
+    "claim_id": "CLM-H03",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "113",
+      "131"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 53.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H04",
+    "claim_id": "CLM-H04",
+    "candidate_count": 3,
+    "candidate_block_ids": [
+      "113",
+      "131",
+      "132"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 54.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "3 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H05",
+    "claim_id": "CLM-H05",
+    "candidate_count": 3,
+    "candidate_block_ids": [
+      "113",
+      "131",
+      "132"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 54.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "3 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H06",
+    "claim_id": "CLM-H06",
+    "candidate_count": 3,
+    "candidate_block_ids": [
+      "113",
+      "131",
+      "132"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 33.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "3 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H07",
+    "claim_id": "CLM-H07",
+    "candidate_count": 3,
+    "candidate_block_ids": [
+      "113",
+      "131",
+      "132"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 36.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "3 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H08",
+    "claim_id": "CLM-H08",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "113",
+      "131"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 44.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H09",
+    "claim_id": "CLM-H09",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "113",
+      "131"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 56.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H10",
+    "claim_id": "CLM-H10",
+    "candidate_count": 7,
+    "candidate_block_ids": [
+      "2",
+      "3",
+      "6",
+      "7",
+      "8",
+      "9",
+      "11"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 13.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "7 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H11",
+    "claim_id": "CLM-H11",
+    "candidate_count": 3,
+    "candidate_block_ids": [
+      "113",
+      "131",
+      "132"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 62.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "3 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H12",
+    "claim_id": "CLM-H12",
+    "candidate_count": 3,
+    "candidate_block_ids": [
+      "104",
+      "109",
+      "110"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 38.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "3 candidates, fuzzy match only"
+  },
+  {
+    "gold_evidence_id": "EVD-H16",
+    "claim_id": "CLM-H16",
+    "candidate_count": 2,
+    "candidate_block_ids": [
+      "113",
+      "131"
+    ],
+    "selected_block_ids": [],
+    "reconstructed_text": "",
+    "reconstruction_coverage": 45.0,
+    "exact_number_match": false,
+    "unique_candidate": false,
+    "previous_status": "MULTI_BLOCK_MATCH",
+    "new_status": "HUMAN_REVIEW_REQUIRED",
+    "downgrade_reason": "2 candidates, fuzzy match only"
+  }
+]

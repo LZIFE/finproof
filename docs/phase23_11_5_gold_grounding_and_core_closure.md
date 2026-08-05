@@ -1,5 +1,7 @@
 # Phase 23.11.5: Gold Evidence Grounding与Core错误闭环结果
 
+> ⚠️ **Phase 23.11.5.1 纠正**：本文档的 Grounding 结论已被复核推翻。42条Gold Evidence的block_id全部为空，0条AUTO_CONFIRMED，29条旧MULTI_BLOCK_MATCH全部降级为HUMAN_REVIEW_REQUIRED，24/27条旧Grounded Claims全部降级为BLOCKED_PENDING_GOLD_REVIEW。详见 `docs/phase23_11_5_1_grounding_integrity_audit.md`。所有block-level指标标记 INVALID_PENDING_HUMAN_GOLD_REVIEW。
+
 > 基线 commit：`45bc440`（Phase 23.11.4）
 > 日期：2026-08-05
 

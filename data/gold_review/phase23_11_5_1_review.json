@@ -1,0 +1,1431 @@
+{
+  "phase": "23.11.5.1",
+  "description": "待人工审核Gold Evidence（Agent不得填写reviewer字段）",
+  "total": 42,
+  "items": [
+    {
+      "gold_evidence_id": "EVD-001",
+      "claim_id": "CLM-001",
+      "claim_text": "公司2025年实现营业收入4564.52亿元，同比增长12.11%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "candidate_document_id": "",
+      "candidate_page": 9,
+      "candidate_block_ids": [
+        "169"
+      ],
+      "candidate_texts": [
+        ""
+      ],
+      "context_before": [
+        "四、注册变更情况 \n"
+      ],
+      "context_after": [
+        "统一社会信用代码 \n91440606722473344C \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "1 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-002",
+      "claim_id": "CLM-002",
+      "claim_text": "营业总收入为4564.52亿元，与营业收入基本持平",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "一、营业总收入 458,502,407 409,084,266",
+      "candidate_document_id": "",
+      "candidate_page": 135,
+      "candidate_block_ids": [
+        "4440",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "context_before": [
+        "",
+        "营企业的投资\n收益 \n \n588,828 \n847,098 \n87,388 \n314,592 \n",
+        "失) \n四(58) \n782,358 \n1,302,145 \n(550,726) \n533,207 \n \n信用减值损失 \n四(57) \n(355,860) \n(",
+        "净利润 \n \n43,945,411 \n38,537,237 \n29,415,131 \n28,517,064 \n \n少数股东损益 \n \n574,785 \n219,"
+      ],
+      "context_after": [
+        "美的集团股份有限公司 \n \n2025 年度合并及公司利润表 \n(除特别注明外，金额单位为人民币千元) \n \n",
+        "公允价值变动收益/(损\n",
+        "归属于母公司股东的\n",
+        "134 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "4 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-003",
+      "claim_id": "CLM-003",
+      "claim_text": "归母净利润439.45亿元",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "candidate_document_id": "",
+      "candidate_page": 9,
+      "candidate_block_ids": [
+        "169",
+        "195"
+      ],
+      "candidate_texts": [
+        "",
+        "8 \n"
+      ],
+      "context_before": [
+        "四、注册变更情况 \n",
+        "稀释每股收益（元/股） \n5.76 \n5.42 \n6.27% \n4.92 \n"
+      ],
+      "context_after": [
+        "统一社会信用代码 \n91440606722473344C \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-004",
+      "claim_id": "CLM-004",
+      "claim_text": "归母净利润439.45亿元，同比增长38.02%",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "candidate_document_id": "",
+      "candidate_page": 9,
+      "candidate_block_ids": [
+        "169",
+        "195"
+      ],
+      "candidate_texts": [
+        "",
+        "8 \n"
+      ],
+      "context_before": [
+        "四、注册变更情况 \n",
+        "稀释每股收益（元/股） \n5.76 \n5.42 \n6.27% \n4.92 \n"
+      ],
+      "context_after": [
+        "统一社会信用代码 \n91440606722473344C \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-005",
+      "claim_id": "CLM-005",
+      "claim_text": "报告期内毛利率26.4%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "456,451,731 407,149,600",
+      "candidate_document_id": "",
+      "candidate_page": 135,
+      "candidate_block_ids": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "candidate_texts": [
+        "",
+        "四(48), \n十八(3) 456,451,731 407,149,600 \n936,519 \n946,607 \n利息收入 \n四(49) \n2,050,168 \n1,934,090 \n- \n- \n \n手续费及佣金收入 \n \n508 \n576 \n- \n- \n减：营业成本 \n四(48) (335,989",
+        "",
+        "",
+        ""
+      ],
+      "context_before": [
+        "",
+        "项目 \n附注 \n2025年度 \n2024年度 \n2025年度 \n2024年度 \n \n合并 \n合并 \n公司 \n公司 \n \n \n \n \n \n一、营业总收入 \n \n4",
+        "营企业的投资\n收益 \n \n588,828 \n847,098 \n87,388 \n314,592 \n",
+        "失) \n四(58) \n782,358 \n1,302,145 \n(550,726) \n533,207 \n \n信用减值损失 \n四(57) \n(355,860) \n(",
+        "净利润 \n \n43,945,411 \n38,537,237 \n29,415,131 \n28,517,064 \n \n少数股东损益 \n \n574,785 \n219,"
+      ],
+      "context_after": [
+        "美的集团股份有限公司 \n \n2025 年度合并及公司利润表 \n(除特别注明外，金额单位为人民币千元) \n \n",
+        "其中：营业收入 \n",
+        "公允价值变动收益/(损\n",
+        "归属于母公司股东的\n",
+        "134 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "5 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-006",
+      "claim_id": "CLM-005",
+      "claim_text": "报告期内毛利率26.4%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "(335,989,528) (299,584,935)",
+      "candidate_document_id": "",
+      "candidate_page": 135,
+      "candidate_block_ids": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "candidate_texts": [
+        "",
+        "四(48), \n十八(3) 456,451,731 407,149,600 \n936,519 \n946,607 \n利息收入 \n四(49) \n2,050,168 \n1,934,090 \n- \n- \n \n手续费及佣金收入 \n \n508 \n576 \n- \n- \n减：营业成本 \n四(48) (335,989",
+        "",
+        "",
+        ""
+      ],
+      "context_before": [
+        "",
+        "项目 \n附注 \n2025年度 \n2024年度 \n2025年度 \n2024年度 \n \n合并 \n合并 \n公司 \n公司 \n \n \n \n \n \n一、营业总收入 \n \n4",
+        "营企业的投资\n收益 \n \n588,828 \n847,098 \n87,388 \n314,592 \n",
+        "失) \n四(58) \n782,358 \n1,302,145 \n(550,726) \n533,207 \n \n信用减值损失 \n四(57) \n(355,860) \n(",
+        "净利润 \n \n43,945,411 \n38,537,237 \n29,415,131 \n28,517,064 \n \n少数股东损益 \n \n574,785 \n219,"
+      ],
+      "context_after": [
+        "美的集团股份有限公司 \n \n2025 年度合并及公司利润表 \n(除特别注明外，金额单位为人民币千元) \n \n",
+        "其中：营业收入 \n",
+        "公允价值变动收益/(损\n",
+        "归属于母公司股东的\n",
+        "134 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "5 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-007",
+      "claim_id": "CLM-006",
+      "claim_text": "毛利率26.4%，较上年提升0.7个百分点",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "456,451,731 407,149,600",
+      "candidate_document_id": "",
+      "candidate_page": 135,
+      "candidate_block_ids": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "candidate_texts": [
+        "",
+        "四(48), \n十八(3) 456,451,731 407,149,600 \n936,519 \n946,607 \n利息收入 \n四(49) \n2,050,168 \n1,934,090 \n- \n- \n \n手续费及佣金收入 \n \n508 \n576 \n- \n- \n减：营业成本 \n四(48) (335,989",
+        "",
+        "",
+        ""
+      ],
+      "context_before": [
+        "",
+        "项目 \n附注 \n2025年度 \n2024年度 \n2025年度 \n2024年度 \n \n合并 \n合并 \n公司 \n公司 \n \n \n \n \n \n一、营业总收入 \n \n4",
+        "营企业的投资\n收益 \n \n588,828 \n847,098 \n87,388 \n314,592 \n",
+        "失) \n四(58) \n782,358 \n1,302,145 \n(550,726) \n533,207 \n \n信用减值损失 \n四(57) \n(355,860) \n(",
+        "净利润 \n \n43,945,411 \n38,537,237 \n29,415,131 \n28,517,064 \n \n少数股东损益 \n \n574,785 \n219,"
+      ],
+      "context_after": [
+        "美的集团股份有限公司 \n \n2025 年度合并及公司利润表 \n(除特别注明外，金额单位为人民币千元) \n \n",
+        "其中：营业收入 \n",
+        "公允价值变动收益/(损\n",
+        "归属于母公司股东的\n",
+        "134 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "5 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-008",
+      "claim_id": "CLM-006",
+      "claim_text": "毛利率26.4%，较上年提升0.7个百分点",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "(335,989,528) (299,584,935)",
+      "candidate_document_id": "",
+      "candidate_page": 135,
+      "candidate_block_ids": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "candidate_texts": [
+        "",
+        "四(48), \n十八(3) 456,451,731 407,149,600 \n936,519 \n946,607 \n利息收入 \n四(49) \n2,050,168 \n1,934,090 \n- \n- \n \n手续费及佣金收入 \n \n508 \n576 \n- \n- \n减：营业成本 \n四(48) (335,989",
+        "",
+        "",
+        ""
+      ],
+      "context_before": [
+        "",
+        "项目 \n附注 \n2025年度 \n2024年度 \n2025年度 \n2024年度 \n \n合并 \n合并 \n公司 \n公司 \n \n \n \n \n \n一、营业总收入 \n \n4",
+        "营企业的投资\n收益 \n \n588,828 \n847,098 \n87,388 \n314,592 \n",
+        "失) \n四(58) \n782,358 \n1,302,145 \n(550,726) \n533,207 \n \n信用减值损失 \n四(57) \n(355,860) \n(",
+        "净利润 \n \n43,945,411 \n38,537,237 \n29,415,131 \n28,517,064 \n \n少数股东损益 \n \n574,785 \n219,"
+      ],
+      "context_after": [
+        "美的集团股份有限公司 \n \n2025 年度合并及公司利润表 \n(除特别注明外，金额单位为人民币千元) \n \n",
+        "其中：营业收入 \n",
+        "公允价值变动收益/(损\n",
+        "归属于母公司股东的\n",
+        "134 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "5 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-009",
+      "claim_id": "CLM-007",
+      "claim_text": "2025年第一季度，公司实现营业收入1278.39亿元，同比增长20.49%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "candidate_document_id": "",
+      "candidate_page": 2,
+      "candidate_block_ids": [
+        "38"
+      ],
+      "candidate_texts": [
+        "1 \n"
+      ],
+      "context_before": [
+        "握机会突破。培育业务要审慎观察，问题业务要果断处置。ToC 和ToB 业务形成增长接力。 \n"
+      ],
+      "context_after": [
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "1 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-010",
+      "claim_id": "CLM-008",
+      "claim_text": "2025年上半年，公司营业总收入2523.31亿元，同比增长15.7%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "一、营业总收入 252,331,494 218,121,839",
+      "candidate_document_id": "",
+      "candidate_page": 96,
+      "candidate_block_ids": [],
+      "candidate_texts": [],
+      "context_before": [],
+      "context_after": [],
+      "candidate_scores": [],
+      "ambiguity_reason": "no text match on page",
+      "new_status": "NOT_FOUND",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-011",
+      "claim_id": "CLM-008",
+      "claim_text": "2025年上半年，公司营业总收入2523.31亿元，同比增长15.7%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%",
+      "candidate_document_id": "",
+      "candidate_page": 17,
+      "candidate_block_ids": [],
+      "candidate_texts": [],
+      "context_before": [],
+      "context_after": [],
+      "candidate_scores": [],
+      "ambiguity_reason": "no text match on page",
+      "new_status": "NOT_FOUND",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-012",
+      "claim_id": "CLM-009",
+      "claim_text": "第二季度单季实现营业收入2523.31亿元",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "一、营业总收入 252,331,494 218,121,839",
+      "candidate_document_id": "",
+      "candidate_page": 96,
+      "candidate_block_ids": [],
+      "candidate_texts": [],
+      "context_before": [],
+      "context_after": [],
+      "candidate_scores": [],
+      "ambiguity_reason": "no text match on page",
+      "new_status": "NOT_FOUND",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-013",
+      "claim_id": "CLM-009",
+      "claim_text": "第二季度单季实现营业收入2523.31亿元",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "其中：营业收入 127,838,538 106,101,612 240,751",
+      "candidate_document_id": "",
+      "candidate_page": 8,
+      "candidate_block_ids": [
+        "136",
+        "160",
+        "165"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "7 \n"
+      ],
+      "context_before": [
+        "一、公司信息 \n",
+        "三、信息披露及备置地点 \n",
+        "巨潮资讯网http://www.cninfo.com.cn \n"
+      ],
+      "context_after": [
+        "股票简称 \n美的集团 \n股票代码 \n000333（A 股）、0300（H 股） \n",
+        "公司披露年度报告的证券交易所网站 \n深圳证券交易所网站（http://www.szse.cn） \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "3 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-014",
+      "claim_id": "CLM-010",
+      "claim_text": "第二季度归母净利润260.14亿元",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "归属于母公司股东的净利润 26,013,690 20,804,176",
+      "candidate_document_id": "",
+      "candidate_page": 96,
+      "candidate_block_ids": [],
+      "candidate_texts": [],
+      "context_before": [],
+      "context_after": [],
+      "candidate_scores": [],
+      "ambiguity_reason": "no text match on page",
+      "new_status": "NOT_FOUND",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-015",
+      "claim_id": "CLM-010",
+      "claim_text": "第二季度归母净利润260.14亿元",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "归属于母公司股东的净利润 12,422,233 9,000,007 245,043",
+      "candidate_document_id": "",
+      "candidate_page": 8,
+      "candidate_block_ids": [
+        "136",
+        "160",
+        "165"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "7 \n"
+      ],
+      "context_before": [
+        "一、公司信息 \n",
+        "三、信息披露及备置地点 \n",
+        "巨潮资讯网http://www.cninfo.com.cn \n"
+      ],
+      "context_after": [
+        "股票简称 \n美的集团 \n股票代码 \n000333（A 股）、0300（H 股） \n",
+        "公司披露年度报告的证券交易所网站 \n深圳证券交易所网站（http://www.szse.cn） \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "3 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-016",
+      "claim_id": "CLM-011",
+      "claim_text": "实现归母净利润124.22亿元，同比增长38.02%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+      "candidate_document_id": "",
+      "candidate_page": 2,
+      "candidate_block_ids": [
+        "38"
+      ],
+      "candidate_texts": [
+        "1 \n"
+      ],
+      "context_before": [
+        "握机会突破。培育业务要审慎观察，问题业务要果断处置。ToC 和ToB 业务形成增长接力。 \n"
+      ],
+      "context_after": [
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "1 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-017",
+      "claim_id": "CLM-012",
+      "claim_text": "基本每股收益5.80元，同比增长6.62%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "基本每股收益（元/股） 5.80 5.44 6.62%",
+      "candidate_document_id": "",
+      "candidate_page": 9,
+      "candidate_block_ids": [
+        "169",
+        "195"
+      ],
+      "candidate_texts": [
+        "",
+        "8 \n"
+      ],
+      "context_before": [
+        "四、注册变更情况 \n",
+        "稀释每股收益（元/股） \n5.76 \n5.42 \n6.27% \n4.92 \n"
+      ],
+      "context_after": [
+        "统一社会信用代码 \n91440606722473344C \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-018",
+      "claim_id": "CLM-013",
+      "claim_text": "上半年基本每股收益3.41元",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "基本每股收益 人民币元/股 3.41 3.02",
+      "candidate_document_id": "",
+      "candidate_page": 173,
+      "candidate_block_ids": [],
+      "candidate_texts": [],
+      "context_before": [],
+      "context_after": [],
+      "candidate_scores": [],
+      "ambiguity_reason": "no text match on page",
+      "new_status": "NOT_FOUND",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-019",
+      "claim_id": "CLM-014",
+      "claim_text": "全年经营活动现金流量净额533.46亿元，同比下降11.84%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "candidate_document_id": "",
+      "candidate_page": 9,
+      "candidate_block_ids": [
+        "169",
+        "195"
+      ],
+      "candidate_texts": [
+        "",
+        "8 \n"
+      ],
+      "context_before": [
+        "四、注册变更情况 \n",
+        "稀释每股收益（元/股） \n5.76 \n5.42 \n6.27% \n4.92 \n"
+      ],
+      "context_after": [
+        "统一社会信用代码 \n91440606722473344C \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-020",
+      "claim_id": "CLM-015",
+      "claim_text": "根据公司2025年一季度报告，2025年上半年公司营业收入同比增长20.49%",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "营业总收入2523 亿元，同比增长15.7%",
+      "candidate_document_id": "",
+      "candidate_page": 17,
+      "candidate_block_ids": [],
+      "candidate_texts": [],
+      "context_before": [],
+      "context_after": [],
+      "candidate_scores": [],
+      "ambiguity_reason": "no text match on page",
+      "new_status": "NOT_FOUND",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-021",
+      "claim_id": "CLM-015",
+      "claim_text": "根据公司2025年一季度报告，2025年上半年公司营业收入同比增长20.49%",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "candidate_document_id": "",
+      "candidate_page": 2,
+      "candidate_block_ids": [
+        "38"
+      ],
+      "candidate_texts": [
+        "1 \n"
+      ],
+      "context_before": [
+        "握机会突破。培育业务要审慎观察，问题业务要果断处置。ToC 和ToB 业务形成增长接力。 \n"
+      ],
+      "context_after": [
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "1 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-022",
+      "claim_id": "CLM-016",
+      "claim_text": "根据公司2025年3月31日发布的2025年年度报告",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+      "candidate_document_id": "",
+      "candidate_page": 1,
+      "candidate_block_ids": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "美的集团股份有限公司 \n",
+        "2025 年年度报告 \n",
+        "",
+        "",
+        "",
+        "",
+        "2026 年3 月 \n",
+        ""
+      ],
+      "context_before": [
+        "美的集团股份有限公司2025 年年度报告全文 \n",
+        "",
+        "",
+        "美的集团股份有限公司 \n",
+        "2025 年年度报告 \n",
+        "",
+        "",
+        "",
+        "",
+        "2026 年3 月 \n"
+      ],
+      "context_after": [
+        "",
+        "美的集团股份有限公司 \n",
+        "2025 年年度报告 \n",
+        "",
+        "",
+        "",
+        "",
+        "2026 年3 月 \n",
+        "",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "10 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-023",
+      "claim_id": "CLM-017",
+      "claim_text": "公司2025年实现营业收入4071.50亿元",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "candidate_document_id": "",
+      "candidate_page": 9,
+      "candidate_block_ids": [
+        "169"
+      ],
+      "candidate_texts": [
+        ""
+      ],
+      "context_before": [
+        "四、注册变更情况 \n"
+      ],
+      "context_after": [
+        "统一社会信用代码 \n91440606722473344C \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "1 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-024",
+      "claim_id": "CLM-018",
+      "claim_text": "全年经营现金流净额5334.59亿元",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "candidate_document_id": "",
+      "candidate_page": 9,
+      "candidate_block_ids": [
+        "169",
+        "195"
+      ],
+      "candidate_texts": [
+        "",
+        "8 \n"
+      ],
+      "context_before": [
+        "四、注册变更情况 \n",
+        "稀释每股收益（元/股） \n5.76 \n5.42 \n6.27% \n4.92 \n"
+      ],
+      "context_after": [
+        "统一社会信用代码 \n91440606722473344C \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-025",
+      "claim_id": "CLM-019",
+      "claim_text": "公司持续深化\"国内高端品牌和海外OBM优先\"战略",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "支撑国内高端品牌和海外OBM 优先战略",
+      "candidate_document_id": "",
+      "candidate_page": 17,
+      "candidate_block_ids": [],
+      "candidate_texts": [],
+      "context_before": [],
+      "context_after": [],
+      "candidate_scores": [],
+      "ambiguity_reason": "no text match on page",
+      "new_status": "NOT_FOUND",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-026",
+      "claim_id": "CLM-020",
+      "claim_text": "海外业务已成为公司利润增长的核心引擎",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%",
+      "candidate_document_id": "",
+      "candidate_page": 17,
+      "candidate_block_ids": [],
+      "candidate_texts": [],
+      "context_before": [],
+      "context_after": [],
+      "candidate_scores": [],
+      "ambiguity_reason": "no text match on page",
+      "new_status": "NOT_FOUND",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-027",
+      "claim_id": "CLM-024",
+      "claim_text": "公司2025年收入增速超过15%",
+      "expected_verdict": "PARTIALLY_SUPPORTED",
+      "original_gold_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "candidate_document_id": "",
+      "candidate_page": 9,
+      "candidate_block_ids": [
+        "169"
+      ],
+      "candidate_texts": [
+        ""
+      ],
+      "context_before": [
+        "四、注册变更情况 \n"
+      ],
+      "context_after": [
+        "统一社会信用代码 \n91440606722473344C \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "1 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-028",
+      "claim_id": "CLM-024",
+      "claim_text": "公司2025年收入增速超过15%",
+      "expected_verdict": "PARTIALLY_SUPPORTED",
+      "original_gold_evidence": "营业总收入2523 亿元，同比增长15.7%",
+      "candidate_document_id": "",
+      "candidate_page": 17,
+      "candidate_block_ids": [],
+      "candidate_texts": [],
+      "context_before": [],
+      "context_after": [],
+      "candidate_scores": [],
+      "ambiguity_reason": "no text match on page",
+      "new_status": "NOT_FOUND",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-029",
+      "claim_id": "CLM-026",
+      "claim_text": "上半年扣非归母净利润262亿元，同比增长30.0%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "实现扣非归母净利润262 亿元，同比增长30.0%",
+      "candidate_document_id": "",
+      "candidate_page": 17,
+      "candidate_block_ids": [],
+      "candidate_texts": [],
+      "context_before": [],
+      "context_after": [],
+      "candidate_scores": [],
+      "ambiguity_reason": "no text match on page",
+      "new_status": "NOT_FOUND",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H01",
+      "claim_id": "CLM-H01",
+      "claim_text": "公司2025年实现营业收入405.29亿元，同比下降54.55%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131"
+      ],
+      "candidate_texts": [
+        "",
+        ""
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n"
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H02",
+      "claim_id": "CLM-H02",
+      "claim_text": "归母净利润89.54亿元",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131"
+      ],
+      "candidate_texts": [
+        "",
+        ""
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n"
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H03",
+      "claim_id": "CLM-H03",
+      "claim_text": "归母净利润89.54亿元，同比下降38.02%",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131"
+      ],
+      "candidate_texts": [
+        "",
+        ""
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n"
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H04",
+      "claim_id": "CLM-H04",
+      "claim_text": "全年经营活动现金流量净额297.06亿元，同比下降12.47%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131",
+        "132"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "6 \n"
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n",
+        ""
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "3 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H05",
+      "claim_id": "CLM-H05",
+      "claim_text": "公司2025年经营活动现金流量净额297.06亿元，同比增长12.47%",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131",
+        "132"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "6 \n"
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n",
+        ""
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "3 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H06",
+      "claim_id": "CLM-H06",
+      "claim_text": "基本每股收益8.21元",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "基本每股收益（元/股） 2.3068 8.2062 -71.89%",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131",
+        "132"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "6 \n"
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n",
+        ""
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "3 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H07",
+      "claim_id": "CLM-H07",
+      "claim_text": "加权平均净资产收益率6.89%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "加权平均净资产收益率 6.89% 23.35% 减少16.46 个百分点",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131",
+        "132"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "6 \n"
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n",
+        ""
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "3 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H08",
+      "claim_id": "CLM-H08",
+      "claim_text": "2025年末总资产1899.84亿元，同比增长0.92%",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "总资产（元） 189,984,270,815.47 188,252,218,704.17 0.92%",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131"
+      ],
+      "candidate_texts": [
+        "",
+        ""
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n"
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H09",
+      "claim_id": "CLM-H09",
+      "claim_text": "归母净资产同比增长10.02%",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "归属于上市公司股东的净资产（元） 119,932,271,234.99 133,285,282,015.97 -10.02%",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131"
+      ],
+      "candidate_texts": [
+        "",
+        ""
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n"
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H10",
+      "claim_id": "CLM-H10",
+      "claim_text": "根据公司2025年3月31日发布的2025年年度报告",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "2026 年4 月30 日",
+      "candidate_document_id": "",
+      "candidate_page": 1,
+      "candidate_block_ids": [
+        "2",
+        "3",
+        "6",
+        "7",
+        "8",
+        "9",
+        "11"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "context_before": [
+        "美的集团股份有限公司2025 年年度报告全文 \n",
+        "",
+        "2025 年年度报告 \n",
+        "",
+        "",
+        "",
+        "2026 年3 月 \n"
+      ],
+      "context_after": [
+        "",
+        "美的集团股份有限公司 \n",
+        "",
+        "",
+        "",
+        "2026 年3 月 \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "7 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H11",
+      "claim_id": "CLM-H11",
+      "claim_text": "扣非归母净利润88.16亿元",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "归属于上市公司股东的扣除非经常性损益的净利润（元） 8,815,635,943.27 31,741,959,276.27 -72.23%",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131",
+        "132"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "6 \n"
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n",
+        ""
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "3 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H12",
+      "claim_id": "CLM-H12",
+      "claim_text": "宜宾五粮液股份有限公司在深圳证券交易所上市，股票代码000858",
+      "expected_verdict": "SUPPORTED",
+      "original_gold_evidence": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所",
+      "candidate_document_id": "",
+      "candidate_page": 6,
+      "candidate_block_ids": [
+        "104",
+        "109",
+        "110"
+      ],
+      "candidate_texts": [
+        "",
+        "",
+        "5 \n"
+      ],
+      "context_before": [
+        "备查文件目录 \n",
+        "四、在其他证券市场公布的年度报告。 \n",
+        ""
+      ],
+      "context_after": [
+        "一、载有法定代表人、主管会计工作负责人、会计机构负责人签名并盖章的财务报表； \n",
+        "5 \n",
+        ""
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "3 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    },
+    {
+      "gold_evidence_id": "EVD-H16",
+      "claim_id": "CLM-H16",
+      "claim_text": "公司2025年营业收入4052.85亿元",
+      "expected_verdict": "REFUTED",
+      "original_gold_evidence": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+      "candidate_document_id": "",
+      "candidate_page": 7,
+      "candidate_block_ids": [
+        "113",
+        "131"
+      ],
+      "candidate_texts": [
+        "",
+        ""
+      ],
+      "context_before": [
+        "释义 \n",
+        "报告期 \n指 \n2025 年1 月1 日至2025 年12 月31 日 \n"
+      ],
+      "context_after": [
+        "释义项 \n指 \n释义内容 \n",
+        "6 \n"
+      ],
+      "candidate_scores": [],
+      "ambiguity_reason": "2 candidates, fuzzy match only",
+      "new_status": "HUMAN_REVIEW_REQUIRED",
+      "reviewer_selected_block_ids": [],
+      "reviewer_decision": "",
+      "reviewer_rationale": "",
+      "reviewer_name": "",
+      "reviewed_at": "",
+      "review_status": "PENDING_REVIEW"
+    }
+  ]
+}

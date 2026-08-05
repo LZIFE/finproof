@@ -3577,3 +3577,62 @@ Phase 23.11.4 虽然实现了 block-level 匹配逻辑，但 42 条 Gold Evidenc
 - `backend/artifacts/e2e/phase23_11_5_real_e2e.json`
 - `data/gold_manifest.json`
 - `data/gold_review/phase23_11_5_gold_alignment_review.json`
+
+---
+
+## Phase 23.11.5.1：Gold Grounding完整性复核 — ⚠️ PARTIAL（不标记 Competition-Usable）
+
+> 基线 commit：`45bc440`（Phase 23.11.4）｜上一轮 Phase 23.11.5 commit：`f4c7bbd`
+> 日期：2026-08-05
+
+### 纠正内容
+
+Phase 23.11.5.1 此前 NOT EXECUTED（无任何 23.11.5.1 文件存在）。本轮首次真正执行严格Grounding完整性复核。
+
+### 42条Gold Evidence严格审计结果
+
+| 分类 | 数量 |
+| --- | --- |
+| AUTO_CONFIRMED_EXACT | 0 |
+| AUTO_CONFIRMED_NORMALIZED | 0 |
+| AUTO_CONFIRMED_MULTI_BLOCK | 0 |
+| HUMAN_REVIEW_REQUIRED | 32 |
+| NOT_FOUND | 10 |
+| 合计 | 42 ✓ |
+
+### 29条旧MULTI_BLOCK_MATCH复核
+
+全部29条降级为HUMAN_REVIEW_REQUIRED（0条AUTO_CONFIRMED）。原因：仅page+text模糊匹配、无唯一候选、26条多候选。
+
+### 27条旧Grounded Claims复核
+
+0条保留为ORACLE_EVALUABLE，27条全部降级为BLOCKED_PENDING_GOLD_REVIEW。
+
+### Core错误统计矛盾解释
+
+- original=7（CLM-004,005,006,009,010,024,H03）
+- fixed=2（CLM-004,H03）—— 全管线真实修复数
+- remaining=5（CLM-005,006,009,010,024）
+- regression=0
+- **恒等式：7 = 2 + 5 + 0 ✓**
+
+上一轮"修复5/7"基于Single-Gold单证据路径，全管线（Gate→Selector）下CLM-005/006/024仍失败。
+
+### 指标冻结
+
+所有block-level指标标记 `INVALID_PENDING_HUMAN_GOLD_REVIEW`：
+整体Gate Precision / Gate Recall / Accepted Noise Rate / Rejected Gold Rate / Gold Top1/Top3 / Block Hit@K / 全部Development Oracle指标
+
+### 交付产物
+
+- `docs/phase23_11_5_1_grounding_integrity_audit.md`
+- `backend/scripts/phase23_11_5_1_grounding_audit.py`
+- `backend/scripts/phase23_11_5_1_acceptance.py`
+- `backend/artifacts/phase23_11_5_1_acceptance.json`
+- `backend/artifacts/gold_contract/phase23_11_5_1_grounding_audit.json`
+- `backend/artifacts/gold_contract/phase23_11_5_1_cohort.json`
+- `backend/artifacts/gold_contract/phase23_11_5_1_grounded_claim_review.json`
+- `backend/artifacts/gold_contract/phase23_11_5_1_stats_reconciliation.json`
+- `backend/artifacts/gold_contract/phase23_11_5_1_metrics_freeze.json`
+- `data/gold_review/phase23_11_5_1_review.json`
+- `data/gold_manifest.json`（更新grounding_version）

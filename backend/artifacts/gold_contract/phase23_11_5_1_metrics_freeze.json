@@ -1,0 +1,47 @@
+{
+  "phase": "23.11.5.1",
+  "script": "phase23_11_5_1_metrics_freeze",
+  "description": "冻结所有依赖block-level Gold匹配的无效指标",
+  "freeze_status": "INVALID_PENDING_HUMAN_GOLD_REVIEW",
+  "frozen_metrics": [
+    "整体Gate Precision",
+    "整体Gate Recall",
+    "Accepted Noise Rate",
+    "Rejected Gold Rate",
+    "Gold Top1 Rate",
+    "Gold Top3 Rate",
+    "Block Hit@K",
+    "全部Development Oracle指标（CORE_ORACLE/NOISY_ORACLE/REAL_E2E）"
+  ],
+  "reason": "42条Gold Evidence的block_id全部为空，0条AUTO_CONFIRMED（无唯一精确/标准化Block匹配），32条HUMAN_REVIEW_REQUIRED，10条NOT_FOUND。任何基于未确认Gold计算的指标均无效。",
+  "evidence_audit_summary": {
+    "total_gold_evidence": 42,
+    "auto_confirmed_exact": 0,
+    "auto_confirmed_normalized": 0,
+    "auto_confirmed_multi_block": 0,
+    "human_review_required": 32,
+    "not_found": 10,
+    "sum_check": "42 = 42 ✓"
+  },
+  "claim_cohort_summary": {
+    "total_claims": 43,
+    "oracle_evaluable_claims": 0,
+    "blocked_claims": 43,
+    "note": "0条Claim的所需Gold Evidence全部AUTO_CONFIRMED，全部BLOCKED_PENDING_GOLD_REVIEW"
+  },
+  "temporary_metrics_allowance": {
+    "allowed": true,
+    "condition": "仅允许针对AUTO_CONFIRMED Cohort报告临时指标",
+    "current_auto_confirmed_cohort": {
+      "denominator": 0,
+      "included_claim_ids": [],
+      "excluded_claim_ids": "全部43条",
+      "exclusion_reasons": "全部Claim的Gold Evidence均未AUTO_CONFIRMED"
+    },
+    "note": "不得称为全部Development结果"
+  },
+  "page_match_rate_auxiliary": {
+    "status": "单独报告",
+    "note": "Page-level match只能单独报告Page Match Rate，不得参与Gate Precision计算"
+  }
+}

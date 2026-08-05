@@ -1,0 +1,313 @@
+{
+  "phase": "23.11.5.1",
+  "total_claims": 43,
+  "grounded_evidence_claims": 0,
+  "intentional_insufficient_claims": 3,
+  "annotation_blocked_claims": 5,
+  "blocked_pending_review": 35,
+  "metric_denominator": 0,
+  "note": "0 claims oracle-evaluable: no gold evidence AUTO_CONFIRMED (all block_id empty)",
+  "per_claim": {
+    "CLM-001": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-002": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-003": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-004": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-005": {
+      "evidence_count": 2,
+      "auto_confirmed": 0,
+      "human_review": 2,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-006": {
+      "evidence_count": 2,
+      "auto_confirmed": 0,
+      "human_review": 2,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-007": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-008": {
+      "evidence_count": 2,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 2,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-009": {
+      "evidence_count": 2,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 1,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-010": {
+      "evidence_count": 2,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 1,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-011": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-012": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-013": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 1,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-014": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-015": {
+      "evidence_count": 2,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 1,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-016": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-017": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-018": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-019": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 1,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-020": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 1,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-021": {
+      "evidence_count": 0,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 0,
+      "claim_status": "NO_EVIDENCE"
+    },
+    "CLM-022": {
+      "evidence_count": 0,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 0,
+      "claim_status": "NO_EVIDENCE"
+    },
+    "CLM-023": {
+      "evidence_count": 0,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 0,
+      "claim_status": "NO_EVIDENCE"
+    },
+    "CLM-024": {
+      "evidence_count": 2,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 1,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-025": {
+      "evidence_count": 0,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 0,
+      "claim_status": "NO_EVIDENCE"
+    },
+    "CLM-026": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 1,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H01": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H02": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H03": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H04": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H05": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H06": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H07": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H08": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H09": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H10": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H11": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H12": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H13": {
+      "evidence_count": 0,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 0,
+      "claim_status": "NO_EVIDENCE"
+    },
+    "CLM-H14": {
+      "evidence_count": 0,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 0,
+      "claim_status": "NO_EVIDENCE"
+    },
+    "CLM-H15": {
+      "evidence_count": 0,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 0,
+      "claim_status": "NO_EVIDENCE"
+    },
+    "CLM-H16": {
+      "evidence_count": 1,
+      "auto_confirmed": 0,
+      "human_review": 1,
+      "not_found": 0,
+      "claim_status": "BLOCKED_PENDING_GOLD_REVIEW"
+    },
+    "CLM-H17": {
+      "evidence_count": 0,
+      "auto_confirmed": 0,
+      "human_review": 0,
+      "not_found": 0,
+      "claim_status": "NO_EVIDENCE"
+    }
+  }
+}
