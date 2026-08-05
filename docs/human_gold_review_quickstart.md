@@ -34,6 +34,18 @@ data/gold_review/phase23_11_6/review.html
 
 ## 3. 保存审核结果
 
+**推荐方式（使用交互式页面，无需手改JSON）：**
+
+1. 在 review.html 中逐条审核，随时点「💾 保存进度」；
+2. 全部完成后点「📤 导出JSON」，浏览器会下载 `review_results.json`；
+3. **将下载的文件移动到**：
+   ```
+   data/gold_review/phase23_11_6/review_results.json
+   ```
+   （浏览器无法直接写回项目目录，必须手动移动）
+
+**备选方式（手工编辑模板）：**
+
 用文本编辑器打开模板：
 
 ```
@@ -62,16 +74,24 @@ data/gold_review/phase23_11_6/not_found_review.html
 
 ## 5. 审核Intentional Insufficient（3条）
 
+**推荐方式（表单页面，无需手改JSON）：**
+
 打开：
 
 ```
-data/gold_review/phase23_11_6/insufficient_review.json
+data/gold_review/phase23_11_6/insufficient_review.html
 ```
 
-条目：`CLM-021`、`CLM-022`、`CLM-H17`。请确认这三条确实"现有材料无法支持也无法反驳"，填写：
+填写 `CLM-021`、`CLM-022`、`CLM-H17` 三条的：
 - `reviewer_confirmed_insufficient`：`yes` 或 `no`
 - `reviewer_rationale`：依据
 - `reviewer_name` / `reviewed_at`
+
+点「导出JSON」下载 `insufficient_results.json` 并移动到 `data/gold_review/phase23_11_6/`。
+
+**备选方式（编辑JSON）：**
+
+打开 `insufficient_review.json`，每条**只修改** `reviewer_` 开头的字段（其余字段不得修改）。
 
 ## 6. 审核完成后文件放在哪里
 

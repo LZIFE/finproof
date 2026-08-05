@@ -1,0 +1,23 @@
+{
+  "phase": "23.11.6.1",
+  "script": "phase23_11_6_1_validate_review_pack",
+  "valid": true,
+  "checks": {
+    "review_html_interactive": true,
+    "review_html_blind": true,
+    "review_html_export": true,
+    "not_found_10_items": true,
+    "not_found_offline": true,
+    "not_found_blind": true,
+    "not_found_export": true,
+    "inventory_32": true,
+    "inventory_unique": true,
+    "inventory_validation_all_true": true,
+    "progress_fields": true,
+    "priority_cohort_16": true,
+    "priority_coverage_partial_blocked_honest": true,
+    "insufficient_form": true,
+    "insufficient_fields_empty": true,
+    "importer_rejects_incomplete": true
+  }
+}

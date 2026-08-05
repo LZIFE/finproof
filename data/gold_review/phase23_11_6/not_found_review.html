@@ -1,337 +1,75 @@
 <!DOCTYPE html>
-<html lang=zh><head><meta charset=utf-8><title>Phase 23.11.6 NOT_FOUND 视觉审核包</title>
+<html lang="zh"><head><meta charset="utf-8"><title>Phase 23.11.6 NOT_FOUND 视觉审核包（交互式）</title>
 <style>
-body { font-family: sans-serif; max-width: 1000px; margin: 20px auto; padding: 0 20px; }
-.item { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 24px; }
-.gold { background: #fff8e1; border: 1px solid #f0c; padding: 8px 12px; }
-.page { background: #e3f2fd; padding: 8px 12px; margin: 6px 0; }
-.adj { background: #f3e5f5; padding: 6px 10px; margin: 4px 0; font-size: 0.9em; }
-h3 { margin-top: 0; }
+body { font-family: sans-serif; max-width: 900px; margin: 20px auto; padding: 0 20px; }
+#nav { display:flex; gap:10px; align-items:center; margin-bottom:16px; }
+#nav button { padding:8px 16px; font-size:15px; }
+#progressbar { height:6px; background:#eee; border-radius:3px; margin-bottom:16px; }
+#progressbar>div { height:100%; background:#4caf50; width:0%; border-radius:3px; }
+.item { border:1px solid #ccc; border-radius:8px; padding:16px; }
+.gold { background:#fff8e1; border:1px solid #e0c; padding:8px 12px; }
+.page { background:#e3f2fd; padding:8px 12px; margin:6px 0; white-space:pre-wrap; }
+.adj { background:#f3e5f5; padding:6px 10px; margin:4px 0; font-size:0.9em; }
+label { display:block; margin:6px 0; }
+textarea, select { width:100%; padding:6px; }
+.btnrow { margin-top:14px; display:flex; gap:10px; }
+#exportbtn { background:#1976d2; color:#fff; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; }
+#savebtn { background:#388e3c; color:#fff; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; }
+.notice { background:#fff3e0; border:1px solid #ffb74d; padding:8px 12px; margin:10px 0; }
 </style></head><body>
-<h1>Phase 23.11.6 NOT_FOUND 视觉审核包</h1>
-<p>共 10 条。请打开对应PDF页面核对，人工字段默认为空。</p>
-
-    <div class=item>
-      <h3>Evidence: EVD-010 (claim CLM-008)</h3>
-      <p><b>公司:</b> 美的集团 &nbsp; <b>数据集:</b> demo &nbsp; <b>标注页码:</b> 96</p>
-      <p><b>Claim文本:</b> 2025年上半年，公司营业总收入2523.31亿元，同比增长15.7%</p>
-      <div class=gold><b>原Gold Evidence文本:</b><br>一、营业总收入 252,331,494 218,121,839</div>
-      <p><b>恢复状态:</b> POSSIBLE_PARAPHRASED_GOLD &nbsp; <b>原因:</b> page has text but gold text not found (possibly paraphrased or table-only)</p>
-      <p><b>PDF源:</b> q1_report.pdf(d99c61dec30e4fe2), half_year_report.pdf(cec88d9c6ded328a), annual_report.pdf(16f95f70527db59d), 000333_2025年年度报告.pdf(16f95f70527db59d), 000333_2025年一季度报告.pdf(d99c61dec30e4fe2), 300750_2025年一季度报告.pdf(55e17a28dc23b45d), 000858_2025年年度报告.pdf(09133e1f44b3bb4b), 000858_2025年第一季度报告.pdf(36472c5fe41f28b7), 000333_2025年半年度报告.pdf(cec88d9c6ded328a), 000858_2025年半年度报告.pdf(43763a06159d47b7), 300750_2025年半年度报告.pdf(94da19aaaf50205f), 300750_2025年年度报告.pdf(c15272977147dee7)</p>
-      <div class=page><b>第96页解析文本:</b><br>美的集团股份有限公司2025 年年度报告全文 
-<br>租赁事宜的相关承诺。 
-<br>月28 日 
-宜未导致任何争议或纠纷，不存在违反承诺的情
-<br>东、实
-<br>更、资产
-<br>况，美的控股将长期履行承诺。 
-<br>际控制
-<br>瑕疵及房
-</div>
-      <div class="adj"><b>第95页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 律、法规或其他规范性文件认定为美的集团的控股股东和实际控
- 制人，将不会变更、解除本承诺； 
- （5）美的控股和何享健将忠实履行上述承诺，并承担相应
- 的法律责任，若不履行本承诺所赋予的义务和责任，将依照相关
- 法律、法规、规章及规范性文件承担相应的</div><div class="adj"><b>第97页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 宜，如果因该等土地瑕疵而致使租赁关系无效或者出现任何纠
- 纷，导致美的集团及其子公司遭受经济损失的或被有权的政府部
- 门罚款的，若土地出租方无法赔偿因该等瑕疵租赁造成的损失，
- 将对该等瑕疵土地租赁给美的集团造成的损失予以赔偿。 
- 美的控股进一步承</div>
-      <p><b>人工选项:</b> FOUND_ON_PAGE / FOUND_ON_ADJACENT_PAGE / FOUND_IN_OTHER_DOCUMENT / GOLD_TEXT_IS_PARAPHRASED / GOLD_ANNOTATION_IS_WRONG / SOURCE_MISSING / UNSURE</p>
-      <p><b>reviewer_decision:</b> ________________</p>
-      <p><b>reviewer_note:</b> ________________________________________________</p>
-    </div>
-    <div class=item>
-      <h3>Evidence: EVD-011 (claim CLM-008)</h3>
-      <p><b>公司:</b> 美的集团 &nbsp; <b>数据集:</b> demo &nbsp; <b>标注页码:</b> 17</p>
-      <p><b>Claim文本:</b> 2025年上半年，公司营业总收入2523.31亿元，同比增长15.7%</p>
-      <div class=gold><b>原Gold Evidence文本:</b><br>2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%</div>
-      <p><b>恢复状态:</b> POSSIBLE_PARAPHRASED_GOLD &nbsp; <b>原因:</b> page has text but gold text not found (possibly paraphrased or table-only)</p>
-      <p><b>PDF源:</b> q1_report.pdf(d99c61dec30e4fe2), half_year_report.pdf(cec88d9c6ded328a), annual_report.pdf(16f95f70527db59d), 000333_2025年年度报告.pdf(16f95f70527db59d), 000333_2025年一季度报告.pdf(d99c61dec30e4fe2), 300750_2025年一季度报告.pdf(55e17a28dc23b45d), 000858_2025年年度报告.pdf(09133e1f44b3bb4b), 000858_2025年第一季度报告.pdf(36472c5fe41f28b7), 000333_2025年半年度报告.pdf(cec88d9c6ded328a), 000858_2025年半年度报告.pdf(43763a06159d47b7), 300750_2025年半年度报告.pdf(94da19aaaf50205f), 300750_2025年年度报告.pdf(c15272977147dee7)</p>
-      <div class=page><b>第17页解析文本:</b><br>美的集团股份有限公司2025 年年度报告全文 
-<br>均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1
-<br>亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售
-<br>额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市
-<br>场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 
-<br>小家电及清洁电器市场： 
-<br>根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨
-<br>房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日
-</div>
-      <div class="adj"><b>第16页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气
- 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增
- 速达50.7%，反映出消费者对小空间大功率的空间节省需</div><div class="adj"><b>第18页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第
- 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、
- 新兴市场的涌现、创新技术的发展等多方面的因素，工业机</div>
-      <p><b>人工选项:</b> FOUND_ON_PAGE / FOUND_ON_ADJACENT_PAGE / FOUND_IN_OTHER_DOCUMENT / GOLD_TEXT_IS_PARAPHRASED / GOLD_ANNOTATION_IS_WRONG / SOURCE_MISSING / UNSURE</p>
-      <p><b>reviewer_decision:</b> ________________</p>
-      <p><b>reviewer_note:</b> ________________________________________________</p>
-    </div>
-    <div class=item>
-      <h3>Evidence: EVD-012 (claim CLM-009)</h3>
-      <p><b>公司:</b> 美的集团 &nbsp; <b>数据集:</b> demo &nbsp; <b>标注页码:</b> 96</p>
-      <p><b>Claim文本:</b> 第二季度单季实现营业收入2523.31亿元</p>
-      <div class=gold><b>原Gold Evidence文本:</b><br>一、营业总收入 252,331,494 218,121,839</div>
-      <p><b>恢复状态:</b> POSSIBLE_PARAPHRASED_GOLD &nbsp; <b>原因:</b> page has text but gold text not found (possibly paraphrased or table-only)</p>
-      <p><b>PDF源:</b> q1_report.pdf(d99c61dec30e4fe2), half_year_report.pdf(cec88d9c6ded328a), annual_report.pdf(16f95f70527db59d), 000333_2025年年度报告.pdf(16f95f70527db59d), 000333_2025年一季度报告.pdf(d99c61dec30e4fe2), 300750_2025年一季度报告.pdf(55e17a28dc23b45d), 000858_2025年年度报告.pdf(09133e1f44b3bb4b), 000858_2025年第一季度报告.pdf(36472c5fe41f28b7), 000333_2025年半年度报告.pdf(cec88d9c6ded328a), 000858_2025年半年度报告.pdf(43763a06159d47b7), 300750_2025年半年度报告.pdf(94da19aaaf50205f), 300750_2025年年度报告.pdf(c15272977147dee7)</p>
-      <div class=page><b>第96页解析文本:</b><br>美的集团股份有限公司2025 年年度报告全文 
-<br>租赁事宜的相关承诺。 
-<br>月28 日 
-宜未导致任何争议或纠纷，不存在违反承诺的情
-<br>东、实
-<br>更、资产
-<br>况，美的控股将长期履行承诺。 
-<br>际控制
-<br>瑕疵及房
-</div>
-      <div class="adj"><b>第95页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 律、法规或其他规范性文件认定为美的集团的控股股东和实际控
- 制人，将不会变更、解除本承诺； 
- （5）美的控股和何享健将忠实履行上述承诺，并承担相应
- 的法律责任，若不履行本承诺所赋予的义务和责任，将依照相关
- 法律、法规、规章及规范性文件承担相应的</div><div class="adj"><b>第97页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 宜，如果因该等土地瑕疵而致使租赁关系无效或者出现任何纠
- 纷，导致美的集团及其子公司遭受经济损失的或被有权的政府部
- 门罚款的，若土地出租方无法赔偿因该等瑕疵租赁造成的损失，
- 将对该等瑕疵土地租赁给美的集团造成的损失予以赔偿。 
- 美的控股进一步承</div>
-      <p><b>人工选项:</b> FOUND_ON_PAGE / FOUND_ON_ADJACENT_PAGE / FOUND_IN_OTHER_DOCUMENT / GOLD_TEXT_IS_PARAPHRASED / GOLD_ANNOTATION_IS_WRONG / SOURCE_MISSING / UNSURE</p>
-      <p><b>reviewer_decision:</b> ________________</p>
-      <p><b>reviewer_note:</b> ________________________________________________</p>
-    </div>
-    <div class=item>
-      <h3>Evidence: EVD-014 (claim CLM-010)</h3>
-      <p><b>公司:</b> 美的集团 &nbsp; <b>数据集:</b> demo &nbsp; <b>标注页码:</b> 96</p>
-      <p><b>Claim文本:</b> 第二季度归母净利润260.14亿元</p>
-      <div class=gold><b>原Gold Evidence文本:</b><br>归属于母公司股东的净利润 26,013,690 20,804,176</div>
-      <p><b>恢复状态:</b> POSSIBLE_PARAPHRASED_GOLD &nbsp; <b>原因:</b> page has text but gold text not found (possibly paraphrased or table-only)</p>
-      <p><b>PDF源:</b> q1_report.pdf(d99c61dec30e4fe2), half_year_report.pdf(cec88d9c6ded328a), annual_report.pdf(16f95f70527db59d), 000333_2025年年度报告.pdf(16f95f70527db59d), 000333_2025年一季度报告.pdf(d99c61dec30e4fe2), 300750_2025年一季度报告.pdf(55e17a28dc23b45d), 000858_2025年年度报告.pdf(09133e1f44b3bb4b), 000858_2025年第一季度报告.pdf(36472c5fe41f28b7), 000333_2025年半年度报告.pdf(cec88d9c6ded328a), 000858_2025年半年度报告.pdf(43763a06159d47b7), 300750_2025年半年度报告.pdf(94da19aaaf50205f), 300750_2025年年度报告.pdf(c15272977147dee7)</p>
-      <div class=page><b>第96页解析文本:</b><br>美的集团股份有限公司2025 年年度报告全文 
-<br>租赁事宜的相关承诺。 
-<br>月28 日 
-宜未导致任何争议或纠纷，不存在违反承诺的情
-<br>东、实
-<br>更、资产
-<br>况，美的控股将长期履行承诺。 
-<br>际控制
-<br>瑕疵及房
-</div>
-      <div class="adj"><b>第95页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 律、法规或其他规范性文件认定为美的集团的控股股东和实际控
- 制人，将不会变更、解除本承诺； 
- （5）美的控股和何享健将忠实履行上述承诺，并承担相应
- 的法律责任，若不履行本承诺所赋予的义务和责任，将依照相关
- 法律、法规、规章及规范性文件承担相应的</div><div class="adj"><b>第97页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 宜，如果因该等土地瑕疵而致使租赁关系无效或者出现任何纠
- 纷，导致美的集团及其子公司遭受经济损失的或被有权的政府部
- 门罚款的，若土地出租方无法赔偿因该等瑕疵租赁造成的损失，
- 将对该等瑕疵土地租赁给美的集团造成的损失予以赔偿。 
- 美的控股进一步承</div>
-      <p><b>人工选项:</b> FOUND_ON_PAGE / FOUND_ON_ADJACENT_PAGE / FOUND_IN_OTHER_DOCUMENT / GOLD_TEXT_IS_PARAPHRASED / GOLD_ANNOTATION_IS_WRONG / SOURCE_MISSING / UNSURE</p>
-      <p><b>reviewer_decision:</b> ________________</p>
-      <p><b>reviewer_note:</b> ________________________________________________</p>
-    </div>
-    <div class=item>
-      <h3>Evidence: EVD-018 (claim CLM-013)</h3>
-      <p><b>公司:</b> 美的集团 &nbsp; <b>数据集:</b> demo &nbsp; <b>标注页码:</b> 173</p>
-      <p><b>Claim文本:</b> 上半年基本每股收益3.41元</p>
-      <div class=gold><b>原Gold Evidence文本:</b><br>基本每股收益 人民币元/股 3.41 3.02</div>
-      <p><b>恢复状态:</b> POSSIBLE_PARAPHRASED_GOLD &nbsp; <b>原因:</b> page has text but gold text not found (possibly paraphrased or table-only)</p>
-      <p><b>PDF源:</b> q1_report.pdf(d99c61dec30e4fe2), half_year_report.pdf(cec88d9c6ded328a), annual_report.pdf(16f95f70527db59d), 000333_2025年年度报告.pdf(16f95f70527db59d), 000333_2025年一季度报告.pdf(d99c61dec30e4fe2), 300750_2025年一季度报告.pdf(55e17a28dc23b45d), 000858_2025年年度报告.pdf(09133e1f44b3bb4b), 000858_2025年第一季度报告.pdf(36472c5fe41f28b7), 000333_2025年半年度报告.pdf(cec88d9c6ded328a), 000858_2025年半年度报告.pdf(43763a06159d47b7), 300750_2025年半年度报告.pdf(94da19aaaf50205f), 300750_2025年年度报告.pdf(c15272977147dee7)</p>
-      <div class=page><b>第173页解析文本:</b><br>美的集团股份有限公司 
- 
-<br>2025 年度财务报表附注 
-(除特别注明外，金额单位为人民币千元) 
-<br> 
-二 
-主要会计政策和会计估计(续) 
- 
-(29) 
-租赁 
- 
-<br>租赁，是指在一定期间内，出租人将资产的使用权让与承租人以获取对价的
-合同。 
- 
-<br>本集团作为承租人 
- 
-<br>本集团于租赁期开始日确认使用权资产，并按尚未支付的租赁付款额的现值
-确认租赁负债。租赁付款额包括固定付款额，以及在合理确定将行使购买选
-择权或终止租赁选择权的情况下需支付的款项等。按销售额的一定比例确定
-的可变租金不纳入租赁付款额，在实际发<br>本集团的使用权资产包括租入的房屋及建筑物、机器设备及运输工具等。使
-用权资产按照成本进行初始计量，该成本包括租赁负债的初始计量金额、租
-赁期开始日或之前已支付的租赁付款额、初始直接费用等，并扣除已收到的
-租赁激励。本集团能够合理确定租赁期届<br> 
-对于租赁期不超过12 个月的短期租赁和单项资产全新时价值较低的低价值资
-产租赁，本集团选择不确认使用权资产和租赁负债，将相关租金支出在租赁
-期内各个期间按照直线法计入当期损益或相关资产成本。 
-</div>
-      <div class="adj"><b>第172页:</b> 美的集团股份有限公司 
- 
- 2025 年度财务报表附注 
-(除特别注明外，金额单位为人民币千元) 
-  
-二 
-主要会计政策和会计估计(续) 
- 
-(28) 
-递延所得税资产和递延所得税负债 
- 
- 递延所得税资产和递延所得税负债根据资产和负债的计税基础与其账面价值
-的差额(暂时性差异)计算确认。</div><div class="adj"><b>第174页:</b> 美的集团股份有限公司 
- 
- 2025 年度财务报表附注 
-(除特别注明外，金额单位为人民币千元) 
-  
-二 
-主要会计政策和会计估计(续) 
- 
-(29) 
-租赁(续) 
- 
- 本集团作为承租人(续) 
- 
- 当租赁变更未作为一项单独租赁进行会计处理时，除财政部规定的可以采用
-简化方法的合同变更</div>
-      <p><b>人工选项:</b> FOUND_ON_PAGE / FOUND_ON_ADJACENT_PAGE / FOUND_IN_OTHER_DOCUMENT / GOLD_TEXT_IS_PARAPHRASED / GOLD_ANNOTATION_IS_WRONG / SOURCE_MISSING / UNSURE</p>
-      <p><b>reviewer_decision:</b> ________________</p>
-      <p><b>reviewer_note:</b> ________________________________________________</p>
-    </div>
-    <div class=item>
-      <h3>Evidence: EVD-020 (claim CLM-015)</h3>
-      <p><b>公司:</b> 美的集团 &nbsp; <b>数据集:</b> demo &nbsp; <b>标注页码:</b> 17</p>
-      <p><b>Claim文本:</b> 根据公司2025年一季度报告，2025年上半年公司营业收入同比增长20.49%</p>
-      <div class=gold><b>原Gold Evidence文本:</b><br>营业总收入2523 亿元，同比增长15.7%</div>
-      <p><b>恢复状态:</b> POSSIBLE_PARAPHRASED_GOLD &nbsp; <b>原因:</b> page has text but gold text not found (possibly paraphrased or table-only)</p>
-      <p><b>PDF源:</b> q1_report.pdf(d99c61dec30e4fe2), half_year_report.pdf(cec88d9c6ded328a), annual_report.pdf(16f95f70527db59d), 000333_2025年年度报告.pdf(16f95f70527db59d), 000333_2025年一季度报告.pdf(d99c61dec30e4fe2), 300750_2025年一季度报告.pdf(55e17a28dc23b45d), 000858_2025年年度报告.pdf(09133e1f44b3bb4b), 000858_2025年第一季度报告.pdf(36472c5fe41f28b7), 000333_2025年半年度报告.pdf(cec88d9c6ded328a), 000858_2025年半年度报告.pdf(43763a06159d47b7), 300750_2025年半年度报告.pdf(94da19aaaf50205f), 300750_2025年年度报告.pdf(c15272977147dee7)</p>
-      <div class=page><b>第17页解析文本:</b><br>美的集团股份有限公司2025 年年度报告全文 
-<br>均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1
-<br>亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售
-<br>额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市
-<br>场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 
-<br>小家电及清洁电器市场： 
-<br>根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨
-<br>房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日
-</div>
-      <div class="adj"><b>第16页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气
- 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增
- 速达50.7%，反映出消费者对小空间大功率的空间节省需</div><div class="adj"><b>第18页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第
- 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、
- 新兴市场的涌现、创新技术的发展等多方面的因素，工业机</div>
-      <p><b>人工选项:</b> FOUND_ON_PAGE / FOUND_ON_ADJACENT_PAGE / FOUND_IN_OTHER_DOCUMENT / GOLD_TEXT_IS_PARAPHRASED / GOLD_ANNOTATION_IS_WRONG / SOURCE_MISSING / UNSURE</p>
-      <p><b>reviewer_decision:</b> ________________</p>
-      <p><b>reviewer_note:</b> ________________________________________________</p>
-    </div>
-    <div class=item>
-      <h3>Evidence: EVD-025 (claim CLM-019)</h3>
-      <p><b>公司:</b> 美的集团 &nbsp; <b>数据集:</b> demo &nbsp; <b>标注页码:</b> 17</p>
-      <p><b>Claim文本:</b> 公司持续深化"国内高端品牌和海外OBM优先"战略</p>
-      <div class=gold><b>原Gold Evidence文本:</b><br>支撑国内高端品牌和海外OBM 优先战略</div>
-      <p><b>恢复状态:</b> POSSIBLE_PARAPHRASED_GOLD &nbsp; <b>原因:</b> page has text but gold text not found (possibly paraphrased or table-only)</p>
-      <p><b>PDF源:</b> q1_report.pdf(d99c61dec30e4fe2), half_year_report.pdf(cec88d9c6ded328a), annual_report.pdf(16f95f70527db59d), 000333_2025年年度报告.pdf(16f95f70527db59d), 000333_2025年一季度报告.pdf(d99c61dec30e4fe2), 300750_2025年一季度报告.pdf(55e17a28dc23b45d), 000858_2025年年度报告.pdf(09133e1f44b3bb4b), 000858_2025年第一季度报告.pdf(36472c5fe41f28b7), 000333_2025年半年度报告.pdf(cec88d9c6ded328a), 000858_2025年半年度报告.pdf(43763a06159d47b7), 300750_2025年半年度报告.pdf(94da19aaaf50205f), 300750_2025年年度报告.pdf(c15272977147dee7)</p>
-      <div class=page><b>第17页解析文本:</b><br>美的集团股份有限公司2025 年年度报告全文 
-<br>均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1
-<br>亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售
-<br>额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市
-<br>场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 
-<br>小家电及清洁电器市场： 
-<br>根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨
-<br>房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日
-</div>
-      <div class="adj"><b>第16页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气
- 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增
- 速达50.7%，反映出消费者对小空间大功率的空间节省需</div><div class="adj"><b>第18页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第
- 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、
- 新兴市场的涌现、创新技术的发展等多方面的因素，工业机</div>
-      <p><b>人工选项:</b> FOUND_ON_PAGE / FOUND_ON_ADJACENT_PAGE / FOUND_IN_OTHER_DOCUMENT / GOLD_TEXT_IS_PARAPHRASED / GOLD_ANNOTATION_IS_WRONG / SOURCE_MISSING / UNSURE</p>
-      <p><b>reviewer_decision:</b> ________________</p>
-      <p><b>reviewer_note:</b> ________________________________________________</p>
-    </div>
-    <div class=item>
-      <h3>Evidence: EVD-026 (claim CLM-020)</h3>
-      <p><b>公司:</b> 美的集团 &nbsp; <b>数据集:</b> demo &nbsp; <b>标注页码:</b> 17</p>
-      <p><b>Claim文本:</b> 海外业务已成为公司利润增长的核心引擎</p>
-      <div class=gold><b>原Gold Evidence文本:</b><br>营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%</div>
-      <p><b>恢复状态:</b> POSSIBLE_PARAPHRASED_GOLD &nbsp; <b>原因:</b> page has text but gold text not found (possibly paraphrased or table-only)</p>
-      <p><b>PDF源:</b> q1_report.pdf(d99c61dec30e4fe2), half_year_report.pdf(cec88d9c6ded328a), annual_report.pdf(16f95f70527db59d), 000333_2025年年度报告.pdf(16f95f70527db59d), 000333_2025年一季度报告.pdf(d99c61dec30e4fe2), 300750_2025年一季度报告.pdf(55e17a28dc23b45d), 000858_2025年年度报告.pdf(09133e1f44b3bb4b), 000858_2025年第一季度报告.pdf(36472c5fe41f28b7), 000333_2025年半年度报告.pdf(cec88d9c6ded328a), 000858_2025年半年度报告.pdf(43763a06159d47b7), 300750_2025年半年度报告.pdf(94da19aaaf50205f), 300750_2025年年度报告.pdf(c15272977147dee7)</p>
-      <div class=page><b>第17页解析文本:</b><br>美的集团股份有限公司2025 年年度报告全文 
-<br>均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1
-<br>亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售
-<br>额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市
-<br>场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 
-<br>小家电及清洁电器市场： 
-<br>根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨
-<br>房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日
-</div>
-      <div class="adj"><b>第16页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气
- 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增
- 速达50.7%，反映出消费者对小空间大功率的空间节省需</div><div class="adj"><b>第18页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第
- 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、
- 新兴市场的涌现、创新技术的发展等多方面的因素，工业机</div>
-      <p><b>人工选项:</b> FOUND_ON_PAGE / FOUND_ON_ADJACENT_PAGE / FOUND_IN_OTHER_DOCUMENT / GOLD_TEXT_IS_PARAPHRASED / GOLD_ANNOTATION_IS_WRONG / SOURCE_MISSING / UNSURE</p>
-      <p><b>reviewer_decision:</b> ________________</p>
-      <p><b>reviewer_note:</b> ________________________________________________</p>
-    </div>
-    <div class=item>
-      <h3>Evidence: EVD-028 (claim CLM-024)</h3>
-      <p><b>公司:</b> 美的集团 &nbsp; <b>数据集:</b> demo &nbsp; <b>标注页码:</b> 17</p>
-      <p><b>Claim文本:</b> 公司2025年收入增速超过15%</p>
-      <div class=gold><b>原Gold Evidence文本:</b><br>营业总收入2523 亿元，同比增长15.7%</div>
-      <p><b>恢复状态:</b> POSSIBLE_PARAPHRASED_GOLD &nbsp; <b>原因:</b> page has text but gold text not found (possibly paraphrased or table-only)</p>
-      <p><b>PDF源:</b> q1_report.pdf(d99c61dec30e4fe2), half_year_report.pdf(cec88d9c6ded328a), annual_report.pdf(16f95f70527db59d), 000333_2025年年度报告.pdf(16f95f70527db59d), 000333_2025年一季度报告.pdf(d99c61dec30e4fe2), 300750_2025年一季度报告.pdf(55e17a28dc23b45d), 000858_2025年年度报告.pdf(09133e1f44b3bb4b), 000858_2025年第一季度报告.pdf(36472c5fe41f28b7), 000333_2025年半年度报告.pdf(cec88d9c6ded328a), 000858_2025年半年度报告.pdf(43763a06159d47b7), 300750_2025年半年度报告.pdf(94da19aaaf50205f), 300750_2025年年度报告.pdf(c15272977147dee7)</p>
-      <div class=page><b>第17页解析文本:</b><br>美的集团股份有限公司2025 年年度报告全文 
-<br>均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1
-<br>亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售
-<br>额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市
-<br>场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 
-<br>小家电及清洁电器市场： 
-<br>根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨
-<br>房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日
-</div>
-      <div class="adj"><b>第16页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气
- 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增
- 速达50.7%，反映出消费者对小空间大功率的空间节省需</div><div class="adj"><b>第18页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第
- 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、
- 新兴市场的涌现、创新技术的发展等多方面的因素，工业机</div>
-      <p><b>人工选项:</b> FOUND_ON_PAGE / FOUND_ON_ADJACENT_PAGE / FOUND_IN_OTHER_DOCUMENT / GOLD_TEXT_IS_PARAPHRASED / GOLD_ANNOTATION_IS_WRONG / SOURCE_MISSING / UNSURE</p>
-      <p><b>reviewer_decision:</b> ________________</p>
-      <p><b>reviewer_note:</b> ________________________________________________</p>
-    </div>
-    <div class=item>
-      <h3>Evidence: EVD-029 (claim CLM-026)</h3>
-      <p><b>公司:</b> 美的集团 &nbsp; <b>数据集:</b> demo &nbsp; <b>标注页码:</b> 17</p>
-      <p><b>Claim文本:</b> 上半年扣非归母净利润262亿元，同比增长30.0%</p>
-      <div class=gold><b>原Gold Evidence文本:</b><br>实现扣非归母净利润262 亿元，同比增长30.0%</div>
-      <p><b>恢复状态:</b> POSSIBLE_PARAPHRASED_GOLD &nbsp; <b>原因:</b> page has text but gold text not found (possibly paraphrased or table-only)</p>
-      <p><b>PDF源:</b> q1_report.pdf(d99c61dec30e4fe2), half_year_report.pdf(cec88d9c6ded328a), annual_report.pdf(16f95f70527db59d), 000333_2025年年度报告.pdf(16f95f70527db59d), 000333_2025年一季度报告.pdf(d99c61dec30e4fe2), 300750_2025年一季度报告.pdf(55e17a28dc23b45d), 000858_2025年年度报告.pdf(09133e1f44b3bb4b), 000858_2025年第一季度报告.pdf(36472c5fe41f28b7), 000333_2025年半年度报告.pdf(cec88d9c6ded328a), 000858_2025年半年度报告.pdf(43763a06159d47b7), 300750_2025年半年度报告.pdf(94da19aaaf50205f), 300750_2025年年度报告.pdf(c15272977147dee7)</p>
-      <div class=page><b>第17页解析文本:</b><br>美的集团股份有限公司2025 年年度报告全文 
-<br>均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1
-<br>亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售
-<br>额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市
-<br>场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 
-<br>小家电及清洁电器市场： 
-<br>根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨
-<br>房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日
-</div>
-      <div class="adj"><b>第16页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气
- 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增
- 速达50.7%，反映出消费者对小空间大功率的空间节省需</div><div class="adj"><b>第18页:</b> 美的集团股份有限公司2025 年年度报告全文 
- 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第
- 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、
- 新兴市场的涌现、创新技术的发展等多方面的因素，工业机</div>
-      <p><b>人工选项:</b> FOUND_ON_PAGE / FOUND_ON_ADJACENT_PAGE / FOUND_IN_OTHER_DOCUMENT / GOLD_TEXT_IS_PARAPHRASED / GOLD_ANNOTATION_IS_WRONG / SOURCE_MISSING / UNSURE</p>
-      <p><b>reviewer_decision:</b> ________________</p>
-      <p><b>reviewer_note:</b> ________________________________________________</p>
-    </div>
-</body></html>
+<h1>Phase 23.11.6 NOT_FOUND 视觉审核包（交互式）</h1>
+<div class="notice">共 10 条。请打开对应PDF页面核对。建议先审核一部分后点「保存进度」，完成后点「导出JSON」。</div>
+<div id="progressbar"><div id="progressfill"></div></div>
+<div id="nav"><button id="prevbtn">&larr; 上一条</button><span id="counter">1 / 10</span><button id="nextbtn">下一条 &rarr;</button></div>
+<div id="itemcontainer" class="item"></div>
+<div class="btnrow"><button id="savebtn">&#128190; 保存进度</button><button id="exportbtn">&#128228; 导出JSON</button></div>
+<div id="exportinfo" class="notice" style="display:none;"></div>
+<script>
+var ITEMS=[{"item_id": "EVD-010", "claim_id": "CLM-008", "claim_text": "2025年上半年，公司营业总收入2523.31亿元，同比增长15.7%", "company": "美的集团", "dataset": "demo", "gold_evidence_text": "一、营业总收入 252,331,494 218,121,839", "annotated_page": 96, "recovery_status": "POSSIBLE_PARAPHRASED_GOLD", "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)", "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n\n租赁事宜的相关承诺。 \n\n月28 日 \n宜未导致任何争议或纠纷，不存在违反承诺的情\n\n东、实\n\n更、资产\n\n况，美的控股将长期履行承诺。 \n\n际控制\n\n瑕疵及房\n", "adjacent_pages": [{"page": 95, "text": "美的集团股份有限公司2025 年年度报告全文 \n 律、法规或其他规范性文件认定为美的集团的控股股东和实际控\n 制人，将不会变更、解除本承诺； \n （5）美的控股和何享健将忠实履行上述承诺，并承担相应\n 的法律责任，若不履行本承诺所赋予的义务和责任，将依照相关\n 法律、法规、规章及规范性文件承担相应的"}, {"page": 97, "text": "美的集团股份有限公司2025 年年度报告全文 \n 宜，如果因该等土地瑕疵而致使租赁关系无效或者出现任何纠\n 纷，导致美的集团及其子公司遭受经济损失的或被有权的政府部\n 门罚款的，若土地出租方无法赔偿因该等瑕疵租赁造成的损失，\n 将对该等瑕疵土地租赁给美的集团造成的损失予以赔偿。 \n 美的控股进一步承"}], "pdf_sources": ["q1_report.pdf (d99c61dec30e4fe2)", "half_year_report.pdf (cec88d9c6ded328a)", "annual_report.pdf (16f95f70527db59d)", "000333_2025年年度报告.pdf (16f95f70527db59d)", "000333_2025年一季度报告.pdf (d99c61dec30e4fe2)", "300750_2025年一季度报告.pdf (55e17a28dc23b45d)", "000858_2025年年度报告.pdf (09133e1f44b3bb4b)", "000858_2025年第一季度报告.pdf (36472c5fe41f28b7)", "000333_2025年半年度报告.pdf (cec88d9c6ded328a)", "000858_2025年半年度报告.pdf (43763a06159d47b7)", "300750_2025年半年度报告.pdf (94da19aaaf50205f)", "300750_2025年年度报告.pdf (c15272977147dee7)"], "reviewer_decision": "", "reviewer_note": "", "reviewed_at": "", "review_status": "PENDING"}, {"item_id": "EVD-011", "claim_id": "CLM-008", "claim_text": "2025年上半年，公司营业总收入2523.31亿元，同比增长15.7%", "company": "美的集团", "dataset": "demo", "gold_evidence_text": "2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%", "annotated_page": 17, "recovery_status": "POSSIBLE_PARAPHRASED_GOLD", "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)", "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n\n均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n\n亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n\n额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n\n场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n\n小家电及清洁电器市场： \n\n根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨\n\n房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日\n", "adjacent_pages": [{"page": 16, "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"}, {"page": 18, "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"}], "pdf_sources": ["q1_report.pdf (d99c61dec30e4fe2)", "half_year_report.pdf (cec88d9c6ded328a)", "annual_report.pdf (16f95f70527db59d)", "000333_2025年年度报告.pdf (16f95f70527db59d)", "000333_2025年一季度报告.pdf (d99c61dec30e4fe2)", "300750_2025年一季度报告.pdf (55e17a28dc23b45d)", "000858_2025年年度报告.pdf (09133e1f44b3bb4b)", "000858_2025年第一季度报告.pdf (36472c5fe41f28b7)", "000333_2025年半年度报告.pdf (cec88d9c6ded328a)", "000858_2025年半年度报告.pdf (43763a06159d47b7)", "300750_2025年半年度报告.pdf (94da19aaaf50205f)", "300750_2025年年度报告.pdf (c15272977147dee7)"], "reviewer_decision": "", "reviewer_note": "", "reviewed_at": "", "review_status": "PENDING"}, {"item_id": "EVD-012", "claim_id": "CLM-009", "claim_text": "第二季度单季实现营业收入2523.31亿元", "company": "美的集团", "dataset": "demo", "gold_evidence_text": "一、营业总收入 252,331,494 218,121,839", "annotated_page": 96, "recovery_status": "POSSIBLE_PARAPHRASED_GOLD", "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)", "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n\n租赁事宜的相关承诺。 \n\n月28 日 \n宜未导致任何争议或纠纷，不存在违反承诺的情\n\n东、实\n\n更、资产\n\n况，美的控股将长期履行承诺。 \n\n际控制\n\n瑕疵及房\n", "adjacent_pages": [{"page": 95, "text": "美的集团股份有限公司2025 年年度报告全文 \n 律、法规或其他规范性文件认定为美的集团的控股股东和实际控\n 制人，将不会变更、解除本承诺； \n （5）美的控股和何享健将忠实履行上述承诺，并承担相应\n 的法律责任，若不履行本承诺所赋予的义务和责任，将依照相关\n 法律、法规、规章及规范性文件承担相应的"}, {"page": 97, "text": "美的集团股份有限公司2025 年年度报告全文 \n 宜，如果因该等土地瑕疵而致使租赁关系无效或者出现任何纠\n 纷，导致美的集团及其子公司遭受经济损失的或被有权的政府部\n 门罚款的，若土地出租方无法赔偿因该等瑕疵租赁造成的损失，\n 将对该等瑕疵土地租赁给美的集团造成的损失予以赔偿。 \n 美的控股进一步承"}], "pdf_sources": ["q1_report.pdf (d99c61dec30e4fe2)", "half_year_report.pdf (cec88d9c6ded328a)", "annual_report.pdf (16f95f70527db59d)", "000333_2025年年度报告.pdf (16f95f70527db59d)", "000333_2025年一季度报告.pdf (d99c61dec30e4fe2)", "300750_2025年一季度报告.pdf (55e17a28dc23b45d)", "000858_2025年年度报告.pdf (09133e1f44b3bb4b)", "000858_2025年第一季度报告.pdf (36472c5fe41f28b7)", "000333_2025年半年度报告.pdf (cec88d9c6ded328a)", "000858_2025年半年度报告.pdf (43763a06159d47b7)", "300750_2025年半年度报告.pdf (94da19aaaf50205f)", "300750_2025年年度报告.pdf (c15272977147dee7)"], "reviewer_decision": "", "reviewer_note": "", "reviewed_at": "", "review_status": "PENDING"}, {"item_id": "EVD-014", "claim_id": "CLM-010", "claim_text": "第二季度归母净利润260.14亿元", "company": "美的集团", "dataset": "demo", "gold_evidence_text": "归属于母公司股东的净利润 26,013,690 20,804,176", "annotated_page": 96, "recovery_status": "POSSIBLE_PARAPHRASED_GOLD", "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)", "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n\n租赁事宜的相关承诺。 \n\n月28 日 \n宜未导致任何争议或纠纷，不存在违反承诺的情\n\n东、实\n\n更、资产\n\n况，美的控股将长期履行承诺。 \n\n际控制\n\n瑕疵及房\n", "adjacent_pages": [{"page": 95, "text": "美的集团股份有限公司2025 年年度报告全文 \n 律、法规或其他规范性文件认定为美的集团的控股股东和实际控\n 制人，将不会变更、解除本承诺； \n （5）美的控股和何享健将忠实履行上述承诺，并承担相应\n 的法律责任，若不履行本承诺所赋予的义务和责任，将依照相关\n 法律、法规、规章及规范性文件承担相应的"}, {"page": 97, "text": "美的集团股份有限公司2025 年年度报告全文 \n 宜，如果因该等土地瑕疵而致使租赁关系无效或者出现任何纠\n 纷，导致美的集团及其子公司遭受经济损失的或被有权的政府部\n 门罚款的，若土地出租方无法赔偿因该等瑕疵租赁造成的损失，\n 将对该等瑕疵土地租赁给美的集团造成的损失予以赔偿。 \n 美的控股进一步承"}], "pdf_sources": ["q1_report.pdf (d99c61dec30e4fe2)", "half_year_report.pdf (cec88d9c6ded328a)", "annual_report.pdf (16f95f70527db59d)", "000333_2025年年度报告.pdf (16f95f70527db59d)", "000333_2025年一季度报告.pdf (d99c61dec30e4fe2)", "300750_2025年一季度报告.pdf (55e17a28dc23b45d)", "000858_2025年年度报告.pdf (09133e1f44b3bb4b)", "000858_2025年第一季度报告.pdf (36472c5fe41f28b7)", "000333_2025年半年度报告.pdf (cec88d9c6ded328a)", "000858_2025年半年度报告.pdf (43763a06159d47b7)", "300750_2025年半年度报告.pdf (94da19aaaf50205f)", "300750_2025年年度报告.pdf (c15272977147dee7)"], "reviewer_decision": "", "reviewer_note": "", "reviewed_at": "", "review_status": "PENDING"}, {"item_id": "EVD-018", "claim_id": "CLM-013", "claim_text": "上半年基本每股收益3.41元", "company": "美的集团", "dataset": "demo", "gold_evidence_text": "基本每股收益 人民币元/股 3.41 3.02", "annotated_page": 173, "recovery_status": "POSSIBLE_PARAPHRASED_GOLD", "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)", "page_parsed_text": "美的集团股份有限公司 \n \n\n2025 年度财务报表附注 \n(除特别注明外，金额单位为人民币千元) \n\n \n二 \n主要会计政策和会计估计(续) \n \n(29) \n租赁 \n \n\n租赁，是指在一定期间内，出租人将资产的使用权让与承租人以获取对价的\n合同。 \n \n\n本集团作为承租人 \n \n\n本集团于租赁期开始日确认使用权资产，并按尚未支付的租赁付款额的现值\n确认租赁负债。租赁付款额包括固定付款额，以及在合理确定将行使购买选\n择权或终止租赁选择权的情况下需支付的款项等。按销售额的一定比例确定\n的可变租金不纳入租赁付款额，在实际发\n本集团的使用权资产包括租入的房屋及建筑物、机器设备及运输工具等。使\n用权资产按照成本进行初始计量，该成本包括租赁负债的初始计量金额、租\n赁期开始日或之前已支付的租赁付款额、初始直接费用等，并扣除已收到的\n租赁激励。本集团能够合理确定租赁期届\n \n对于租赁期不超过12 个月的短期租赁和单项资产全新时价值较低的低价值资\n产租赁，本集团选择不确认使用权资产和租赁负债，将相关租金支出在租赁\n期内各个期间按照直线法计入当期损益或相关资产成本。 \n", "adjacent_pages": [{"page": 172, "text": "美的集团股份有限公司 \n \n 2025 年度财务报表附注 \n(除特别注明外，金额单位为人民币千元) \n  \n二 \n主要会计政策和会计估计(续) \n \n(28) \n递延所得税资产和递延所得税负债 \n \n 递延所得税资产和递延所得税负债根据资产和负债的计税基础与其账面价值\n的差额(暂时性差异)计算确认。"}, {"page": 174, "text": "美的集团股份有限公司 \n \n 2025 年度财务报表附注 \n(除特别注明外，金额单位为人民币千元) \n  \n二 \n主要会计政策和会计估计(续) \n \n(29) \n租赁(续) \n \n 本集团作为承租人(续) \n \n 当租赁变更未作为一项单独租赁进行会计处理时，除财政部规定的可以采用\n简化方法的合同变更"}], "pdf_sources": ["q1_report.pdf (d99c61dec30e4fe2)", "half_year_report.pdf (cec88d9c6ded328a)", "annual_report.pdf (16f95f70527db59d)", "000333_2025年年度报告.pdf (16f95f70527db59d)", "000333_2025年一季度报告.pdf (d99c61dec30e4fe2)", "300750_2025年一季度报告.pdf (55e17a28dc23b45d)", "000858_2025年年度报告.pdf (09133e1f44b3bb4b)", "000858_2025年第一季度报告.pdf (36472c5fe41f28b7)", "000333_2025年半年度报告.pdf (cec88d9c6ded328a)", "000858_2025年半年度报告.pdf (43763a06159d47b7)", "300750_2025年半年度报告.pdf (94da19aaaf50205f)", "300750_2025年年度报告.pdf (c15272977147dee7)"], "reviewer_decision": "", "reviewer_note": "", "reviewed_at": "", "review_status": "PENDING"}, {"item_id": "EVD-020", "claim_id": "CLM-015", "claim_text": "根据公司2025年一季度报告，2025年上半年公司营业收入同比增长20.49%", "company": "美的集团", "dataset": "demo", "gold_evidence_text": "营业总收入2523 亿元，同比增长15.7%", "annotated_page": 17, "recovery_status": "POSSIBLE_PARAPHRASED_GOLD", "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)", "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n\n均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n\n亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n\n额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n\n场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n\n小家电及清洁电器市场： \n\n根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨\n\n房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日\n", "adjacent_pages": [{"page": 16, "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"}, {"page": 18, "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"}], "pdf_sources": ["q1_report.pdf (d99c61dec30e4fe2)", "half_year_report.pdf (cec88d9c6ded328a)", "annual_report.pdf (16f95f70527db59d)", "000333_2025年年度报告.pdf (16f95f70527db59d)", "000333_2025年一季度报告.pdf (d99c61dec30e4fe2)", "300750_2025年一季度报告.pdf (55e17a28dc23b45d)", "000858_2025年年度报告.pdf (09133e1f44b3bb4b)", "000858_2025年第一季度报告.pdf (36472c5fe41f28b7)", "000333_2025年半年度报告.pdf (cec88d9c6ded328a)", "000858_2025年半年度报告.pdf (43763a06159d47b7)", "300750_2025年半年度报告.pdf (94da19aaaf50205f)", "300750_2025年年度报告.pdf (c15272977147dee7)"], "reviewer_decision": "", "reviewer_note": "", "reviewed_at": "", "review_status": "PENDING"}, {"item_id": "EVD-025", "claim_id": "CLM-019", "claim_text": "公司持续深化\"国内高端品牌和海外OBM优先\"战略", "company": "美的集团", "dataset": "demo", "gold_evidence_text": "支撑国内高端品牌和海外OBM 优先战略", "annotated_page": 17, "recovery_status": "POSSIBLE_PARAPHRASED_GOLD", "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)", "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n\n均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n\n亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n\n额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n\n场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n\n小家电及清洁电器市场： \n\n根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨\n\n房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日\n", "adjacent_pages": [{"page": 16, "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"}, {"page": 18, "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"}], "pdf_sources": ["q1_report.pdf (d99c61dec30e4fe2)", "half_year_report.pdf (cec88d9c6ded328a)", "annual_report.pdf (16f95f70527db59d)", "000333_2025年年度报告.pdf (16f95f70527db59d)", "000333_2025年一季度报告.pdf (d99c61dec30e4fe2)", "300750_2025年一季度报告.pdf (55e17a28dc23b45d)", "000858_2025年年度报告.pdf (09133e1f44b3bb4b)", "000858_2025年第一季度报告.pdf (36472c5fe41f28b7)", "000333_2025年半年度报告.pdf (cec88d9c6ded328a)", "000858_2025年半年度报告.pdf (43763a06159d47b7)", "300750_2025年半年度报告.pdf (94da19aaaf50205f)", "300750_2025年年度报告.pdf (c15272977147dee7)"], "reviewer_decision": "", "reviewer_note": "", "reviewed_at": "", "review_status": "PENDING"}, {"item_id": "EVD-026", "claim_id": "CLM-020", "claim_text": "海外业务已成为公司利润增长的核心引擎", "company": "美的集团", "dataset": "demo", "gold_evidence_text": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%", "annotated_page": 17, "recovery_status": "POSSIBLE_PARAPHRASED_GOLD", "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)", "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n\n均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n\n亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n\n额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n\n场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n\n小家电及清洁电器市场： \n\n根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨\n\n房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日\n", "adjacent_pages": [{"page": 16, "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"}, {"page": 18, "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"}], "pdf_sources": ["q1_report.pdf (d99c61dec30e4fe2)", "half_year_report.pdf (cec88d9c6ded328a)", "annual_report.pdf (16f95f70527db59d)", "000333_2025年年度报告.pdf (16f95f70527db59d)", "000333_2025年一季度报告.pdf (d99c61dec30e4fe2)", "300750_2025年一季度报告.pdf (55e17a28dc23b45d)", "000858_2025年年度报告.pdf (09133e1f44b3bb4b)", "000858_2025年第一季度报告.pdf (36472c5fe41f28b7)", "000333_2025年半年度报告.pdf (cec88d9c6ded328a)", "000858_2025年半年度报告.pdf (43763a06159d47b7)", "300750_2025年半年度报告.pdf (94da19aaaf50205f)", "300750_2025年年度报告.pdf (c15272977147dee7)"], "reviewer_decision": "", "reviewer_note": "", "reviewed_at": "", "review_status": "PENDING"}, {"item_id": "EVD-028", "claim_id": "CLM-024", "claim_text": "公司2025年收入增速超过15%", "company": "美的集团", "dataset": "demo", "gold_evidence_text": "营业总收入2523 亿元，同比增长15.7%", "annotated_page": 17, "recovery_status": "POSSIBLE_PARAPHRASED_GOLD", "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)", "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n\n均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n\n亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n\n额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n\n场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n\n小家电及清洁电器市场： \n\n根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨\n\n房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日\n", "adjacent_pages": [{"page": 16, "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"}, {"page": 18, "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"}], "pdf_sources": ["q1_report.pdf (d99c61dec30e4fe2)", "half_year_report.pdf (cec88d9c6ded328a)", "annual_report.pdf (16f95f70527db59d)", "000333_2025年年度报告.pdf (16f95f70527db59d)", "000333_2025年一季度报告.pdf (d99c61dec30e4fe2)", "300750_2025年一季度报告.pdf (55e17a28dc23b45d)", "000858_2025年年度报告.pdf (09133e1f44b3bb4b)", "000858_2025年第一季度报告.pdf (36472c5fe41f28b7)", "000333_2025年半年度报告.pdf (cec88d9c6ded328a)", "000858_2025年半年度报告.pdf (43763a06159d47b7)", "300750_2025年半年度报告.pdf (94da19aaaf50205f)", "300750_2025年年度报告.pdf (c15272977147dee7)"], "reviewer_decision": "", "reviewer_note": "", "reviewed_at": "", "review_status": "PENDING"}, {"item_id": "EVD-029", "claim_id": "CLM-026", "claim_text": "上半年扣非归母净利润262亿元，同比增长30.0%", "company": "美的集团", "dataset": "demo", "gold_evidence_text": "实现扣非归母净利润262 亿元，同比增长30.0%", "annotated_page": 17, "recovery_status": "POSSIBLE_PARAPHRASED_GOLD", "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)", "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n\n均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n\n亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n\n额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n\n场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n\n小家电及清洁电器市场： \n\n根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 年厨\n\n房小家电产品表现分化显著，具体可分为三类：一是刚需品类，如电饭煲、电压力锅等，依托稳定的日\n", "adjacent_pages": [{"page": 16, "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"}, {"page": 18, "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"}], "pdf_sources": ["q1_report.pdf (d99c61dec30e4fe2)", "half_year_report.pdf (cec88d9c6ded328a)", "annual_report.pdf (16f95f70527db59d)", "000333_2025年年度报告.pdf (16f95f70527db59d)", "000333_2025年一季度报告.pdf (d99c61dec30e4fe2)", "300750_2025年一季度报告.pdf (55e17a28dc23b45d)", "000858_2025年年度报告.pdf (09133e1f44b3bb4b)", "000858_2025年第一季度报告.pdf (36472c5fe41f28b7)", "000333_2025年半年度报告.pdf (cec88d9c6ded328a)", "000858_2025年半年度报告.pdf (43763a06159d47b7)", "300750_2025年半年度报告.pdf (94da19aaaf50205f)", "300750_2025年年度报告.pdf (c15272977147dee7)"], "reviewer_decision": "", "reviewer_note": "", "reviewed_at": "", "review_status": "PENDING"}];
+var state=JSON.parse(localStorage.getItem('fp_nf_state')||'{"idx":0,"answers":{}}');
+var idx=state.idx||0;
+function render(){
+  var it=ITEMS[idx]; var ans=state.answers[it.item_id]||{'decision':'','note':'','at':''};
+  var h='<h3>Evidence: '+it.item_id+' (claim '+it.claim_id+')</h3>';
+  h+='<p><b>公司:</b> '+it.company+' &nbsp; <b>数据集:</b> '+it.dataset+' &nbsp; <b>标注页码:</b> '+it.annotated_page+'</p>';
+  h+='<p><b>Claim文本:</b> '+it.claim_text+'</p>';
+  h+='<div class="gold"><b>原Gold Evidence文本:</b><br>'+it.gold_evidence_text+'</div>';
+  h+='<p><b>恢复状态:</b> '+it.recovery_status+' &nbsp; <b>原因:</b> '+it.recovery_reason+'</p>';
+  h+='<p><b>PDF源:</b> '+(it.pdf_sources.join('; ')||'无')+'</p>';
+  h+='<div class="page"><b>第'+it.annotated_page+'页解析文本:</b><br>'+(it.page_parsed_text||'(无文本Block)')+'</div>';
+  for(var i=0;i<it.adjacent_pages.length;i++){ h+='<div class="adj"><b>第'+it.adjacent_pages[i].page+'页:</b> '+it.adjacent_pages[i].text+'</div>'; }
+  var opts=['FOUND_ON_PAGE','FOUND_ON_ADJACENT_PAGE','FOUND_IN_OTHER_DOCUMENT','GOLD_TEXT_IS_PARAPHRASED','GOLD_ANNOTATION_IS_WRONG','SOURCE_MISSING','UNSURE'];
+  h+='<h4>人工选择</h4>';
+  for(var i=0;i<opts.length;i++){
+    var chk=(ans.decision==opts[i])?'checked':'';
+    h+='<label><input type="radio" name="decision" value="'+opts[i]+'" '+chk+' onchange="setDec(this.value)"> '+opts[i]+'</label>';
+  }
+  h+='<label><b>reviewer_note:</b> <textarea rows="3" onchange="setNote(this.value)">'+(ans.note||'')+'</textarea></label>';
+  h+='<label><b>reviewed_at:</b> <input type="text" value="'+(ans.at||new Date().toISOString().slice(0,10))+'" onchange="setAt(this.value)"></label>';
+  document.getElementById('itemcontainer').innerHTML=h;
+  document.getElementById('counter').textContent=(idx+1)+' / '+ITEMS.length;
+  document.getElementById('progressfill').style.width=(Object.keys(state.answers).length/ITEMS.length*100)+'%';
+  document.getElementById('prevbtn').disabled=(idx<=0);
+  document.getElementById('nextbtn').disabled=(idx>=ITEMS.length-1);
+}
+function save(){ localStorage.setItem('fp_nf_state',JSON.stringify(state)); alert('进度已保存'); }
+function setDec(v){ var it=ITEMS[idx]; var a=state.answers[it.item_id]||{'decision':'','note':'','at':''}; a.decision=v; state.answers[it.item_id]=a; }
+function setNote(v){ var it=ITEMS[idx]; var a=state.answers[it.item_id]||{'decision':'','note':'','at':''}; a.note=v; state.answers[it.item_id]=a; }
+function setAt(v){ var it=ITEMS[idx]; var a=state.answers[it.item_id]||{'decision':'','note':'','at':''}; a.at=v; state.answers[it.item_id]=a; }
+function exportJSON(){
+  var out=[]; var today=new Date().toISOString().slice(0,10);
+  for(var i=0;i<ITEMS.length;i++){
+    var it=ITEMS[i]; var a=state.answers[it.item_id]||{'decision':'','note':'','at':''};
+    out.push({'item_id':it.item_id,'claim_id':it.claim_id,'reviewer_decision':a.decision,'reviewer_note':a.note,'reviewed_at':a.at||today,'review_status':(a.decision?'REVIEWED':'PENDING')});
+  }
+  var blob=new Blob([JSON.stringify({'phase':'23.11.6','type':'not_found','total':ITEMS.length,'items':out},null,2)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='not_found_results.json'; a.click();
+  var info=document.getElementById('exportinfo'); info.style.display='block';
+  info.innerHTML='<b>已下载 not_found_results.json</b>，请保存到 data/gold_review/phase23_11_6/not_found_results.json。';
+}
+document.getElementById('prevbtn').addEventListener('click',function(){if(idx>0){idx--;render();}});
+document.getElementById('nextbtn').addEventListener('click',function(){if(idx<ITEMS.length-1){idx++;render();}});
+document.getElementById('savebtn').addEventListener('click',save);
+document.getElementById('exportbtn').addEventListener('click',exportJSON);
+render();
+</script></body></html>

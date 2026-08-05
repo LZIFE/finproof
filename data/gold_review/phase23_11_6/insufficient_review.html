@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8"><title>Phase 23.11.6 Intentional Insufficient 审核</title>
+<style>
+body { font-family: sans-serif; max-width: 800px; margin: 20px auto; padding: 0 20px; }
+.item { border:1px solid #ccc; border-radius:8px; padding:16px; margin-bottom:20px; }
+label { display:block; margin:8px 0; }
+textarea, input[type=text] { width:100%; padding:6px; }
+#exportbtn { background:#1976d2; color:#fff; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; }
+.notice { background:#fff3e0; border:1px solid #ffb74d; padding:8px 12px; margin:10px 0; }
+</style></head><body>
+<h1>Phase 23.11.6 Intentional Insufficient 审核</h1>
+<div class="notice">这3条 Claim 被标注为「材料不足」。请确认它们确实：现有材料既无法支持、也无法反驳。审核字段默认为空，请填写后点「导出JSON」。</div>
+<div id="container"></div>
+<div style="margin-top:14px;"><button id="exportbtn">&#128228; 导出JSON</button></div>
+<div id="exportinfo" class="notice" style="display:none;"></div>
+<script>
+var ITEMS=[{"claim_id": "CLM-021", "claim_text": "海外市场收入已贡献公司过半利润", "document_scope": "annual_report", "evidence_count": 0, "reviewer_confirmed_insufficient": "", "reviewer_rationale": "", "reviewer_name": "", "reviewed_at": "", "review_status": "PENDING"}, {"claim_id": "CLM-022", "claim_text": "机器人业务毛利率高于行业平均水平20个百分点", "document_scope": "annual_report", "evidence_count": 0, "reviewer_confirmed_insufficient": "", "reviewer_rationale": "", "reviewer_name": "", "reviewed_at": "", "review_status": "PENDING"}, {"claim_id": "CLM-H17", "claim_text": "公司2025年单瓶产品平均出厂价超过1000元", "document_scope": "holdout_report", "evidence_count": 0, "reviewer_confirmed_insufficient": "", "reviewer_rationale": "", "reviewer_name": "", "reviewed_at": "", "review_status": "PENDING"}];
+var state=JSON.parse(localStorage.getItem('fp_insuf_state')||'{}');
+function render(){
+  var h='';
+  for(var i=0;i<ITEMS.length;i++){
+    var it=ITEMS[i]; var a=state[it.claim_id]||{'confirmed':'','rationale':'','name':'','at':''};
+    h+='<div class="item"><h3>'+it.claim_id+'</h3>';
+    h+='<p><b>Claim文本:</b> '+it.claim_text+'</p>';
+    h+='<p><b>文档范围:</b> '+it.document_scope+' &nbsp; <b>证据数:</b> '+it.evidence_count+'（应为0）</p>';
+    h+='<label><b>reviewer_confirmed_insufficient:</b> <select onchange="setVal(\''+it.claim_id+'\',\'confirmed\',this.value)"><option value="">-- 选择 --</option><option value="yes" '+(a.confirmed=="yes"?"selected":"")+'>yes（确认不足）</option><option value="no" '+(a.confirmed=="no"?"selected":"")+'>no（实际上有证据可判）</option></select></label>';
+    h+='<label><b>reviewer_rationale:</b> <textarea rows="3" onchange="setVal(\''+it.claim_id+'\',\'rationale\',this.value)">'+(a.rationale||'')+'</textarea></label>';
+    h+='<label><b>reviewer_name:</b> <input type="text" value="'+(a.name||'')+'" onchange="setVal(\''+it.claim_id+'\',\'name\',this.value)"></label>';
+    h+='<label><b>reviewed_at:</b> <input type="text" value="'+(a.at||new Date().toISOString().slice(0,10))+'" onchange="setVal(\''+it.claim_id+'\',\'at\',this.value)"></label>';
+    h+='</div>';
+  }
+  document.getElementById('container').innerHTML=h;
+}
+function setVal(cid,field,v){ state[cid]=state[cid]||{}; state[cid][field]=v; localStorage.setItem('fp_insuf_state',JSON.stringify(state)); }
+function exportJSON(){
+  var out=[]; var today=new Date().toISOString().slice(0,10);
+  for(var i=0;i<ITEMS.length;i++){
+    var it=ITEMS[i]; var a=state[it.claim_id]||{};
+    out.push({'claim_id':it.claim_id,'claim_text':it.claim_text,'document_scope':it.document_scope,
+      'system_visible_evidence_set':[],
+      'reviewer_confirmed_insufficient':a.confirmed||'','reviewer_rationale':a.rationale||'',
+      'reviewer_name':a.name||'','reviewed_at':a.at||today,
+      'review_status':(a.confirmed?'REVIEWED':'PENDING')});
+  }
+  var blob=new Blob([JSON.stringify({'phase':'23.11.6','total':ITEMS.length,'items':out},null,2)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='insufficient_results.json'; a.click();
+  var info=document.getElementById('exportinfo'); info.style.display='block';
+  info.innerHTML='<b>已下载 insufficient_results.json</b>，请保存到 data/gold_review/phase23_11_6/insufficient_results.json。';
+}
+document.getElementById('exportbtn').addEventListener('click',exportJSON);
+render();
+</script></body></html>

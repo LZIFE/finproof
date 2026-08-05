@@ -3667,3 +3667,35 @@ Phase 23.11.5.1 此前 NOT EXECUTED（无任何 23.11.5.1 文件存在）。本�
 ### 状态
 
 **HUMAN_REVIEW_READY — WAITING_FOR_HUMAN_REVIEW**。所有block-level指标继续冻结（INVALID_PENDING_HUMAN_GOLD_REVIEW），禁止修改Verifier/Gate/Retrieval，等待用户提交人工审核结果。
+
+---
+
+## Phase 23.11.6.1：人工审核包可用性最终检查 — ✅ HUMAN_REVIEW_READY（WAITING_FOR_HUMAN_REVIEW）
+
+> 基线 commit：`6bfc99f`（Phase 23.11.6）
+> 日期：2026-08-05
+
+### 关键动作
+
+- **Priority Cohort修正**：原16条缺PARTIALLY_SUPPORTED，重新选择覆盖四类Verdict（SUPPORTED×6/REFUTED×7/PARTIAL×1/INSUFFICIENT×2）。PARTIAL标记BLOCKED（全库仅1条CLM-024，不伪造）
+- **review_inventory.json**：32条待审核Evidence明确清单（唯一/无重复/不含NOT_FOUND，全部验证通过）
+- **review.html交互式升级**：导航/四选表单/Block勾选/导出JSON/进度续审（localStorage），不泄露expected_verdict与prediction
+- **not_found_review.html交互式升级**：10条离线可审核，可导出not_found_results.json
+- **insufficient_review.html表单化**：3条Intentional Insufficient无需手改JSON
+- **review_progress.json**：6字段进度机制（可续审）
+- **端到端模拟**：临时审核→导入IMPORT SUCCESS→post-review识别→清理→恢复WAITING，正式人工字段保持全空
+
+### 验证
+
+| 验证项 | 结果 |
+| --- | --- |
+| validate_review_pack.py | PASS（16/16） |
+| review.html无泄露 | ✅ |
+| not_found 10条离线 | ✅ |
+| 导入器端到端 | ✅ |
+| 全量pytest ×5 | PENDING |
+| frontend build ×3 | PENDING |
+
+### 状态
+
+**HUMAN_REVIEW_READY — WAITING_FOR_HUMAN_REVIEW**。不运行正式指标，不修改Verifier/Gate/Retrieval。

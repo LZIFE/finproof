@@ -125,6 +125,7 @@ def main() -> int:
         new_gold.append(entry)
 
     # Write new version
+    OUTPUT_GOLD_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_GOLD_PATH.write_text(
         json.dumps({"gold_version": "23.11.6-v2", "previous_version": "23.11.5", "evidence": new_gold},
                    ensure_ascii=False, indent=2), encoding="utf-8")

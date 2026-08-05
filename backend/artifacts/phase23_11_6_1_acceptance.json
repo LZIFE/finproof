@@ -1,0 +1,67 @@
+{
+  "phase": "23.11.6.1",
+  "script": "phase23_11_6_1_acceptance",
+  "description": "Phase 23.11.6.1 Review Pack 可用性最终检查 acceptance",
+  "status": "HUMAN_REVIEW_READY",
+  "overall": "WAITING_FOR_HUMAN_REVIEW",
+  "priority_cohort": {
+    "count": 16,
+    "claim_ids": ["CLM-001", "CLM-002", "CLM-003", "CLM-004", "CLM-005", "CLM-006", "CLM-007",
+                  "CLM-009", "CLM-016", "CLM-021", "CLM-024", "CLM-H01", "CLM-H02", "CLM-H03",
+                  "CLM-H05", "CLM-H17"],
+    "coverage": {
+      "SUPPORTED": "OK (6)",
+      "REFUTED": "OK (7)",
+      "PARTIALLY_SUPPORTED": "BLOCKED (1) — 全库仅1条PARTIALLY_SUPPORTED(CLM-024)，无法凑满2条且不伪造",
+      "INSUFFICIENT_EVIDENCE": "OK (2)"
+    }
+  },
+  "review_inventory": {
+    "total": 32,
+    "unique": true,
+    "claim_ids_exist": true,
+    "excludes_10_not_found": true,
+    "validation_all_true": true
+  },
+  "review_html": {
+    "interactive": true,
+    "blind_no_leak": true,
+    "export_compatible": true,
+    "resume_supported": true
+  },
+  "not_found_review_html": {
+    "items": 10,
+    "offline": true,
+    "blind_no_leak": true,
+    "export": true
+  },
+  "insufficient_review": {
+    "items": 3,
+    "form_html": true,
+    "human_fields_empty": true
+  },
+  "review_progress": {
+    "fields_complete": true,
+    "resume": "localStorage fp_review_state / fp_nf_state"
+  },
+  "end_to_end_simulation": {
+    "import_success": true,
+    "post_review_detected": true,
+    "cleanup_done": true,
+    "formal_fields_still_empty": true
+  },
+  "completion_criteria": {
+    "1_32_evidence_explicit_unique": true,
+    "2_priority_cohort_4_verdict_coverage": true,
+    "3_paths_correct": true,
+    "4_review_html_export_compatible": true,
+    "5_not_found_html_10_items": true,
+    "6_human_fields_empty": true,
+    "7_no_leak_in_round1": true,
+    "8_importer_e2e_tested": true,
+    "9_resume_supported": true,
+    "10_pytest_5x": "PENDING",
+    "11_build_3x": "PENDING",
+    "12_new_commit": "PENDING"
+  }
+}

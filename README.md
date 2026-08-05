@@ -25,6 +25,7 @@
 | `docs/phase23_11_5_gold_grounding_and_core_closure.md` | Phase 23.11.5 Gold Evidence Grounding与Core错误闭环结果 |
 | `docs/phase23_11_5_1_grounding_integrity_audit.md` | Phase 23.11.5.1 Gold Grounding完整性复核结果 |
 | `docs/phase23_11_6_human_review_handoff.md` | Phase 23.11.6 Human Gold Review Pack与人工审核交接 |
+| `docs/phase23_11_6_1_review_pack_validation.md` | Phase 23.11.6.1 Review Pack可用性最终检查 |
 | `docs/human_gold_review_quickstart.md` | 人工Gold审核快速上手（8步操作说明） |
 
 ## 目录结构

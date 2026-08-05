@@ -1,0 +1,348 @@
+{
+  "phase": "23.11.6.1",
+  "description": "32条待审核Evidence明确清单（与review_items.json完全一致）",
+  "total": 32,
+  "validation": {
+    "count_32": true,
+    "evidence_ids_unique": true,
+    "claim_ids_exist": true,
+    "matches_review_items_json": true,
+    "excludes_10_not_found": true,
+    "no_duplicates": true,
+    "no_missing": true
+  },
+  "not_found_excluded_ids": [
+    "EVD-010",
+    "EVD-011",
+    "EVD-012",
+    "EVD-014",
+    "EVD-018",
+    "EVD-020",
+    "EVD-025",
+    "EVD-026",
+    "EVD-028",
+    "EVD-029"
+  ],
+  "items": [
+    {
+      "review_index": 1,
+      "gold_evidence_id": "EVD-001",
+      "claim_id": "CLM-001",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 1,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 2,
+      "gold_evidence_id": "EVD-002",
+      "claim_id": "CLM-002",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 4,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 3,
+      "gold_evidence_id": "EVD-003",
+      "claim_id": "CLM-003",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 4,
+      "gold_evidence_id": "EVD-004",
+      "claim_id": "CLM-004",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 5,
+      "gold_evidence_id": "EVD-005",
+      "claim_id": "CLM-005",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 5,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 6,
+      "gold_evidence_id": "EVD-006",
+      "claim_id": "CLM-005",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 5,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 7,
+      "gold_evidence_id": "EVD-007",
+      "claim_id": "CLM-006",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 5,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 8,
+      "gold_evidence_id": "EVD-008",
+      "claim_id": "CLM-006",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 5,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 9,
+      "gold_evidence_id": "EVD-009",
+      "claim_id": "CLM-007",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 1,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 10,
+      "gold_evidence_id": "EVD-013",
+      "claim_id": "CLM-009",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 3,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 11,
+      "gold_evidence_id": "EVD-015",
+      "claim_id": "CLM-010",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 3,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 12,
+      "gold_evidence_id": "EVD-016",
+      "claim_id": "CLM-011",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 1,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 13,
+      "gold_evidence_id": "EVD-017",
+      "claim_id": "CLM-012",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 14,
+      "gold_evidence_id": "EVD-019",
+      "claim_id": "CLM-014",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 15,
+      "gold_evidence_id": "EVD-021",
+      "claim_id": "CLM-015",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 1,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 16,
+      "gold_evidence_id": "EVD-022",
+      "claim_id": "CLM-016",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 5,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 17,
+      "gold_evidence_id": "EVD-023",
+      "claim_id": "CLM-017",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 1,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 18,
+      "gold_evidence_id": "EVD-024",
+      "claim_id": "CLM-018",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 19,
+      "gold_evidence_id": "EVD-027",
+      "claim_id": "CLM-024",
+      "company": "美的集团",
+      "source_dataset": "demo",
+      "candidate_group_count": 1,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 20,
+      "gold_evidence_id": "EVD-H01",
+      "claim_id": "CLM-H01",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 21,
+      "gold_evidence_id": "EVD-H02",
+      "claim_id": "CLM-H02",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 22,
+      "gold_evidence_id": "EVD-H03",
+      "claim_id": "CLM-H03",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 23,
+      "gold_evidence_id": "EVD-H04",
+      "claim_id": "CLM-H04",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 3,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 24,
+      "gold_evidence_id": "EVD-H05",
+      "claim_id": "CLM-H05",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 3,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": true
+    },
+    {
+      "review_index": 25,
+      "gold_evidence_id": "EVD-H06",
+      "claim_id": "CLM-H06",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 3,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 26,
+      "gold_evidence_id": "EVD-H07",
+      "claim_id": "CLM-H07",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 3,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 27,
+      "gold_evidence_id": "EVD-H08",
+      "claim_id": "CLM-H08",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 28,
+      "gold_evidence_id": "EVD-H09",
+      "claim_id": "CLM-H09",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 29,
+      "gold_evidence_id": "EVD-H10",
+      "claim_id": "CLM-H10",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 5,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 30,
+      "gold_evidence_id": "EVD-H11",
+      "claim_id": "CLM-H11",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 3,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 31,
+      "gold_evidence_id": "EVD-H12",
+      "claim_id": "CLM-H12",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 3,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    },
+    {
+      "review_index": 32,
+      "gold_evidence_id": "EVD-H16",
+      "claim_id": "CLM-H16",
+      "company": "五粮液",
+      "source_dataset": "holdout",
+      "candidate_group_count": 2,
+      "review_status": "PENDING",
+      "included_in_priority_cohort": false
+    }
+  ]
+}

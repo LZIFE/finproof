@@ -1,18 +1,23 @@
 {
-  "phase": "23.11.6",
-  "name": "Priority Cohort",
-  "description": "16条优先审核队列：仅依据类型/公司/数据集覆盖与标注完整性选择，不依据系统预测",
+  "phase": "23.11.6.1",
+  "name": "Priority Cohort (revised)",
+  "description": "修正后16条优先审核队列：四类Verdict覆盖（PARTIAL=1受数据限制标记BLOCKED）",
   "selection_rules": [
-    "type coverage",
+    "verdict coverage",
     "company coverage (美的/五粮液)",
     "dataset coverage (demo/holdout)",
-    "annotation completeness"
+    "type coverage (numeric/period/scope/narrative/ratio)",
+    "no system prediction"
   ],
-  "forbidden": [
-    "system prediction",
-    "claim_id hardcode",
-    "expected_verdict leakage in round1"
-  ],
+  "coverage_status": {
+    "SUPPORTED": "OK",
+    "REFUTED": "OK",
+    "PARTIALLY_SUPPORTED": "BLOCKED",
+    "INSUFFICIENT_EVIDENCE": "OK"
+  },
+  "coverage_issues": {
+    "PARTIALLY_SUPPORTED": "BLOCKED — entire dataset has only 1 PARTIALLY_SUPPORTED claim (CLM-024); cannot reach target of 2 without fabricating. Not fabricating per phase23_11_6.1 §一."
+  },
   "claim_ids": [
     "CLM-001",
     "CLM-002",
@@ -21,15 +26,15 @@
     "CLM-005",
     "CLM-006",
     "CLM-007",
-    "CLM-008",
     "CLM-009",
-    "CLM-010",
-    "CLM-019",
+    "CLM-016",
     "CLM-021",
+    "CLM-024",
     "CLM-H01",
     "CLM-H02",
     "CLM-H03",
-    "CLM-H06"
+    "CLM-H05",
+    "CLM-H17"
   ],
   "count": 16
 }

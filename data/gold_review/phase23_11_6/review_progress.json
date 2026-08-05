@@ -1,7 +1,12 @@
 {
-  "phase": "23.11.6",
-  "total": 32,
-  "reviewed": 0,
-  "pending": 32,
-  "last_updated": ""
+  "phase": "23.11.6.1",
+  "description": "审核进度（可续审：review.html 用 localStorage 保存状态；本文件记录官方进度）",
+  "total_items": 32,
+  "completed_items": 0,
+  "unsure_items": 0,
+  "none_of_above_items": 0,
+  "remaining_items": 32,
+  "last_reviewed_index": 0,
+  "resume_instructions": "打开 review.html 继续审核；本地进度保存在浏览器 localStorage(fn_review_state)。完成后导出 review_results.json 到本目录。",
+  "completed_claim_ids": []
 }
