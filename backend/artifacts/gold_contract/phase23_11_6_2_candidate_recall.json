@@ -1,0 +1,687 @@
+{
+  "phase": "23.11.6.2",
+  "total_evidence": 32,
+  "rebuilt_with_bundles": 32,
+  "no_bundles_found": 0,
+  "total_bundles": 160,
+  "recall_items": [
+    {
+      "gold_evidence_id": "EVD-001",
+      "claim_id": "CLM-001",
+      "original_gold_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.9739,
+      "key_numbers_found": [
+        "456,451,731",
+        "407,149,600",
+        "12.11%"
+      ],
+      "key_numbers_total": [
+        "456,451,731",
+        "407,149,600",
+        "12.11%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-002",
+      "claim_id": "CLM-002",
+      "original_gold_evidence": "一、营业总收入 458,502,407 409,084,266",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.87,
+      "key_numbers_found": [
+        "458,502,407",
+        "409,084,266"
+      ],
+      "key_numbers_total": [
+        "458,502,407",
+        "409,084,266"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-003",
+      "claim_id": "CLM-003",
+      "original_gold_evidence": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.9903,
+      "key_numbers_found": [
+        "43,945,411",
+        "38,537,237",
+        "14.03%"
+      ],
+      "key_numbers_total": [
+        "43,945,411",
+        "38,537,237",
+        "14.03%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-004",
+      "claim_id": "CLM-004",
+      "original_gold_evidence": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.9903,
+      "key_numbers_found": [
+        "43,945,411",
+        "38,537,237",
+        "14.03%"
+      ],
+      "key_numbers_total": [
+        "43,945,411",
+        "38,537,237",
+        "14.03%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-005",
+      "claim_id": "CLM-005",
+      "original_gold_evidence": "456,451,731 407,149,600",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.7566,
+      "key_numbers_found": [
+        "456,451,731",
+        "407,149,600"
+      ],
+      "key_numbers_total": [
+        "456,451,731",
+        "407,149,600"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-006",
+      "claim_id": "CLM-005",
+      "original_gold_evidence": "(335,989,528) (299,584,935)",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.7566,
+      "key_numbers_found": [
+        "335,989,528",
+        "299,584,935"
+      ],
+      "key_numbers_total": [
+        "335,989,528",
+        "299,584,935"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-007",
+      "claim_id": "CLM-006",
+      "original_gold_evidence": "456,451,731 407,149,600",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.7566,
+      "key_numbers_found": [
+        "456,451,731",
+        "407,149,600"
+      ],
+      "key_numbers_total": [
+        "456,451,731",
+        "407,149,600"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-008",
+      "claim_id": "CLM-006",
+      "original_gold_evidence": "(335,989,528) (299,584,935)",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.7566,
+      "key_numbers_found": [
+        "335,989,528",
+        "299,584,935"
+      ],
+      "key_numbers_total": [
+        "335,989,528",
+        "299,584,935"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-009",
+      "claim_id": "CLM-007",
+      "original_gold_evidence": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.275,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "127,838,538",
+        "106,101,612",
+        "20.49%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-013",
+      "claim_id": "CLM-009",
+      "original_gold_evidence": "其中：营业收入 127,838,538 106,101,612 240,751",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.3227,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "127,838,538",
+        "106,101,612",
+        "240,751"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-015",
+      "claim_id": "CLM-010",
+      "original_gold_evidence": "归属于母公司股东的净利润 12,422,233 9,000,007 245,043",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.275,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "12,422,233",
+        "9,000,007",
+        "245,043"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-016",
+      "claim_id": "CLM-011",
+      "original_gold_evidence": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.272,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "12,422,233",
+        "9,000,007",
+        "38.02%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-017",
+      "claim_id": "CLM-012",
+      "original_gold_evidence": "基本每股收益（元/股） 5.80 5.44 6.62%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.9591,
+      "key_numbers_found": [
+        "6.62%"
+      ],
+      "key_numbers_total": [
+        "6.62%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-019",
+      "claim_id": "CLM-014",
+      "original_gold_evidence": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.9909,
+      "key_numbers_found": [
+        "53,345,930",
+        "60,511,572",
+        "11.84%"
+      ],
+      "key_numbers_total": [
+        "53,345,930",
+        "60,511,572",
+        "11.84%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-021",
+      "claim_id": "CLM-015",
+      "original_gold_evidence": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.275,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "127,838,538",
+        "106,101,612",
+        "20.49%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-022",
+      "claim_id": "CLM-016",
+      "original_gold_evidence": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.6848,
+      "key_numbers_found": [
+        "2025",
+        "2026"
+      ],
+      "key_numbers_total": [
+        "2025",
+        "2026"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-023",
+      "claim_id": "CLM-017",
+      "original_gold_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.9739,
+      "key_numbers_found": [
+        "456,451,731",
+        "407,149,600",
+        "12.11%"
+      ],
+      "key_numbers_total": [
+        "456,451,731",
+        "407,149,600",
+        "12.11%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-024",
+      "claim_id": "CLM-018",
+      "original_gold_evidence": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.9909,
+      "key_numbers_found": [
+        "53,345,930",
+        "60,511,572",
+        "11.84%"
+      ],
+      "key_numbers_total": [
+        "53,345,930",
+        "60,511,572",
+        "11.84%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-027",
+      "claim_id": "CLM-024",
+      "original_gold_evidence": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.9739,
+      "key_numbers_found": [
+        "456,451,731",
+        "407,149,600",
+        "12.11%"
+      ],
+      "key_numbers_total": [
+        "456,451,731",
+        "407,149,600",
+        "12.11%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H01",
+      "claim_id": "CLM-H01",
+      "original_gold_evidence": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.26,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "40,528,509,770.23",
+        "89,175,178,322.70",
+        "54.55%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H02",
+      "claim_id": "CLM-H02",
+      "original_gold_evidence": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.2571,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "8,954,257,202.51",
+        "31,853,172,533.98",
+        "71.89%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H03",
+      "claim_id": "CLM-H03",
+      "original_gold_evidence": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.2571,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "8,954,257,202.51",
+        "31,853,172,533.98",
+        "71.89%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H04",
+      "claim_id": "CLM-H04",
+      "original_gold_evidence": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.245,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "29,706,259,919.13",
+        "33,939,755,192.78",
+        "12.47%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H05",
+      "claim_id": "CLM-H05",
+      "original_gold_evidence": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.245,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "29,706,259,919.13",
+        "33,939,755,192.78",
+        "12.47%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H06",
+      "claim_id": "CLM-H06",
+      "original_gold_evidence": "基本每股收益（元/股） 2.3068 8.2062 -71.89%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.2469,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "2.3068",
+        "8.2062",
+        "71.89%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H07",
+      "claim_id": "CLM-H07",
+      "original_gold_evidence": "加权平均净资产收益率 6.89% 23.35% 减少16.46 个百分点",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.2405,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "6.89%",
+        "23.35%",
+        "16.46"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H08",
+      "claim_id": "CLM-H08",
+      "original_gold_evidence": "总资产（元） 189,984,270,815.47 188,252,218,704.17 0.92%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.2536,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "189,984,270,815.47",
+        "188,252,218,704.17",
+        "0.92%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H09",
+      "claim_id": "CLM-H09",
+      "original_gold_evidence": "归属于上市公司股东的净资产（元） 119,932,271,234.99 133,285,282,015.97 -10.02%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.2571,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "119,932,271,234.99",
+        "133,285,282,015.97",
+        "10.02%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H10",
+      "claim_id": "CLM-H10",
+      "original_gold_evidence": "2026 年4 月30 日",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.9333,
+      "key_numbers_found": [
+        "2026"
+      ],
+      "key_numbers_total": [
+        "2026"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": true,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H11",
+      "claim_id": "CLM-H11",
+      "original_gold_evidence": "归属于上市公司股东的扣除非经常性损益的净利润（元） 8,815,635,943.27 31,741,959,276.27 -72.23%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.2412,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "8,815,635,943.27",
+        "31,741,959,276.27",
+        "72.23%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H12",
+      "claim_id": "CLM-H12",
+      "original_gold_evidence": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.2316,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "000858"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    },
+    {
+      "gold_evidence_id": "EVD-H16",
+      "claim_id": "CLM-H16",
+      "original_gold_evidence": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+      "candidate_bundle_count": 5,
+      "non_empty_bundle_count": 5,
+      "best_reconstruction_coverage": 0.26,
+      "key_numbers_found": [],
+      "key_numbers_total": [
+        "40,528,509,770.23",
+        "89,175,178,322.70",
+        "54.55%"
+      ],
+      "metric_found": "UNKNOWN",
+      "period_found": "UNKNOWN",
+      "unit_found": "UNKNOWN",
+      "likely_source_recovered": false,
+      "review_ready": true,
+      "failure_reason": ""
+    }
+  ]
+}

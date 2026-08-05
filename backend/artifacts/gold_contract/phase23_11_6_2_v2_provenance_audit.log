@@ -1,0 +1,14 @@
+2026-08-05 15:46:06,772 [INFO] ============================================================
+2026-08-05 15:46:06,772 [INFO] v2 盲审输入来源审计启动
+2026-08-05 15:46:06,772 [INFO] input:  /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_results_agent_v2.json
+2026-08-05 15:46:06,772 [INFO] output: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_6_2_v2_provenance_audit.json
+2026-08-05 15:46:06,772 [INFO] v2 items: 32
+2026-08-05 15:46:06,773 [INFO] review_items.json items: 32
+2026-08-05 15:46:06,948 [INFO] wrote output: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_6_2_v2_provenance_audit.json
+2026-08-05 15:46:06,948 [INFO] ============================================================
+2026-08-05 15:46:06,948 [INFO] v2 来源审计汇总:
+2026-08-05 15:46:06,948 [INFO]   v2 records: 32
+2026-08-05 15:46:06,948 [INFO]   carries any meta key: False
+2026-08-05 15:46:06,948 [INFO]   per-record meta keys found: []
+2026-08-05 15:46:06,948 [INFO]   provenance_status_counts: {"PROVEN_INPUT_COMPLETE": 0, "PROVEN_INPUT_INCOMPLETE": 0, "SELECTED_BLOCK_NOT_IN_INPUT": 0, "INPUT_SNAPSHOT_MISSING": 0, "MODEL_CALL_UNVERIFIABLE": 32}
+2026-08-05 15:46:06,948 [INFO]   final_verdict: HISTORICAL_PROVENANCE_UNVERIFIED —— v2 未保留任何可验证元信息 （model_name / timestamp / input_snapshot / usage / attempts 均缺失），无法证明生成时的实际输入与模型调用。v2 不得导入 Gold，不得作为人工审核结果，不得参与正式指标。

@@ -1,0 +1,44 @@
+2026-08-05 17:08:19,961 [INFO] ============================================================
+2026-08-05 17:08:19,961 [INFO] Phase 23.11.6.2 Prompt Pack 生成脚本启动
+2026-08-05 17:08:19,961 [INFO] input:  /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6_2/review_items_rebuilt.json
+2026-08-05 17:08:19,961 [INFO] output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6_2/prompt_pack
+2026-08-05 17:08:19,964 [INFO] rebuilt items: 32
+2026-08-05 17:08:19,967 [INFO] [001] EVD-001 -> 001_EVD-001.md (bundles=5)
+2026-08-05 17:08:19,967 [INFO] [002] EVD-002 -> 002_EVD-002.md (bundles=5)
+2026-08-05 17:08:19,967 [INFO] [003] EVD-003 -> 003_EVD-003.md (bundles=5)
+2026-08-05 17:08:19,967 [INFO] [004] EVD-004 -> 004_EVD-004.md (bundles=5)
+2026-08-05 17:08:19,967 [INFO] [005] EVD-005 -> 005_EVD-005.md (bundles=5)
+2026-08-05 17:08:19,967 [INFO] [006] EVD-006 -> 006_EVD-006.md (bundles=5)
+2026-08-05 17:08:19,968 [INFO] [007] EVD-007 -> 007_EVD-007.md (bundles=5)
+2026-08-05 17:08:19,968 [INFO] [008] EVD-008 -> 008_EVD-008.md (bundles=5)
+2026-08-05 17:08:19,968 [INFO] [009] EVD-009 -> 009_EVD-009.md (bundles=5)
+2026-08-05 17:08:19,968 [INFO] [010] EVD-013 -> 010_EVD-013.md (bundles=5)
+2026-08-05 17:08:19,968 [INFO] [011] EVD-015 -> 011_EVD-015.md (bundles=5)
+2026-08-05 17:08:19,968 [INFO] [012] EVD-016 -> 012_EVD-016.md (bundles=5)
+2026-08-05 17:08:19,968 [INFO] [013] EVD-017 -> 013_EVD-017.md (bundles=5)
+2026-08-05 17:08:19,969 [INFO] [014] EVD-019 -> 014_EVD-019.md (bundles=5)
+2026-08-05 17:08:19,969 [INFO] [015] EVD-021 -> 015_EVD-021.md (bundles=5)
+2026-08-05 17:08:19,969 [INFO] [016] EVD-022 -> 016_EVD-022.md (bundles=5)
+2026-08-05 17:08:19,969 [INFO] [017] EVD-023 -> 017_EVD-023.md (bundles=5)
+2026-08-05 17:08:19,969 [INFO] [018] EVD-024 -> 018_EVD-024.md (bundles=5)
+2026-08-05 17:08:19,969 [INFO] [019] EVD-027 -> 019_EVD-027.md (bundles=5)
+2026-08-05 17:08:19,970 [INFO] [020] EVD-H01 -> 020_EVD-H01.md (bundles=5)
+2026-08-05 17:08:19,970 [INFO] [021] EVD-H02 -> 021_EVD-H02.md (bundles=5)
+2026-08-05 17:08:19,970 [INFO] [022] EVD-H03 -> 022_EVD-H03.md (bundles=5)
+2026-08-05 17:08:19,970 [INFO] [023] EVD-H04 -> 023_EVD-H04.md (bundles=5)
+2026-08-05 17:08:19,970 [INFO] [024] EVD-H05 -> 024_EVD-H05.md (bundles=5)
+2026-08-05 17:08:19,970 [INFO] [025] EVD-H06 -> 025_EVD-H06.md (bundles=5)
+2026-08-05 17:08:19,970 [INFO] [026] EVD-H07 -> 026_EVD-H07.md (bundles=5)
+2026-08-05 17:08:19,971 [INFO] [027] EVD-H08 -> 027_EVD-H08.md (bundles=5)
+2026-08-05 17:08:19,971 [INFO] [028] EVD-H09 -> 028_EVD-H09.md (bundles=5)
+2026-08-05 17:08:19,971 [INFO] [029] EVD-H10 -> 029_EVD-H10.md (bundles=5)
+2026-08-05 17:08:19,971 [INFO] [030] EVD-H11 -> 030_EVD-H11.md (bundles=5)
+2026-08-05 17:08:19,971 [INFO] [031] EVD-H12 -> 031_EVD-H12.md (bundles=5)
+2026-08-05 17:08:19,971 [INFO] [032] EVD-H16 -> 032_EVD-H16.md (bundles=5)
+2026-08-05 17:08:19,971 [INFO] wrote index: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6_2/prompt_pack_index.md
+2026-08-05 17:08:19,971 [INFO] ============================================================
+2026-08-05 17:08:19,971 [INFO] Prompt Pack 生成统计:
+2026-08-05 17:08:19,971 [INFO]   total items: 32
+2026-08-05 17:08:19,971 [INFO]   files generated: 32
+2026-08-05 17:08:19,971 [INFO]   total bundles in pack: 160
+2026-08-05 17:08:19,971 [INFO]   empty bundle warnings: 0

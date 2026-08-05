@@ -1,0 +1,83 @@
+{
+  "phase": "23.11.6.2",
+  "title": "Candidate Evidence 重建与 Prompt Review Pack",
+  "status": "PROMPT_REVIEW_PACK_READY",
+  "baseline_commit": "03af378",
+  "generated_at": "2026-08-05T17:10:00Z",
+  "summary": {
+    "historical_results_frozen": 3,
+    "v2_provenance_status": "HISTORICAL_PROVENANCE_UNVERIFIED",
+    "v2_records_model_call_unverifiable": 32,
+    "candidate_evidence_rebuilt": 32,
+    "candidate_bundles_total": 160,
+    "candidate_bundles_with_text": 160,
+    "empty_bundles_excluded": 0,
+    "evd_002_contains_text_block": true,
+    "not_found_total": 10,
+    "not_found_candidates_recovered": 0,
+    "not_found_paraphrased_source_located": 6,
+    "not_found_visual_review_required": 0,
+    "not_found_wrong_page_reference": 0,
+    "not_found_wrong_document_reference": 0,
+    "not_found_still_not_found": 4,
+    "prompt_pack_files": 32,
+    "ai_review_results_jsonl_lines": 0,
+    "model_calls_made": 0,
+    "may_import_ai_results_to_gold": false,
+    "modified_verifier_gate_selector_real_e2e_gold_verdict_official_metrics": false
+  },
+  "tests": {
+    "new_test_file": "backend/tests/test_phase23_11_6_2_candidate_rebuild_and_prompt_pack.py",
+    "new_test_count": 18,
+    "full_pytest_runs": 5,
+    "full_pytest_result": "887 passed (×5)",
+    "frontend_build_runs": 3,
+    "frontend_build_result": "success (×3)",
+    "candidate_bundle_generation_runs": 2,
+    "candidate_bundle_content_identical": true,
+    "prompt_pack_generation_runs": 2,
+    "prompt_pack_content_identical_time_stripped": true
+  },
+  "completion_criteria": {
+    "v2_input_source_audited": true,
+    "all_32_items_rebuilt_with_candidate_bundles": true,
+    "empty_block_no_longer_candidate": true,
+    "evd_002_contains_block_4443_or_4442": true,
+    "all_review_ready_bundles_non_empty": true,
+    "10_not_found_recovered": true,
+    "each_item_independent_markdown_prompt": true,
+    "prompt_no_verdict_or_prediction_leak": true,
+    "ai_review_only_as_human_confirmation_suggestion": true,
+    "no_model_calls": true,
+    "full_pytest_5_times_passed": true,
+    "frontend_build_3_times_success": true,
+    "new_commit_created_with_full_hash": "pending"
+  },
+  "artifacts": {
+    "freeze": "backend/artifacts/gold_contract/phase23_11_6_2_freeze_historical_results.json",
+    "v2_audit": "backend/artifacts/gold_contract/phase23_11_6_2_v2_provenance_audit.json",
+    "candidate_recall": "backend/artifacts/gold_contract/phase23_11_6_2_candidate_recall.json",
+    "not_found_recovery": "backend/artifacts/gold_contract/phase23_11_6_2_not_found_recovery.json"
+  },
+  "scripts": [
+    "backend/scripts/phase23_11_6_2_v2_provenance_audit.py",
+    "backend/scripts/phase23_11_6_2_rebuild_candidates.py",
+    "backend/scripts/phase23_11_6_2_not_found_recovery.py",
+    "backend/scripts/phase23_11_6_2_generate_prompt_pack.py",
+    "backend/scripts/phase23_11_6_2_collect_ai_reviews.py"
+  ],
+  "deliverables": {
+    "review_items_rebuilt": "data/gold_review/phase23_11_6_2/review_items_rebuilt.json",
+    "prompt_pack_dir": "data/gold_review/phase23_11_6_2/prompt_pack/",
+    "prompt_pack_index": "data/gold_review/phase23_11_6_2/prompt_pack_index.md",
+    "ai_review_results_jsonl": "data/gold_review/phase23_11_6_2/ai_review_results.jsonl",
+    "docs": "docs/phase23_11_6_2_candidate_rebuild_and_prompt_pack.md"
+  },
+  "policy": {
+    "no_model_calls": true,
+    "no_fake_v4_results": true,
+    "no_overwriting_v1_v2_v3": true,
+    "ai_review_status_only": "AI_REVIEW_SUGGESTION_PENDING_HUMAN_CONFIRMATION",
+    "ai_results_may_import_to_gold": false
+  }
+}

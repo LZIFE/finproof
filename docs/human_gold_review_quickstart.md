@@ -123,3 +123,64 @@ PYTHONPATH=. python scripts/run_post_review_validation.py
 ---
 
 **完成以上8步后**，把结果交给开发人员继续后续评测。审核过程不要参考系统预测或Gold标签（盲审页面已隐藏）。
+
+---
+
+# Phase 23.11.6.2 — ChatGPT 提示词包盲审（新）
+
+> 目标：用重建后的 Candidate Bundle 做盲审，修复 23.11.6 候选 Block 选取缺陷。
+
+## 9. 为什么需要 23.11.6.2
+
+Phase 23.11.6 的 `review_items.json` 候选 Block 选取有缺陷：86 个引用里 64 个是 PDF 表格真空单元格，EVD-002 漏选了含正文的 block 4443。23.11.6.2 从 Gold 标注页出发，用 PyMuPDF 重新构建 Candidate Bundle（不再是孤立 Block），并生成可直接粘贴给 ChatGPT 的 Markdown 提示词。
+
+历史 AI 盲审结果 v1/v2/v3 已冻结（`HISTORICAL_PROVENANCE_UNVERIFIED` / `NO_MODEL_CALL_EMPTY_RESULT`），不得导入 Gold。
+
+## 10. 打开提示词包
+
+浏览顺序索引：
+
+```
+data/gold_review/phase23_11_6_2/prompt_pack_index.md
+```
+
+32 个独立 Markdown 文件位于：
+
+```
+data/gold_review/phase23_11_6_2/prompt_pack/001_EVD-xxx.md
+data/gold_review/phase23_11_6_2/prompt_pack/002_EVD-xxx.md
+...
+data/gold_review/phase23_11_6_2/prompt_pack/032_EVD-H16.md
+```
+
+每个文件已填入：Claim / 公司 / 报告信息 / 原始 Gold Evidence / 最多 5 组 Candidate Bundle（含 Block 正文、表格标题、行列信息、前后文）/ 标准盲审提示词 / JSON 输出 Schema。**复制整个文件给 ChatGPT 即可，不需要手工替换模板变量。**
+
+提示词不含 `expected_verdict` / 系统 prediction 的值，`reconstruction_coverage` 分数也不展示给模型（避免锚定）。模型只输出新的 `estimated_coverage`。
+
+## 11. 收集 ChatGPT 返回的 JSON
+
+每完成一条，把 ChatGPT 返回的 JSON 写入一个临时文件，然后：
+
+```bash
+# 仅校验，不写入
+cd backend && PYTHONPATH=. python scripts/phase23_11_6_2_collect_ai_reviews.py \
+  --input <你的JSON文件> --dry-run
+
+# 校验通过后正式写入 JSONL
+cd backend && PYTHONPATH=. python scripts/phase23_11_6_2_collect_ai_reviews.py \
+  --input <你的JSON文件>
+```
+
+收集结果追加到 `data/gold_review/phase23_11_6_2/ai_review_results.jsonl`。校验规则：
+- Gold Evidence ID 存在 / decision 合法 / Block ID 属于该候选
+- MATCH_SINGLE_BLOCK 只选 1 个 Block / MATCH_MULTIPLE_BLOCKS 至少 2 个
+- NONE / UNSURE 不选 Block / confidence 与 estimated_coverage ∈ [0,1]
+- 不重复写入 / **AI 结果不能直接导入 Gold**
+
+每条写入记录状态为 `AI_REVIEW_SUGGESTION_PENDING_HUMAN_CONFIRMATION`，`may_import_to_gold = false`。
+
+## 12. 人工确认后才进入 Gold
+
+AI 审核结果只是**建议**，需人工确认后才能进入 Gold 流程。本阶段不调用任何模型，不修改 Verifier/Gate/Selector/Real E2E/Gold Verdict/正式评测指标。
+
+详见 `docs/phase23_11_6_2_candidate_rebuild_and_prompt_pack.md`。

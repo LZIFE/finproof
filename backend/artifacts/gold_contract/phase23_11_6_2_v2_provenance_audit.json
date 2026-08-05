@@ -1,0 +1,803 @@
+{
+  "phase": "23.11.6.2",
+  "audit_type": "v2_provenance_audit",
+  "timestamp": "2026-08-05T07:46:06.947716+00:00",
+  "audit_method": "对比 v2 记录与 review_items.json / PyMuPDF 提取的 block 正文，检查 v2 是否携带 model_name / timestamp / input_snapshot 等可验证元信息。不调用任何模型。",
+  "overall": {
+    "v2_file": "data/gold_review/phase23_11_6/review_results_agent_v2.json",
+    "v2_record_count": 32,
+    "v2_is_top_level_dict": false,
+    "v2_carries_any_meta_key": false,
+    "v2_per_record_meta_keys_found": [],
+    "v2_has_model_name": false,
+    "v2_has_timestamp": false,
+    "v2_has_input_snapshot": false,
+    "v2_has_usage_or_attempts": false,
+    "provenance_status_counts": {
+      "PROVEN_INPUT_COMPLETE": 0,
+      "PROVEN_INPUT_INCOMPLETE": 0,
+      "SELECTED_BLOCK_NOT_IN_INPUT": 0,
+      "INPUT_SNAPSHOT_MISSING": 0,
+      "MODEL_CALL_UNVERIFIABLE": 32
+    },
+    "final_verdict": "HISTORICAL_PROVENANCE_UNVERIFIED —— v2 未保留任何可验证元信息 （model_name / timestamp / input_snapshot / usage / attempts 均缺失），无法证明生成时的实际输入与模型调用。v2 不得导入 Gold，不得作为人工审核结果，不得参与正式指标。",
+    "may_import_to_gold": false,
+    "may_be_used_as_human_review": false,
+    "may_participate_in_official_metrics": false
+  },
+  "focus_answers": {
+    "q1_why_v2_can_see_block_4443": "v2 的 EVD-005/006/007/008 的 reason 字段逐字引用了 block 4443 的正文片段 （『四(48), 十八(3) 456,451,731 407,149,600』等），表明 v2 生成时确实看到了 block 4443 的正文。但 v2 记录未保留任何输入快照，无法证明该正文来自 review_items.json 的候选还是来自模型额外读取的上下文。",
+    "q2_evd_005_to_008_input_contains_4443": "review_items.json 中 EVD-005/006/007/008 的候选 block_ids 均包含 '4443'，且 block 4443 的 PyMuPDF 正文提取状态为 OK（非空正文）。因此 v2 的输入确实包含 block 4443 的正文。",
+    "q3_other_28_items_only_see_empty_blocks": "review_items.json 的候选 block_ids 中，86 个引用里有 64 个是 EMPTY_BLOCK （真空单元格）。v2 的 28 条 NONE_OF_THE_ABOVE 中，绝大多数候选 block 正文为空，v2 给 NONE_OF_THE_ABOVE 与候选 block 正文为空的事实一致。",
+    "q4_v2_used_different_input_than_review_items": "无法证明。v2 记录未保留输入快照、模型名、时间戳、usage 等任何元信息。v2 的 reason 字段引用的 block 正文片段与 review_items.json 候选 block 的 PyMuPDF 提取正文一致，间接表明 v2 输入与 review_items.json 同源，但无直接证据。",
+    "q5_model_fabricated_block_id_or_read_extra_context": "未发现模型虚构 block_id 的证据：v2 选中的 block_ids 全部属于 review_items.json 的候选 block_ids。也未发现模型读取额外上下文的直接证据，但因 v2 无输入快照，无法完全排除。"
+  },
+  "per_item_audit": [
+    {
+      "gold_evidence_id": "EVD-001",
+      "claim_id": "CLM-001",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "候选EVD-001-g1（block 169，p9）前后文为『四、注册变更情况』与『统一社会信用代码 91440606722473344C』，属公司注册信息段落；reconstructed_text为空、number_match=false，不含Gold Evidence『营业收入（千元）456,451,731 407,149,600 12.11%』中任何数值或指标行，完全无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "169"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-002",
+      "claim_id": "CLM-002",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『一、营业总收入 458,502,407 409,084,266』。候选g1（4440）仅提供利润表标题与单位（千元）；g2（4449）投资收益行、g3（4452）减值损失行、g4（4455）净利润行。营业总收入数值458,502,407所在行不是任何候选Block，原Evidence无法重建；g1只能提供表头，无数值。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "4440",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-003",
+      "claim_id": "CLM-003",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "候选g1（169）为注册变更段；g2（195）位于稀释每股收益行（5.76/5.42/6.27%/4.92）之后，属EPS区域。两者均不含Gold Evidence『归属于上市公司股东的净利润（千元）43,945,411 38,537,237 14.03%』的数值或指标行，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "169",
+        "195"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-004",
+      "claim_id": "CLM-004",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "候选与EVD-003相同（169注册段、195稀释EPS行），均不含归母净利润43,945,411/38,537,237或任何增速；原Gold Evidence『归属于上市公司股东的净利润（千元）43,945,411 38,537,237 14.03%』无法重建。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "169",
+        "195"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-005",
+      "claim_id": "CLM-005",
+      "v2_decision": "MATCH_SINGLE_BLOCK",
+      "v2_selected_block_ids": [
+        "4443"
+      ],
+      "v2_selected_candidate_group_ids": [
+        "EVD-005-g2"
+      ],
+      "v2_confidence": 0.88,
+      "v2_reason_excerpt": "Gold Evidence为营业收入行『456,451,731 407,149,600』。候选g2（block 4443，p135合并利润表）reconstructed_text开头即含『四(48), 十八(3) 456,451,731 407,149,600』，完整对应原Evidence数值；同一Block还含『减：营业成本 (335,989,528) (299,584,935)』，可与营业收入共同计算毛利率26.4%；表头『项目/附注/2025年度/2024年度/合并』与",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": true,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "selected_block_text_status": [
+        {
+          "block_id": "4443",
+          "status": "OK",
+          "text_excerpt": "其中：营业收入 \n四(48), \n十八(3) 456,451,731 407,149,600 \n936,519 \n946,607 \n \n利息收入 \n四(49) \n2,050,168 \n1,934,090 \n- \n- \n \n手续费及佣金收入 "
+        }
+      ],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-006",
+      "claim_id": "CLM-005",
+      "v2_decision": "MATCH_SINGLE_BLOCK",
+      "v2_selected_block_ids": [
+        "4443"
+      ],
+      "v2_selected_candidate_group_ids": [
+        "EVD-006-g2"
+      ],
+      "v2_confidence": 0.88,
+      "v2_reason_excerpt": "Gold Evidence为营业成本行『(335,989,528) (299,584,935)』。候选g2（block 4443，p135合并利润表）reconstructed_text含『减：营业成本 四(48) (335,989,528) (299,584,935)』，与Gold Evidence逐字对应；同一Block含营业收入456,451,731，可计算毛利率26.4%。单Block完整、唯一。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": true,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "selected_block_text_status": [
+        {
+          "block_id": "4443",
+          "status": "OK",
+          "text_excerpt": "其中：营业收入 \n四(48), \n十八(3) 456,451,731 407,149,600 \n936,519 \n946,607 \n \n利息收入 \n四(49) \n2,050,168 \n1,934,090 \n- \n- \n \n手续费及佣金收入 "
+        }
+      ],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-007",
+      "claim_id": "CLM-006",
+      "v2_decision": "MATCH_SINGLE_BLOCK",
+      "v2_selected_block_ids": [
+        "4443"
+      ],
+      "v2_selected_candidate_group_ids": [
+        "EVD-007-g2"
+      ],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为营业收入行『456,451,731 407,149,600』，block 4443开头即含该行。同Block另有两年营业成本((335,989,528)/(299,584,935))，可计算2025与2024年毛利率及变动，覆盖claim『毛利率26.4%且较上年提升0.7个百分点』的两个组件。单Block完整、唯一；但变动幅度为推导值而非文本直述，置信度0.85。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": true,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "selected_block_text_status": [
+        {
+          "block_id": "4443",
+          "status": "OK",
+          "text_excerpt": "其中：营业收入 \n四(48), \n十八(3) 456,451,731 407,149,600 \n936,519 \n946,607 \n \n利息收入 \n四(49) \n2,050,168 \n1,934,090 \n- \n- \n \n手续费及佣金收入 "
+        }
+      ],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-008",
+      "claim_id": "CLM-006",
+      "v2_decision": "MATCH_SINGLE_BLOCK",
+      "v2_selected_block_ids": [
+        "4443"
+      ],
+      "v2_selected_candidate_group_ids": [
+        "EVD-008-g2"
+      ],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为营业成本行『(335,989,528) (299,584,935)』，block 4443含『减：营业成本 四(48) (335,989,528) (299,584,935)』，逐字对应；同Block含两年营业收入，可计算毛利率及同比变动。单Block完整、唯一；变动幅度为推导值，置信度0.85。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": true,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "selected_block_text_status": [
+        {
+          "block_id": "4443",
+          "status": "OK",
+          "text_excerpt": "其中：营业收入 \n四(48), \n十八(3) 456,451,731 407,149,600 \n936,519 \n946,607 \n \n利息收入 \n四(49) \n2,050,168 \n1,934,090 \n- \n- \n \n手续费及佣金收入 "
+        }
+      ],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-009",
+      "claim_id": "CLM-007",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『营业收入（千元）127,838,538 106,101,612 20.49%』。唯一候选EVD-009-g1（block 38，p2）reconstructed_text仅『1』，前后文为董事长致辞叙述（『握机会突破。培育业务要审慎观察…ToC和ToB业务形成增长接力。』），无任何营业收入数值、增速或季度表格，完全无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "38"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-013",
+      "claim_id": "CLM-009",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『其中：营业收入 127,838,538 106,101,612 240,751』。候选（p8 blocks 136/160/165）分别为『一、公司信息』、『三、信息披露及备置地点』、巨潮资讯网等公司基本信息块，无任何营业收入数值或季度表格，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "136",
+        "160",
+        "165"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-015",
+      "claim_id": "CLM-010",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『归属于母公司股东的净利润 12,422,233 9,000,007 245,043』。候选（p8 blocks 136/160/165）为公司信息/信息披露备置地点块，无归母净利润数值或季度表格，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "136",
+        "160",
+        "165"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-016",
+      "claim_id": "CLM-011",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『归属于上市公司股东的净利润（千元）12,422,233 9,000,007 38.02%』。唯一候选EVD-016-g1（block 38，p2）为董事长致辞叙述文本，无任何净利润数值或增速，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "38"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-017",
+      "claim_id": "CLM-012",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『基本每股收益（元/股）5.80 5.44 6.62%』。候选g1（169）为注册变更段；g2（195）位于『稀释每股收益（元/股）5.76 5.42 6.27% 4.92』行之后，属稀释EPS而非基本EPS区域；候选不含基本每股收益5.80/5.44/6.62%行，指标口径（基本vs稀释）不符，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "169",
+        "195"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-019",
+      "claim_id": "CLM-014",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『经营活动产生的现金流量净额（千元）53,345,930 60,511,572 -11.84%』。候选169为注册变更段、195为稀释EPS行区域，均非现金流量表块，不含经营现金流数值，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "169",
+        "195"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-021",
+      "claim_id": "CLM-015",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『营业收入（千元）127,838,538 106,101,612 20.49%』。唯一候选EVD-021-g1（block 38，p2）为董事长致辞叙述文本，无任何营业收入数值、增速或上半年期间数据，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "38"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-022",
+      "claim_id": "CLM-016",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.6,
+      "v2_reason_excerpt": "Gold Evidence为『美的集团股份有限公司2025年年度报告 2026年3月』。p1封面块4（RT『美的集团股份有限公司』）+块5（RT『2025年年度报告』）按序组合可重建报告标题部分；但候选块均无发布日期信息（gold含『2026年3月』，claim称『2025年3月31日发布』），日期组件无法核验，Evidence不完整；且claim日期与gold日期本身冲突，需人工复核。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-023",
+      "claim_id": "CLM-017",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『营业收入（千元）456,451,731 407,149,600 12.11%』。唯一候选EVD-023-g1（block 169，p9）为注册变更段，无营业收入数值，无法重建原Evidence。claim的4071.50亿元对应gold中2024期407,149,600千元，期间归属需注意，但候选本身无数据。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "169"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-024",
+      "claim_id": "CLM-018",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『经营活动产生的现金流量净额（千元）53,345,930 60,511,572 -11.84%』。候选169/195均非现金流量表块，无任何经营现金流数值；且claim数值5334.59亿元与gold 53,345,930千元(533.46亿元)数量级不符，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "169",
+        "195"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-027",
+      "claim_id": "CLM-024",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『营业收入（千元）456,451,731 407,149,600 12.11%』。唯一候选EVD-027-g1（block 169，p9）为注册变更段，无营业收入或增速数据；gold增速12.11%与claim『超过15%』的关系无法从候选判断，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "169"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H01",
+      "claim_id": "CLM-H01",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『营业收入（元）40,528,509,770.23 89,175,178,322.70 -54.55%』。候选（p7 blocks 113/131）为『释义』术语表及『报告期指2025年1月1日至2025年12月31日』定义段，无任何营业收入数值或增速，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H02",
+      "claim_id": "CLM-H02",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『归属于上市公司股东的净利润（元）8,954,257,202.51 31,853,172,533.98 -71.89%』。候选为释义块，无归母净利润数值，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H03",
+      "claim_id": "CLM-H03",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『归属于上市公司股东的净利润（元）8,954,257,202.51 31,853,172,533.98 -71.89%』。候选为释义块，无归母净利润数值或增速；claim增速38.02%与gold -71.89%数值冲突，但候选本身无数据，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H04",
+      "claim_id": "CLM-H04",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『经营活动产生的现金流量净额（元）29,706,259,919.13 33,939,755,192.78 -12.47%』。候选为释义块，无经营现金流数值或增速，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131",
+        "132"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H05",
+      "claim_id": "CLM-H05",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『经营活动产生的现金流量净额（元）29,706,259,919.13 33,939,755,192.78 -12.47%』。候选为释义块，无经营现金流数值；claim增速+12.47%与gold -12.47%方向冲突，但候选本身无数据，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131",
+        "132"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H06",
+      "claim_id": "CLM-H06",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『基本每股收益（元/股）2.3068 8.2062 -71.89%』。候选为释义块，无基本每股收益行；gold当期值2.3068与claim 8.21元对应gold上期8.2062，期间归属存在疑问，但候选本身无数据，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131",
+        "132"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H07",
+      "claim_id": "CLM-H07",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『加权平均净资产收益率 6.89% 23.35% 减少16.46个百分点』。候选为释义块，无加权平均净资产收益率行数据，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131",
+        "132"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H08",
+      "claim_id": "CLM-H08",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『总资产（元）189,984,270,815.47 188,252,218,704.17 0.92%』。候选为释义块，无总资产数值或增速，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H09",
+      "claim_id": "CLM-H09",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『归属于上市公司股东的净资产（元）119,932,271,234.99 133,285,282,015.97 -10.02%』。候选为释义块，无净资产数值；claim增速+10.02%与gold -10.02%方向冲突，但候选本身无数据，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H10",
+      "claim_id": "CLM-H10",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.75,
+      "v2_reason_excerpt": "Gold Evidence为『2026年4月30日』（发布日期）。候选（p1 blocks 2/3/6/7/8）上下文为『美的集团股份有限公司2025年年度报告全文』——公司主体为美的集团，与claim主体五粮液不符；且候选无任何发布日期信息，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "2",
+        "3",
+        "6",
+        "7",
+        "8"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H11",
+      "claim_id": "CLM-H11",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『归属于上市公司股东的扣除非经常性损益的净利润（元）8,815,635,943.27 31,741,959,276.27 -72.23%』。候选（p7 blocks 113/131/132）为『释义』术语表及『报告期』定义段，无扣非归母净利润数值，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131",
+        "132"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H12",
+      "claim_id": "CLM-H12",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所』。候选（p6 blocks 104/109/110）为『备查文件目录』及披露备置地点块，无任何股票简称/代码/交易所信息，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "104",
+        "109",
+        "110"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    },
+    {
+      "gold_evidence_id": "EVD-H16",
+      "claim_id": "CLM-H16",
+      "v2_decision": "NONE_OF_THE_ABOVE",
+      "v2_selected_block_ids": [],
+      "v2_selected_candidate_group_ids": [],
+      "v2_confidence": 0.85,
+      "v2_reason_excerpt": "Gold Evidence为『营业收入（元）40,528,509,770.23 89,175,178,322.70 -54.55%』。候选为释义块，无营业收入数值；claim 4052.85亿元与gold 40,528,509,770.23元(405.29亿元)数量级不符，但候选本身无数据，无法重建原Evidence。",
+      "selected_blocks_present_in_input": true,
+      "block_text_present_in_input": false,
+      "input_snapshot_found": false,
+      "prompt_snapshot_found": false,
+      "model_name_found": false,
+      "candidate_block_ids_in_review_items": [
+        "113",
+        "131"
+      ],
+      "selected_block_text_status": [],
+      "provenance_status": "MODEL_CALL_UNVERIFIABLE",
+      "record_meta_keys": [],
+      "provenance_status_reason": "v2 记录未携带 model_name / timestamp / input_snapshot / prompt_snapshot / usage / attempts 等任何可验证元信息，无法证明生成时的实际输入与模型调用。"
+    }
+  ]
+}

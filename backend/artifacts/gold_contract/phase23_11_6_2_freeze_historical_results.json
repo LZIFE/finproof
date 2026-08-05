@@ -1,0 +1,41 @@
+{
+  "phase": "23.11.6.2",
+  "action": "FREEZE_HISTORICAL_AI_BLIND_REVIEW_RESULTS",
+  "timestamp": "2026-08-05T00:00:00Z",
+  "policy": {
+    "frozen_files_must_not_be_modified": true,
+    "frozen_files_must_not_be_imported_into_gold": true,
+    "frozen_files_must_not_be_treated_as_human_review": true,
+    "frozen_files_must_not_participate_in_official_metrics": true
+  },
+  "frozen_results": [
+    {
+      "file": "data/gold_review/phase23_11_6/review_results_agent.json",
+      "version_label": "v1",
+      "status": "HISTORICAL_PROVENANCE_UNVERIFIED",
+      "sha256": "289acd85f13976d4832b4b08c7223e260cc548c9d2daade3d3c411e74dd9e1f7",
+      "may_import_to_gold": false,
+      "may_be_used_as_human_review": false,
+      "may_participate_in_official_metrics": false
+    },
+    {
+      "file": "data/gold_review/phase23_11_6/review_results_agent_v2.json",
+      "version_label": "v2",
+      "status": "HISTORICAL_PROVENANCE_UNVERIFIED",
+      "sha256": "45274c8466c9c85efe490a3fde0d80aa72d5d9054b636e3cb9534dd53e6111a3",
+      "may_import_to_gold": false,
+      "may_be_used_as_human_review": false,
+      "may_participate_in_official_metrics": false
+    },
+    {
+      "file": "data/gold_review/phase23_11_6/review_results_agent_v3.json",
+      "version_label": "v3",
+      "status": "NO_MODEL_CALL_EMPTY_RESULT",
+      "sha256": "955a62bfb6a1c09dd452066b26134a31d9b979c749e253bfc486cd000698feeb",
+      "may_import_to_gold": false,
+      "may_be_used_as_human_review": false,
+      "may_participate_in_official_metrics": false
+    }
+  ],
+  "next_step": "v2_provenance_audit"
+}

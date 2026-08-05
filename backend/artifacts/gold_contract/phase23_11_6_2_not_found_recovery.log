@@ -1,0 +1,84 @@
+2026-08-05 16:06:19,910 [INFO] ============================================================
+2026-08-05 16:06:19,910 [INFO] Phase 23.11.6.2 NOT_FOUND 恢复脚本启动
+2026-08-05 16:06:19,910 [INFO] grounding audit: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_5_1_grounding_audit.json
+2026-08-05 16:06:19,910 [INFO] output: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_6_2_not_found_recovery.json
+2026-08-05 16:06:19,911 [INFO] NOT_FOUND evidence count: 10
+2026-08-05 16:06:19,915 [INFO] ----------------------------------------
+2026-08-05 16:06:19,915 [INFO] [EVD-010] CLM-008 annotated_page=96
+2026-08-05 16:06:19,915 [INFO]   gold_evidence: 一、营业总收入 252,331,494 218,121,839
+2026-08-05 16:06:19,915 [INFO]   gold_numbers: ['252,331,494', '218,121,839']
+2026-08-05 16:06:20,733 [INFO]   PDF search hits: 0 pages
+2026-08-05 16:06:20,733 [INFO]   recovery_status: STILL_NOT_FOUND
+2026-08-05 16:06:20,733 [INFO]   recovery_reason: 在主 PDF（annual_report.pdf）全文中未找到 Gold 关键数字 ['252,331,494', '218,121,839']，可能涉及其他文档或 Gold 文本有误。
+2026-08-05 16:06:20,733 [INFO] ----------------------------------------
+2026-08-05 16:06:20,733 [INFO] [EVD-011] CLM-008 annotated_page=17
+2026-08-05 16:06:20,733 [INFO]   gold_evidence: 2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%
+2026-08-05 16:06:20,734 [INFO]   gold_numbers: ['2025', '2523', '15.7%']
+2026-08-05 16:06:21,370 [INFO]   PDF search hits: 272 pages
+2026-08-05 16:06:21,370 [INFO]   best_page: 124 (matched 2/3 numbers)
+2026-08-05 16:06:21,372 [INFO]   candidate_bundles: 5
+2026-08-05 16:06:21,372 [INFO]   recovery_status: PARAPHRASED_SOURCE_LOCATED
+2026-08-05 16:06:21,372 [INFO]   recovery_reason: 在 page 124 找到部分匹配的 Candidate Bundle，但 reconstruction_coverage = 0.4205 偏低，Gold 可能是原文改写或摘要。
+2026-08-05 16:06:21,372 [INFO] ----------------------------------------
+2026-08-05 16:06:21,372 [INFO] [EVD-012] CLM-009 annotated_page=96
+2026-08-05 16:06:21,372 [INFO]   gold_evidence: 一、营业总收入 252,331,494 218,121,839
+2026-08-05 16:06:21,372 [INFO]   gold_numbers: ['252,331,494', '218,121,839']
+2026-08-05 16:06:22,070 [INFO]   PDF search hits: 0 pages
+2026-08-05 16:06:22,070 [INFO]   recovery_status: STILL_NOT_FOUND
+2026-08-05 16:06:22,070 [INFO]   recovery_reason: 在主 PDF（annual_report.pdf）全文中未找到 Gold 关键数字 ['252,331,494', '218,121,839']，可能涉及其他文档或 Gold 文本有误。
+2026-08-05 16:06:22,070 [INFO] ----------------------------------------
+2026-08-05 16:06:22,070 [INFO] [EVD-014] CLM-010 annotated_page=96
+2026-08-05 16:06:22,070 [INFO]   gold_evidence: 归属于母公司股东的净利润 26,013,690 20,804,176
+2026-08-05 16:06:22,070 [INFO]   gold_numbers: ['26,013,690', '20,804,176']
+2026-08-05 16:06:22,698 [INFO]   PDF search hits: 0 pages
+2026-08-05 16:06:22,698 [INFO]   recovery_status: STILL_NOT_FOUND
+2026-08-05 16:06:22,698 [INFO]   recovery_reason: 在主 PDF（annual_report.pdf）全文中未找到 Gold 关键数字 ['26,013,690', '20,804,176']，可能涉及其他文档或 Gold 文本有误。
+2026-08-05 16:06:22,698 [INFO] ----------------------------------------
+2026-08-05 16:06:22,698 [INFO] [EVD-018] CLM-013 annotated_page=173
+2026-08-05 16:06:22,698 [INFO]   gold_evidence: 基本每股收益 人民币元/股 3.41 3.02
+2026-08-05 16:06:22,698 [INFO]   gold_numbers: []
+2026-08-05 16:06:22,698 [INFO]   recovery_status: PARAPHRASED_SOURCE_LOCATED
+2026-08-05 16:06:22,698 [INFO]   recovery_reason: Gold 文本无关键数字，可能是描述性改写，无法通过数字搜索定位原文。
+2026-08-05 16:06:22,698 [INFO] ----------------------------------------
+2026-08-05 16:06:22,698 [INFO] [EVD-020] CLM-015 annotated_page=17
+2026-08-05 16:06:22,698 [INFO]   gold_evidence: 营业总收入2523 亿元，同比增长15.7%
+2026-08-05 16:06:22,698 [INFO]   gold_numbers: ['2523', '15.7%']
+2026-08-05 16:06:23,358 [INFO]   PDF search hits: 1 pages
+2026-08-05 16:06:23,358 [INFO]   best_page: 124 (matched 1/2 numbers)
+2026-08-05 16:06:23,360 [INFO]   candidate_bundles: 5
+2026-08-05 16:06:23,360 [INFO]   recovery_status: PARAPHRASED_SOURCE_LOCATED
+2026-08-05 16:06:23,360 [INFO]   recovery_reason: 在 page 124 找到部分匹配的 Candidate Bundle，但 reconstruction_coverage = 0.3 偏低，Gold 可能是原文改写或摘要。
+2026-08-05 16:06:23,360 [INFO] ----------------------------------------
+2026-08-05 16:06:23,360 [INFO] [EVD-025] CLM-019 annotated_page=17
+2026-08-05 16:06:23,360 [INFO]   gold_evidence: 支撑国内高端品牌和海外OBM 优先战略
+2026-08-05 16:06:23,360 [INFO]   gold_numbers: []
+2026-08-05 16:06:23,360 [INFO]   recovery_status: PARAPHRASED_SOURCE_LOCATED
+2026-08-05 16:06:23,360 [INFO]   recovery_reason: Gold 文本无关键数字，可能是描述性改写，无法通过数字搜索定位原文。
+2026-08-05 16:06:23,360 [INFO] ----------------------------------------
+2026-08-05 16:06:23,361 [INFO] [EVD-026] CLM-020 annotated_page=17
+2026-08-05 16:06:23,361 [INFO]   gold_evidence: 营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%
+2026-08-05 16:06:23,361 [INFO]   gold_numbers: ['2523', '15.7%', '25.0%']
+2026-08-05 16:06:23,994 [INFO]   PDF search hits: 1 pages
+2026-08-05 16:06:23,994 [INFO]   best_page: 124 (matched 2/3 numbers)
+2026-08-05 16:06:23,996 [INFO]   candidate_bundles: 5
+2026-08-05 16:06:23,996 [INFO]   recovery_status: PARAPHRASED_SOURCE_LOCATED
+2026-08-05 16:06:23,996 [INFO]   recovery_reason: 在 page 124 找到部分匹配的 Candidate Bundle，但 reconstruction_coverage = 0.2933 偏低，Gold 可能是原文改写或摘要。
+2026-08-05 16:06:23,996 [INFO] ----------------------------------------
+2026-08-05 16:06:23,996 [INFO] [EVD-028] CLM-024 annotated_page=17
+2026-08-05 16:06:23,996 [INFO]   gold_evidence: 营业总收入2523 亿元，同比增长15.7%
+2026-08-05 16:06:23,996 [INFO]   gold_numbers: ['2523', '15.7%']
+2026-08-05 16:06:24,628 [INFO]   PDF search hits: 1 pages
+2026-08-05 16:06:24,628 [INFO]   best_page: 124 (matched 1/2 numbers)
+2026-08-05 16:06:24,630 [INFO]   candidate_bundles: 5
+2026-08-05 16:06:24,630 [INFO]   recovery_status: PARAPHRASED_SOURCE_LOCATED
+2026-08-05 16:06:24,630 [INFO]   recovery_reason: 在 page 124 找到部分匹配的 Candidate Bundle，但 reconstruction_coverage = 0.3 偏低，Gold 可能是原文改写或摘要。
+2026-08-05 16:06:24,630 [INFO] ----------------------------------------
+2026-08-05 16:06:24,630 [INFO] [EVD-029] CLM-026 annotated_page=17
+2026-08-05 16:06:24,630 [INFO]   gold_evidence: 实现扣非归母净利润262 亿元，同比增长30.0%
+2026-08-05 16:06:24,630 [INFO]   gold_numbers: ['30.0%']
+2026-08-05 16:06:25,261 [INFO]   PDF search hits: 0 pages
+2026-08-05 16:06:25,261 [INFO]   recovery_status: STILL_NOT_FOUND
+2026-08-05 16:06:25,261 [INFO]   recovery_reason: 在主 PDF（annual_report.pdf）全文中未找到 Gold 关键数字 ['30.0%']，可能涉及其他文档或 Gold 文本有误。
+2026-08-05 16:06:25,262 [INFO] ============================================================
+2026-08-05 16:06:25,262 [INFO] wrote output: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_6_2_not_found_recovery.json
+2026-08-05 16:06:25,262 [INFO] status_counts: {"CANDIDATES_RECOVERED": 0, "PARAPHRASED_SOURCE_LOCATED": 6, "VISUAL_REVIEW_REQUIRED": 0, "WRONG_PAGE_REFERENCE": 0, "WRONG_DOCUMENT_REFERENCE": 0, "STILL_NOT_FOUND": 4}

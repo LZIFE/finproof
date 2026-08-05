@@ -74,6 +74,18 @@ pnpm dev            # 默认 http://localhost:3000
 - Phase 0（脚手架）：后端 FastAPI + `/health` + SQLite 连接 + pytest；前端 Next.js 最小首页 + 后端健康状态。
 - Phase 1（演示数据）：候选公司筛选、真实披露文件归档、预埋错误研报、金标准与校验脚本。详见 `docs/finproof_progress.md`。
 
+## 当前阶段（Phase 23.11.6.2 — PROMPT_REVIEW_PACK_READY）
+
+- **Phase 23.11.6** 候选 Block 选取缺陷已诊断：86 个引用里 64 个是 PDF 表格真空单元格，EVD-002 漏选含正文的 block 4443。根因在 `phase23_11_6_prepare_review.py` 忠实搬运上游 grounding audit 给的 `candidate_block_ids`。
+- **Phase 23.11.6.2** 重建 Candidate Bundle：从 Gold 标注页出发，用 PyMuPDF 重新提取每个 block 正文，结构化分类后构建 Candidate Bundle（不再是孤立 Block）。32 条全部重建成功，160 个 Bundle 全部含正文。
+- **历史 AI 盲审结果冻结**：v1/v2 = `HISTORICAL_PROVENANCE_UNVERIFIED`（无 model_name / timestamp / input_snapshot），v3 = `NO_MODEL_CALL_EMPTY_RESULT`。三个文件均不得导入 Gold、不得作为人工审核结果、不得参与正式指标。
+- **ChatGPT 提示词包就绪**：`data/gold_review/phase23_11_6_2/prompt_pack/` 下 32 个独立 Markdown 文件，可直接复制粘贴给 ChatGPT。提示词不含 `expected_verdict` / 系统 prediction 的值，`reconstruction_coverage` 分数也不展示给模型。AI 结果状态为 `AI_REVIEW_SUGGESTION_PENDING_HUMAN_CONFIRMATION`，**不能直接导入 Gold**。
+- **NOT_FOUND 恢复**：10 条 NOT_FOUND 中 6 条 `PARAPHRASED_SOURCE_LOCATED`（Gold 是改写或摘要）、4 条 `STILL_NOT_FOUND`。**不自动写入 Gold**。
+
+本阶段不修改 Verifier/Gate/Selector/Real E2E/Gold Verdict/正式评测指标，不调用任何模型。详见 `docs/phase23_11_6_2_candidate_rebuild_and_prompt_pack.md`。
+
+---
+
 ## 当前阶段（Phase 23.11，PARTIAL — 不标记 Competition-Usable）
 
 - **Claim Router**（8 routes）、**Financial Fact Index**、**Channel A/B 双检索**、**Evidence Precision Gate**、**Evidence Selector (Top1/Top3/Top5)**、**Evidence Margin/弃权** 全部进入真实主链。
