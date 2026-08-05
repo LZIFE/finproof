@@ -23,7 +23,19 @@
   "reviewer": "",
   "change_log": [
     "Phase 23.11.5: Initial gold grounding inventory. 42 evidence entries matched to DocumentBlocks. 24 claims fully grounded (block-level). 13 entries need human review (PAGE_MATCH_BLOCK_AMBIGUOUS).",
-    "Phase 23.11.5.1: Strict grounding integrity audit. 42/42 gold evidence block_id empty. 0 AUTO_CONFIRMED (no unique exact/normalized block match), 32 HUMAN_REVIEW_REQUIRED, 10 NOT_FOUND. 0 claims ORACLE_EVALUABLE. All prior block-level metrics remain INVALID_PENDING_HUMAN_GOLD_REVIEW."
+    "Phase 23.11.5.1: Strict grounding integrity audit. 42/42 gold evidence block_id empty. 0 AUTO_CONFIRMED (no unique exact/normalized block match), 32 HUMAN_REVIEW_REQUIRED, 10 NOT_FOUND. 0 claims ORACLE_EVALUABLE. All prior block-level metrics remain INVALID_PENDING_HUMAN_GOLD_REVIEW.",
+    "Phase 23.11.6: Human review pack generated (32 review + 10 not_found + 3 insufficient). Status WAITING_FOR_HUMAN_REVIEW. All block-level metrics remain frozen."
   ],
-  "notes": "Phase 23.11.5.1 strict audit: fuzzy matches are NEVER auto-confirmed. All 42 gold evidence entries require human review or are not found."
+  "notes": "Phase 23.11.5.1 strict audit: fuzzy matches are NEVER auto-confirmed. All 42 gold evidence entries require human review or are not found.",
+  "human_review_version": "23.11.6",
+  "human_review_updated_at": "2026-08-05T11:01:04+08:00",
+  "human_review_stats": {
+    "review_pack_items": 32,
+    "not_found_items": 10,
+    "not_found_status": "POSSIBLE_PARAPHRASED_GOLD",
+    "intentional_insufficient": 3,
+    "priority_cohort": 16
+  },
+  "review_items_hash": "6ce4787adf921b14be91c4e06a9a0a4bb8b5bf4d9f5851a9aa71fb2ffd9cde2b",
+  "not_found_recovery_hash": "463eda5931a2c8eaba211965c69fbae122020e2d383f059a69782c5cf4205807"
 }

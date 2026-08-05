@@ -1,0 +1,14 @@
+{
+  "phase": "23.11.6",
+  "round": 2,
+  "name": "Verdict Adjudication",
+  "description": "第二轮人工审核：仅在完成第一轮Evidence Alignment确认后生成。展示Claim+已确认Evidence+四种Verdict定义。",
+  "verdict_definitions": {
+    "SUPPORTED": "证据直接支持主张的主体/指标/期间/单位/口径/数值",
+    "REFUTED": "证据明确给出冲突事实/错误数值/错误期间/错误单位/相反方向",
+    "PARTIALLY_SUPPORTED": "主张含多个组成部分，部分得到支持但关键部分缺失",
+    "INSUFFICIENT_EVIDENCE": "现有证据不能证明也不能反驳"
+  },
+  "items": [],
+  "note": "Agent不得自动完成第二轮。人工字段：rationale/confidence/reviewer/reviewed_at，默认为空。"
+}

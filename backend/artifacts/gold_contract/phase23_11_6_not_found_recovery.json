@@ -1,0 +1,901 @@
+{
+  "phase": "23.11.6",
+  "script": "phase23_11_6_not_found_recovery",
+  "description": "10条NOT_FOUND来源恢复诊断",
+  "total": 10,
+  "status_counts": {
+    "POSSIBLE_PARAPHRASED_GOLD": 10
+  },
+  "per_item": [
+    {
+      "gold_evidence_id": "EVD-010",
+      "claim_id": "CLM-008",
+      "company": "美的集团",
+      "evidence_text": "一、营业总收入 252,331,494 218,121,839",
+      "dataset": "demo",
+      "annotated_page": 96,
+      "source_pdfs": [
+        {
+          "name": "q1_report.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "half_year_report.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "annual_report.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年年度报告.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年一季度报告.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "300750_2025年一季度报告.pdf",
+          "sha256": "55e17a28dc23b45d",
+          "size": 335963
+        },
+        {
+          "name": "000858_2025年年度报告.pdf",
+          "sha256": "09133e1f44b3bb4b",
+          "size": 3085658
+        },
+        {
+          "name": "000858_2025年第一季度报告.pdf",
+          "sha256": "36472c5fe41f28b7",
+          "size": 128175
+        },
+        {
+          "name": "000333_2025年半年度报告.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "000858_2025年半年度报告.pdf",
+          "sha256": "43763a06159d47b7",
+          "size": 821780
+        },
+        {
+          "name": "300750_2025年半年度报告.pdf",
+          "sha256": "94da19aaaf50205f",
+          "size": 1590151
+        },
+        {
+          "name": "300750_2025年年度报告.pdf",
+          "sha256": "c15272977147dee7",
+          "size": 2043710
+        }
+      ],
+      "page_in_blocks_index": true,
+      "page_block_count": 41,
+      "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n 租赁事宜的相关承诺。 \n 月28 日 \n宜未导致任何争议或纠纷，不存在违反承诺的情\n 东、实\n 更、资产\n 况，美的控股将长期履行承诺。 \n 际控制\n 瑕疵及房\n 美的控股和何享健承诺： \n 人 \n 屋租赁事\n （1）在本次吸收合并相关文件中披露的正在办理更名手续\n 宜的相关\n 的土地、房屋、商标、专利以及股权资产等相关资产，将尽最大\n 承诺 \n 努力协助及敦促美的集团（包括其控股子公司）及时完成相关资\n 产的更名手续。若因前述相关资产更名手续办理事宜导致美的集\n 团受到任何损失，将全部承担该等损失的全部赔偿责任。 \n （2）在本次吸收合并相关",
+      "adjacent_pages": [
+        {
+          "page": 95,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 律、法规或其他规范性文件认定为美的集团的控股股东和实际控\n 制人，将不会变更、解除本承诺； \n （5）美的控股和何享健将忠实履行上述承诺，并承担相应\n 的法律责任，若不履行本承诺所赋予的义务和责任，将依照相关\n 法律、法规、规章及规范性文件承担相应的"
+        },
+        {
+          "page": 97,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 宜，如果因该等土地瑕疵而致使租赁关系无效或者出现任何纠\n 纷，导致美的集团及其子公司遭受经济损失的或被有权的政府部\n 门罚款的，若土地出租方无法赔偿因该等瑕疵租赁造成的损失，\n 将对该等瑕疵土地租赁给美的集团造成的损失予以赔偿。 \n 美的控股进一步承"
+        }
+      ],
+      "recovery_status": "POSSIBLE_PARAPHRASED_GOLD",
+      "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)",
+      "recovered_candidates": [],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "review_status": "PENDING"
+    },
+    {
+      "gold_evidence_id": "EVD-011",
+      "claim_id": "CLM-008",
+      "company": "美的集团",
+      "evidence_text": "2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%",
+      "dataset": "demo",
+      "annotated_page": 17,
+      "source_pdfs": [
+        {
+          "name": "q1_report.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "half_year_report.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "annual_report.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年年度报告.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年一季度报告.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "300750_2025年一季度报告.pdf",
+          "sha256": "55e17a28dc23b45d",
+          "size": 335963
+        },
+        {
+          "name": "000858_2025年年度报告.pdf",
+          "sha256": "09133e1f44b3bb4b",
+          "size": 3085658
+        },
+        {
+          "name": "000858_2025年第一季度报告.pdf",
+          "sha256": "36472c5fe41f28b7",
+          "size": 128175
+        },
+        {
+          "name": "000333_2025年半年度报告.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "000858_2025年半年度报告.pdf",
+          "sha256": "43763a06159d47b7",
+          "size": 821780
+        },
+        {
+          "name": "300750_2025年半年度报告.pdf",
+          "sha256": "94da19aaaf50205f",
+          "size": 1590151
+        },
+        {
+          "name": "300750_2025年年度报告.pdf",
+          "sha256": "c15272977147dee7",
+          "size": 2043710
+        }
+      ],
+      "page_in_blocks_index": true,
+      "page_block_count": 31,
+      "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n 均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n 亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n 额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n 场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n 小家电及清洁电器市场： \n 根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 ",
+      "adjacent_pages": [
+        {
+          "page": 16,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"
+        },
+        {
+          "page": 18,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"
+        }
+      ],
+      "recovery_status": "POSSIBLE_PARAPHRASED_GOLD",
+      "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)",
+      "recovered_candidates": [],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "review_status": "PENDING"
+    },
+    {
+      "gold_evidence_id": "EVD-012",
+      "claim_id": "CLM-009",
+      "company": "美的集团",
+      "evidence_text": "一、营业总收入 252,331,494 218,121,839",
+      "dataset": "demo",
+      "annotated_page": 96,
+      "source_pdfs": [
+        {
+          "name": "q1_report.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "half_year_report.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "annual_report.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年年度报告.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年一季度报告.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "300750_2025年一季度报告.pdf",
+          "sha256": "55e17a28dc23b45d",
+          "size": 335963
+        },
+        {
+          "name": "000858_2025年年度报告.pdf",
+          "sha256": "09133e1f44b3bb4b",
+          "size": 3085658
+        },
+        {
+          "name": "000858_2025年第一季度报告.pdf",
+          "sha256": "36472c5fe41f28b7",
+          "size": 128175
+        },
+        {
+          "name": "000333_2025年半年度报告.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "000858_2025年半年度报告.pdf",
+          "sha256": "43763a06159d47b7",
+          "size": 821780
+        },
+        {
+          "name": "300750_2025年半年度报告.pdf",
+          "sha256": "94da19aaaf50205f",
+          "size": 1590151
+        },
+        {
+          "name": "300750_2025年年度报告.pdf",
+          "sha256": "c15272977147dee7",
+          "size": 2043710
+        }
+      ],
+      "page_in_blocks_index": true,
+      "page_block_count": 41,
+      "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n 租赁事宜的相关承诺。 \n 月28 日 \n宜未导致任何争议或纠纷，不存在违反承诺的情\n 东、实\n 更、资产\n 况，美的控股将长期履行承诺。 \n 际控制\n 瑕疵及房\n 美的控股和何享健承诺： \n 人 \n 屋租赁事\n （1）在本次吸收合并相关文件中披露的正在办理更名手续\n 宜的相关\n 的土地、房屋、商标、专利以及股权资产等相关资产，将尽最大\n 承诺 \n 努力协助及敦促美的集团（包括其控股子公司）及时完成相关资\n 产的更名手续。若因前述相关资产更名手续办理事宜导致美的集\n 团受到任何损失，将全部承担该等损失的全部赔偿责任。 \n （2）在本次吸收合并相关",
+      "adjacent_pages": [
+        {
+          "page": 95,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 律、法规或其他规范性文件认定为美的集团的控股股东和实际控\n 制人，将不会变更、解除本承诺； \n （5）美的控股和何享健将忠实履行上述承诺，并承担相应\n 的法律责任，若不履行本承诺所赋予的义务和责任，将依照相关\n 法律、法规、规章及规范性文件承担相应的"
+        },
+        {
+          "page": 97,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 宜，如果因该等土地瑕疵而致使租赁关系无效或者出现任何纠\n 纷，导致美的集团及其子公司遭受经济损失的或被有权的政府部\n 门罚款的，若土地出租方无法赔偿因该等瑕疵租赁造成的损失，\n 将对该等瑕疵土地租赁给美的集团造成的损失予以赔偿。 \n 美的控股进一步承"
+        }
+      ],
+      "recovery_status": "POSSIBLE_PARAPHRASED_GOLD",
+      "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)",
+      "recovered_candidates": [],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "review_status": "PENDING"
+    },
+    {
+      "gold_evidence_id": "EVD-014",
+      "claim_id": "CLM-010",
+      "company": "美的集团",
+      "evidence_text": "归属于母公司股东的净利润 26,013,690 20,804,176",
+      "dataset": "demo",
+      "annotated_page": 96,
+      "source_pdfs": [
+        {
+          "name": "q1_report.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "half_year_report.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "annual_report.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年年度报告.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年一季度报告.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "300750_2025年一季度报告.pdf",
+          "sha256": "55e17a28dc23b45d",
+          "size": 335963
+        },
+        {
+          "name": "000858_2025年年度报告.pdf",
+          "sha256": "09133e1f44b3bb4b",
+          "size": 3085658
+        },
+        {
+          "name": "000858_2025年第一季度报告.pdf",
+          "sha256": "36472c5fe41f28b7",
+          "size": 128175
+        },
+        {
+          "name": "000333_2025年半年度报告.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "000858_2025年半年度报告.pdf",
+          "sha256": "43763a06159d47b7",
+          "size": 821780
+        },
+        {
+          "name": "300750_2025年半年度报告.pdf",
+          "sha256": "94da19aaaf50205f",
+          "size": 1590151
+        },
+        {
+          "name": "300750_2025年年度报告.pdf",
+          "sha256": "c15272977147dee7",
+          "size": 2043710
+        }
+      ],
+      "page_in_blocks_index": true,
+      "page_block_count": 41,
+      "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n 租赁事宜的相关承诺。 \n 月28 日 \n宜未导致任何争议或纠纷，不存在违反承诺的情\n 东、实\n 更、资产\n 况，美的控股将长期履行承诺。 \n 际控制\n 瑕疵及房\n 美的控股和何享健承诺： \n 人 \n 屋租赁事\n （1）在本次吸收合并相关文件中披露的正在办理更名手续\n 宜的相关\n 的土地、房屋、商标、专利以及股权资产等相关资产，将尽最大\n 承诺 \n 努力协助及敦促美的集团（包括其控股子公司）及时完成相关资\n 产的更名手续。若因前述相关资产更名手续办理事宜导致美的集\n 团受到任何损失，将全部承担该等损失的全部赔偿责任。 \n （2）在本次吸收合并相关",
+      "adjacent_pages": [
+        {
+          "page": 95,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 律、法规或其他规范性文件认定为美的集团的控股股东和实际控\n 制人，将不会变更、解除本承诺； \n （5）美的控股和何享健将忠实履行上述承诺，并承担相应\n 的法律责任，若不履行本承诺所赋予的义务和责任，将依照相关\n 法律、法规、规章及规范性文件承担相应的"
+        },
+        {
+          "page": 97,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 宜，如果因该等土地瑕疵而致使租赁关系无效或者出现任何纠\n 纷，导致美的集团及其子公司遭受经济损失的或被有权的政府部\n 门罚款的，若土地出租方无法赔偿因该等瑕疵租赁造成的损失，\n 将对该等瑕疵土地租赁给美的集团造成的损失予以赔偿。 \n 美的控股进一步承"
+        }
+      ],
+      "recovery_status": "POSSIBLE_PARAPHRASED_GOLD",
+      "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)",
+      "recovered_candidates": [],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "review_status": "PENDING"
+    },
+    {
+      "gold_evidence_id": "EVD-018",
+      "claim_id": "CLM-013",
+      "company": "美的集团",
+      "evidence_text": "基本每股收益 人民币元/股 3.41 3.02",
+      "dataset": "demo",
+      "annotated_page": 173,
+      "source_pdfs": [
+        {
+          "name": "q1_report.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "half_year_report.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "annual_report.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年年度报告.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年一季度报告.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "300750_2025年一季度报告.pdf",
+          "sha256": "55e17a28dc23b45d",
+          "size": 335963
+        },
+        {
+          "name": "000858_2025年年度报告.pdf",
+          "sha256": "09133e1f44b3bb4b",
+          "size": 3085658
+        },
+        {
+          "name": "000858_2025年第一季度报告.pdf",
+          "sha256": "36472c5fe41f28b7",
+          "size": 128175
+        },
+        {
+          "name": "000333_2025年半年度报告.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "000858_2025年半年度报告.pdf",
+          "sha256": "43763a06159d47b7",
+          "size": 821780
+        },
+        {
+          "name": "300750_2025年半年度报告.pdf",
+          "sha256": "94da19aaaf50205f",
+          "size": 1590151
+        },
+        {
+          "name": "300750_2025年年度报告.pdf",
+          "sha256": "c15272977147dee7",
+          "size": 2043710
+        }
+      ],
+      "page_in_blocks_index": true,
+      "page_block_count": 10,
+      "page_parsed_text": "美的集团股份有限公司 \n \n 2025 年度财务报表附注 \n(除特别注明外，金额单位为人民币千元) \n  \n二 \n主要会计政策和会计估计(续) \n \n(29) \n租赁 \n \n 租赁，是指在一定期间内，出租人将资产的使用权让与承租人以获取对价的\n合同。 \n \n 本集团作为承租人 \n \n 本集团于租赁期开始日确认使用权资产，并按尚未支付的租赁付款额的现值\n确认租赁负债。租赁付款额包括固定付款额，以及在合理确定将行使购买选\n择权或终止租赁选择权的情况下需支付的款项等。按销售额的一定比例确定\n的可变租金不纳入租赁付款额，在实际发生时计入当期损益。本集团将自资\n产负债表日起一年内(含一年)支付的租赁负债",
+      "adjacent_pages": [
+        {
+          "page": 172,
+          "text": "美的集团股份有限公司 \n \n 2025 年度财务报表附注 \n(除特别注明外，金额单位为人民币千元) \n  \n二 \n主要会计政策和会计估计(续) \n \n(28) \n递延所得税资产和递延所得税负债 \n \n 递延所得税资产和递延所得税负债根据资产和负债的计税基础与其账面价值\n的差额(暂时性差异)计算确认。"
+        },
+        {
+          "page": 174,
+          "text": "美的集团股份有限公司 \n \n 2025 年度财务报表附注 \n(除特别注明外，金额单位为人民币千元) \n  \n二 \n主要会计政策和会计估计(续) \n \n(29) \n租赁(续) \n \n 本集团作为承租人(续) \n \n 当租赁变更未作为一项单独租赁进行会计处理时，除财政部规定的可以采用\n简化方法的合同变更"
+        }
+      ],
+      "recovery_status": "POSSIBLE_PARAPHRASED_GOLD",
+      "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)",
+      "recovered_candidates": [],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "review_status": "PENDING"
+    },
+    {
+      "gold_evidence_id": "EVD-020",
+      "claim_id": "CLM-015",
+      "company": "美的集团",
+      "evidence_text": "营业总收入2523 亿元，同比增长15.7%",
+      "dataset": "demo",
+      "annotated_page": 17,
+      "source_pdfs": [
+        {
+          "name": "q1_report.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "half_year_report.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "annual_report.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年年度报告.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年一季度报告.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "300750_2025年一季度报告.pdf",
+          "sha256": "55e17a28dc23b45d",
+          "size": 335963
+        },
+        {
+          "name": "000858_2025年年度报告.pdf",
+          "sha256": "09133e1f44b3bb4b",
+          "size": 3085658
+        },
+        {
+          "name": "000858_2025年第一季度报告.pdf",
+          "sha256": "36472c5fe41f28b7",
+          "size": 128175
+        },
+        {
+          "name": "000333_2025年半年度报告.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "000858_2025年半年度报告.pdf",
+          "sha256": "43763a06159d47b7",
+          "size": 821780
+        },
+        {
+          "name": "300750_2025年半年度报告.pdf",
+          "sha256": "94da19aaaf50205f",
+          "size": 1590151
+        },
+        {
+          "name": "300750_2025年年度报告.pdf",
+          "sha256": "c15272977147dee7",
+          "size": 2043710
+        }
+      ],
+      "page_in_blocks_index": true,
+      "page_block_count": 31,
+      "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n 均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n 亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n 额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n 场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n 小家电及清洁电器市场： \n 根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 ",
+      "adjacent_pages": [
+        {
+          "page": 16,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"
+        },
+        {
+          "page": 18,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"
+        }
+      ],
+      "recovery_status": "POSSIBLE_PARAPHRASED_GOLD",
+      "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)",
+      "recovered_candidates": [],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "review_status": "PENDING"
+    },
+    {
+      "gold_evidence_id": "EVD-025",
+      "claim_id": "CLM-019",
+      "company": "美的集团",
+      "evidence_text": "支撑国内高端品牌和海外OBM 优先战略",
+      "dataset": "demo",
+      "annotated_page": 17,
+      "source_pdfs": [
+        {
+          "name": "q1_report.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "half_year_report.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "annual_report.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年年度报告.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年一季度报告.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "300750_2025年一季度报告.pdf",
+          "sha256": "55e17a28dc23b45d",
+          "size": 335963
+        },
+        {
+          "name": "000858_2025年年度报告.pdf",
+          "sha256": "09133e1f44b3bb4b",
+          "size": 3085658
+        },
+        {
+          "name": "000858_2025年第一季度报告.pdf",
+          "sha256": "36472c5fe41f28b7",
+          "size": 128175
+        },
+        {
+          "name": "000333_2025年半年度报告.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "000858_2025年半年度报告.pdf",
+          "sha256": "43763a06159d47b7",
+          "size": 821780
+        },
+        {
+          "name": "300750_2025年半年度报告.pdf",
+          "sha256": "94da19aaaf50205f",
+          "size": 1590151
+        },
+        {
+          "name": "300750_2025年年度报告.pdf",
+          "sha256": "c15272977147dee7",
+          "size": 2043710
+        }
+      ],
+      "page_in_blocks_index": true,
+      "page_block_count": 31,
+      "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n 均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n 亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n 额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n 场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n 小家电及清洁电器市场： \n 根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 ",
+      "adjacent_pages": [
+        {
+          "page": 16,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"
+        },
+        {
+          "page": 18,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"
+        }
+      ],
+      "recovery_status": "POSSIBLE_PARAPHRASED_GOLD",
+      "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)",
+      "recovered_candidates": [],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "review_status": "PENDING"
+    },
+    {
+      "gold_evidence_id": "EVD-026",
+      "claim_id": "CLM-020",
+      "company": "美的集团",
+      "evidence_text": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%",
+      "dataset": "demo",
+      "annotated_page": 17,
+      "source_pdfs": [
+        {
+          "name": "q1_report.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "half_year_report.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "annual_report.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年年度报告.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年一季度报告.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "300750_2025年一季度报告.pdf",
+          "sha256": "55e17a28dc23b45d",
+          "size": 335963
+        },
+        {
+          "name": "000858_2025年年度报告.pdf",
+          "sha256": "09133e1f44b3bb4b",
+          "size": 3085658
+        },
+        {
+          "name": "000858_2025年第一季度报告.pdf",
+          "sha256": "36472c5fe41f28b7",
+          "size": 128175
+        },
+        {
+          "name": "000333_2025年半年度报告.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "000858_2025年半年度报告.pdf",
+          "sha256": "43763a06159d47b7",
+          "size": 821780
+        },
+        {
+          "name": "300750_2025年半年度报告.pdf",
+          "sha256": "94da19aaaf50205f",
+          "size": 1590151
+        },
+        {
+          "name": "300750_2025年年度报告.pdf",
+          "sha256": "c15272977147dee7",
+          "size": 2043710
+        }
+      ],
+      "page_in_blocks_index": true,
+      "page_block_count": 31,
+      "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n 均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n 亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n 额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n 场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n 小家电及清洁电器市场： \n 根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 ",
+      "adjacent_pages": [
+        {
+          "page": 16,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"
+        },
+        {
+          "page": 18,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"
+        }
+      ],
+      "recovery_status": "POSSIBLE_PARAPHRASED_GOLD",
+      "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)",
+      "recovered_candidates": [],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "review_status": "PENDING"
+    },
+    {
+      "gold_evidence_id": "EVD-028",
+      "claim_id": "CLM-024",
+      "company": "美的集团",
+      "evidence_text": "营业总收入2523 亿元，同比增长15.7%",
+      "dataset": "demo",
+      "annotated_page": 17,
+      "source_pdfs": [
+        {
+          "name": "q1_report.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "half_year_report.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "annual_report.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年年度报告.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年一季度报告.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "300750_2025年一季度报告.pdf",
+          "sha256": "55e17a28dc23b45d",
+          "size": 335963
+        },
+        {
+          "name": "000858_2025年年度报告.pdf",
+          "sha256": "09133e1f44b3bb4b",
+          "size": 3085658
+        },
+        {
+          "name": "000858_2025年第一季度报告.pdf",
+          "sha256": "36472c5fe41f28b7",
+          "size": 128175
+        },
+        {
+          "name": "000333_2025年半年度报告.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "000858_2025年半年度报告.pdf",
+          "sha256": "43763a06159d47b7",
+          "size": 821780
+        },
+        {
+          "name": "300750_2025年半年度报告.pdf",
+          "sha256": "94da19aaaf50205f",
+          "size": 1590151
+        },
+        {
+          "name": "300750_2025年年度报告.pdf",
+          "sha256": "c15272977147dee7",
+          "size": 2043710
+        }
+      ],
+      "page_in_blocks_index": true,
+      "page_block_count": 31,
+      "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n 均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n 亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n 额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n 场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n 小家电及清洁电器市场： \n 根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 ",
+      "adjacent_pages": [
+        {
+          "page": 16,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"
+        },
+        {
+          "page": 18,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"
+        }
+      ],
+      "recovery_status": "POSSIBLE_PARAPHRASED_GOLD",
+      "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)",
+      "recovered_candidates": [],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "review_status": "PENDING"
+    },
+    {
+      "gold_evidence_id": "EVD-029",
+      "claim_id": "CLM-026",
+      "company": "美的集团",
+      "evidence_text": "实现扣非归母净利润262 亿元，同比增长30.0%",
+      "dataset": "demo",
+      "annotated_page": 17,
+      "source_pdfs": [
+        {
+          "name": "q1_report.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "half_year_report.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "annual_report.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年年度报告.pdf",
+          "sha256": "16f95f70527db59d",
+          "size": 5942399
+        },
+        {
+          "name": "000333_2025年一季度报告.pdf",
+          "sha256": "d99c61dec30e4fe2",
+          "size": 640817
+        },
+        {
+          "name": "300750_2025年一季度报告.pdf",
+          "sha256": "55e17a28dc23b45d",
+          "size": 335963
+        },
+        {
+          "name": "000858_2025年年度报告.pdf",
+          "sha256": "09133e1f44b3bb4b",
+          "size": 3085658
+        },
+        {
+          "name": "000858_2025年第一季度报告.pdf",
+          "sha256": "36472c5fe41f28b7",
+          "size": 128175
+        },
+        {
+          "name": "000333_2025年半年度报告.pdf",
+          "sha256": "cec88d9c6ded328a",
+          "size": 3764425
+        },
+        {
+          "name": "000858_2025年半年度报告.pdf",
+          "sha256": "43763a06159d47b7",
+          "size": 821780
+        },
+        {
+          "name": "300750_2025年半年度报告.pdf",
+          "sha256": "94da19aaaf50205f",
+          "size": 1590151
+        },
+        {
+          "name": "300750_2025年年度报告.pdf",
+          "sha256": "c15272977147dee7",
+          "size": 2043710
+        }
+      ],
+      "page_in_blocks_index": true,
+      "page_block_count": 31,
+      "page_parsed_text": "美的集团股份有限公司2025 年年度报告全文 \n 均价为5,728 元，同比微幅下降0.3%；嵌入式微蒸烤零售额83 亿元，同比下降4.8%；烟机零售额为349.1\n 亿元，同比下降3.6%；燃气灶市场零售额为194.5 亿元，同比下降4.9%；电热水器与燃气热水器的零售\n 额分别为229 亿元和271 亿元，分别同比下降2.6%和8.6%；末端净水（含净水器、净饮机、饮水机）市\n 场零售额334.8 亿元，同比增长2.2%，其中净饮机同比增长达到31.2%。 \n 小家电及清洁电器市场： \n 根据奥维云网推总数据，2025 年国内厨房小家电整体零售额633 亿元，同比增加3.8%， 2025 ",
+      "adjacent_pages": [
+        {
+          "page": 16,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 优化技术成为产品创新突破口，控风方式逐渐精细化，人感技术也向广角立体多点人感升级；健康空气\n 赛道也逐渐分化为微正压新风、内循环净化、增氧补氧；大匹数挂机增长迅猛，2025 年3 匹挂机线上增\n 速达50.7%，反映出消费者对小空间大功率的空间节省需"
+        },
+        {
+          "page": 18,
+          "text": "美的集团股份有限公司2025 年年度报告全文 \n 机器人应用速度持续加快，2024 年中国国内机器人密度已提升至567，继续超越德国和日本并保持世界第\n 三。中国长期以来一直是全球机器人市场的增长驱动力，考虑到制造业的柔性需求、人口红利的减弱、\n 新兴市场的涌现、创新技术的发展等多方面的因素，工业机"
+        }
+      ],
+      "recovery_status": "POSSIBLE_PARAPHRASED_GOLD",
+      "recovery_reason": "page has text but gold text not found (possibly paraphrased or table-only)",
+      "recovered_candidates": [],
+      "reviewer_decision": "",
+      "reviewer_note": "",
+      "review_status": "PENDING"
+    }
+  ]
+}

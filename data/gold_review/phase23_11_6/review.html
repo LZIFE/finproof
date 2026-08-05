@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8"><title>Phase 23.11.6 Gold Evidence 盲审包</title>
+<style>
+body { font-family: sans-serif; max-width: 1000px; margin: 20px auto; padding: 0 20px; }
+.item { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 24px; }
+.candidate { border-left: 4px solid #888; margin: 10px 0; padding: 8px 12px; background: #fafafa; }
+.gold { background: #fff8e1; border: 1px solid #f0c; padding: 8px 12px; }
+.block { background: #e8f5e9; padding: 8px 12px; margin: 6px 0; }
+.ctx { background: #f3e5f5; padding: 6px 10px; margin: 4px 0; font-size: 0.9em; }
+h3 { margin-top: 0; } h4 { margin: 6px 0; }
+</style></head><body>
+<h1>Phase 23.11.6 Gold Evidence 盲审包（第一轮：Evidence Alignment）</h1>
+<p>共 32 条待审核。请勿参考系统预测或Gold标签（本页已隐藏）。</p>
+
+        <div class="item">
+          <h3>Evidence: EVD-001 (claim CLM-001)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 公司2025年实现营业收入4564.52亿元，同比增长12.11%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>营业收入（千元） 456,451,731 407,149,600 12.11%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-001-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['169']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>四、注册变更情况 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>统一社会信用代码 
+91440606722473344C 
+</div>
+              <p><b>重建覆盖率:</b> 35.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-002 (claim CLM-002)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 营业总收入为4564.52亿元，与营业收入基本持平</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>一、营业总收入 458,502,407 409,084,266</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-002-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4440']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br>美的集团股份有限公司 
+ 
+2025 年度合并及公司利润表 
+(除特别注明外，金额单位为人民币千元) 
+ 
+</div>
+              <p><b>重建覆盖率:</b> 26.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-002-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4449']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>营企业的投资
+收益 
+ 
+588,828 
+847,098 
+87,388 
+314,592 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>公允价值变动收益/(损
+</div>
+              <p><b>重建覆盖率:</b> 26.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-002-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4452']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>失) 
+四(58) 
+782,358 
+1,302,145 
+(550,726) 
+533,207 
+ 
+信用减值损失 
+四(57) 
+(355,860) 
+(4,595) 
+(3,133) 
+(5,986) 
+ 
+资产减值损失 
+四(56) 
+(1,156,469) 
+(1,008,107) 
+(352,474) 
+- 
+ 
+资产处置(损失)/收益 
+四(60) 
+(76,024) 
+214,8</div>
+              <div class="ctx"><b>后一个Block:</b><br>归属于母公司股东的
+</div>
+              <p><b>重建覆盖率:</b> 26.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-002-g4</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4455']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>净利润 
+ 
+43,945,411 
+38,537,237 
+29,415,131 
+28,517,064 
+ 
+少数股东损益 
+ 
+574,785 
+219,977 
+- 
+- 
+ 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>134 
+</div>
+              <p><b>重建覆盖率:</b> 26.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-003 (claim CLM-003)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 归母净利润439.45亿元</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-003-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['169']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>四、注册变更情况 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>统一社会信用代码 
+91440606722473344C 
+</div>
+              <p><b>重建覆盖率:</b> 42.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-003-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['195']</p>
+              <div class="block"><b>候选原文:</b><br>8 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>稀释每股收益（元/股） 
+5.76 
+5.42 
+6.27% 
+4.92 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 42.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-004 (claim CLM-004)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 归母净利润439.45亿元，同比增长38.02%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-004-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['169']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>四、注册变更情况 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>统一社会信用代码 
+91440606722473344C 
+</div>
+              <p><b>重建覆盖率:</b> 42.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-004-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['195']</p>
+              <div class="block"><b>候选原文:</b><br>8 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>稀释每股收益（元/股） 
+5.76 
+5.42 
+6.27% 
+4.92 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 42.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-005 (claim CLM-005)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 报告期内毛利率26.4%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>456,451,731 407,149,600</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-005-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4440']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br>美的集团股份有限公司 
+ 
+2025 年度合并及公司利润表 
+(除特别注明外，金额单位为人民币千元) 
+ 
+</div>
+              <p><b>重建覆盖率:</b> 19.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-005-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4443']</p>
+              <div class="block"><b>候选原文:</b><br>四(48), 
+十八(3) 456,451,731 407,149,600 
+936,519 
+946,607 
+利息收入 
+四(49) 
+2,050,168 
+1,934,090 
+- 
+- 
+ 
+手续费及佣金收入 
+ 
+508 
+576 
+- 
+- 
+减：营业成本 
+四(48) (335,989,528) (299,584,935) 
+(63,771) 
+(40,440) 
+利息支出 
+四(49) 
+(275) 
+(1,883) 
+- 
+- 
+ 
+手续费及佣金支出 
+ 
+(1,642) 
+(3,157) 
+- 
+- 
+ 
+税金及附加 
+四(50) 
+(2,217,289) 
+(2,119,625) 
+(46,361) 
+(49,254) 
+ 
+销售费用 
+四(51) 
+(42,891,490) (38,753,649) 
+- 
+- 
+ 
+管理费用 
+四(52) 
+(16,092,311</div>
+              <div class="ctx"><b>前一个Block:</b><br>项目 
+附注 
+2025年度 
+2024年度 
+2025年度 
+2024年度 
+ 
+合并 
+合并 
+公司 
+公司 
+ 
+ 
+ 
+ 
+ 
+一、营业总收入 
+ 
+458,502,407 409,084,266 
+936,519 
+946,607 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>其中：营业收入 
+</div>
+              <p><b>重建覆盖率:</b> 19.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-005-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4449']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>营企业的投资
+收益 
+ 
+588,828 
+847,098 
+87,388 
+314,592 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>公允价值变动收益/(损
+</div>
+              <p><b>重建覆盖率:</b> 19.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-005-g4</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4452']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>失) 
+四(58) 
+782,358 
+1,302,145 
+(550,726) 
+533,207 
+ 
+信用减值损失 
+四(57) 
+(355,860) 
+(4,595) 
+(3,133) 
+(5,986) 
+ 
+资产减值损失 
+四(56) 
+(1,156,469) 
+(1,008,107) 
+(352,474) 
+- 
+ 
+资产处置(损失)/收益 
+四(60) 
+(76,024) 
+214,8</div>
+              <div class="ctx"><b>后一个Block:</b><br>归属于母公司股东的
+</div>
+              <p><b>重建覆盖率:</b> 19.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-005-g5</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4455']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>净利润 
+ 
+43,945,411 
+38,537,237 
+29,415,131 
+28,517,064 
+ 
+少数股东损益 
+ 
+574,785 
+219,977 
+- 
+- 
+ 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>134 
+</div>
+              <p><b>重建覆盖率:</b> 19.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-006 (claim CLM-005)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 报告期内毛利率26.4%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>(335,989,528) (299,584,935)</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-006-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4440']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br>美的集团股份有限公司 
+ 
+2025 年度合并及公司利润表 
+(除特别注明外，金额单位为人民币千元) 
+ 
+</div>
+              <p><b>重建覆盖率:</b> 23.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-006-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4443']</p>
+              <div class="block"><b>候选原文:</b><br>四(48), 
+十八(3) 456,451,731 407,149,600 
+936,519 
+946,607 
+利息收入 
+四(49) 
+2,050,168 
+1,934,090 
+- 
+- 
+ 
+手续费及佣金收入 
+ 
+508 
+576 
+- 
+- 
+减：营业成本 
+四(48) (335,989,528) (299,584,935) 
+(63,771) 
+(40,440) 
+利息支出 
+四(49) 
+(275) 
+(1,883) 
+- 
+- 
+ 
+手续费及佣金支出 
+ 
+(1,642) 
+(3,157) 
+- 
+- 
+ 
+税金及附加 
+四(50) 
+(2,217,289) 
+(2,119,625) 
+(46,361) 
+(49,254) 
+ 
+销售费用 
+四(51) 
+(42,891,490) (38,753,649) 
+- 
+- 
+ 
+管理费用 
+四(52) 
+(16,092,311</div>
+              <div class="ctx"><b>前一个Block:</b><br>项目 
+附注 
+2025年度 
+2024年度 
+2025年度 
+2024年度 
+ 
+合并 
+合并 
+公司 
+公司 
+ 
+ 
+ 
+ 
+ 
+一、营业总收入 
+ 
+458,502,407 409,084,266 
+936,519 
+946,607 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>其中：营业收入 
+</div>
+              <p><b>重建覆盖率:</b> 23.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-006-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4449']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>营企业的投资
+收益 
+ 
+588,828 
+847,098 
+87,388 
+314,592 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>公允价值变动收益/(损
+</div>
+              <p><b>重建覆盖率:</b> 23.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-006-g4</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4452']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>失) 
+四(58) 
+782,358 
+1,302,145 
+(550,726) 
+533,207 
+ 
+信用减值损失 
+四(57) 
+(355,860) 
+(4,595) 
+(3,133) 
+(5,986) 
+ 
+资产减值损失 
+四(56) 
+(1,156,469) 
+(1,008,107) 
+(352,474) 
+- 
+ 
+资产处置(损失)/收益 
+四(60) 
+(76,024) 
+214,8</div>
+              <div class="ctx"><b>后一个Block:</b><br>归属于母公司股东的
+</div>
+              <p><b>重建覆盖率:</b> 23.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-006-g5</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4455']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>净利润 
+ 
+43,945,411 
+38,537,237 
+29,415,131 
+28,517,064 
+ 
+少数股东损益 
+ 
+574,785 
+219,977 
+- 
+- 
+ 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>134 
+</div>
+              <p><b>重建覆盖率:</b> 23.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-007 (claim CLM-006)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 毛利率26.4%，较上年提升0.7个百分点</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>456,451,731 407,149,600</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-007-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4440']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br>美的集团股份有限公司 
+ 
+2025 年度合并及公司利润表 
+(除特别注明外，金额单位为人民币千元) 
+ 
+</div>
+              <p><b>重建覆盖率:</b> 19.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-007-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4443']</p>
+              <div class="block"><b>候选原文:</b><br>四(48), 
+十八(3) 456,451,731 407,149,600 
+936,519 
+946,607 
+利息收入 
+四(49) 
+2,050,168 
+1,934,090 
+- 
+- 
+ 
+手续费及佣金收入 
+ 
+508 
+576 
+- 
+- 
+减：营业成本 
+四(48) (335,989,528) (299,584,935) 
+(63,771) 
+(40,440) 
+利息支出 
+四(49) 
+(275) 
+(1,883) 
+- 
+- 
+ 
+手续费及佣金支出 
+ 
+(1,642) 
+(3,157) 
+- 
+- 
+ 
+税金及附加 
+四(50) 
+(2,217,289) 
+(2,119,625) 
+(46,361) 
+(49,254) 
+ 
+销售费用 
+四(51) 
+(42,891,490) (38,753,649) 
+- 
+- 
+ 
+管理费用 
+四(52) 
+(16,092,311</div>
+              <div class="ctx"><b>前一个Block:</b><br>项目 
+附注 
+2025年度 
+2024年度 
+2025年度 
+2024年度 
+ 
+合并 
+合并 
+公司 
+公司 
+ 
+ 
+ 
+ 
+ 
+一、营业总收入 
+ 
+458,502,407 409,084,266 
+936,519 
+946,607 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>其中：营业收入 
+</div>
+              <p><b>重建覆盖率:</b> 19.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-007-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4449']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>营企业的投资
+收益 
+ 
+588,828 
+847,098 
+87,388 
+314,592 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>公允价值变动收益/(损
+</div>
+              <p><b>重建覆盖率:</b> 19.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-007-g4</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4452']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>失) 
+四(58) 
+782,358 
+1,302,145 
+(550,726) 
+533,207 
+ 
+信用减值损失 
+四(57) 
+(355,860) 
+(4,595) 
+(3,133) 
+(5,986) 
+ 
+资产减值损失 
+四(56) 
+(1,156,469) 
+(1,008,107) 
+(352,474) 
+- 
+ 
+资产处置(损失)/收益 
+四(60) 
+(76,024) 
+214,8</div>
+              <div class="ctx"><b>后一个Block:</b><br>归属于母公司股东的
+</div>
+              <p><b>重建覆盖率:</b> 19.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-007-g5</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4455']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>净利润 
+ 
+43,945,411 
+38,537,237 
+29,415,131 
+28,517,064 
+ 
+少数股东损益 
+ 
+574,785 
+219,977 
+- 
+- 
+ 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>134 
+</div>
+              <p><b>重建覆盖率:</b> 19.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-008 (claim CLM-006)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 毛利率26.4%，较上年提升0.7个百分点</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>(335,989,528) (299,584,935)</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-008-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4440']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br>美的集团股份有限公司 
+ 
+2025 年度合并及公司利润表 
+(除特别注明外，金额单位为人民币千元) 
+ 
+</div>
+              <p><b>重建覆盖率:</b> 23.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-008-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4443']</p>
+              <div class="block"><b>候选原文:</b><br>四(48), 
+十八(3) 456,451,731 407,149,600 
+936,519 
+946,607 
+利息收入 
+四(49) 
+2,050,168 
+1,934,090 
+- 
+- 
+ 
+手续费及佣金收入 
+ 
+508 
+576 
+- 
+- 
+减：营业成本 
+四(48) (335,989,528) (299,584,935) 
+(63,771) 
+(40,440) 
+利息支出 
+四(49) 
+(275) 
+(1,883) 
+- 
+- 
+ 
+手续费及佣金支出 
+ 
+(1,642) 
+(3,157) 
+- 
+- 
+ 
+税金及附加 
+四(50) 
+(2,217,289) 
+(2,119,625) 
+(46,361) 
+(49,254) 
+ 
+销售费用 
+四(51) 
+(42,891,490) (38,753,649) 
+- 
+- 
+ 
+管理费用 
+四(52) 
+(16,092,311</div>
+              <div class="ctx"><b>前一个Block:</b><br>项目 
+附注 
+2025年度 
+2024年度 
+2025年度 
+2024年度 
+ 
+合并 
+合并 
+公司 
+公司 
+ 
+ 
+ 
+ 
+ 
+一、营业总收入 
+ 
+458,502,407 409,084,266 
+936,519 
+946,607 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>其中：营业收入 
+</div>
+              <p><b>重建覆盖率:</b> 23.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-008-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4449']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>营企业的投资
+收益 
+ 
+588,828 
+847,098 
+87,388 
+314,592 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>公允价值变动收益/(损
+</div>
+              <p><b>重建覆盖率:</b> 23.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-008-g4</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4452']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>失) 
+四(58) 
+782,358 
+1,302,145 
+(550,726) 
+533,207 
+ 
+信用减值损失 
+四(57) 
+(355,860) 
+(4,595) 
+(3,133) 
+(5,986) 
+ 
+资产减值损失 
+四(56) 
+(1,156,469) 
+(1,008,107) 
+(352,474) 
+- 
+ 
+资产处置(损失)/收益 
+四(60) 
+(76,024) 
+214,8</div>
+              <div class="ctx"><b>后一个Block:</b><br>归属于母公司股东的
+</div>
+              <p><b>重建覆盖率:</b> 23.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-008-g5</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 135</p>
+              <p><b>block_ids:</b> ['4455']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>净利润 
+ 
+43,945,411 
+38,537,237 
+29,415,131 
+28,517,064 
+ 
+少数股东损益 
+ 
+574,785 
+219,977 
+- 
+- 
+ 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>134 
+</div>
+              <p><b>重建覆盖率:</b> 23.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-009 (claim CLM-007)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 2025年第一季度，公司实现营业收入1278.39亿元，同比增长20.49%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>营业收入（千元） 127,838,538 106,101,612 20.49%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-009-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 2</p>
+              <p><b>block_ids:</b> ['38']</p>
+              <div class="block"><b>候选原文:</b><br>1 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>握机会突破。培育业务要审慎观察，问题业务要果断处置。ToC 和ToB 业务形成增长接力。 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 35.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-013 (claim CLM-009)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 第二季度单季实现营业收入2523.31亿元</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>其中：营业收入 127,838,538 106,101,612 240,751</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-013-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 8</p>
+              <p><b>block_ids:</b> ['136']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>一、公司信息 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>股票简称 
+美的集团 
+股票代码 
+000333（A 股）、0300（H 股） 
+</div>
+              <p><b>重建覆盖率:</b> 34.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-013-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 8</p>
+              <p><b>block_ids:</b> ['160']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>三、信息披露及备置地点 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>公司披露年度报告的证券交易所网站 
+深圳证券交易所网站（http://www.szse.cn） 
+</div>
+              <p><b>重建覆盖率:</b> 34.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-013-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 8</p>
+              <p><b>block_ids:</b> ['165']</p>
+              <div class="block"><b>候选原文:</b><br>7 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>巨潮资讯网http://www.cninfo.com.cn 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 34.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-015 (claim CLM-010)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 第二季度归母净利润260.14亿元</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>归属于母公司股东的净利润 12,422,233 9,000,007 245,043</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-015-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 8</p>
+              <p><b>block_ids:</b> ['136']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>一、公司信息 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>股票简称 
+美的集团 
+股票代码 
+000333（A 股）、0300（H 股） 
+</div>
+              <p><b>重建覆盖率:</b> 36.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-015-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 8</p>
+              <p><b>block_ids:</b> ['160']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>三、信息披露及备置地点 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>公司披露年度报告的证券交易所网站 
+深圳证券交易所网站（http://www.szse.cn） 
+</div>
+              <p><b>重建覆盖率:</b> 36.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-015-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 8</p>
+              <p><b>block_ids:</b> ['165']</p>
+              <div class="block"><b>候选原文:</b><br>7 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>巨潮资讯网http://www.cninfo.com.cn 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 36.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-016 (claim CLM-011)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 实现归母净利润124.22亿元，同比增长38.02%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-016-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 2</p>
+              <p><b>block_ids:</b> ['38']</p>
+              <div class="block"><b>候选原文:</b><br>1 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>握机会突破。培育业务要审慎观察，问题业务要果断处置。ToC 和ToB 业务形成增长接力。 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 41.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-017 (claim CLM-012)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 基本每股收益5.80元，同比增长6.62%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>基本每股收益（元/股） 5.80 5.44 6.62%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-017-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['169']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>四、注册变更情况 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>统一社会信用代码 
+91440606722473344C 
+</div>
+              <p><b>重建覆盖率:</b> 27.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-017-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['195']</p>
+              <div class="block"><b>候选原文:</b><br>8 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>稀释每股收益（元/股） 
+5.76 
+5.42 
+6.27% 
+4.92 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 27.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-019 (claim CLM-014)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 全年经营活动现金流量净额533.46亿元，同比下降11.84%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-019-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['169']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>四、注册变更情况 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>统一社会信用代码 
+91440606722473344C 
+</div>
+              <p><b>重建覆盖率:</b> 43.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-019-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['195']</p>
+              <div class="block"><b>候选原文:</b><br>8 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>稀释每股收益（元/股） 
+5.76 
+5.42 
+6.27% 
+4.92 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 43.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-021 (claim CLM-015)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 根据公司2025年一季度报告，2025年上半年公司营业收入同比增长20.49%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>营业收入（千元） 127,838,538 106,101,612 20.49%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-021-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 2</p>
+              <p><b>block_ids:</b> ['38']</p>
+              <div class="block"><b>候选原文:</b><br>1 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>握机会突破。培育业务要审慎观察，问题业务要果断处置。ToC 和ToB 业务形成增长接力。 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 35.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-022 (claim CLM-016)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 根据公司2025年3月31日发布的2025年年度报告</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>美的集团股份有限公司2025 年年度报告 2026 年3 月</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-022-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 1</p>
+              <p><b>block_ids:</b> ['2']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>美的集团股份有限公司2025 年年度报告全文 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 30.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-022-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 1</p>
+              <p><b>block_ids:</b> ['3']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br>美的集团股份有限公司 
+</div>
+              <p><b>重建覆盖率:</b> 30.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-022-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 1</p>
+              <p><b>block_ids:</b> ['4']</p>
+              <div class="block"><b>候选原文:</b><br>美的集团股份有限公司 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br>2025 年年度报告 
+</div>
+              <p><b>重建覆盖率:</b> 30.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-022-g4</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 1</p>
+              <p><b>block_ids:</b> ['5']</p>
+              <div class="block"><b>候选原文:</b><br>2025 年年度报告 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>美的集团股份有限公司 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 30.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-022-g5</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 1</p>
+              <p><b>block_ids:</b> ['6']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>2025 年年度报告 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 30.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-023 (claim CLM-017)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 公司2025年实现营业收入4071.50亿元</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>营业收入（千元） 456,451,731 407,149,600 12.11%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-023-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['169']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>四、注册变更情况 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>统一社会信用代码 
+91440606722473344C 
+</div>
+              <p><b>重建覆盖率:</b> 35.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-024 (claim CLM-018)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 全年经营现金流净额5334.59亿元</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-024-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['169']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>四、注册变更情况 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>统一社会信用代码 
+91440606722473344C 
+</div>
+              <p><b>重建覆盖率:</b> 43.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-024-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['195']</p>
+              <div class="block"><b>候选原文:</b><br>8 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br>稀释每股收益（元/股） 
+5.76 
+5.42 
+6.27% 
+4.92 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 43.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-027 (claim CLM-024)</h3>
+          <p><b>公司:</b> 美的集团 &nbsp; <b>报告:</b> annual_report &nbsp; <b>数据集:</b> demo</p>
+          <p><b>Claim文本:</b> 公司2025年收入增速超过15%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>营业收入（千元） 456,451,731 407,149,600 12.11%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-027-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 9</p>
+              <p><b>block_ids:</b> ['169']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>四、注册变更情况 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>统一社会信用代码 
+91440606722473344C 
+</div>
+              <p><b>重建覆盖率:</b> 35.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H01 (claim CLM-H01)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 公司2025年实现营业收入405.29亿元，同比下降54.55%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H01-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 45.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H01-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 45.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H02 (claim CLM-H02)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 归母净利润89.54亿元</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H02-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 53.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H02-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 53.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H03 (claim CLM-H03)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 归母净利润89.54亿元，同比下降38.02%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H03-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 53.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H03-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 53.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H04 (claim CLM-H04)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 全年经营活动现金流量净额297.06亿元，同比下降12.47%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H04-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 54.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H04-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 54.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H04-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['132']</p>
+              <div class="block"><b>候选原文:</b><br>6 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 54.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H05 (claim CLM-H05)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 公司2025年经营活动现金流量净额297.06亿元，同比增长12.47%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H05-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 54.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H05-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 54.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H05-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['132']</p>
+              <div class="block"><b>候选原文:</b><br>6 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 54.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H06 (claim CLM-H06)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 基本每股收益8.21元</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>基本每股收益（元/股） 2.3068 8.2062 -71.89%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H06-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 33.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H06-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 33.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H06-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['132']</p>
+              <div class="block"><b>候选原文:</b><br>6 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 33.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H07 (claim CLM-H07)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 加权平均净资产收益率6.89%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>加权平均净资产收益率 6.89% 23.35% 减少16.46 个百分点</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H07-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 36.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H07-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 36.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H07-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['132']</p>
+              <div class="block"><b>候选原文:</b><br>6 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 36.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H08 (claim CLM-H08)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 2025年末总资产1899.84亿元，同比增长0.92%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>总资产（元） 189,984,270,815.47 188,252,218,704.17 0.92%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H08-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 44.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H08-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 44.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H09 (claim CLM-H09)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 归母净资产同比增长10.02%</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>归属于上市公司股东的净资产（元） 119,932,271,234.99 133,285,282,015.97 -10.02%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H09-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 56.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H09-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 56.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H10 (claim CLM-H10)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 根据公司2025年3月31日发布的2025年年度报告</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>2026 年4 月30 日</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H10-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 1</p>
+              <p><b>block_ids:</b> ['2']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>美的集团股份有限公司2025 年年度报告全文 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 13.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H10-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 1</p>
+              <p><b>block_ids:</b> ['3']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br>美的集团股份有限公司 
+</div>
+              <p><b>重建覆盖率:</b> 13.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H10-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 1</p>
+              <p><b>block_ids:</b> ['6']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>2025 年年度报告 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 13.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H10-g4</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 1</p>
+              <p><b>block_ids:</b> ['7']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 13.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H10-g5</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 1</p>
+              <p><b>block_ids:</b> ['8']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 13.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H11 (claim CLM-H11)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 扣非归母净利润88.16亿元</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>归属于上市公司股东的扣除非经常性损益的净利润（元） 8,815,635,943.27 31,741,959,276.27 -72.23%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H11-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 62.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H11-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 62.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H11-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['132']</p>
+              <div class="block"><b>候选原文:</b><br>6 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 62.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H12 (claim CLM-H12)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 宜宾五粮液股份有限公司在深圳证券交易所上市，股票代码000858</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H12-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 6</p>
+              <p><b>block_ids:</b> ['104']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>备查文件目录 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>一、载有法定代表人、主管会计工作负责人、会计机构负责人签名并盖章的财务报表； 
+</div>
+              <p><b>重建覆盖率:</b> 38.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H12-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 6</p>
+              <p><b>block_ids:</b> ['109']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>四、在其他证券市场公布的年度报告。 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>5 
+</div>
+              <p><b>重建覆盖率:</b> 38.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H12-g3</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 6</p>
+              <p><b>block_ids:</b> ['110']</p>
+              <div class="block"><b>候选原文:</b><br>5 
+</div>
+              <div class="ctx"><b>前一个Block:</b><br></div>
+              <div class="ctx"><b>后一个Block:</b><br></div>
+              <p><b>重建覆盖率:</b> 38.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+        <div class="item">
+          <h3>Evidence: EVD-H16 (claim CLM-H16)</h3>
+          <p><b>公司:</b> 五粮液 &nbsp; <b>报告:</b> holdout_report &nbsp; <b>数据集:</b> holdout</p>
+          <p><b>Claim文本:</b> 公司2025年营业收入4052.85亿元</p>
+          <div class="gold"><b>原Gold Evidence文本:</b><br>营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%</div>
+          
+            <div class="candidate">
+              <h4>候选组 EVD-H16-g1</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['113']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>释义 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>释义项 
+指 
+释义内容 
+</div>
+              <p><b>重建覆盖率:</b> 45.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+            <div class="candidate">
+              <h4>候选组 EVD-H16-g2</h4>
+              <p><b>document_id:</b> 1 &nbsp; <b>page:</b> 7</p>
+              <p><b>block_ids:</b> ['131']</p>
+              <div class="block"><b>候选原文:</b><br></div>
+              <div class="ctx"><b>前一个Block:</b><br>报告期 
+指 
+2025 年1 月1 日至2025 年12 月31 日 
+</div>
+              <div class="ctx"><b>后一个Block:</b><br>6 
+</div>
+              <p><b>重建覆盖率:</b> 45.0 &nbsp; <b>匹配方式:</b> fuzzy</p>
+            </div>
+          <p><b>审核选择:</b> MATCH_SINGLE_BLOCK / MATCH_MULTIPLE_BLOCKS / NONE_OF_THE_ABOVE / UNSURE</p>
+          <p><b>selected_block_ids:</b> ________________</p>
+          <p><b>evidence_complete:</b> yes / no</p>
+          <p><b>reviewer_note:</b> ________________________________________________</p>
+        </div>
+</body></html>

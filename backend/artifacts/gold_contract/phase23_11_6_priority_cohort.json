@@ -1,0 +1,35 @@
+{
+  "phase": "23.11.6",
+  "name": "Priority Cohort",
+  "description": "16条优先审核队列：仅依据类型/公司/数据集覆盖与标注完整性选择，不依据系统预测",
+  "selection_rules": [
+    "type coverage",
+    "company coverage (美的/五粮液)",
+    "dataset coverage (demo/holdout)",
+    "annotation completeness"
+  ],
+  "forbidden": [
+    "system prediction",
+    "claim_id hardcode",
+    "expected_verdict leakage in round1"
+  ],
+  "claim_ids": [
+    "CLM-001",
+    "CLM-002",
+    "CLM-003",
+    "CLM-004",
+    "CLM-005",
+    "CLM-006",
+    "CLM-007",
+    "CLM-008",
+    "CLM-009",
+    "CLM-010",
+    "CLM-019",
+    "CLM-021",
+    "CLM-H01",
+    "CLM-H02",
+    "CLM-H03",
+    "CLM-H06"
+  ],
+  "count": 16
+}

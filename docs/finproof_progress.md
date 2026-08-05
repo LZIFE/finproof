@@ -3636,3 +3636,34 @@ Phase 23.11.5.1 此前 NOT EXECUTED（无任何 23.11.5.1 文件存在）。本�
 - `backend/artifacts/gold_contract/phase23_11_5_1_metrics_freeze.json`
 - `data/gold_review/phase23_11_5_1_review.json`
 - `data/gold_manifest.json`（更新grounding_version）
+
+---
+
+## Phase 23.11.6：Human Gold Review Pack、Not-Found恢复与人工审核交接 — ✅ HUMAN_REVIEW_READY（WAITING_FOR_HUMAN_REVIEW）
+
+> 基线 commit：`ffe1344`（Phase 23.11.5.1）
+> 日期：2026-08-05
+
+### 交付内容
+
+- **32条Evidence Alignment盲审包**：`data/gold_review/phase23_11_6/review.html`（离线可开，盲审不泄露expected_verdict/prediction/Gold标签）+ review_items.json / review_results.template.json / review_progress.json / review_instructions.md
+- **10条NOT_FOUND恢复诊断**：`backend/artifacts/gold_contract/phase23_11_6_not_found_recovery.json`（全部POSSIBLE_PARAPHRASED_GOLD）+ not_found_review.html视觉审核包
+- **3条Intentional Insufficient协议**：`data/gold_review/phase23_11_6/insufficient_review.json`（CLM-021/022/H17，reviewer字段全空）
+- **Priority Cohort 16条**：`backend/artifacts/gold_contract/phase23_11_6_priority_cohort.json`（仅依据类型/公司/数据集覆盖，无系统预测偏差）
+- **导入器**：`backend/scripts/import_human_gold_review.py`（人工字段不完整/Block不存在/顺序错误/hash不一致均拒收，Gold版本不可覆盖）
+- **审核后验证**：`backend/scripts/run_post_review_validation.py`（无人工结果输出WAITING_FOR_HUMAN_REVIEW）
+- **操作说明**：`docs/human_gold_review_quickstart.md`
+
+### 验证
+
+| 验证项 | 结果 |
+| --- | --- |
+| 12类新测试 | 12 passed |
+| 全量pytest ×5 | 869 passed，一致 |
+| frontend build ×3 | 成功，一致 |
+| Review Pack生成 ×2 | 一致（32条） |
+| NOT_FOUND恢复 ×2 | 一致（10条 POSSIBLE_PARAPHRASED_GOLD） |
+
+### 状态
+
+**HUMAN_REVIEW_READY — WAITING_FOR_HUMAN_REVIEW**。所有block-level指标继续冻结（INVALID_PENDING_HUMAN_GOLD_REVIEW），禁止修改Verifier/Gate/Retrieval，等待用户提交人工审核结果。

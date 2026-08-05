@@ -1,0 +1,39 @@
+{
+  "phase": "23.11.6",
+  "script": "phase23_11_6_acceptance",
+  "description": "Phase 23.11.6 Human Review Handoff acceptance",
+  "status": "HUMAN_REVIEW_READY",
+  "overall": "WAITING_FOR_HUMAN_REVIEW",
+  "deliverables": {
+    "evidence_alignment_review_pack": {"items": 32, "html": "data/gold_review/phase23_11_6/review.html", "blinded": true},
+    "not_found_review_pack": {"items": 10, "html": "data/gold_review/phase23_11_6/not_found_review.html"},
+    "intentional_insufficient_protocol": {"items": 3, "file": "data/gold_review/phase23_11_6/insufficient_review.json"},
+    "not_found_recovery": {"total": 10, "status": "POSSIBLE_PARAPHRASED_GOLD"},
+    "priority_cohort": {"count": 16, "file": "backend/artifacts/gold_contract/phase23_11_6_priority_cohort.json"},
+    "importer": "backend/scripts/import_human_gold_review.py",
+    "post_review_validation": "backend/scripts/run_post_review_validation.py",
+    "quickstart": "docs/human_gold_review_quickstart.md"
+  },
+  "blinding_check": {
+    "review_html_no_expected_verdict": true,
+    "review_html_no_prediction": true,
+    "reviewer_fields_empty": true,
+    "agent_no_preselection": true
+  },
+  "frozen_metrics": "INVALID_PENDING_HUMAN_GOLD_REVIEW",
+  "completion_criteria": {
+    "1_32_review_required_in_pack": true,
+    "2_10_not_found_diagnosed": true,
+    "3_blind_no_expected_verdict": true,
+    "4_human_fields_empty": true,
+    "5_3_intentional_insufficient_protocol": true,
+    "6_priority_cohort_no_system_bias": true,
+    "7_importer_complete": true,
+    "8_no_metrics_without_human_review": true,
+    "9_quickstart_done": true,
+    "10_pytest_5x": "869 passed x5",
+    "11_build_3x": "success x3",
+    "12_new_commit": "PENDING"
+  },
+  "next_step": "User performs human review per docs/human_gold_review_quickstart.md, then import_human_gold_review.py, then run_post_review_validation.py"
+}
