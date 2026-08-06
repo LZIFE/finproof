@@ -1,0 +1,20 @@
+{
+  "phase": "23.22",
+  "step": "3_4_recall_eval",
+  "generated_at": "2026-08-06T08:11:12.565690+00:00",
+  "total": 30,
+  "block_recall": {
+    "block_recall@10": 0.1333,
+    "block_recall@50": 0.3
+  },
+  "financial_fact_recall": {
+    "fact_recall@10": 0.3667,
+    "fact_recall@50": 0.3667
+  },
+  "before_23_21": {
+    "block_recall@50": 0.3,
+    "block_recall@10": 0.1333,
+    "evidence_recall@50": 0.1,
+    "evidence_recall@10": 0.1
+  }
+}

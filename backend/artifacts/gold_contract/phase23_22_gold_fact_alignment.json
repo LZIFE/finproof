@@ -1,0 +1,985 @@
+{
+  "phase": "23.22",
+  "step": "1_2_fact_alignment",
+  "generated_at": "2026-08-06T08:08:51.648303+00:00",
+  "total_gold_evidence": 42,
+  "category_counts": {
+    "FACT_MATCH_BLOCK_DIFF": 8,
+    "EXACT_BLOCK_MATCH": 3,
+    "PARTIAL_FACT_MATCH": 4,
+    "NO_FACT_FOUND": 27
+  },
+  "alignment_rate": 0.3571,
+  "alignment": [
+    {
+      "gold_evidence_id": "EVD-001",
+      "claim_id": "CLM-001",
+      "gold_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "gold_grounding_blocks": [
+        "169",
+        "189"
+      ],
+      "gold_page": 9,
+      "gold_fact": {
+        "current": 456451731.0,
+        "previous": 407149600.0,
+        "growth": 12.11
+      },
+      "alignment_category": "FACT_MATCH_BLOCK_DIFF",
+      "matched_evidence": {
+        "id": 3,
+        "metric": "营业收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 458502407.0,
+        "previous_value": 409084266.0,
+        "growth": 12.0802,
+        "page": 135,
+        "source_blocks": [
+          4440,
+          4441,
+          4442,
+          4443,
+          4444
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-002",
+      "claim_id": "CLM-002",
+      "gold_text": "一、营业总收入 458,502,407 409,084,266",
+      "gold_grounding_blocks": [
+        "4440",
+        "4442",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "gold_page": 135,
+      "gold_fact": {
+        "current": 458502407.0,
+        "previous": 409084266.0,
+        "growth": 12.08
+      },
+      "alignment_category": "EXACT_BLOCK_MATCH",
+      "matched_evidence": {
+        "id": 4,
+        "metric": "营业收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 456451731.0,
+        "previous_value": 407149600.0,
+        "growth": 12.1091,
+        "page": 135,
+        "source_blocks": [
+          4443,
+          4444,
+          4445,
+          4446,
+          4447,
+          4448,
+          4449,
+          4450
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-003",
+      "claim_id": "CLM-003",
+      "gold_text": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "gold_grounding_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "gold_page": 9,
+      "gold_fact": {
+        "current": 43945411.0,
+        "previous": 38537237.0,
+        "growth": 14.03
+      },
+      "alignment_category": "FACT_MATCH_BLOCK_DIFF",
+      "matched_evidence": {
+        "id": 9,
+        "metric": "净利润",
+        "metric_code": "net_profit",
+        "current_value": 43945411.0,
+        "previous_value": 38537237.0,
+        "growth": 14.0336,
+        "page": 135,
+        "source_blocks": [
+          4453,
+          4454,
+          4455,
+          4456
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-004",
+      "claim_id": "CLM-004",
+      "gold_text": "归属于上市公司股东的净利润（千元） 43,945,411 38,537,237 14.03%",
+      "gold_grounding_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "gold_page": 9,
+      "gold_fact": {
+        "current": 43945411.0,
+        "previous": 38537237.0,
+        "growth": 14.03
+      },
+      "alignment_category": "FACT_MATCH_BLOCK_DIFF",
+      "matched_evidence": {
+        "id": 9,
+        "metric": "净利润",
+        "metric_code": "net_profit",
+        "current_value": 43945411.0,
+        "previous_value": 38537237.0,
+        "growth": 14.0336,
+        "page": 135,
+        "source_blocks": [
+          4453,
+          4454,
+          4455,
+          4456
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-005",
+      "claim_id": "CLM-005",
+      "gold_text": "456,451,731 407,149,600",
+      "gold_grounding_blocks": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "gold_page": 135,
+      "gold_fact": {
+        "current": 456451731.0,
+        "previous": 407149600.0,
+        "growth": 12.11
+      },
+      "alignment_category": "EXACT_BLOCK_MATCH",
+      "matched_evidence": {
+        "id": 4,
+        "metric": "营业收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 456451731.0,
+        "previous_value": 407149600.0,
+        "growth": 12.1091,
+        "page": 135,
+        "source_blocks": [
+          4443,
+          4444,
+          4445,
+          4446,
+          4447,
+          4448,
+          4449,
+          4450
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-006",
+      "claim_id": "CLM-005",
+      "gold_text": "(335,989,528) (299,584,935)",
+      "gold_grounding_blocks": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "gold_page": 135,
+      "gold_fact": {
+        "current": 335989528.0,
+        "previous": 299584935.0,
+        "growth": 12.15
+      },
+      "alignment_category": "PARTIAL_FACT_MATCH",
+      "matched_evidence": {
+        "id": 3,
+        "metric": "营业收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 458502407.0,
+        "previous_value": 409084266.0,
+        "growth": 12.0802,
+        "page": 135,
+        "source_blocks": [
+          4440,
+          4441,
+          4442,
+          4443,
+          4444
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-007",
+      "claim_id": "CLM-006",
+      "gold_text": "456,451,731 407,149,600",
+      "gold_grounding_blocks": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "gold_page": 135,
+      "gold_fact": {
+        "current": 456451731.0,
+        "previous": 407149600.0,
+        "growth": 12.11
+      },
+      "alignment_category": "EXACT_BLOCK_MATCH",
+      "matched_evidence": {
+        "id": 4,
+        "metric": "营业收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 456451731.0,
+        "previous_value": 407149600.0,
+        "growth": 12.1091,
+        "page": 135,
+        "source_blocks": [
+          4443,
+          4444,
+          4445,
+          4446,
+          4447,
+          4448,
+          4449,
+          4450
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-008",
+      "claim_id": "CLM-006",
+      "gold_text": "(335,989,528) (299,584,935)",
+      "gold_grounding_blocks": [
+        "4440",
+        "4443",
+        "4449",
+        "4452",
+        "4455"
+      ],
+      "gold_page": 135,
+      "gold_fact": {
+        "current": 335989528.0,
+        "previous": 299584935.0,
+        "growth": 12.15
+      },
+      "alignment_category": "PARTIAL_FACT_MATCH",
+      "matched_evidence": {
+        "id": 3,
+        "metric": "营业收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 458502407.0,
+        "previous_value": 409084266.0,
+        "growth": 12.0802,
+        "page": 135,
+        "source_blocks": [
+          4440,
+          4441,
+          4442,
+          4443,
+          4444
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-009",
+      "claim_id": "CLM-007",
+      "gold_text": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "gold_grounding_blocks": [
+        "38"
+      ],
+      "gold_page": 2,
+      "gold_fact": {
+        "current": 127838538.0,
+        "previous": 106101612.0,
+        "growth": 20.49
+      },
+      "alignment_category": "FACT_MATCH_BLOCK_DIFF",
+      "matched_evidence": {
+        "id": 148,
+        "metric": "营业总收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 128428421.0,
+        "previous_value": 106483190.0,
+        "growth": 20.6091,
+        "page": 8,
+        "source_blocks": [
+          14799,
+          14800,
+          14801,
+          14802,
+          14803,
+          14804,
+          14805,
+          14806,
+          14807
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-010",
+      "claim_id": "CLM-008",
+      "gold_text": "一、营业总收入 252,331,494 218,121,839",
+      "gold_grounding_blocks": [],
+      "gold_page": 96,
+      "gold_fact": {
+        "current": 252331494.0,
+        "previous": 218121839.0,
+        "growth": 15.68
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-011",
+      "claim_id": "CLM-008",
+      "gold_text": "2025 年上半年，公司营业总收入2523 亿元，同比增长15.7%",
+      "gold_grounding_blocks": [],
+      "gold_page": 17,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": 15.7
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-012",
+      "claim_id": "CLM-009",
+      "gold_text": "一、营业总收入 252,331,494 218,121,839",
+      "gold_grounding_blocks": [],
+      "gold_page": 96,
+      "gold_fact": {
+        "current": 252331494.0,
+        "previous": 218121839.0,
+        "growth": 15.68
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-013",
+      "claim_id": "CLM-009",
+      "gold_text": "其中：营业收入 127,838,538 106,101,612 240,751",
+      "gold_grounding_blocks": [
+        "136",
+        "160",
+        "165"
+      ],
+      "gold_page": 8,
+      "gold_fact": {
+        "current": 127838538.0,
+        "previous": 106101612.0,
+        "growth": 20.49
+      },
+      "alignment_category": "FACT_MATCH_BLOCK_DIFF",
+      "matched_evidence": {
+        "id": 148,
+        "metric": "营业总收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 128428421.0,
+        "previous_value": 106483190.0,
+        "growth": 20.6091,
+        "page": 8,
+        "source_blocks": [
+          14799,
+          14800,
+          14801,
+          14802,
+          14803,
+          14804,
+          14805,
+          14806,
+          14807
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-014",
+      "claim_id": "CLM-010",
+      "gold_text": "归属于母公司股东的净利润 26,013,690 20,804,176",
+      "gold_grounding_blocks": [],
+      "gold_page": 96,
+      "gold_fact": {
+        "current": 26013690.0,
+        "previous": 20804176.0,
+        "growth": 25.04
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-015",
+      "claim_id": "CLM-010",
+      "gold_text": "归属于母公司股东的净利润 12,422,233 9,000,007 245,043",
+      "gold_grounding_blocks": [
+        "136",
+        "160",
+        "165"
+      ],
+      "gold_page": 8,
+      "gold_fact": {
+        "current": 12422233.0,
+        "previous": 9000007.0,
+        "growth": 38.02
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-016",
+      "claim_id": "CLM-011",
+      "gold_text": "归属于上市公司股东的净利润（千元） 12,422,233 9,000,007 38.02%",
+      "gold_grounding_blocks": [
+        "38"
+      ],
+      "gold_page": 2,
+      "gold_fact": {
+        "current": 12422233.0,
+        "previous": 9000007.0,
+        "growth": 38.02
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-017",
+      "claim_id": "CLM-012",
+      "gold_text": "基本每股收益（元/股） 5.80 5.44 6.62%",
+      "gold_grounding_blocks": [
+        "169",
+        "193",
+        "195"
+      ],
+      "gold_page": 9,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": 6.62
+      },
+      "alignment_category": "PARTIAL_FACT_MATCH",
+      "matched_evidence": {
+        "id": 104,
+        "metric": "收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 3528831.0,
+        "previous_value": 3318584.0,
+        "growth": 6.3354,
+        "page": 133,
+        "source_blocks": [
+          14294,
+          14295,
+          14296,
+          14297,
+          14298,
+          14299,
+          14300
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-018",
+      "claim_id": "CLM-013",
+      "gold_text": "基本每股收益 人民币元/股 3.41 3.02",
+      "gold_grounding_blocks": [],
+      "gold_page": 173,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": null
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-019",
+      "claim_id": "CLM-014",
+      "gold_text": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "gold_grounding_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "gold_page": 9,
+      "gold_fact": {
+        "current": 53345930.0,
+        "previous": 60511572.0,
+        "growth": -11.84
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-020",
+      "claim_id": "CLM-015",
+      "gold_text": "营业总收入2523 亿元，同比增长15.7%",
+      "gold_grounding_blocks": [],
+      "gold_page": 17,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": 15.7
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-021",
+      "claim_id": "CLM-015",
+      "gold_text": "营业收入（千元） 127,838,538 106,101,612 20.49%",
+      "gold_grounding_blocks": [
+        "38"
+      ],
+      "gold_page": 2,
+      "gold_fact": {
+        "current": 127838538.0,
+        "previous": 106101612.0,
+        "growth": 20.49
+      },
+      "alignment_category": "FACT_MATCH_BLOCK_DIFF",
+      "matched_evidence": {
+        "id": 148,
+        "metric": "营业总收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 128428421.0,
+        "previous_value": 106483190.0,
+        "growth": 20.6091,
+        "page": 8,
+        "source_blocks": [
+          14799,
+          14800,
+          14801,
+          14802,
+          14803,
+          14804,
+          14805,
+          14806,
+          14807
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-022",
+      "claim_id": "CLM-016",
+      "gold_text": "美的集团股份有限公司2025 年年度报告 2026 年3 月",
+      "gold_grounding_blocks": [
+        "10",
+        "11",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "gold_page": 1,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": null
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-023",
+      "claim_id": "CLM-017",
+      "gold_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "gold_grounding_blocks": [
+        "169",
+        "189"
+      ],
+      "gold_page": 9,
+      "gold_fact": {
+        "current": 456451731.0,
+        "previous": 407149600.0,
+        "growth": 12.11
+      },
+      "alignment_category": "FACT_MATCH_BLOCK_DIFF",
+      "matched_evidence": {
+        "id": 3,
+        "metric": "营业收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 458502407.0,
+        "previous_value": 409084266.0,
+        "growth": 12.0802,
+        "page": 135,
+        "source_blocks": [
+          4440,
+          4441,
+          4442,
+          4443,
+          4444
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-024",
+      "claim_id": "CLM-018",
+      "gold_text": "经营活动产生的现金流量净额（千元） 53,345,930 60,511,572 -11.84%",
+      "gold_grounding_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "gold_page": 9,
+      "gold_fact": {
+        "current": 53345930.0,
+        "previous": 60511572.0,
+        "growth": -11.84
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-025",
+      "claim_id": "CLM-019",
+      "gold_text": "支撑国内高端品牌和海外OBM 优先战略",
+      "gold_grounding_blocks": [],
+      "gold_page": 17,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": null
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-026",
+      "claim_id": "CLM-020",
+      "gold_text": "营业总收入2523 亿元，同比增长15.7%，实现归母净利润260 亿元，同比增长25.0%",
+      "gold_grounding_blocks": [],
+      "gold_page": 17,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": 15.7
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-027",
+      "claim_id": "CLM-024",
+      "gold_text": "营业收入（千元） 456,451,731 407,149,600 12.11%",
+      "gold_grounding_blocks": [
+        "169",
+        "189"
+      ],
+      "gold_page": 9,
+      "gold_fact": {
+        "current": 456451731.0,
+        "previous": 407149600.0,
+        "growth": 12.11
+      },
+      "alignment_category": "FACT_MATCH_BLOCK_DIFF",
+      "matched_evidence": {
+        "id": 3,
+        "metric": "营业收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 458502407.0,
+        "previous_value": 409084266.0,
+        "growth": 12.0802,
+        "page": 135,
+        "source_blocks": [
+          4440,
+          4441,
+          4442,
+          4443,
+          4444
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-028",
+      "claim_id": "CLM-024",
+      "gold_text": "营业总收入2523 亿元，同比增长15.7%",
+      "gold_grounding_blocks": [],
+      "gold_page": 17,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": 15.7
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-029",
+      "claim_id": "CLM-026",
+      "gold_text": "实现扣非归母净利润262 亿元，同比增长30.0%",
+      "gold_grounding_blocks": [],
+      "gold_page": 17,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": 30.0
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H01",
+      "claim_id": "CLM-H01",
+      "gold_text": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+      "gold_grounding_blocks": [
+        "113",
+        "131"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": 40528509770.0,
+        "previous": 89175178322.0,
+        "growth": -54.55
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H02",
+      "claim_id": "CLM-H02",
+      "gold_text": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+      "gold_grounding_blocks": [
+        "113",
+        "131"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": 8954257202.0,
+        "previous": 31853172533.0,
+        "growth": -71.89
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H03",
+      "claim_id": "CLM-H03",
+      "gold_text": "归属于上市公司股东的净利润（元） 8,954,257,202.51 31,853,172,533.98 -71.89%",
+      "gold_grounding_blocks": [
+        "113",
+        "131"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": 8954257202.0,
+        "previous": 31853172533.0,
+        "growth": -71.89
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H04",
+      "claim_id": "CLM-H04",
+      "gold_text": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+      "gold_grounding_blocks": [
+        "113",
+        "131",
+        "132"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": 29706259919.0,
+        "previous": 33939755192.0,
+        "growth": -12.47
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H05",
+      "claim_id": "CLM-H05",
+      "gold_text": "经营活动产生的现金流量净额（元） 29,706,259,919.13 33,939,755,192.78 -12.47%",
+      "gold_grounding_blocks": [
+        "113",
+        "131",
+        "132"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": 29706259919.0,
+        "previous": 33939755192.0,
+        "growth": -12.47
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H06",
+      "claim_id": "CLM-H06",
+      "gold_text": "基本每股收益（元/股） 2.3068 8.2062 -71.89%",
+      "gold_grounding_blocks": [
+        "113",
+        "131",
+        "132"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": 71.89
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H07",
+      "claim_id": "CLM-H07",
+      "gold_text": "加权平均净资产收益率 6.89% 23.35% 减少16.46 个百分点",
+      "gold_grounding_blocks": [
+        "113",
+        "131",
+        "132"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": 6.89
+      },
+      "alignment_category": "PARTIAL_FACT_MATCH",
+      "matched_evidence": {
+        "id": 104,
+        "metric": "收入",
+        "metric_code": "total_operating_revenue",
+        "current_value": 3528831.0,
+        "previous_value": 3318584.0,
+        "growth": 6.3354,
+        "page": 133,
+        "source_blocks": [
+          14294,
+          14295,
+          14296,
+          14297,
+          14298,
+          14299,
+          14300
+        ]
+      }
+    },
+    {
+      "gold_evidence_id": "EVD-H08",
+      "claim_id": "CLM-H08",
+      "gold_text": "总资产（元） 189,984,270,815.47 188,252,218,704.17 0.92%",
+      "gold_grounding_blocks": [
+        "113",
+        "131"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": 189984270815.0,
+        "previous": 188252218704.0,
+        "growth": 0.92
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H09",
+      "claim_id": "CLM-H09",
+      "gold_text": "归属于上市公司股东的净资产（元） 119,932,271,234.99 133,285,282,015.97 -10.02%",
+      "gold_grounding_blocks": [
+        "113",
+        "131"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": 119932271234.0,
+        "previous": 133285282015.0,
+        "growth": -10.02
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H10",
+      "claim_id": "CLM-H10",
+      "gold_text": "2026 年4 月30 日",
+      "gold_grounding_blocks": [
+        "11",
+        "2",
+        "3",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "gold_page": 1,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": null
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H11",
+      "claim_id": "CLM-H11",
+      "gold_text": "归属于上市公司股东的扣除非经常性损益的净利润（元） 8,815,635,943.27 31,741,959,276.27 -72.23%",
+      "gold_grounding_blocks": [
+        "113",
+        "131",
+        "132"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": 8815635943.0,
+        "previous": 31741959276.0,
+        "growth": -72.23
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H12",
+      "claim_id": "CLM-H12",
+      "gold_text": "股票简称 五粮液 股票代码 000858 股票上市证券交易所 深圳证券交易所",
+      "gold_grounding_blocks": [
+        "104",
+        "109",
+        "110"
+      ],
+      "gold_page": 6,
+      "gold_fact": {
+        "current": null,
+        "previous": null,
+        "growth": null
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    },
+    {
+      "gold_evidence_id": "EVD-H16",
+      "claim_id": "CLM-H16",
+      "gold_text": "营业收入（元） 40,528,509,770.23 89,175,178,322.70 -54.55%",
+      "gold_grounding_blocks": [
+        "113",
+        "131"
+      ],
+      "gold_page": 7,
+      "gold_fact": {
+        "current": 40528509770.0,
+        "previous": 89175178322.0,
+        "growth": -54.55
+      },
+      "alignment_category": "NO_FACT_FOUND",
+      "matched_evidence": null
+    }
+  ]
+}

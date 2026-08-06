@@ -1,0 +1,48 @@
+{
+  "phase": "23.22",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T08:15:29.899962+00:00",
+  "fact_alignment": {
+    "category_counts": {
+      "FACT_MATCH_BLOCK_DIFF": 8,
+      "EXACT_BLOCK_MATCH": 3,
+      "PARTIAL_FACT_MATCH": 4,
+      "NO_FACT_FOUND": 27
+    },
+    "alignment_rate": 0.3571,
+    "before_23_21_block_alignment_rate": 0.119
+  },
+  "recall_before_23_21": {
+    "block_recall@50": 0.3,
+    "block_recall@10": 0.1333,
+    "evidence_recall@50": 0.1,
+    "evidence_recall@10": 0.1
+  },
+  "recall_after_23_22": {
+    "block_recall@50": 0.3,
+    "block_recall@10": 0.1333,
+    "financial_fact_recall@50": 0.3667,
+    "financial_fact_recall@10": 0.3667
+  },
+  "real_e2e_before_23_21": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5907,
+    "coverage": 0.6512
+  },
+  "real_e2e_after_23_22_gate": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5907,
+    "coverage": 0.6512,
+    "abstentions": 15
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "coverage": 0.0
+  },
+  "note": "Fact-level alignment 替代 block-level：对齐率 5/42(11.9%) -> 15/42(35.7%) (EXACT 3 + FACT_MATCH_BLOCK_DIFF 8 + PARTIAL 4)。Financial Fact Recall@50=0.3667 (11/30) 显著高于 Evidence Recall@50=0.10（23.21 block 级）——事实级匹配能跨位置命中同一事实（gold page 9 vs index page 135）。Real E2E acc 0.535 持平（检索候选未变，仅评估口径变）。如实记录：对齐与事实召回提升，但端到端 accuracy 未变。",
+  "target_met": {
+    "fact_recall@50_target_0_8": false,
+    "accuracy_target_0_7": false
+  }
+}
