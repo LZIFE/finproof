@@ -1,0 +1,51 @@
+{
+  "phase": "23.33",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T14:13:05.322404+00:00",
+  "fact_usage": {
+    "before_23_33": {
+      "fact_usage_rate": 0.0
+    },
+    "after_23_33": {
+      "fact_usage_rate": 0.0,
+      "fact_used": 0,
+      "total": 43
+    },
+    "note": "Decision Authority 层接入后 production 链 fact 决策仍 0 触发——core_verify 收到的 evidence_list 中 financial_fact 在 Gate/Selector 转换后被剥离"
+  },
+  "verdict_distribution": {
+    "INSUFFICIENT_EVIDENCE": 37,
+    "REFUTED": 2,
+    "OPINION_OR_FORECAST": 2,
+    "UNABLE_TO_DETERMINE": 2
+  },
+  "real_e2e_before_23_32": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744
+  },
+  "real_e2e_after_23_33_gate": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744,
+    "abstentions": 14
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "coverage": 0.0
+  },
+  "target": {
+    "accuracy_gain_0_05": 0.05,
+    "actual_gain": 0.0,
+    "met": false
+  },
+  "no_gain_analysis": {
+    "evaluation_design": "否——production 链（verify_claim_production）与评估路径候选不一致：Task 1 审计显示 41/43 rule=verdict:no_evidence，Task 4 显示 37/43 INSUFFICIENT_EVIDENCE，说明生产链候选经 Gate/Selector 后 financial_fact 字段被剥离，core_verify 收到的 evidence 无 fact（fact 决策从未到达）；这是 pipeline 数据流问题，非 evaluation 指标设计问题",
+    "gold": "否——CORE Oracle acc=1.0 保持，gold 本身无问题；Fact-level Gold Recall@10=0.7143 证明检索能召回正确事实",
+    "conclusion": "主瓶颈：financial_fact 未贯穿生产链（Gate/Selector 转换剥离 fact 字段）。Decision Authority/Fusion 层已实现并验证（单元测试 SUPPORTED/REFUTED/UNKNOWN 正确），但 production 路径 evidence_list 中无 financial_fact 可消费 → fact_usage_rate=0，Accuracy 无法提升。需修复 Gate/Selector 的 evidence 字段透传（属后续阶段，本阶段约束不改 Gate）。"
+  },
+  "target_met": {
+    "accuracy_gain_0_05": false
+  }
+}

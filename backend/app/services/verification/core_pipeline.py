@@ -419,23 +419,27 @@ def core_verify(claim: dict, evidence_list: list[dict], trace: IntegrationTrace 
         return _core_verify_semantic(claim, evidence_list, trace, std_metric, metric_code, ct)
 
     # =====================================================================
-    # 2.5) Phase 23.30：Financial Fact Native Verification（Fact + Block 双路径）
-    #      优先级：fact 明确 SUPPORTED → 明确 REFUTED → fallback 旧 block 验证。
+    # 2.5) Phase 23.33：Financial Fact Decision Authority + Confidence Fusion
+    #      决策权威层（financial_fact_decision_policy）：quality>=0.8 + metric/value/period
+    #      全匹配 → SUPPORTED（high confidence fact，权重 70%）；同 metric 同 period value
+    #      冲突 → REFUTED（strict）；否则 UNKNOWN → fallback 旧 block 验证（low）。
     #      不删旧路径（下方 3) 分派保留），不绕过 Gate，不改 Gate 决策规则。
     # =====================================================================
-    from app.services.verification.financial_fact_verifier import best_fact_verification
+    from app.services.verification.financial_fact_decision_policy import best_fact_authority
 
-    fact_res = best_fact_verification(claim, evidence_list)
-    if fact_res["decision"] in ("SUPPORTED", "REFUTED"):
-        hint = fact_res["decision"]
-        confidence = fact_res.get("confidence", 0.8)
+    fact_auth = best_fact_authority(claim, evidence_list)
+    if fact_auth["authority_triggered"] and fact_auth["decision"] in ("SUPPORTED", "REFUTED"):
+        hint = fact_auth["decision"]
+        # high confidence fact：70% 权重（fact 权威主导），30% 基线置信兜底
+        fact_conf = fact_auth.get("confidence", 0.8)
+        confidence = round(0.7 * fact_conf + 0.3 * 0.5, 4)
         trace.verdict_decision_called = True
         trace.final_verdict = hint
-        trace.rule_id = "fact:native_verifier"
-        trace.override_source = "financial_fact_verifier"
-        trace.detail["phase23_30_fact_native"] = fact_res
-        return _verdict_result(trace, hint, confidence, fact_res.get("reason", ""),
-                               calc={"fact_native": fact_res})
+        trace.rule_id = "fact:decision_authority"
+        trace.override_source = "financial_fact_decision_policy"
+        trace.detail["phase23_33_fact_authority"] = fact_auth
+        return _verdict_result(trace, hint, confidence, fact_auth.get("reason", ""),
+                               calc={"fact_authority": fact_auth})
 
     # =====================================================================
     # 3) 数值类：growth / quarter / raw number / ratio（fallback 旧 block 验证）
