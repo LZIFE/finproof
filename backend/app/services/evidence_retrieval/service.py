@@ -254,7 +254,24 @@ def retrieve_for_claim(
             table_pages_cache[doc.id] = table_pages_for_types(doc.id, target_sections)
         target_pages = target_pages_cache[doc.id]
         table_pages = table_pages_cache[doc.id]
-        for block, page_number in _candidate_blocks(session, doc, candidate_aliases):
+        # Phase 23.16 Step 2：Hybrid Retrieval 三路召回 union（BM25 + Vector + Rule）
+        from app.services.evidence_retrieval.hybrid_retrieval import hybrid_candidates
+
+        hybrid_ids = hybrid_candidates(session, doc.id, claim, target_sections, candidate_aliases)
+        # 按 block_id 查 block + page_number（union 候选遍历）
+        from app.models import DocumentPage
+
+        if hybrid_ids:
+            hybrid_rows = (
+                session.query(DocumentBlock, DocumentPage.page_number)
+                .join(DocumentPage, DocumentPage.id == DocumentBlock.page_id)
+                .filter(DocumentBlock.document_id == doc.id, DocumentBlock.id.in_(hybrid_ids))
+                .order_by(DocumentPage.page_index, DocumentBlock.reading_order)
+                .all()
+            )
+        else:
+            hybrid_rows = []
+        for block, page_number in hybrid_rows:
             if len(scored) >= max_blocks_per_doc:
                 break
             if not block.text:
@@ -435,7 +452,14 @@ def retrieve_for_claim(
                 4,
             )
 
-    scored.sort(key=lambda b: -b["final_score"])
+    # Phase 23.16 Step 3：Evidence Reranker 二级重排（score_block 初排后、top_k 截断前）
+    from app.services.evidence_retrieval.reranker import rerank_candidates
+
+    doc_period_any = None
+    for d in filter_documents(session, claim):
+        doc_period_any = d.report_period
+        break
+    scored = rerank_candidates(claim, scored, doc_period=doc_period_any)
     final = scored[:top_k]
     for i, c in enumerate(final, start=1):
         c["rank"] = i

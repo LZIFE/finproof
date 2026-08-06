@@ -1,0 +1,38 @@
+{
+  "phase": "23.16",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T06:25:54.420108+00:00",
+  "recall_before_23_15": {
+    "recall@50": 0.2667
+  },
+  "recall_after_23_16": {
+    "recall@1": 0.0,
+    "recall@5": 0.0667,
+    "recall@10": 0.1,
+    "recall@50": 0.2
+  },
+  "recall_delta": {
+    "recall@50": -0.0667
+  },
+  "real_e2e_before_23_15": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5739,
+    "coverage": 0.6744
+  },
+  "real_e2e_after_23_16_gate": {
+    "accuracy": 0.4651,
+    "macro_f1": 0.5842,
+    "coverage": 0.6047,
+    "abstentions": 17
+  },
+  "real_e2e_after_top1": {
+    "accuracy": 0.4419,
+    "macro_f1": 0.4702
+  },
+  "delta": {
+    "accuracy": -0.0698,
+    "macro_f1": 0.0103,
+    "coverage": -0.0697
+  },
+  "note": "Hybrid 三路 union + reranker 后：Recall@50 0.2667->0.20（下降），gate acc 0.5349->0.465（回退）。BM25/vector 只在目标章节页打分，范围偏窄且 reranker 权重改变了原排序。如实记录回退。"
+}

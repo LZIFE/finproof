@@ -1,0 +1,20 @@
+{
+  "phase": "23.16",
+  "step": "4_recall_eval",
+  "total": 30,
+  "recall": {
+    "recall@1": 0.0,
+    "recall@5": 0.0667,
+    "recall@10": 0.1,
+    "recall@50": 0.2
+  },
+  "hits": {
+    "recall@1": 0,
+    "recall@5": 2,
+    "recall@10": 3,
+    "recall@50": 6
+  },
+  "before_23_15": {
+    "recall@50": 0.2667
+  }
+}
