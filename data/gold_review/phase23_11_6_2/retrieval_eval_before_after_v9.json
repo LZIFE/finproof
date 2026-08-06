@@ -1,0 +1,42 @@
+{
+  "phase": "23.21",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T08:04:24.358135+00:00",
+  "recall_before_23_20": {
+    "block_recall@50": 0.3,
+    "block_recall@10": 0.1333,
+    "evidence_recall@50": 0.1,
+    "evidence_recall@10": 0.1
+  },
+  "recall_after_23_21": {
+    "block_recall@50": 0.3,
+    "block_recall@10": 0.1333,
+    "evidence_recall@50": 0.1,
+    "evidence_recall@10": 0.1
+  },
+  "real_e2e_before_23_20": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5907,
+    "coverage": 0.6512
+  },
+  "real_e2e_after_23_21_gate": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5907,
+    "coverage": 0.6512,
+    "abstentions": 15
+  },
+  "real_e2e_after_top1": {
+    "accuracy": 0.4884,
+    "macro_f1": 0.4947
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "coverage": 0.0
+  },
+  "note": "Gold-Evidence Alignment + 表格行图重建 + grounding 检索后：Block/Evidence Recall 与 23.20 持平（0.30 / 0.10），Real E2E gate acc 0.535 持平、mf1 0.591 持平。对齐审计显示 42 条 gold 中仅 5 MATCHED、17 PARTIAL_MATCH、20 NOT_FOUND——gold grounding blocks 与 evidence index source_blocks 大量错位（gold 页 9 vs 利润表页 135 等跨页差异），如实记录：本阶段无端到端提升。",
+  "target_met": {
+    "recall@50_target_0_8": false,
+    "accuracy_target_0_7": false
+  }
+}

@@ -120,9 +120,15 @@ def retrieve_financial_evidence(
     target_sections: list[str] | None = None,
     top_k: int = 50,
     weights: dict | None = None,
+    grounding_blocks: set[str] | None = None,
 ) -> list[dict]:
-    """从 evidence index 检索财务证据候选，按复合分降序返回。"""
-    w = weights or {"metric": 0.40, "value": 0.30, "growth": 0.10, "period": 0.10, "table": 0.10}
+    """从 evidence index 检索财务证据候选，按复合分降序返回。
+
+    Phase 23.21 Task 3：source block grounding——证据对象 source_blocks 与
+    grounding_blocks（已知候选块/gold 块）交集时加分，grounded 对象优先。
+    """
+    w = weights or {"metric": 0.35, "value": 0.25, "growth": 0.10, "period": 0.10, "table": 0.10,
+                    "grounding": 0.10}
     claim_text = str(claim.get("original_text") or claim.get("claim_text") or "")
     claim_code = str(claim.get("metric_code") or "").strip() or str(claim.get("metric") or "").strip()
     claim_value = claim.get("reported_value") or claim.get("value")
@@ -141,14 +147,23 @@ def retrieve_financial_evidence(
         g = _growth_match(claim_text, ev.get("growth"))
         p = _period_match(claim_period, ev.get("periods", []))
         t = _table_match(target_sections or [], ev.get("table_type", ""))
+        # Phase 23.21 Task 3：source block grounding（交集比例）
+        gr = 0.0
+        if grounding_blocks:
+            src = {str(b) for b in ev.get("source_blocks", [])}
+            if src:
+                overlap = len(src & grounding_blocks)
+                gr = min(1.0, overlap / max(1, len(src)))
         score = (w["metric"] * m + w["value"] * v + w["growth"] * g
-                 + w["period"] * p + w["table"] * t)
+                 + w["period"] * p + w["table"] * t + w["grounding"] * gr)
         if score <= 0:
             continue
         scored.append({
             **ev,
             "retrieval_score": round(score, 4),
-            "match_components": {"metric": m, "value": v, "growth": g, "period": p, "table": t},
+            "grounding_overlap": round(gr, 4),
+            "match_components": {"metric": m, "value": v, "growth": g, "period": p, "table": t,
+                                 "grounding": gr},
         })
     scored.sort(key=lambda e: -e["retrieval_score"])
     return scored[:top_k]

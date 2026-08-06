@@ -1,0 +1,937 @@
+{
+  "phase": "23.21",
+  "step": "1_gold_evidence_alignment",
+  "generated_at": "2026-08-06T07:54:59.885834+00:00",
+  "total_gold_evidence": 42,
+  "status_counts": {
+    "MATCHED": 5,
+    "PARTIAL_MATCH": 17,
+    "NOT_FOUND": 20
+  },
+  "report": [
+    {
+      "gold_evidence_id": "EVD-001",
+      "claim_id": "CLM-001",
+      "gold_source_blocks": [
+        "169",
+        "189"
+      ],
+      "selected_block_id": "169",
+      "gold_page": 9,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-002",
+      "claim_id": "CLM-002",
+      "gold_source_blocks": [
+        "4449",
+        "4440",
+        "4452",
+        "4455",
+        "4442"
+      ],
+      "selected_block_id": "4440",
+      "gold_page": 135,
+      "alignment_status": "MATCHED",
+      "matched_evidence_objects": [
+        {
+          "id": 4,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4443,
+            4444,
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450
+          ]
+        },
+        {
+          "id": 5,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4444,
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452
+          ]
+        },
+        {
+          "id": 6,
+          "metric": "净利润",
+          "page": 135,
+          "source_blocks": [
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452
+          ]
+        },
+        {
+          "id": 7,
+          "metric": "净利润",
+          "page": 135,
+          "source_blocks": [
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452,
+            4453
+          ]
+        },
+        {
+          "id": 3,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4440,
+            4441,
+            4442,
+            4443,
+            4444
+          ]
+        }
+      ],
+      "matched_object_count": 7
+    },
+    {
+      "gold_evidence_id": "EVD-003",
+      "claim_id": "CLM-003",
+      "gold_source_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "selected_block_id": "169",
+      "gold_page": 9,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-004",
+      "claim_id": "CLM-004",
+      "gold_source_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "selected_block_id": "169",
+      "gold_page": 9,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-005",
+      "claim_id": "CLM-005",
+      "gold_source_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "selected_block_id": "4440",
+      "gold_page": 135,
+      "alignment_status": "MATCHED",
+      "matched_evidence_objects": [
+        {
+          "id": 3,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4440,
+            4441,
+            4442,
+            4443,
+            4444
+          ]
+        },
+        {
+          "id": 4,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4443,
+            4444,
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450
+          ]
+        },
+        {
+          "id": 5,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4444,
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452
+          ]
+        },
+        {
+          "id": 6,
+          "metric": "净利润",
+          "page": 135,
+          "source_blocks": [
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452
+          ]
+        },
+        {
+          "id": 7,
+          "metric": "净利润",
+          "page": 135,
+          "source_blocks": [
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452,
+            4453
+          ]
+        }
+      ],
+      "matched_object_count": 7
+    },
+    {
+      "gold_evidence_id": "EVD-006",
+      "claim_id": "CLM-005",
+      "gold_source_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "selected_block_id": "4440",
+      "gold_page": 135,
+      "alignment_status": "MATCHED",
+      "matched_evidence_objects": [
+        {
+          "id": 3,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4440,
+            4441,
+            4442,
+            4443,
+            4444
+          ]
+        },
+        {
+          "id": 4,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4443,
+            4444,
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450
+          ]
+        },
+        {
+          "id": 5,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4444,
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452
+          ]
+        },
+        {
+          "id": 6,
+          "metric": "净利润",
+          "page": 135,
+          "source_blocks": [
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452
+          ]
+        },
+        {
+          "id": 7,
+          "metric": "净利润",
+          "page": 135,
+          "source_blocks": [
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452,
+            4453
+          ]
+        }
+      ],
+      "matched_object_count": 7
+    },
+    {
+      "gold_evidence_id": "EVD-007",
+      "claim_id": "CLM-006",
+      "gold_source_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "selected_block_id": "4440",
+      "gold_page": 135,
+      "alignment_status": "MATCHED",
+      "matched_evidence_objects": [
+        {
+          "id": 3,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4440,
+            4441,
+            4442,
+            4443,
+            4444
+          ]
+        },
+        {
+          "id": 4,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4443,
+            4444,
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450
+          ]
+        },
+        {
+          "id": 5,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4444,
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452
+          ]
+        },
+        {
+          "id": 6,
+          "metric": "净利润",
+          "page": 135,
+          "source_blocks": [
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452
+          ]
+        },
+        {
+          "id": 7,
+          "metric": "净利润",
+          "page": 135,
+          "source_blocks": [
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452,
+            4453
+          ]
+        }
+      ],
+      "matched_object_count": 7
+    },
+    {
+      "gold_evidence_id": "EVD-008",
+      "claim_id": "CLM-006",
+      "gold_source_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "selected_block_id": "4440",
+      "gold_page": 135,
+      "alignment_status": "MATCHED",
+      "matched_evidence_objects": [
+        {
+          "id": 3,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4440,
+            4441,
+            4442,
+            4443,
+            4444
+          ]
+        },
+        {
+          "id": 4,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4443,
+            4444,
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450
+          ]
+        },
+        {
+          "id": 5,
+          "metric": "营业收入",
+          "page": 135,
+          "source_blocks": [
+            4444,
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452
+          ]
+        },
+        {
+          "id": 6,
+          "metric": "净利润",
+          "page": 135,
+          "source_blocks": [
+            4445,
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452
+          ]
+        },
+        {
+          "id": 7,
+          "metric": "净利润",
+          "page": 135,
+          "source_blocks": [
+            4446,
+            4447,
+            4448,
+            4449,
+            4450,
+            4451,
+            4452,
+            4453
+          ]
+        }
+      ],
+      "matched_object_count": 7
+    },
+    {
+      "gold_evidence_id": "EVD-009",
+      "claim_id": "CLM-007",
+      "gold_source_blocks": [
+        "38"
+      ],
+      "selected_block_id": "38",
+      "gold_page": 2,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-010",
+      "claim_id": "CLM-008",
+      "gold_source_blocks": [],
+      "selected_block_id": "3106",
+      "gold_page": 96,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-011",
+      "claim_id": "CLM-008",
+      "gold_source_blocks": [],
+      "selected_block_id": "390",
+      "gold_page": 17,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-012",
+      "claim_id": "CLM-009",
+      "gold_source_blocks": [],
+      "selected_block_id": "3106",
+      "gold_page": 96,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-013",
+      "claim_id": "CLM-009",
+      "gold_source_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "selected_block_id": "136",
+      "gold_page": 8,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-014",
+      "claim_id": "CLM-010",
+      "gold_source_blocks": [],
+      "selected_block_id": "3106",
+      "gold_page": 96,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-015",
+      "claim_id": "CLM-010",
+      "gold_source_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "selected_block_id": "136",
+      "gold_page": 8,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-016",
+      "claim_id": "CLM-011",
+      "gold_source_blocks": [
+        "38"
+      ],
+      "selected_block_id": "38",
+      "gold_page": 2,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-017",
+      "claim_id": "CLM-012",
+      "gold_source_blocks": [
+        "169",
+        "193",
+        "195"
+      ],
+      "selected_block_id": "169",
+      "gold_page": 9,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-018",
+      "claim_id": "CLM-013",
+      "gold_source_blocks": [],
+      "selected_block_id": "4762",
+      "gold_page": 173,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-019",
+      "claim_id": "CLM-014",
+      "gold_source_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "selected_block_id": "169",
+      "gold_page": 9,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-020",
+      "claim_id": "CLM-015",
+      "gold_source_blocks": [],
+      "selected_block_id": "390",
+      "gold_page": 17,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-021",
+      "claim_id": "CLM-015",
+      "gold_source_blocks": [
+        "38"
+      ],
+      "selected_block_id": "38",
+      "gold_page": 2,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-022",
+      "claim_id": "CLM-016",
+      "gold_source_blocks": [
+        "9",
+        "6",
+        "2",
+        "4",
+        "3",
+        "11",
+        "8",
+        "5",
+        "10",
+        "7"
+      ],
+      "selected_block_id": "2",
+      "gold_page": 1,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-023",
+      "claim_id": "CLM-017",
+      "gold_source_blocks": [
+        "169",
+        "189"
+      ],
+      "selected_block_id": "169",
+      "gold_page": 9,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-024",
+      "claim_id": "CLM-018",
+      "gold_source_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "selected_block_id": "169",
+      "gold_page": 9,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-025",
+      "claim_id": "CLM-019",
+      "gold_source_blocks": [],
+      "selected_block_id": "390",
+      "gold_page": 17,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-026",
+      "claim_id": "CLM-020",
+      "gold_source_blocks": [],
+      "selected_block_id": "390",
+      "gold_page": 17,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-027",
+      "claim_id": "CLM-024",
+      "gold_source_blocks": [
+        "169",
+        "189"
+      ],
+      "selected_block_id": "169",
+      "gold_page": 9,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-028",
+      "claim_id": "CLM-024",
+      "gold_source_blocks": [],
+      "selected_block_id": "390",
+      "gold_page": 17,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-029",
+      "claim_id": "CLM-026",
+      "gold_source_blocks": [],
+      "selected_block_id": "390",
+      "gold_page": 17,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H01",
+      "claim_id": "CLM-H01",
+      "gold_source_blocks": [
+        "131",
+        "113"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H02",
+      "claim_id": "CLM-H02",
+      "gold_source_blocks": [
+        "131",
+        "113"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H03",
+      "claim_id": "CLM-H03",
+      "gold_source_blocks": [
+        "131",
+        "113"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H04",
+      "claim_id": "CLM-H04",
+      "gold_source_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H05",
+      "claim_id": "CLM-H05",
+      "gold_source_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H06",
+      "claim_id": "CLM-H06",
+      "gold_source_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H07",
+      "claim_id": "CLM-H07",
+      "gold_source_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H08",
+      "claim_id": "CLM-H08",
+      "gold_source_blocks": [
+        "131",
+        "113"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H09",
+      "claim_id": "CLM-H09",
+      "gold_source_blocks": [
+        "131",
+        "113"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H10",
+      "claim_id": "CLM-H10",
+      "gold_source_blocks": [
+        "9",
+        "2",
+        "6",
+        "3",
+        "11",
+        "8",
+        "7"
+      ],
+      "selected_block_id": "2",
+      "gold_page": 1,
+      "alignment_status": "NOT_FOUND",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H11",
+      "claim_id": "CLM-H11",
+      "gold_source_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H12",
+      "claim_id": "CLM-H12",
+      "gold_source_blocks": [
+        "104",
+        "110",
+        "109"
+      ],
+      "selected_block_id": "104",
+      "gold_page": 6,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    },
+    {
+      "gold_evidence_id": "EVD-H16",
+      "claim_id": "CLM-H16",
+      "gold_source_blocks": [
+        "131",
+        "113"
+      ],
+      "selected_block_id": "113",
+      "gold_page": 7,
+      "alignment_status": "PARTIAL_MATCH",
+      "matched_evidence_objects": [],
+      "matched_object_count": 0
+    }
+  ]
+}
