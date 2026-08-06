@@ -31,10 +31,10 @@ from app.services.evidence_retrieval.engine import (
 
 RERANK_WEIGHTS = {
     "entity": 0.20,
-    "metric": 0.30,
+    "metric": 0.15,
     "period": 0.15,
-    "table": 0.15,
-    "semantic": 0.20,
+    "table": 0.10,
+    "semantic": 0.40,  # Phase 23.17 Step 5：semantic 主导（替代 metric 主导）
 }
 
 

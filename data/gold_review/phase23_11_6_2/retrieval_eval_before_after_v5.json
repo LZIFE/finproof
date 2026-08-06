@@ -1,0 +1,44 @@
+{
+  "phase": "23.17",
+  "step": "6_evaluation",
+  "generated_at": "2026-08-06T06:51:24.207347+00:00",
+  "recall_before_23_16": {
+    "recall@50": 0.2,
+    "recall@10": 0.1,
+    "recall@5": 0.0667,
+    "recall@1": 0.0
+  },
+  "recall_after_23_17": {
+    "recall@1": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "recall@50": 0.0667
+  },
+  "recall_delta": {
+    "recall@50": -0.1333,
+    "recall@10": -0.1,
+    "recall@5": -0.0667,
+    "recall@1": 0.0
+  },
+  "real_e2e_before_23_16": {
+    "accuracy": 0.4651,
+    "macro_f1": 0.5842,
+    "coverage": 0.6047
+  },
+  "real_e2e_after_23_17_gate": {
+    "accuracy": 0.2791,
+    "macro_f1": 0.3994,
+    "coverage": 0.4419,
+    "abstentions": 24
+  },
+  "delta": {
+    "accuracy": -0.186,
+    "macro_f1": -0.1848,
+    "coverage": -0.1628
+  },
+  "diagnosis": "Recall@50 0.20->0.0667 再降：正确 evidence block（如 CLM-001 的 189）是纯数据行正文（'营业收入（千元）456,451,731 407,149,600 12.11%'），无公司名→entity=0，数字文本与 claim 原文字符 n-gram 相似度低→semantic=0.116，在 semantic 0.40 权重下被压到 rerank 第 116 位掉出 top50。Reranker semantic 权重对财务数据行不利，且 top1 被'附注引用块'（entity=1.0/period=1.0/table=1.0）抢占。",
+  "target_met": {
+    "recall@50": false,
+    "accuracy_0_7": false
+  }
+}

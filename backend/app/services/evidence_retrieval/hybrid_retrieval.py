@@ -48,73 +48,69 @@ def _page_id_by_doc_page(session, doc_id: int, page_number: int) -> int | None:
     return row[0] if row else None
 
 
-def _target_page_ids(session, doc_id: int, target_sections: list[str]) -> set[int]:
-    """目标章节页 → page_id 集合（作为 bm25/vector 的检索范围）。"""
-    from app.services.evidence_retrieval.section_index import target_pages_for_claim
-
-    pages = target_pages_for_claim(doc_id, target_sections)
-    pids: set[int] = set()
-    for pn in pages:
-        pid = _page_id_by_doc_page(session, doc_id, pn)
-        if pid:
-            pids.add(pid)
-    return pids
+# Phase 23.17 Step 2：移除提前过滤——BM25/vector 改为全局检索（不再按章节页过滤）。
+# per-doc TF-IDF 矩阵缓存：{doc_id: (vectorizer, matrix, block_ids)}，避免重复 fit。
+_bm25_cache: dict[int, tuple] = {}
+_vector_cache: dict[int, tuple] = {}
 
 
-def bm25_candidates(session, doc_id: int, claim: dict, target_sections: list[str], limit: int = _BM25_LIMIT) -> list[int]:
-    """BM25 风格：TF-IDF 词频加权检索（对目标章节页 blocks 打分）。"""
+def _doc_blocks(session, doc_id: int):
+    """该文档全部非空 block：(block_id, text) 列表。"""
+    rows = (
+        session.query(DocumentBlock.id, DocumentBlock.text)
+        .filter(DocumentBlock.document_id == doc_id, DocumentBlock.text.isnot(None))
+        .all()
+    )
+    return [(bid, t or "") for bid, t in rows]
+
+
+def bm25_candidates(session, doc_id: int, claim: dict, target_sections: list[str] | None = None, limit: int = _BM25_LIMIT) -> list[int]:
+    """BM25 风格：词级 TF-IDF 全局检索（不按页过滤；章节仅用于可选加分由上层处理）。"""
     query = _claim_query_text(claim)
     if not query.strip():
         return []
-    pids = _target_page_ids(session, doc_id, target_sections)
-    if not pids:
-        return []
-    rows = (
-        session.query(DocumentBlock.id, DocumentBlock.text)
-        .filter(DocumentBlock.document_id == doc_id, DocumentBlock.page_id.in_(pids))
-        .filter(DocumentBlock.text.isnot(None))
-        .all()
-    )
-    if not rows:
-        return []
-    texts = [(bid, t or "") for bid, t in rows]
-    # 词级 TF-IDF（BM25 近似：词频 + IDF）
+    if doc_id not in _bm25_cache:
+        texts = _doc_blocks(session, doc_id)
+        if not texts:
+            return []
+        try:
+            vec = TfidfVectorizer(analyzer="word", token_pattern=r"[\u4e00-\u9fff]{2,}|[A-Za-z]+|[0-9,]+", lowercase=True)
+            mat = vec.fit_transform([t for _, t in texts])
+            _bm25_cache[doc_id] = (vec, mat, [b for b, _ in texts])
+        except ValueError:  # 空词表
+            return []
+    vec, mat, block_ids = _bm25_cache[doc_id]
     try:
-        vec = TfidfVectorizer(analyzer="word", token_pattern=r"[\u4e00-\u9fff]{2,}|[A-Za-z]+|[0-9,]+", lowercase=True)
-        mat = vec.fit_transform([t for _, t in texts])
-        qvec = vec.transform([query])
-        scores = (mat @ qvec.T).toarray().ravel()
-    except ValueError:  # 空词表
-        return []
-    ranked = sorted(zip([b for b, _ in texts], scores), key=lambda x: -x[1])
-    return [b for b, s in ranked[:limit] if s > 0]
-
-
-def vector_candidates(session, doc_id: int, claim: dict, target_sections: list[str], limit: int = _VECTOR_LIMIT) -> list[int]:
-    """Vector：字符 n-gram TF-IDF 余弦相似（语义匹配：营业收入≈主营业务收入≈revenue）。"""
-    query = _claim_query_text(claim)
-    if not query.strip():
-        return []
-    pids = _target_page_ids(session, doc_id, target_sections)
-    if not pids:
-        return []
-    rows = (
-        session.query(DocumentBlock.id, DocumentBlock.text)
-        .filter(DocumentBlock.document_id == doc_id, DocumentBlock.page_id.in_(pids))
-        .filter(DocumentBlock.text.isnot(None))
-        .all()
-    )
-    if not rows:
-        return []
-    texts = [(bid, t or "") for bid, t in rows]
-    try:
-        vec = TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4), lowercase=True)
-        mat = vec.fit_transform([t for _, t in texts])
         qvec = vec.transform([query])
         scores = (mat @ qvec.T).toarray().ravel()
     except ValueError:
         return []
-    ranked = sorted(zip([b for b, _ in texts], scores), key=lambda x: -x[1])
+    ranked = sorted(zip(block_ids, scores), key=lambda x: -x[1])
+    return [b for b, s in ranked[:limit] if s > 0]
+
+
+def vector_candidates(session, doc_id: int, claim: dict, target_sections: list[str] | None = None, limit: int = _VECTOR_LIMIT) -> list[int]:
+    """Vector：字符 n-gram TF-IDF 全局余弦（语义匹配：营业收入≈主营业务收入≈revenue，不按页过滤）。"""
+    query = _claim_query_text(claim)
+    if not query.strip():
+        return []
+    if doc_id not in _vector_cache:
+        texts = _doc_blocks(session, doc_id)
+        if not texts:
+            return []
+        try:
+            vec = TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4), lowercase=True)
+            mat = vec.fit_transform([t for _, t in texts])
+            _vector_cache[doc_id] = (vec, mat, [b for b, _ in texts])
+        except ValueError:
+            return []
+    vec, mat, block_ids = _vector_cache[doc_id]
+    try:
+        qvec = vec.transform([query])
+        scores = (mat @ qvec.T).toarray().ravel()
+    except ValueError:
+        return []
+    ranked = sorted(zip(block_ids, scores), key=lambda x: -x[1])
     return [b for b, s in ranked[:limit] if s > 0]
 
 
@@ -134,17 +130,35 @@ def hybrid_candidates(
     session,
     doc_id: int,
     claim: dict,
-    target_sections: list[str],
-    aliases: set[str],
+    target_sections: list[str] | None = None,
+    aliases: set[str] | None = None,
+    union_floor: int = 100,
 ) -> list[int]:
-    """三路召回 union（去重，保序：rule 优先 → vector → bm25）。"""
-    r_cands = rule_candidates(session, doc_id, claim, aliases)
-    v_cands = vector_candidates(session, doc_id, claim, target_sections)
+    """三路召回 union（去重，保序：rule 优先 → embedding → bm25）。
+
+    Phase 23.17 Step 4：BM25 top50 + Embedding top50 + Rule top50，union 至少 union_floor 个，
+    无提前截断（不因排序丢弃候选）。
+    """
+    from app.services.evidence_retrieval.embedding import embed_candidates
+
+    r_cands = rule_candidates(session, doc_id, claim, aliases or set())
+    v_cands = embed_candidates(session, doc_id, claim)
     b_cands = bm25_candidates(session, doc_id, claim, target_sections)
     seen: set[int] = set()
     union: list[int] = []
-    for bid in r_cands + v_cands + b_cands:
-        if bid not in seen:
-            seen.add(bid)
-            union.append(bid)
+    # 先并入各路上限（每路 top50）
+    for cands, cap in ((r_cands, 50), (v_cands, 50), (b_cands, 50)):
+        for bid in cands[:cap]:
+            if bid not in seen:
+                seen.add(bid)
+                union.append(bid)
+    # union 不足 floor 时，补充余量（不提前截断候选）
+    if len(union) < union_floor:
+        extra = (r_cands[50:] + v_cands[50:] + b_cands[50:])
+        for bid in extra:
+            if len(union) >= union_floor:
+                break
+            if bid not in seen:
+                seen.add(bid)
+                union.append(bid)
     return union
