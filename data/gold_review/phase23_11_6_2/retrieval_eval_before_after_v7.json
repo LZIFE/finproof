@@ -1,0 +1,48 @@
+{
+  "phase": "23.19",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T07:38:44.006134+00:00",
+  "recall_before_23_18": {
+    "recall@50": 0.3,
+    "recall@10": 0.1333,
+    "recall@5": 0.1333,
+    "recall@1": 0.0333
+  },
+  "recall_after_23_19": {
+    "recall@1": 0.0333,
+    "recall@5": 0.1333,
+    "recall@10": 0.1333,
+    "recall@50": 0.3
+  },
+  "recall_delta": {
+    "recall@50": 0.0,
+    "recall@10": 0.0,
+    "recall@5": 0.0,
+    "recall@1": 0.0
+  },
+  "real_e2e_before_23_18": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5675,
+    "coverage": 0.6744
+  },
+  "real_e2e_after_23_19_gate": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5675,
+    "coverage": 0.6744,
+    "abstentions": 14
+  },
+  "real_e2e_after_top1": {
+    "accuracy": 0.4884,
+    "macro_f1": 0.4979
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "coverage": 0.0
+  },
+  "note": "Evidence Window Reconstruction + Fact Retrieval Layer 后：Recall@50 0.30 持平（9/30），Real E2E gate acc 0.535 持平。Fact Retrieval 已附加 financial_object 到全部候选且不删除，但 window 重建的 fact_retrieval_score 排序未改变 reranker 后的 top 结果。如实记录：本阶段无显著提升，需进一步让 fact 对象直接进入候选池而非仅排序加分。",
+  "target_met": {
+    "recall@50_target_0_8": false,
+    "accuracy_target_0_7": false
+  }
+}
