@@ -1,0 +1,31 @@
+{
+  "phase": "23.25",
+  "step": "5_evaluation",
+  "generated_at": "2026-08-06T09:13:53.517704+00:00",
+  "fact_verification": {
+    "total_fact_evidence": 430,
+    "verification_success": 12,
+    "verification_success_rate": 0.0279,
+    "core_fields_match_rate": 0.0279
+  },
+  "real_e2e_before_23_24": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5775,
+    "coverage": 0.6512
+  },
+  "real_e2e_after_23_25_gate": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5775,
+    "coverage": 0.6512,
+    "abstentions": 15
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "coverage": 0.0
+  },
+  "note": "Financial Fact Decision Bridge 接入 core_verify 后：Real E2E gate acc 0.535 持平，mf1 0.5775->0.578。Fact verification success rate 仍 0.0279（12/430）——决策桥已生效但正确 fact 证据极少进入 top10 且多数 fact_verification 未通过核心字段验证（periods/growth 与 claim 不对齐）。Accuracy < 0.65，触发 Step 6 自动诊断。",
+  "target_met": {
+    "accuracy_target_0_7": false
+  }
+}

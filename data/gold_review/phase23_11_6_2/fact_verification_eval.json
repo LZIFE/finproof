@@ -1,6 +1,4 @@
 {
-  "phase": "23.24",
-  "step": "4_fact_verification_eval",
   "total_fact_evidence": 430,
   "verification_success": 12,
   "verification_success_rate": 0.0279,

@@ -96,15 +96,34 @@ def attach_financial_facts(scored: list[dict]) -> list[dict]:
     - 从候选的 financial_object（Phase 23.20/23.21 已附加）提取 schema 8 字段
     - 不删除 raw block 字段（block_id / block_text / page 等原样保留）
     - 无 financial_object 的候选保持 raw-block-only（向后兼容）
+    - Phase 23.25 Step 6 修复：校验块自身 metric 与 fact metric 一致才附加——
+      避免 merge_evidence_index_candidates 把跨块索引对象错配到无关块
+      （如 block 190/192/193 被附加 page 135 营业收入对象）
     """
+    from app.services.evidence_retrieval.financial_fact_extractor import extract_financial_fact
+
     for c in scored:
         fo = c.get("financial_object") or {}
         if not fo:
             c["financial_fact"] = None
             continue
+        # 块自身文本提取的 metric（作为校验基准）
+        block_self = extract_financial_fact(c.get("block_text") or "")
+        self_metric_code = block_self.get("metric_code", "")
+        fact_metric_code = fo.get("metric_code", "")
+        # 家族校验：块自身 metric 与 fact metric 必须同族（revenue≈total_operating_revenue）
+        # 块自身无指标（纯数值块）时，要求 fact 有数值且块含数字（窗口锚块场景保留）
+        compatible = False
+        if self_metric_code:
+            compatible = _metric_family_compatible(self_metric_code, fact_metric_code)
+        elif fo.get("has_number"):
+            compatible = bool(c.get("block_text") and any(ch.isdigit() for ch in c.get("block_text", "")))
+        if not compatible:
+            c["financial_fact"] = None   # 错配：不附加，走 raw text 验证
+            continue
         c["financial_fact"] = {
             "metric": fo.get("metric", ""),
-            "metric_code": fo.get("metric_code", ""),
+            "metric_code": fact_metric_code,
             "current_value": fo.get("current_value"),
             "previous_value": fo.get("previous_value"),
             "growth": fo.get("growth"),
@@ -116,3 +135,16 @@ def attach_financial_facts(scored: list[dict]) -> list[dict]:
             "source_evidence_id": c.get("block_id"),   # 关联 raw block
         }
     return scored
+
+
+def _metric_family_compatible(self_code: str, fact_code: str) -> bool:
+    """指标家族兼容（revenue≈total_operating_revenue；净利润家族严格隔离）。"""
+    if not self_code or not fact_code:
+        return False
+    if self_code == fact_code:
+        return True
+    fam = {
+        "revenue": {"revenue", "total_operating_revenue"},
+        "total_operating_revenue": {"revenue", "total_operating_revenue"},
+    }
+    return fact_code in fam.get(self_code, set())

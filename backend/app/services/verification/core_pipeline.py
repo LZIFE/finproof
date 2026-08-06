@@ -419,6 +419,35 @@ def core_verify(claim: dict, evidence_list: list[dict], trace: IntegrationTrace 
         return _core_verify_semantic(claim, evidence_list, trace, std_metric, metric_code, ct)
 
     # =====================================================================
+    # 2.5) Phase 23.25：Financial Fact Decision Bridge（fact + raw text 融合）
+    #      当 evidence 含已验证 financial_fact 时，优先用结构化事实验证；
+    #      fact 不完整/无 fact → fallback 到下方旧分派（raw text 验证）。
+    #      不绕过 Gate（Gate 已在 verify_evidence_set 执行），不改 Gate 决策规则。
+    # =====================================================================
+    from app.services.verification.financial_fact_decision_bridge import fact_decision_signal
+
+    fact_sig = fact_decision_signal(claim, evidence_list)
+    if fact_sig["has_fact"] and fact_sig["verdict_hint"]:
+        hint = fact_sig["verdict_hint"]
+        confidence = 0.75 if hint == "SUPPORTED" else 0.8
+        trace.verdict_decision_called = True
+        trace.final_verdict = hint
+        trace.rule_id = "fact:decision_bridge"
+        trace.override_source = "financial_fact_decision_bridge"
+        trace.detail["phase23_25_fact_bridge"] = fact_sig
+        # 融合确认：fact 明确时，若 raw text 也存在明确数值冲突则仍尊重冲突（REFUTED 优先）
+        if hint == "SUPPORTED":
+            texts = [e.get("text", "") or "" for e in evidence_list]
+            if any("REFUTED" in (e.get("fact_verification") or {}).get("details", {}).get("value", {}).get("reason", "")
+                   or (e.get("fact_verification") or {}).get("value_match") is False
+                   for e in evidence_list):
+                hint = "REFUTED"
+                trace.final_verdict = hint
+                trace.rule_id = "fact:decision_bridge_value_conflict"
+        return _verdict_result(trace, hint, confidence, fact_sig["reason"],
+                               calc={"fact_signal": fact_sig})
+
+    # =====================================================================
     # 3) 数值类：growth / quarter / raw number / ratio
     # =====================================================================
     is_growth = "GROWTH" in ct or "yoy" in metric_code or "growth" in metric_code or "qoq" in metric_code
