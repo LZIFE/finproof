@@ -162,6 +162,8 @@ def select(
             "evidence_id": r.evidence_id,
             "text": r.text or "",
             "final_quality_score": r.final_quality_score,
+            # Phase 23.34: carry financial_fact through Gate -> Selector -> core_verify
+            "financial_fact": getattr(r, "financial_fact", None),
         })
 
     # §6: empty_reason — Selector接受输入后不得无原因返回空

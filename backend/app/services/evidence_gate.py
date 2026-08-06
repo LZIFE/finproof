@@ -250,6 +250,9 @@ class EvidenceQualityResult:
     # Phase 23.11 fix: carry candidate text so the Selector can build a
     # bundle that core_verify can actually read.
     text: str = ""
+    # Phase 23.34: carry candidate financial_fact so the Selector can
+    # build a bundle that core_verify can consume natively (was lost here).
+    financial_fact: dict | None = None
     # Phase 23.11.2 three-state fields (§3)
     entity_state: MatchState = "UNKNOWN"
     metric_state: MatchState = "UNKNOWN"
@@ -611,6 +614,7 @@ def evaluate_one(
         scope_score, numeric_score, source_quality, route_score,
         contradiction, completeness, final_score, accepted, rejection,
         text=cand_text,
+        financial_fact=candidate.get("financial_fact"),
         entity_state=entity_state, metric_state=metric_state,
         period_state=period_state, unit_state=unit_state,
         scope_state=scope_state, route_state=route_state,

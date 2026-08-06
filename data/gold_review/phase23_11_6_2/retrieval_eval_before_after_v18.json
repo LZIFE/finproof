@@ -1,0 +1,53 @@
+{
+  "phase": "23.34",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T14:30:32.271700+00:00",
+  "fact_usage": {
+    "before_23_34": {
+      "fact_usage_rate": 0.0,
+      "note": "financial_fact 在 Gate 丢失（0/9）"
+    },
+    "after_23_34": {
+      "fact_usage_rate": 0.0,
+      "fact_used": 0,
+      "total": 43,
+      "note": "透传修复成功（evidence_bundle 100% 带 fact），但 Decision Authority 门槛（quality>=0.8+metric/value/period 全匹配）在生产链无 claim 触发，全部 UNKNOWN fallback"
+    }
+  },
+  "pipeline_fix_verified": {
+    "gate_accepted_with_fact": "9/9 (CLM-001)",
+    "selector_bundle_with_fact": "3/3 (CLM-001)",
+    "conclusion": "financial_fact 已 100% 到达 core_verify（Task 3 修复生效）"
+  },
+  "real_e2e_before_23_33": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744
+  },
+  "real_e2e_after_23_34_gate": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744,
+    "abstentions": 14
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "coverage": 0.0
+  },
+  "target": {
+    "fact_usage_target": 0.2,
+    "fact_usage_actual": 0.0,
+    "fact_usage_met": false,
+    "accuracy_target_gain": 0.05,
+    "accuracy_gain_actual": 0.0,
+    "accuracy_met": false
+  },
+  "analysis": {
+    "fact_usage_0_but_pipeline_fixed": "透传修复已生效（financial_fact 100% 到达 core_verify），但 fact 决策仍 0 触发——Decision Authority（financial_fact_decision_policy）要求 quality>=0.8 + metric+value+period 全匹配，生产链 top_k=5 的 selected evidence（如 CLM-001 的 4442/4444/4441）的 fact 对象（营业总收入）在 quality/period/value 判定中未达 authority 门槛 → 全部 UNKNOWN → fallback block → no_evidence。按任务要求：fact usage 仍为 0，继续沿 pipeline 追踪结论——fact 已到达 core_verify，瓶颈转移到 Decision Authority 触发条件（门槛过严或 fact 对象与 claim 对齐不足）。"
+  },
+  "target_met": {
+    "fact_usage_20": false,
+    "accuracy_gain_0_05": false
+  }
+}
