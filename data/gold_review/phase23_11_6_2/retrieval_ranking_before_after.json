@@ -1,0 +1,40 @@
+{
+  "phase": "23.13",
+  "step": "4_ranking_comparison",
+  "generated_at": "2026-08-06T04:39:59.648657+00:00",
+  "before": {
+    "top1": {
+      "accuracy": 0.4884,
+      "macro_f1": 0.4953,
+      "coverage": 0.6047,
+      "abstentions": 17
+    },
+    "top3": {
+      "accuracy": 0.5116,
+      "macro_f1": 0.5638,
+      "coverage": 0.6512,
+      "abstentions": 15
+    }
+  },
+  "after": {
+    "top1": {
+      "accuracy": 0.4884,
+      "macro_f1": 0.4953,
+      "coverage": 0.6047,
+      "abstentions": 17
+    },
+    "top3": {
+      "accuracy": 0.5116,
+      "macro_f1": 0.5638,
+      "coverage": 0.6512,
+      "abstentions": 15
+    }
+  },
+  "delta": {
+    "top1_accuracy": 0.0,
+    "top1_macro_f1": 0.0,
+    "top3_accuracy": 0.0,
+    "top3_macro_f1": 0.0
+  },
+  "note": "Recall Expansion（Broad Page + Entity 反查）主要影响召回面（Recall@50），Top1/Top3 排序头部结果未变——因 E2E 生产链 top_k=5 截断，新增的低排名候选未进入 Top5。"
+}

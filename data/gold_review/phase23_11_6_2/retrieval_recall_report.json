@@ -1,0 +1,830 @@
+{
+  "phase": "23.13",
+  "step": "3_recall_evaluation",
+  "generated_at": "2026-08-06T04:39:10.602759+00:00",
+  "total_claims_with_gold_block": 30,
+  "recall": {
+    "recall@10": 0.2333,
+    "recall@20": 0.2667,
+    "recall@50": 0.2667
+  },
+  "hit_counts": {
+    "recall@10": 7,
+    "recall@20": 8,
+    "recall@50": 8
+  },
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "4329",
+        "4442",
+        "1172",
+        "495",
+        "5394",
+        "5616",
+        "189",
+        "1423",
+        "4443",
+        "5596"
+      ],
+      "recall": {
+        "recall@10": true,
+        "recall@20": true,
+        "recall@50": true
+      }
+    },
+    {
+      "claim_id": "CLM-002",
+      "dataset": "demo",
+      "gold_blocks": [
+        "4449",
+        "4440",
+        "4452",
+        "4455",
+        "4442"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "4329",
+        "4442",
+        "1172",
+        "5394",
+        "495",
+        "189",
+        "1423",
+        "4443",
+        "5596",
+        "5616"
+      ],
+      "recall": {
+        "recall@10": true,
+        "recall@20": true,
+        "recall@50": true
+      }
+    },
+    {
+      "claim_id": "CLM-003",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "retrieved_count": 18,
+      "top10_blocks": [
+        "17",
+        "495",
+        "190",
+        "1414",
+        "8775",
+        "7722",
+        "236",
+        "4555",
+        "212",
+        "5845"
+      ],
+      "recall": {
+        "recall@10": true,
+        "recall@20": true,
+        "recall@50": true
+      }
+    },
+    {
+      "claim_id": "CLM-004",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "1414",
+        "5463",
+        "5386",
+        "5462",
+        "8775",
+        "4508",
+        "5581",
+        "9498",
+        "4504",
+        "5493"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": true,
+        "recall@50": true
+      }
+    },
+    {
+      "claim_id": "CLM-005",
+      "dataset": "demo",
+      "gold_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "retrieved_count": 10,
+      "top10_blocks": [
+        "5210",
+        "4346",
+        "4352",
+        "4788",
+        "4793",
+        "1449",
+        "1448",
+        "9057",
+        "7457",
+        "7453"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-006",
+      "dataset": "demo",
+      "gold_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "318",
+        "1414",
+        "325",
+        "2425",
+        "1",
+        "12",
+        "39",
+        "69",
+        "87",
+        "102"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-007",
+      "dataset": "demo",
+      "gold_blocks": [
+        "38"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "14637",
+        "14807",
+        "14808",
+        "14656",
+        "14714",
+        "14708",
+        "14713",
+        "14709",
+        "14697",
+        "14673"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-009",
+      "dataset": "demo",
+      "gold_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "92",
+        "4305",
+        "4333",
+        "4335",
+        "4430",
+        "4434",
+        "4441",
+        "4458",
+        "4482",
+        "4555"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-010",
+      "dataset": "demo",
+      "gold_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "92",
+        "4305",
+        "4333",
+        "4335",
+        "4430",
+        "4434",
+        "4441",
+        "4458",
+        "4482",
+        "4555"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-011",
+      "dataset": "demo",
+      "gold_blocks": [
+        "38"
+      ],
+      "retrieved_count": 18,
+      "top10_blocks": [
+        "14638",
+        "14808",
+        "236",
+        "1414",
+        "495",
+        "6265",
+        "6266",
+        "17",
+        "8775",
+        "190"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-012",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "193",
+        "195"
+      ],
+      "retrieved_count": 15,
+      "top10_blocks": [
+        "193",
+        "5462",
+        "8775",
+        "5840",
+        "4478",
+        "5460",
+        "3924",
+        "5461",
+        "9553",
+        "14641"
+      ],
+      "recall": {
+        "recall@10": true,
+        "recall@20": true,
+        "recall@50": true
+      }
+    },
+    {
+      "claim_id": "CLM-014",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "retrieved_count": 25,
+      "top10_blocks": [
+        "5493",
+        "4483",
+        "192",
+        "4486",
+        "238",
+        "5492",
+        "1570",
+        "1571",
+        "1585",
+        "1584"
+      ],
+      "recall": {
+        "recall@10": true,
+        "recall@20": true,
+        "recall@50": true
+      }
+    },
+    {
+      "claim_id": "CLM-015",
+      "dataset": "demo",
+      "gold_blocks": [
+        "38"
+      ],
+      "retrieved_count": 16,
+      "top10_blocks": [
+        "6265",
+        "8775",
+        "9501",
+        "9503",
+        "6652",
+        "6653",
+        "8295",
+        "16",
+        "4442",
+        "14807"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-016",
+      "dataset": "demo",
+      "gold_blocks": [
+        "9",
+        "6",
+        "2",
+        "4",
+        "3",
+        "11",
+        "8",
+        "5",
+        "10",
+        "7"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "1",
+        "12",
+        "39",
+        "69",
+        "87",
+        "102",
+        "111",
+        "133",
+        "166",
+        "196"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-017",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "4442",
+        "5394",
+        "5616",
+        "189",
+        "1423",
+        "4443",
+        "5596",
+        "5606",
+        "5393",
+        "4329"
+      ],
+      "recall": {
+        "recall@10": true,
+        "recall@20": true,
+        "recall@50": true
+      }
+    },
+    {
+      "claim_id": "CLM-018",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "retrieved_count": 25,
+      "top10_blocks": [
+        "5493",
+        "4483",
+        "192",
+        "238",
+        "4486",
+        "1570",
+        "1571",
+        "1584",
+        "1585",
+        "1586"
+      ],
+      "recall": {
+        "recall@10": true,
+        "recall@20": true,
+        "recall@50": true
+      }
+    },
+    {
+      "claim_id": "CLM-024",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "retrieved_count": 16,
+      "top10_blocks": [
+        "16",
+        "4442",
+        "8775",
+        "5394",
+        "5395",
+        "5396",
+        "495",
+        "603",
+        "3613",
+        "6265"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H01",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "10188",
+        "10497",
+        "10029",
+        "10199",
+        "11642",
+        "11896",
+        "11897",
+        "11641",
+        "10052",
+        "10198"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H02",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "10188",
+        "11939",
+        "10088",
+        "9928",
+        "9945",
+        "9959",
+        "9970",
+        "9983",
+        "10022",
+        "10055"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H03",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 43,
+      "top10_blocks": [
+        "10188",
+        "10030",
+        "11939",
+        "13482",
+        "10056",
+        "11934",
+        "11936",
+        "11994",
+        "11995",
+        "13679"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H04",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "retrieved_count": 19,
+      "top10_blocks": [
+        "10378",
+        "12050",
+        "13696",
+        "13678",
+        "10377",
+        "10381",
+        "12064",
+        "10384",
+        "12049",
+        "12076"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H05",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "11601",
+        "12434",
+        "11602",
+        "13776",
+        "10022",
+        "10055",
+        "10103",
+        "10144",
+        "10193",
+        "10240"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H06",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "10034",
+        "11962",
+        "14606",
+        "11421",
+        "12017",
+        "10022",
+        "10035",
+        "10036",
+        "10088",
+        "9928"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H07",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "10036",
+        "14603",
+        "14605",
+        "10022",
+        "10039",
+        "10041",
+        "10088",
+        "10049",
+        "9928",
+        "9945"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H08",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "10037",
+        "12460",
+        "10400",
+        "10475",
+        "10022",
+        "10036",
+        "10028",
+        "9928",
+        "9945",
+        "9959"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H09",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 25,
+      "top10_blocks": [
+        "12459",
+        "10036",
+        "12463",
+        "12464",
+        "12461",
+        "12462",
+        "12466",
+        "10044",
+        "10047",
+        "14609"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H10",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "9",
+        "2",
+        "6",
+        "3",
+        "11",
+        "8",
+        "7"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "11601",
+        "12434",
+        "11602",
+        "13776",
+        "9928",
+        "9945",
+        "9959",
+        "9970",
+        "9983",
+        "10022"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H11",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "10088",
+        "9928",
+        "9945",
+        "9959",
+        "9970",
+        "9983",
+        "10022",
+        "10055",
+        "10083",
+        "10103"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H12",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "104",
+        "110",
+        "109"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "11601",
+        "12442",
+        "12438",
+        "12434",
+        "12432",
+        "12437",
+        "13776",
+        "11511",
+        "12435",
+        "13832"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    },
+    {
+      "claim_id": "CLM-H16",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 50,
+      "top10_blocks": [
+        "10188",
+        "11641",
+        "14299",
+        "14297",
+        "10303",
+        "10176",
+        "10497",
+        "11239",
+        "10132",
+        "11642"
+      ],
+      "recall": {
+        "recall@10": false,
+        "recall@20": false,
+        "recall@50": false
+      }
+    }
+  ]
+}

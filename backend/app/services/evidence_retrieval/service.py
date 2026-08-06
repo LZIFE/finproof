@@ -44,6 +44,9 @@ def filter_documents(session: Session, claim: dict) -> list[Document]:
 
     排序：主张期间类型匹配的财报优先（2025H1 → 半年报、2025FY → 年报、2025Q1 → 一季报），
     其余同公司文档按期间类型距离兜底。
+
+    Phase 23.13：Entity 反查放宽——entity 精确匹配失败时，用实体别名表
+    （全称/简称/股票代码/历史名）反查 company_name，避免"公司简称对不上"整组漏召回。
     """
     # Phase 23.7：兼容 gold_claims 的 `entity` 字段（原仅读 `entity_name` 导致公司过滤失效）
     entity = (claim.get("entity_name") or claim.get("entity") or claim.get("company") or "").strip()
@@ -60,6 +63,36 @@ def filter_documents(session: Session, claim: dict) -> list[Document]:
             .filter(Document.document_role == "SOURCE_DOCUMENT", Document.stock_code == stock)
             .all()
         )
+    # Phase 23.13 Stage 1：精确匹配无结果 → Entity 别名反查（全称/简称/代码/英文名）
+    if not docs and entity:
+        from app.services.evidence_retrieval.engine import _ENTITY_ALIASES
+
+        aliases = _ENTITY_ALIASES.get(entity, set())
+        # 双向反查：entity 是别名值（如 "Midea"/"五粮液"/"000333"）时，
+        # 反向遍历别名表找含该值的键对应的全组别名
+        if not aliases:
+            for _full, _aliases in _ENTITY_ALIASES.items():
+                if entity in _aliases:
+                    aliases = _aliases
+                    break
+        if aliases:
+            docs = (
+                session.query(Document)
+                .filter(Document.document_role == "SOURCE_DOCUMENT")
+                .filter(Document.company_name.in_(aliases))
+                .order_by(Document.id)
+                .all()
+            )
+        # 别名表未命中：尝试 company_name 含 entity 前 2 字（简称放宽，如"五粮液"→"宜宾五粮液"）
+        if not docs and len(entity) >= 2:
+            short = entity[:2]
+            docs = (
+                session.query(Document)
+                .filter(Document.document_role == "SOURCE_DOCUMENT",
+                        Document.company_name.like(f"%{short}%"))
+                .order_by(Document.id)
+                .all()
+            )
     return sorted(docs, key=lambda d: (document_priority(claim.get("period"), d.report_period), d.id))
 
 
@@ -192,6 +225,45 @@ def retrieve_for_claim(
                     "block_text": block.text[:300],
                 }
             )
+    # ---- Phase 23.13 Stage 3：Broad Page Retrieval（不提前丢弃）----
+    # 精准候选不足（别名预筛/文档过滤命中少）时，放宽到 company 匹配 + 全文关键词：
+    # 用空 aliases 全量扫描含数字块补充候选，避免"正确 evidence 未召回"。
+    # 补充上限：至少覆盖 top_k，且不超过 max_blocks_per_doc。
+    broad_cap = min(max_blocks_per_doc, max(50, top_k * 4))
+    if len(scored) < min(top_k, 10) and len(scored) < broad_cap:
+        seen_ids = {(b["document_id"], b["block_id"]) for b in scored}
+        for doc in filter_documents(session, claim):
+            for block, page_number in _candidate_blocks(session, doc, set()):
+                if (doc.id, block.id) in seen_ids:
+                    continue
+                if len(scored) >= broad_cap:
+                    break
+                if not block.text:
+                    continue
+                s = score_block(
+                    block.text, claim,
+                    doc_period=doc.report_period,
+                    section_bonus=1.0 if _page_section_flag(session, block.page_id, section_cache) else 0.0,
+                )
+                if s["final_score"] < MIN_CANDIDATE_SCORE:
+                    # broad 模式：含数字的块保底进入候选（不因低分提前丢弃）
+                    if not re.search(r"\d", block.text):
+                        continue
+                    s["final_score"] = MIN_CANDIDATE_SCORE
+                scored.append(
+                    {
+                        "document_id": doc.id,
+                        "page_number": page_number,
+                        "block_id": block.id,
+                        "page_id": block.page_id,
+                        "y0": block.y0 or 0.0,
+                        "reading_order": block.reading_order or 0,
+                        **s,
+                        "block_text": block.text[:300],
+                        "retrieval_method": "broad_page",
+                    }
+                )
+                seen_ids.add((doc.id, block.id))
     if not scored:
         return []
 
