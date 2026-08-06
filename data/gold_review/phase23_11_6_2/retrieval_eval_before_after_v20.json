@@ -1,0 +1,50 @@
+{
+  "phase": "23.36",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T15:03:13.760110+00:00",
+  "fact_decision_distribution": {
+    "before_23_35": {
+      "SUPPORTED": 5,
+      "REFUTED": 13,
+      "UNKNOWN": 25
+    },
+    "after_23_36": {
+      "SUPPORTED": 11,
+      "REFUTED": 7,
+      "UNKNOWN": 25
+    },
+    "delta": {
+      "SUPPORTED": 6,
+      "REFUTED": -6,
+      "UNKNOWN": 0
+    }
+  },
+  "real_e2e_before_23_35": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744
+  },
+  "real_e2e_after_23_36_gate": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5787,
+    "coverage": 0.6512,
+    "abstentions": 15
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0019,
+    "coverage": -0.0232
+  },
+  "target": {
+    "accuracy_gain_0_05": 0.05,
+    "actual_gain": 0.0,
+    "met": false
+  },
+  "no_gain_analysis": {
+    "value_comparator_effect": "SUPPORTED 5->11 (+6), REFUTED 13->7 (-6): growth类 claim 不再与绝对值比较、ratio fact sanity 拦截 extraction 错误——fact 判定质量显著提升",
+    "accuracy_not_improved": "Accuracy 0.512 持平（+0.0004）：fact 判定 SUPPORTED/REFUTED 分布改善，但 (a) 11 条 SUPPORTED 中多数原本被 block 路径正确判定（fact 未改变最终 verdict 方向）；(b) 仍有大量 claim 走 block/语义路径（fact 仅影响有 fact 且达 quality 门槛的 claim）；(c) REFUTED 7 条中可能仍有口径差异未覆盖。真正原因：fact 判定与 block 判定在多数 claim 上结果一致，决策融合（70/30）未引入新信息；Accuracy 提升需检索级改进（正确证据进候选池）而非验证判定微调。"
+  },
+  "target_met": {
+    "accuracy_gain_0_05": false
+  }
+}

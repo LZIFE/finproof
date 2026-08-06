@@ -153,7 +153,11 @@ def verify_financial_fact_native(claim: dict, financial_fact: dict) -> dict:
     norm = normalize_financial_fact(financial_fact, claim)
 
     metric_match = norm.get("metric_match", False)
-    value_match = bool(norm.get("value_match", {}).get("matched", False))
+    # Phase 23.36 Task 3：value 判定改用 value comparator（单位归一 + 5% 容差 + metric strictness）
+    from app.services.verification.financial_fact_value_comparator import compare_values
+
+    vc = compare_values(claim, financial_fact)
+    value_match = bool(vc.get("compatible"))
     prev_match = bool(norm.get("previous_value_match", {}).get("matched", False))
     growth_match = bool(norm.get("growth_match", {}).get("matched", False))
     # Phase 23.31：period 用兼容分判定（而非简单真/假）

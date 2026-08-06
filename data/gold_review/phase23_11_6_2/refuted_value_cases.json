@@ -1,0 +1,119 @@
+[
+  {
+    "claim_id": "CLM-004",
+    "metric": "yoy_growth_net_profit",
+    "claim_value": 38.02,
+    "claim_unit": "%",
+    "fact_value": 43945411.0,
+    "fact_unit": "元",
+    "ratio": 0.0008651642830237724
+  },
+  {
+    "claim_id": "CLM-005",
+    "metric": "gross_margin",
+    "claim_value": 26.4,
+    "claim_unit": "%",
+    "fact_value": 15.0,
+    "fact_unit": "千元",
+    "ratio": 1.76
+  },
+  {
+    "claim_id": "CLM-012",
+    "metric": "basic_eps",
+    "claim_value": 5.8,
+    "claim_unit": "元/股",
+    "fact_value": 94067.0,
+    "fact_unit": "千元",
+    "ratio": 6.165817980800918e-05
+  },
+  {
+    "claim_id": "CLM-014",
+    "metric": "operating_cash_flow",
+    "claim_value": 533.46,
+    "claim_unit": "亿元",
+    "fact_value": 44520196.0,
+    "fact_unit": "千元",
+    "ratio": 1.1982427031543168
+  },
+  {
+    "claim_id": "CLM-017",
+    "metric": "revenue",
+    "claim_value": 4071.5,
+    "claim_unit": "亿元",
+    "fact_value": 458502407.0,
+    "fact_unit": "千元",
+    "ratio": 0.8879997002938307
+  },
+  {
+    "claim_id": "CLM-018",
+    "metric": "operating_cash_flow",
+    "claim_value": 5334.59,
+    "claim_unit": "亿元",
+    "fact_value": 44520196.0,
+    "fact_unit": "千元",
+    "ratio": 11.98240456982714
+  },
+  {
+    "claim_id": "CLM-024",
+    "metric": "yoy_growth_revenue",
+    "claim_value": 15,
+    "claim_unit": "%",
+    "fact_value": 458502407.0,
+    "fact_unit": "千元",
+    "ratio": 3.271520448092217e-08
+  },
+  {
+    "claim_id": "CLM-H02",
+    "metric": "net_profit_attributable",
+    "claim_value": 89.54,
+    "claim_unit": "亿元",
+    "fact_value": 54.55,
+    "fact_unit": "亿元",
+    "ratio": 1.641429880843263
+  },
+  {
+    "claim_id": "CLM-H03",
+    "metric": "yoy_growth_net_profit",
+    "claim_value": 38.02,
+    "claim_unit": "%",
+    "fact_value": 40528509770.0,
+    "fact_unit": "元",
+    "ratio": 9.381050577917659e-07
+  },
+  {
+    "claim_id": "CLM-H04",
+    "metric": "operating_cash_flow",
+    "claim_value": 297.06,
+    "claim_unit": "亿元",
+    "fact_value": 44520196.0,
+    "fact_unit": "千元",
+    "ratio": 0.6672477362857971
+  },
+  {
+    "claim_id": "CLM-H08",
+    "metric": "total_assets",
+    "claim_value": 1899.84,
+    "claim_unit": "亿元",
+    "fact_value": 161278203.0,
+    "fact_unit": "千元",
+    "ratio": 1.1779893157663717
+  },
+  {
+    "claim_id": "CLM-H09",
+    "metric": "yoy_growth_net_assets",
+    "claim_value": 10.02,
+    "claim_unit": "%",
+    "fact_value": 43533148.0,
+    "fact_unit": "千元",
+    "ratio": 2.3016943318686718e-07
+  },
+  {
+    "claim_id": "CLM-H16",
+    "metric": "revenue",
+    "claim_value": 4052.85,
+    "claim_unit": "亿元",
+    "fact_value": 458502407.0,
+    "fact_unit": "千元",
+    "ratio": 0.8839321098700361
+  }
+]
