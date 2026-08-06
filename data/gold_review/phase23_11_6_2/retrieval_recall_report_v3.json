@@ -1,0 +1,627 @@
+{
+  "phase": "23.15",
+  "step": "5_recall_evaluation",
+  "generated_at": "2026-08-06T05:21:45.718070+00:00",
+  "total_claims_with_gold_block": 30,
+  "candidate_recall": {
+    "recall@50": 0.2667,
+    "hit_count": 8
+  },
+  "section_recall": {
+    "recall": 0.1667,
+    "hit_count": 5
+  },
+  "table_recall": {
+    "recall": 0.5333,
+    "hit_count": 16
+  },
+  "target": {
+    "candidate_recall@50": 0.8
+  },
+  "target_met": {
+    "candidate_recall@50": false
+  },
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "target_sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "routing_rule": "metric_code:revenue",
+      "candidate_recall@50": true,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-002",
+      "dataset": "demo",
+      "gold_blocks": [
+        "4449",
+        "4440",
+        "4452",
+        "4455",
+        "4442"
+      ],
+      "gold_pages": [
+        135
+      ],
+      "target_sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "routing_rule": "metric_code:total_operating_revenue",
+      "candidate_recall@50": true,
+      "section_recall": true,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-003",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "metric_code:net_profit_attributable",
+      "candidate_recall@50": true,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-004",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "metric_code:net_profit",
+      "candidate_recall@50": true,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-005",
+      "dataset": "demo",
+      "gold_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "gold_pages": [
+        135,
+        135
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "metric_code:gross_margin",
+      "candidate_recall@50": false,
+      "section_recall": true,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-006",
+      "dataset": "demo",
+      "gold_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "gold_pages": [
+        135,
+        135
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "text_keyword",
+      "candidate_recall@50": false,
+      "section_recall": true,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-007",
+      "dataset": "demo",
+      "gold_blocks": [
+        "38"
+      ],
+      "gold_pages": [
+        2
+      ],
+      "target_sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "routing_rule": "metric_code:revenue",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-009",
+      "dataset": "demo",
+      "gold_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "gold_pages": [
+        96,
+        8
+      ],
+      "target_sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "routing_rule": "metric_text:quarterly_revenue",
+      "candidate_recall@50": false,
+      "section_recall": true,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-010",
+      "dataset": "demo",
+      "gold_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "gold_pages": [
+        96,
+        8
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "text_keyword",
+      "candidate_recall@50": false,
+      "section_recall": true,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-011",
+      "dataset": "demo",
+      "gold_blocks": [
+        "38"
+      ],
+      "gold_pages": [
+        2
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "metric_code:net_profit_attributable",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-012",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "193",
+        "195"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "metric_text:basic_eps",
+      "candidate_recall@50": true,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-014",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "target_sections": [
+        "cash_flow"
+      ],
+      "routing_rule": "metric_code:operating_cash_flow",
+      "candidate_recall@50": true,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-015",
+      "dataset": "demo",
+      "gold_blocks": [
+        "38"
+      ],
+      "gold_pages": [
+        17,
+        2
+      ],
+      "target_sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "routing_rule": "metric_code:revenue",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-016",
+      "dataset": "demo",
+      "gold_blocks": [
+        "9",
+        "6",
+        "2",
+        "4",
+        "3",
+        "11",
+        "8",
+        "5",
+        "10",
+        "7"
+      ],
+      "gold_pages": [
+        1
+      ],
+      "target_sections": [
+        "income_statement",
+        "balance_sheet",
+        "cash_flow",
+        "management_discussion",
+        "notes"
+      ],
+      "routing_rule": "default",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-017",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "target_sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "routing_rule": "metric_code:revenue",
+      "candidate_recall@50": true,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-018",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "gold_pages": [
+        9
+      ],
+      "target_sections": [
+        "cash_flow"
+      ],
+      "routing_rule": "metric_code:operating_cash_flow",
+      "candidate_recall@50": true,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-024",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "gold_pages": [
+        9,
+        17
+      ],
+      "target_sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "routing_rule": "metric_code:revenue",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": true
+    },
+    {
+      "claim_id": "CLM-H01",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "routing_rule": "metric_code:revenue",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H02",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "metric_code:net_profit_attributable",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H03",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "metric_code:net_profit",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H04",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "cash_flow"
+      ],
+      "routing_rule": "metric_code:operating_cash_flow",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H05",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "management_discussion",
+        "income_statement"
+      ],
+      "routing_rule": "metric_text:yoy_growth_ocf",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H06",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "metric_text:basic_eps",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H07",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "routing_rule": "metric_code:roe",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H08",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "balance_sheet"
+      ],
+      "routing_rule": "metric_code:total_assets",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H09",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "balance_sheet"
+      ],
+      "routing_rule": "metric_code:net_assets",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H10",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "9",
+        "2",
+        "6",
+        "3",
+        "11",
+        "8",
+        "7"
+      ],
+      "gold_pages": [
+        1
+      ],
+      "target_sections": [
+        "income_statement",
+        "balance_sheet",
+        "cash_flow",
+        "management_discussion",
+        "notes"
+      ],
+      "routing_rule": "default",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H11",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "income_statement"
+      ],
+      "routing_rule": "metric_code:deducted_net_profit",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H12",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "104",
+        "110",
+        "109"
+      ],
+      "gold_pages": [
+        6
+      ],
+      "target_sections": [
+        "income_statement",
+        "balance_sheet",
+        "cash_flow",
+        "management_discussion",
+        "notes"
+      ],
+      "routing_rule": "default",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    },
+    {
+      "claim_id": "CLM-H16",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "gold_pages": [
+        7
+      ],
+      "target_sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "routing_rule": "metric_code:revenue",
+      "candidate_recall@50": false,
+      "section_recall": false,
+      "table_recall": false
+    }
+  ]
+}

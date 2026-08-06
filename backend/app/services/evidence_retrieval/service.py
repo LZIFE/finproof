@@ -220,6 +220,22 @@ def retrieve_for_claim(
     # 数据块（裸数字）评分时注入该单位以命中 value_score（Phase 23.9 修复）
     page_unit_cache: dict[tuple, str | None] = {}
 
+    # Phase 23.15 Step 4：Claim→Section→Table→Block 三级检索
+    # 1) claim 路由到目标章节类型
+    from app.services.evidence_retrieval.claim_routing import route_sections_for_claim
+    from app.services.evidence_retrieval.section_index import (
+        section_bonus_for_page,
+        target_pages_for_claim,
+        table_pages_for_types,
+    )
+
+    _routing = route_sections_for_claim(claim)
+    target_sections = _routing["sections"]
+    # 文档级目标页缓存：{doc_id: set(target_pages)}
+    target_pages_cache: dict[int, set[int]] = {}
+    # 表格页缓存：{doc_id: set(table_pages)}（目标章节类型的表格页，block 级检索优先）
+    table_pages_cache: dict[int, set[int]] = {}
+
     def _page_unit(session, doc_id: int, page_id: int) -> str | None:
         key = (doc_id, page_id)
         if key not in page_unit_cache:
@@ -232,11 +248,21 @@ def retrieve_for_claim(
         return page_unit_cache[key]
 
     for doc in filter_documents(session, claim):
+        # Phase 23.15 Step 4：目标章节页集合（claim→section→table 定位，避免全文扫）
+        if doc.id not in target_pages_cache:
+            target_pages_cache[doc.id] = target_pages_for_claim(doc.id, target_sections)
+            table_pages_cache[doc.id] = table_pages_for_types(doc.id, target_sections)
+        target_pages = target_pages_cache[doc.id]
+        table_pages = table_pages_cache[doc.id]
         for block, page_number in _candidate_blocks(session, doc, candidate_aliases):
             if len(scored) >= max_blocks_per_doc:
                 break
             if not block.text:
                 continue
+            # Phase 23.15 Step 4：目标章节页加分（section→table→block 三级；非目标章节页不加分也不过滤）
+            sec_bonus = section_bonus_for_page(doc.id, page_number, target_sections)
+            # 表格页优先：目标章节类型的表格页块额外加成
+            tbl_bonus = 0.10 if page_number in table_pages else 0.0
             # 数据块无单位但页首有单位声明 → 注入页级单位用于评分（不改变候选文本）
             # 只对「非年份数字」的数据块注入：表头块（"2025年度"等）不含财务数字，注入会虚高
             block_text_for_score = block.text
@@ -251,6 +277,9 @@ def retrieve_for_claim(
                 weights=weights,
                 section_bonus=1.0 if _page_section_flag(session, block.page_id, section_cache) else 0.0,
             )
+            # Phase 23.15 Step 4：目标章节页/表格页块加分（权重 0.10，与 evidence_quality 同量级）
+            if sec_bonus > 0 or tbl_bonus > 0:
+                s["final_score"] = round(s["final_score"] + 0.10 * sec_bonus + tbl_bonus, 4)
             if s["final_score"] < MIN_CANDIDATE_SCORE:
                 # fallback 模式：含数字的块保底进入候选（避免 quarterly/scope 类 No-result）
                 if not (fallback_mode and re.search(r"\d", block.text)):

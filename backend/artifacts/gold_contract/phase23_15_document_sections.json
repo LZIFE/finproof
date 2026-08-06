@@ -1,0 +1,464 @@
+{
+  "phase": "23.15",
+  "step": "1_document_sections",
+  "generated_at": "2026-08-06T05:16:58.010254+00:00",
+  "total_sections": 57,
+  "sections": [
+    {
+      "id": 1,
+      "document_id": 1,
+      "page_start": 5,
+      "page_end": 5,
+      "section_type": "management_discussion",
+      "confidence": 0.9
+    },
+    {
+      "id": 2,
+      "document_id": 1,
+      "page_start": 8,
+      "page_end": 8,
+      "section_type": "financial_highlights",
+      "confidence": 0.9
+    },
+    {
+      "id": 3,
+      "document_id": 1,
+      "page_start": 13,
+      "page_end": 13,
+      "section_type": "management_discussion",
+      "confidence": 0.9
+    },
+    {
+      "id": 4,
+      "document_id": 1,
+      "page_start": 59,
+      "page_end": 75,
+      "section_type": "company_profile",
+      "confidence": 0.8
+    },
+    {
+      "id": 5,
+      "document_id": 1,
+      "page_start": 126,
+      "page_end": 126,
+      "section_type": "income_statement",
+      "confidence": 0.98
+    },
+    {
+      "id": 6,
+      "document_id": 1,
+      "page_start": 128,
+      "page_end": 128,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 7,
+      "document_id": 1,
+      "page_start": 132,
+      "page_end": 133,
+      "section_type": "balance_sheet",
+      "confidence": 0.98
+    },
+    {
+      "id": 8,
+      "document_id": 1,
+      "page_start": 135,
+      "page_end": 136,
+      "section_type": "income_statement",
+      "confidence": 0.98
+    },
+    {
+      "id": 9,
+      "document_id": 1,
+      "page_start": 137,
+      "page_end": 137,
+      "section_type": "cash_flow",
+      "confidence": 0.98
+    },
+    {
+      "id": 10,
+      "document_id": 1,
+      "page_start": 139,
+      "page_end": 142,
+      "section_type": "equity_changes",
+      "confidence": 0.9
+    },
+    {
+      "id": 11,
+      "document_id": 1,
+      "page_start": 143,
+      "page_end": 221,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 12,
+      "document_id": 1,
+      "page_start": 222,
+      "page_end": 222,
+      "section_type": "balance_sheet",
+      "confidence": 0.98
+    },
+    {
+      "id": 13,
+      "document_id": 1,
+      "page_start": 223,
+      "page_end": 231,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 14,
+      "document_id": 1,
+      "page_start": 232,
+      "page_end": 235,
+      "section_type": "cash_flow",
+      "confidence": 0.98
+    },
+    {
+      "id": 15,
+      "document_id": 1,
+      "page_start": 236,
+      "page_end": 258,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 16,
+      "document_id": 1,
+      "page_start": 259,
+      "page_end": 259,
+      "section_type": "balance_sheet",
+      "confidence": 0.98
+    },
+    {
+      "id": 17,
+      "document_id": 1,
+      "page_start": 260,
+      "page_end": 274,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 18,
+      "document_id": 1,
+      "page_start": 276,
+      "page_end": 276,
+      "section_type": "company_profile",
+      "confidence": 0.8
+    },
+    {
+      "id": 19,
+      "document_id": 2,
+      "page_start": 3,
+      "page_end": 3,
+      "section_type": "management_discussion",
+      "confidence": 0.9
+    },
+    {
+      "id": 20,
+      "document_id": 2,
+      "page_start": 6,
+      "page_end": 7,
+      "section_type": "financial_highlights",
+      "confidence": 0.9
+    },
+    {
+      "id": 21,
+      "document_id": 2,
+      "page_start": 9,
+      "page_end": 9,
+      "section_type": "company_profile",
+      "confidence": 0.8
+    },
+    {
+      "id": 22,
+      "document_id": 2,
+      "page_start": 10,
+      "page_end": 10,
+      "section_type": "management_discussion",
+      "confidence": 0.9
+    },
+    {
+      "id": 23,
+      "document_id": 2,
+      "page_start": 92,
+      "page_end": 92,
+      "section_type": "financial_highlights",
+      "confidence": 0.9
+    },
+    {
+      "id": 24,
+      "document_id": 2,
+      "page_start": 93,
+      "page_end": 93,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 25,
+      "document_id": 2,
+      "page_start": 94,
+      "page_end": 95,
+      "section_type": "balance_sheet",
+      "confidence": 0.98
+    },
+    {
+      "id": 26,
+      "document_id": 2,
+      "page_start": 96,
+      "page_end": 96,
+      "section_type": "income_statement",
+      "confidence": 0.98
+    },
+    {
+      "id": 27,
+      "document_id": 2,
+      "page_start": 97,
+      "page_end": 97,
+      "section_type": "cash_flow",
+      "confidence": 0.98
+    },
+    {
+      "id": 28,
+      "document_id": 2,
+      "page_start": 98,
+      "page_end": 101,
+      "section_type": "equity_changes",
+      "confidence": 0.9
+    },
+    {
+      "id": 29,
+      "document_id": 2,
+      "page_start": 102,
+      "page_end": 167,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 30,
+      "document_id": 2,
+      "page_start": 168,
+      "page_end": 168,
+      "section_type": "income_statement",
+      "confidence": 0.98
+    },
+    {
+      "id": 31,
+      "document_id": 2,
+      "page_start": 169,
+      "page_end": 174,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 32,
+      "document_id": 2,
+      "page_start": 175,
+      "page_end": 175,
+      "section_type": "cash_flow",
+      "confidence": 0.98
+    },
+    {
+      "id": 33,
+      "document_id": 2,
+      "page_start": 176,
+      "page_end": 195,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 34,
+      "document_id": 2,
+      "page_start": 196,
+      "page_end": 196,
+      "section_type": "balance_sheet",
+      "confidence": 0.98
+    },
+    {
+      "id": 35,
+      "document_id": 2,
+      "page_start": 197,
+      "page_end": 203,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 36,
+      "document_id": 3,
+      "page_start": 5,
+      "page_end": 5,
+      "section_type": "management_discussion",
+      "confidence": 0.9
+    },
+    {
+      "id": 37,
+      "document_id": 3,
+      "page_start": 8,
+      "page_end": 8,
+      "section_type": "financial_highlights",
+      "confidence": 0.9
+    },
+    {
+      "id": 38,
+      "document_id": 3,
+      "page_start": 13,
+      "page_end": 13,
+      "section_type": "management_discussion",
+      "confidence": 0.9
+    },
+    {
+      "id": 39,
+      "document_id": 3,
+      "page_start": 59,
+      "page_end": 75,
+      "section_type": "company_profile",
+      "confidence": 0.8
+    },
+    {
+      "id": 40,
+      "document_id": 3,
+      "page_start": 126,
+      "page_end": 126,
+      "section_type": "income_statement",
+      "confidence": 0.98
+    },
+    {
+      "id": 41,
+      "document_id": 3,
+      "page_start": 128,
+      "page_end": 128,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 42,
+      "document_id": 3,
+      "page_start": 132,
+      "page_end": 133,
+      "section_type": "balance_sheet",
+      "confidence": 0.98
+    },
+    {
+      "id": 43,
+      "document_id": 3,
+      "page_start": 135,
+      "page_end": 136,
+      "section_type": "income_statement",
+      "confidence": 0.98
+    },
+    {
+      "id": 44,
+      "document_id": 3,
+      "page_start": 137,
+      "page_end": 137,
+      "section_type": "cash_flow",
+      "confidence": 0.98
+    },
+    {
+      "id": 45,
+      "document_id": 3,
+      "page_start": 139,
+      "page_end": 142,
+      "section_type": "equity_changes",
+      "confidence": 0.9
+    },
+    {
+      "id": 46,
+      "document_id": 3,
+      "page_start": 143,
+      "page_end": 221,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 47,
+      "document_id": 3,
+      "page_start": 222,
+      "page_end": 222,
+      "section_type": "balance_sheet",
+      "confidence": 0.98
+    },
+    {
+      "id": 48,
+      "document_id": 3,
+      "page_start": 223,
+      "page_end": 231,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 49,
+      "document_id": 3,
+      "page_start": 232,
+      "page_end": 235,
+      "section_type": "cash_flow",
+      "confidence": 0.98
+    },
+    {
+      "id": 50,
+      "document_id": 3,
+      "page_start": 236,
+      "page_end": 258,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 51,
+      "document_id": 3,
+      "page_start": 259,
+      "page_end": 259,
+      "section_type": "balance_sheet",
+      "confidence": 0.98
+    },
+    {
+      "id": 52,
+      "document_id": 3,
+      "page_start": 260,
+      "page_end": 274,
+      "section_type": "notes",
+      "confidence": 0.85
+    },
+    {
+      "id": 53,
+      "document_id": 3,
+      "page_start": 276,
+      "page_end": 276,
+      "section_type": "company_profile",
+      "confidence": 0.8
+    },
+    {
+      "id": 54,
+      "document_id": 4,
+      "page_start": 2,
+      "page_end": 2,
+      "section_type": "financial_highlights",
+      "confidence": 0.9
+    },
+    {
+      "id": 55,
+      "document_id": 4,
+      "page_start": 6,
+      "page_end": 7,
+      "section_type": "balance_sheet",
+      "confidence": 0.98
+    },
+    {
+      "id": 56,
+      "document_id": 4,
+      "page_start": 8,
+      "page_end": 8,
+      "section_type": "income_statement",
+      "confidence": 0.98
+    },
+    {
+      "id": 57,
+      "document_id": 4,
+      "page_start": 10,
+      "page_end": 10,
+      "section_type": "cash_flow",
+      "confidence": 0.98
+    }
+  ]
+}

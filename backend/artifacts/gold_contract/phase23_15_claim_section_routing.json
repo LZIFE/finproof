@@ -1,0 +1,521 @@
+{
+  "phase": "23.15",
+  "step": "3_claim_section_routing",
+  "generated_at": "2026-08-06T05:18:42.155136+00:00",
+  "total_claims": 43,
+  "routing": [
+    {
+      "claim_id": "CLM-001",
+      "dataset": "demo",
+      "metric_code": "revenue",
+      "route": "raw_number",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:revenue"
+    },
+    {
+      "claim_id": "CLM-002",
+      "dataset": "demo",
+      "metric_code": "total_operating_revenue",
+      "route": "raw_number",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:total_operating_revenue"
+    },
+    {
+      "claim_id": "CLM-003",
+      "dataset": "demo",
+      "metric_code": "net_profit_attributable",
+      "route": "raw_number",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:net_profit_attributable"
+    },
+    {
+      "claim_id": "CLM-004",
+      "dataset": "demo",
+      "metric_code": "yoy_growth_net_profit",
+      "route": "calculated_financial_metric",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:net_profit"
+    },
+    {
+      "claim_id": "CLM-005",
+      "dataset": "demo",
+      "metric_code": "gross_margin",
+      "route": "calculated_financial_metric",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:gross_margin"
+    },
+    {
+      "claim_id": "CLM-006",
+      "dataset": "demo",
+      "metric_code": "gross_margin_change",
+      "route": "calculated_financial_metric",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "text_keyword"
+    },
+    {
+      "claim_id": "CLM-007",
+      "dataset": "demo",
+      "metric_code": "revenue",
+      "route": "raw_number",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:revenue"
+    },
+    {
+      "claim_id": "CLM-008",
+      "dataset": "demo",
+      "metric_code": "total_operating_revenue",
+      "route": "raw_number",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:total_operating_revenue"
+    },
+    {
+      "claim_id": "CLM-009",
+      "dataset": "demo",
+      "metric_code": "quarterly_revenue",
+      "route": "scope",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_text:quarterly_revenue"
+    },
+    {
+      "claim_id": "CLM-010",
+      "dataset": "demo",
+      "metric_code": "quarterly_net_profit_attributable",
+      "route": "scope",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "text_keyword"
+    },
+    {
+      "claim_id": "CLM-011",
+      "dataset": "demo",
+      "metric_code": "net_profit_attributable",
+      "route": "raw_number",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:net_profit_attributable"
+    },
+    {
+      "claim_id": "CLM-012",
+      "dataset": "demo",
+      "metric_code": "basic_eps",
+      "route": "raw_number",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_text:basic_eps"
+    },
+    {
+      "claim_id": "CLM-013",
+      "dataset": "demo",
+      "metric_code": "basic_eps",
+      "route": "raw_number",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_text:basic_eps"
+    },
+    {
+      "claim_id": "CLM-014",
+      "dataset": "demo",
+      "metric_code": "operating_cash_flow",
+      "route": "raw_number",
+      "sections": [
+        "cash_flow"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:operating_cash_flow"
+    },
+    {
+      "claim_id": "CLM-015",
+      "dataset": "demo",
+      "metric_code": "yoy_growth_revenue",
+      "route": "calculated_financial_metric",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:revenue"
+    },
+    {
+      "claim_id": "CLM-016",
+      "dataset": "demo",
+      "metric_code": "publication_date",
+      "route": "business_fact",
+      "sections": [
+        "income_statement",
+        "balance_sheet",
+        "cash_flow",
+        "management_discussion",
+        "notes"
+      ],
+      "confidence": 0.6,
+      "rule": "default"
+    },
+    {
+      "claim_id": "CLM-017",
+      "dataset": "demo",
+      "metric_code": "revenue",
+      "route": "raw_number",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:revenue"
+    },
+    {
+      "claim_id": "CLM-018",
+      "dataset": "demo",
+      "metric_code": "operating_cash_flow",
+      "route": "raw_number",
+      "sections": [
+        "cash_flow"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:operating_cash_flow"
+    },
+    {
+      "claim_id": "CLM-019",
+      "dataset": "demo",
+      "metric_code": "overseas_obm_strategy",
+      "route": "business_fact",
+      "sections": [
+        "income_statement",
+        "balance_sheet",
+        "cash_flow",
+        "management_discussion",
+        "notes"
+      ],
+      "confidence": 0.6,
+      "rule": "default"
+    },
+    {
+      "claim_id": "CLM-020",
+      "dataset": "demo",
+      "metric_code": "profit_driver_attribution",
+      "route": "causality",
+      "sections": [
+        "management_discussion",
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "text_keyword+route:CAUSALITY"
+    },
+    {
+      "claim_id": "CLM-021",
+      "dataset": "demo",
+      "metric_code": "overseas_profit_share",
+      "route": "causality",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "text_keyword+route:CAUSALITY"
+    },
+    {
+      "claim_id": "CLM-022",
+      "dataset": "demo",
+      "metric_code": "robot_margin_vs_industry",
+      "route": "comparison",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "text_keyword"
+    },
+    {
+      "claim_id": "CLM-023",
+      "dataset": "demo",
+      "metric_code": "revenue_forecast",
+      "route": "forecast",
+      "sections": [
+        "income_statement",
+        "management_discussion",
+        "business"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_text:revenue_forecast+route:FORECAST"
+    },
+    {
+      "claim_id": "CLM-024",
+      "dataset": "demo",
+      "metric_code": "yoy_growth_revenue",
+      "route": "calculated_financial_metric",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:revenue"
+    },
+    {
+      "claim_id": "CLM-025",
+      "dataset": "demo",
+      "metric_code": "quarterly_revenue",
+      "route": "scope",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_text:quarterly_revenue"
+    },
+    {
+      "claim_id": "CLM-026",
+      "dataset": "demo",
+      "metric_code": "deducted_net_profit",
+      "route": "raw_number",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:deducted_net_profit"
+    },
+    {
+      "claim_id": "CLM-H01",
+      "dataset": "holdout",
+      "metric_code": "revenue",
+      "route": "raw_number",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:revenue"
+    },
+    {
+      "claim_id": "CLM-H02",
+      "dataset": "holdout",
+      "metric_code": "net_profit_attributable",
+      "route": "raw_number",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:net_profit_attributable"
+    },
+    {
+      "claim_id": "CLM-H03",
+      "dataset": "holdout",
+      "metric_code": "yoy_growth_net_profit",
+      "route": "calculated_financial_metric",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:net_profit"
+    },
+    {
+      "claim_id": "CLM-H04",
+      "dataset": "holdout",
+      "metric_code": "operating_cash_flow",
+      "route": "raw_number",
+      "sections": [
+        "cash_flow"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:operating_cash_flow"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "dataset": "holdout",
+      "metric_code": "yoy_growth_ocf",
+      "route": "calculated_financial_metric",
+      "sections": [
+        "management_discussion",
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_text:yoy_growth_ocf"
+    },
+    {
+      "claim_id": "CLM-H06",
+      "dataset": "holdout",
+      "metric_code": "basic_eps",
+      "route": "raw_number",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_text:basic_eps"
+    },
+    {
+      "claim_id": "CLM-H07",
+      "dataset": "holdout",
+      "metric_code": "roe",
+      "route": "raw_number",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:roe"
+    },
+    {
+      "claim_id": "CLM-H08",
+      "dataset": "holdout",
+      "metric_code": "total_assets",
+      "route": "raw_number",
+      "sections": [
+        "balance_sheet"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:total_assets"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "dataset": "holdout",
+      "metric_code": "yoy_growth_net_assets",
+      "route": "calculated_financial_metric",
+      "sections": [
+        "balance_sheet"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:net_assets"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "dataset": "holdout",
+      "metric_code": "publication_date",
+      "route": "business_fact",
+      "sections": [
+        "income_statement",
+        "balance_sheet",
+        "cash_flow",
+        "management_discussion",
+        "notes"
+      ],
+      "confidence": 0.6,
+      "rule": "default"
+    },
+    {
+      "claim_id": "CLM-H11",
+      "dataset": "holdout",
+      "metric_code": "deducted_net_profit",
+      "route": "raw_number",
+      "sections": [
+        "income_statement"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:deducted_net_profit"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "dataset": "holdout",
+      "metric_code": "listing_info",
+      "route": "business_fact",
+      "sections": [
+        "income_statement",
+        "balance_sheet",
+        "cash_flow",
+        "management_discussion",
+        "notes"
+      ],
+      "confidence": 0.6,
+      "rule": "default"
+    },
+    {
+      "claim_id": "CLM-H13",
+      "dataset": "holdout",
+      "metric_code": "profit_driver_attribution",
+      "route": "causality",
+      "sections": [
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "route:CAUSALITY"
+    },
+    {
+      "claim_id": "CLM-H14",
+      "dataset": "holdout",
+      "metric_code": "revenue_forecast",
+      "route": "forecast",
+      "sections": [
+        "income_statement",
+        "management_discussion",
+        "business"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_text:revenue_forecast+route:FORECAST"
+    },
+    {
+      "claim_id": "CLM-H15",
+      "dataset": "holdout",
+      "metric_code": "quarterly_revenue",
+      "route": "scope",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_text:quarterly_revenue"
+    },
+    {
+      "claim_id": "CLM-H16",
+      "dataset": "holdout",
+      "metric_code": "revenue",
+      "route": "raw_number",
+      "sections": [
+        "income_statement",
+        "management_discussion"
+      ],
+      "confidence": 0.9,
+      "rule": "metric_code:revenue"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "dataset": "holdout",
+      "metric_code": "avg_selling_price",
+      "route": "business_fact",
+      "sections": [
+        "income_statement",
+        "balance_sheet",
+        "cash_flow",
+        "management_discussion",
+        "notes"
+      ],
+      "confidence": 0.6,
+      "rule": "default"
+    }
+  ]
+}
