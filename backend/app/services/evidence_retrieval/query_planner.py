@@ -56,6 +56,7 @@ class QueryPlan:
     claim_type: str
     direction: str
     keywords: list
+    need: list = field(default_factory=list)
     queries: list = field(default_factory=list)
 
     def to_dict(self) -> dict:
@@ -66,6 +67,7 @@ class QueryPlan:
             "period": self.period, "period_aliases": self.period_aliases,
             "unit": self.unit, "scope": self.scope, "claim_type": self.claim_type,
             "direction": self.direction, "keywords": self.keywords[:12],
+            "need": self.need,
             "queries": [
                 {"query_id": q.query_id, "kind": q.kind, "query_text": q.query_text,
                  "candidate_block_ids": q.candidate_block_ids}
@@ -140,6 +142,20 @@ class QueryPlanner:
         keywords = [w for w in re.findall(r"[\u4e00-\u9fff]{2,6}", text) if w not in
                     ("公司", "集团", "我们", "报告", "期内", "实现", "同比", "增长", "下降", "达到", "超过", "根据", "发布")][:12]
 
+        # Phase 23.14 Step 2：Claim-aware need 解析（value / previous_value / growth）
+        need: list[str] = []
+        if value is not None:
+            need.append("value")
+        # 上一期数值需求：含"上年同期/上期/同比/较上年/比上期/增长/下降"等比较词
+        comp_words = ("上年同期", "上期", "同比", "较上年", "比上期", "去年同期", "相比上年", "增长", "下降", "增减")
+        if any(w in text for w in comp_words):
+            need.append("previous_value")
+        # 增长率需求：含"同比/增长/下降/YoY/增速/增幅"
+        growth_words = ("同比", "同比增长", "同比增长率", "增长幅度", "增速", "增幅", "YoY", "增长率", "增长")
+        if any(w in text for w in growth_words):
+            need.append("growth")
+        need = list(dict.fromkeys(need))  # 去重保序
+
         queries: list[QueryItem] = []
         qid = 0
 
@@ -174,6 +190,7 @@ class QueryPlanner:
             value=value, normalized_value=norm_str, period=period,
             period_aliases=_period_aliases(period), unit=unit, scope=scope,
             claim_type=claim_type, direction=_direction_of(text), keywords=keywords,
+            need=need,
             queries=queries,
         )
 

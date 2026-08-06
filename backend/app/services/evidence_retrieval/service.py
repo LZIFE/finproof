@@ -98,6 +98,49 @@ def filter_documents(session: Session, claim: dict) -> list[Document]:
 
 _FALLBACK = object()  # 候选 fallback 标记：aliases 为空时退化为「含数字的块全部进候选」
 
+# Phase 23.14 Step 3：Evidence Window 扩展半径（同页 ±3 块）与同表 y-range 阈值
+_WINDOW_RADIUS = 3
+_WINDOW_Y_TOLERANCE = 60.0  # 同表行 y0 允许偏差（pt）
+
+
+def _evidence_window(
+    session: Session,
+    doc_id: int,
+    page_id: int,
+    block_index: int,
+    y0: float,
+    radius: int = _WINDOW_RADIUS,
+) -> list[int]:
+    """命中 block 后扩展 Evidence Window：同页 ±radius 块 + 同表 y-range 块。
+
+    返回窗口内 block_ids（含命中块本身），按 block_index 升序。
+    用途：指标行/数值行/表头/单位被拆成多个 block 时，窗口内聚合可完整表达事实。
+    """
+    rows = (
+        session.query(DocumentBlock)
+        .filter(DocumentBlock.document_id == doc_id, DocumentBlock.page_id == page_id)
+        .order_by(DocumentBlock.block_index)
+        .all()
+    )
+    if not rows:
+        return []
+    idx_list = [r.block_index or 0 for r in rows]
+    try:
+        pos = idx_list.index(block_index)
+    except ValueError:
+        pos = None
+    window: set[int] = set()
+    if pos is not None:
+        lo, hi = max(0, pos - radius), min(len(rows), pos + radius + 1)
+        for r in rows[lo:hi]:
+            window.add(r.id)
+    # 同表 y-range：y0 与命中块接近的块（表格行）
+    if y0 is not None:
+        for r in rows:
+            if r.y0 is not None and abs((r.y0 or 0) - y0) <= _WINDOW_Y_TOLERANCE:
+                window.add(r.id)
+    return sorted(window)
+
 
 def _candidate_blocks(session: Session, doc: Document, aliases: set[str]):
     """全文检索候选：指标别名预筛（含数字的指标行优先），MVP 规模直接扫描。
@@ -225,6 +268,56 @@ def retrieve_for_claim(
                     "block_text": block.text[:300],
                 }
             )
+            # Phase 23.14 Step 3：Evidence Window 扩展——命中块后把同页 ±3 块 /
+            # 同表 y-range 块补充进候选池（指标/数值/表头/单位分块时窗口聚合才能表达事实）
+            win_ids = _evidence_window(session, doc.id, block.page_id, block.block_index or 0, block.y0 or 0.0)
+            if len(win_ids) > 1:
+                win_rows = (
+                    session.query(DocumentBlock)
+                    .filter(DocumentBlock.id.in_(win_ids))
+                    .order_by(DocumentBlock.block_index)
+                    .all()
+                )
+                seen_win = {(b["document_id"], b["block_id"]) for b in scored}
+                for wb in win_rows:
+                    if (doc.id, wb.id) in seen_win:
+                        continue
+                    if len(scored) >= max_blocks_per_doc:
+                        break
+                    if not wb.text:
+                        continue
+                    wtext = wb.text
+                    has_financial_number = re.search(r"(?<!\d)\d{1,3}(?:,\d{3})+(?!\d)", wb.text) or re.search(r"(?<!\d)\d{4,}(?!\d)", wb.text)
+                    if has_financial_number and not re.search(r"[万亿千]元", wb.text):
+                        pu = _page_unit(session, doc.id, wb.page_id)
+                        if pu:
+                            wtext = f"（单位：人民币{pu}）\n{wb.text}"
+                    ws = score_block(
+                        wtext, claim,
+                        doc_period=doc.report_period,
+                        weights=weights,
+                        section_bonus=1.0 if _page_section_flag(session, wb.page_id, section_cache) else 0.0,
+                    )
+                    if ws["final_score"] < MIN_CANDIDATE_SCORE:
+                        # 窗口块保底：含数字/指标的窗口块进入候选（不提前丢弃）
+                        if not (re.search(r"\d", wb.text) or ws["metric_score"] > 0):
+                            continue
+                        ws["final_score"] = MIN_CANDIDATE_SCORE
+                    scored.append(
+                        {
+                            "document_id": doc.id,
+                            "page_number": page_number,
+                            "block_id": wb.id,
+                            "page_id": wb.page_id,
+                            "y0": wb.y0 or 0.0,
+                            "reading_order": wb.reading_order or 0,
+                            **ws,
+                            "block_text": wb.text[:300],
+                            "retrieval_method": "evidence_window",
+                            "window_anchor_block_id": block.id,
+                        }
+                    )
+                    seen_win.add((doc.id, wb.id))
     # ---- Phase 23.13 Stage 3：Broad Page Retrieval（不提前丢弃）----
     # 精准候选不足（别名预筛/文档过滤命中少）时，放宽到 company 匹配 + 全文关键词：
     # 用空 aliases 全量扫描含数字块补充候选，避免"正确 evidence 未召回"。

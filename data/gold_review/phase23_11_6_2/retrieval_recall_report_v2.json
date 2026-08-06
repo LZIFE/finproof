@@ -1,0 +1,386 @@
+{
+  "phase": "23.14",
+  "step": "5_recall_evaluation",
+  "generated_at": "2026-08-06T05:05:26.600212+00:00",
+  "total_claims_with_gold_block": 30,
+  "candidate_recall": {
+    "recall@50": 0.2667,
+    "hit_count": 8
+  },
+  "evidence_window_recall": {
+    "recall": 0.2667,
+    "hit_count": 8
+  },
+  "target": {
+    "recall@50": 0.8,
+    "evidence_window_recall": 0.8
+  },
+  "target_met": {
+    "recall@50": false,
+    "evidence_window_recall": false
+  },
+  "per_claim": [
+    {
+      "claim_id": "CLM-001",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "retrieved_count": 50,
+      "recall@50": true,
+      "evidence_window_recall": true
+    },
+    {
+      "claim_id": "CLM-002",
+      "dataset": "demo",
+      "gold_blocks": [
+        "4449",
+        "4440",
+        "4452",
+        "4455",
+        "4442"
+      ],
+      "retrieved_count": 50,
+      "recall@50": true,
+      "evidence_window_recall": true
+    },
+    {
+      "claim_id": "CLM-003",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "retrieved_count": 50,
+      "recall@50": true,
+      "evidence_window_recall": true
+    },
+    {
+      "claim_id": "CLM-004",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "retrieved_count": 50,
+      "recall@50": true,
+      "evidence_window_recall": true
+    },
+    {
+      "claim_id": "CLM-005",
+      "dataset": "demo",
+      "gold_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "retrieved_count": 48,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-006",
+      "dataset": "demo",
+      "gold_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-007",
+      "dataset": "demo",
+      "gold_blocks": [
+        "38"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-009",
+      "dataset": "demo",
+      "gold_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-010",
+      "dataset": "demo",
+      "gold_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-011",
+      "dataset": "demo",
+      "gold_blocks": [
+        "38"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-012",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "193",
+        "195"
+      ],
+      "retrieved_count": 50,
+      "recall@50": true,
+      "evidence_window_recall": true
+    },
+    {
+      "claim_id": "CLM-014",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "retrieved_count": 50,
+      "recall@50": true,
+      "evidence_window_recall": true
+    },
+    {
+      "claim_id": "CLM-015",
+      "dataset": "demo",
+      "gold_blocks": [
+        "38"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-016",
+      "dataset": "demo",
+      "gold_blocks": [
+        "9",
+        "6",
+        "2",
+        "4",
+        "3",
+        "11",
+        "8",
+        "5",
+        "10",
+        "7"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-017",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "retrieved_count": 50,
+      "recall@50": true,
+      "evidence_window_recall": true
+    },
+    {
+      "claim_id": "CLM-018",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "retrieved_count": 50,
+      "recall@50": true,
+      "evidence_window_recall": true
+    },
+    {
+      "claim_id": "CLM-024",
+      "dataset": "demo",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H01",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H02",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 14,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H03",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H04",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H05",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H06",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "retrieved_count": 35,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H07",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "retrieved_count": 17,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H08",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 28,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H09",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H10",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "9",
+        "2",
+        "6",
+        "3",
+        "11",
+        "8",
+        "7"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H11",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H12",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "104",
+        "110",
+        "109"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    },
+    {
+      "claim_id": "CLM-H16",
+      "dataset": "holdout",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "retrieved_count": 50,
+      "recall@50": false,
+      "evidence_window_recall": false
+    }
+  ]
+}

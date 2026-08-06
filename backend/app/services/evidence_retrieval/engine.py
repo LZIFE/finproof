@@ -412,11 +412,45 @@ DEFAULT_WEIGHTS = {
     "table": 0.05,
     "section": 0.10,
     "evidence_quality": 0.10,
+    "table_awareness": 0.10,  # Phase 23.14 Step 4：财报表格感知加分（含数字/年份/单位/指标行）
 }
 # 防止"相同数字、不同指标/期间"排名过高：指标未命中但数值命中的候选施加惩罚系数
 _METRIC_MISS_VALUE_HIT_PENALTY = 0.5
 # period 不兼容时降权但不归零：有期间主张但块+文档都未命中 → 倒扣 penalty（乘 0.3）
 _PERIOD_MISS_PENALTY = 0.3
+
+# Phase 23.14 Step 4：财报表格感知——表头/单位/年份/指标行关键词
+_TABLE_HEADER_KW = ("项目", "附注", "本期金额", "上期金额", "本年", "上年", "本期", "上期", "合并", "公司", "年初余额", "期末余额")
+_TABLE_UNIT_KW = ("千元", "万元", "亿元", "元", "千美元", "万美元", "百万", "万元整")
+_TABLE_YEAR_RE = re.compile(r"(?<!\d)(19|20)\d{2}(?!\d)")
+_TABLE_METRIC_ROW_KW = ("收入", "利润", "成本", "费用", "收益", "资产", "负债", "权益", "现金流", "每股", "毛利率", "净资产")
+
+
+def table_awareness_score(text: str) -> float:
+    """财报表格感知分（0-1）：含数字/年份/单位/指标行的块优先，空/纯标题降分。
+
+    返回加分值（0.0-1.0），供 score_block 叠加到 final_score。
+    """
+    if not text or is_noise_block(text):
+        return 0.0
+    t = text.strip()
+    score = 0.0
+    # 含财务数字（千分位或长数字）
+    if re.search(r"(?<!\d)\d{1,3}(?:,\d{3})+(?!\d)", t) or re.search(r"(?<!\d)\d{4,}(?!\d)", t):
+        score += 0.4
+    # 含年份（2023-2025）
+    if _TABLE_YEAR_RE.search(t):
+        score += 0.2
+    # 含单位
+    if any(u in t for u in _TABLE_UNIT_KW):
+        score += 0.15
+    # 含指标行关键词
+    if any(m in t for m in _TABLE_METRIC_ROW_KW):
+        score += 0.15
+    # 含表头关键词（但纯表头无数字不加满）
+    if any(h in t for h in _TABLE_HEADER_KW):
+        score += 0.1
+    return round(min(score, 1.0), 4)
 
 
 # 管理层讨论/经营分析章节关键词（无数字语义主张的 document_section_bonus）
@@ -540,6 +574,8 @@ def score_block(
     period_score = period_matches(claim.get("period"), block_text, doc_period)
     entity_score = entity_matches(block_text, claim.get("entity_name"))
     text_score = text_similarity(claim.get("original_text", ""), block_text)
+    # Phase 23.14 Step 4：财报表格感知加分（含数字/年份/单位/指标行优先，空/纯标题降分）
+    table_score = table_awareness_score(block_text)
 
     final = (
         w["metric"] * metric_score
@@ -548,6 +584,8 @@ def score_block(
         + w["entity"] * entity_score
         + w["text"] * text_score
     )
+    # Phase 23.14 Step 4：表格感知分叠加（财务数据行/含单位年份的块排名提升）
+    final += w.get("table_awareness", 0.10) * table_score
     # metric+value 同时命中时给协同加成（财务数据行简洁命中 > 叙述块冗余命中）
     if metric_score == 1.0 and value_score == 1.0:
         final += w.get("metric_value_synergy", 0.45)
