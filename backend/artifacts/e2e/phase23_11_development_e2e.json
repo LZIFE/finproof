@@ -9,27 +9,27 @@
       "selector_strategy": "Top1",
       "max_evidence": 1,
       "total_claims": 43,
-      "correct": 12,
-      "accuracy": 0.2791,
-      "macro_f1": 0.3994,
+      "correct": 21,
+      "accuracy": 0.4884,
+      "macro_f1": 0.4979,
       "per_class_f1": {
-        "INSUFFICIENT_EVIDENCE": 0.0741,
+        "INSUFFICIENT_EVIDENCE": 0.1053,
         "OPINION_OR_FORECAST": 1.0,
         "PARTIALLY_SUPPORTED": 0.0,
-        "REFUTED": 0.3478,
-        "SUPPORTED": 0.3077,
+        "REFUTED": 0.6154,
+        "SUPPORTED": 0.6,
         "UNABLE_TO_DETERMINE": 0.6667
       },
-      "coverage": 0.4419,
-      "abstentions": 24,
+      "coverage": 0.6279,
+      "abstentions": 16,
       "retrieval_failures": 0,
-      "verification_failures": 31,
+      "verification_failures": 22,
       "pred_distribution": {
-        "SUPPORTED": 8,
-        "INSUFFICIENT_EVIDENCE": 24,
-        "REFUTED": 6,
+        "SUPPORTED": 12,
+        "INSUFFICIENT_EVIDENCE": 16,
+        "REFUTED": 9,
         "OPINION_OR_FORECAST": 2,
-        "PARTIALLY_SUPPORTED": 2,
+        "PARTIALLY_SUPPORTED": 3,
         "UNABLE_TO_DETERMINE": 1
       },
       "per_claim": [
@@ -49,7 +49,7 @@
           "pred": "SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-003",
@@ -58,16 +58,16 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 0
         },
         {
           "claim_id": "CLM-004",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 7
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-005",
@@ -76,7 +76,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-006",
@@ -94,7 +94,7 @@
           "pred": "REFUTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-008",
@@ -112,7 +112,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-010",
@@ -121,7 +121,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-011",
@@ -130,14 +130,14 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 0
         },
         {
           "claim_id": "CLM-012",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
           "candidates_after_gate": 7
         },
@@ -145,28 +145,28 @@
           "claim_id": "CLM-013",
           "route": "STRUCTURED_NUMERIC",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 7
         },
         {
           "claim_id": "CLM-014",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-015",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-016",
@@ -175,7 +175,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-017",
@@ -190,8 +190,8 @@
           "claim_id": "CLM-018",
           "route": "STRUCTURED_NUMERIC",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
           "candidates_after_gate": 8
         },
@@ -202,7 +202,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-020",
@@ -247,7 +247,7 @@
           "pred": "SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-025",
@@ -256,7 +256,7 @@
           "pred": "PARTIALLY_SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-026",
@@ -265,16 +265,16 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 6
         },
         {
           "claim_id": "CLM-H01",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "REFUTED",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-H02",
@@ -283,16 +283,16 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 3
         },
         {
           "claim_id": "CLM-H03",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 2
         },
         {
           "claim_id": "CLM-H04",
@@ -301,7 +301,7 @@
           "pred": "SUPPORTED",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-H05",
@@ -319,7 +319,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 6
         },
         {
           "claim_id": "CLM-H07",
@@ -328,16 +328,16 @@
           "pred": "SUPPORTED",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-H08",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-H09",
@@ -346,7 +346,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-H10",
@@ -364,7 +364,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 6
         },
         {
           "claim_id": "CLM-H12",
@@ -391,7 +391,7 @@
           "pred": "OPINION_OR_FORECAST",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 0
+          "candidates_after_gate": 2
         },
         {
           "claim_id": "CLM-H15",
@@ -400,7 +400,7 @@
           "pred": "UNABLE_TO_DETERMINE",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-H16",
@@ -409,16 +409,16 @@
           "pred": "REFUTED",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-H17",
           "route": "NARRATIVE_FACT",
           "gold": "INSUFFICIENT_EVIDENCE",
-          "pred": "SUPPORTED",
+          "pred": "PARTIALLY_SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         }
       ]
     },
@@ -427,27 +427,27 @@
       "selector_strategy": "Top3",
       "max_evidence": 3,
       "total_claims": 43,
-      "correct": 12,
-      "accuracy": 0.2791,
-      "macro_f1": 0.3994,
+      "correct": 23,
+      "accuracy": 0.5349,
+      "macro_f1": 0.5675,
       "per_class_f1": {
-        "INSUFFICIENT_EVIDENCE": 0.0741,
+        "INSUFFICIENT_EVIDENCE": 0.1176,
         "OPINION_OR_FORECAST": 1.0,
-        "PARTIALLY_SUPPORTED": 0.0,
-        "REFUTED": 0.3478,
-        "SUPPORTED": 0.3077,
+        "PARTIALLY_SUPPORTED": 0.3333,
+        "REFUTED": 0.6667,
+        "SUPPORTED": 0.6207,
         "UNABLE_TO_DETERMINE": 0.6667
       },
-      "coverage": 0.4419,
-      "abstentions": 24,
+      "coverage": 0.6744,
+      "abstentions": 14,
       "retrieval_failures": 0,
-      "verification_failures": 31,
+      "verification_failures": 20,
       "pred_distribution": {
-        "SUPPORTED": 8,
-        "INSUFFICIENT_EVIDENCE": 24,
-        "REFUTED": 6,
+        "SUPPORTED": 11,
+        "INSUFFICIENT_EVIDENCE": 14,
+        "REFUTED": 10,
         "OPINION_OR_FORECAST": 2,
-        "PARTIALLY_SUPPORTED": 2,
+        "PARTIALLY_SUPPORTED": 5,
         "UNABLE_TO_DETERMINE": 1
       },
       "per_claim": [
@@ -467,7 +467,7 @@
           "pred": "SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-003",
@@ -476,16 +476,16 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 0
         },
         {
           "claim_id": "CLM-004",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 7
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-005",
@@ -494,14 +494,14 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-006",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
           "candidates_after_gate": 9
         },
@@ -512,7 +512,7 @@
           "pred": "REFUTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-008",
@@ -530,7 +530,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-010",
@@ -539,7 +539,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-011",
@@ -548,14 +548,14 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 0
         },
         {
           "claim_id": "CLM-012",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
           "candidates_after_gate": 7
         },
@@ -563,37 +563,37 @@
           "claim_id": "CLM-013",
           "route": "STRUCTURED_NUMERIC",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 7
         },
         {
           "claim_id": "CLM-014",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-015",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-016",
           "route": "NARRATIVE_FACT",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-017",
@@ -608,8 +608,8 @@
           "claim_id": "CLM-018",
           "route": "STRUCTURED_NUMERIC",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
           "candidates_after_gate": 8
         },
@@ -620,7 +620,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-020",
@@ -662,10 +662,10 @@
           "claim_id": "CLM-024",
           "route": "STRUCTURED_NUMERIC",
           "gold": "PARTIALLY_SUPPORTED",
-          "pred": "SUPPORTED",
-          "correct": false,
+          "pred": "PARTIALLY_SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-025",
@@ -674,7 +674,7 @@
           "pred": "PARTIALLY_SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-026",
@@ -683,16 +683,16 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 6
         },
         {
           "claim_id": "CLM-H01",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "REFUTED",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-H02",
@@ -701,16 +701,16 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 3
         },
         {
           "claim_id": "CLM-H03",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 2
         },
         {
           "claim_id": "CLM-H04",
@@ -719,7 +719,7 @@
           "pred": "SUPPORTED",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-H05",
@@ -737,7 +737,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 6
         },
         {
           "claim_id": "CLM-H07",
@@ -746,16 +746,16 @@
           "pred": "SUPPORTED",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-H08",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-H09",
@@ -764,7 +764,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-H10",
@@ -782,7 +782,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 6
         },
         {
           "claim_id": "CLM-H12",
@@ -797,8 +797,8 @@
           "claim_id": "CLM-H13",
           "route": "INSUFFICIENTLY_PARSED",
           "gold": "REFUTED",
-          "pred": "REFUTED",
-          "correct": true,
+          "pred": "PARTIALLY_SUPPORTED",
+          "correct": false,
           "candidates_before_gate": 10,
           "candidates_after_gate": 10
         },
@@ -809,7 +809,7 @@
           "pred": "OPINION_OR_FORECAST",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 0
+          "candidates_after_gate": 2
         },
         {
           "claim_id": "CLM-H15",
@@ -818,7 +818,7 @@
           "pred": "UNABLE_TO_DETERMINE",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-H16",
@@ -827,16 +827,16 @@
           "pred": "REFUTED",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-H17",
           "route": "NARRATIVE_FACT",
           "gold": "INSUFFICIENT_EVIDENCE",
-          "pred": "SUPPORTED",
+          "pred": "PARTIALLY_SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         }
       ]
     },
@@ -845,27 +845,27 @@
       "selector_strategy": "Top3",
       "max_evidence": 3,
       "total_claims": 43,
-      "correct": 12,
-      "accuracy": 0.2791,
-      "macro_f1": 0.3994,
+      "correct": 23,
+      "accuracy": 0.5349,
+      "macro_f1": 0.5675,
       "per_class_f1": {
-        "INSUFFICIENT_EVIDENCE": 0.0741,
+        "INSUFFICIENT_EVIDENCE": 0.1176,
         "OPINION_OR_FORECAST": 1.0,
-        "PARTIALLY_SUPPORTED": 0.0,
-        "REFUTED": 0.3478,
-        "SUPPORTED": 0.3077,
+        "PARTIALLY_SUPPORTED": 0.3333,
+        "REFUTED": 0.6667,
+        "SUPPORTED": 0.6207,
         "UNABLE_TO_DETERMINE": 0.6667
       },
-      "coverage": 0.4419,
-      "abstentions": 24,
+      "coverage": 0.6744,
+      "abstentions": 14,
       "retrieval_failures": 0,
-      "verification_failures": 31,
+      "verification_failures": 20,
       "pred_distribution": {
-        "SUPPORTED": 8,
-        "INSUFFICIENT_EVIDENCE": 24,
-        "REFUTED": 6,
+        "SUPPORTED": 11,
+        "INSUFFICIENT_EVIDENCE": 14,
+        "REFUTED": 10,
         "OPINION_OR_FORECAST": 2,
-        "PARTIALLY_SUPPORTED": 2,
+        "PARTIALLY_SUPPORTED": 5,
         "UNABLE_TO_DETERMINE": 1
       },
       "per_claim": [
@@ -885,7 +885,7 @@
           "pred": "SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-003",
@@ -894,16 +894,16 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 0
         },
         {
           "claim_id": "CLM-004",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 7
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-005",
@@ -912,14 +912,14 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-006",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
           "candidates_after_gate": 9
         },
@@ -930,7 +930,7 @@
           "pred": "REFUTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-008",
@@ -948,7 +948,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-010",
@@ -957,7 +957,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-011",
@@ -966,14 +966,14 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 0
         },
         {
           "claim_id": "CLM-012",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
           "candidates_after_gate": 7
         },
@@ -981,37 +981,37 @@
           "claim_id": "CLM-013",
           "route": "STRUCTURED_NUMERIC",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 7
         },
         {
           "claim_id": "CLM-014",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-015",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-016",
           "route": "NARRATIVE_FACT",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-017",
@@ -1026,8 +1026,8 @@
           "claim_id": "CLM-018",
           "route": "STRUCTURED_NUMERIC",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
           "candidates_after_gate": 8
         },
@@ -1038,7 +1038,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-020",
@@ -1080,10 +1080,10 @@
           "claim_id": "CLM-024",
           "route": "STRUCTURED_NUMERIC",
           "gold": "PARTIALLY_SUPPORTED",
-          "pred": "SUPPORTED",
-          "correct": false,
+          "pred": "PARTIALLY_SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-025",
@@ -1092,7 +1092,7 @@
           "pred": "PARTIALLY_SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-026",
@@ -1101,16 +1101,16 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 6
         },
         {
           "claim_id": "CLM-H01",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "REFUTED",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 8
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-H02",
@@ -1119,16 +1119,16 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 3
         },
         {
           "claim_id": "CLM-H03",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "REFUTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 2
         },
         {
           "claim_id": "CLM-H04",
@@ -1137,7 +1137,7 @@
           "pred": "SUPPORTED",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-H05",
@@ -1155,7 +1155,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 6
         },
         {
           "claim_id": "CLM-H07",
@@ -1164,16 +1164,16 @@
           "pred": "SUPPORTED",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-H08",
           "route": "PERIOD_COMPARISON",
           "gold": "SUPPORTED",
-          "pred": "INSUFFICIENT_EVIDENCE",
-          "correct": false,
+          "pred": "SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-H09",
@@ -1182,7 +1182,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-H10",
@@ -1200,7 +1200,7 @@
           "pred": "INSUFFICIENT_EVIDENCE",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 6
         },
         {
           "claim_id": "CLM-H12",
@@ -1215,8 +1215,8 @@
           "claim_id": "CLM-H13",
           "route": "INSUFFICIENTLY_PARSED",
           "gold": "REFUTED",
-          "pred": "REFUTED",
-          "correct": true,
+          "pred": "PARTIALLY_SUPPORTED",
+          "correct": false,
           "candidates_before_gate": 10,
           "candidates_after_gate": 10
         },
@@ -1227,7 +1227,7 @@
           "pred": "OPINION_OR_FORECAST",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 0
+          "candidates_after_gate": 2
         },
         {
           "claim_id": "CLM-H15",
@@ -1236,7 +1236,7 @@
           "pred": "UNABLE_TO_DETERMINE",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         },
         {
           "claim_id": "CLM-H16",
@@ -1245,16 +1245,16 @@
           "pred": "REFUTED",
           "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 9
+          "candidates_after_gate": 10
         },
         {
           "claim_id": "CLM-H17",
           "route": "NARRATIVE_FACT",
           "gold": "INSUFFICIENT_EVIDENCE",
-          "pred": "SUPPORTED",
+          "pred": "PARTIALLY_SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 9
         }
       ]
     }
@@ -1273,19 +1273,19 @@
       "source": "phase23_10_development_e2e.json"
     },
     "phase23_11_top1": {
-      "accuracy": 0.2791,
-      "macro_f1": 0.3994,
-      "coverage": 0.4419
+      "accuracy": 0.4884,
+      "macro_f1": 0.4979,
+      "coverage": 0.6279
     },
     "phase23_11_top3": {
-      "accuracy": 0.2791,
-      "macro_f1": 0.3994,
-      "coverage": 0.4419
+      "accuracy": 0.5349,
+      "macro_f1": 0.5675,
+      "coverage": 0.6744
     },
     "phase23_11_gate": {
-      "accuracy": 0.2791,
-      "macro_f1": 0.3994,
-      "coverage": 0.4419
+      "accuracy": 0.5349,
+      "macro_f1": 0.5675,
+      "coverage": 0.6744
     }
   },
   "targets": {

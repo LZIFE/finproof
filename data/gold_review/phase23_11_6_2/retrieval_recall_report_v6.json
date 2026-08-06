@@ -1,0 +1,327 @@
+{
+  "phase": "23.18",
+  "step": "4_recall_eval",
+  "total": 30,
+  "recall": {
+    "recall@1": 0.0333,
+    "recall@5": 0.1333,
+    "recall@10": 0.1333,
+    "recall@50": 0.3
+  },
+  "hits": {
+    "recall@1": 1,
+    "recall@5": 4,
+    "recall@10": 4,
+    "recall@50": 9
+  },
+  "before_23_17": {
+    "recall@50": 0.0667,
+    "recall@10": 0.0,
+    "recall@5": 0.0,
+    "recall@1": 0.0
+  },
+  "per_claim_ranks": [
+    {
+      "claim_id": "CLM-001",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "first_rank": 13,
+      "in_top50": true
+    },
+    {
+      "claim_id": "CLM-002",
+      "gold_blocks": [
+        "4449",
+        "4440",
+        "4452",
+        "4455",
+        "4442"
+      ],
+      "first_rank": 32,
+      "in_top50": true
+    },
+    {
+      "claim_id": "CLM-003",
+      "gold_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "first_rank": 3,
+      "in_top50": true
+    },
+    {
+      "claim_id": "CLM-004",
+      "gold_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-005",
+      "gold_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-006",
+      "gold_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-007",
+      "gold_blocks": [
+        "38"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-009",
+      "gold_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-010",
+      "gold_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-011",
+      "gold_blocks": [
+        "38"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-012",
+      "gold_blocks": [
+        "169",
+        "193",
+        "195"
+      ],
+      "first_rank": 5,
+      "in_top50": true
+    },
+    {
+      "claim_id": "CLM-014",
+      "gold_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "first_rank": 1,
+      "in_top50": true
+    },
+    {
+      "claim_id": "CLM-015",
+      "gold_blocks": [
+        "38"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-016",
+      "gold_blocks": [
+        "9",
+        "6",
+        "2",
+        "4",
+        "3",
+        "11",
+        "8",
+        "5",
+        "10",
+        "7"
+      ],
+      "first_rank": 11,
+      "in_top50": true
+    },
+    {
+      "claim_id": "CLM-017",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "first_rank": 14,
+      "in_top50": true
+    },
+    {
+      "claim_id": "CLM-018",
+      "gold_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "first_rank": 2,
+      "in_top50": true
+    },
+    {
+      "claim_id": "CLM-024",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "first_rank": 28,
+      "in_top50": true
+    },
+    {
+      "claim_id": "CLM-H01",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H02",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H03",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H04",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H05",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H06",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H07",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H08",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H09",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H10",
+      "gold_blocks": [
+        "9",
+        "2",
+        "6",
+        "3",
+        "11",
+        "8",
+        "7"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H11",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H12",
+      "gold_blocks": [
+        "104",
+        "110",
+        "109"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    },
+    {
+      "claim_id": "CLM-H16",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "first_rank": null,
+      "in_top50": false
+    }
+  ]
+}

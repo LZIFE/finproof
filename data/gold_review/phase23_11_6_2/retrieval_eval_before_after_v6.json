@@ -1,0 +1,64 @@
+{
+  "phase": "23.18",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T07:21:19.853898+00:00",
+  "recall_before_23_17": {
+    "recall@50": 0.0667,
+    "recall@10": 0.0,
+    "recall@5": 0.0,
+    "recall@1": 0.0
+  },
+  "recall_after_23_18": {
+    "recall@1": 0.0333,
+    "recall@5": 0.1333,
+    "recall@10": 0.1333,
+    "recall@50": 0.3
+  },
+  "recall_delta": {
+    "recall@50": 0.2333,
+    "recall@10": 0.1333,
+    "recall@5": 0.1333,
+    "recall@1": 0.0333
+  },
+  "per_evidence_rank": {
+    "before_example": {
+      "CLM-001": 116
+    },
+    "after_ranks": {
+      "CLM-001": 13,
+      "CLM-002": 32,
+      "CLM-003": 3,
+      "CLM-012": 5,
+      "CLM-014": 1,
+      "CLM-016": 11,
+      "CLM-017": 14,
+      "CLM-018": 2,
+      "CLM-024": 28
+    },
+    "note": "CLM-001 block 189：23.17 rerank 第 116 位（text-heavy 权重）→ 23.18 first_rank=13（financial_fact_match 主导）"
+  },
+  "real_e2e_before_23_17": {
+    "accuracy": 0.2791,
+    "macro_f1": 0.3994,
+    "coverage": 0.4419
+  },
+  "real_e2e_after_23_18_gate": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5675,
+    "coverage": 0.6744,
+    "abstentions": 14
+  },
+  "real_e2e_after_top1": {
+    "accuracy": 0.4884,
+    "macro_f1": 0.4979
+  },
+  "delta": {
+    "accuracy": 0.2558,
+    "macro_f1": 0.1681,
+    "coverage": 0.2325
+  },
+  "target_met": {
+    "recall@50_target_0_8": false,
+    "accuracy_target_0_7": false
+  }
+}
