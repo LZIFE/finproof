@@ -135,23 +135,30 @@ def _block_value_hits(block_text: str, claim_value: float, claim_unit: str | Non
 _METRIC_ALIASES: dict[str, set[str]] = {
     "revenue": {"营业收入", "营业总收入", "主营业务收入", "营收", "收入", "Revenue", "Sales"},
     "total_operating_revenue": {"营业总收入", "营业收入", "主营业务收入", "营收", "收入", "Revenue", "Sales"},
-    "net_profit_attributable": {"归属于上市公司股东的净利润", "归属于母公司股东的净利润", "归母净利润", "归母净利"},
-    "net_profit": {"净利润", "Net Income"},
+    "net_profit_attributable": {
+        "归属于上市公司股东的净利润", "归属于母公司股东的净利润", "归母净利润", "归母净利",
+        "Net income attributable", "Profit attributable", "net profit attributable",
+    },
+    "net_profit": {"净利润", "Net Income", "net income", "Net profit"},
     "deducted_net_profit": {
         "扣除非经常性损益的净利润", "归属于上市公司股东的扣除非经常性损益的净利润",
-        "扣非归母净利润", "扣非净利润", "扣非",
+        "扣非归母净利润", "扣非净利润", "扣非", "Deducted net profit",
     },
     "operating_cash_flow": {
         "经营活动产生的现金流量净额", "经营活动现金流量净额", "经营活动现金流净额",
         "经营现金流净额", "经营现金流", "经营活动现金流", "现金流量净额",
+        "Operating cash flow", "operating cash flow", "OCF",
     },
-    "basic_eps": {"基本每股收益"},
-    "eps": {"稀释每股收益", "每股收益"},
-    "gross_margin": {"毛利率"},
-    "roe": {"加权平均净资产收益率", "净资产收益率", "加权净资产收益率", "ROE"},
-    "total_assets": {"总资产"},
-    "net_assets": {"归属于上市公司股东的净资产", "净资产"},
-    "yoy_growth_revenue": {"营业收入同比增长", "营业总收入同比增长", "收入同比增长", "营收同比增长", "YoY", "增长幅度"},
+    "basic_eps": {"基本每股收益", "Basic EPS", "basic EPS"},
+    "eps": {"稀释每股收益", "每股收益", "EPS", "Earnings per share"},
+    "gross_margin": {"毛利率", "Gross margin", "gross margin"},
+    "roe": {"加权平均净资产收益率", "净资产收益率", "加权净资产收益率", "ROE", "Return on equity"},
+    "total_assets": {"总资产", "Total assets", "total assets", "资产总额", "资产合计"},
+    "net_assets": {"归属于上市公司股东的净资产", "净资产", "Net assets", "net assets", "股东权益合计"},
+    "yoy_growth_revenue": {
+        "营业收入同比增长", "营业总收入同比增长", "收入同比增长", "营收同比增长",
+        "YoY", "增长幅度", "同比", "增长率", "increase", "change", "同比增长率",
+    },
 }
 _ALIAS_BY_NAME: dict[str, str] = {}
 for _code, _names in _METRIC_ALIASES.items():

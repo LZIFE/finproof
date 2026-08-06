@@ -167,3 +167,71 @@ def retrieve_financial_evidence(
         })
     scored.sort(key=lambda e: -e["retrieval_score"])
     return scored[:top_k]
+
+
+def _company_match(claim_company: str | None, ev_company: str) -> float:
+    """公司匹配（精确或简称包含）。"""
+    cc = (claim_company or "").strip()
+    ec = (ev_company or "").strip()
+    if not cc or not ec:
+        return 0.0
+    if cc == ec:
+        return 1.0
+    # 简称：美的集团 ↔ 美的 / 宜宾五粮液 ↔ 五粮液
+    if cc[:2] in ec or ec[:2] in cc:
+        return 1.0
+    return 0.0
+
+
+def fact_first_candidates(
+    claim: dict,
+    top_k: int = 100,
+) -> list[int]:
+    """Phase 23.27 Step 2 — Fact First Retrieval 路径。
+
+    Claim → Financial Evidence Index → Fact match → source_blocks。
+
+    优先级（依次）：
+    1. company match（同公司）
+    2. metric family match（revenue≈total_operating_revenue）
+    3. value match（claim 数值 vs fact current/previous，单位换算）
+    4. period match（claim 年份 ∈ fact periods）
+
+    返回：匹配证据对象的 source_blocks（去重，按匹配分降序）——
+    作为 fact_candidates 与 block_candidates 并行 union（Step 3）。
+    """
+    claim_company = str(claim.get("entity_name") or claim.get("entity") or claim.get("company") or "").strip()
+    claim_code = str(claim.get("metric_code") or "").strip() or str(claim.get("metric") or "").strip()
+    claim_value = claim.get("reported_value") or claim.get("value")
+    if isinstance(claim_value, str):
+        try:
+            claim_value = float(claim_value.replace(",", ""))
+        except ValueError:
+            claim_value = None
+    claim_unit = str(claim.get("unit") or "").strip()
+    claim_period = claim.get("period")
+    claim_text = str(claim.get("original_text") or claim.get("claim_text") or "")
+
+    scored: list[dict] = []
+    for ev in _load_index():
+        cm = _company_match(claim_company, ev.get("company", ""))
+        mm = _metric_match(claim_code, ev.get("metric_code", ""))
+        vm = _value_compatible(claim_value, claim_unit, ev.get("current_value"), ev.get("unit"))
+        pm = _period_match(claim_period, ev.get("periods", []))
+        if cm <= 0 or mm <= 0:
+            continue
+        score = 1.0 * mm + 0.7 * vm + 0.5 * pm
+        if score <= 1.0:
+            continue  # 至少 metric 匹配且 company 匹配，score>1 才保留
+        scored.append({**ev, "fact_first_score": round(score, 4)})
+    scored.sort(key=lambda e: -e["fact_first_score"])
+
+    # 返回 source_blocks 去重（保序）
+    blocks: list[int] = []
+    seen: set[int] = set()
+    for ev in scored[:top_k]:
+        for b in ev.get("source_blocks", []):
+            if b not in seen:
+                seen.add(b)
+                blocks.append(b)
+    return blocks

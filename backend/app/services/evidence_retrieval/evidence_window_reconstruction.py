@@ -146,32 +146,41 @@ def reconstruct_evidence_window(
     # 3) 提取财务事实
     fact = extract_financial_fact(merged_text)
 
-    # 3b) metric 优先取行标签块（Phase 23.21：行图组合——row_label 块提供指标名），
+    # 3a) Phase 23.26：锚块自身文本含指标时优先采用（如 block 189 "营业收入（千元）456,451,731"）。
+    #     修复窗口合并把 page 9 其他指标行（归母净利润）的 metric 误赋给营业收入块的问题。
+    anchor_self = extract_financial_fact(anchor_block.text or "")
+    metric = anchor_self["metric"] or fact["metric"]
+    if anchor_self["metric"]:
+        fact["metric"] = anchor_self["metric"]
+        fact["metric_code"] = anchor_self["metric_code"]
+        fact["row_label"] = anchor_self["metric"]
+
+    # 3b) metric 兜底：锚块自身无指标时，取行标签块（Phase 23.21：行图组合）
     #     避免 merged_text 最长别名把"营业收入"误判为"营业总收入"
-    metric = fact["metric"]
-    row_label_blocks = [b for b in window_blocks if block_roles.get(b.id) == "row_label"]
-    for b in row_label_blocks:
-        sub_fact = extract_financial_fact(b.text or "")
-        if sub_fact["metric"]:
-            metric = sub_fact["metric"]
-            fact["metric"] = metric
-            fact["metric_code"] = sub_fact["metric_code"]
-            fact["row_label"] = sub_fact["metric"]
-            break
-    # 无 row_label 块时回退：短文本含指标词的小块
-    if not row_label_blocks:
-        for b in window_blocks:
-            btext = (b.text or "").strip()
-            if not btext or len(btext) > 30:
-                continue
-            if re.search(r"(?<!\d)\d{1,3}(?:,\d{3})+(?!\d)", btext):
-                continue
-            sub_fact = extract_financial_fact(btext)
+    if not anchor_self["metric"]:
+        row_label_blocks = [b for b in window_blocks if block_roles.get(b.id) == "row_label"]
+        for b in row_label_blocks:
+            sub_fact = extract_financial_fact(b.text or "")
             if sub_fact["metric"]:
                 metric = sub_fact["metric"]
                 fact["metric"] = metric
                 fact["metric_code"] = sub_fact["metric_code"]
+                fact["row_label"] = sub_fact["metric"]
                 break
+        # 无 row_label 块时回退：短文本含指标词的小块
+        if not row_label_blocks:
+            for b in window_blocks:
+                btext = (b.text or "").strip()
+                if not btext or len(btext) > 30:
+                    continue
+                if re.search(r"(?<!\d)\d{1,3}(?:,\d{3})+(?!\d)", btext):
+                    continue
+                sub_fact = extract_financial_fact(btext)
+                if sub_fact["metric"]:
+                    metric = sub_fact["metric"]
+                    fact["metric"] = metric
+                    fact["metric_code"] = sub_fact["metric_code"]
+                    break
 
     # 4) 数值序列：current（第 1 个非年份数值）/ previous（第 2 个）
     values = _values_series(merged_text)

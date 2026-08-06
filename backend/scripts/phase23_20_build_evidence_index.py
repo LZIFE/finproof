@@ -44,6 +44,18 @@ def main() -> int:
     docs = {r[0]: r[1] for r in conn.execute("SELECT id, company_name FROM documents").fetchall()}
     # 表格索引
     tables = json.loads(TABLES_PATH.read_text(encoding="utf-8")).get("tables", [])
+    # Phase 23.28 Task 2：章节索引（notes / management_discussion / financial_highlights 抽取）
+    SECTIONS_PATH = BACKEND / "artifacts" / "gold_contract" / "phase23_15_document_sections.json"
+    EXTRA_SECTION_TYPES = ("management_discussion", "notes", "financial_highlights")
+    sections = (
+        json.loads(SECTIONS_PATH.read_text(encoding="utf-8")).get("sections", [])
+        if SECTIONS_PATH.exists() else []
+    )
+    extra_pages: dict[tuple, str] = {}  # (doc_id, page_number) -> section_type
+    for s in sections:
+        if s.get("section_type") in EXTRA_SECTION_TYPES:
+            for pn in range(s.get("page_start", 0), s.get("page_end", 0) + 1):
+                extra_pages[(s.get("document_id"), pn)] = s.get("section_type")
 
     # 加载 DocumentBlock model（需 ORM session）
     from app.db import SessionLocal
@@ -55,6 +67,37 @@ def main() -> int:
     seen_keys: set = set()
     eid = 0
 
+    def _add_evidence(doc_id, page, table_type, block):
+        """重建证据对象并去重入库。"""
+        nonlocal eid
+        obj = reconstruct_evidence_window(session, block)
+        if not obj.get("has_number"):
+            return
+        key = (obj.get("metric"), obj.get("current_value"), doc_id, page)
+        if key in seen_keys:
+            return
+        seen_keys.add(key)
+        eid += 1
+        evidences.append({
+            "id": eid,
+            "company": docs.get(doc_id, ""),
+            "metric": obj.get("metric", ""),
+            "metric_code": obj.get("metric_code", ""),
+            "current_value": obj.get("current_value"),
+            "previous_value": obj.get("previous_value"),
+            "growth": obj.get("growth"),
+            "unit": obj.get("unit", ""),
+            "period": obj.get("period", ""),
+            "periods": obj.get("periods", []),
+            "table_type": table_type,
+            "source_blocks": obj.get("source_blocks", []),
+            "page_id": block.page_id,
+            "page_number": page,
+            "document_id": doc_id,
+            "merged_text": (obj.get("merged_text") or "")[:300],
+        })
+
+    # 1) 主表抽取（income_statement / balance_sheet / cash_flow / equity_changes）
     for t in tables:
         if t.get("table_type") not in INDEX_TABLE_TYPES:
             continue
@@ -63,39 +106,34 @@ def main() -> int:
         blocks = t.get("blocks") or []
         if not blocks:
             continue
-        company = docs.get(doc_id, "")
-        # 页内每个块作为锚点，重建证据对象
         for bid in blocks:
             block = session.query(DocumentBlock).filter(DocumentBlock.id == bid).first()
             if block is None or not block.text:
                 continue
-            obj = reconstruct_evidence_window(session, block)
-            if not obj.get("has_number"):
+            _add_evidence(doc_id, page, t.get("table_type", "other"), block)
+
+    # 2) Phase 23.28：附注 / 管理层讨论 / 主要财务指标章节抽取
+    page_id_cache: dict = {}
+    for (doc_id, pn), stype in extra_pages.items():
+        # page_number -> page_id（缓存）
+        if (doc_id, pn) not in page_id_cache:
+            row = conn.execute(
+                "SELECT id FROM document_pages WHERE document_id=? AND page_number=?",
+                (doc_id, pn),
+            ).fetchone()
+            page_id_cache[(doc_id, pn)] = row[0] if row else None
+        pid = page_id_cache[(doc_id, pn)]
+        if pid is None:
+            continue
+        blocks = conn.execute(
+            "SELECT id FROM document_blocks WHERE page_id=? AND text IS NOT NULL AND text != '' ORDER BY block_index",
+            (pid,),
+        ).fetchall()
+        for (bid,) in blocks:
+            block = session.query(DocumentBlock).filter(DocumentBlock.id == bid).first()
+            if block is None or not block.text:
                 continue
-            # 去重键：metric + current_value + page（同一表格行的多个锚块重建同一对象）
-            key = (obj.get("metric"), obj.get("current_value"), doc_id, page)
-            if key in seen_keys:
-                continue
-            seen_keys.add(key)
-            eid += 1
-            evidences.append({
-                "id": eid,
-                "company": company,
-                "metric": obj.get("metric", ""),
-                "metric_code": obj.get("metric_code", ""),
-                "current_value": obj.get("current_value"),
-                "previous_value": obj.get("previous_value"),
-                "growth": obj.get("growth"),
-                "unit": obj.get("unit", ""),
-                "period": obj.get("period", ""),
-                "periods": obj.get("periods", []),
-                "table_type": t.get("table_type", "other"),
-                "source_blocks": obj.get("source_blocks", []),
-                "page_id": block.page_id,
-                "page_number": page,
-                "document_id": doc_id,
-                "merged_text": (obj.get("merged_text") or "")[:300],
-            })
+            _add_evidence(doc_id, pn, stype, block)
 
     session.close()
     conn.close()

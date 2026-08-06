@@ -463,6 +463,37 @@ def retrieve_for_claim(
     scored = fact_retrieve_candidates(session, claim, scored)
     # Phase 23.20 Task 3：把 FinancialEvidence Index 候选并入候选池（union 扩池，不删既有候选）
     scored = merge_evidence_index_candidates(session, claim, scored, target_sections)
+    # Phase 23.27 Step 3：Fact First Retrieval 并行 union——fact_first_candidates 的
+    # source_blocks 并入候选池（与 block 候选并行，不删旧路径）
+    from app.services.evidence_retrieval.evidence_retriever import fact_first_candidates
+
+    fact_blocks = fact_first_candidates(claim)
+    existing_ids = {c.get("block_id") for c in scored}
+    for bid in fact_blocks:
+        if bid in existing_ids:
+            continue
+        block = session.get(DocumentBlock, bid)
+        if block is None or not block.text:
+            continue
+        from app.models import DocumentPage
+
+        pn_row = (
+            session.query(DocumentPage.page_number)
+            .filter(DocumentPage.id == block.page_id)
+            .first()
+        )
+        scored.append({
+            "document_id": doc.id if False else block.document_id,
+            "page_number": pn_row[0] if pn_row else block.page_id,
+            "block_id": block.id,
+            "page_id": block.page_id,
+            "y0": block.y0 or 0.0,
+            "reading_order": block.reading_order or 0,
+            "final_score": 0.6,
+            "block_text": block.text[:300],
+            "retrieval_method": "fact_first",
+        })
+        existing_ids.add(bid)
     # Phase 23.23 Task 1：EvidenceBundle 扩展——附加 financial_fact 字段（raw blocks 保留）
     scored = attach_financial_facts(scored)
 

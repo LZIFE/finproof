@@ -1,0 +1,48 @@
+{
+  "phase": "23.28",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T11:53:49.608579+00:00",
+  "index_coverage": {
+    "before_23_27": {
+      "claims_covered": 14,
+      "rate": 0.4667,
+      "objects": 153
+    },
+    "after_23_28": {
+      "claims_covered": 22,
+      "rate": 0.7333,
+      "objects": 681
+    },
+    "delta": 0.2666
+  },
+  "financial_fact_recall@10": {
+    "before_23_27": 0.3667,
+    "after_23_28": 0.4667,
+    "delta": 0.1
+  },
+  "gold_recall@10": {
+    "before": 0.1,
+    "after": 0.1,
+    "delta": 0.0
+  },
+  "real_e2e_before_23_27": {
+    "accuracy": 0.4884,
+    "macro_f1": 0.556,
+    "coverage": 0.6279
+  },
+  "real_e2e_after_23_28_gate": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744,
+    "abstentions": 14
+  },
+  "delta": {
+    "accuracy": 0.0232,
+    "macro_f1": 0.0208,
+    "coverage": 0.0465
+  },
+  "note": "Index 覆盖 46.7%->73.3%（153->681 对象，新增 notes/MD/highlights 章节抽取 + 净利润英文/OCF/Total assets/同比族别名扩展）；Fact Recall@10 0.3667->0.4667（+0.10）；Real E2E gate acc 0.488->0.512（+0.024，恢复至 23.14-23.15 水平）、mf1 0.556->0.577、cov 0.628->0.674。Gold Recall@10 仍 0.10（gold 标注块 vs fact 源块位置不同）。如实记录：覆盖扩展带来正向提升但未跨门槛。",
+  "target_met": {
+    "accuracy_target_0_7": false
+  }
+}

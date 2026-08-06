@@ -1,0 +1,369 @@
+{
+  "total": 30,
+  "fact_covered": 14,
+  "coverage_rate": 0.4667,
+  "rows": [
+    {
+      "claim_id": "CLM-001",
+      "dataset": null,
+      "metric_code": "revenue",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-002",
+      "dataset": null,
+      "metric_code": "total_operating_revenue",
+      "gold_blocks": [
+        "4449",
+        "4440",
+        "4452",
+        "4455",
+        "4442"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-003",
+      "dataset": null,
+      "metric_code": "net_profit_attributable",
+      "gold_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-004",
+      "dataset": null,
+      "metric_code": "yoy_growth_net_profit",
+      "gold_blocks": [
+        "169",
+        "190",
+        "195"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-005",
+      "dataset": null,
+      "metric_code": "gross_margin",
+      "gold_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-006",
+      "dataset": null,
+      "metric_code": "gross_margin_change",
+      "gold_blocks": [
+        "4443",
+        "4449",
+        "4440",
+        "4452",
+        "4455"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-007",
+      "dataset": null,
+      "metric_code": "revenue",
+      "gold_blocks": [
+        "38"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-009",
+      "dataset": null,
+      "metric_code": "quarterly_revenue",
+      "gold_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-010",
+      "dataset": null,
+      "metric_code": "quarterly_net_profit_attributable",
+      "gold_blocks": [
+        "165",
+        "136",
+        "160"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-011",
+      "dataset": null,
+      "metric_code": "net_profit_attributable",
+      "gold_blocks": [
+        "38"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-012",
+      "dataset": null,
+      "metric_code": "basic_eps",
+      "gold_blocks": [
+        "169",
+        "193",
+        "195"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-014",
+      "dataset": null,
+      "metric_code": "operating_cash_flow",
+      "gold_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-015",
+      "dataset": null,
+      "metric_code": "yoy_growth_revenue",
+      "gold_blocks": [
+        "38"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-016",
+      "dataset": null,
+      "metric_code": "publication_date",
+      "gold_blocks": [
+        "9",
+        "6",
+        "2",
+        "4",
+        "3",
+        "11",
+        "8",
+        "5",
+        "10",
+        "7"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-017",
+      "dataset": null,
+      "metric_code": "revenue",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-018",
+      "dataset": null,
+      "metric_code": "operating_cash_flow",
+      "gold_blocks": [
+        "169",
+        "192",
+        "195"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-024",
+      "dataset": null,
+      "metric_code": "yoy_growth_revenue",
+      "gold_blocks": [
+        "169",
+        "189"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H01",
+      "dataset": null,
+      "metric_code": "revenue",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H02",
+      "dataset": null,
+      "metric_code": "net_profit_attributable",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H03",
+      "dataset": null,
+      "metric_code": "yoy_growth_net_profit",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H04",
+      "dataset": null,
+      "metric_code": "operating_cash_flow",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H05",
+      "dataset": null,
+      "metric_code": "yoy_growth_ocf",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H06",
+      "dataset": null,
+      "metric_code": "basic_eps",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H07",
+      "dataset": null,
+      "metric_code": "roe",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H08",
+      "dataset": null,
+      "metric_code": "total_assets",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H09",
+      "dataset": null,
+      "metric_code": "yoy_growth_net_assets",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H10",
+      "dataset": null,
+      "metric_code": "publication_date",
+      "gold_blocks": [
+        "9",
+        "2",
+        "6",
+        "3",
+        "11",
+        "8",
+        "7"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H11",
+      "dataset": null,
+      "metric_code": "deducted_net_profit",
+      "gold_blocks": [
+        "131",
+        "113",
+        "132"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H12",
+      "dataset": null,
+      "metric_code": "listing_info",
+      "gold_blocks": [
+        "104",
+        "110",
+        "109"
+      ],
+      "fact_covered": false,
+      "fact_candidates": 50
+    },
+    {
+      "claim_id": "CLM-H16",
+      "dataset": null,
+      "metric_code": "revenue",
+      "gold_blocks": [
+        "131",
+        "113"
+      ],
+      "fact_covered": true,
+      "fact_candidates": 50
+    }
+  ]
+}

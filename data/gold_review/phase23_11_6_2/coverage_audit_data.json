@@ -1,0 +1,364 @@
+[
+  {
+    "claim_id": "CLM-001",
+    "metric": "revenue",
+    "value": 4564.52,
+    "in_index_exact": false,
+    "in_index_family": true,
+    "gold_blocks": [
+      "169",
+      "189"
+    ]
+  },
+  {
+    "claim_id": "CLM-002",
+    "metric": "total_operating_revenue",
+    "value": 4564.52,
+    "in_index_exact": true,
+    "in_index_family": true,
+    "gold_blocks": [
+      "4449",
+      "4440",
+      "4452",
+      "4455",
+      "4442"
+    ]
+  },
+  {
+    "claim_id": "CLM-003",
+    "metric": "net_profit_attributable",
+    "value": 439.45,
+    "in_index_exact": true,
+    "in_index_family": true,
+    "gold_blocks": [
+      "169",
+      "190",
+      "195"
+    ]
+  },
+  {
+    "claim_id": "CLM-004",
+    "metric": "yoy_growth_net_profit",
+    "value": 38.02,
+    "in_index_exact": false,
+    "in_index_family": true,
+    "gold_blocks": [
+      "169",
+      "190",
+      "195"
+    ]
+  },
+  {
+    "claim_id": "CLM-005",
+    "metric": "gross_margin",
+    "value": 26.4,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "4443",
+      "4449",
+      "4440",
+      "4452",
+      "4455"
+    ]
+  },
+  {
+    "claim_id": "CLM-006",
+    "metric": "gross_margin_change",
+    "value": 0.7,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "4443",
+      "4449",
+      "4440",
+      "4452",
+      "4455"
+    ]
+  },
+  {
+    "claim_id": "CLM-007",
+    "metric": "revenue",
+    "value": 1278.39,
+    "in_index_exact": false,
+    "in_index_family": true,
+    "gold_blocks": [
+      "38"
+    ]
+  },
+  {
+    "claim_id": "CLM-009",
+    "metric": "quarterly_revenue",
+    "value": 2523.31,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "165",
+      "136",
+      "160"
+    ]
+  },
+  {
+    "claim_id": "CLM-010",
+    "metric": "quarterly_net_profit_attributable",
+    "value": 260.14,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "165",
+      "136",
+      "160"
+    ]
+  },
+  {
+    "claim_id": "CLM-011",
+    "metric": "net_profit_attributable",
+    "value": 124.22,
+    "in_index_exact": true,
+    "in_index_family": true,
+    "gold_blocks": [
+      "38"
+    ]
+  },
+  {
+    "claim_id": "CLM-012",
+    "metric": "basic_eps",
+    "value": 5.8,
+    "in_index_exact": true,
+    "in_index_family": true,
+    "gold_blocks": [
+      "169",
+      "193",
+      "195"
+    ]
+  },
+  {
+    "claim_id": "CLM-014",
+    "metric": "operating_cash_flow",
+    "value": 533.46,
+    "in_index_exact": true,
+    "in_index_family": true,
+    "gold_blocks": [
+      "169",
+      "192",
+      "195"
+    ]
+  },
+  {
+    "claim_id": "CLM-015",
+    "metric": "yoy_growth_revenue",
+    "value": 20.49,
+    "in_index_exact": false,
+    "in_index_family": true,
+    "gold_blocks": [
+      "38"
+    ]
+  },
+  {
+    "claim_id": "CLM-016",
+    "metric": "publication_date",
+    "value": null,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "9",
+      "6",
+      "2",
+      "4",
+      "3",
+      "11",
+      "8",
+      "5",
+      "10",
+      "7"
+    ]
+  },
+  {
+    "claim_id": "CLM-017",
+    "metric": "revenue",
+    "value": 4071.5,
+    "in_index_exact": false,
+    "in_index_family": true,
+    "gold_blocks": [
+      "169",
+      "189"
+    ]
+  },
+  {
+    "claim_id": "CLM-018",
+    "metric": "operating_cash_flow",
+    "value": 5334.59,
+    "in_index_exact": true,
+    "in_index_family": true,
+    "gold_blocks": [
+      "169",
+      "192",
+      "195"
+    ]
+  },
+  {
+    "claim_id": "CLM-024",
+    "metric": "yoy_growth_revenue",
+    "value": 15,
+    "in_index_exact": false,
+    "in_index_family": true,
+    "gold_blocks": [
+      "169",
+      "189"
+    ]
+  },
+  {
+    "claim_id": "CLM-H01",
+    "metric": "revenue",
+    "value": 405.29,
+    "in_index_exact": false,
+    "in_index_family": true,
+    "gold_blocks": [
+      "131",
+      "113"
+    ]
+  },
+  {
+    "claim_id": "CLM-H02",
+    "metric": "net_profit_attributable",
+    "value": 89.54,
+    "in_index_exact": true,
+    "in_index_family": true,
+    "gold_blocks": [
+      "131",
+      "113"
+    ]
+  },
+  {
+    "claim_id": "CLM-H03",
+    "metric": "yoy_growth_net_profit",
+    "value": 38.02,
+    "in_index_exact": false,
+    "in_index_family": true,
+    "gold_blocks": [
+      "131",
+      "113"
+    ]
+  },
+  {
+    "claim_id": "CLM-H04",
+    "metric": "operating_cash_flow",
+    "value": 297.06,
+    "in_index_exact": true,
+    "in_index_family": true,
+    "gold_blocks": [
+      "131",
+      "113",
+      "132"
+    ]
+  },
+  {
+    "claim_id": "CLM-H05",
+    "metric": "yoy_growth_ocf",
+    "value": 12.47,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "131",
+      "113",
+      "132"
+    ]
+  },
+  {
+    "claim_id": "CLM-H06",
+    "metric": "basic_eps",
+    "value": 8.21,
+    "in_index_exact": true,
+    "in_index_family": true,
+    "gold_blocks": [
+      "131",
+      "113",
+      "132"
+    ]
+  },
+  {
+    "claim_id": "CLM-H07",
+    "metric": "roe",
+    "value": 6.89,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "131",
+      "113",
+      "132"
+    ]
+  },
+  {
+    "claim_id": "CLM-H08",
+    "metric": "total_assets",
+    "value": 1899.84,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "131",
+      "113"
+    ]
+  },
+  {
+    "claim_id": "CLM-H09",
+    "metric": "yoy_growth_net_assets",
+    "value": 10.02,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "131",
+      "113"
+    ]
+  },
+  {
+    "claim_id": "CLM-H10",
+    "metric": "publication_date",
+    "value": null,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "9",
+      "2",
+      "6",
+      "3",
+      "11",
+      "8",
+      "7"
+    ]
+  },
+  {
+    "claim_id": "CLM-H11",
+    "metric": "deducted_net_profit",
+    "value": 88.16,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "131",
+      "113",
+      "132"
+    ]
+  },
+  {
+    "claim_id": "CLM-H12",
+    "metric": "listing_info",
+    "value": null,
+    "in_index_exact": false,
+    "in_index_family": false,
+    "gold_blocks": [
+      "104",
+      "110",
+      "109"
+    ]
+  },
+  {
+    "claim_id": "CLM-H16",
+    "metric": "revenue",
+    "value": 4052.85,
+    "in_index_exact": false,
+    "in_index_family": true,
+    "gold_blocks": [
+      "131",
+      "113"
+    ]
+  }
+]
