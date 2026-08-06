@@ -1,0 +1,170 @@
+[
+  {
+    "claim_id": "CLM-002",
+    "gold": "REFUTED",
+    "pred": "SUPPORTED",
+    "gold_in_top10": true,
+    "fact_in_top10": true,
+    "has_fact_gold": true
+  },
+  {
+    "claim_id": "CLM-003",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": true
+  },
+  {
+    "claim_id": "CLM-005",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": true
+  },
+  {
+    "claim_id": "CLM-007",
+    "gold": "SUPPORTED",
+    "pred": "REFUTED",
+    "gold_in_top10": false,
+    "fact_in_top10": true,
+    "has_fact_gold": true
+  },
+  {
+    "claim_id": "CLM-009",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": true,
+    "has_fact_gold": true
+  },
+  {
+    "claim_id": "CLM-010",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-011",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-014",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-015",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": true,
+    "has_fact_gold": true
+  },
+  {
+    "claim_id": "CLM-018",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-019",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-022",
+    "gold": "INSUFFICIENT_EVIDENCE",
+    "pred": "SUPPORTED",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-025",
+    "gold": "UNABLE_TO_DETERMINE",
+    "pred": "PARTIALLY_SUPPORTED",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-026",
+    "gold": "SUPPORTED",
+    "pred": "REFUTED",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-H02",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-H05",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-H09",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-H10",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-H11",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-H12",
+    "gold": "SUPPORTED",
+    "pred": "PARTIALLY_SUPPORTED",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  },
+  {
+    "claim_id": "CLM-H17",
+    "gold": "INSUFFICIENT_EVIDENCE",
+    "pred": "SUPPORTED",
+    "gold_in_top10": false,
+    "fact_in_top10": false,
+    "has_fact_gold": false
+  }
+]
