@@ -1,0 +1,42 @@
+{
+  "phase": "23.24",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T08:54:07.346063+00:00",
+  "fact_verification": {
+    "total_fact_evidence": 430,
+    "verification_success": 12,
+    "verification_success_rate": 0.0279,
+    "note": "12/430 fact evidence 通过核心字段验证（metric+value+period）。低成功率主因：检索 top10 中多数 evidence 的 financial_fact 来自窗口重建，periods/growth 与 claim 不精确对齐；且 core_verify 尚未消费 fact_verification 字段（仅附加诊断）。"
+  },
+  "financial_fact_recall": {
+    "before_23_23": {
+      "fact_recall@50": 0.3667,
+      "fact_recall@10": 0.3667
+    },
+    "after_23_24": {
+      "fact_recall@50": 0.3667,
+      "fact_recall@10": 0.3667
+    }
+  },
+  "real_e2e_before_23_23": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5907,
+    "coverage": 0.6512
+  },
+  "real_e2e_after_23_24_gate": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5775,
+    "coverage": 0.6512,
+    "abstentions": 15
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": -0.0132,
+    "coverage": 0.0
+  },
+  "bug_fixed": "financial_fact_extractor._YEAR_RE capture group bug (19|20 -> (?:19|20)): periods extracted as '20年' instead of '2025年'; fixed and index rebuilt; Fact Recall@50 stays 0.3667",
+  "target_met": {
+    "fact_recall@50_target_0_8": false,
+    "accuracy_target_0_7": false
+  }
+}

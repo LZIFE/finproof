@@ -1,7 +1,7 @@
 {
   "phase": "23.22",
   "step": "3_4_recall_eval",
-  "generated_at": "2026-08-06T08:34:37.645714+00:00",
+  "generated_at": "2026-08-06T08:50:31.386883+00:00",
   "total": 30,
   "block_recall": {
     "block_recall@10": 0.1333,

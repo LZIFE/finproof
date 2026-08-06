@@ -25,7 +25,7 @@ from app.services.evidence_retrieval.engine import (
 # 单位正则（块内列单位，如"（千元）"）
 _UNIT_RE = re.compile(r"[（(]?(人民币)?\s*(万亿元|亿元|百万元|万元|千元|元)\s*[）)]?")
 # 年份（2023-2025 等）
-_YEAR_RE = re.compile(r"(?<!\d)(19|20)\d{2}(?!\d)")
+_YEAR_RE = re.compile(r"(?<!\d)(?:19|20)\d{2}(?!\d)")
 # 财务数字（千分位）
 _FIN_NUM_RE = re.compile(r"(?<!\d)\d{1,3}(?:,\d{3})+(?!\d)")
 # 百分比

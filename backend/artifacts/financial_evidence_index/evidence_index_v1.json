@@ -1,7 +1,7 @@
 {
   "phase": "23.20",
   "step": "1_financial_evidence_index",
-  "generated_at": "2026-08-06T07:57:19.047106+00:00",
+  "generated_at": "2026-08-06T08:48:19.955199+00:00",
   "version": "v1",
   "total": 153,
   "table_types": {
@@ -20,9 +20,10 @@
       "previous_value": 140410308.0,
       "growth": -39.2871,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -45,9 +46,10 @@
       "previous_value": 31008549.0,
       "growth": 41.5885,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -70,9 +72,10 @@
       "previous_value": 409084266.0,
       "growth": 12.0802,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年",
+        "2025年",
+        "2024年",
         "2025年度",
         "2024年度"
       ],
@@ -256,9 +259,10 @@
       "previous_value": 718981.0,
       "growth": -64.3082,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -520,9 +524,10 @@
       "previous_value": 388661338.0,
       "growth": 9.6612,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -569,9 +574,10 @@
       "previous_value": 148642.0,
       "growth": -39.0421,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -608,9 +614,10 @@
       "previous_value": 42498.0,
       "growth": 213.2077,
       "unit": "",
-      "period": "20年",
+      "period": "2024年",
       "periods": [
-        "20年"
+        "2024年",
+        "2023年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -648,9 +655,10 @@
       "previous_value": 3780571.0,
       "growth": 4.0007,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -673,9 +681,10 @@
       "previous_value": 29339499.0,
       "growth": 13.9164,
       "unit": "",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -701,9 +710,10 @@
       "previous_value": 10810749.0,
       "growth": 12.895,
       "unit": "",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -728,9 +738,10 @@
       "previous_value": 107010823.0,
       "growth": 70.6291,
       "unit": "",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -754,9 +765,10 @@
       "previous_value": 1442485.0,
       "growth": 10.0216,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -780,9 +792,10 @@
       "previous_value": 3266775.0,
       "growth": 2356.4208,
       "unit": "",
-      "period": "20年",
+      "period": "2024年",
       "periods": [
-        "20年"
+        "2024年",
+        "2025年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -808,9 +821,10 @@
       "previous_value": 1587045.0,
       "growth": 1362.1383,
       "unit": "",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -836,9 +850,10 @@
       "previous_value": 65855585.0,
       "growth": -3.1358,
       "unit": "",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -861,9 +876,10 @@
       "previous_value": 38757214.0,
       "growth": 14.8694,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -886,9 +902,10 @@
       "previous_value": 38757214.0,
       "growth": 14.8694,
       "unit": "",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -911,9 +928,10 @@
       "previous_value": 1886.0,
       "growth": -32.9799,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -986,9 +1004,10 @@
       "previous_value": 100735.0,
       "growth": -16.2198,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -1012,9 +1031,10 @@
       "previous_value": 140410308.0,
       "growth": 5.7521,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -1760,9 +1780,10 @@
       "previous_value": 31008549.0,
       "growth": 64.55,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -1786,9 +1807,10 @@
       "previous_value": 218121839.0,
       "growth": 15.6837,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -1811,9 +1833,10 @@
       "previous_value": 191846137.0,
       "growth": 17.4329,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -1860,9 +1883,9 @@
       "previous_value": 49919950.0,
       "growth": -84.6635,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年",
+        "2025年",
         "本期金额"
       ],
       "table_type": "equity_changes",
@@ -1964,9 +1987,9 @@
       "previous_value": 21243156.0,
       "growth": -66.9269,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年"
       ],
       "table_type": "equity_changes",
       "source_blocks": [
@@ -1990,9 +2013,9 @@
       "previous_value": 22288.0,
       "growth": 306.5372,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -2103,9 +2126,9 @@
       "previous_value": 21141255.0,
       "growth": 26.0443,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [
@@ -2153,9 +2176,10 @@
       "previous_value": 51424432.0,
       "growth": 0.0,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2178,9 +2202,10 @@
       "previous_value": 10999764.0,
       "growth": 660.1246,
       "unit": "",
-      "period": "20年",
+      "period": "2024年",
       "periods": [
-        "20年"
+        "2024年",
+        "2025年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2206,9 +2231,9 @@
       "previous_value": 31184698.0,
       "growth": 0.0,
       "unit": "",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2233,9 +2258,9 @@
       "previous_value": 55.08,
       "growth": 3881719756.5723,
       "unit": "",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -2429,9 +2454,10 @@
       "previous_value": 3221691.0,
       "growth": 11.9905,
       "unit": "万元",
-      "period": "20年",
+      "period": "2024年",
       "periods": [
-        "20年"
+        "2024年",
+        "2026年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2457,9 +2483,10 @@
       "previous_value": 4220567.0,
       "growth": 129.7887,
       "unit": "万元",
-      "period": "20年",
+      "period": "2024年",
       "periods": [
-        "20年"
+        "2024年",
+        "2026年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2486,9 +2513,10 @@
       "previous_value": 5345289.0,
       "growth": 113.7974,
       "unit": "万元",
-      "period": "20年",
+      "period": "2024年",
       "periods": [
-        "20年"
+        "2024年",
+        "2026年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2514,9 +2542,10 @@
       "previous_value": 130055107.0,
       "growth": -35.9896,
       "unit": "万元",
-      "period": "20年",
+      "period": "2024年",
       "periods": [
-        "20年"
+        "2024年",
+        "2026年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2540,9 +2569,10 @@
       "previous_value": 2925.0,
       "growth": 827.2137,
       "unit": "万元",
-      "period": "20年",
+      "period": "2024年",
       "periods": [
-        "20年"
+        "2024年",
+        "2026年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2669,9 +2699,11 @@
       "previous_value": 7154324.0,
       "growth": 628.3358,
       "unit": "万元",
-      "period": "20年",
+      "period": "2023年",
       "periods": [
-        "20年"
+        "2023年",
+        "2024年",
+        "2026年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2697,9 +2729,12 @@
       "previous_value": 5260000.0,
       "growth": 25.5461,
       "unit": "万元",
-      "period": "20年",
+      "period": "2023年",
       "periods": [
-        "20年"
+        "2023年",
+        "2024年",
+        "2026年",
+        "2025年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2725,9 +2760,12 @@
       "previous_value": 3528831.0,
       "growth": 49.0579,
       "unit": "万元",
-      "period": "20年",
+      "period": "2023年",
       "periods": [
-        "20年"
+        "2023年",
+        "2024年",
+        "2026年",
+        "2025年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2753,9 +2791,12 @@
       "previous_value": 3318584.0,
       "growth": 6.3354,
       "unit": "万元",
-      "period": "20年",
+      "period": "2023年",
       "periods": [
-        "20年"
+        "2023年",
+        "2024年",
+        "2026年",
+        "2025年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2781,9 +2822,12 @@
       "previous_value": 62335217.0,
       "growth": -94.6762,
       "unit": "万元",
-      "period": "20年",
+      "period": "2023年",
       "periods": [
-        "20年"
+        "2023年",
+        "2024年",
+        "2026年",
+        "2025年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2809,9 +2853,12 @@
       "previous_value": 11048262.0,
       "growth": 464.2084,
       "unit": "万元",
-      "period": "20年",
+      "period": "2023年",
       "periods": [
-        "20年"
+        "2023年",
+        "2024年",
+        "2026年",
+        "2025年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2836,9 +2883,12 @@
       "previous_value": 1100152892.0,
       "growth": -14.0597,
       "unit": "万元",
-      "period": "20年",
+      "period": "2023年",
       "periods": [
-        "20年"
+        "2023年",
+        "2024年",
+        "2026年",
+        "2025年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2862,9 +2912,9 @@
       "previous_value": 4000000.0,
       "growth": 1199331.1288,
       "unit": "亿元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -2887,9 +2937,9 @@
       "previous_value": 10315978.0,
       "growth": 1165.5718,
       "unit": "",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -3250,9 +3300,12 @@
       "previous_value": 639094342.0,
       "growth": -48.7367,
       "unit": "元",
-      "period": "20年",
+      "period": "2026年",
       "periods": [
-        "20年"
+        "2026年",
+        "2025年",
+        "2018年",
+        "2023年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -3278,9 +3331,12 @@
       "previous_value": 16843890.0,
       "growth": -41.6531,
       "unit": "元",
-      "period": "20年",
+      "period": "2026年",
       "periods": [
-        "20年"
+        "2026年",
+        "2025年",
+        "2018年",
+        "2023年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -3306,9 +3362,12 @@
       "previous_value": 25095601.0,
       "growth": -16.4933,
       "unit": "元",
-      "period": "20年",
+      "period": "2026年",
       "periods": [
-        "20年"
+        "2026年",
+        "2025年",
+        "2018年",
+        "2023年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -3334,9 +3393,12 @@
       "previous_value": 43556131.0,
       "growth": -42.3833,
       "unit": "元",
-      "period": "20年",
+      "period": "2026年",
       "periods": [
-        "20年"
+        "2026年",
+        "2025年",
+        "2018年",
+        "2023年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -3362,9 +3424,12 @@
       "previous_value": null,
       "growth": null,
       "unit": "元",
-      "period": "20年",
+      "period": "2026年",
       "periods": [
-        "20年"
+        "2026年",
+        "2025年",
+        "2018年",
+        "2023年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -3389,9 +3454,9 @@
       "previous_value": null,
       "growth": null,
       "unit": "元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年",
+        "2025年",
         "上年度"
       ],
       "table_type": "income_statement",
@@ -3415,9 +3480,9 @@
       "previous_value": 960807884.0,
       "growth": -44.396,
       "unit": "元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年",
+        "2025年",
         "上年度"
       ],
       "table_type": "income_statement",
@@ -3855,9 +3920,10 @@
       "previous_value": 140410308.0,
       "growth": 14.8621,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -3883,9 +3949,10 @@
       "previous_value": 31008549.0,
       "growth": 40.3908,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "balance_sheet",
       "source_blocks": [
@@ -3909,9 +3976,10 @@
       "previous_value": 106483190.0,
       "growth": 20.6091,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -3939,9 +4007,10 @@
       "previous_value": 106483190.0,
       "growth": 20.6091,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "income_statement",
       "source_blocks": [
@@ -3969,9 +4038,10 @@
       "previous_value": 88582691.0,
       "growth": 23.3501,
       "unit": "千元",
-      "period": "20年",
+      "period": "2025年",
       "periods": [
-        "20年"
+        "2025年",
+        "2024年"
       ],
       "table_type": "cash_flow",
       "source_blocks": [

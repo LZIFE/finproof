@@ -272,6 +272,13 @@ def verify_evidence_set(
         )
     trace = verification_context.trace
 
+    # Phase 23.24 Task 2/3：Fact verification path——含 financial_fact 的证据附加事实验证诊断。
+    # 只附加 fact_verification 字段（补充信息），不删除/替换 raw block 候选，
+    # 不改变 Gate 决策规则（Gate 仍按原字段判定）。
+    from app.services.verification.fact_verification_path import attach_fact_verifications
+
+    evidence_candidates = attach_fact_verifications(claim, evidence_candidates)
+
     # Record candidates before gate
     verification_context.candidates_before_gate = len(evidence_candidates)
 
