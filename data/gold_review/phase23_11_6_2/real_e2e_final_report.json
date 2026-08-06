@@ -1,0 +1,114 @@
+{
+  "phase": "23.11.8-B",
+  "step": "5_real_e2e_evaluation",
+  "generated_at": "2026-08-06T04:09:30.079637+00:00",
+  "entry_point": "verify_claim_production (production main chain: Router → Retrieval → Gate → Selector → core_verify)",
+  "gold_version": "23.11.8-B-v3",
+  "total_claims": 43,
+  "strategies": {
+    "phase23_11_top1": {
+      "selector_strategy": "Top1",
+      "max_evidence": 1,
+      "total_claims": 43,
+      "correct": 21,
+      "accuracy": 0.4884,
+      "macro_f1": 0.4953,
+      "coverage": 0.6047,
+      "abstentions": 17,
+      "retrieval_failures": 1,
+      "verification_failures": 22,
+      "per_class_f1": {
+        "INSUFFICIENT_EVIDENCE": 0.1,
+        "OPINION_OR_FORECAST": 1.0,
+        "PARTIALLY_SUPPORTED": 0.0,
+        "REFUTED": 0.56,
+        "SUPPORTED": 0.6452,
+        "UNABLE_TO_DETERMINE": 0.6667
+      },
+      "confusion_matrix": null
+    },
+    "phase23_11_top3": {
+      "selector_strategy": "Top3",
+      "max_evidence": 3,
+      "total_claims": 43,
+      "correct": 22,
+      "accuracy": 0.5116,
+      "macro_f1": 0.5037,
+      "coverage": 0.6744,
+      "abstentions": 14,
+      "retrieval_failures": 1,
+      "verification_failures": 21,
+      "per_class_f1": {
+        "INSUFFICIENT_EVIDENCE": 0.1176,
+        "OPINION_OR_FORECAST": 1.0,
+        "PARTIALLY_SUPPORTED": 0.0,
+        "REFUTED": 0.5926,
+        "SUPPORTED": 0.6452,
+        "UNABLE_TO_DETERMINE": 0.6667
+      },
+      "confusion_matrix": null
+    },
+    "phase23_11_gate": {
+      "selector_strategy": "Top3",
+      "max_evidence": 3,
+      "total_claims": 43,
+      "correct": 22,
+      "accuracy": 0.5116,
+      "macro_f1": 0.5037,
+      "coverage": 0.6744,
+      "abstentions": 14,
+      "retrieval_failures": 1,
+      "verification_failures": 21,
+      "per_class_f1": {
+        "INSUFFICIENT_EVIDENCE": 0.1176,
+        "OPINION_OR_FORECAST": 1.0,
+        "PARTIALLY_SUPPORTED": 0.0,
+        "REFUTED": 0.5926,
+        "SUPPORTED": 0.6452,
+        "UNABLE_TO_DETERMINE": 0.6667
+      },
+      "confusion_matrix": null
+    }
+  },
+  "default_strategy": "phase23_11_gate",
+  "default_metrics": {
+    "selector_strategy": "Top3",
+    "max_evidence": 3,
+    "total_claims": 43,
+    "correct": 22,
+    "accuracy": 0.5116,
+    "macro_f1": 0.5037,
+    "coverage": 0.6744,
+    "abstentions": 14,
+    "retrieval_failures": 1,
+    "verification_failures": 21,
+    "per_class_f1": {
+      "INSUFFICIENT_EVIDENCE": 0.1176,
+      "OPINION_OR_FORECAST": 1.0,
+      "PARTIALLY_SUPPORTED": 0.0,
+      "REFUTED": 0.5926,
+      "SUPPORTED": 0.6452,
+      "UNABLE_TO_DETERMINE": 0.6667
+    },
+    "confusion_matrix": null
+  },
+  "targets": {
+    "real_e2e_accuracy": 0.7,
+    "real_e2e_macro_f1": 0.6,
+    "coverage": 0.65,
+    "selective_accuracy": 0.8,
+    "verification_errors": 3
+  },
+  "notes": [
+    "Phase 23.9 and 23.10 original results loaded from artifact JSONs.",
+    "Phase 23.11 strategies use the unified verify_evidence_set entry.",
+    "Gate/Selector now carry candidate text into core_verify (fix for E2E accuracy)."
+  ],
+  "metrics": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5037,
+    "coverage": 0.6744,
+    "abstention_rate": 0.3256,
+    "evidence_hit_at_k": "依赖 Retrieval 详情（retrieval_failures=1/43）"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "phase": "23.11.6.2",
+  "description": "Claim 与 Gold Evidence 之间的指标/数值冲突清单，留待第二轮 Verdict Adjudication 人工裁定",
+  "created_at": "2026-08-06T02:08:22.444631+00:00",
+  "conflicts": [
+    {
+      "gold_evidence_id": "EVD-002",
+      "claim_id": "CLM-002",
+      "conflict_type": "METRIC_VALUE_MISALIGNMENT",
+      "claim_metric": "营业总收入",
+      "claim_value": "4564.52亿元",
+      "gold_metric": "营业总收入",
+      "gold_value": "458,502,407千元",
+      "adjacent_metric": "营业收入",
+      "adjacent_value": "456,451,731千元",
+      "status": "PENDING_SECOND_ROUND_HUMAN_ADJUDICATION",
+      "recorded_at": "2026-08-06T02:08:22.444783+00:00"
+    },
+    {
+      "gold_evidence_id": "EVD-004",
+      "claim_id": "CLM-004",
+      "conflict_type": "GROWTH_RATE_MISALIGNMENT",
+      "claim_metric": "归属于上市公司股东的净利润同比增长",
+      "claim_value": "38.02%",
+      "gold_metric": "归属于上市公司股东的净利润同比增长",
+      "gold_value": "14.03%",
+      "gold_block_id": 190,
+      "status": "PENDING_SECOND_ROUND_HUMAN_ADJUDICATION",
+      "recorded_at": "2026-08-06T03:18:28.287887+00:00"
+    },
+    {
+      "gold_evidence_id": "EVD-H04",
+      "claim_id": "CLM-H04",
+      "conflict_type": "WRONG_DOCUMENT_CANDIDATE_GENERATION_ERROR",
+      "claim_company": "五粮液",
+      "candidate_document": "美的集团2025年年度报告",
+      "gold_evidence_text_excerpt": "经营活动产生的现金流量净额（元）29,706,259,919.13 33,939,755,192.78 -12.47%",
+      "status": "PENDING_SECOND_ROUND_HUMAN_ADJUDICATION",
+      "recorded_at": "2026-08-06T03:46:49.534272+00:00"
+    }
+  ],
+  "total_conflicts": 3,
+  "last_updated_at": "2026-08-06T03:46:49.534429+00:00"
+}

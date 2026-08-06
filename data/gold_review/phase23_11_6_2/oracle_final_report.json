@@ -1,0 +1,165 @@
+{
+  "phase": "23.11.8-B",
+  "step": "4_oracle_evaluation",
+  "generated_at": "2026-08-06T04:08:06.506258+00:00",
+  "entry_point": "core_pipeline.core_verify (PRIMARY), Gold Evidence Block 作为唯一输入",
+  "gold_version": "23.11.8-B-v3",
+  "CORE_ORACLE": {
+    "total": 43,
+    "correct": 43,
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "per_class_f1": {
+      "INSUFFICIENT_EVIDENCE": 1.0,
+      "OPINION_OR_FORECAST": 1.0,
+      "PARTIALLY_SUPPORTED": 1.0,
+      "REFUTED": 1.0,
+      "SUPPORTED": 1.0,
+      "UNABLE_TO_DETERMINE": 1.0
+    },
+    "per_class_precision_recall": {
+      "INSUFFICIENT_EVIDENCE": {
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "OPINION_OR_FORECAST": {
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "PARTIALLY_SUPPORTED": {
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "REFUTED": {
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "SUPPORTED": {
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "UNABLE_TO_DETERMINE": {
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "per_type_f1": {
+      "raw_number": {
+        "count": 20,
+        "correct": 20,
+        "f1": 1.0,
+        "accuracy": 1.0
+      },
+      "calculated_financial_metric": {
+        "count": 8,
+        "correct": 8,
+        "f1": 1.0,
+        "accuracy": 1.0
+      },
+      "scope": {
+        "count": 4,
+        "correct": 4,
+        "f1": 1.0,
+        "accuracy": 1.0
+      },
+      "business_fact": {
+        "count": 5,
+        "correct": 5,
+        "f1": 1.0,
+        "accuracy": 1.0
+      },
+      "causality": {
+        "count": 3,
+        "correct": 3,
+        "f1": 1.0,
+        "accuracy": 1.0
+      },
+      "comparison": {
+        "count": 1,
+        "correct": 1,
+        "f1": 1.0,
+        "accuracy": 1.0
+      },
+      "forecast": {
+        "count": 2,
+        "correct": 2,
+        "f1": 1.0,
+        "accuracy": 1.0
+      }
+    },
+    "confusion_matrix": {
+      "INSUFFICIENT_EVIDENCE": {
+        "INSUFFICIENT_EVIDENCE": 3,
+        "OPINION_OR_FORECAST": 0,
+        "PARTIALLY_SUPPORTED": 0,
+        "REFUTED": 0,
+        "SUPPORTED": 0,
+        "UNABLE_TO_DETERMINE": 0
+      },
+      "OPINION_OR_FORECAST": {
+        "INSUFFICIENT_EVIDENCE": 0,
+        "OPINION_OR_FORECAST": 2,
+        "PARTIALLY_SUPPORTED": 0,
+        "REFUTED": 0,
+        "SUPPORTED": 0,
+        "UNABLE_TO_DETERMINE": 0
+      },
+      "PARTIALLY_SUPPORTED": {
+        "INSUFFICIENT_EVIDENCE": 0,
+        "OPINION_OR_FORECAST": 0,
+        "PARTIALLY_SUPPORTED": 1,
+        "REFUTED": 0,
+        "SUPPORTED": 0,
+        "UNABLE_TO_DETERMINE": 0
+      },
+      "REFUTED": {
+        "INSUFFICIENT_EVIDENCE": 0,
+        "OPINION_OR_FORECAST": 0,
+        "PARTIALLY_SUPPORTED": 0,
+        "REFUTED": 17,
+        "SUPPORTED": 0,
+        "UNABLE_TO_DETERMINE": 0
+      },
+      "SUPPORTED": {
+        "INSUFFICIENT_EVIDENCE": 0,
+        "OPINION_OR_FORECAST": 0,
+        "PARTIALLY_SUPPORTED": 0,
+        "REFUTED": 0,
+        "SUPPORTED": 18,
+        "UNABLE_TO_DETERMINE": 0
+      },
+      "UNABLE_TO_DETERMINE": {
+        "INSUFFICIENT_EVIDENCE": 0,
+        "OPINION_OR_FORECAST": 0,
+        "PARTIALLY_SUPPORTED": 0,
+        "REFUTED": 0,
+        "SUPPORTED": 0,
+        "UNABLE_TO_DETERMINE": 2
+      }
+    },
+    "targets_met": {
+      "Accuracy >= 0.85": true,
+      "Macro-F1 >= 0.80": true,
+      "数值类F1 >= 0.90": true,
+      "INSUFFICIENT_EVIDENCE F1 >= 0.80": true,
+      "原17错误修复 >= 14": true,
+      "新回归 <= 2": true
+    },
+    "original_17_fixed": 17,
+    "regressions": []
+  },
+  "NOISY_ORACLE": {
+    "sample_count": 24,
+    "gate_metrics_status": "INVALID_PENDING_GOLD_ALIGNMENT",
+    "note": "Grounded cohort only. Gate metrics still INVALID_PENDING_GOLD_ALIGNMENT due to empty block_id.",
+    "gate_metrics_computed": false
+  },
+  "gate_compliance": {
+    "gate_not_bypassed": "CORE_ORACLE 走 core_verify 主链，Gold Block 作为唯一输入；NOISY_ORACLE 走 evaluate_one 门控，未绕过 Gate",
+    "selector_not_bypassed": "未直接使用 Gold Evidence 跳过 Selector（CORE_ORACLE 为 oracle 对照，非生产路径）"
+  },
+  "gold_gate_acceptance": {
+    "status": "GATE_METRICS_PENDING_GOLD_ALIGNMENT",
+    "detail": "NOISY_ORACLE 因候选 block_id 为空，Gate 指标仍未计算（INVALID_PENDING_GOLD_ALIGNMENT），须待 Gold Alignment 完成后重算"
+  }
+}

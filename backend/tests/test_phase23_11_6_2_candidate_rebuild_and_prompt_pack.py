@@ -453,7 +453,14 @@ def test_prompt_pack_index_exists():
 # --------------------------------------------------------------------------
 
 
-def test_ai_review_results_jsonl_empty():
-    """ai_review_results.jsonl 初始化为空文件。"""
+def test_ai_review_results_jsonl_records_valid():
+    """ai_review_results.jsonl 已收集 6 条 AI 审核记录，全部为 VALID 且未导入 Gold。"""
     assert JSONL_PATH.exists()
-    assert JSONL_PATH.stat().st_size == 0
+    lines = [l for l in JSONL_PATH.read_text(encoding="utf-8").splitlines() if l.strip()]
+    # 6 条已审核：EVD-001/002/003/004/EVD-H04/EVD-010
+    assert len(lines) == 6
+    for line in lines:
+        rec = json.loads(line)
+        assert rec["_meta"]["validation_status"] == "VALID"
+        assert rec["_meta"]["may_import_to_gold"] is False
+        assert rec["_meta"]["ai_review_status"] == "AI_REVIEW_SUGGESTION_PENDING_HUMAN_CONFIRMATION"

@@ -1,0 +1,40 @@
+[
+  {
+    "gold_evidence_id": "EVD-001",
+    "claim_id": "",
+    "decision": "MATCH_SINGLE_BLOCK",
+    "selected_block_ids": [
+      189
+    ],
+    "human_confirmed": true,
+    "confirmed_by": "user",
+    "confidence": 0.99,
+    "estimated_coverage": 1.0,
+    "import_eligible": true,
+    "validation_checks": {
+      "human_confirmed": true,
+      "has_selected_block": true,
+      "decision_allowed": true,
+      "no_conflict": true
+    }
+  },
+  {
+    "gold_evidence_id": "EVD-003",
+    "claim_id": "",
+    "decision": "MATCH_SINGLE_BLOCK",
+    "selected_block_ids": [
+      190
+    ],
+    "human_confirmed": true,
+    "confirmed_by": "user",
+    "confidence": 0.98,
+    "estimated_coverage": 1.0,
+    "import_eligible": true,
+    "validation_checks": {
+      "human_confirmed": true,
+      "has_selected_block": true,
+      "decision_allowed": true,
+      "no_conflict": true
+    }
+  }
+]

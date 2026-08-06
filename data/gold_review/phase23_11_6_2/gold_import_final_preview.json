@@ -1,0 +1,33 @@
+{
+  "phase": "23.11.8-B",
+  "step": "2_gold_import_final_preview",
+  "generated_at": "2026-08-06T04:06:14.194131+00:00",
+  "rule": {
+    "allowed": [
+      "Phase 23.11.8-A eligible (EVD-001, EVD-003)",
+      "Verdict 明确 KEEP 的 Evidence"
+    ],
+    "forbidden": [
+      "存在 claim_gold_conflicts",
+      "存在 BLOCKED 裁定",
+      "NONE_FOUND / NONE_OF_THE_ABOVE / UNSURE"
+    ]
+  },
+  "eligible_ids": [
+    "EVD-001",
+    "EVD-003"
+  ],
+  "rejected_ids": [
+    "EVD-010"
+  ],
+  "blocked_ids": [
+    "EVD-002",
+    "EVD-004",
+    "EVD-H04"
+  ],
+  "counts": {
+    "eligible": 2,
+    "rejected": 1,
+    "blocked": 3
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "phase": "23.11.7",
+  "validation_type": "gold_import_precheck",
+  "generated_at": "2026-08-06T03:58:00.055184+00:00",
+  "count": 2,
+  "rule": {
+    "requires_human_confirmed": true,
+    "requires_confirmed_by_user": true,
+    "allowed_decisions": [
+      "MATCH_SINGLE_BLOCK",
+      "MATCH_MULTIPLE_BLOCKS"
+    ],
+    "forbidden_if_conflict_exists": true
+  },
+  "candidates": [
+    {
+      "gold_evidence_id": "EVD-001",
+      "decision": "MATCH_SINGLE_BLOCK",
+      "selected_candidate_group_ids": [
+        "EVD-001-g1"
+      ],
+      "selected_block_ids": [
+        189
+      ],
+      "evidence_complete": true,
+      "confidence": 0.99,
+      "estimated_coverage": 1.0,
+      "human_confirmed": true,
+      "confirmed_by": "user",
+      "confirmed_at": "2026-08-06T03:53:08.559962+00:00",
+      "may_import_to_gold": false
+    },
+    {
+      "gold_evidence_id": "EVD-003",
+      "decision": "MATCH_SINGLE_BLOCK",
+      "selected_candidate_group_ids": [
+        "EVD-003-g1"
+      ],
+      "selected_block_ids": [
+        190
+      ],
+      "evidence_complete": true,
+      "confidence": 0.98,
+      "estimated_coverage": 1.0,
+      "human_confirmed": true,
+      "confirmed_by": "user",
+      "confirmed_at": "2026-08-06T03:53:08.559962+00:00",
+      "may_import_to_gold": false
+    }
+  ]
+}

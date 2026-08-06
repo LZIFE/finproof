@@ -302,8 +302,10 @@ def test_exported_files_hash_identical():
 
 
 def test_prompt_integrity_all_pass(prompt_integrity: dict):
-    """32 条 Evidence Alignment 的 Prompt 完整性校验全部 PASS。"""
-    assert prompt_integrity["total_files"] == 32
+    """32 条 Evidence Alignment 的 Prompt 完整性校验全部 PASS（033-042 为 Source Recovery 由独立测试核对）。"""
+    assert prompt_integrity["total_files"] == 42  # 32 Evidence Alignment + 10 Source Recovery
+    assert prompt_integrity["evidence_alignment_files"] == 32
+    assert prompt_integrity["source_recovery_files"] == 10
     assert prompt_integrity["pass_count"] == 32
     assert prompt_integrity["fail_count"] == 0
 

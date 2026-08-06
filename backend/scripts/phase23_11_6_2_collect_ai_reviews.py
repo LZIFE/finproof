@@ -48,6 +48,10 @@ BACKEND = Path(__file__).resolve().parent.parent
 REPO_ROOT = BACKEND.parent
 
 REBUILT_PATH = REPO_ROOT / "data" / "gold_review" / "phase23_11_6_2" / "review_items_rebuilt.json"
+NF_RECOVERY_PATH = (
+    REPO_ROOT / "backend" / "artifacts" / "gold_contract"
+    / "phase23_11_6_2_not_found_recovery.json"
+)
 JSONL_PATH = REPO_ROOT / "data" / "gold_review" / "phase23_11_6_2" / "ai_review_results.jsonl"
 
 VALID_DECISIONS = {
@@ -55,6 +59,12 @@ VALID_DECISIONS = {
     "MATCH_MULTIPLE_BLOCKS",
     "NONE_OF_THE_ABOVE",
     "UNSURE",
+    # Source Recovery / Paraphrase Review Schema 的额外 decision
+    "SOURCE_TEXT_LOCATED",
+    "POSSIBLE_PARAPHRASE",
+    "WRONG_PAGE",
+    "WRONG_DOCUMENT",
+    "NONE_FOUND",
 }
 VALID_FIELD_CHECK_VALUES = {"MATCH", "MISMATCH", "UNKNOWN"}
 REQUIRED_TOP_KEYS = {
@@ -70,9 +80,10 @@ AI_REVIEW_STATUS = "AI_REVIEW_SUGGESTION_PENDING_HUMAN_CONFIRMATION"
 
 
 def load_rebuilt_items() -> dict:
-    """加载 rebuilt items，返回 {item_id: {candidate_block_ids: set, candidate_group_ids: set}}"""
-    data = json.loads(REBUILT_PATH.read_text(encoding="utf-8"))
+    """加载 rebuilt items + NOT_FOUND recovery items，返回 {item_id: {candidate_block_ids, candidate_group_ids, review_type}}"""
     index = {}
+    # 1. 32 条 Evidence Alignment（review_items_rebuilt.json）
+    data = json.loads(REBUILT_PATH.read_text(encoding="utf-8"))
     for it in data["items"]:
         bids: set[str] = set()
         gids: set[str] = set()
@@ -85,7 +96,28 @@ def load_rebuilt_items() -> dict:
         index[it["item_id"]] = {
             "candidate_block_ids": bids,
             "candidate_group_ids": gids,
+            "review_type": "EVIDENCE_ALIGNMENT",
         }
+    # 2. 10 条 NOT_FOUND recovery（phase23_11_6_2_not_found_recovery.json）
+    #    Source Recovery / Paraphrase Review 项目，candidate_group_ids 用 recall-bundle-N 命名
+    if NF_RECOVERY_PATH.exists():
+        nf = json.loads(NF_RECOVERY_PATH.read_text(encoding="utf-8"))
+        for it in nf.get("per_item", []):
+            iid = it["gold_evidence_id"]
+            bids_nf: set[str] = set()
+            gids_nf: set[str] = set()
+            for i, b in enumerate(it.get("candidate_bundles", [])):
+                for bid in b.get("source_block_ids", []):
+                    bids_nf.add(str(bid))
+                gids_nf.add(f"recall-bundle-{i+1}")
+            index.setdefault(iid, {
+                "candidate_block_ids": bids_nf,
+                "candidate_group_ids": gids_nf,
+                "review_type": (
+                    "PARAPHRASE_REVIEW" if it.get("recovery_status") == "PARAPHRASED_SOURCE_LOCATED"
+                    else "SOURCE_RECOVERY"
+                ),
+            })
     return index
 
 

@@ -1,0 +1,57 @@
+{
+  "phase": "23.11.8-B",
+  "step": "1_verdict_adjudication",
+  "generated_at": "2026-08-06T04:05:52.046822+00:00",
+  "count": 3,
+  "adjudications": [
+    {
+      "gold_evidence_id": "EVD-002",
+      "claim_id": "CLM-002",
+      "conflict_type": "METRIC_VALUE_MISALIGNMENT",
+      "final_decision": "BLOCKED",
+      "reason": "字段一致性分析：metric 一致（均为营业总收入）；value 不一致（claim 4564.52亿元 = 456,451,731千元，实际对应相邻指标营业收入，而 gold 为营业总收入 458,502,407千元 = 4585.02亿元，相差约0.44%）；period 无法从候选确认（UNKNOWN）；company 一致（美的集团）。claim 数值与 gold 数值对应不同指标（营业收入 vs 营业总收入），属 METRIC_VALUE_MISALIGNMENT，最终裁定权在 user，AI 无权判定 KEEP/REJECT → BLOCKED。",
+      "field_checks": {
+        "metric_consistent": true,
+        "value_consistent": false,
+        "period_consistent": "UNKNOWN",
+        "company_consistent": true
+      },
+      "reviewer": "user",
+      "status": "BLOCKED_PENDING_HUMAN_ADJUDICATION",
+      "adjudicated_at": "2026-08-06T04:05:52.046822+00:00"
+    },
+    {
+      "gold_evidence_id": "EVD-004",
+      "claim_id": "CLM-004",
+      "conflict_type": "GROWTH_RATE_MISALIGNMENT",
+      "final_decision": "BLOCKED",
+      "reason": "字段一致性分析：metric 一致（归属于上市公司股东的净利润同比增长）；value 不一致（claim 38.02% vs gold/Block 190 14.03%，明确冲突）；period 无法从候选确认（UNKNOWN）；company 一致（美的集团）。增长率 38.02% 与证据 14.03% 冲突，需人工确认 claim 来源或更正 → BLOCKED。",
+      "field_checks": {
+        "metric_consistent": true,
+        "value_consistent": false,
+        "period_consistent": "UNKNOWN",
+        "company_consistent": true
+      },
+      "reviewer": "user",
+      "status": "BLOCKED_PENDING_HUMAN_ADJUDICATION",
+      "adjudicated_at": "2026-08-06T04:05:52.046822+00:00"
+    },
+    {
+      "gold_evidence_id": "EVD-H04",
+      "claim_id": "CLM-H04",
+      "conflict_type": "WRONG_DOCUMENT_CANDIDATE_GENERATION_ERROR",
+      "final_decision": "BLOCKED",
+      "reason": "字段一致性分析：company 不一致（claim 公司为五粮液，候选文档为美的集团2025年年度报告）；metric/value 无法从候选重建（候选全为美的年报释义区，无五粮液经营现金流数据，AI 判定 NONE_OF_THE_ABOVE）；period 无法确认（UNKNOWN）。属 WRONG_DOCUMENT_CANDIDATE_GENERATION_ERROR：候选文档与 claim 公司不匹配，需人工确认 claim 所属公司或重建候选 → BLOCKED。",
+      "field_checks": {
+        "metric_consistent": "UNKNOWN",
+        "value_consistent": "UNKNOWN",
+        "period_consistent": "UNKNOWN",
+        "company_consistent": false
+      },
+      "reviewer": "user",
+      "status": "BLOCKED_PENDING_HUMAN_ADJUDICATION",
+      "adjudicated_at": "2026-08-06T04:05:52.046822+00:00"
+    }
+  ],
+  "note": "3 条均 BLOCKED：存在未裁定的 claim_gold_conflicts 冲突，AI 只做客观字段分析，最终 KEEP/REJECT/PARTIAL 裁定权在 user。BLOCKED 项不得进入 Gold Import。"
+}

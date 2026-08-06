@@ -1,0 +1,57 @@
+{
+  "phase": "23.11.7",
+  "validation_type": "pending_verdict_adjudication",
+  "generated_at": "2026-08-06T03:58:00.055184+00:00",
+  "count": 3,
+  "rule": {
+    "reason": "存在 claim_gold_conflicts 冲突记录，需第二轮 Verdict Adjudication 人工裁定后才可重新评估导入",
+    "status": "PENDING_SECOND_ROUND_HUMAN_ADJUDICATION"
+  },
+  "items": [
+    {
+      "gold_evidence_id": "EVD-002",
+      "decision": "MATCH_SINGLE_BLOCK",
+      "human_confirmed": true,
+      "confirmed_by": "user",
+      "conflict": {
+        "conflict_type": "METRIC_VALUE_MISALIGNMENT",
+        "claim_metric": "营业总收入",
+        "claim_value": "4564.52亿元",
+        "gold_metric": "营业总收入",
+        "gold_value": "458,502,407千元",
+        "status": "PENDING_SECOND_ROUND_HUMAN_ADJUDICATION"
+      },
+      "may_import_to_gold": false
+    },
+    {
+      "gold_evidence_id": "EVD-004",
+      "decision": "MATCH_SINGLE_BLOCK",
+      "human_confirmed": true,
+      "confirmed_by": "user",
+      "conflict": {
+        "conflict_type": "GROWTH_RATE_MISALIGNMENT",
+        "claim_metric": "归属于上市公司股东的净利润同比增长",
+        "claim_value": "38.02%",
+        "gold_metric": "归属于上市公司股东的净利润同比增长",
+        "gold_value": "14.03%",
+        "status": "PENDING_SECOND_ROUND_HUMAN_ADJUDICATION"
+      },
+      "may_import_to_gold": false
+    },
+    {
+      "gold_evidence_id": "EVD-H04",
+      "decision": "NONE_OF_THE_ABOVE",
+      "human_confirmed": true,
+      "confirmed_by": "user",
+      "conflict": {
+        "conflict_type": "WRONG_DOCUMENT_CANDIDATE_GENERATION_ERROR",
+        "claim_metric": null,
+        "claim_value": null,
+        "gold_metric": null,
+        "gold_value": null,
+        "status": "PENDING_SECOND_ROUND_HUMAN_ADJUDICATION"
+      },
+      "may_import_to_gold": false
+    }
+  ]
+}
