@@ -130,11 +130,13 @@ def _block_value_hits(block_text: str, claim_value: float, claim_unit: str | Non
 # ---------------------------------------------------------------- 指标别名
 
 # 关键指标别名（严格：净利润 ≠ 归母净利润，不合并；Phase 4A.5 扩充）
+# Phase 23.12：补充英文别名（Revenue/Sales/Net Income）与增长率别名（YoY/增长幅度），
+# 仅用于含英文表头/双语财报的块匹配；中文财报正文不含这些词，不会误匹配。
 _METRIC_ALIASES: dict[str, set[str]] = {
-    "revenue": {"营业收入", "营业总收入", "主营业务收入", "营收", "收入"},
-    "total_operating_revenue": {"营业总收入", "营业收入", "主营业务收入", "营收", "收入"},
+    "revenue": {"营业收入", "营业总收入", "主营业务收入", "营收", "收入", "Revenue", "Sales"},
+    "total_operating_revenue": {"营业总收入", "营业收入", "主营业务收入", "营收", "收入", "Revenue", "Sales"},
     "net_profit_attributable": {"归属于上市公司股东的净利润", "归属于母公司股东的净利润", "归母净利润", "归母净利"},
-    "net_profit": {"净利润"},
+    "net_profit": {"净利润", "Net Income"},
     "deducted_net_profit": {
         "扣除非经常性损益的净利润", "归属于上市公司股东的扣除非经常性损益的净利润",
         "扣非归母净利润", "扣非净利润", "扣非",
@@ -149,7 +151,7 @@ _METRIC_ALIASES: dict[str, set[str]] = {
     "roe": {"加权平均净资产收益率", "净资产收益率", "加权净资产收益率", "ROE"},
     "total_assets": {"总资产"},
     "net_assets": {"归属于上市公司股东的净资产", "净资产"},
-    "yoy_growth_revenue": {"营业收入同比增长", "营业总收入同比增长", "收入同比增长", "营收同比增长"},
+    "yoy_growth_revenue": {"营业收入同比增长", "营业总收入同比增长", "收入同比增长", "营收同比增长", "YoY", "增长幅度"},
 }
 _ALIAS_BY_NAME: dict[str, str] = {}
 for _code, _names in _METRIC_ALIASES.items():
@@ -281,10 +283,10 @@ def metric_value_adjacency(block_text: str, aliases: set[str]) -> float:
 # ---------------------------------------------------------------- 期间匹配
 
 _PERIOD_PATTERNS = {
-    "Q1": ["一季度", "第一季度", "2025年第一季度", "年初至报告期末", "1-3月", "1季度"],
-    "H1": ["上半年", "半年度", "中期", "1-6月"],
-    "FY": ["年度", "全年", "本报告期", "报告期内", "2025年"],
-    "2025": ["2025"],
+    "Q1": ["一季度", "第一季度", "2025年第一季度", "年初至报告期末", "1-3月", "1季度", "FY2025Q1", "2025Q1"],
+    "H1": ["上半年", "半年度", "中期", "1-6月", "FY2025H1", "2025H1"],
+    "FY": ["年度", "全年", "本报告期", "报告期内", "2025年", "FY2025", "2025年度", "本年度", "本年"],
+    "2025": ["2025", "FY2025", "2025年度", "2025年"],
 }
 # 期间类型 → 优先财报类型（文档过滤用）
 _PERIOD_TO_DOC_TYPE = {"Q1": "quarter", "H1": "half", "FY": "annual"}
@@ -328,12 +330,52 @@ def document_priority(claim_period: str | None, doc_period: str | None) -> int:
 
 # ---------------------------------------------------------------- 主体与文本
 
+# Phase 23.12：噪声块降权——纯页码（"1"、"12"）、表格分隔符（"---"、"|"、"===="）、
+# 空白/标点块不得作为证据候选提升排名（table awareness 降低项）。
+_NOISE_BLOCK_PENALTY = 0.25
+
+
+def is_noise_block(text: str | None) -> bool:
+    """判断文本块是否为噪声（页码/分隔符/纯标点），用于排名降权。"""
+    if not text:
+        return True
+    t = text.strip()
+    if not t:
+        return True
+    # 纯数字页码（1-4 位，可含空格）
+    if re.fullmatch(r"\d{1,4}", t):
+        return True
+    # 分隔符 / 纯标点
+    if re.fullmatch(r"[-—–|=_•·。，、；：()（）\s]+", t):
+        return True
+    # 中文页码（"第 12 页"）
+    if re.fullmatch(r"第\s*\d{1,4}\s*页", t):
+        return True
+    return False
+
+
+# Phase 23.12：公司实体别名表（全称 → 简称/股票代码/历史名称）。
+# 财报正文多为简称或代码（如 "美的"、"000333"），扩展匹配面避免 entity 过滤漏召回。
+_ENTITY_ALIASES: dict[str, set[str]] = {
+    "美的集团": {"美的集团", "美的", "000333", "Midea", "美的电器"},
+    "宜宾五粮液": {"宜宾五粮液", "五粮液", "000858", "Wuliangye"},
+    "贵州茅台": {"贵州茅台", "茅台", "600519", "Kweichow Moutai"},
+    "格力电器": {"格力电器", "格力", "000651", "Gree"},
+    "中国平安": {"中国平安", "平安", "601318", "Ping An"},
+}
+
+
 def entity_matches(block_text: str, entity_name: str | None) -> float:
     if not entity_name:
         return 0.0
     name = entity_name.strip()
     if name in block_text:
         return 1.0
+    # 实体别名：简称/股票代码/历史名称（Phase 23.12）
+    aliases = _ENTITY_ALIASES.get(name, set())
+    for a in aliases:
+        if a and a != name and a in block_text:
+            return 1.0
     # 简称兜底：取前 2-3 字（美的集团 → 美的；宜宾五粮液 → 五粮液）
     short = name[:2] if len(name) >= 2 else name
     return 1.0 if short in block_text and short not in ("公司", "集团") else 0.0
@@ -466,6 +508,20 @@ def score_block(
 
     权重让 metric/value 主导；period 不兼容时降权但不归零（rerank penalty 原则）。
     """
+    # Phase 23.12：噪声块（页码/分隔符/纯标点）直接低分，不参与候选排名竞争
+    if is_noise_block(block_text):
+        return {
+            "final_score": 0.0,
+            "metric_score": 0.0,
+            "value_score": 0.0,
+            "period_score": 0.0,
+            "entity_score": 0.0,
+            "text_score": 0.0,
+            "matched_terms": [],
+            "matched_metrics": [],
+            "value_match_reason": "noise_block",
+            "is_noise_block": True,
+        }
     w = {**DEFAULT_WEIGHTS, **(weights or {})}
     aliases = metric_aliases(claim.get("metric_code"), claim.get("metric"))
     hits = metric_hits(block_text, aliases)

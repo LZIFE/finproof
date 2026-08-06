@@ -247,7 +247,7 @@
           "pred": "SUPPORTED",
           "correct": false,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-025",
@@ -429,25 +429,25 @@
       "total_claims": 43,
       "correct": 22,
       "accuracy": 0.5116,
-      "macro_f1": 0.5037,
+      "macro_f1": 0.5638,
       "per_class_f1": {
-        "INSUFFICIENT_EVIDENCE": 0.1176,
+        "INSUFFICIENT_EVIDENCE": 0.1111,
         "OPINION_OR_FORECAST": 1.0,
-        "PARTIALLY_SUPPORTED": 0.0,
-        "REFUTED": 0.5926,
-        "SUPPORTED": 0.6452,
+        "PARTIALLY_SUPPORTED": 0.4,
+        "REFUTED": 0.5385,
+        "SUPPORTED": 0.6667,
         "UNABLE_TO_DETERMINE": 0.6667
       },
-      "coverage": 0.6744,
-      "abstentions": 14,
+      "coverage": 0.6512,
+      "abstentions": 15,
       "retrieval_failures": 1,
       "verification_failures": 21,
       "pred_distribution": {
-        "SUPPORTED": 13,
-        "REFUTED": 10,
-        "INSUFFICIENT_EVIDENCE": 14,
+        "SUPPORTED": 12,
+        "REFUTED": 9,
+        "INSUFFICIENT_EVIDENCE": 15,
         "OPINION_OR_FORECAST": 2,
-        "PARTIALLY_SUPPORTED": 3,
+        "PARTIALLY_SUPPORTED": 4,
         "UNABLE_TO_DETERMINE": 1
       },
       "per_claim": [
@@ -581,8 +581,8 @@
           "claim_id": "CLM-015",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "REFUTED",
-          "correct": true,
+          "pred": "INSUFFICIENT_EVIDENCE",
+          "correct": false,
           "candidates_before_gate": 10,
           "candidates_after_gate": 9
         },
@@ -662,10 +662,10 @@
           "claim_id": "CLM-024",
           "route": "STRUCTURED_NUMERIC",
           "gold": "PARTIALLY_SUPPORTED",
-          "pred": "SUPPORTED",
-          "correct": false,
+          "pred": "PARTIALLY_SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-025",
@@ -847,25 +847,25 @@
       "total_claims": 43,
       "correct": 22,
       "accuracy": 0.5116,
-      "macro_f1": 0.5037,
+      "macro_f1": 0.5638,
       "per_class_f1": {
-        "INSUFFICIENT_EVIDENCE": 0.1176,
+        "INSUFFICIENT_EVIDENCE": 0.1111,
         "OPINION_OR_FORECAST": 1.0,
-        "PARTIALLY_SUPPORTED": 0.0,
-        "REFUTED": 0.5926,
-        "SUPPORTED": 0.6452,
+        "PARTIALLY_SUPPORTED": 0.4,
+        "REFUTED": 0.5385,
+        "SUPPORTED": 0.6667,
         "UNABLE_TO_DETERMINE": 0.6667
       },
-      "coverage": 0.6744,
-      "abstentions": 14,
+      "coverage": 0.6512,
+      "abstentions": 15,
       "retrieval_failures": 1,
       "verification_failures": 21,
       "pred_distribution": {
-        "SUPPORTED": 13,
-        "REFUTED": 10,
-        "INSUFFICIENT_EVIDENCE": 14,
+        "SUPPORTED": 12,
+        "REFUTED": 9,
+        "INSUFFICIENT_EVIDENCE": 15,
         "OPINION_OR_FORECAST": 2,
-        "PARTIALLY_SUPPORTED": 3,
+        "PARTIALLY_SUPPORTED": 4,
         "UNABLE_TO_DETERMINE": 1
       },
       "per_claim": [
@@ -999,8 +999,8 @@
           "claim_id": "CLM-015",
           "route": "PERIOD_COMPARISON",
           "gold": "REFUTED",
-          "pred": "REFUTED",
-          "correct": true,
+          "pred": "INSUFFICIENT_EVIDENCE",
+          "correct": false,
           "candidates_before_gate": 10,
           "candidates_after_gate": 9
         },
@@ -1080,10 +1080,10 @@
           "claim_id": "CLM-024",
           "route": "STRUCTURED_NUMERIC",
           "gold": "PARTIALLY_SUPPORTED",
-          "pred": "SUPPORTED",
-          "correct": false,
+          "pred": "PARTIALLY_SUPPORTED",
+          "correct": true,
           "candidates_before_gate": 10,
-          "candidates_after_gate": 10
+          "candidates_after_gate": 8
         },
         {
           "claim_id": "CLM-025",
@@ -1279,13 +1279,13 @@
     },
     "phase23_11_top3": {
       "accuracy": 0.5116,
-      "macro_f1": 0.5037,
-      "coverage": 0.6744
+      "macro_f1": 0.5638,
+      "coverage": 0.6512
     },
     "phase23_11_gate": {
       "accuracy": 0.5116,
-      "macro_f1": 0.5037,
-      "coverage": 0.6744
+      "macro_f1": 0.5638,
+      "coverage": 0.6512
     }
   },
   "targets": {

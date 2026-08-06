@@ -1,0 +1,35 @@
+{
+  "phase": "23.12",
+  "step": "3_retrieval_evaluation",
+  "generated_at": "2026-08-06T04:20:27.924666+00:00",
+  "strategy": "phase23_11_gate",
+  "before": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5037,
+    "coverage": 0.6744,
+    "abstentions": 14,
+    "retrieval_failures": 1,
+    "verification_failures": 21
+  },
+  "after": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5638,
+    "coverage": 0.6512,
+    "abstentions": 15,
+    "retrieval_failures": 1,
+    "verification_failures": 21,
+    "wrong_count": 21
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0601,
+    "coverage": -0.0232,
+    "abstentions": 1,
+    "wrong_count": 0
+  },
+  "wrong_evidence_rate": {
+    "before": 0.4884,
+    "after": 0.4884
+  },
+  "note": "改进项：Entity别名表/股票代码、Metric英文别名+YoY、Period FY2025等模式、噪声块降权。Accuracy持平，Macro-F1 提升，Coverage 略降。"
+}

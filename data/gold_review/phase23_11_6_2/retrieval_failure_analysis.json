@@ -1,0 +1,227 @@
+{
+  "phase": "23.12",
+  "step": "1_error_analysis",
+  "generated_at": "2026-08-06T04:17:01.122379+00:00",
+  "total_wrong_cases": 21,
+  "category_counts": {
+    "CORRECT_EVIDENCE_NOT_RETRIEVED": 12,
+    "RETRIEVED_BUT_RANKED_LOW": 9
+  },
+  "category_ratios": {
+    "CORRECT_EVIDENCE_NOT_RETRIEVED": 0.5714,
+    "RETRIEVED_BUT_RANKED_LOW": 0.4286
+  },
+  "cases": [
+    {
+      "claim_id": "CLM-002",
+      "route": "STRUCTURED_NUMERIC",
+      "gold": "REFUTED",
+      "pred": "SUPPORTED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks ['4440', '4449', '4440', '4452'] 不在候选"
+    },
+    {
+      "claim_id": "CLM-003",
+      "route": "SCOPE_VALIDATION",
+      "gold": "SUPPORTED",
+      "pred": "REFUTED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 2,
+      "category": "RETRIEVED_BUT_RANKED_LOW",
+      "evidence": "retrieved=5, gold_page_in_top5=True（可能在 Top5 内但未入选/排名不够）"
+    },
+    {
+      "claim_id": "CLM-005",
+      "route": "TABLE_METRIC",
+      "gold": "SUPPORTED",
+      "pred": "REFUTED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks ['4440', '4440', '4443', '4449'] 不在候选"
+    },
+    {
+      "claim_id": "CLM-006",
+      "route": "PERIOD_COMPARISON",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 7,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks ['4440', '4440', '4443', '4449'] 不在候选"
+    },
+    {
+      "claim_id": "CLM-009",
+      "route": "STRUCTURED_NUMERIC",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks ['3106', '136', '165', '136'] 不在候选"
+    },
+    {
+      "claim_id": "CLM-010",
+      "route": "SCOPE_VALIDATION",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks ['3106', '136', '165', '136'] 不在候选"
+    },
+    {
+      "claim_id": "CLM-011",
+      "route": "PERIOD_COMPARISON",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 0,
+      "category": "RETRIEVED_BUT_RANKED_LOW",
+      "evidence": "retrieved=5, gold_page_in_top5=True（可能在 Top5 内但未入选/排名不够）"
+    },
+    {
+      "claim_id": "CLM-016",
+      "route": "NARRATIVE_FACT",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks ['2', '9', '6', '2'] 不在候选"
+    },
+    {
+      "claim_id": "CLM-019",
+      "route": "NARRATIVE_FACT",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks ['390'] 不在候选"
+    },
+    {
+      "claim_id": "CLM-022",
+      "route": "STRUCTURED_NUMERIC",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "SUPPORTED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 8,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks [] 不在候选"
+    },
+    {
+      "claim_id": "CLM-024",
+      "route": "STRUCTURED_NUMERIC",
+      "gold": "PARTIALLY_SUPPORTED",
+      "pred": "SUPPORTED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks ['169', '390', '169', '189'] 不在候选"
+    },
+    {
+      "claim_id": "CLM-025",
+      "route": "STRUCTURED_NUMERIC",
+      "gold": "UNABLE_TO_DETERMINE",
+      "pred": "PARTIALLY_SUPPORTED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks [] 不在候选"
+    },
+    {
+      "claim_id": "CLM-026",
+      "route": "PERIOD_COMPARISON",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 2,
+      "candidates_after_gate": 0,
+      "category": "RETRIEVED_BUT_RANKED_LOW",
+      "evidence": "retrieved=5, gold_page_in_top5=True（可能在 Top5 内但未入选/排名不够）"
+    },
+    {
+      "claim_id": "CLM-H02",
+      "route": "SCOPE_VALIDATION",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 2,
+      "candidates_after_gate": 0,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks ['113', '131', '113'] 不在候选"
+    },
+    {
+      "claim_id": "CLM-H03",
+      "route": "PERIOD_COMPARISON",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 5,
+      "category": "RETRIEVED_BUT_RANKED_LOW",
+      "evidence": "retrieved=5, gold_page_in_top5=True（可能在 Top5 内但未入选/排名不够）"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "route": "PERIOD_COMPARISON",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "category": "RETRIEVED_BUT_RANKED_LOW",
+      "evidence": "retrieved=5, gold_page_in_top5=True（可能在 Top5 内但未入选/排名不够）"
+    },
+    {
+      "claim_id": "CLM-H06",
+      "route": "STRUCTURED_NUMERIC",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 5,
+      "candidates_after_gate": 3,
+      "category": "RETRIEVED_BUT_RANKED_LOW",
+      "evidence": "retrieved=4, gold_page_in_top5=True（可能在 Top5 内但未入选/排名不够）"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "route": "PERIOD_COMPARISON",
+      "gold": "REFUTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 9,
+      "category": "RETRIEVED_BUT_RANKED_LOW",
+      "evidence": "retrieved=5, gold_page_in_top5=True（可能在 Top5 内但未入选/排名不够）"
+    },
+    {
+      "claim_id": "CLM-H11",
+      "route": "SCOPE_VALIDATION",
+      "gold": "SUPPORTED",
+      "pred": "INSUFFICIENT_EVIDENCE",
+      "candidates_before_gate": 0,
+      "candidates_after_gate": 0,
+      "category": "RETRIEVED_BUT_RANKED_LOW",
+      "evidence": "retrieved=5, gold_page_in_top5=True（可能在 Top5 内但未入选/排名不够）"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "route": "NARRATIVE_FACT",
+      "gold": "SUPPORTED",
+      "pred": "PARTIALLY_SUPPORTED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "category": "RETRIEVED_BUT_RANKED_LOW",
+      "evidence": "retrieved=5, gold_page_in_top5=True（可能在 Top5 内但未入选/排名不够）"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "route": "NARRATIVE_FACT",
+      "gold": "INSUFFICIENT_EVIDENCE",
+      "pred": "PARTIALLY_SUPPORTED",
+      "candidates_before_gate": 10,
+      "candidates_after_gate": 10,
+      "category": "CORRECT_EVIDENCE_NOT_RETRIEVED",
+      "evidence": "gold_page_in_top5=False, gold blocks [] 不在候选"
+    }
+  ],
+  "note": "分类基于：phase23_11 gate 策略 21 个错误 case × phase23_10 per-claim 检索详情（retrieved/gold_page_in_top5/multi_evidence）+ grounding inventory gold block 关联。CORE_ORACLE acc=1.0 证明核心验证器有效，错误源于检索/选择环节。"
+}
