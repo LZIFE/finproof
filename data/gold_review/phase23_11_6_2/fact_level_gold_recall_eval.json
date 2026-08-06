@@ -1,0 +1,5 @@
+{
+  "total": 31,
+  "block_level_gold_recall@10": 0.0968,
+  "fact_level_gold_recall@10": 0.3226
+}
