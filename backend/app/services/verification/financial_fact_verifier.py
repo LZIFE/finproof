@@ -61,6 +61,68 @@ def period_compatibility_score(claim_period, fact_periods) -> float:
     return 1.0
 
 
+# Phase 23.32 Task 2：financial_fact 质量评分（低质量 fact 不得参与 SUPPORTED/REFUTED）
+# 比例/每股类指标（值应为无单位比值或 0-100 的百分比）
+_RATIO_METRICS = {"basic_eps", "eps", "gross_margin", "roe", "net_margin"}
+# 金额类单位
+_AMOUNT_UNITS = ("千元", "万元", "百万元", "亿元", "元")
+# 主表类型（高置信度来源）
+_PRIMARY_TABLES = ("income_statement", "balance_sheet", "cash_flow", "equity_changes")
+# 泛化指标名（低 metric confidence）
+_GENERIC_METRICS = {"", "收入", "净利润", "收益", "资产", "负债"}
+# 低质量阈值：quality_score < 该值 → 强制 UNKNOWN
+QUALITY_THRESHOLD = 0.6
+
+
+def financial_fact_quality_score(fact: dict) -> float:
+    """财务事实质量分（0-1），四维置信度加权。
+
+    - metric confidence（0.30）：metric_code 非空且非泛化
+    - unit confidence（0.25）：比例类不带金额单位；金额类带单位
+    - period confidence（0.25）：periods 非空且年份合理（无 >2030 异常）
+    - source table confidence（0.20）：主表 > notes/MD 章节
+    """
+    if not fact:
+        return 0.0
+
+    # 1) metric confidence
+    mc = str(fact.get("metric_code") or "").strip()
+    metric_conf = 1.0 if mc and mc not in _GENERIC_METRICS else 0.0
+
+    # 2) unit confidence
+    unit = str(fact.get("unit") or "").strip()
+    if mc in _RATIO_METRICS:
+        # 比例/每股类：带金额单位 → 低置信（EPS=686429元 是错误）
+        unit_conf = 0.2 if unit in _AMOUNT_UNITS else 1.0
+    else:
+        # 金额类：带金额单位 → 高置信
+        unit_conf = 1.0 if unit in _AMOUNT_UNITS else 0.4
+
+    # 3) period confidence
+    periods = fact.get("periods") or []
+    if not periods:
+        period_conf = 0.2
+    else:
+        bad_year = any(
+            any(("2062" in p or "2099" in p or "2090" in p) for p in [pp]) or
+            (pp.isdigit() and int(pp) > 2030)
+            for pp in periods
+        )
+        period_conf = 0.2 if bad_year else 1.0
+
+    # 4) source table confidence
+    table = str(fact.get("table_type") or "other").strip()
+    table_conf = 1.0 if table in _PRIMARY_TABLES else 0.4
+
+    score = (
+        0.30 * metric_conf
+        + 0.25 * unit_conf
+        + 0.25 * period_conf
+        + 0.20 * table_conf
+    )
+    return round(score, 4)
+
+
 def verify_financial_fact_native(claim: dict, financial_fact: dict) -> dict:
     """原生事实验证：Claim vs financial_fact → FinancialFactVerificationResult。
 
@@ -72,9 +134,20 @@ def verify_financial_fact_native(claim: dict, financial_fact: dict) -> dict:
     if not financial_fact:
         return {
             "metric_match": None, "value_match": None, "growth_match": None,
-            "period_match": None, "period_score": 0.0,
+            "period_match": None, "period_score": 0.0, "quality_score": 0.0,
             "confidence": 0.0, "decision": "UNKNOWN",
             "reason": "无 financial_fact",
+        }
+
+    # Phase 23.32 Task 2：低质量 fact 不得参与 SUPPORTED/REFUTED（强制 UNKNOWN）
+    quality_score = financial_fact_quality_score(financial_fact)
+    if quality_score < QUALITY_THRESHOLD:
+        return {
+            "metric_match": None, "value_match": None, "growth_match": None,
+            "period_match": None, "period_score": 0.0,
+            "quality_score": quality_score,
+            "confidence": 0.0, "decision": "UNKNOWN",
+            "reason": f"低质量 financial_fact（quality_score={quality_score} < {QUALITY_THRESHOLD}），不参与判定",
         }
 
     norm = normalize_financial_fact(financial_fact, claim)

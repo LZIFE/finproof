@@ -194,10 +194,22 @@ def rerank_candidates(claim: dict, candidates: list[dict], doc_period: str | Non
             + RERANK_WEIGHTS["table"] * tm
             + RERANK_WEIGHTS["semantic"] * sm
         )
-        c["rerank_score"] = round(rerank, 4)
+        # Phase 23.32 Task 3：Fact Candidate Promotion——quality-gated 的 fact 若
+        # metric+value+period 匹配（verify SUPPORTED），提升进 top candidates。
+        promotion = 0.0
+        if ff:
+            from app.services.verification.financial_fact_verifier import (
+                verify_financial_fact_native,
+            )
+
+            vres = verify_financial_fact_native(claim, ff)
+            if vres["decision"] == "SUPPORTED":
+                promotion = 0.35  # 显著提升，使正确 fact 候选进入 top-K
+        c["rerank_score"] = round(rerank + promotion, 4)
         c["rerank_components"] = {
             "financial_fact_exists": fact_exists, "metric": mm, "value": vm,
             "period": pm, "growth": gm, "table": tm, "semantic": sm,
+            "promotion": promotion,
         }
 
     # 只排序，不删除候选（rerank_score 主序，final_score 兜底）

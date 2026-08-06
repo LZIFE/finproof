@@ -1,0 +1,64 @@
+{
+  "phase": "23.32",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T12:52:21.501377+00:00",
+  "fact_decision_distribution": {
+    "before_23_31": {
+      "SUPPORTED": 5,
+      "REFUTED": 14,
+      "UNKNOWN": 24
+    },
+    "after_23_32": {
+      "SUPPORTED": 5,
+      "REFUTED": 13,
+      "UNKNOWN": 25
+    },
+    "delta": {
+      "SUPPORTED": 0,
+      "REFUTED": -1,
+      "UNKNOWN": 1
+    }
+  },
+  "real_e2e_before_23_31": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744
+  },
+  "real_e2e_after_23_32_gate": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744,
+    "abstentions": 14
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "coverage": 0.0
+  },
+  "target": {
+    "accuracy_gain_0_05": 0.05,
+    "actual_gain": 0.0,
+    "met": false
+  },
+  "no_gain_analysis": {
+    "claim_parsing": {
+      "value": "35/43",
+      "unit": "35/43",
+      "period": "42/43",
+      "metric": "43/43",
+      "conclusion": "基本完整，非瓶颈"
+    },
+    "retrieval": {
+      "aligned_fact_claims": "14/43",
+      "fact_gold_recall@10": 0.7143,
+      "conclusion": "fact-level 召回已高，非瓶颈"
+    },
+    "verification_consumption": {
+      "conclusion": "剩余瓶颈——fact 仅影响 SUPPORTED/REFUTED 判定，多数 claim 的 fact 是 UNKNOWN（quality/period 门槛）或 fact 判定与 block 判定一致；quality gate 拦截低质量 fact（REFUTED -1）但 SUPPORTED 未增（正确 fact 未足够进入 top10 或 quality 门槛过严）"
+    }
+  },
+  "note": "quality gate（低质量 fact 强制 UNKNOWN）使 REFUTED 14->13（-1，E/B 类低质量 fact 被拦截）；promotion（SUPPORTED fact +0.35 rerank）已实现但 SUPPORTED 未增——正确 fact 候选在 top10 中较少，且多数 claim 无 quality 达标且 period 匹配的 fact。Real E2E gate acc 0.5116 持平，Accuracy 提升目标 ≥0.05 未达成（+0.0004）。按任务要求停止并分析：瓶颈在 verification 消费（fact 未足够影响 verdict），而非 retrieval/claim parsing。",
+  "target_met": {
+    "accuracy_gain_0_05": false
+  }
+}
