@@ -1,0 +1,293 @@
+[
+  {
+    "claim_id": "CLM-004",
+    "claim_period": "2025FY",
+    "claim_metric": "yoy_growth_net_profit",
+    "claim_value": 38.02,
+    "claim_unit": "%",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年"
+    ],
+    "fact_metric": "net_profit",
+    "fact_value": 43945411.0,
+    "fact_unit": "元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=38.02, ev=43945411.00, ratio=1155849.8422））"
+  },
+  {
+    "claim_id": "CLM-005",
+    "claim_period": "2025FY",
+    "claim_metric": "gross_margin",
+    "claim_value": 26.4,
+    "claim_unit": "%",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年"
+    ],
+    "fact_metric": "gross_margin",
+    "fact_value": 15.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=26.40, ev=15000.00, ratio=568.1818））"
+  },
+  {
+    "claim_id": "CLM-011",
+    "claim_period": "2025Q1",
+    "claim_metric": "net_profit_attributable",
+    "claim_value": 124.22,
+    "claim_unit": "亿元",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年"
+    ],
+    "fact_metric": "net_profit_attributable",
+    "fact_value": 128428421.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=12422000000.00, ev=128428421000.00, ratio=10.3388））"
+  },
+  {
+    "claim_id": "CLM-012",
+    "claim_period": "2025FY",
+    "claim_metric": "basic_eps",
+    "claim_value": 5.8,
+    "claim_unit": "元/股",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年"
+    ],
+    "fact_metric": "basic_eps",
+    "fact_value": 686429.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=5.80, ev=686429000.00, ratio=118349827.5862））"
+  },
+  {
+    "claim_id": "CLM-013",
+    "claim_period": "2025H1",
+    "claim_metric": "basic_eps",
+    "claim_value": 3.41,
+    "claim_unit": "元/股",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年"
+    ],
+    "fact_metric": "basic_eps",
+    "fact_value": 686429.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=3.41, ev=686429000.00, ratio=201298826.9795））"
+  },
+  {
+    "claim_id": "CLM-014",
+    "claim_period": "2025FY",
+    "claim_metric": "operating_cash_flow",
+    "claim_value": 533.46,
+    "claim_unit": "亿元",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年"
+    ],
+    "fact_metric": "operating_cash_flow",
+    "fact_value": 44520196.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=53346000000.00, ev=44520196000.00, ratio=0.8346））"
+  },
+  {
+    "claim_id": "CLM-015",
+    "claim_period": "2025H1",
+    "claim_metric": "yoy_growth_revenue",
+    "claim_value": 20.49,
+    "claim_unit": "%",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年",
+      "2025年度",
+      "2024年度"
+    ],
+    "fact_metric": "total_operating_revenue",
+    "fact_value": 458502407.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=20.49, ev=458502407000.00, ratio=22376886627.6232））"
+  },
+  {
+    "claim_id": "CLM-017",
+    "claim_period": "2025FY",
+    "claim_metric": "revenue",
+    "claim_value": 4071.5,
+    "claim_unit": "亿元",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年",
+      "2025年度",
+      "2024年度"
+    ],
+    "fact_metric": "total_operating_revenue",
+    "fact_value": 458502407.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=407150000000.00, ev=458502407000.00, ratio=1.1261））"
+  },
+  {
+    "claim_id": "CLM-018",
+    "claim_period": "2025FY",
+    "claim_metric": "operating_cash_flow",
+    "claim_value": 5334.59,
+    "claim_unit": "亿元",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年"
+    ],
+    "fact_metric": "operating_cash_flow",
+    "fact_value": 44520196.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=533459000000.00, ev=44520196000.00, ratio=0.0835））"
+  },
+  {
+    "claim_id": "CLM-024",
+    "claim_period": "2025FY",
+    "claim_metric": "yoy_growth_revenue",
+    "claim_value": 15,
+    "claim_unit": "%",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年",
+      "2025年度",
+      "2024年度"
+    ],
+    "fact_metric": "total_operating_revenue",
+    "fact_value": 458502407.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=15.00, ev=458502407000.00, ratio=30566827133.3333））"
+  },
+  {
+    "claim_id": "CLM-026",
+    "claim_period": "2025H1",
+    "claim_metric": "deducted_net_profit",
+    "claim_value": 262,
+    "claim_unit": "亿元",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年"
+    ],
+    "fact_metric": "deducted_net_profit",
+    "fact_value": 15.7,
+    "fact_unit": "亿元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=26200000000.00, ev=1570000000.00, ratio=0.0599））"
+  },
+  {
+    "claim_id": "CLM-H02",
+    "claim_period": "2025FY",
+    "claim_metric": "net_profit_attributable",
+    "claim_value": 89.54,
+    "claim_unit": "亿元",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年"
+    ],
+    "fact_metric": "net_profit_attributable",
+    "fact_value": 54.55,
+    "fact_unit": "亿元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=8954000000.00, ev=5455000000.00, ratio=0.6092））"
+  },
+  {
+    "claim_id": "CLM-H03",
+    "claim_period": "2025FY",
+    "claim_metric": "yoy_growth_net_profit",
+    "claim_value": 38.02,
+    "claim_unit": "%",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年",
+      "2023年"
+    ],
+    "fact_metric": "net_profit",
+    "fact_value": 40528509770.0,
+    "fact_unit": "元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=38.02, ev=40528509770.00, ratio=1065978689.3740））"
+  },
+  {
+    "claim_id": "CLM-H04",
+    "claim_period": "2025FY",
+    "claim_metric": "operating_cash_flow",
+    "claim_value": 297.06,
+    "claim_unit": "亿元",
+    "fact_period": "",
+    "fact_periods": [],
+    "fact_metric": "operating_cash_flow",
+    "fact_value": 30002440.0,
+    "fact_unit": "",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=29706000000.00, ev=30002440.00, ratio=0.0010））"
+  },
+  {
+    "claim_id": "CLM-H06",
+    "claim_period": "2025FY",
+    "claim_metric": "basic_eps",
+    "claim_value": 8.21,
+    "claim_unit": "元/股",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年"
+    ],
+    "fact_metric": "basic_eps",
+    "fact_value": 43945411.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=8.21, ev=43945411000.00, ratio=5352668818.5140））"
+  },
+  {
+    "claim_id": "CLM-H07",
+    "claim_period": "2025FY",
+    "claim_metric": "roe",
+    "claim_value": 6.89,
+    "claim_unit": "%",
+    "fact_period": "2062年",
+    "fact_periods": [
+      "2062年",
+      "2025年",
+      "2024年",
+      "2023年"
+    ],
+    "fact_metric": "roe",
+    "fact_value": 29706259919.0,
+    "fact_unit": "元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=6.89, ev=29706259919.00, ratio=4311503616.6909））"
+  },
+  {
+    "claim_id": "CLM-H09",
+    "claim_period": "2025FY",
+    "claim_metric": "yoy_growth_net_assets",
+    "claim_value": 10.02,
+    "claim_unit": "%",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年"
+    ],
+    "fact_metric": "net_assets",
+    "fact_value": 43533148.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=10.02, ev=43533148000.00, ratio=4344625548.9022））"
+  },
+  {
+    "claim_id": "CLM-H16",
+    "claim_period": "2025FY",
+    "claim_metric": "revenue",
+    "claim_value": 4052.85,
+    "claim_unit": "亿元",
+    "fact_period": "2025年",
+    "fact_periods": [
+      "2025年",
+      "2024年",
+      "2025年度",
+      "2024年度"
+    ],
+    "fact_metric": "total_operating_revenue",
+    "fact_value": 458502407.0,
+    "fact_unit": "千元",
+    "reason": "metric 匹配但 value 冲突（换算元后不匹配（claim=405285000000.00, ev=458502407000.00, ratio=1.1313））"
+  }
+]

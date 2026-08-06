@@ -17,6 +17,12 @@
 - metric 匹配但 value 冲突 → REFUTED
 - 信息不足（缺 metric 或 value）→ UNKNOWN
 
+Phase 23.31（period-aware）：
+- 新增 period_compatibility_score：claim 2025FY vs fact [2025年度] → 1.0；
+  claim 2025Q1/H1 vs fact FY → 严重降权（0.2/0.3）；fact periods 空 → 0。
+- period 不匹配的 fact 不得直接 REFUTED：period mismatch → UNKNOWN（即使 value 冲突），
+  避免期间错配造成错误 REFUTED。
+
 复用 financial_fact_normalizer 的归一化（currency/unit/percentage/period）。
 """
 from __future__ import annotations
@@ -28,18 +34,46 @@ from app.services.verification.financial_fact_normalizer import (
 )
 
 
+def period_compatibility_score(claim_period, fact_periods) -> float:
+    """期间兼容分（0-1）。
+
+    - claim 年度（FY/年份）且 fact 含同年度 → 1.0
+    - claim 半年度（H1）且 fact 含同年度 → 0.3（年度数据可佐证但非精确）
+    - claim 季度（Q1-Q4）且 fact 含同年度 → 0.2（季度 vs 年度严重降权）
+    - fact periods 缺失 → 0.0
+    - claim 年份不在 fact periods → 0.0
+    """
+    if not claim_period or not fact_periods:
+        return 0.0
+    m = re.search(r"(19|20)\d{2}", str(claim_period))
+    if not m:
+        return 0.0
+    year = m.group(0)
+    # fact periods 含 claim 年份（如 "2025年" 或 "2025年度"）
+    has_year = any(year in p for p in fact_periods)
+    if not has_year:
+        return 0.0
+    cp = str(claim_period).upper()
+    if "Q" in cp:
+        return 0.2
+    if "H" in cp:
+        return 0.3
+    return 1.0
+
+
 def verify_financial_fact_native(claim: dict, financial_fact: dict) -> dict:
     """原生事实验证：Claim vs financial_fact → FinancialFactVerificationResult。
 
     decision:
         SUPPORTED —— metric+value+period 全匹配（growth 作为加分，缺失不降级）
-        REFUTED   —— metric 匹配但 value 冲突（或 value 明确冲突）
-        UNKNOWN   —— 信息不足（claim/fact 缺 metric 或 value）
+        REFUTED   —— metric+period 匹配但 value 明确冲突
+        UNKNOWN   —— 信息不足 / period 不匹配（Phase 23.31：period mismatch 不 REFUTED）
     """
     if not financial_fact:
         return {
             "metric_match": None, "value_match": None, "growth_match": None,
-            "period_match": None, "confidence": 0.0, "decision": "UNKNOWN",
+            "period_match": None, "period_score": 0.0,
+            "confidence": 0.0, "decision": "UNKNOWN",
             "reason": "无 financial_fact",
         }
 
@@ -49,7 +83,10 @@ def verify_financial_fact_native(claim: dict, financial_fact: dict) -> dict:
     value_match = bool(norm.get("value_match", {}).get("matched", False))
     prev_match = bool(norm.get("previous_value_match", {}).get("matched", False))
     growth_match = bool(norm.get("growth_match", {}).get("matched", False))
-    period_match = bool(norm.get("period_match", {}).get("matched", False))
+    # Phase 23.31：period 用兼容分判定（而非简单真/假）
+    period_score = period_compatibility_score(claim.get("period"),
+                                              financial_fact.get("periods") or [])
+    period_match = period_score >= 0.8
 
     # 信息不足判定
     claim_value = claim.get("reported_value") or claim.get("value")
@@ -58,8 +95,20 @@ def verify_financial_fact_native(claim: dict, financial_fact: dict) -> dict:
         return {
             "metric_match": metric_match, "value_match": value_match,
             "growth_match": growth_match, "period_match": period_match,
+            "period_score": period_score,
             "confidence": 0.0, "decision": "UNKNOWN",
             "reason": "信息不足：claim 与 fact 均缺 metric/value",
+        }
+
+    # Phase 23.31：period 不匹配 → UNKNOWN（不得因 period 错配而 REFUTED/SUPPORTED）
+    if period_score < 0.8:
+        return {
+            "metric_match": metric_match, "value_match": value_match,
+            "growth_match": growth_match, "period_match": period_match,
+            "period_score": period_score,
+            "confidence": 0.3,
+            "decision": "UNKNOWN",
+            "reason": f"期间不兼容（claim={claim.get('period')} vs fact={financial_fact.get('periods')}，score={period_score}），不判定 REFUTED",
         }
 
     # 核心字段：metric + value + period
@@ -71,6 +120,7 @@ def verify_financial_fact_native(claim: dict, financial_fact: dict) -> dict:
         return {
             "metric_match": metric_match, "value_match": value_match,
             "growth_match": growth_match, "period_match": period_match,
+            "period_score": period_score,
             "confidence": round(min(conf, 0.95), 4),
             "decision": "SUPPORTED",
             "reason": f"核心字段匹配（metric+value+period）{'+growth' if growth_match else ''}",
@@ -80,15 +130,17 @@ def verify_financial_fact_native(claim: dict, financial_fact: dict) -> dict:
         return {
             "metric_match": metric_match, "value_match": value_match,
             "growth_match": growth_match, "period_match": period_match,
+            "period_score": period_score,
             "confidence": 0.75,
             "decision": "REFUTED",
-            "reason": f"metric 匹配但 value 冲突（{norm.get('value_match', {}).get('reason', '')}）",
+            "reason": f"metric+period 匹配但 value 冲突（{norm.get('value_match', {}).get('reason', '')}）",
         }
 
     if not metric_match:
         return {
             "metric_match": metric_match, "value_match": value_match,
             "growth_match": growth_match, "period_match": period_match,
+            "period_score": period_score,
             "confidence": 0.3,
             "decision": "UNKNOWN",
             "reason": "metric 不匹配，信息不足以判定",
@@ -97,6 +149,7 @@ def verify_financial_fact_native(claim: dict, financial_fact: dict) -> dict:
     return {
         "metric_match": metric_match, "value_match": value_match,
         "growth_match": growth_match, "period_match": period_match,
+        "period_score": period_score,
         "confidence": 0.4,
         "decision": "UNKNOWN",
         "reason": "部分匹配但信息不足",

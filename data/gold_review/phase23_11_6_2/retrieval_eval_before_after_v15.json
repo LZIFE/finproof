@@ -1,0 +1,48 @@
+{
+  "phase": "23.31",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T12:39:25.771642+00:00",
+  "fact_decision_distribution": {
+    "before_23_30": {
+      "SUPPORTED": 7,
+      "REFUTED": 18,
+      "UNKNOWN": 18
+    },
+    "after_23_31": {
+      "SUPPORTED": 5,
+      "REFUTED": 14,
+      "UNKNOWN": 24
+    },
+    "delta": {
+      "SUPPORTED": -2,
+      "REFUTED": -4,
+      "UNKNOWN": 6
+    },
+    "note": "period-aware 使 REFUTED 18->14（-4）；部分原 SUPPORTED（period_score<0.8，如 fact periods 缺年份）转 UNKNOWN（7->5）；UNKNOWN 18->24"
+  },
+  "real_e2e_before_23_30": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.577,
+    "coverage": 0.6744
+  },
+  "real_e2e_after_23_31_gate": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744,
+    "abstentions": 14
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": -0.0002,
+    "coverage": 0.0
+  },
+  "target": {
+    "accuracy_gain_0_05": 0.05,
+    "accuracy_gain_actual": 0.0,
+    "met": false
+  },
+  "note": "Period-aware fact selection：REFUTED 18->14（减少4条错误 REFUTED，符合审计预期），但 SUPPORTED 7->5（部分因 period_score<0.8 转 UNKNOWN——fact periods 缺年份的 case 被严格化）。Real E2E gate acc 0.5116 持平，Accuracy 提升目标 ≥0.05 未达成。如实记录：period 严格化减少了误 REFUTED 但未转化为 E2E 提升（fact 路径对最终 verdict 影响仍有限，多数 claim fallback block 路径）。",
+  "target_met": {
+    "accuracy_gain_0_05": false
+  }
+}
