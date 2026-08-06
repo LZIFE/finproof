@@ -1,0 +1,40 @@
+{
+  "phase": "23.20",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T07:51:44.516027+00:00",
+  "recall_before_23_19": {
+    "block_recall@50": 0.3,
+    "block_recall@10": 0.1333
+  },
+  "recall_after_23_20": {
+    "block_recall@50": 0.3,
+    "block_recall@10": 0.1333,
+    "evidence_recall@50": 0.1,
+    "evidence_recall@10": 0.1
+  },
+  "real_e2e_before_23_19": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5675,
+    "coverage": 0.6744
+  },
+  "real_e2e_after_23_20_gate": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5907,
+    "coverage": 0.6512,
+    "abstentions": 15
+  },
+  "real_e2e_after_top1": {
+    "accuracy": 0.4884,
+    "macro_f1": 0.4947
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0232,
+    "coverage": -0.0232
+  },
+  "note": "Financial Evidence Index + Retriever 合并入候选池后：Block Recall@50 0.30 持平（9/30），Evidence Recall@50=0.10（索引证据对象仅覆盖 3/30 gold），Real E2E gate acc 0.535 持平、mf1 0.5675->0.591（+0.024）。证据对象已入候选池且 reranker 优先，但索引覆盖不足（gold blocks 多在候选 block_ids 中而非 evidence index source_blocks），如实记录：小幅提升，未跨门槛。",
+  "target_met": {
+    "recall@50_target_0_8": false,
+    "accuracy_target_0_7": false
+  }
+}

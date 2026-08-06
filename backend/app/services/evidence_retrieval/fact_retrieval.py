@@ -46,3 +46,44 @@ def fact_retrieve_candidates(session, claim: dict, scored: list[dict], top_k: in
 
     scored.sort(key=lambda c: (-c.get("fact_retrieval_score", 0.0), -c.get("final_score", 0.0)))
     return scored
+
+
+def merge_evidence_index_candidates(session, claim: dict, scored: list[dict], target_sections: list[str]) -> list[dict]:
+    """Phase 23.20 Task 3：把 FinancialEvidence Index 候选并入 block 候选池。
+
+    - 对每个检索到的证据对象，取其 source_blocks 中尚未入池的块加入 scored
+      （附加 financial_object + evidence_retrieval_score，标记 source="evidence_index"）
+    - 不删除任何既有 block 候选（仅 union 扩池）
+    - 返回扩池后的 scored；reranker 将按 financial_fact_match 对 evidence 对象优先排序
+    """
+    from app.services.evidence_retrieval.evidence_retriever import retrieve_financial_evidence
+
+    evs = retrieve_financial_evidence(claim, target_sections=target_sections, top_k=30)
+    if not evs:
+        return scored
+
+    existing_ids = {c.get("block_id") for c in scored}
+    added = 0
+    for ev in evs:
+        for bid in ev.get("source_blocks", []):
+            if bid in existing_ids:
+                continue
+            block = _block_by_id(session, bid)
+            if block is None or not block.text:
+                continue
+            scored.append({
+                "document_id": ev.get("document_id"),
+                "page_number": ev.get("page_number"),
+                "block_id": bid,
+                "page_id": ev.get("page_id"),
+                "y0": block.y0 or 0.0,
+                "reading_order": block.reading_order or 0,
+                "final_score": ev.get("retrieval_score", 0.0),
+                "block_text": block.text[:300],
+                "financial_object": ev,          # 直接附加索引证据对象（跨块重建）
+                "fact_retrieval_score": ev.get("retrieval_score", 0.0),
+                "retrieval_method": "evidence_index",
+            })
+            existing_ids.add(bid)
+            added += 1
+    return scored

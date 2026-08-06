@@ -1,0 +1,17 @@
+{
+  "phase": "23.20",
+  "step": "4_evaluation",
+  "total": 30,
+  "block_recall": {
+    "recall@10": 0.1333,
+    "recall@50": 0.3
+  },
+  "evidence_recall": {
+    "evidence_recall@10": 0.1,
+    "evidence_recall@50": 0.1
+  },
+  "before_23_19": {
+    "block_recall@50": 0.3,
+    "block_recall@10": 0.1333
+  }
+}
