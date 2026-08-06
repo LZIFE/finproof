@@ -1,0 +1,7 @@
+{
+  "claims_with_fact": 43,
+  "supported": 7,
+  "refuted": 18,
+  "unknown": 18,
+  "fact_verification_success_rate": 0.1628
+}
