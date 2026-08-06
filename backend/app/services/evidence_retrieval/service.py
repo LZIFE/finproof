@@ -455,6 +455,7 @@ def retrieve_for_claim(
     # Phase 23.19 Task 3：Fact Retrieval Layer——重排前对候选块做证据窗口重建 +
     # 财务事实匹配排序（跨块合并的 FinancialEvidenceObject 优先，不删除任何候选）
     from app.services.evidence_retrieval.fact_retrieval import (
+        attach_financial_facts,
         fact_retrieve_candidates,
         merge_evidence_index_candidates,
     )
@@ -462,6 +463,8 @@ def retrieve_for_claim(
     scored = fact_retrieve_candidates(session, claim, scored)
     # Phase 23.20 Task 3：把 FinancialEvidence Index 候选并入候选池（union 扩池，不删既有候选）
     scored = merge_evidence_index_candidates(session, claim, scored, target_sections)
+    # Phase 23.23 Task 1：EvidenceBundle 扩展——附加 financial_fact 字段（raw blocks 保留）
+    scored = attach_financial_facts(scored)
 
     # Phase 23.16 Step 3：Evidence Reranker 二级重排（score_block 初排后、top_k 截断前）
     from app.services.evidence_retrieval.reranker import rerank_candidates

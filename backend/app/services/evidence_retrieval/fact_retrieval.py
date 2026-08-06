@@ -87,3 +87,32 @@ def merge_evidence_index_candidates(session, claim: dict, scored: list[dict], ta
             existing_ids.add(bid)
             added += 1
     return scored
+
+
+# Phase 23.23 Task 1：EvidenceBundle 扩展——financial_fact schema（与任务要求一致）
+def attach_financial_facts(scored: list[dict]) -> list[dict]:
+    """为候选附加标准化 financial_fact 字段（EvidenceBundle 的 financial_facts 部分）。
+
+    - 从候选的 financial_object（Phase 23.20/23.21 已附加）提取 schema 8 字段
+    - 不删除 raw block 字段（block_id / block_text / page 等原样保留）
+    - 无 financial_object 的候选保持 raw-block-only（向后兼容）
+    """
+    for c in scored:
+        fo = c.get("financial_object") or {}
+        if not fo:
+            c["financial_fact"] = None
+            continue
+        c["financial_fact"] = {
+            "metric": fo.get("metric", ""),
+            "metric_code": fo.get("metric_code", ""),
+            "current_value": fo.get("current_value"),
+            "previous_value": fo.get("previous_value"),
+            "growth": fo.get("growth"),
+            "unit": fo.get("unit", ""),
+            "period": fo.get("period", ""),
+            "periods": fo.get("periods", []),
+            "table_type": fo.get("table_type", "other"),
+            "source_blocks": fo.get("source_blocks", []),
+            "source_evidence_id": c.get("block_id"),   # 关联 raw block
+        }
+    return scored

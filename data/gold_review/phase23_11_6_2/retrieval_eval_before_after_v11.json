@@ -1,0 +1,46 @@
+{
+  "phase": "23.23",
+  "step": "4_evaluation",
+  "generated_at": "2026-08-06T08:38:39.829130+00:00",
+  "financial_fact_recall": {
+    "before_23_22": {
+      "fact_recall@50": 0.3667,
+      "fact_recall@10": 0.3667
+    },
+    "after_23_23": {
+      "fact_recall@50": 0.3667,
+      "fact_recall@10": 0.3667
+    }
+  },
+  "block_recall": {
+    "before_23_22": {
+      "block_recall@50": 0.3,
+      "block_recall@10": 0.1333
+    },
+    "after_23_23": {
+      "block_recall@50": 0.3,
+      "block_recall@10": 0.1333
+    }
+  },
+  "real_e2e_before_23_22": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5907,
+    "coverage": 0.6512
+  },
+  "real_e2e_after_23_23_gate": {
+    "accuracy": 0.5349,
+    "macro_f1": 0.5907,
+    "coverage": 0.6512,
+    "abstentions": 15
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "coverage": 0.0
+  },
+  "note": "EvidenceBundle 扩展（raw_blocks + financial_facts）+ verification adapter 接入后：Fact Recall@50=0.3667 持平（与 23.22 相同评估口径），Real E2E gate acc 0.535 持平。FinancialEvidenceObject 已随 fetch_evidence 传入验证链（financial_fact 字段附加，raw blocks 保留），36 个 block-only 验证测试全过（向后兼容）。如实记录：本阶段为验证桥接基础设施搭建，端到端 accuracy 未变——财务事实字段已进入验证链但 core_verify 尚未消费该字段。",
+  "target_met": {
+    "fact_recall@50_target_0_8": false,
+    "accuracy_target_0_7": false
+  }
+}

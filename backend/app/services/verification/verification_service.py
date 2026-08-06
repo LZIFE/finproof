@@ -111,6 +111,8 @@ def fetch_evidence(session: Session, claim: dict, top_k: int = 5) -> list[dict]:
                 "period_score": c.get("period_score", 0.0),
                 "evidence_type": c.get("evidence_type", "UNKNOWN"),
                 "evidence_rank_reason": c.get("evidence_rank_reason"),
+                # Phase 23.23 Task 2：FinancialEvidenceObject 传入验证链（不删 raw block 字段）
+                "financial_fact": c.get("financial_fact"),
             }
         )
     return out
