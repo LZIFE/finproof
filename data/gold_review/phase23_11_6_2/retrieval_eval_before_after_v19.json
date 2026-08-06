@@ -1,0 +1,53 @@
+{
+  "phase": "23.35",
+  "step": "5_evaluation",
+  "generated_at": "2026-08-06T14:49:05.604509+00:00",
+  "fact_usage": {
+    "before_23_34": 0.0,
+    "after_23_35": 0.3721,
+    "fact_used": 16,
+    "total": 43,
+    "target_met": true
+  },
+  "verdict_distribution": {
+    "SUPPORTED": 8,
+    "REFUTED": 20,
+    "INSUFFICIENT_EVIDENCE": 11,
+    "OPINION_OR_FORECAST": 2,
+    "PARTIALLY_SUPPORTED": 1,
+    "UNABLE_TO_DETERMINE": 1
+  },
+  "real_e2e_before_23_34": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744
+  },
+  "real_e2e_after_23_35_gate": {
+    "accuracy": 0.5116,
+    "macro_f1": 0.5768,
+    "coverage": 0.6744,
+    "abstentions": 14
+  },
+  "delta": {
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "coverage": 0.0
+  },
+  "target": {
+    "fact_usage_20": true,
+    "accuracy_gain_positive": false,
+    "accuracy_met": false
+  },
+  "bottleneck_fixed": {
+    "root_cause": "verify_real_e2e 直接把 retrieve_for_claim 候选（字段 block_text，无 text）传给 Gate，Gate 读 candidate['text'] 为空 → 全部拒绝 → evidence_bundle 空 → core_verify no_evidence（41/43）",
+    "fix": "verify_real_e2e 改用 fetch_evidence 适配（block_text→text 映射 + financial_fact 透传）",
+    "effect": "Fact usage 0% -> 37.2%（16/43）；verdict 分布恢复正常（不再 37/43 no_evidence）"
+  },
+  "accuracy_not_improved_analysis": {
+    "conclusion": "Fact usage 达标（37.2%）但 Accuracy 持平（0.512）：fact 决策已真正触发，但 verdict 分布中 REFUTED 20 条（含 fact REFUTED 12）——fact 的 value 冲突即 REFUTED 判定过激进，与 block 路径相比未带来更准确的 SUPPORTED/REFUTED 分布；Accuracy 提升需 fact 判定更准确（REFUTED 减少 / 正确 SUPPORTED 增加），而非仅触发。属 fact 判定质量而非触发问题。"
+  },
+  "target_met": {
+    "fact_usage_20": true,
+    "accuracy_gain": false
+  }
+}

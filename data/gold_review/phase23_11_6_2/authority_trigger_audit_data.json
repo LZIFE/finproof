@@ -1,0 +1,432 @@
+[
+  {
+    "claim_id": "CLM-001",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": true,
+    "best_period_match": true,
+    "best_decision": "SUPPORTED"
+  },
+  {
+    "claim_id": "CLM-002",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": true,
+    "best_period_match": true,
+    "best_decision": "SUPPORTED"
+  },
+  {
+    "claim_id": "CLM-003",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.88,
+    "best_metric_match": true,
+    "best_value_match": true,
+    "best_period_match": true,
+    "best_decision": "SUPPORTED"
+  },
+  {
+    "claim_id": "CLM-004",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.88,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-005",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.68,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-006",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-007",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": true,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-008",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-009",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-010",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.88,
+    "best_metric_match": false,
+    "best_value_match": true,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-011",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-012",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.88,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-013",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.88,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-014",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-015",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-016",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-017",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-018",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-019",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-020",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-021",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-022",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.73,
+    "best_metric_match": false,
+    "best_value_match": true,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-023",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.73,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-024",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-025",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.88,
+    "best_metric_match": false,
+    "best_value_match": true,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-026",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.88,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-H01",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": true,
+    "best_period_match": true,
+    "best_decision": "SUPPORTED"
+  },
+  {
+    "claim_id": "CLM-H02",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.88,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-H03",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.88,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-H04",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-H05",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-H06",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.8,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-H07",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.68,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-H08",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-H09",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-H10",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-H11",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-H12",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-H13",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-H14",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 0.7,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-H15",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": false,
+    "best_decision": "UNKNOWN"
+  },
+  {
+    "claim_id": "CLM-H16",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": true,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "REFUTED"
+  },
+  {
+    "claim_id": "CLM-H17",
+    "candidate_count": 5,
+    "financial_fact_count": 5,
+    "best_quality_score": 1.0,
+    "best_metric_match": false,
+    "best_value_match": false,
+    "best_period_match": true,
+    "best_decision": "UNKNOWN"
+  }
+]

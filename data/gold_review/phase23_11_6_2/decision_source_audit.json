@@ -1,0 +1,267 @@
+{
+  "source_distribution": {
+    "BLOCK_NO_EVIDENCE": 38,
+    "SEMANTIC": 2,
+    "BLOCK": 3
+  },
+  "detail": [
+    {
+      "claim_id": "CLM-001",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-002",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-003",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-004",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-005",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-006",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-007",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-008",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-009",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-010",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-011",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-012",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-013",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-014",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-015",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-016",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-017",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-018",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-019",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-020",
+      "source": "SEMANTIC",
+      "rule": "semantic:causal_overreach_no_evidence",
+      "status": "REFUTED"
+    },
+    {
+      "claim_id": "CLM-021",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-022",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-023",
+      "source": "BLOCK",
+      "rule": "verdict:forecast",
+      "status": "OPINION_OR_FORECAST"
+    },
+    {
+      "claim_id": "CLM-024",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-025",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:threshold_no_evidence",
+      "status": "UNABLE_TO_DETERMINE"
+    },
+    {
+      "claim_id": "CLM-026",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H01",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H02",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H03",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H04",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H05",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H06",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H07",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H08",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H09",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H10",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H11",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H12",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H13",
+      "source": "SEMANTIC",
+      "rule": "semantic:causal_overreach_no_evidence",
+      "status": "REFUTED"
+    },
+    {
+      "claim_id": "CLM-H14",
+      "source": "BLOCK",
+      "rule": "verdict:forecast",
+      "status": "OPINION_OR_FORECAST"
+    },
+    {
+      "claim_id": "CLM-H15",
+      "source": "BLOCK",
+      "rule": "verdict:estimation_unable",
+      "status": "UNABLE_TO_DETERMINE"
+    },
+    {
+      "claim_id": "CLM-H16",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "claim_id": "CLM-H17",
+      "source": "BLOCK_NO_EVIDENCE",
+      "rule": "verdict:no_evidence",
+      "status": "INSUFFICIENT_EVIDENCE"
+    }
+  ]
+}

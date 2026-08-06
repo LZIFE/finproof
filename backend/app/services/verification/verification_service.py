@@ -350,7 +350,11 @@ def verify_real_e2e(
     top_k: int = 5,
 ) -> VerificationResult:
     """REAL_E2E: Claim Router -> Retrieval -> Gate -> Selector -> core_verify."""
-    candidates = retrieve_for_claim(session, claim, top_k=top_k)
+    # Phase 23.35: adapt retrieval candidates to Gate-expected schema.
+    # retrieve_for_claim returns {block_id, block_text, financial_fact, ...} —
+    # Gate reads candidate["text"], which was empty → all rejected → no_evidence.
+    # fetch_evidence maps block_text→text and passes financial_fact through.
+    candidates = fetch_evidence(session, claim, top_k=top_k)
     return verify_evidence_set(claim, candidates, routing, ctx)
 
 
