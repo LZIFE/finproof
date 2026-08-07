@@ -26,6 +26,26 @@ from app.services.claim_router import (
 MatchState = Literal["MATCH", "MISMATCH", "UNKNOWN"]
 
 
+def _effective_scope(claim: dict) -> str:
+    """Resolve placeholder scope from metrics with intrinsic scope semantics.
+
+    Canonical claims commonly carry ``scope=consolidated`` as a dataset
+    default even when the metric itself is explicitly parent-attributable or
+    adjusted.  The core verifier already applies this inference; Gate must use
+    the same scope or it rejects correct evidence before verification.
+    """
+    scope = str(claim.get("scope") or "consolidated").strip()
+    metric_code = str(claim.get("metric_code") or claim.get("metric") or "").lower()
+    if any(token in metric_code for token in ("deduct", "adjusted", "ex_recurring")):
+        return "adjusted"
+    if (
+        any(token in metric_code for token in ("parent", "attributable"))
+        or "归母" in metric_code
+    ):
+        return "parent_attributable"
+    return scope
+
+
 def _state_from_score(score: float, mismatch_threshold: float = 0.0) -> MatchState:
     """Convert legacy [0,1] score to three-state.
 
@@ -141,7 +161,7 @@ def _scope_state(claim: dict, candidate: dict) -> MatchState:
     WRONG_SCOPE repair: if evidence text explicitly contains a DIFFERENT
     scope marker (归母 vs 合并), judge MISMATCH — not UNKNOWN.
     """
-    scope = str(claim.get("scope") or "consolidated").strip()
+    scope = _effective_scope(claim)
     text = str(candidate.get("text") or "")
     # Scope markers grouped by mutually-exclusive scope
     scope_groups = {
@@ -329,7 +349,7 @@ def _period_match(claim: dict, candidate: dict) -> float:
 
 def _scope_match(claim: dict, candidate: dict) -> float:
     """Score scope match in [0, 1]. Returns 0.0 for clear conflict."""
-    scope = str(claim.get("scope") or "consolidated").strip()
+    scope = _effective_scope(claim)
     text = candidate.get("text", "") or ""
     if scope == "consolidated":
         return 0.8  # default scope, generally OK

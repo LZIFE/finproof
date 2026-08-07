@@ -516,6 +516,21 @@ def retrieve_for_claim(
         doc_period_any = d.report_period
         break
     scored = rerank_candidates(claim, scored, doc_period=doc_period_any)
+    # Final 24h recovery: for parent-attributable and deducted-profit metrics,
+    # preserve the exact primary-summary row (including adjacent value blocks)
+    # after reranking.  The match is strict on company period, metric, value,
+    # unit conversion, and disclosed rounding; unrelated metrics are untouched.
+    from app.services.evidence_retrieval.financial_summary_evidence import (
+        retrieve_financial_summary_evidence,
+    )
+
+    summary_candidates = retrieve_financial_summary_evidence(session, claim)
+    if summary_candidates:
+        summary_ids = {candidate["block_id"] for candidate in summary_candidates}
+        scored = summary_candidates + [
+            candidate for candidate in scored
+            if candidate.get("block_id") not in summary_ids
+        ]
     final = scored[:top_k]
     for i, c in enumerate(final, start=1):
         c["rank"] = i
