@@ -196,6 +196,17 @@ def retrieve_for_claim(
               matched_terms, block_text, retrieval_method}
     """
     claim = normalize_claim(claim)
+    # Final recovery: narrative/business disclosures must not compete with
+    # Financial Evidence Index candidates.  The strict business layer returns
+    # complete semantic evidence or an empty set; Gate/Selector/Verifier remain
+    # the only decision path after retrieval.
+    from app.services.evidence_retrieval.business_evidence import (
+        is_business_evidence_claim,
+        retrieve_business_evidence,
+    )
+
+    if is_business_evidence_claim(claim):
+        return retrieve_business_evidence(session, claim, top_k=top_k)
     aliases = metric_aliases(claim.get("metric_code"), claim.get("metric"))
     # 仅保留可用于中文文本匹配的别名；无中文别名（语义主张/代码指标）回退原文关键词
     chinese_aliases = {a for a in aliases if re.search(r"[\u4e00-\u9fff]", a)}

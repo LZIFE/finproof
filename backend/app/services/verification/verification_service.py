@@ -88,8 +88,11 @@ def fetch_evidence(session: Session, claim: dict, top_k: int = 5) -> list[dict]:
     candidates = retrieve_for_claim(session, claim, top_k=top_k)
     out: list[dict] = []
     for c in candidates:
-        text = ""
-        if c.get("block_id"):
+        # Reconstructed business evidence may span several source blocks.  It
+        # is the canonical text for verification and must not be replaced by
+        # the anchor block loaded from the database.
+        text = c.get("evidence_text") or ""
+        if not text and c.get("block_id"):
             block = session.get(DocumentBlock, c["block_id"])
             text = block.text if block else ""
         if not text:
