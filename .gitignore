@@ -33,3 +33,7 @@ data/demo/tmp/
 # IDE
 .idea/
 .vscode/
+
+# Agent 内部学习记录（非项目产物，不提交）
+.learnings/
+.atomcode/

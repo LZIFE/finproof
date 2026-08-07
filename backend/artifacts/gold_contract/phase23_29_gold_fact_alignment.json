@@ -1,7 +1,7 @@
 {
   "phase": "23.29",
   "step": "1_gold_fact_mapping",
-  "generated_at": "2026-08-06T12:00:54.364795+00:00",
+  "generated_at": "2026-08-06T15:32:29.096568+00:00",
   "total_gold_evidence": 42,
   "aligned_count": 15,
   "alignment_rate": 0.3571,

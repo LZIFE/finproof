@@ -1,0 +1,218 @@
+[
+  {
+    "claim_id": "CLM-002",
+    "gold": "REFUTED",
+    "pred": "SUPPORTED",
+    "failure_stage": "verification",
+    "root_reason": "正确证据进 top5 但 decision 错（FACT：SUPPORTED vs gold=REFUTED）",
+    "possible_fix": "fact decision 质量（R3/R4/R5 已试：E2E 持平/下降）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-005",
+    "gold": "SUPPORTED",
+    "pred": "REFUTED",
+    "failure_stage": "ranking",
+    "root_reason": "正确 fact 在 top50 未进 top10（ranking 不足）",
+    "possible_fix": "ranking 优化（R1 family 已试：下降）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-006",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "failure_stage": "verification",
+    "root_reason": "正确证据进 top5 但 decision 错（BLOCK：INSUFFICIENT_EVIDENCE vs gold=REFUTED）",
+    "possible_fix": "fact decision 质量（R3/R4/R5 已试：E2E 持平/下降）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-007",
+    "gold": "SUPPORTED",
+    "pred": "REFUTED",
+    "failure_stage": "verification",
+    "root_reason": "正确证据进 top5 但 decision 错（BLOCK：REFUTED vs gold=SUPPORTED）",
+    "possible_fix": "fact decision 质量（R3/R4/R5 已试：E2E 持平/下降）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-009",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "failure_stage": "ranking",
+    "root_reason": "正确 fact 进 top10 未进 top5",
+    "possible_fix": "topK/selector 优化",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-010",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "failure_stage": "retrieval",
+    "root_reason": "季度/半年度数据（Q1/Q2/H1）不在 index（主表 FY）——单点实验证明扩展抽取引入噪声不提升",
+    "possible_fix": "无（实验证明不提升）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-011",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "failure_stage": "retrieval",
+    "root_reason": "季度/半年度数据（Q1/Q2/H1）不在 index（主表 FY）——单点实验证明扩展抽取引入噪声不提升",
+    "possible_fix": "无（实验证明不提升）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-012",
+    "gold": "SUPPORTED",
+    "pred": "REFUTED",
+    "failure_stage": "benchmark",
+    "root_reason": "gold 边界（gold=SUPPORTED pred=REFUTED）",
+    "possible_fix": "gold 定义问题",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-013",
+    "gold": "SUPPORTED",
+    "pred": "REFUTED",
+    "failure_stage": "retrieval",
+    "root_reason": "季度/半年度数据（Q1/Q2/H1）不在 index（主表 FY）——单点实验证明扩展抽取引入噪声不提升",
+    "possible_fix": "无（实验证明不提升）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-014",
+    "gold": "SUPPORTED",
+    "pred": "REFUTED",
+    "failure_stage": "benchmark",
+    "root_reason": "gold 边界（gold=SUPPORTED pred=REFUTED）",
+    "possible_fix": "gold 定义问题",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-015",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "failure_stage": "verification",
+    "root_reason": "正确证据进 top5 但 decision 错（BLOCK：INSUFFICIENT_EVIDENCE vs gold=REFUTED）",
+    "possible_fix": "fact decision 质量（R3/R4/R5 已试：E2E 持平/下降）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-019",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "failure_stage": "benchmark",
+    "root_reason": "非财务/业务类 claim（strategy/listing/pricing/日期）——index 只含财务表，gold 定义超出系统财务事实能力",
+    "possible_fix": "benchmark 定义与系统目标不一致，无代码修复",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-022",
+    "gold": "INSUFFICIENT_EVIDENCE",
+    "pred": "SUPPORTED",
+    "failure_stage": "benchmark",
+    "root_reason": "非财务/业务类 claim（strategy/listing/pricing/日期）——index 只含财务表，gold 定义超出系统财务事实能力",
+    "possible_fix": "benchmark 定义与系统目标不一致，无代码修复",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-024",
+    "gold": "PARTIALLY_SUPPORTED",
+    "pred": "REFUTED",
+    "failure_stage": "verification",
+    "root_reason": "正确证据进 top5 但 decision 错（FACT：REFUTED vs gold=PARTIALLY_SUPPORTED）",
+    "possible_fix": "fact decision 质量（R3/R4/R5 已试：E2E 持平/下降）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-025",
+    "gold": "UNABLE_TO_DETERMINE",
+    "pred": "REFUTED",
+    "failure_stage": "benchmark",
+    "root_reason": "非财务/业务类 claim（strategy/listing/pricing/日期）——index 只含财务表，gold 定义超出系统财务事实能力",
+    "possible_fix": "benchmark 定义与系统目标不一致，无代码修复",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-026",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "failure_stage": "retrieval",
+    "root_reason": "季度/半年度数据（Q1/Q2/H1）不在 index（主表 FY）——单点实验证明扩展抽取引入噪声不提升",
+    "possible_fix": "无（实验证明不提升）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-H02",
+    "gold": "SUPPORTED",
+    "pred": "REFUTED",
+    "failure_stage": "retrieval",
+    "root_reason": "正确财务 fact 不在 candidate（index 覆盖缺口/增长率类无对象）",
+    "possible_fix": "index 覆盖扩展（已实验：下降/持平）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-H04",
+    "gold": "SUPPORTED",
+    "pred": "REFUTED",
+    "failure_stage": "retrieval",
+    "root_reason": "正确财务 fact 不在 candidate（index 覆盖缺口/增长率类无对象）",
+    "possible_fix": "index 覆盖扩展（已实验：下降/持平）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-H05",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "failure_stage": "retrieval",
+    "root_reason": "正确财务 fact 不在 candidate（index 覆盖缺口/增长率类无对象）",
+    "possible_fix": "index 覆盖扩展（已实验：下降/持平）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-H08",
+    "gold": "SUPPORTED",
+    "pred": "REFUTED",
+    "failure_stage": "retrieval",
+    "root_reason": "正确财务 fact 不在 candidate（index 覆盖缺口/增长率类无对象）",
+    "possible_fix": "index 覆盖扩展（已实验：下降/持平）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-H10",
+    "gold": "REFUTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "failure_stage": "benchmark",
+    "root_reason": "非财务/业务类 claim（strategy/listing/pricing/日期）——index 只含财务表，gold 定义超出系统财务事实能力",
+    "possible_fix": "benchmark 定义与系统目标不一致，无代码修复",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-H11",
+    "gold": "SUPPORTED",
+    "pred": "INSUFFICIENT_EVIDENCE",
+    "failure_stage": "retrieval",
+    "root_reason": "正确财务 fact 不在 candidate（index 覆盖缺口/增长率类无对象）",
+    "possible_fix": "index 覆盖扩展（已实验：下降/持平）",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-H12",
+    "gold": "SUPPORTED",
+    "pred": "PARTIALLY_SUPPORTED",
+    "failure_stage": "benchmark",
+    "root_reason": "非财务/业务类 claim（strategy/listing/pricing/日期）——index 只含财务表，gold 定义超出系统财务事实能力",
+    "possible_fix": "benchmark 定义与系统目标不一致，无代码修复",
+    "expected_gain": 0.0
+  },
+  {
+    "claim_id": "CLM-H17",
+    "gold": "INSUFFICIENT_EVIDENCE",
+    "pred": "SUPPORTED",
+    "failure_stage": "benchmark",
+    "root_reason": "非财务/业务类 claim（strategy/listing/pricing/日期）——index 只含财务表，gold 定义超出系统财务事实能力",
+    "possible_fix": "benchmark 定义与系统目标不一致，无代码修复",
+    "expected_gain": 0.0
+  }
+]
