@@ -24,6 +24,9 @@ next-env.d.ts
 data/finproof.db
 data/uploads/
 storage/
+# 运行时 embedding 缓存（首次计算后自动生成）
+backend/artifacts/embeddings/*.npz
+backend/artifacts/embeddings/*.json
 # 候选公司临时下载（可经 scripts/download_cninfo.py 重新下载）
 data/demo/tmp/
 
