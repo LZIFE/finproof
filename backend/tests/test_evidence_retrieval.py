@@ -206,6 +206,43 @@ def test_retrieval_end_to_end_demo(mini_source_doc):
             assert key in sample
 
 
+def test_run_retrieval_persists_fact_candidate_without_structured_scores(
+    mini_source_doc, monkeypatch
+):
+    """Fact-first candidates may omit channel-A component scores and must still persist."""
+    from app.services.evidence_retrieval import service as retrieval_service
+
+    monkeypatch.setattr(
+        retrieval_service,
+        "load_gold_claims",
+        lambda _dataset: [{"claim_id": "CLM-FACT", "original_text": "营业收入"}],
+    )
+    monkeypatch.setattr(
+        retrieval_service,
+        "retrieve_for_claim",
+        lambda *_args, **_kwargs: [
+            {
+                "document_id": mini_source_doc,
+                "page_number": 1,
+                "block_id": None,
+                "rank": 1,
+                "final_score": 0.95,
+                "retrieval_method": "evidence_index",
+                "evidence_type": "PRIMARY_FINANCIAL_STATEMENT",
+                "evidence_quality_score": 0.9,
+            }
+        ],
+    )
+
+    with SessionLocal() as s:
+        run = run_retrieval(s, "demo", "ORACLE_GOLD", top_k=1, version="v1")
+        assert run.status == "COMPLETED"
+        candidate = get_run_claims(s, run.id)["CLM-FACT"][0]
+
+    assert candidate["retrieval_method"] == "evidence_index"
+    assert candidate["metric_score"] == 0.0
+
+
 def test_semantic_claim_has_candidates(mini_source_doc):
     """无指标语义主张（文本关键词回退）也能产出候选。"""
     from app.services.evidence_retrieval.service import retrieve_for_claim

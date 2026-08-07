@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type DemoStep = {
   step_number: number;
@@ -90,13 +90,45 @@ const FRONTEND_STEP_ORDER = [
   "Generating Governance Report",
 ];
 
+async function fetchLatestCompletedDemo(completedAfter?: number): Promise<DemoRun | null> {
+  const listResponse = await fetch("/api/v1/demo?limit=1");
+  if (!listResponse.ok) return null;
+  const list = await listResponse.json();
+  const latest = list?.demos?.[0];
+  if (!latest?.demo_id || latest.status !== "DONE") return null;
+  const completedAt = Date.parse(latest.created_at ?? "");
+  if (completedAfter && (!Number.isFinite(completedAt) || completedAt < completedAfter)) {
+    return null;
+  }
+
+  const detailResponse = await fetch(`/api/v1/demo/${latest.demo_id}`);
+  if (!detailResponse.ok) return null;
+  return detailResponse.json();
+}
+
 export default function DemoPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [run, setRun] = useState<DemoRun | null>(null);
   const [activeStep, setActiveStep] = useState(0); // 动画当前步
 
+  useEffect(() => {
+    let cancelled = false;
+    fetchLatestCompletedDemo()
+      .then((latest) => {
+        if (!cancelled && latest) {
+          setRun(latest);
+          setActiveStep(latest.frontend_steps?.length || FRONTEND_STEP_ORDER.length);
+        }
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const startDemo = async () => {
+    const startedAt = Date.now();
     setLoading(true);
     setError(null);
     setRun(null);
@@ -107,7 +139,13 @@ export default function DemoPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ company: "美的集团" }),
       });
-      const body = await resp.json();
+      const responseText = await resp.text();
+      let body: DemoRun;
+      try {
+        body = JSON.parse(responseText) as DemoRun;
+      } catch {
+        throw new Error(responseText || `HTTP ${resp.status}`);
+      }
       if (!resp.ok) throw new Error(JSON.stringify(body));
       // 模拟 6 步动画推进（基于 frontend_steps）
       const steps = body.frontend_steps || FRONTEND_STEP_ORDER;
@@ -117,7 +155,13 @@ export default function DemoPage() {
       }
       setRun(body);
     } catch (e) {
-      setError(`演示启动失败：${e instanceof Error ? e.message : String(e)}`);
+      const latest = await fetchLatestCompletedDemo(startedAt).catch(() => null);
+      if (latest) {
+        setRun(latest);
+        setActiveStep(latest.frontend_steps?.length || FRONTEND_STEP_ORDER.length);
+      } else {
+        setError(`演示启动失败：${e instanceof Error ? e.message : String(e)}`);
+      }
     } finally {
       setLoading(false);
     }

@@ -12,9 +12,9 @@ FinProof 是一个面向金融研究报告的 **事实核验与证据链 Agent**
 
 > 演示视频链接（录屏，展示「上传研报 → 主张拆解 → 证据检索 → 事实核验 → 风险提示 → 审计回放」全流程）：
 
-**▶️ [FinProof 产品演示视频](https://your-video-link.example.com/finproof-demo.mp4)**
+**▶️ [FinProof 产品演示视频](docs/demo/finproof-demo.mp4)**
 
-> ⚠️ 占位链接：请将你的录屏视频上传（如 B 站 / YouTube / 云盘）后替换此链接。
+> 4 分钟中文旁白与字幕演示，覆盖一键 Demo、证据检索、主张详情、事实核验、审计风险与可靠性仪表盘。
 
 ---
 
@@ -198,18 +198,16 @@ flowchart TD
 
 ## 🖼️ 核心模块截图
 
-> 截图指引：启动系统后（见[快速开始](#-快速开始)），在浏览器中截取以下界面并替换占位图：
+以下截图由本地演示数据在真实前后端链路中生成：
 
 | 模块 | 截图位置 | 截图 |
 | ---- | ---- | ---- |
-| Demo 一键演示（8 步流程 + 可靠性评分 + 风险发现 + 审计回放） | `http://localhost:3000/demo` | ![Demo 演示](https://your-image-link.example.com/screenshots/demo.png) |
-| 核验结果列表（五类判定 + 置信度 + 证据） | `http://localhost:3000/verifications` | ![核验列表](https://your-image-link.example.com/screenshots/verifications.png) |
-| 证据检索明细（候选 + 排名 + 质量分） | `http://localhost:3000/evidence-retrievals` | ![证据检索](https://your-image-link.example.com/screenshots/evidence.png) |
-| 主张详情（证据链 + 计算过程 + 判定依据） | `http://localhost:3000/claims/{claimId}` | ![主张详情](https://your-image-link.example.com/screenshots/claim.png) |
-| 审计回放 / 风险提示 | `http://localhost:3000/audit`、`/risk` | ![审计回放](https://your-image-link.example.com/screenshots/audit.png) |
-| 仪表盘 Dashboard | `http://localhost:3000/dashboard` | ![仪表盘](https://your-image-link.example.com/screenshots/dashboard.png) |
-
-> ⚠️ 占位图：请启动系统截屏后，将图片上传（或放入 `docs/screenshots/` 提交到仓库）并替换上述链接。
+| Demo 一键演示（8 步流程 + 可靠性评分 + 风险发现 + 审计回放） | `http://localhost:3000/demo` | ![Demo 演示](docs/screenshots/demo.png) |
+| 核验结果列表（五类判定 + 置信度 + 证据） | `http://localhost:3000/verifications` | ![核验列表](docs/screenshots/verifications.png) |
+| 证据检索明细（候选 + 排名 + 质量分） | `http://localhost:3000/evidence-retrievals` | ![证据检索](docs/screenshots/evidence.png) |
+| 主张详情（上下文 + 结构化字段 + 人工审核） | `http://localhost:3000/claims/{claimId}` | ![主张详情](docs/screenshots/claim.png) |
+| 审计回放 / 风险提示 | `http://localhost:3000/audit`、`/risk` | ![审计回放](docs/screenshots/audit.png) |
+| 仪表盘 Dashboard | `http://localhost:3000/dashboard` | ![仪表盘](docs/screenshots/dashboard.png) |
 
 ---
 
@@ -418,5 +416,5 @@ finproof/
 | PDF 解析 | PyMuPDF |
 | 检索 | BM25 + 向量（Embedding）+ 规则 + Financial Evidence Index |
 | 前端 | Next.js · TypeScript · pnpm |
-| 测试 | pytest（912 tests） |
+| 测试 | pytest（913 tests） |
 | LLM | 大模型（语义识别 / 支持关系判断），可选 Mock 模式 |

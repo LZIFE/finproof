@@ -1,0 +1,1 @@
+最后是 AI Reliability Center。它汇总可靠性评分、证据覆盖率、风险检测和多智能体 Arena 表现，并展示实时风险地图、Agent Performance、证据图谱和审计时间线。Dashboard 面向投研负责人、合规和模型治理团队，用统一视图观察系统能力和剩余盲区。

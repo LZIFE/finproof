@@ -11,6 +11,10 @@ type DocItem = {
   parse_status: string;
 };
 
+type DocumentListResponse = {
+  documents?: DocItem[];
+};
+
 type Summary = {
   total_claims: number;
   supported_count: number;
@@ -97,11 +101,14 @@ export default function AuditPage() {
   const [error, setError] = useState<string | null>(null);
 
   const loadDocs = useCallback(() => {
-    fetch("/api/v1/documents?document_role=REPORT_TO_VERIFY")
+    fetch("/api/v1/documents?role=REPORT_TO_VERIFY")
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((rows) => {
-        setDocs(Array.isArray(rows) ? rows : []);
-        if (rows?.length && selectedDoc === null) setSelectedDoc(rows[0].id);
+        const documents = Array.isArray(rows)
+          ? rows
+          : ((rows as DocumentListResponse).documents ?? []);
+        setDocs(documents);
+        if (documents.length && selectedDoc === null) setSelectedDoc(documents[0].id);
       })
       .catch(() => undefined);
   }, [selectedDoc]);

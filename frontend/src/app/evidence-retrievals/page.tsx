@@ -63,12 +63,44 @@ export default function EvidenceRetrievalPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const recoverTimedOutRun = async (previousRunId: number): Promise<boolean> => {
+    for (let attempt = 0; attempt < 40; attempt += 1) {
+      const response = await fetch("/api/v1/evidence-retrievals?limit=1").catch(() => null);
+      if (response?.ok) {
+        const rows = await response.json();
+        const latest = Array.isArray(rows) ? rows[0] : null;
+        if (
+          latest?.id > previousRunId &&
+          latest?.dataset === dataset &&
+          latest?.top_k === topK
+        ) {
+          setCurrentRun(latest);
+          if (latest.status === "COMPLETED") {
+            const claimsResponse = await fetch(`/api/v1/evidence-retrievals/${latest.id}/claims`);
+            if (claimsResponse.ok) {
+              setClaimsOut(await claimsResponse.json());
+              return true;
+            }
+            return false;
+          }
+          if (latest.status === "FAILED") return false;
+        }
+      }
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+    }
+    return false;
+  };
+
   const createRun = async () => {
     setLoading(true);
     setError(null);
     setClaimsOut(null);
     setCurrentRun(null);
+    let previousRunId = 0;
     try {
+      const previousResponse = await fetch("/api/v1/evidence-retrievals?limit=1");
+      const previousRows = previousResponse.ok ? await previousResponse.json() : [];
+      previousRunId = Array.isArray(previousRows) ? (previousRows[0]?.id ?? 0) : 0;
       const resp = await fetch("/api/v1/evidence-retrievals", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -79,7 +111,10 @@ export default function EvidenceRetrievalPage() {
       setCurrentRun(body);
       await loadClaims(body.id);
     } catch (e) {
-      setError(`检索任务失败：${e instanceof Error ? e.message : String(e)}`);
+      const recovered = await recoverTimedOutRun(previousRunId);
+      if (!recovered) {
+        setError(`检索任务失败：${e instanceof Error ? e.message : String(e)}`);
+      }
     } finally {
       setLoading(false);
     }
