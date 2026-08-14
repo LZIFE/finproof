@@ -41,6 +41,38 @@ def test_llm_parse_response():
     assert items[0]["claim_kind"] == "NUMERIC"
 
 
+def test_to_claim_sanitizes_malformed_llm_fields():
+    """畸形 LLM 字段（不可信边界输入）不得抛异常（P2 回归）。"""
+    extractor = GenericClaimExtractor()
+    claim = extractor._to_claim(
+        {
+            "source_text": "营收 1.2 亿元",
+            "claim_kind": "NUMERIC",
+            "page_number": "第3页",       # 畸形 int
+            "block_index": "0 (first)",    # 畸形 int
+            "entities": "公司A",           # 非 list
+            "confidence": "high",          # 畸形 float
+        },
+        {"page_number": 7},
+        index=2,
+    )
+    assert claim.page_number == 7          # 回退到块页码
+    assert claim.block_index == 2          # 回退到索引
+    assert claim.entities == []            # 非 list → 空列表
+    assert claim.confidence == 0.8         # 回退到默认值
+
+
+def test_to_claim_keeps_zero_confidence():
+    """confidence=0 是合法值，不得被 or 误判为缺失（P2 回归）。"""
+    extractor = GenericClaimExtractor()
+    claim = extractor._to_claim(
+        {"source_text": "x", "claim_kind": "FACT", "confidence": 0},
+        {"page_number": 1},
+        index=0,
+    )
+    assert claim.confidence == 0.0
+
+
 class _FakeSettings:
     claim_extraction_base_url = ""
     claim_extraction_api_key = ""

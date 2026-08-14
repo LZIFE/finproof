@@ -78,6 +78,19 @@ def _context_ctx_match(ctx: str, block_text: str) -> bool:
     return True
 
 
+def _same_context_slot(ctx: str, other_ctx: str) -> bool:
+    """两个数字是否属于同一语义语境槽（任一方向子序列命中）。
+
+    claim 语境「营收」与 other 语境「营业收入」→ 同一槽（简称兼容）；
+    claim 语境「营业收入」与「同比增长」→ 不同槽（不比较）。
+    """
+    a = (ctx or "").strip()
+    b = (other_ctx or "").strip()
+    if not a or not b:
+        return False
+    return _context_ctx_match(a, b) or _context_ctx_match(b, a)
+
+
 def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> VerificationOutcome:
     """内部自洽核验。blocks: [{"index","text","page_number"}]。"""
     evidence: list[dict] = []
@@ -92,7 +105,7 @@ def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> Verificati
                 reason=f"交叉引用 {ref} 在文档中找不到对应章节/图表", error_type="REFERENCE_BROKEN",
             )
 
-    # 2. 数字一致性
+    # 2. 数字一致性（仅比较同一语义语境槽的数字）
     if claim.numbers:
         for num in claim.numbers:
             ctx = (num.get("context") or "")
@@ -101,11 +114,14 @@ def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> Verificati
                 if not _context_ctx_match(ctx, text):
                     continue
                 for other in extract_numbers(text):
-                    # 主张自身的数字（同值同单位同语境）不是独立证据，跳过；
-                    # 同语境但不同值/单位（如正文 1.2 亿 vs 表格 1.2 万）必须比较
-                    if (other.get("context") == ctx
+                    other_ctx = other.get("context") or ""
+                    # 主张自身的数字（同值同单位同语境）不是独立证据，跳过
+                    if (other_ctx == ctx
                             and other.get("value") == num.get("value")
                             and (other.get("unit") or "") == (num.get("unit") or "")):
+                        continue
+                    # 不同语境槽（如主张"营收"与块内"同比增长"百分比）不构成冲突
+                    if not _same_context_slot(ctx, other_ctx):
                         continue
                     if not values_compatible(
                         num.get("value"), num.get("unit"),
@@ -120,13 +136,19 @@ def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> Verificati
                             error_type="NUMERIC_CONFLICT",
                         )
 
-    # 3. SUM 校验（合计行）
+    # 3. SUM 校验（合计行）——仅当合计行与主张语境相关，且排除百分比/非组件数字
     if claim.claim_kind == "NUMERIC" and claim.numbers:
+        claim_ctxs = [(n.get("context") or "") for n in claim.numbers]
         for b in blocks:
             text = b.get("text") or ""
             if "合计" not in text and "总计" not in text:
                 continue
-            nums = extract_numbers(text)
+            # 门控：合计行须与主张语境相关（块含主张语境，或同页）
+            if b.get("page_number") != claim.page_number and not any(
+                _context_ctx_match(c, text) for c in claim_ctxs if c
+            ):
+                continue
+            nums = [n for n in extract_numbers(text) if "%" not in (n.get("unit") or "")]
             if len(nums) < 2:
                 continue
             total = nums[-1]["value"]

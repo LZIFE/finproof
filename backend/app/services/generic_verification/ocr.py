@@ -58,6 +58,8 @@ def ocr_pages(pages: list[ParsedPage], pdf_bytes: bytes) -> dict[int, str]:
 
 
 def _build_page_with_ocr(pdf_bytes: bytes, page_number: int, ocr_text: str) -> ParsedPage:
+    import hashlib
+
     text = ocr_text.strip()
     return ParsedPage(
         page_index=page_number - 1,
@@ -65,7 +67,7 @@ def _build_page_with_ocr(pdf_bytes: bytes, page_number: int, ocr_text: str) -> P
         printed_page_label=None,
         text=text,
         character_count=len(text),
-        text_sha256="ocr:" + str(hash(text)),
+        text_sha256="ocr:" + hashlib.sha256(text.encode("utf-8")).hexdigest(),
         blocks=[ParsedBlock(block_index=0, block_type="paragraph", text=text)],
     )
 
@@ -92,7 +94,9 @@ def parse_with_ocr(pdf_bytes: bytes) -> ParsedDocument:
             return ParsedDocument(document_type="pdf", page_count=len(pages),
                                   total_characters=sum(len(p.text) for p in pages), pages=pages)
         raise
-    # 文本 PDF：回填扫描页
+    # 文本 PDF：回填扫描页（仅当 OCR 已启用；未启用时保留解析结果，避免整个核验失败）
+    if get_settings().ocr_engine != "tesseract":
+        return parsed
     new_pages: list[ParsedPage] = []
     for p in parsed.pages:
         if is_scan_page(p):

@@ -64,3 +64,29 @@ def test_verify_no_evidence_insufficient():
     blocks = [{"index": 0, "text": "无关段落", "page_number": 1}]
     out = verify_claim_internal(c, blocks)
     assert out.verdict == STATUS_INSUFFICIENT
+
+
+def test_verify_value_plus_growth_rate_not_self_refuting():
+    """主张块含多个数字（值 + 增长率）不得自反驳（P1 回归）。"""
+    c = _claim(text="营业收入 1.2 亿元，同比增长 30%",
+               numbers=[{"value": 1.2, "unit": "亿", "context": "营业收入"},
+                        {"value": 30, "unit": "%", "context": "同比增长"}])
+    blocks = [
+        {"index": 0, "text": "营业收入 1.2 亿元，同比增长 30%", "page_number": 2},
+        {"index": 1, "text": "营业收入 1.2 亿元，详细见下表", "page_number": 3},
+    ]
+    out = verify_claim_internal(c, blocks)
+    assert out.verdict == STATUS_SUPPORTED
+
+
+def test_verify_unrelated_total_line_does_not_refute():
+    """无关的合计行（含百分比）不得反驳主张（P2 回归）。"""
+    c = _claim(text="营业收入 1.2 亿元",
+               numbers=[{"value": 1.2, "unit": "亿", "context": "营业收入"}])
+    blocks = [
+        {"index": 0, "text": "营业收入 1.2 亿元", "page_number": 2},
+        # 不同页、语境不匹配的合计行：不得触发 SUM_MISMATCH
+        {"index": 1, "text": "管理费用合计 100 万元，同比增长 50%", "page_number": 5},
+    ]
+    out = verify_claim_internal(c, blocks)
+    assert out.verdict == STATUS_SUPPORTED

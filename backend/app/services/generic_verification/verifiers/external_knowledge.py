@@ -12,7 +12,10 @@ from typing import Callable
 
 from app.services.generic_verification.claim_extraction import extract_numbers
 from app.services.generic_verification.schemas import GenericClaim, VerificationOutcome
-from app.services.generic_verification.verifiers.internal_consistency import values_compatible
+from app.services.generic_verification.verifiers.internal_consistency import (
+    _same_context_slot,
+    values_compatible,
+)
 from app.services.verification.base import (
     STATUS_REFUTED,
     STATUS_SUPPORTED,
@@ -38,8 +41,15 @@ def _material_evidence(user_materials: list[str], claim: GenericClaim) -> str | 
 
 
 def _material_conflicts(material: str, claim: GenericClaim) -> bool:
+    """资料是否与主张冲突：仅比较同一语义语境槽的数字。
+
+    支持性资料中无关数字（如"同比增长 30%"）不算冲突。
+    """
     for num in claim.numbers:
+        ctx = (num.get("context") or "")
         for other in extract_numbers(material):
+            if not _same_context_slot(ctx, other.get("context") or ""):
+                continue
             if values_compatible(num.get("value"), num.get("unit"),
                                  other.get("value"), other.get("unit")):
                 continue
@@ -117,7 +127,10 @@ def verify_claim_external(
             if joined:
                 evidence.append({"source": "web_search", "snippets": snippets[:3]})
                 for num in claim.numbers:
+                    ctx = (num.get("context") or "")
                     for other in extract_numbers(joined):
+                        if not _same_context_slot(ctx, other.get("context") or ""):
+                            continue
                         if not values_compatible(num.get("value"), num.get("unit"),
                                                  other.get("value"), other.get("unit")):
                             return VerificationOutcome(

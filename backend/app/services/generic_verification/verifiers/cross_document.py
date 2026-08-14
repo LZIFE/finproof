@@ -11,6 +11,7 @@ from app.services.generic_verification.claim_extraction import extract_numbers
 from app.services.generic_verification.schemas import GenericClaim, VerificationOutcome
 from app.services.generic_verification.verifiers.internal_consistency import (
     _context_ctx_match,
+    _same_context_slot,
     values_compatible,
 )
 from app.services.verification.base import (
@@ -36,6 +37,9 @@ def verify_claim_cross_document(claim: GenericClaim, evidence_blocks: list[dict]
             if not _context_ctx_match(ctx, text):
                 continue
             for other in extract_numbers(text):
+                # 仅同一语义语境槽的数字参与支持/冲突判定（如"营收"vs"同比增长"百分比不算冲突）
+                if not _same_context_slot(ctx, other.get("context") or ""):
+                    continue
                 if values_compatible(num.get("value"), num.get("unit"),
                                      other.get("value"), other.get("unit")):
                     matched_value = True

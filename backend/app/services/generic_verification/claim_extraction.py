@@ -37,6 +37,25 @@ def _strip_thousands(text: str) -> str:
     return text.replace(",", "").replace("，", "")
 
 
+# 语境截断标点（数字前遇到这些字符即视为语境边界）
+_CTX_PUNCT = "。；，、：！？．.,;:!?()（）《》「」""''"
+
+
+def _preceding_context(text: str, pos: int, max_len: int = 20) -> str:
+    """取数字前最近的语义语境：从 pos 向前，止于数字/标点或字符串开头。
+
+    避免语境跨越其他数字（如「30%」的语境应止于「同比增长」，
+    而不是「24年营业收入 1.2 亿元，同比增长」）。
+    """
+    start = pos
+    while start > 0:
+        ch = text[start - 1]
+        if ch.isdigit() or ch in _CTX_PUNCT:
+            break
+        start -= 1
+    return text[start:pos].strip()[:max_len]
+
+
 def extract_numbers(text: str) -> list[dict]:
     out: list[dict] = []
     for m in _NUM_UNIT_RE.finditer(text):
@@ -50,7 +69,7 @@ def extract_numbers(text: str) -> list[dict]:
         # 裸年份（如 2001）不是可核验数字，跳过（归类为日期/事实）
         if unit is None and _BARE_YEAR_RE.fullmatch(_strip_thousands(num_part)):
             continue
-        ctx = text[max(0, m.start() - 20):m.start()].strip()
+        ctx = _preceding_context(text, m.start())
         out.append({"value": value, "unit": unit, "context": ctx})
     return out
 
@@ -255,16 +274,32 @@ class GenericClaimExtractor:
         return out
 
     def _to_claim(self, item: dict, block: dict, index: int) -> GenericClaim:
+        def _safe_int(value, default: int) -> int:
+            try:
+                return int(value)
+            except (TypeError, ValueError):
+                return default
+
+        def _safe_float(value, default: float) -> float:
+            try:
+                return float(value)
+            except (TypeError, ValueError):
+                return default
+
+        def _safe_list(value) -> list:
+            return value if isinstance(value, list) else []
+
+        # LLM 输出是不可信边界输入：转换失败回退到块值/默认值，绝不抛异常
         return GenericClaim(
             claim_id=item.get("claim_id") or f"GCLM-{index:03d}",
             source_text=item["source_text"],
             claim_kind=item.get("claim_kind") or "FACT",
-            page_number=int(item.get("page_number") or block.get("page_number") or 1),
-            block_index=int(item.get("block_index") if item.get("block_index") is not None else index),
-            entities=list(item.get("entities") or []),
-            numbers=list(item.get("numbers") or []),
-            dates=list(item.get("dates") or []),
-            cross_refs=list(item.get("cross_refs") or []),
+            page_number=_safe_int(item.get("page_number"), block.get("page_number") or 1),
+            block_index=_safe_int(item.get("block_index"), index),
+            entities=_safe_list(item.get("entities")),
+            numbers=_safe_list(item.get("numbers")),
+            dates=_safe_list(item.get("dates")),
+            cross_refs=_safe_list(item.get("cross_refs")),
             extraction_method="llm",
-            confidence=float(item.get("confidence") or 0.8),
+            confidence=_safe_float(item.get("confidence"), 0.8),
         )

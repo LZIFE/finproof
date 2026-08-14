@@ -44,3 +44,16 @@ def test_llm_refute_when_no_materials():
 def test_unable_when_nothing_available():
     out = verify_claim_external(_claim())
     assert out.verdict == STATUS_UNABLE
+
+
+def test_user_materials_with_unrelated_percentage_not_conflict():
+    """支持性资料含匹配值 + 无关百分比 → SUPPORTED 而非 REFUTED（P2 回归）。"""
+    claim = _claim(
+        text="公司A 营收 1.2 亿元，同比增长 30%",
+        entities=("公司A",),
+        numbers=[{"value": 1.2, "unit": "亿", "context": "营业收入"},
+                 {"value": 30, "unit": "%", "context": "同比增长"}],
+    )
+    out = verify_claim_external(claim, user_materials=["公司A 2024年营业收入 1.2 亿元，同比增长 30%"])
+    assert out.verdict == STATUS_SUPPORTED
+    assert out.error_type is None

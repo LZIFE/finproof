@@ -72,3 +72,38 @@ def test_parse_with_ocr_fallback_text_pdf(monkeypatch):
     parsed = ocr_mod.parse_with_ocr(data)
     # 空文本页被 OCR 回填：页面 text 非空
     assert any(p.text.strip() for p in parsed.pages)
+
+
+def test_parse_with_ocr_skips_backfill_when_ocr_disabled(monkeypatch):
+    """ocr_engine=off 时，含扫描页的文本 PDF 不得抛 OCR_NOT_AVAILABLE（P3 回归）。"""
+    import fitz
+
+    from app.services.generic_verification import ocr as ocr_mod
+
+    class _FakeSettings:
+        ocr_engine = "off"
+
+    ocr_mod.get_settings = lambda: _FakeSettings()
+
+    doc = fitz.open()
+    page = doc.new_page()
+    page.insert_text((72, 72), "有文本的一页内容", fontsize=11, fontname="china-s")
+    doc.new_page()  # 空白扫描页
+    data = doc.tobytes()
+    doc.close()
+
+    parsed = ocr_mod.parse_with_ocr(data)
+    assert parsed.page_count == 2
+
+
+def test_ocr_page_sha256_stable():
+    """OCR 页 text_sha256 须为跨进程稳定的 sha256（P3 回归）。"""
+    import hashlib
+
+    from app.services.generic_verification import ocr as ocr_mod
+
+    p1 = ocr_mod._build_page_with_ocr(b"", 1, "OCR文本")
+    p2 = ocr_mod._build_page_with_ocr(b"", 1, "OCR文本")
+    assert p1.text_sha256 == p2.text_sha256
+    assert p1.text_sha256 == "ocr:" + hashlib.sha256("OCR文本".encode("utf-8")).hexdigest()
+    assert "ocr:" in p1.text_sha256
