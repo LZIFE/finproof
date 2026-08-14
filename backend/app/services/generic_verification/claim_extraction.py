@@ -106,3 +106,165 @@ def mark_candidate_blocks(blocks: list) -> set[int]:
         ):
             marked.add(i)
     return marked
+
+
+# ---------------------------------------------------------------------------
+# 主张拆解 Provider（领域无关）
+# ---------------------------------------------------------------------------
+
+import hashlib  # noqa: E402
+import json  # noqa: E402
+import logging  # noqa: E402
+from dataclasses import dataclass, field  # noqa: E402
+from pathlib import Path  # noqa: E402
+
+import httpx  # noqa: E402
+
+from app.core.config import get_settings  # noqa: E402
+from app.core.exceptions import AppError  # noqa: E402
+from app.services.generic_verification.schemas import GenericClaim  # noqa: E402
+
+logger = logging.getLogger(__name__)
+
+GENERIC_PROMPT_DIR = Path(__file__).resolve().parents[2] / "prompts"
+
+
+def load_generic_prompt(version: str) -> str:
+    path = GENERIC_PROMPT_DIR / f"{version}.txt"
+    if not path.exists():
+        raise AppError(f"通用主张 Prompt 版本不存在: {version}", status_code=500, code="PROMPT_NOT_FOUND")
+    return path.read_text(encoding="utf-8")
+
+
+@dataclass
+class GenericClaimExtractionResult:
+    claims: list[GenericClaim] = field(default_factory=list)
+    provider: str = ""
+    model_name: str | None = None
+    is_mock: bool = False
+    input_block_count: int = 0
+    candidate_sentence_count: int = 0
+
+
+class GenericClaimExtractor:
+    """领域无关主张拆解：有 LLM 配置 → LLM 结构化；无配置 → 规则 + is_mock。"""
+
+    def __init__(self, settings=None) -> None:
+        self.settings = settings or get_settings()
+
+    # ---------- 公开入口 ----------
+
+    def extract(self, blocks: list[dict], prompt_version: str = "generic_claim_extraction_v1") -> GenericClaimExtractionResult:
+        cfg = self.settings
+        if not (cfg.claim_extraction_base_url and cfg.claim_extraction_api_key and cfg.claim_extraction_model):
+            claims = self._rules_only(blocks)
+            return GenericClaimExtractionResult(
+                claims=claims, provider="mock", is_mock=True,
+                input_block_count=len(blocks), candidate_sentence_count=len(claims),
+            )
+        prompt = load_generic_prompt(prompt_version)
+        claims: list[GenericClaim] = []
+        for i, b in enumerate(blocks):
+            text = b.get("text") or ""
+            if not text.strip():
+                continue
+            messages = [
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": (
+                    f"页码: {b.get('page_number', 1)}\n块序号: {i}\n\n"
+                    f"【当前段落】\n{text}\n"
+                )},
+            ]
+            content, _usage = self._call_llm(messages)
+            for item in self._parse_response(content):
+                claims.append(self._to_claim(item, b, i))
+        return GenericClaimExtractionResult(
+            claims=claims, provider="llm", model_name=cfg.claim_extraction_model,
+            is_mock=False, input_block_count=len(blocks),
+            candidate_sentence_count=len(claims),
+        )
+
+    # ---------- 规则兜底 ----------
+
+    def _rules_only(self, blocks: list[dict]) -> list[GenericClaim]:
+        marked = mark_candidate_blocks(blocks)
+        out: list[GenericClaim] = []
+        for i, b in enumerate(blocks):
+            if i not in marked:
+                continue
+            text = b.get("text") or ""
+            out.append(GenericClaim(
+                claim_id=f"GCLM-{i:03d}",
+                source_text=text,
+                claim_kind=classify_kind(text),
+                page_number=int(b.get("page_number") or 1),
+                block_index=i,
+                entities=extract_entities(text),
+                numbers=extract_numbers(text),
+                dates=extract_dates(text),
+                cross_refs=extract_cross_refs(text),
+                extraction_method="rules",
+                confidence=0.7,
+            ))
+        return out
+
+    # ---------- LLM ----------
+
+    def _call_llm(self, messages: list[dict]) -> tuple[str, dict | None]:
+        cfg = self.settings
+        url = f"{cfg.claim_extraction_base_url.rstrip('/')}/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {cfg.claim_extraction_api_key}",
+            "Content-Type": "application/json",
+        }
+        payload = {"model": cfg.claim_extraction_model, "messages": messages, "temperature": 0}
+        last_exc: Exception | None = None
+        for attempt in range(cfg.claim_extraction_max_retries + 1):
+            try:
+                resp = httpx.post(url, json=payload, headers=headers,
+                                  timeout=cfg.claim_extraction_timeout_seconds)
+                resp.raise_for_status()
+                data = resp.json()
+                return data["choices"][0]["message"]["content"], data.get("usage")
+            except Exception as exc:  # noqa: BLE001
+                last_exc = exc
+                if attempt < cfg.claim_extraction_max_retries:
+                    continue
+        raise AppError(f"通用主张拆解 LLM 调用失败: {last_exc}", status_code=502, code="LLM_CALL_FAILED")
+
+    def _parse_response(self, content: str) -> list[dict]:
+        try:
+            data = json.loads(content)
+        except json.JSONDecodeError:
+            start = content.find("[")
+            end = content.rfind("]")
+            if start < 0 or end < start:
+                logger.warning("generic extraction: invalid JSON from LLM, len=%s", len(content))
+                return []
+            try:
+                data = json.loads(content[start:end + 1])
+            except json.JSONDecodeError:
+                return []
+        if not isinstance(data, list):
+            return []
+        out: list[dict] = []
+        for item in data:
+            if not isinstance(item, dict) or not item.get("source_text"):
+                continue
+            out.append(item)
+        return out
+
+    def _to_claim(self, item: dict, block: dict, index: int) -> GenericClaim:
+        return GenericClaim(
+            claim_id=item.get("claim_id") or f"GCLM-{index:03d}",
+            source_text=item["source_text"],
+            claim_kind=item.get("claim_kind") or "FACT",
+            page_number=int(item.get("page_number") or block.get("page_number") or 1),
+            block_index=int(item.get("block_index") if item.get("block_index") is not None else index),
+            entities=list(item.get("entities") or []),
+            numbers=list(item.get("numbers") or []),
+            dates=list(item.get("dates") or []),
+            cross_refs=list(item.get("cross_refs") or []),
+            extraction_method="llm",
+            confidence=float(item.get("confidence") or 0.8),
+        )
