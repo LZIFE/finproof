@@ -48,6 +48,11 @@ class Settings(BaseSettings):
     claim_extraction_max_retries: int = 2
     claim_extraction_prompt_version: str = "v1"
 
+    # --- 通用 PDF 核验（generic_verification 模块，Phase 24） ---
+    generic_web_search: bool = False
+    ocr_engine: str = "off"
+    generic_extraction_prompt_version: str = "generic_claim_extraction_v1"
+
 
 @lru_cache
 def get_settings() -> Settings:
