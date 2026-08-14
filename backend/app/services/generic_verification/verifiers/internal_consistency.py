@@ -101,7 +101,11 @@ def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> Verificati
                 if not _context_ctx_match(ctx, text):
                     continue
                 for other in extract_numbers(text):
-                    if other.get("context") == ctx:
+                    # 主张自身的数字（同值同单位同语境）不是独立证据，跳过；
+                    # 同语境但不同值/单位（如正文 1.2 亿 vs 表格 1.2 万）必须比较
+                    if (other.get("context") == ctx
+                            and other.get("value") == num.get("value")
+                            and (other.get("unit") or "") == (num.get("unit") or "")):
                         continue
                     if not values_compatible(
                         num.get("value"), num.get("unit"),

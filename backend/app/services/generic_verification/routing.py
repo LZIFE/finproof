@@ -17,15 +17,20 @@ FORCE_MODES = frozenset({ROUTE_INTERNAL, ROUTE_CROSS_DOC, ROUTE_EXTERNAL})
 _NOT_VERIFIABLE_KINDS = frozenset({"OPINION", "PREDICTION"})
 
 
-def route_claim(claim, has_evidence: bool, force_mode: str | None = None) -> list[str]:
-    """返回核验方式列表（去重保序）；空列表表示不可核验。"""
+def route_claim(claim, has_evidence: bool, force_mode: str | None = None,
+                has_internal_basis: bool = False) -> list[str]:
+    """返回核验方式列表（去重保序）；空列表表示不可核验。
+
+    has_internal_basis：同一实体/语境的数字在文档多处出现（由 service 层
+    基于文档块计算），是内部自洽核验的依据之一。
+    """
     if force_mode in FORCE_MODES:
         return [force_mode]
     if claim.claim_kind in _NOT_VERIFIABLE_KINDS:
         return []
 
     routes: list[str] = []
-    if claim.cross_refs:
+    if claim.cross_refs or has_internal_basis:
         routes.append(ROUTE_INTERNAL)
     if has_evidence and (claim.entities or claim.numbers):
         routes.append(ROUTE_CROSS_DOC)
