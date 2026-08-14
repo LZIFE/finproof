@@ -27,6 +27,7 @@ from app.api.audit import router as audit_router
 from app.api.claims import router as claims_router
 from app.api.documents import router as documents_router
 from app.api.evidence import router as evidence_router
+from app.api.generic_verify import router as generic_verify_router
 from app.api.health import router as health_router
 from app.api.risk import router as risk_router
 from app.api.verification import router as verification_router
@@ -50,6 +51,7 @@ def create_app() -> FastAPI:
     app.include_router(documents_router)
     app.include_router(claims_router)
     app.include_router(evidence_router)
+    app.include_router(generic_verify_router)
     app.include_router(verification_router)
     app.include_router(audit_router)
     app.include_router(risk_router)
