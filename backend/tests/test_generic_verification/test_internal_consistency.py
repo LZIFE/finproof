@@ -90,3 +90,27 @@ def test_verify_unrelated_total_line_does_not_refute():
     ]
     out = verify_claim_internal(c, blocks)
     assert out.verdict == STATUS_SUPPORTED
+
+
+def test_sum_check_ignores_fullwidth_percent():
+    """合计行含全角 ％ 不得触发 SUM_MISMATCH（P3 回归）。"""
+    c = _claim(text="营业收入合计 100 万元",
+               numbers=[{"value": 100, "unit": "万", "context": "营业收入合计"}])
+    blocks = [
+        {"index": 0, "text": "A 60万元、B 40万元、营业收入合计100万元，同比增长 20％", "page_number": 2},
+    ]
+    out = verify_claim_internal(c, blocks)
+    assert out.verdict == STATUS_SUPPORTED
+
+
+def test_contextless_claim_number_still_compared():
+    """语境为空的主张数字仍参与同页比较，冲突须被检出（P2 回归）。"""
+    c = _claim(text="利润 1.2 亿元",
+               numbers=[{"value": 1.2, "unit": "亿", "context": ""}])
+    blocks = [
+        {"index": 0, "text": "利润 1.2 亿元", "page_number": 1},
+        {"index": 1, "text": "利润 1.2 万元", "page_number": 1},
+    ]
+    out = verify_claim_internal(c, blocks)
+    assert out.verdict == STATUS_REFUTED
+    assert out.error_type == "NUMERIC_CONFLICT"

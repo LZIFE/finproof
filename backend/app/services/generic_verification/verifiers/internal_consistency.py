@@ -83,11 +83,13 @@ def _same_context_slot(ctx: str, other_ctx: str) -> bool:
 
     claim 语境「营收」与 other 语境「营业收入」→ 同一槽（简称兼容）；
     claim 语境「营业收入」与「同比增长」→ 不同槽（不比较）。
+    任一侧语境缺失/过短（<2 字符）时无法判别 → 视为同槽，
+    交由 values_compatible 直接决定（不得因语境为空而静默跳过比较）。
     """
     a = (ctx or "").strip()
     b = (other_ctx or "").strip()
-    if not a or not b:
-        return False
+    if len(a) < 2 or len(b) < 2:
+        return True
     return _context_ctx_match(a, b) or _context_ctx_match(b, a)
 
 
@@ -109,9 +111,14 @@ def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> Verificati
     if claim.numbers:
         for num in claim.numbers:
             ctx = (num.get("context") or "")
+            ctx_short = len(re.sub(r"\s+", "", ctx)) < 2
             for b in blocks:
                 text = b.get("text") or ""
-                if not _context_ctx_match(ctx, text):
+                if ctx_short:
+                    # 语境为空/过短：无法按语境门控，退化为同页块比较
+                    if b.get("page_number") != claim.page_number:
+                        continue
+                elif not _context_ctx_match(ctx, text):
                     continue
                 for other in extract_numbers(text):
                     other_ctx = other.get("context") or ""
@@ -148,7 +155,9 @@ def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> Verificati
                 _context_ctx_match(c, text) for c in claim_ctxs if c
             ):
                 continue
-            nums = [n for n in extract_numbers(text) if "%" not in (n.get("unit") or "")]
+            # 排除百分比数字（ASCII % 与全角 ％ 都排除），避免计入组件/合计
+            nums = [n for n in extract_numbers(text)
+                    if not any(c in (n.get("unit") or "") for c in ("%", "％"))]
             if len(nums) < 2:
                 continue
             total = nums[-1]["value"]

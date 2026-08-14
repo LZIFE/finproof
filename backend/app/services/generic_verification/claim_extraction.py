@@ -37,8 +37,8 @@ def _strip_thousands(text: str) -> str:
     return text.replace(",", "").replace("，", "")
 
 
-# 语境截断标点（数字前遇到这些字符即视为语境边界）
-_CTX_PUNCT = "。；，、：！？．.,;:!?()（）《》「」""''"
+# 语境截断标点（数字前遇到这些字符即视为语境边界；注意转义双引号）
+_CTX_PUNCT = "。；，、：！？．.,;:!?()（）《》「」\"\"''"
 
 
 def _preceding_context(text: str, pos: int, max_len: int = 20) -> str:

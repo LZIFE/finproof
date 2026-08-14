@@ -57,3 +57,15 @@ def test_user_materials_with_unrelated_percentage_not_conflict():
     out = verify_claim_external(claim, user_materials=["公司A 2024年营业收入 1.2 亿元，同比增长 30%"])
     assert out.verdict == STATUS_SUPPORTED
     assert out.error_type is None
+
+
+def test_contextless_claim_refutes_on_contradictory_material():
+    """无语境数字的主张遇矛盾资料 → REFUTED，不得因语境为空而跳过比较（P2 回归）。"""
+    claim = _claim(
+        text="公司A 利润 1.2亿元",
+        entities=("公司A",),
+        numbers=[{"value": 1.2, "unit": "亿", "context": ""}],  # 语境为空
+    )
+    out = verify_claim_external(claim, user_materials=["公司A 利润为 1.2万元"])
+    assert out.verdict == STATUS_REFUTED
+    assert out.error_type == "EXTERNAL_CONFLICT"
