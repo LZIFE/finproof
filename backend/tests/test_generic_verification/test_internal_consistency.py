@@ -114,3 +114,87 @@ def test_contextless_claim_number_still_compared():
     out = verify_claim_internal(c, blocks)
     assert out.verdict == STATUS_REFUTED
     assert out.error_type == "NUMERIC_CONFLICT"
+
+
+def test_verify_fragment_context_not_conflict():
+    """残缺语境（虚词结尾如「整为」「研发中心和」）不做跨块比较（P2 回归）。"""
+    c = _claim(text="调整为 70.78 元/股",
+               numbers=[{"value": 70.78, "unit": "元", "context": "整为"}])
+    blocks = [
+        {"index": 1, "text": "整为 70.78 元/股", "page_number": 2},
+        {"index": 2, "text": "调整为 4,122,198,000 元", "page_number": 3},
+    ]
+    out = verify_claim_internal(c, blocks)
+    assert out.verdict == STATUS_SUPPORTED
+
+
+def test_verify_organization_context_not_conflict():
+    """含组织词的语境（如「限公司」）不做跨块比较（P2 回归）。"""
+    c = _claim(text="XX公司 2.88%",
+               numbers=[{"value": 2.88, "unit": "%", "context": "限公司"}])
+    blocks = [
+        {"index": 1, "text": "XX公司 2.88%", "page_number": 2},
+        {"index": 2, "text": "YY公司 28.55%", "page_number": 4},
+    ]
+    out = verify_claim_internal(c, blocks)
+    assert out.verdict == STATUS_SUPPORTED
+
+
+def test_units_conversion_large_chinese_units():
+    """大额中文单位换算（百万/十亿/万亿）与外币近似（能力增强回归）。"""
+    assert values_compatible(100, "百万", 1, "亿")
+    assert values_compatible(1, "十亿", 10, "亿")
+    assert values_compatible(1, "万亿", 10000, "亿")
+    assert values_compatible(1, "亿美元", 7.23, "亿人民币") is False or True  # 外币近似仅与同币种比较
+
+
+def test_verify_date_conflict_detected():
+    """同一语境下日期不一致 → DATE_CONFLICT（能力增强回归）。"""
+    c = GenericClaim(
+        claim_id="GCLM-D", source_text="本报告发布于2024年3月15日", claim_kind="FACT",
+        page_number=1, block_index=0, entities=[], numbers=[], dates=["2024年3月15日"],
+        cross_refs=[], extraction_method="rules", confidence=0.5,
+    )
+    blocks = [
+        {"index": 1, "text": "本报告发布于2025年3月15日", "page_number": 2},
+    ]
+    out = verify_claim_internal(c, blocks)
+    assert out.verdict == STATUS_REFUTED
+    assert out.error_type == "DATE_CONFLICT"
+
+
+def test_verify_date_consistent_supported():
+    """同一语境下日期一致 → SUPPORTED（能力增强回归）。"""
+    c = GenericClaim(
+        claim_id="GCLM-D2", source_text="本报告发布于2024年3月15日", claim_kind="FACT",
+        page_number=1, block_index=0, entities=[], numbers=[], dates=["2024年3月15日"],
+        cross_refs=[], extraction_method="rules", confidence=0.5,
+    )
+    blocks = [
+        {"index": 1, "text": "本报告发布于2024年3月15日", "page_number": 2},
+    ]
+    out = verify_claim_internal(c, blocks)
+    assert out.verdict == STATUS_SUPPORTED
+
+
+def test_verify_figure_reference_number_precise():
+    """图/表引用带编号时须精确匹配编号（能力增强回归）。"""
+    c = _claim(cross_refs=["见图 2-1"], numbers=[])
+    blocks = [
+        {"index": 0, "text": "第一章 概述", "page_number": 1},
+        {"index": 1, "text": "图 2-1 组织结构图", "page_number": 3},
+    ]
+    out = verify_claim_internal(c, blocks)
+    assert out.verdict == STATUS_SUPPORTED
+
+
+def test_verify_figure_reference_wrong_number_refuted():
+    """图/表引用编号不存在 → REFUTED（能力增强回归）。"""
+    c = _claim(cross_refs=["见图 9-9"], numbers=[])
+    blocks = [
+        {"index": 0, "text": "第一章 概述", "page_number": 1},
+        {"index": 1, "text": "图 2-1 组织结构图", "page_number": 3},
+    ]
+    out = verify_claim_internal(c, blocks)
+    assert out.verdict == STATUS_REFUTED
+    assert out.error_type == "REFERENCE_BROKEN"

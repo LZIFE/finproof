@@ -138,6 +138,88 @@ def _has_internal_basis(claim, blocks: list[dict]) -> bool:
     return False
 
 
+def save_verification_run(session, document_id: int | None, filename: str,
+                          mode: str, result: dict) -> int:
+    """持久化一次通用核验结果，返回 run_id。
+
+    result 为 verify_pdf 的返回结构（含 verdicts/claims/error_report）。
+    """
+    import json
+
+    from app.models.generic_verification import GenericVerificationRun
+
+    run = GenericVerificationRun(
+        document_id=document_id,
+        filename=filename,
+        mode=mode,
+        total_claims=result.get("total_claims", 0),
+        is_mock=bool(result.get("is_mock")),
+        result_json=json.dumps(result, ensure_ascii=False),
+        status="COMPLETED",
+    )
+    session.add(run)
+    session.commit()
+    session.refresh(run)
+    return run.id
+
+
+def list_verification_runs(session, page: int = 1, page_size: int = 20) -> tuple[int, list[dict]]:
+    """分页列出通用核验历史（不含完整 result_json，避免响应过大）。"""
+    from sqlalchemy import func
+
+    from app.models.generic_verification import GenericVerificationRun
+
+    total = session.query(func.count(GenericVerificationRun.id)).scalar() or 0
+    rows = (
+        session.query(GenericVerificationRun)
+        .order_by(GenericVerificationRun.id.desc())
+        .offset((page - 1) * page_size)
+        .limit(page_size)
+        .all()
+    )
+    return total, [
+        {
+            "id": r.id,
+            "document_id": r.document_id,
+            "filename": r.filename,
+            "mode": r.mode,
+            "total_claims": r.total_claims,
+            "is_mock": r.is_mock,
+            "status": r.status,
+            "error": r.error,
+            "created_at": r.created_at.isoformat(),
+        }
+        for r in rows
+    ]
+
+
+def get_verification_run(session, run_id: int) -> dict | None:
+    """查询一次核验记录（含完整 result_json 解析结果）。"""
+    import json
+
+    from app.models.generic_verification import GenericVerificationRun
+
+    run = session.get(GenericVerificationRun, run_id)
+    if run is None:
+        return None
+    try:
+        result = json.loads(run.result_json)
+    except (TypeError, ValueError):
+        result = {}
+    return {
+        "id": run.id,
+        "document_id": run.document_id,
+        "filename": run.filename,
+        "mode": run.mode,
+        "total_claims": run.total_claims,
+        "is_mock": run.is_mock,
+        "status": run.status,
+        "error": run.error,
+        "created_at": run.created_at.isoformat(),
+        "result": result,
+    }
+
+
 def verify_pdf(session, pdf_bytes: bytes, filename: str,
                evidence_files: list[tuple[str, bytes]] | None = None,
                mode: str = "auto",
@@ -199,3 +281,67 @@ def verify_pdf(session, pdf_bytes: bytes, filename: str,
         "error_report": [e.to_dict() for e in sorted(error_items, key=lambda e: e.page_number)],
         "is_mock": result.is_mock,
     }
+
+
+def verify_pdf_batch(session, files: list[tuple[str, bytes]],
+                     evidence_files: list[tuple[str, bytes]] | None = None,
+                     mode: str = "auto",
+                     user_materials: list[str] | None = None) -> dict:
+    """批量核验多个 PDF，逐文件返回结果；单文件失败不影响其余文件。"""
+    items: list[dict] = []
+    for filename, data in files:
+        try:
+            result = verify_pdf(
+                session, data, filename,
+                evidence_files=evidence_files, mode=mode, user_materials=user_materials,
+            )
+            result["filename"] = filename
+            result["status"] = "COMPLETED"
+        except AppError as exc:
+            result = {
+                "filename": filename,
+                "status": "FAILED",
+                "error": {"code": exc.code, "message": str(exc)},
+                "total_claims": 0,
+                "verdicts": {},
+                "claims": [],
+                "error_report": [],
+                "is_mock": False,
+            }
+        items.append(result)
+    return {"total_files": len(files), "items": items}
+
+
+def export_markdown(result: dict) -> str:
+    """把一次核验结果渲染为 Markdown 报告（错误清单 + 判定统计）。"""
+    lines: list[str] = []
+    lines.append("# 通用 PDF 内容核验报告")
+    lines.append("")
+    lines.append(f"- 待核验文档: {result.get('filename') or result.get('document_id') or '-'}")
+    lines.append(f"- 主张总数: {result.get('total_claims', 0)}")
+    lines.append(f"- 核验方式: Mock 模式" if result.get("is_mock") else "- 核验方式: 标准模式")
+    lines.append("")
+    verdicts = result.get("verdicts") or {}
+    lines.append("## 判定统计")
+    lines.append("")
+    lines.append("| 判定 | 数量 |")
+    lines.append("|---|---|")
+    for k in ("SUPPORTED", "REFUTED", "PARTIALLY_SUPPORTED", "INSUFFICIENT_EVIDENCE",
+              "UNABLE_TO_DETERMINE", "NOT_VERIFIABLE"):
+        lines.append(f"| {k} | {verdicts.get(k, 0)} |")
+    lines.append("")
+
+    errs = result.get("error_report") or []
+    lines.append(f"## 错误清单（{len(errs)} 项）")
+    lines.append("")
+    if not errs:
+        lines.append("未发现 REFUTED / PARTIALLY_SUPPORTED 条目。")
+    else:
+        lines.append("| 页码 | 错误类型 | 原文 | 详情 |")
+        lines.append("|---|---|---|---|")
+        for e in errs:
+            src = (e.get("source_text") or "").replace("|", "\\|").replace("\n", " ")[:60]
+            detail = (e.get("detail") or "").replace("|", "\\|").replace("\n", " ")[:80]
+            lines.append(f"| {e.get('page_number')} | {e.get('error_type')} | {src} | {detail} |")
+    lines.append("")
+    return "\n".join(lines)

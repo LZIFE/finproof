@@ -20,8 +20,12 @@ from app.services.verification.base import (
 
 VALUE_TOLERANCE = 0.01  # 相对误差 1%
 
-# 单位 → 亿换算系数
-_UNIT_TO_YI = {"亿": 1.0, "万": 1e-4, "千": 1e-5, "百": 1e-6, "元": 1e-8, "美元": 1e-8}
+# 单位 → 亿换算系数（含大额中文单位与常见外币近似）
+_UNIT_TO_YI = {
+    "亿": 1.0, "万": 1e-4, "千": 1e-5, "百": 1e-6, "元": 1e-8, "美元": 1e-8,
+    "百万": 1e-2, "十亿": 10.0, "百亿": 100.0, "千亿": 1000.0, "万亿": 1e4,
+    "人民币": 1e-8, "港元": 1.28e-8, "欧元": 1.09e-8, "日元": 6.9e-11, "英镑": 1.27e-8,
+}
 _TITLE_RE = re.compile(r"^(?:第\s*)?(\d+)\s*[章节]")
 # 通用语境：这类短语（增长率、合计、泛动词）在文档中大量出现且数值天然不同
 # （各业务线增长率不同、各表合计不同、各处"降低/节省"比例不同），不用于跨块数值一致性比较
@@ -29,7 +33,27 @@ _GENERIC_CONTEXTS = (
     "同比增长", "同比", "环比", "较上年", "合计", "总计", "小计", "增长", "下降",
     "降低", "提升", "提高", "节省", "节约", "超过", "突破", "达到", "高于", "低于",
     "增加", "减少", "上升", "下滑", "增幅", "降幅",
+    # 注意：不包含「收入/利润/金额/余额」等核心指标词——「营业收入」含「收入」，
+    # 若排除则核心财务指标将无法参与跨块一致性核验
+    "销售", "期末", "期初", "本年", "上年", "本月", "本期", "上期", "未来",
 )
+# 残缺语境虚词结尾：语境以这些助词/介词/连词/方位结尾时，往往是截断的残片
+# （如「研发中心和」「整为」「年度按」），无判别力，不做跨块数字一致性比较
+_FRAGMENT_SUFFIXES = frozenset(
+    "的为和于在从到按及与或中上下内外前后时均达有被把由向以当将已着了过"
+)
+# 组织通用词：语境含这些词（如「限公司」）时数值天然不同，不做跨块比较
+_ORGANIZATION_WORDS = ("公司", "有限", "股份", "集团", "控股")
+
+
+def _is_fragment_context(ctx: str) -> bool:
+    """语境是否为残缺/无判别力片段（虚词结尾或含组织通用词）。"""
+    c = (ctx or "").strip()
+    if not c:
+        return False
+    if any(w in c for w in _ORGANIZATION_WORDS):
+        return True
+    return c[-1] in _FRAGMENT_SUFFIXES
 
 
 def numbers_equal(a: float, b: float, tol: float = VALUE_TOLERANCE) -> bool:
@@ -54,16 +78,35 @@ def values_compatible(claim_val: float, claim_unit: str | None,
 
 
 def _match_reference_target(ref: str, block_text: str) -> bool:
-    """引用目标是否在块文本中出现（含标题匹配）。"""
+    """引用目标是否在块文本中出现（含标题匹配，精确验证编号）。
+
+    第 N 章/图 N-M/表 N-M/附录 X 需在块文本中找到对应编号形式，
+    避免「引用第 3 章」被任意含数字的块误判为存在。
+    """
     m = re.search(r"第\s*(\d+)\s*[章节]", ref)
     if m:
         return bool(_TITLE_RE.search(block_text) and m.group(1) in block_text)
-    for marker in ("图", "表", "附录"):
-        if marker in ref:
-            return marker in block_text
+    # 图/表带编号（图 2-1 / 表 3.2）
+    m = re.search(r"(图|表)\s*(\d+)(?:[-.](\d+))?", ref)
+    if m:
+        kind, num, sub = m.group(1), m.group(2), m.group(3)
+        if sub:
+            return re.search(rf"{kind}\s*{num}[-.]{sub}", block_text) is not None
+        return re.search(rf"{kind}\s*{num}(?:[-.]\d+)?", block_text) is not None
+    if "附录" in ref:
+        m = re.search(r"附录\s*([A-Z\d]+)", ref)
+        return bool(m and re.search(rf"附录\s*{re.escape(m.group(1))}", block_text))
     if "上" in ref or "下" in ref:
         return True  # 见上/见下无法精确定位，视为存在
     return False
+
+
+def _date_context_of(text: str, date: str) -> str:
+    """日期在文本中的前置语境（日期前最多 20 字符）。"""
+    idx = text.find(date)
+    if idx < 0:
+        return ""
+    return text[max(0, idx - 20):idx].strip()
 
 
 def _norm_text(text: str) -> str:
@@ -183,6 +226,33 @@ def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> Verificati
                 reason=f"交叉引用 {ref} 在文档中找不到对应章节/图表", error_type="REFERENCE_BROKEN",
             )
 
+    # 1.5 日期/期间一致性：同一语境（事件/指标）在文档多处出现应一致
+    #    例如 claim 写「发布于2024年3月15日」而另一块写「发布于2025年3月15日」→ 冲突
+    #    注意：日期语境常以介词/动词结尾（如「发布于」「截至」「签订于」），
+    #    不能用 _is_fragment_context（虚词结尾即排除）过滤，否则日期检查永不触发
+    if claim.dates:
+        from app.services.generic_verification.claim_extraction import extract_dates
+
+        for d in claim.dates:
+            dctx = _date_context_of(claim.source_text, d)
+            if len(_norm_text(dctx)) < 2:
+                continue  # 日期无有效语境，无法判别
+            for b in blocks:
+                if b.get("index") == claim.block_index:
+                    continue
+                if not _ctx_matches_norm(_norm_text(dctx), b["_norm"], b["_charset"]):
+                    continue
+                for other_d in extract_dates(b.get("text") or ""):
+                    if other_d == d:
+                        continue
+                    return VerificationOutcome(
+                        claim_id=claim.claim_id, verdict=STATUS_REFUTED, confidence=0.85,
+                        mode_used=["internal"],
+                        evidence=[{"text": b.get("text") or "", "page_number": b.get("page_number")}],
+                        reason=f"语境「{dctx}」日期不一致：{d} vs {other_d}",
+                        error_type="DATE_CONFLICT",
+                    )
+
     # 2. 数字一致性（仅单一数值主张做跨块比较；跳过主张自身源块）
     #    多数字主张（表格行：期末/期初/增长率并存）各数字语义槽天然不同，
     #    跨块比较必然误报，不做一致性判定。
@@ -210,6 +280,10 @@ def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> Verificati
                         continue
                     # 通用语境（增长率/合计等）数值天然不同，不做跨块一致性比较
                     if any(g in ctx for g in _GENERIC_CONTEXTS) or any(g in other_ctx for g in _GENERIC_CONTEXTS):
+                        continue
+                    # 残缺语境（虚词结尾/组织词，如「研发中心和」「整为」「限公司」）
+                    # 无判别力，不做跨块数字一致性比较
+                    if _is_fragment_context(ctx) or _is_fragment_context(other_ctx):
                         continue
                     if ctx_short:
                         # 空语境：other 语境必须出现在主张原文中，否则无法判别
@@ -252,14 +326,14 @@ def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> Verificati
             # 排除百分比数字（ASCII % 与全角 ％ 都排除），避免计入组件/合计
             nums = [n for n in b["_numbers"]
                     if not any(c in (n.get("unit") or "") for c in ("%", "％"))]
-            # 主张数字必须出现在该合计行中（该行才是主张所指的合计），否则跳过
-            if not any(numbers_equal(n["value"], claim_num.get("value"))
-                       for n in nums):
-                continue
             # 组件数量须合理（2~10）：整页几十个数字被误当组件求和是误报
             if not (2 <= len(nums) <= 10):
                 continue
             total = nums[-1]["value"]
+            # 主张数字必须等于该合计行的合计值（最后一个数字），
+            # 否则（如「未来12个月」的 12 只是组件）该行不是主张所指的合计
+            if not numbers_equal(total, claim_num.get("value")):
+                continue
             parts = [n["value"] for n in nums[:-1]]
             if parts and not numbers_equal(sum(parts), total):
                 return VerificationOutcome(
@@ -271,11 +345,11 @@ def verify_claim_internal(claim: GenericClaim, blocks: list[dict]) -> Verificati
                 )
 
     # 4. 判定汇总
-    if not claim.cross_refs and not claim.numbers:
+    if not claim.cross_refs and not claim.numbers and not claim.dates:
         return VerificationOutcome(
             claim_id=claim.claim_id, verdict=STATUS_INSUFFICIENT, confidence=0.5,
             mode_used=["internal"], evidence=evidence,
-            reason="主张无交叉引用且无数字，无法在文档内自洽核验", error_type=None,
+            reason="主张无交叉引用、无数字且无日期，无法在文档内自洽核验", error_type=None,
         )
     return VerificationOutcome(
         claim_id=claim.claim_id, verdict=STATUS_SUPPORTED, confidence=0.6,
