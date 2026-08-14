@@ -62,6 +62,11 @@ def extract_numbers(text: str) -> list[dict]:
         raw = m.group(0)
         unit = (m.group(1) or "").strip() or None
         num_part = re.match(r"[-+]?\d[\d,，]*(?:\.\d+)?", raw).group(0)
+        # 科学计数法（如 1e18 / 2.5E-3）：正则只能匹配到整数部分，
+        # 提取出的值错误（1e18 会被当成 1），跳过避免误报
+        tail = text[m.end():m.end() + 3]
+        if re.match(r"[eE][-+]?\d", tail):
+            continue
         try:
             value = float(_strip_thousands(num_part))
         except ValueError:

@@ -15,6 +15,13 @@ def test_extract_numbers_percent_and_thousands():
     assert any(n["value"] == 1200 and n["unit"] == "万" for n in nums)
 
 
+def test_extract_numbers_skips_scientific_notation():
+    """科学计数法（1e18）不得被误提取为整数部分（1）（P2 回归）。"""
+    nums = extract_numbers("总资产 1e18 元，负债 2.5E-3 元")
+    assert not any(n["value"] == 1 for n in nums)
+    assert not any(n["value"] == 2.5 for n in nums)
+
+
 def test_extract_dates():
     dates = extract_dates("2024年3月15日发布，年报期间为2024年，披露于2024-03-15")
     assert "2024年3月15日" in dates

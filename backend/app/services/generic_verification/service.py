@@ -38,11 +38,16 @@ _PREFER_VERDICTS = (STATUS_REFUTED, STATUS_SUPPORTED, STATUS_PARTIALLY_SUPPORTED
 
 
 def _parsed_to_blocks(parsed) -> list[dict]:
+    """把解析结果转成块列表；index 为全局序号（与主张拆解的 block_index 对齐）。
+
+    注意：不能直接用每页内的 b.block_index（每页从 0 重新计数），
+    否则「跳过主张自身源块」等按 index 比较的逻辑会失效。
+    """
     blocks: list[dict] = []
     for page in parsed.pages:
         for b in page.blocks:
             blocks.append({
-                "index": b.block_index,
+                "index": len(blocks),
                 "text": b.text or "",
                 "page_number": page.page_number,
                 "block_type": b.block_type,
@@ -110,16 +115,26 @@ def _has_internal_basis(claim, blocks: list[dict]) -> bool:
     """同一实体/语境的数字是否在文档多处出现（内部自洽核验的依据）。
 
     对 claim 的每个数字语境，统计其在文档块中命中的数量 ≥ 2 → True。
+    性能：复用块预计算缓存（_ensure_block_cache），避免 5000+ 主张 ×
+    5000+ 块逐对做 re.sub 子序列匹配（曾耗时 60s）。
     """
     if not claim.numbers:
         return False
-    from app.services.generic_verification.verifiers.internal_consistency import _context_ctx_match
+    from app.services.generic_verification.verifiers.internal_consistency import (
+        _ensure_block_cache,
+        _norm_text,
+        _ctx_matches_norm,
+    )
 
+    _ensure_block_cache(blocks)
     for num in claim.numbers:
-        ctx = (num.get("context") or "")
-        hits = sum(1 for b in blocks if _context_ctx_match(ctx, b.get("text") or ""))
-        if hits >= 2:
-            return True
+        ctx = _norm_text(num.get("context") or "")
+        hits = 0
+        for b in blocks:
+            if _ctx_matches_norm(ctx, b["_norm"], b["_charset"]):
+                hits += 1
+                if hits >= 2:
+                    return True
     return False
 
 

@@ -36,7 +36,7 @@ def test_values_compatible_unit_conversion():
 
 def test_verify_conflict_detected():
     blocks = [
-        {"index": 0, "text": "营业收入 1.2 万元", "page_number": 2},
+        {"index": 1, "text": "营业收入 1.2 万元", "page_number": 2},
     ]
     out = verify_claim_internal(_claim(), blocks)
     assert out.verdict == STATUS_REFUTED
@@ -45,7 +45,7 @@ def test_verify_conflict_detected():
 
 def test_verify_consistent_supported():
     blocks = [
-        {"index": 0, "text": "营业收入 1.2 亿元，较上年增长", "page_number": 2},
+        {"index": 1, "text": "营业收入 1.2 亿元，较上年增长", "page_number": 2},
     ]
     out = verify_claim_internal(_claim(), blocks)
     assert out.verdict == STATUS_SUPPORTED

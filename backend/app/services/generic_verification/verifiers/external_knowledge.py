@@ -13,6 +13,7 @@ from typing import Callable
 from app.services.generic_verification.claim_extraction import extract_numbers
 from app.services.generic_verification.schemas import GenericClaim, VerificationOutcome
 from app.services.generic_verification.verifiers.internal_consistency import (
+    _quantity_comparable,
     _same_context_slot,
     values_compatible,
 )
@@ -49,6 +50,8 @@ def _material_conflicts(material: str, claim: GenericClaim) -> bool:
         ctx = (num.get("context") or "")
         for other in extract_numbers(material):
             if not _same_context_slot(ctx, other.get("context") or ""):
+                continue
+            if not _quantity_comparable(num.get("unit"), other.get("unit")):
                 continue
             if values_compatible(num.get("value"), num.get("unit"),
                                  other.get("value"), other.get("unit")):
@@ -130,6 +133,8 @@ def verify_claim_external(
                     ctx = (num.get("context") or "")
                     for other in extract_numbers(joined):
                         if not _same_context_slot(ctx, other.get("context") or ""):
+                            continue
+                        if not _quantity_comparable(num.get("unit"), other.get("unit")):
                             continue
                         if not values_compatible(num.get("value"), num.get("unit"),
                                                  other.get("value"), other.get("unit")):
