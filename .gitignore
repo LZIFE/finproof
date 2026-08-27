@@ -22,6 +22,9 @@ next-env.d.ts
 
 # Data (runtime)
 data/finproof.db
+data/*.db
+data/*.backup
+data/*.p*backup
 data/uploads/
 storage/
 # 运行时 embedding 缓存（首次计算后自动生成）
