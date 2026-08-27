@@ -43,6 +43,8 @@ class EvidenceCandidateOut(BaseModel):
     evidence_quality_score: float = 0.3
     evidence_rank_reason: str | None = None
     evidence_tier: str = "secondary"
+    source_level: str = "NO_SOURCE"
+    source_level_reason: str | None = None
 
 
 class ClaimCandidatesOut(BaseModel):

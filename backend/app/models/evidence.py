@@ -54,6 +54,10 @@ class EvidenceCandidate(Base):
     evidence_type: Mapped[str] = mapped_column(String(40), default="UNKNOWN")
     evidence_quality_score: Mapped[float] = mapped_column(Float, default=0.3)
     evidence_rank_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+    # 来源等级：OFFICIAL_DISCLOSURE / REGULATORY_DATA / THIRD_PARTY_REPORT /
+    #          MEDIA_REPORT / CHANNEL_CHECK / FORECAST / NO_SOURCE
+    source_level: Mapped[str] = mapped_column(String(40), default="NO_SOURCE")
+    source_level_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     run: Mapped["EvidenceRetrievalRun"] = relationship(back_populates="candidates")

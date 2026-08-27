@@ -64,6 +64,8 @@ def _migrate_columns(conn) -> None:
         ("evidence_type", "TEXT DEFAULT 'UNKNOWN'"),
         ("evidence_quality_score", "FLOAT DEFAULT 0.3"),
         ("evidence_rank_reason", "TEXT"),
+        ("source_level", "TEXT DEFAULT 'NO_SOURCE'"),
+        ("source_level_reason", "TEXT"),
     ]:
         if name not in ev_cols:
             conn.execute(text(f"ALTER TABLE evidence_candidates ADD COLUMN {name} {ddl}"))

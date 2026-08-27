@@ -20,6 +20,8 @@ type Candidate = {
   evidence_quality_score: number;
   evidence_rank_reason: string | null;
   evidence_tier: string;
+  source_level: string;
+  source_level_reason: string | null;
 };
 
 const EVIDENCE_TYPE_LABEL: Record<string, string> = {
@@ -29,6 +31,16 @@ const EVIDENCE_TYPE_LABEL: Record<string, string> = {
   MANAGEMENT_DISCUSSION: "★★★ 管理层分析",
   NARRATIVE_DISCLOSURE: "★★ 定性描述",
   UNKNOWN: "☆ 未知",
+};
+
+const SOURCE_LEVEL_STYLE: Record<string, { label: string; bg: string; color: string }> = {
+  OFFICIAL_DISCLOSURE: { label: "官方披露", bg: "#064e3b", color: "#6ee7b7" },
+  REGULATORY_DATA: { label: "监管数据", bg: "#065f46", color: "#6ee7b7" },
+  THIRD_PARTY_REPORT: { label: "第三方报告", bg: "#78350f", color: "#fcd34d" },
+  MEDIA_REPORT: { label: "媒体报道", bg: "#7c2d12", color: "#fdba74" },
+  CHANNEL_CHECK: { label: "渠道调研", bg: "#7c2d12", color: "#fdba74" },
+  FORECAST: { label: "预测陈述", bg: "#7f1d1d", color: "#fca5a5" },
+  NO_SOURCE: { label: "无明确来源", bg: "#1e293b", color: "#94a3b8" },
 };
 
 type RunOut = {
@@ -205,6 +217,7 @@ export default function EvidenceRetrievalPage() {
                   <tr>
                     <th>#</th>
                     <th>证据类型</th>
+                    <th>来源等级</th>
                     <th>页</th>
                     <th>块</th>
                     <th>总分</th>
@@ -224,6 +237,28 @@ export default function EvidenceRetrievalPage() {
                           {EVIDENCE_TYPE_LABEL[cd.evidence_type] ?? cd.evidence_type}
                         </span>
                         {cd.evidence_tier === "primary" && "（Primary）"}
+                      </td>
+                      <td>
+                        {(() => {
+                          const s = SOURCE_LEVEL_STYLE[cd.source_level] ?? SOURCE_LEVEL_STYLE.NO_SOURCE;
+                          return (
+                            <span
+                              title={cd.source_level_reason ?? ""}
+                              style={{
+                                display: "inline-block",
+                                padding: "2px 8px",
+                                borderRadius: 10,
+                                fontSize: "0.8em",
+                                fontWeight: 600,
+                                background: s.bg,
+                                color: s.color,
+                                whiteSpace: "nowrap",
+                              }}
+                            >
+                              {s.label}
+                            </span>
+                          );
+                        })()}
                       </td>
                       <td>doc{cd.document_id} p{cd.page_number}</td>
                       <td>{cd.block_id ?? "-"}</td>

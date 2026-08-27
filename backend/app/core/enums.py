@@ -85,3 +85,48 @@ class ExtractionMode(str, Enum):
     RULES = "rules"
     LLM = "llm"
     HYBRID = "hybrid"
+
+
+class SourceLevel(str, Enum):
+    """证据来源可信度分级（回答"这条证据凭什么硬"）。
+
+    等级从高到低：
+    - OFFICIAL_DISCLOSURE: 交易所/证监会官方披露（年报、公告、招股书）
+    - REGULATORY_DATA: 监管或权威机构数据（统计局、交易所、行业协会）
+    - THIRD_PARTY_REPORT: 第三方研究报告（咨询公司、券商研报引用）
+    - MEDIA_REPORT: 媒体报道（新闻、财经媒体）
+    - CHANNEL_CHECK: 渠道调研/产业链反馈（"据经销商""据调研"）
+    - FORECAST: 预测性陈述（"预计""有望""我们认为"——不是已发生事实）
+    - NO_SOURCE: 无明确来源
+    """
+
+    OFFICIAL_DISCLOSURE = "OFFICIAL_DISCLOSURE"
+    REGULATORY_DATA = "REGULATORY_DATA"
+    THIRD_PARTY_REPORT = "THIRD_PARTY_REPORT"
+    MEDIA_REPORT = "MEDIA_REPORT"
+    CHANNEL_CHECK = "CHANNEL_CHECK"
+    FORECAST = "FORECAST"
+    NO_SOURCE = "NO_SOURCE"
+
+
+# 来源等级中文标签（前端展示用）
+SOURCE_LEVEL_LABELS: dict[str, str] = {
+    SourceLevel.OFFICIAL_DISCLOSURE: "官方披露",
+    SourceLevel.REGULATORY_DATA: "监管数据",
+    SourceLevel.THIRD_PARTY_REPORT: "第三方报告",
+    SourceLevel.MEDIA_REPORT: "媒体报道",
+    SourceLevel.CHANNEL_CHECK: "渠道调研",
+    SourceLevel.FORECAST: "预测陈述",
+    SourceLevel.NO_SOURCE: "无明确来源",
+}
+
+# 来源等级可信度分值（0-1，越高越硬）
+SOURCE_LEVEL_SCORES: dict[str, float] = {
+    SourceLevel.OFFICIAL_DISCLOSURE: 1.0,
+    SourceLevel.REGULATORY_DATA: 0.9,
+    SourceLevel.THIRD_PARTY_REPORT: 0.6,
+    SourceLevel.MEDIA_REPORT: 0.4,
+    SourceLevel.CHANNEL_CHECK: 0.3,
+    SourceLevel.FORECAST: 0.2,
+    SourceLevel.NO_SOURCE: 0.0,
+}

@@ -12,6 +12,7 @@ from app.services.evidence_retrieval.engine import (
     DEFAULT_WEIGHTS,
     EVIDENCE_TYPE_PRIMARY,
     classify_evidence_type,
+    classify_source_level,
     document_priority,
     metric_aliases,
     normalize_claim,
@@ -424,6 +425,20 @@ def retrieve_for_claim(
     from collections import defaultdict
 
     w = weights or DEFAULT_WEIGHTS
+    # 文档角色/类型缓存：{doc_id: (document_role, document_type)}
+    doc_info_cache: dict[int, tuple[str, str]] = {}
+
+    def _doc_info(doc_id: int) -> tuple[str, str]:
+        if doc_id not in doc_info_cache:
+            row = (
+                session.query(Document.document_role, Document.document_type)
+                .filter(Document.id == doc_id)
+                .first()
+            )
+            doc_info_cache[doc_id] = (row[0] if row else "SOURCE_DOCUMENT",
+                                      row[1] if row else "pdf")
+        return doc_info_cache[doc_id]
+
     page_blocks: dict[tuple, list[dict]] = defaultdict(list)
     for b in scored:
         page_blocks[(b["document_id"], b["page_number"])].append(b)
@@ -455,6 +470,13 @@ def retrieve_for_claim(
             b["evidence_quality_score"] = qscore
             b["evidence_rank_reason"] = reason
             b["evidence_tier"] = "primary" if etype == EVIDENCE_TYPE_PRIMARY else "secondary"
+            # 来源等级：根据文档角色 + 证据文本关键词判断
+            doc_role, doc_type = _doc_info(b["document_id"])
+            src_level, src_reason = classify_source_level(
+                b.get("block_text", ""), document_role=doc_role, document_type=doc_type
+            )
+            b["source_level"] = src_level
+            b["source_level_reason"] = src_reason
             b["final_score"] = round(
                 b["final_score"]
                 + w.get("page", 0.10) * page_bonus
@@ -588,6 +610,8 @@ def run_retrieval(
                         evidence_type=c.get("evidence_type", "UNKNOWN"),
                         evidence_quality_score=c.get("evidence_quality_score", 0.3),
                         evidence_rank_reason=c.get("evidence_rank_reason"),
+                        source_level=c.get("source_level", "NO_SOURCE"),
+                        source_level_reason=c.get("source_level_reason"),
                     )
                 )
         run.status = "COMPLETED"
@@ -631,6 +655,8 @@ def get_run_claims(session: Session, run_id: int) -> dict[str, list[dict]]:
                 "evidence_quality_score": r.evidence_quality_score,
                 "evidence_rank_reason": r.evidence_rank_reason,
                 "evidence_tier": "primary" if r.evidence_type == EVIDENCE_TYPE_PRIMARY else "secondary",
+                "source_level": r.source_level,
+                "source_level_reason": r.source_level_reason,
             }
         )
     return out

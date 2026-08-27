@@ -537,6 +537,91 @@ def classify_evidence_type(
     return EVIDENCE_TYPE_UNKNOWN, EVIDENCE_QUALITY[EVIDENCE_TYPE_UNKNOWN], "无法识别证据类型"
 
 
+# ---------------------------------------------------------------- 来源等级（Source Level）
+
+# 预测性陈述关键词：即使出现在年报里，也属于"展望"而非"已发生事实"
+_FORECAST_KEYWORDS = (
+    "预计", "有望", "估计", "我们认为", "我们预计", "预测", "预期",
+    "计划", "拟", "力争", "目标", "展望", "未来将", "有望达到",
+    "预计将", "预计实现", "有望实现", "forecast", "expect", "estimate",
+)
+
+# 渠道调研关键词：信息来源是匿名/半匿名的口头反馈
+_CHANNEL_CHECK_KEYWORDS = (
+    "据调研", "渠道反馈", "产业链调研", "经销商反馈", "据渠道",
+    "据了解", "据悉", "草根调研", "渠道调研", "据产业链",
+    "据公司反馈", "据业内人士", "据消息人士",
+)
+
+# 监管/权威机构关键词
+_REGULATORY_KEYWORDS = (
+    "国家统计局", "统计局", "工信部", "发改委", "商务部",
+    "行业协会", "海关总署", "人民银行", "银保监", "证监会",
+    "交易所", "wind", "Wind", "同花顺",
+)
+
+# 媒体报道关键词
+_MEDIA_KEYWORDS = (
+    "据报道", "媒体报道", "新闻", "记者", "财经", "证券时报",
+    "中国证券报", "上海证券报", "每日经济新闻", "21世纪",
+)
+
+
+def classify_source_level(
+    block_text: str,
+    document_role: str = "SOURCE_DOCUMENT",
+    document_type: str = "pdf",
+) -> tuple[str, str]:
+    """判断证据来源等级。
+
+    优先级：文本内容信号 > 文档角色（因为年报里也可能有预测/渠道信息）。
+
+    参数:
+        block_text: 证据块原文
+        document_role: SOURCE_DOCUMENT | REPORT_TO_VERIFY | REFERENCE_REPORT
+        document_type: pdf | markdown
+
+    返回:
+        (source_level, reason): 来源等级枚举值 + 判断原因
+    """
+    text = block_text or ""
+
+    # 1) 预测性陈述：即使在官方年报里，"预计明年..."也不是已发生事实
+    forecast_hits = [kw for kw in _FORECAST_KEYWORDS if kw in text]
+    if forecast_hits:
+        return "FORECAST", f"含预测性表述（{forecast_hits[0]}），非已发生事实"
+
+    # 2) 渠道调研：匿名/半匿名信息源
+    channel_hits = [kw for kw in _CHANNEL_CHECK_KEYWORDS if kw in text]
+    if channel_hits:
+        return "CHANNEL_CHECK", f"信息来源为渠道调研（{channel_hits[0]}），非官方披露"
+
+    # 3) 根据文档角色判断
+    role = (document_role or "").upper()
+    if role == "SOURCE_DOCUMENT":
+        # 原始披露文件（年报/公告/招股书 PDF）→ 官方披露
+        if document_type == "pdf":
+            return "OFFICIAL_DISCLOSURE", "来自交易所官方披露文件"
+        return "OFFICIAL_DISCLOSURE", "来自原始披露文档"
+
+    if role == "REFERENCE_REPORT":
+        # 第三方报告：再细分监管数据 vs 媒体
+        reg_hits = [kw for kw in _REGULATORY_KEYWORDS if kw in text]
+        if reg_hits:
+            return "REGULATORY_DATA", f"引用权威机构数据（{reg_hits[0]}）"
+        media_hits = [kw for kw in _MEDIA_KEYWORDS if kw in text]
+        if media_hits:
+            return "MEDIA_REPORT", f"引用媒体报道（{media_hits[0]}）"
+        return "THIRD_PARTY_REPORT", "来自第三方研究报告"
+
+    if role == "REPORT_TO_VERIFY":
+        # 待核验研报本身不能作为自己的证据
+        return "NO_SOURCE", "待核验研报不能自证，需追溯原始来源"
+
+    # 4) 默认：无法确定来源
+    return "NO_SOURCE", "无法识别信息来源"
+
+
 def score_block(
     block_text: str,
     claim: dict,
