@@ -114,6 +114,10 @@ def fetch_evidence(session: Session, claim: dict, top_k: int = 5) -> list[dict]:
                 "period_score": c.get("period_score", 0.0),
                 "evidence_type": c.get("evidence_type", "UNKNOWN"),
                 "evidence_rank_reason": c.get("evidence_rank_reason"),
+                "source_level": c.get("source_level", "NO_SOURCE"),
+                "source_level_reason": c.get("source_level_reason"),
+                "doc_role": doc.document_role if doc else "SOURCE_DOCUMENT",
+                "doc_publication_date": doc.publication_date if doc else None,
                 # Phase 23.23 Task 2：FinancialEvidenceObject 传入验证链（不删 raw block 字段）
                 "financial_fact": c.get("financial_fact"),
             }
@@ -180,6 +184,9 @@ def run_verification_batch(
                 if d["calculation_detail"]
                 else None,
                 reason=d["reason"],
+                source_risk_tags=json.dumps(d.get("source_risk_tags", []), ensure_ascii=False)
+                if d.get("source_risk_tags")
+                else None,
             )
         )
     session.commit()
@@ -207,6 +214,7 @@ def get_verification_results(session: Session, run_id: int) -> list[dict]:
                 "matched_evidence_ids": json.loads(r.matched_evidence_ids or "[]"),
                 "calculation_detail": json.loads(r.calculation_detail) if r.calculation_detail else None,
                 "reason": r.reason,
+                "source_risk_tags": json.loads(r.source_risk_tags) if r.source_risk_tags else [],
             }
         )
     return out
@@ -260,6 +268,7 @@ def verify_evidence_set(
     evidence_candidates: list[dict],
     routing_result: "ClaimRoutingResult",
     verification_context,
+    session: Session | None = None,
 ) -> VerificationResult:
     """Canonical verification entry (Phase 23.11).
 
@@ -311,6 +320,39 @@ def verify_evidence_set(
     # Step 3: core_verify (UNCHANGED) with gated evidence
     final = core_verify(claim, evidence_bundle, trace)
 
+    # Step 4: 来源风险检测（不改变核验判定，只附加风险标签）
+    # 从 Gate 前候选建立 evidence_id → 完整信息映射，补回 source_level
+    cand_by_id = {}
+    for c in evidence_candidates:
+        cid = c.get("evidence_id") or c.get("block_id")
+        if cid is not None:
+            cand_by_id[cid] = c
+    # 给 Selector 选出的证据补上 source_level 等字段
+    enriched_bundle = []
+    for e in evidence_bundle:
+        eid = e.get("evidence_id")
+        merged = dict(e)
+        if eid in cand_by_id:
+            src = cand_by_id[eid]
+            merged.setdefault("source_level", src.get("source_level", "NO_SOURCE"))
+            merged.setdefault("source_level_reason", src.get("source_level_reason"))
+            merged.setdefault("doc_period", src.get("doc_period"))
+            merged.setdefault("final_score", src.get("final_score", 0.0))
+        enriched_bundle.append(merged)
+
+    from app.services.verification.source_risk_detector import detect_source_risks
+
+    final.source_risk_tags = detect_source_risks(
+        claim,
+        candidates=enriched_bundle + [
+            c for c in evidence_candidates
+            if (c.get("evidence_id") or c.get("block_id"))
+            not in set(selection_meta.selected_evidence_ids)
+        ],
+        selected_ids=selection_meta.selected_evidence_ids,
+        session=session,
+    )
+
     # Attach routing + selection metadata to trace
     trace.detail["phase23_11_routing"] = routing_result.to_dict()
     trace.detail["phase23_11_final"] = {
@@ -358,7 +400,7 @@ def verify_real_e2e(
     # Gate reads candidate["text"], which was empty → all rejected → no_evidence.
     # fetch_evidence maps block_text→text and passes financial_fact through.
     candidates = fetch_evidence(session, claim, top_k=top_k)
-    return verify_evidence_set(claim, candidates, routing, ctx)
+    return verify_evidence_set(claim, candidates, routing, ctx, session=session)
 
 
 def verify_claim_production(

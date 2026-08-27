@@ -40,6 +40,8 @@ class VerificationResultRow(Base):
     matched_evidence_ids: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON 数组
     calculation_detail: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON 对象
     reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+    # 来源风险标签 JSON 数组（FORECAST_AS_FACT/SINGLE_SOURCE/OUTDATED_DATA/SELECTIVE_CITATION）
+    source_risk_tags: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     run: Mapped["VerificationRun"] = relationship(back_populates="results")

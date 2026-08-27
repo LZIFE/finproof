@@ -18,6 +18,7 @@ class VerificationResultOut(BaseModel):
     matched_evidence_ids: list = []
     calculation_detail: dict | None = None
     reason: str = ""
+    source_risk_tags: list = []
 
 
 class VerificationRunOut(BaseModel):

@@ -70,6 +70,11 @@ def _migrate_columns(conn) -> None:
         if name not in ev_cols:
             conn.execute(text(f"ALTER TABLE evidence_candidates ADD COLUMN {name} {ddl}"))
 
+    # 来源风险标签（核验结果）
+    ver_cols = {row[1] for row in conn.execute(text("PRAGMA table_info(verification_results)"))}
+    if "source_risk_tags" not in ver_cols:
+        conn.execute(text("ALTER TABLE verification_results ADD COLUMN source_risk_tags TEXT"))
+
 def init_db() -> None:
     """按当前注册的 ORM 模型建表（幂等，可重复调用），并执行轻量迁移。"""
     Base.metadata.create_all(bind=engine)

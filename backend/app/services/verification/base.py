@@ -65,6 +65,8 @@ class VerificationResult:
     # Phase 23.7：结构化诊断字段（诊断脚本依赖，不再从 reason 文本解析）
     rule_id: str | None = None
     calculated_value: float | None = None
+    # 来源风险标签（预测当事实/孤证/数据过时/选择性引用）
+    source_risk_tags: list = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -77,6 +79,7 @@ class VerificationResult:
             "reason": self.reason,
             "rule_id": self.rule_id,
             "calculated_value": self.calculated_value,
+            "source_risk_tags": self.source_risk_tags,
         }
 
 

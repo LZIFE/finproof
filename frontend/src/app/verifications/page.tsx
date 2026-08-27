@@ -2,6 +2,13 @@
 
 import { useState } from "react";
 
+type SourceRiskTag = {
+  tag: string;
+  label: string;
+  severity: string;
+  detail: string;
+};
+
 type VerificationResult = {
   claim_id: string;
   verification_status: string;
@@ -10,6 +17,7 @@ type VerificationResult = {
   matched_evidence_ids: number[];
   calculation_detail: Record<string, unknown> | null;
   reason: string;
+  source_risk_tags: SourceRiskTag[];
 };
 
 type VerificationRun = {
@@ -178,6 +186,31 @@ export default function VerificationPage() {
                 <b>证据：</b>block [{r.matched_evidence_ids.join(", ") || "无"}]
               </p>
               {SEMANTIC_TYPES.has(r.verification_type) && <SemanticEvidenceCard r={r} />}
+              {r.source_risk_tags && r.source_risk_tags.length > 0 && (
+                <div style={{ margin: "8px 0" }}>
+                  <b>来源风险：</b>
+                  {r.source_risk_tags.map((risk) => (
+                    <span
+                      key={risk.tag}
+                      title={risk.detail}
+                      style={{
+                        display: "inline-block",
+                        margin: "2px 6px 2px 0",
+                        padding: "2px 10px",
+                        borderRadius: 12,
+                        fontSize: "0.82em",
+                        fontWeight: 600,
+                        cursor: "help",
+                        background: risk.severity === "HIGH" ? "#7f1d1d" : "#78350f",
+                        color: risk.severity === "HIGH" ? "#fca5a5" : "#fcd34d",
+                        border: `1px solid ${risk.severity === "HIGH" ? "#ef4444" : "#f59e0b"}55`,
+                      }}
+                    >
+                      {risk.severity === "HIGH" ? "⚠" : "△"} {risk.label}
+                    </span>
+                  ))}
+                </div>
+              )}
               {calcSummary(r.calculation_detail) && (
                 <p>
                   <b>计算：</b>
