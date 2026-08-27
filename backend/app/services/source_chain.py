@@ -43,7 +43,8 @@ def build_source_chain(session: Session, claim_id: str, top_k: int = 5) -> dict:
 
     # 执行核验（含风险标签）
     result = verify_claim_production(claim, session, top_k=top_k)
-    matched_ids = set(result.matched_evidence_ids or [])
+    # 统一转字符串比较（核验结果的 evidence id 可能是 str/int 混合）
+    matched_ids = {str(x) for x in (result.matched_evidence_ids or [])}
 
     # 批量查文档信息
     doc_ids = {e.get("document_id") for e in evidence if e.get("document_id")}
@@ -72,7 +73,7 @@ def build_source_chain(session: Session, claim_id: str, top_k: int = 5) -> dict:
             "evidence_type": e.get("evidence_type", "UNKNOWN"),
             "text": (e.get("text") or "")[:300],
             "score": round(float(e.get("final_score", 0.0)), 3),
-            "selected": eid in matched_ids if matched_ids else i <= 3,
+            "selected": str(eid) in matched_ids if matched_ids else i <= 3,
         })
 
     # 来源可信度汇总
