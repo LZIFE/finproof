@@ -9,6 +9,218 @@ type SourceRiskTag = {
   detail: string;
 };
 
+type SourceChainData = {
+  claim: {
+    claim_id: string;
+    text: string;
+    metric: string | null;
+    value: number | null;
+    unit: string | null;
+    period: string | null;
+    entity: string | null;
+  };
+  verdict: {
+    status: string;
+    confidence: number;
+    reason: string;
+    source_risk_tags: SourceRiskTag[];
+  };
+  evidence_chain: Array<{
+    rank: number;
+    source_level: string;
+    source_level_label: string;
+    source_level_reason: string | null;
+    document_name: string | null;
+    company: string | null;
+    report_period: string | null;
+    page_number: number | null;
+    evidence_type: string;
+    text: string;
+    score: number;
+    selected: boolean;
+  }>;
+  summary: {
+    total_evidence: number;
+    selected_count: number;
+    strongest_label: string;
+    weakest_label: string;
+    risk_count: number;
+  };
+};
+
+const LEVEL_COLOR: Record<string, string> = {
+  OFFICIAL_DISCLOSURE: "#6ee7b7",
+  REGULATORY_DATA: "#6ee7b7",
+  THIRD_PARTY_REPORT: "#fcd34d",
+  MEDIA_REPORT: "#fdba74",
+  CHANNEL_CHECK: "#fdba74",
+  FORECAST: "#fca5a5",
+  NO_SOURCE: "#94a3b8",
+};
+
+const LEVEL_BG: Record<string, string> = {
+  OFFICIAL_DISCLOSURE: "#064e3b",
+  REGULATORY_DATA: "#065f46",
+  THIRD_PARTY_REPORT: "#78350f",
+  MEDIA_REPORT: "#7c2d12",
+  CHANNEL_CHECK: "#7c2d12",
+  FORECAST: "#7f1d1d",
+  NO_SOURCE: "#1e293b",
+};
+
+function SourceChainCard({ claimId }: { claimId: string }) {
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState<SourceChainData | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const toggle = async () => {
+    if (open) {
+      setOpen(false);
+      return;
+    }
+    setOpen(true);
+    if (data) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const resp = await fetch(`/api/v1/source-chain/${encodeURIComponent(claimId)}`);
+      const body = await resp.json();
+      if (!resp.ok) throw new Error(JSON.stringify(body));
+      setData(body);
+    } catch (e) {
+      setError(`来源链加载失败：${e instanceof Error ? e.message : String(e)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={{ marginTop: 8 }}>
+      <button onClick={toggle} style={{ fontSize: "0.85em" }}>
+        {open ? "▾ 收起来源链" : "▸ 查看来源链"}
+      </button>
+
+      {open && (
+        <div style={{ marginTop: 10, padding: 12, background: "#0f172a", borderRadius: 8, border: "1px solid #1e293b" }}>
+          {loading && <p className="muted">来源链构建中…</p>}
+          {error && <p className="bad">{error}</p>}
+
+          {data && (
+            <>
+              {/* 主张块 */}
+              <div style={{ padding: "8px 12px", background: "#1e293b", borderRadius: 6, marginBottom: 4 }}>
+                <div style={{ fontSize: "0.75em", color: "#94a3b8", marginBottom: 4 }}>📌 研报主张</div>
+                <div style={{ fontWeight: 600, marginBottom: 6 }}>{data.claim.text}</div>
+                <div style={{ fontSize: "0.8em", color: "#94a3b8", display: "flex", gap: 16, flexWrap: "wrap" }}>
+                  {data.claim.metric && <span>指标：{data.claim.metric}</span>}
+                  {data.claim.value != null && <span>数值：{data.claim.value}{data.claim.unit || ""}</span>}
+                  {data.claim.period && <span>期间：{data.claim.period}</span>}
+                  {data.claim.entity && <span>主体：{data.claim.entity}</span>}
+                </div>
+              </div>
+
+              <div style={{ textAlign: "center", color: "#475569", fontSize: "1.2em", lineHeight: 1 }}>↓</div>
+
+              {/* 核验结论块 */}
+              <div style={{ padding: "8px 12px", background: "#1e293b", borderRadius: 6, marginBottom: 4 }}>
+                <div style={{ fontSize: "0.75em", color: "#94a3b8", marginBottom: 4 }}>🔍 核验结论</div>
+                <div style={{ fontWeight: 700, color: data.verdict.status === "SUPPORTED" ? "#4ade80" : data.verdict.status === "REFUTED" ? "#f87171" : "#fbbf24" }}>
+                  {data.verdict.status}（置信度 {(data.verdict.confidence * 100).toFixed(0)}%）
+                </div>
+                {data.verdict.source_risk_tags.length > 0 && (
+                  <div style={{ marginTop: 6 }}>
+                    {data.verdict.source_risk_tags.map((risk) => (
+                      <span
+                        key={risk.tag}
+                        title={risk.detail}
+                        style={{
+                          display: "inline-block",
+                          margin: "2px 6px 2px 0",
+                          padding: "2px 8px",
+                          borderRadius: 10,
+                          fontSize: "0.78em",
+                          fontWeight: 600,
+                          cursor: "help",
+                          background: risk.severity === "HIGH" ? "#7f1d1d" : "#78350f",
+                          color: risk.severity === "HIGH" ? "#fca5a5" : "#fcd34d",
+                        }}
+                      >
+                        {risk.severity === "HIGH" ? "⚠" : "△"} {risk.label}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div style={{ textAlign: "center", color: "#475569", fontSize: "1.2em", lineHeight: 1 }}>↓</div>
+
+              {/* 证据链 */}
+              <div style={{ fontSize: "0.75em", color: "#94a3b8", marginBottom: 6 }}>
+                📎 证据溯源链（{data.summary.total_evidence} 条候选，{data.summary.selected_count} 条被采用 ·
+                最强来源：{data.summary.strongest_label} · 最弱来源：{data.summary.weakest_label}）
+              </div>
+              {data.evidence_chain.map((ev) => {
+                const color = LEVEL_COLOR[ev.source_level] || "#94a3b8";
+                const bg = LEVEL_BG[ev.source_level] || "#1e293b";
+                return (
+                  <div
+                    key={ev.rank}
+                    style={{
+                      padding: "8px 12px",
+                      background: ev.selected ? "#1e293b" : "#0f172a",
+                      borderRadius: 6,
+                      marginBottom: 6,
+                      borderLeft: `3px solid ${color}`,
+                      opacity: ev.selected ? 1 : 0.6,
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4, flexWrap: "wrap", gap: 6 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <span style={{ fontWeight: 700, color }}>证据 {ev.rank}</span>
+                        <span style={{
+                          padding: "1px 8px",
+                          borderRadius: 10,
+                          fontSize: "0.9em",
+                          fontWeight: 600,
+                          background: bg,
+                          color,
+                        }}>
+                          {ev.source_level_label}
+                        </span>
+                        {ev.selected ? (
+                          <span style={{ color: "#4ade80", fontSize: "0.9em" }}>✓ 已采用</span>
+                        ) : (
+                          <span style={{ color: "#64748b", fontSize: "0.9em" }}>✗ 未采用</span>
+                        )}
+                      </div>
+                      <span style={{ fontSize: "0.85em", color: "#64748b" }}>相关度 {ev.score}</span>
+                    </div>
+                    <div style={{ fontSize: "0.82em", color: "#94a3b8", marginBottom: 4 }}>
+                      {ev.document_name && <span>📄 {ev.document_name}</span>}
+                      {ev.company && <span> · {ev.company}</span>}
+                      {ev.report_period && <span> · {ev.report_period}</span>}
+                      {ev.page_number && <span> · P{ev.page_number}</span>}
+                    </div>
+                    <div style={{ fontSize: "0.88em", lineHeight: 1.5, color: "#cbd5e1" }}>
+                      「{ev.text.length > 150 ? ev.text.slice(0, 150) + "…" : ev.text}」
+                    </div>
+                    {ev.source_level_reason && (
+                      <div style={{ fontSize: "0.78em", color: "#64748b", marginTop: 4, fontStyle: "italic" }}>
+                        {ev.source_level_reason}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 type VerificationResult = {
   claim_id: string;
   verification_status: string;
@@ -221,6 +433,7 @@ export default function VerificationPage() {
                 <b>说明：</b>
                 {r.reason}
               </p>
+              <SourceChainCard claimId={r.claim_id} />
             </div>
           ))}
         </section>
