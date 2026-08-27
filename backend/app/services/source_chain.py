@@ -41,10 +41,40 @@ def build_source_chain(session: Session, claim_id: str, top_k: int = 5) -> dict:
     # 检索证据（含来源等级）
     evidence = fetch_evidence(session, claim, top_k=top_k)
 
-    # 执行核验（含风险标签）
-    result = verify_claim_production(claim, session, top_k=top_k)
+    # 核验结论：优先复用最近一次核验任务的落库结果，保证与核验页结论一致；
+    # 若该主张从未跑过批量核验，再实时计算兜底。
+    import json as _json
+
+    from app.models.verification import VerificationResultRow
+
+    saved = (
+        session.query(VerificationResultRow)
+        .filter(VerificationResultRow.claim_id == str(claim_id))
+        .order_by(
+            VerificationResultRow.created_at.desc(),
+            VerificationResultRow.id.desc(),
+        )
+        .first()
+    )
+
+    if saved is not None:
+        v_status = saved.verification_status
+        v_confidence = saved.confidence
+        v_type = saved.verification_type
+        v_reason = saved.reason or ""
+        v_tags = _json.loads(saved.source_risk_tags) if saved.source_risk_tags else []
+        matched_raw = _json.loads(saved.matched_evidence_ids) if saved.matched_evidence_ids else []
+    else:
+        result = verify_claim_production(claim, session, top_k=top_k)
+        v_status = result.verification_status
+        v_confidence = result.confidence
+        v_type = result.verification_type
+        v_reason = result.reason
+        v_tags = result.source_risk_tags or []
+        matched_raw = result.matched_evidence_ids or []
+
     # 统一转字符串比较（核验结果的 evidence id 可能是 str/int 混合）
-    matched_ids = {str(x) for x in (result.matched_evidence_ids or [])}
+    matched_ids = {str(x) for x in matched_raw}
 
     # 批量查文档信息
     doc_ids = {e.get("document_id") for e in evidence if e.get("document_id")}
@@ -87,7 +117,7 @@ def build_source_chain(session: Session, claim_id: str, top_k: int = 5) -> dict:
 
     return {
         "claim": {
-            "claim_id": result.claim_id,
+            "claim_id": claim_id,
             "text": claim.get("original_text") or claim.get("claim_text") or "",
             "metric": claim.get("metric"),
             "metric_code": claim.get("metric_code"),
@@ -98,11 +128,12 @@ def build_source_chain(session: Session, claim_id: str, top_k: int = 5) -> dict:
             "claim_type": claim.get("claim_type"),
         },
         "verdict": {
-            "status": result.verification_status,
-            "confidence": round(result.confidence, 4),
-            "verification_type": result.verification_type,
-            "reason": result.reason,
-            "source_risk_tags": result.source_risk_tags or [],
+            "status": v_status,
+            "confidence": round(float(v_confidence), 4),
+            "verification_type": v_type,
+            "reason": v_reason,
+            "source_risk_tags": v_tags,
+            "from_saved_run": saved is not None,
         },
         "evidence_chain": chain,
         "summary": {
@@ -112,6 +143,6 @@ def build_source_chain(session: Session, claim_id: str, top_k: int = 5) -> dict:
             "strongest_label": SOURCE_LEVEL_LABELS.get(strongest, "未知"),
             "weakest_level": weakest,
             "weakest_label": SOURCE_LEVEL_LABELS.get(weakest, "未知"),
-            "risk_count": len(result.source_risk_tags or []),
+            "risk_count": len(v_tags),
         },
     }

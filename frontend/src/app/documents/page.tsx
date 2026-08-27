@@ -17,6 +17,12 @@ type DocumentRow = {
 
 const ROLES = ["SOURCE_DOCUMENT", "REPORT_TO_VERIFY", "REFERENCE_REPORT"];
 
+const ROLE_LABELS: Record<string, string> = {
+  SOURCE_DOCUMENT: "官方披露原件（年报/公告 PDF，作为核验证据）",
+  REPORT_TO_VERIFY: "待核验报告（研报/资料，需要被检查的文件）",
+  REFERENCE_REPORT: "第三方参考资料（行业报告/媒体报道）",
+};
+
 const STATUS_LABEL: Record<string, string> = {
   PENDING: "待解析",
   PARSING: "解析中",
@@ -27,7 +33,7 @@ const STATUS_LABEL: Record<string, string> = {
 
 export default function DocumentsPage() {
   const [file, setFile] = useState<File | null>(null);
-  const [role, setRole] = useState<string>(ROLES[0]);
+  const [role, setRole] = useState<string>("REPORT_TO_VERIFY");
   const [uploading, setUploading] = useState(false);
   const [uploadResult, setUploadResult] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -99,7 +105,7 @@ export default function DocumentsPage() {
               <select value={role} onChange={(e) => setRole(e.target.value)}>
                 {ROLES.map((r) => (
                   <option key={r} value={r}>
-                    {r}
+                    {ROLE_LABELS[r] ?? r}
                   </option>
                 ))}
               </select>
@@ -135,7 +141,7 @@ export default function DocumentsPage() {
               {documents.map((d) => (
                 <tr key={d.id}>
                   <td>{d.original_filename}</td>
-                  <td>{d.document_role}</td>
+                  <td>{ROLE_LABELS[d.document_role] ?? d.document_role}</td>
                   <td>{d.document_type}</td>
                   <td>{d.page_count}</td>
                   <td>
