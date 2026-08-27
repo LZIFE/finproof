@@ -89,9 +89,14 @@ def _verify_one(claim, routes: list[str], doc_blocks: list[dict], evidence_block
         elif route == ROUTE_CROSS_DOC:
             outcomes.append(verify_claim_cross_document(claim, evidence_blocks))
         elif route == ROUTE_EXTERNAL:
-            cfg = get_settings()
+            from app.services.web_search import get_configured_web_search
+
+            # 是否联网由前端「联网搜索」配置决定：配好且启用则返回搜索函数，否则 None
+            web_search = get_configured_web_search()
             outcomes.append(verify_claim_external(
-                claim, user_materials=user_materials, enable_web_search=cfg.generic_web_search,
+                claim, user_materials=user_materials,
+                enable_web_search=web_search is not None,
+                web_search=web_search,
             ))
     refuted = [o for o in outcomes if o.verdict == STATUS_REFUTED]
     if refuted:

@@ -193,6 +193,35 @@ def save_runtime_config(payload: dict) -> dict:
         cleaned["llm_temperature"] = payload.get("llm_temperature", current.get("llm_temperature", 0))
         cleaned["preset"] = str(payload.get("preset") or current.get("preset") or "custom")
 
+        # —— 联网搜索配置（与 LLM 配置共存于同一文件，互不覆盖）——
+        search_provider = str(
+            payload.get("search_provider", current.get("search_provider", "none"))
+        ).strip().lower()
+        if search_provider not in {"none", "bocha", "tavily", "serper", "ddg"}:
+            search_provider = "none"
+        cleaned["search_provider"] = search_provider
+
+        if "search_enabled" in payload:
+            cleaned["search_enabled"] = bool(payload["search_enabled"])
+        else:
+            cleaned["search_enabled"] = bool(current.get("search_enabled", False))
+
+        skey = str(payload.get("search_api_key") or "")
+        if skey and "*" not in skey:
+            cleaned["search_api_key"] = skey
+        elif current.get("search_api_key"):
+            cleaned["search_api_key"] = current["search_api_key"]
+        else:
+            cleaned["search_api_key"] = ""
+
+        if "search_max_results" in payload:
+            try:
+                cleaned["search_max_results"] = max(1, min(10, int(payload["search_max_results"])))
+            except (TypeError, ValueError):
+                cleaned["search_max_results"] = current.get("search_max_results", 5)
+        else:
+            cleaned["search_max_results"] = current.get("search_max_results", 5)
+
         CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
         CONFIG_PATH.write_text(
             json.dumps(cleaned, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -228,6 +257,15 @@ def public_settings() -> dict:
     """供前端展示的当前有效状态（脱敏）。"""
     cfg = get_effective_settings()
     raw = _read_raw()
+    search_provider = raw.get("search_provider", "none")
+    search_key = raw.get("search_api_key", "")
+    search_enabled = bool(raw.get("search_enabled", False))
+    needs_key = search_provider in {"bocha", "tavily", "serper"}
+    search_ready = (
+        search_enabled
+        and search_provider != "none"
+        and (not needs_key or bool(search_key))
+    )
     return {
         "mode": cfg.claim_extraction_mode,
         "mode_label": _EXTRACTION_MODES.get(cfg.claim_extraction_mode, cfg.claim_extraction_mode),
@@ -242,4 +280,11 @@ def public_settings() -> dict:
         "preset": raw.get("preset", "custom"),
         "llm_ready": is_llm_ready(cfg),
         "modes": [{"key": k, "label": v} for k, v in _EXTRACTION_MODES.items()],
+        # 联网搜索状态
+        "search_enabled": search_enabled,
+        "search_provider": search_provider,
+        "search_has_api_key": bool(search_key),
+        "search_api_key_preview": _mask_key(search_key),
+        "search_max_results": raw.get("search_max_results", 5),
+        "search_ready": search_ready,
     }

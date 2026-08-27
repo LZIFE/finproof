@@ -125,10 +125,23 @@ def verify_claim_external(
     if web_search is not None and enable_web_search:
         try:
             results = web_search(query)
-            snippets = [r.get("snippet", "") for r in results]
+            snippets = [r.get("snippet", "") for r in results if r.get("snippet")]
             joined = " ".join(snippets)
             if joined:
-                evidence.append({"source": "web_search", "snippets": snippets[:3]})
+                # 保留完整来源（标题/链接/摘要），供前端展示可点击来源链
+                evidence.append({
+                    "source": "web_search",
+                    "sources": [
+                        {"title": r.get("title", ""), "url": r.get("url", ""),
+                         "snippet": (r.get("snippet", "") or "")[:300]}
+                        for r in results[:5] if r.get("url")
+                    ],
+                    "snippets": snippets[:3],
+                })
+                # 统计同口径数字：找到一致值优先判真；仅当存在同口径冲突且无一致值时才判矛盾。
+                # 不能因网页里的年份/其他指标等无关数字就误报矛盾。
+                supported_hit = False
+                conflict_hit = False
                 for num in claim.numbers:
                     ctx = (num.get("context") or "")
                     for other in extract_numbers(joined):
@@ -136,18 +149,24 @@ def verify_claim_external(
                             continue
                         if not _quantity_comparable(num.get("unit"), other.get("unit")):
                             continue
-                        if not values_compatible(num.get("value"), num.get("unit"),
-                                                 other.get("value"), other.get("unit")):
-                            return VerificationOutcome(
-                                claim_id=claim.claim_id, verdict=STATUS_REFUTED, confidence=0.65,
-                                mode_used=["external"], evidence=evidence,
-                                reason="联网检索到冲突数值", error_type="EXTERNAL_CONFLICT",
-                            )
-                return VerificationOutcome(
-                    claim_id=claim.claim_id, verdict=STATUS_SUPPORTED, confidence=0.6,
-                    mode_used=["external"], evidence=evidence,
-                    reason="联网检索到一致数值", error_type=None,
-                )
+                        if values_compatible(num.get("value"), num.get("unit"),
+                                             other.get("value"), other.get("unit")):
+                            supported_hit = True
+                        else:
+                            conflict_hit = True
+                if supported_hit:
+                    return VerificationOutcome(
+                        claim_id=claim.claim_id, verdict=STATUS_SUPPORTED, confidence=0.6,
+                        mode_used=["external"], evidence=evidence,
+                        reason="联网检索到一致数值（来源见证据链接）", error_type=None,
+                    )
+                if conflict_hit:
+                    return VerificationOutcome(
+                        claim_id=claim.claim_id, verdict=STATUS_REFUTED, confidence=0.65,
+                        mode_used=["external"], evidence=evidence,
+                        reason="联网检索到同口径但不一致的数值", error_type="EXTERNAL_CONFLICT",
+                    )
+                # 没有同口径数字 → 不强行下结论，落到末尾 UNABLE
         except Exception:  # noqa: BLE001
             pass
 

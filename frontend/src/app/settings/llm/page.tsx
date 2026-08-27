@@ -12,6 +12,13 @@ type Preset = {
   model_hint?: string;
 };
 
+type SearchPreset = {
+  key: string;
+  name: string;
+  need_key: boolean;
+  docs?: string;
+};
+
 type Settings = {
   mode: string;
   mode_label: string;
@@ -26,10 +33,16 @@ type Settings = {
   preset: string;
   llm_ready: boolean;
   modes: { key: string; label: string }[];
+  search_enabled?: boolean;
+  search_provider?: string;
+  search_has_api_key?: boolean;
+  search_api_key_preview?: string;
+  search_ready?: boolean;
 };
 
 export default function LLMSettingsPage() {
   const [presets, setPresets] = useState<Preset[]>([]);
+  const [searchPresets, setSearchPresets] = useState<SearchPreset[]>([]);
   const [cfg, setCfg] = useState<Settings | null>(null);
   const [preset, setPreset] = useState("custom");
   const [mode, setMode] = useState("mock");
@@ -37,6 +50,10 @@ export default function LLMSettingsPage() {
   const [model, setModel] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [timeoutSec, setTimeoutSec] = useState(60);
+  // 联网搜索
+  const [searchEnabled, setSearchEnabled] = useState(false);
+  const [searchProvider, setSearchProvider] = useState("none");
+  const [searchKey, setSearchKey] = useState("");
   const [saving, setSaving] = useState(false);
   const [testing, setTesting] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
@@ -51,10 +68,15 @@ export default function LLMSettingsPage() {
         setBaseUrl(d.base_url);
         setModel(d.model);
         setTimeoutSec(d.timeout_seconds);
+        setSearchEnabled(!!d.search_enabled);
+        setSearchProvider(d.search_provider || "none");
       });
     fetch("/api/v1/llm-settings/presets")
       .then((r) => r.json())
-      .then((d) => setPresets(d.presets || []));
+      .then((d) => {
+        setPresets(d.presets || []);
+        setSearchPresets(d.search_presets || []);
+      });
   }, []);
 
   useEffect(() => {
@@ -81,6 +103,9 @@ export default function LLMSettingsPage() {
     claim_extraction_model: model.trim(),
     claim_extraction_api_key: apiKey.trim(),
     claim_extraction_timeout_seconds: timeoutSec,
+    search_enabled: searchEnabled,
+    search_provider: searchProvider,
+    search_api_key: searchKey.trim(),
   });
 
   const save = async () => {
@@ -95,6 +120,7 @@ export default function LLMSettingsPage() {
       const d = await resp.json();
       if (!resp.ok) throw new Error(JSON.stringify(d));
       setApiKey("");
+      setSearchKey("");
       setCfg(d);
       setMsg({
         ok: true,
@@ -241,6 +267,76 @@ export default function LLMSettingsPage() {
           </button>
         </div>
         {msg && <p className={msg.ok ? "good" : "bad"}>{msg.text}</p>}
+      </section>
+
+      <section className="card">
+        <h2>联网搜索核验（让系统能上网查来源）</h2>
+        <p className="muted">
+          开启后，核验一条主张时会实时联网搜索公开信息交叉验证，并在结果里附上可点击的来源链接。
+          国内推荐博查（直连、中文好、有免费额度）；Tavily 适合全球信息。
+        </p>
+        <div className="form-row">
+          <label>
+            <input
+              type="checkbox"
+              checked={searchEnabled}
+              onChange={(e) => setSearchEnabled(e.target.checked)}
+              style={{ width: "auto", marginRight: 8 }}
+            />
+            启用联网搜索核验
+          </label>
+          {cfg?.search_ready && <span className="good" style={{ marginLeft: 12 }}>✅ 联网就绪</span>}
+        </div>
+        <div className="form-row">
+          <label>
+            搜索引擎
+            <select
+              value={searchProvider}
+              onChange={(e) => setSearchProvider(e.target.value)}
+              style={{ width: 380 }}
+              disabled={!searchEnabled}
+            >
+              {searchPresets.map((p) => (
+                <option key={p.key} value={p.key}>
+                  {p.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        {searchPresets.find((p) => p.key === searchProvider)?.need_key && (
+          <>
+            <div className="form-row">
+              <label>
+                搜索 API Key
+                <input
+                  type="password"
+                  value={searchKey}
+                  onChange={(e) => setSearchKey(e.target.value)}
+                  style={{ width: 420 }}
+                  placeholder={cfg?.search_has_api_key ? "已配置，留空不修改" : "搜索服务的 API Key"}
+                  autoComplete="off"
+                  disabled={!searchEnabled}
+                />
+              </label>
+            </div>
+            {searchPresets.find((p) => p.key === searchProvider)?.docs && (
+              <p className="muted">
+                申请地址：
+                <a
+                  href={searchPresets.find((p) => p.key === searchProvider)?.docs}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {searchPresets.find((p) => p.key === searchProvider)?.docs}
+                </a>
+              </p>
+            )}
+          </>
+        )}
+        {searchProvider === "ddg" && (
+          <p className="bad">注意：DuckDuckGo 在国内网络通常无法直连，仅适合有代理/海外环境，稳定性一般。</p>
+        )}
       </section>
 
       <section className="card">

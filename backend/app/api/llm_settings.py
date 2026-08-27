@@ -36,6 +36,11 @@ class LLMSettingsPayload(BaseModel):
     claim_extraction_timeout_seconds: int | None = None
     claim_extraction_max_retries: int | None = None
     llm_temperature: float | None = None
+    # 联网搜索
+    search_enabled: bool | None = None
+    search_provider: str | None = None
+    search_api_key: str | None = None
+    search_max_results: int | None = None
 
 
 @router.get("/api/v1/llm-settings")
@@ -46,8 +51,10 @@ def get_llm_settings() -> dict:
 
 @router.get("/api/v1/llm-settings/presets")
 def get_presets() -> dict:
-    """各家 OpenAI 兼容大模型的地址与推荐模型预设。"""
-    return {"presets": PROVIDER_PRESETS}
+    """各家大模型的 OpenAI 兼容端点预设 + 联网搜索引擎预设。"""
+    from app.services.web_search import SEARCH_PRESETS
+
+    return {"presets": PROVIDER_PRESETS, "search_presets": SEARCH_PRESETS}
 
 
 @router.put("/api/v1/llm-settings")
