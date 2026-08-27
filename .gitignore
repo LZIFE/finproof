@@ -46,3 +46,7 @@ data/demo/tmp/
 
 # Agent 内部工作目录（非项目产物，不提交）
 .workbuddy/
+
+# 运行时大模型配置（含 API Key，勿提交）
+data/llm_config.json
+backend/data/llm_config.json

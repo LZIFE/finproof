@@ -217,6 +217,7 @@ def run_claim_extraction(
             report_year=_report_year_of(doc),
             prompt_version=get_settings().claim_extraction_prompt_version,
         )
+        # llm/hybrid 模式下 provider 内部自动读取前端设置页保存的运行时配置
         provider = get_claim_provider(mode)
         # 金标准泄漏防护：提取链路不得读取 gold/holdout/artifacts（违规立即失败）
         from app.services.claims.guard import assert_extraction_isolated

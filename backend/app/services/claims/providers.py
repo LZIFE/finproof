@@ -421,11 +421,18 @@ class LLMClaimExtractionProvider:
 
 
 def get_claim_provider(mode: str) -> ClaimExtractionProvider:
-    """按模式返回 Provider：mock（默认）/ rules / llm / hybrid。"""
+    """按模式返回 Provider：mock（默认）/ rules / llm / hybrid。
+
+    llm/hybrid 自动读取前端设置页保存的运行时配置（无需改代码/重启）；
+    未配置真实模型时由对应 Provider 抛出明确的 LLM_NOT_CONFIGURED。
+    """
     if mode == "rules":
         return RuleOnlyClaimExtractionProvider()
-    if mode == "llm":
-        return LLMClaimExtractionProvider()
-    if mode == "hybrid":
-        return HybridClaimExtractionProvider()
+    if mode in ("llm", "hybrid"):
+        from app.core.runtime_config import get_effective_settings
+
+        settings = get_effective_settings()
+        if mode == "llm":
+            return LLMClaimExtractionProvider(settings=settings)
+        return HybridClaimExtractionProvider(settings=settings)
     return MockClaimExtractionProvider()

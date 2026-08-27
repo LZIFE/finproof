@@ -134,8 +134,10 @@ export default function DocumentViewPage() {
             <label>
               提取模式
               <select value={extractMode} onChange={(e) => setExtractMode(e.target.value)}>
-                <option value="mock">mock（规则候选 + Mock 标识）</option>
-                <option value="rules">rules（纯规则 RULE_BASED）</option>
+                <option value="mock">mock（规则候选 + Mock 标识，离线）</option>
+                <option value="rules">rules（纯规则 RULE_BASED，离线）</option>
+                <option value="llm">llm（真实大模型，需先在设置页配置）</option>
+                <option value="hybrid">hybrid（规则+大模型混合，省 Token，推荐）</option>
               </select>
             </label>
           </div>

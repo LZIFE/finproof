@@ -159,6 +159,7 @@ export default function DocumentsPage() {
         )}
       </section>
       <p>
+        <Link href="/settings/llm">⚙ 大模型接口设置</Link> ·{" "}
         <Link href="/generic-verify">⚡ 通用 PDF 内容核验（任意文档）</Link> ·{" "}
         <Link href="/">返回首页</Link>
       </p>

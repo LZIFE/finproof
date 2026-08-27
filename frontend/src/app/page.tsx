@@ -36,6 +36,9 @@ export default function Home() {
       <p className="links">
         <a href="/documents">文档接入（上传 / 查看逐页文本）</a>
       </p>
+      <p className="links">
+        <a href="/settings/llm">大模型接口设置（配置真实 AI 提取主张）</a>
+      </p>
     </main>
   );
 }
