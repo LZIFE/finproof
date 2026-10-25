@@ -1,0 +1,72 @@
+[
+ {
+  "id": "C21",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2020-04-03）将\"麦当劳向填问卷的社媒用户送两份免费巨无霸套餐优惠券\"评为 Scam：分享给好友后并没有真实的优惠券可领，属钓鱼骗局，故\"麦当劳并未提供该优惠\"这一否定性主张成立。",
+  "excerpt": "there was no actual coupon to receive",
+  "source_urls": ["https://www.snopes.com/fact-check/mcdonalds-coupon-scam"]
+ },
+ {
+  "id": "C22",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2023-10-27）评为 Miscaptioned：视频实为2022年6月美国陆军101空降师士兵在罗马尼亚下机（被镜像发布并配\"数千陆战队抵以色列\"字样），并非陆战队2023年10月抵达以色列，否定性主张成立。",
+  "excerpt": "the video documented U.S. Army soldiers with the 101st Airborne Division deboarding a plane in Romania in June 2022",
+  "source_urls": ["https://www.snopes.com/fact-check/video-marines-israel-2023"]
+ },
+ {
+  "id": "C23",
+  "verdict": "UNABLE_TO_DETERMINE",
+  "reason_zh": "主张为疑问句（\"总统的金融资产如何随时间演变？\"），不含可判定真假的断言内容；对应的 Snopes 文章（2017-12-28）是对流传净资产图表的核查，评级 Mixture（数值大体在合理范围内，但以前总统对比在任总统属口径不一），无法映射为对该疑问句的真假判定。",
+  "excerpt": "the information in the image is at least within the ballpark of reasonable",
+  "source_urls": ["https://www.snopes.com/fact-check/net-worths-of-presidents"]
+ },
+ {
+  "id": "C24",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "PolitiFact 评 Mostly True：按 Tax Foundation 口径（自住住房房产税占住房价值，2013年普查数据）德州第6高（仅低于NJ/IL/NH/CT/WI），但该口径不含商业物业与租房者成本、且县际差异极大，需补充说明，故为部分支持。",
+  "excerpt": "We rate this claim as Mostly True",
+  "source_urls": ["https://www.politifact.com/texas/statements/2016/jan/22/jeff-judson/texas-has-sixth-highest-property-taxes-nation/"]
+ },
+ {
+  "id": "C25",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "引擎复算：PolitiFact 联程情景税费$66.10/票价$300=22.03%（较\"约20%\"相对偏差10.17%，超容差），MIT 口径为20.33%，而占三分之二的直飞典型情景仅约15%——\"约20%\"技术上成立但对\"典型\"机票有误导性；\"高于烟酒枪支税率\"部分获 TTB 数据支持；PolitiFact 综合评 Mostly True。",
+  "excerpt": "we rate the statement Mostly True.",
+  "source_urls": ["https://www.politifact.com/factchecks/2013/mar/17/gary-kelly/southwest-airlines-ceo-says-federal-taxes-flight-a/"]
+ },
+ {
+  "id": "C26",
+  "verdict": "REFUTED",
+  "reason_zh": "Snopes（2008-07-31）评为 Incorrectly Attributed：Cosby 本人声明从未作为自填（write-in）候选人参选、该\"竞选平台\"文章并非其作品（作者不明，属骗局邮件，同文还冒用过 Robin Williams、Andy Rooney、George Carlin），故\"Bill Cosby 的自填候选人平台\"被反驳。",
+  "excerpt": "I am not a write-in candidate for President. The statement purportedly from me stating that I am a candidate is a hoax.",
+  "source_urls": ["https://www.snopes.com/fact-check/bill-of-write-ins"]
+ },
+ {
+  "id": "C27",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "引擎复算〔yoy --current 49398 --previous 48152 → +2.5876%〕：1982→2012年美国男性全职实际中位收入由$48,152升至$49,398，严格说\"30年没涨过工资\"与数据冲突（有小幅上涨），但年均仅约0.085%、\"基本停滞\"的方向成立，PolitiFact 评 Mostly True，故部分支持。",
+  "excerpt": "So from 1982 to 2012, there was actually an inflation-adjusted raise of $1,246.",
+  "source_urls": ["https://www.politifact.com/factchecks/2014/jan/15/rana-foroohar/times-rana-foroohar-says-median-male-worker-hasnt/"]
+ },
+ {
+  "id": "C28",
+  "verdict": "UNABLE_TO_DETERMINE",
+  "reason_zh": "与C23同源：主张为疑问句（\"总统的净资产发生了哪些变化？\"），无断言内容可判真假；对应 Snopes 文章（2017-12-28）仅对流传图表评 Mixture（数值大体合理，但比较口径\"苹果比橘子\"）。",
+  "excerpt": "the information in the image is at least within the ballpark of reasonable",
+  "source_urls": ["https://www.snopes.com/fact-check/net-worths-of-presidents"]
+ },
+ {
+  "id": "C29",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2016-03-02）评 False：\"Share a Coke with the KKK\"瓶图系 Color of Change 要求可口可乐停止赞助2016年共和党全国代表大会的请愿 artwork，并非真实在售产品，故\"可口可乐没有售卖该瓶\"的否定性主张成立。",
+  "excerpt": "This is not a real product sold by Coca-Cola.",
+  "source_urls": ["https://www.snopes.com/fact-check/coca-cola-kkk-trump"]
+ },
+ {
+  "id": "C30",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "PolitiFact 评 Mostly True：2011年最高边际税率35%低于过去80年多数年份、CBO口径2007年顶部1%实际税率19%低于1979–2006年28年中的25年，但1988–92年（28%/31%）税率更低，\"80年来最低\"表述略有夸大（PolitiFact：\"off, but not by much\"），故部分支持。",
+  "excerpt": "We rate the statement Mostly True.",
+  "source_urls": ["https://www.politifact.com/factchecks/2012/mar/11/steve-rothman/congressman-steve-rothman-claims-wealthiest-americ/"]
+ }
+]

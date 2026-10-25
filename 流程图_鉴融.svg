@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540" width="100%" role="img">
+<title>鉴融端到端核验流程</title>
+<desc>从范围判定门开始，经主张拆解与确定性复算、八步判定链，缺口进入聚焦再搜索循环，最终输出六类结论与审计报告。</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" font-family="sans-serif">鉴融 · 端到端核验流程</text>
+
+<rect x="150" y="50" width="300" height="56" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="300" y="68" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#633806" font-family="sans-serif">受理 · 范围判定门</text>
+<text x="300" y="90" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#854F0B" font-family="sans-serif">本地模式 / 联网模式（由用户定）</text>
+
+<line x1="300" y1="106" x2="300" y2="126" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="150" y="126" width="300" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="300" y="144" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif">主张拆解 + 确定性复算</text>
+<text x="300" y="166" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#185FA5" font-family="sans-serif">A–G 七类主张 · decimal 精确运算</text>
+
+<line x1="300" y1="182" x2="300" y2="202" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="150" y="202" width="300" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="300" y="220" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif">八步判定链</text>
+<text x="300" y="242" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">证据 · 实体 · 指标 · 期间 · 口径 · 数值 · 语义 · 映射</text>
+
+<line x1="300" y1="258" x2="300" y2="313" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<polygon points="300,315 370,360 300,405 230,360" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="300" y="355" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif">仍有缺口？</text>
+<text x="300" y="373" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif">联网模式</text>
+
+<line x1="370" y1="360" x2="488" y2="360" stroke="#854F0B" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="429" y="350" text-anchor="middle" font-size="11" fill="#854F0B" font-family="sans-serif">是</text>
+
+<rect x="490" y="332" width="150" height="56" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="565" y="350" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif">聚焦再搜索</text>
+<text x="565" y="372" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif">换词换源 2–3 轮</text>
+
+<path d="M565,388 L565,520 L120,520 L120,154 L148,154" fill="none" stroke="#854F0B" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+<text x="345" y="510" text-anchor="middle" font-size="11" fill="#854F0B" font-family="sans-serif">补证后重新判定</text>
+
+<line x1="300" y1="405" x2="300" y2="438" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="320" y="425" text-anchor="middle" font-size="11" fill="#5F5E5A" font-family="sans-serif">否</text>
+
+<rect x="150" y="440" width="300" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="300" y="458" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif">六类结论 + 审计输出</text>
+<text x="300" y="480" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">Score · 主张卡 · 复算轨迹 · 自核清单</text>
+</svg>

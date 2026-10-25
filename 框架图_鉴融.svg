@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 608" width="100%" role="img">
+<title>鉴融整体框架图</title>
+<desc>五层框架：输入、门控层、处理链、分级体系、输出，展示各模块关系与流向。</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" font-family="sans-serif">鉴融 · 整体框架</text>
+
+<rect x="180" y="50" width="320" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="340" y="66" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">输入</text>
+<text x="340" y="84" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">待审报告 + 源文件（鼓励一并上传）</text>
+
+<line x1="340" y1="98" x2="340" y2="118" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="40" y="118" width="600" height="96" rx="12" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="56" y="136" font-size="12" font-weight="500" fill="#5F5E5A" font-family="sans-serif">门控层</text>
+<rect x="70" y="150" width="270" height="48" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="86" y="166" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif">范围判定门</text>
+<text x="86" y="184" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif">本地 / 联网 —— 由用户定</text>
+<rect x="350" y="150" width="270" height="48" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="366" y="166" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif">需求判定门</text>
+<text x="366" y="184" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif">本地证据够用则跳过联网</text>
+
+<line x1="340" y1="214" x2="340" y2="234" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="40" y="234" width="600" height="170" rx="12" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="56" y="252" font-size="12" font-weight="500" fill="#5F5E5A" font-family="sans-serif">处理链</text>
+<rect x="70" y="266" width="270" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="86" y="282" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">主张拆解</text>
+<text x="86" y="300" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">A–G 七类 · 高风险优先</text>
+<rect x="350" y="266" width="270" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="366" y="282" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">证据检索</text>
+<text x="366" y="300" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">混合检索 + 证据门</text>
+<rect x="70" y="326" width="270" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="86" y="342" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">确定性复算</text>
+<text x="86" y="360" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">decimal 精确运算 + 容差</text>
+<rect x="350" y="326" width="270" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="366" y="342" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">八步判定链</text>
+<text x="366" y="360" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">数值守卫：冲突即 REFUTED</text>
+
+<line x1="340" y1="404" x2="340" y2="424" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="40" y="424" width="600" height="96" rx="12" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="56" y="442" font-size="12" font-weight="500" fill="#5F5E5A" font-family="sans-serif">分级体系（贯穿全程，与处理链正交）</text>
+<rect x="70" y="456" width="270" height="44" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="86" y="472" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif">证据等级</text>
+<text x="86" y="488" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif">S 法定披露 · A 公司披露 · 更低</text>
+<rect x="350" y="456" width="270" height="44" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="366" y="472" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif">风险等级</text>
+<text x="366" y="488" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif">LOW · MEDIUM · HIGH · CRITICAL</text>
+
+<line x1="340" y1="520" x2="340" y2="540" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="180" y="540" width="320" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="340" y="556" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">输出</text>
+<text x="340" y="574" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">六类结论 · FinProof Score · 审计报告 + 自核清单</text>
+</svg>

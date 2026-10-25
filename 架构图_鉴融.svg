@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540" width="100%" role="img">
+<title>鉴融四层技术架构</title>
+<desc>四层分离架构：证据获取层、确定性计算层、判定推理层、缺口治理层，最终产出审计报告。</desc>
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" font-family="sans-serif">鉴融 · 四层技术架构</text>
+
+<rect x="60" y="44" width="560" height="476" rx="20" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+
+<rect x="84" y="68" width="512" height="76" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="104" y="96" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif">证据获取层</text>
+<text x="104" y="122" dominant-baseline="central" font-size="12" fill="#185FA5" font-family="sans-serif">文本直抽 · 渲染 OCR · 视觉读取 · 内置联网搜索</text>
+
+<rect x="84" y="160" width="512" height="76" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="104" y="188" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif">确定性计算层</text>
+<text x="104" y="214" dominant-baseline="central" font-size="12" fill="#185FA5" font-family="sans-serif">finproof_calc.py · Python decimal · 容差策略</text>
+
+<rect x="84" y="252" width="512" height="76" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="104" y="280" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif">判定推理层</text>
+<text x="104" y="306" dominant-baseline="central" font-size="12" fill="#185FA5" font-family="sans-serif">八步判定链 · 六类结论 · 数字守卫</text>
+
+<rect x="84" y="344" width="512" height="76" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="104" y="372" dominant-baseline="central" font-size="14" font-weight="500" fill="#633806" font-family="sans-serif">缺口治理层</text>
+<text x="104" y="398" dominant-baseline="central" font-size="12" fill="#854F0B" font-family="sans-serif">聚焦再搜索 · G1–G4 分类 · 用户自核清单</text>
+
+<rect x="84" y="436" width="512" height="60" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="104" y="458" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif">审计输出</text>
+<text x="104" y="478" dominant-baseline="central" font-size="12" fill="#185FA5" font-family="sans-serif">FinProof Score · 主张卡 · 复算轨迹 · 自核清单</text>
+</svg>

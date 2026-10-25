@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="UF1z42kJ3EpCJDEz1Pzi3y">
+<head data-page-node-id="injvEtWF9sAP4JquxTOORz">
+<meta charset="UTF-8" data-page-node-id="jgGb6et6yTXhKWVXA2aehL">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="y6Iey44o1zLZTLsHwqRB90">
+<title>鉴融 · 完整流程图册</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif; background:#ffffff; color:#1a1a1a; margin:0; padding:32px; line-height:1.6; }
+  .wrap { max-width:780px; margin:0 auto; }
+  h1 { font-size:22px; font-weight:500; margin:0 0 4px; }
+  .sub { font-size:13px; color:#5F5E5A; margin:0 0 20px; }
+  .toc { background:#F1EFE8; border-radius:12px; padding:16px 22px; margin:20px 0 8px; }
+  .toc h2 { margin:0 0 8px; font-size:13px; font-weight:500; border:none; padding:0; }
+  .toc ol { margin:0; padding-left:20px; font-size:13px; }
+  .toc li { margin:4px 0; }
+  h2 { font-size:16px; font-weight:500; margin:38px 0 6px; padding-top:10px; border-top:0.5px solid #D3D1C7; }
+  .lead { font-size:13px; color:#5F5E5A; margin:0 0 12px; }
+  .fig { border:0.5px solid #D3D1C7; border-radius:12px; padding:16px; margin:12px 0; background:#ffffff; }
+  ul { font-size:13px; color:#444441; margin:8px 0 0; padding-left:20px; }
+  li { margin:5px 0; }
+  table { font-size:12.5px; border-collapse:collapse; margin:12px 0; width:100%; }
+  th, td { border:0.5px solid #D3D1C7; padding:7px 10px; text-align:left; vertical-align:top; }
+  th { background:#F1EFE8; font-weight:500; }
+  .note { font-size:12px; color:#5F5E5A; margin-top:16px; padding-top:12px; border-top:0.5px solid #D3D1C7; }
+  @media print { body { padding:14px; } .fig, table { break-inside:avoid; } h2 { break-after:avoid; } }
+</style>
+</head>
+<body data-page-node-id="IesGQF6GZshHmE0mqjCAxO">
+<div class="wrap" data-page-node-id="yM7eAwlhrAO5jTeyYG1K3h">
+
+<h1 data-page-node-id="k7un5BAB7vjfEz3nmI1vBf">鉴融——报告信息验证智能体</h1>
+<p class="sub" data-page-node-id="PHFiobtRNWLH3DwrgvEUoL">完整流程图册 · v1.5.0</p>
+
+<div class="toc" data-page-node-id="BOu8MKFZlCMdyRC3BttuAU">
+<h2 data-page-node-id="RvfYsNIfeFTOvoQZP8skou">目录</h2>
+<ol data-page-node-id="SOs99RP3Vo7lDKviPeA5zB">
+<li data-page-node-id="dxuk22Zj1jXmJ5B4N05eQ4">整体框架（五层）</li>
+<li data-page-node-id="GdC7Axag0PhxHme4hKjLfE">端到端核验流程</li>
+<li data-page-node-id="TfEelJ5vIODWIN6qSvgiMr">执行链十步</li>
+<li data-page-node-id="ZkXWFZmQJWhx1n2cBM3puS">四层技术架构</li>
+<li data-page-node-id="j1ZtvU6tYHUYQ2GalArg17">证据检索：混合检索 + 证据门</li>
+<li data-page-node-id="1YCwp84OhbGEgKmRc33V5l">附录：方法论速查</li>
+</ol>
+</div>
+
+<h2 data-page-node-id="A0D1WBEcrTL2DyE4c4Dp5t">一、整体框架</h2>
+<p class="lead" data-page-node-id="oTQkcSOJLDAmXPcPDfEfjr">输入 → 门控 → 处理链 → 分级 → 输出。分级体系贯穿全程，与处理链正交。</p>
+<div class="fig" data-page-node-id="TcI4bSkdLgdLzABA6t2CdG">
+<svg viewBox="0 0 680 608" width="100%" role="img" data-page-node-id="XIyWGeXHCDOmCxMDDsFs7y">
+<title>鉴融整体框架图</title>
+<desc data-page-node-id="cVnw2xlU9MFsLPYC5nelSN">五层框架：输入、门控层、处理链、分级体系、输出，展示各模块关系与流向。</desc>
+<defs data-page-node-id="5wgonmFFaocMRIxJZs0rnE">
+<marker id="arrow1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse" data-page-node-id="A6Ub3f7aMnhRZX9YAhKxio">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="mevX72SUjdIzKyHIwlqBAY"/>
+</marker>
+</defs>
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" font-family="sans-serif" data-page-node-id="kQCoYDOMxcvI74RR5AfCrp">鉴融 · 整体框架</text>
+
+<rect x="180" y="50" width="320" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="VydjYpL4jRFPdDvSvgzojo"/>
+<text x="340" y="66" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="7FFjRixF5spyGsMdgULP7A">输入</text>
+<text x="340" y="84" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="KE2FmAWLJAvyYSk8fZUF75">待审报告 + 源文件（鼓励一并上传）</text>
+
+<line x1="340" y1="98" x2="340" y2="118" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow1)" data-page-node-id="OY5VjVADxCMyntowKZMT5Y"/>
+
+<rect x="40" y="118" width="600" height="96" rx="12" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5" data-page-node-id="VcmFMDON7bqCl8XFaSwtXL"/>
+<text x="56" y="136" font-size="12" font-weight="500" fill="#5F5E5A" font-family="sans-serif" data-page-node-id="oFmoUdtxr1Ee99H6TGn5pd">门控层</text>
+<rect x="70" y="150" width="270" height="48" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="cVI4nNForFnTKzIcKwkjro"/>
+<text x="86" y="166" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="SXep5ATJHdEIrrjwFDiL6b">范围判定门</text>
+<text x="86" y="184" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="4TvBJJ1DO6SXKHc2V1GE9V">本地 / 联网 —— 由用户定</text>
+<rect x="350" y="150" width="270" height="48" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="DqERsCZVCh8cAnozFvw6Br"/>
+<text x="366" y="166" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="mBqyeNHtTXpVDlg7BmHwOE">需求判定门</text>
+<text x="366" y="184" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="DaGf4Nbuk3v5gwRsJ0z9Nv">本地证据够用则跳过联网</text>
+
+<line x1="340" y1="214" x2="340" y2="234" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow1)" data-page-node-id="fH5KIAXn2p2ConMsQghFSq"/>
+
+<rect x="40" y="234" width="600" height="170" rx="12" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5" data-page-node-id="vrFDAdn5QdNFzBCQphJJ1v"/>
+<text x="56" y="252" font-size="12" font-weight="500" fill="#5F5E5A" font-family="sans-serif" data-page-node-id="BhVt6ZpwZqc1FsqdaD3p3l">处理链</text>
+<rect x="70" y="266" width="270" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="e4yJkyQjbBFCJR1Ayv38Lu"/>
+<text x="86" y="282" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="kOjqkf1JO645OKJGp3XeyL">主张拆解</text>
+<text x="86" y="300" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="vMrpMqqRxFHaED6yhaCEqf">A–G 七类 · 高风险优先</text>
+<rect x="350" y="266" width="270" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="1AOAwBaNJuqr3GKl997bdd"/>
+<text x="366" y="282" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="X0e4F0d52a0hrUl5rC9jKI">证据检索</text>
+<text x="366" y="300" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="oYWdqOi2DyT5Um6tDl7uEV">混合检索 + 证据门</text>
+<rect x="70" y="326" width="270" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="0CU8pQ55Gmsqr961u48yJ9"/>
+<text x="86" y="342" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="6qRAArBChHMOeBTo4zEiWW">确定性复算</text>
+<text x="86" y="360" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="YTHwyOMJdx2GjRCXBjJ9yb">decimal 精确运算 + 容差</text>
+<rect x="350" y="326" width="270" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="hpYCTU81X23Jy8rCTi5SXS"/>
+<text x="366" y="342" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="QCL0q3tvYVysCFbCjRFmvK">八步判定链</text>
+<text x="366" y="360" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="mzfhC4siLKBotfu2AuBHZS">数值守卫：冲突即 REFUTED</text>
+
+<line x1="340" y1="404" x2="340" y2="424" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow1)" data-page-node-id="VNzRsEUKWC7ulNLuteDRCB"/>
+
+<rect x="40" y="424" width="600" height="96" rx="12" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5" data-page-node-id="qJJL10RjrYvzHQG6p57jEt"/>
+<text x="56" y="442" font-size="12" font-weight="500" fill="#5F5E5A" font-family="sans-serif" data-page-node-id="FQ7BGQaB7HeLbZd0CCAnkw">分级体系（贯穿全程，与处理链正交）</text>
+<rect x="70" y="456" width="270" height="44" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="LXjbawb24iJe4b8Fcuwd4p"/>
+<text x="86" y="472" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="LA7Ogyr01q39TgolMGYUGb">证据等级</text>
+<text x="86" y="488" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="qPqlo8vL1ImxbpWBql6dCa">S 法定披露 · A 公司披露 · 更低</text>
+<rect x="350" y="456" width="270" height="44" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="SIOSnIxOqGgAufTJUVxrsq"/>
+<text x="366" y="472" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="sEepk74z51fFqGwsjqCSD4">风险等级</text>
+<text x="366" y="488" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="kegaHQZ91ZGjBAHKQ1kkCv">LOW · MEDIUM · HIGH · CRITICAL</text>
+
+<line x1="340" y1="520" x2="340" y2="540" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow1)" data-page-node-id="kY6ncFtGNDPmhiDqJ3h8Ti"/>
+
+<rect x="180" y="540" width="320" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="w6LKNQvNkgtH8bIrAbd4PD"/>
+<text x="340" y="556" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="EHBJNeJQJFznD5ABijhTS1">输出</text>
+<text x="340" y="574" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="TbkNIPl4DvXAVLR4dwDOMh">六类结论 · FinProof Score · 审计报告 + 自核清单</text>
+</svg>
+</div>
+<ul data-page-node-id="ry74uOoYNgNHz8gEdMrrRH">
+<li data-page-node-id="7KAkGMGRu9ct4DONxAhNSa">门控层：范围判定门由用户拍板（本地 / 联网）；需求判定门在本地证据够用时直接跳过联网</li>
+<li data-page-node-id="NFZ5ndj55ztWBIyQrjzalM">处理链：主张拆解 → 证据检索 → 确定性复算 → 八步判定链</li>
+<li data-page-node-id="a2pSvcsJZwl1pUpikEFZws">分级体系：证据等级（来源多硬）与风险等级（错了多糟）彼此独立，同一条主张可同时标注</li>
+</ul>
+
+<h2 data-page-node-id="QcLrABsS5UkG844tJVxmwt">二、端到端核验流程</h2>
+<p class="lead" data-page-node-id="yTTPGEl8vocdnDC0qdiWFj">两道门决定「要不要联网」，聚焦再搜索让「证据不足」成为起点而非终点。</p>
+<div class="fig" data-page-node-id="FDMdn9FMXr9S7okP7LZv7I">
+<svg viewBox="0 0 680 540" width="100%" role="img" data-page-node-id="d9xuJAOvGP4s5ULID27XF2">
+<title>鉴融端到端核验流程</title>
+<desc data-page-node-id="IlN2enrrvovfH67f0RdyG9">从范围判定门开始，经主张拆解与确定性复算、八步判定链，缺口进入聚焦再搜索循环，最终输出六类结论与审计报告。</desc>
+<defs data-page-node-id="XS76v68KRZX58wSCsabf7K">
+<marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse" data-page-node-id="LlU09hbmLuFMVyp21H87Uw">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="0zZUxBqjW6K6fMxNoFvv0T"/>
+</marker>
+</defs>
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" font-family="sans-serif" data-page-node-id="6f13kTzc4zuocUAvxtARix">鉴融 · 端到端核验流程</text>
+
+<rect x="150" y="50" width="300" height="56" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="6o8Mpmy609bdJCJqmFdAh2"/>
+<text x="300" y="68" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="wqeBhPO9TdPEAF0Th6gNdD">受理 · 范围判定门</text>
+<text x="300" y="90" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#854F0B" font-family="sans-serif" data-page-node-id="zlMmDKgWUf1UaLQgFU1xBq">本地模式 / 联网模式（由用户定）</text>
+
+<line x1="300" y1="106" x2="300" y2="126" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow2)" data-page-node-id="BDr6vWZNJLd7czF82gCEgi"/>
+
+<rect x="150" y="126" width="300" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="gnUASxbk2HUFnoiQ5eJxsT"/>
+<text x="300" y="144" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="HW1jqpH5l0UvhyTQIgmjEC">主张拆解 + 确定性复算</text>
+<text x="300" y="166" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#185FA5" font-family="sans-serif" data-page-node-id="I4UHNBIDZo3BLUXh74QRu2">A–G 七类主张 · decimal 精确运算</text>
+
+<line x1="300" y1="182" x2="300" y2="202" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow2)" data-page-node-id="Mrb0ZAAmblncMPsxWigdy1"/>
+
+<rect x="150" y="202" width="300" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="PKEneWuX3WG2qKKpqSHyW4"/>
+<text x="300" y="220" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="GIyGcBHsfJb0B4SMKCWfOE">八步判定链</text>
+<text x="300" y="242" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="z1G0MsAXyJaqgBwCaQSZoc">证据 · 实体 · 指标 · 期间 · 口径 · 数值 · 语义 · 映射</text>
+
+<line x1="300" y1="258" x2="300" y2="313" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow2)" data-page-node-id="Y8GR4AlXRLu7uZGCkMsM7v"/>
+
+<polygon points="300,315 370,360 300,405 230,360" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="OqXtKNSCFWL42JnIL4uCY0"/>
+<text x="300" y="355" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="wMjgOL9jNjcfKBpIRVlM8X">仍有缺口？</text>
+<text x="300" y="373" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="B13iEUtBKZkA4pOrb6vEWA">联网模式</text>
+
+<line x1="370" y1="360" x2="488" y2="360" stroke="#854F0B" stroke-width="1.5" marker-end="url(#arrow2)" data-page-node-id="lcYvEaDlYCGHsGNNBlZHFv"/>
+<text x="429" y="350" text-anchor="middle" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="6EE8SEcAl5Y9VmImoYAc7b">是</text>
+
+<rect x="490" y="332" width="150" height="56" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="LH9jJBQ54lEe9WlJ7dVvif"/>
+<text x="565" y="350" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="nkKJBR0FKaF1jS0ztJEXKj">聚焦再搜索</text>
+<text x="565" y="372" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="qfDvneXCtT0iebYJA1bZKD">换词换源 2–3 轮</text>
+
+<path d="M565,388 L565,520 L120,520 L120,154 L148,154" fill="none" stroke="#854F0B" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow2)" data-page-node-id="MAeWgmSpZ7q2hKdwQD4Tyh"/>
+<text x="345" y="510" text-anchor="middle" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="GMXm3NpwDnYDeQQcQ5Vub9">补证后重新判定</text>
+
+<line x1="300" y1="405" x2="300" y2="438" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow2)" data-page-node-id="CfZOIacL69Pmdc9wka9Uho"/>
+<text x="320" y="425" text-anchor="middle" font-size="11" fill="#5F5E5A" font-family="sans-serif" data-page-node-id="UxU6qZCKcysNkSlcAVTzGm">否</text>
+
+<rect x="150" y="440" width="300" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="dEHRblo1HsIzM3QE04Os3b"/>
+<text x="300" y="458" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="CiWHaoDa7U8xVKXfWZvCoa">六类结论 + 审计输出</text>
+<text x="300" y="480" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="Vvl2dOvzQFCZMj3XCWEp8q">Score · 主张卡 · 复算轨迹 · 自核清单</text>
+</svg>
+</div>
+<ul data-page-node-id="0wgeqZEmTISgTkuw714lN7">
+<li data-page-node-id="hDuoeuzKoMP9sbjsAAOhEl">虚线回流是核心：补证后重新判定，而不是一次搜不到就放弃</li>
+<li data-page-node-id="MbkWXLlAwJcogzxvVklD5t">聚焦再搜索：换词（全称/简称/代码/英文品名）+ 换源（年报 → IR → 权威媒体 → 行业库）再搜 2–3 轮，穷尽才收口</li>
+<li data-page-node-id="L6J2PGc9VeOoYiyAERFj3L">数值守卫：复算对不上直接判 REFUTED，语义判断无权翻案</li>
+</ul>
+
+<h2 data-page-node-id="HmEjszhGovMD7VGDEXjWi5">三、执行链十步</h2>
+<p class="lead" data-page-node-id="3RMmuaftq2YHayAvLn7B2n">每一步由谁负责 —— 数字归程序，语义归模型。</p>
+<div class="fig" data-page-node-id="tQGrRqoooXDD84sPPe6ihY">
+<svg viewBox="0 0 680 356" width="100%" role="img" data-page-node-id="YRSAKDN78f6uDtAFps9pFi">
+<title>鉴融执行链十步</title>
+<desc data-page-node-id="AGBbUKD62VHF2s416GWpFQ">从受理到审计输出的十个执行步骤，标注每步由程序或模型负责。</desc>
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" font-family="sans-serif" data-page-node-id="ubdcc3J4RLPDExyAHDlyHo">鉴融 · 执行链十步（按编号 0→9 顺序执行）</text>
+<text x="340" y="42" text-anchor="middle" font-size="11" fill="#5F5E5A" font-family="sans-serif" data-page-node-id="7mqtLMncC0RLPKLDlnupVR">数字归程序，语义归模型</text>
+
+<rect x="40" y="60" width="280" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="B30mcc6wmLhPJD4RbYsFxm"/>
+<text x="56" y="76" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="SYopb9dvHhCZDALaDsbL09">0 受理</text>
+<text x="56" y="94" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="G065Cu7SDWBlrX6SeoUfK3">接收报告 + 源文件</text>
+
+<rect x="40" y="118" width="280" height="44" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="CJHrfZogAcLWELEGI9aECV"/>
+<text x="56" y="134" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="Td79auilJXuxKN8Ly88pjr">1 范围判定门</text>
+<text x="56" y="152" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="axAIA6z2bY9FF2Z8mEfal6">本地 / 联网 —— 由用户定</text>
+
+<rect x="40" y="176" width="280" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="zcaVcGhoGiFaIB7lyzyCbZ"/>
+<text x="56" y="192" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="iCWeQkD2OEeWcQcKi2YR6G">2 文档解析</text>
+<text x="56" y="210" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="xnKXIjanc52kqxjTh0Dqun">程序 · OCR 三级降级</text>
+
+<rect x="40" y="234" width="280" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="SvmZ7vKIG7AjFVOfNritOL"/>
+<text x="56" y="250" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="WfnBWwfJjvdJSXxAZ0HjAe">3 主张拆解</text>
+<text x="56" y="268" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="qhEB1P1Or0xRsB0awCAgYW">模型 · A–G 七类</text>
+
+<rect x="40" y="292" width="280" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="Yb4DhNQHKJCLPScb8MLHyq"/>
+<text x="56" y="308" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="bhL4FzCiZ6ko5sNvWB8UY6">4 结构化归一化</text>
+<text x="56" y="326" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="wMTQDoAgAEO6w0OldebfrC">程序 · 数字 / 期间 / 口径</text>
+
+<rect x="350" y="60" width="290" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="LYw2yUK3MI4oRZFGCIg9Qc"/>
+<text x="366" y="76" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="nRkwlMmDScUQ366T3ntuND">5 证据检索</text>
+<text x="366" y="94" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="VDHlAn1bhqV9v3lNKfEQqM">程序 · 混合检索 + 证据门</text>
+
+<rect x="350" y="118" width="290" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="bd3LKRgwtxCb5XnUcDiONt"/>
+<text x="366" y="134" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="0i7HWovudm0ibMRi7Y6yAI">6 确定性复算</text>
+<text x="366" y="152" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="TTsr2htXB7zeZDsoDJcT1r">程序 · decimal 精确运算</text>
+
+<rect x="350" y="176" width="290" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="CUEQrXciLlvgJEx3J47J5L"/>
+<text x="366" y="192" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="Wlixp08EQTRoN57VrjdIXA">7 八步判定链</text>
+<text x="366" y="210" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="4NJB92TyUGIxJjSgw6O3dT">混合 · 数值守卫</text>
+
+<rect x="350" y="234" width="290" height="44" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="mrdwzFqVXJfdelbyNXvTGa"/>
+<text x="366" y="250" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="4VAjTDrkboUcYiQOxODaGN">8 联网补证 + 聚焦再搜索</text>
+<text x="366" y="268" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="9IFRmVng1ad4H4hu8AKqpV">混合 · 仅联网模式</text>
+
+<rect x="350" y="292" width="290" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="JPIoaa7eRz4KtxXRvGsa8Q"/>
+<text x="366" y="308" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="VM9VsJUEsr2Hdvs8MGgpyC">9 评分与审计输出</text>
+<text x="366" y="326" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="TIFTEHo7cIEm2x9Tt3R1Wz">程序 · 五维加权</text>
+</svg>
+</div>
+<ul data-page-node-id="Llvt3JQlpRhqwdCEugcCiZ">
+<li data-page-node-id="svvdc9VERd0emJIxnpUmJJ">程序负责（可复现）：解析、归一化、检索匹配、数值复算、评分</li>
+<li data-page-node-id="G2rU85csFv1SJkmHUakZHY">模型负责（语义）：主张拆解、指标/期间识别、证据支持关系、因果与预测检测</li>
+<li data-page-node-id="XfpgMm6yCL2qnHLSDC8AUs">步骤 4 口径归一化是隐形雷区：单季↔累计、归母↔净利润、合并↔母公司，不会报错只会让结论静悄悄地错</li>
+</ul>
+
+<h2 data-page-node-id="uj8IGSXr9yRtsxUCZpB2Es">四、四层技术架构</h2>
+<p class="lead" data-page-node-id="ZPhw5F3iBagt3ZRoyM5ZFT">四层分离 + 双保险判定。</p>
+<div class="fig" data-page-node-id="USHDnjXkzbt15g883Yib4L">
+<svg viewBox="0 0 680 540" width="100%" role="img" data-page-node-id="zz24GbDuxr2aS4I9WZ3MZr">
+<title>鉴融四层技术架构</title>
+<desc data-page-node-id="UnpI0csngYjz1ATc9u6Msb">四层分离架构：证据获取层、确定性计算层、判定推理层、缺口治理层，最终产出审计报告。</desc>
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" font-family="sans-serif" data-page-node-id="cSClAkGlnd7ZgXdHsPHBY5">鉴融 · 四层技术架构</text>
+
+<rect x="60" y="44" width="560" height="476" rx="20" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5" data-page-node-id="dYzsyrGvwA24OZZm2FCb9s"/>
+
+<rect x="84" y="68" width="512" height="76" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="q0Pa8HccRGsLqN15liMEOn"/>
+<text x="104" y="96" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="ejHggomUjIMgjXKTMh2Xz5">证据获取层</text>
+<text x="104" y="122" dominant-baseline="central" font-size="12" fill="#185FA5" font-family="sans-serif" data-page-node-id="C4heWFQ9A5r3YbNxRHsGPm">文本直抽 · 渲染 OCR · 视觉读取 · 内置联网搜索</text>
+
+<rect x="84" y="160" width="512" height="76" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="qdyelnCjJpGzKtKeMwnXNi"/>
+<text x="104" y="188" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="x1aKvRKovwus2uublNZYgH">确定性计算层</text>
+<text x="104" y="214" dominant-baseline="central" font-size="12" fill="#185FA5" font-family="sans-serif" data-page-node-id="hifpjry7CxnLEVhTOdULrT">finproof_calc.py · Python decimal · 容差策略</text>
+
+<rect x="84" y="252" width="512" height="76" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="hiocG77LndVANXCLZ4nK82"/>
+<text x="104" y="280" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="7cim0yXJR8AJBy0VRxB7xO">判定推理层</text>
+<text x="104" y="306" dominant-baseline="central" font-size="12" fill="#185FA5" font-family="sans-serif" data-page-node-id="rxQfjZCCTs2VFlTE0LXb5s">八步判定链 · 六类结论 · 数字守卫</text>
+
+<rect x="84" y="344" width="512" height="76" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="pe5LGi8WHgctPtvHJNnjvz"/>
+<text x="104" y="372" dominant-baseline="central" font-size="14" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="l3SV7PAOGMf0uuE5dVcbov">缺口治理层</text>
+<text x="104" y="398" dominant-baseline="central" font-size="12" fill="#854F0B" font-family="sans-serif" data-page-node-id="QHL2YTLvcO7f8yqK5bgMoK">聚焦再搜索 · G1–G4 分类 · 用户自核清单</text>
+
+<rect x="84" y="436" width="512" height="60" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="NE5cLXxAidvATpuYECogrd"/>
+<text x="104" y="458" dominant-baseline="central" font-size="14" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="gcIFQcPq0w9iTdzkIRNbPk">审计输出</text>
+<text x="104" y="478" dominant-baseline="central" font-size="12" fill="#185FA5" font-family="sans-serif" data-page-node-id="hSd2TC3aMMm1sCiFsLxcni">FinProof Score · 主张卡 · 复算轨迹 · 自核清单</text>
+</svg>
+</div>
+<ul data-page-node-id="Sf1QzpD4DZBa2FrROWVcXE">
+<li data-page-node-id="BARHZn7Sy69T3SIgGS6OQe">关键设计：数字走确定性引擎，语义走模型，两条链路互不覆盖</li>
+<li data-page-node-id="4E0ZhKAOJLXzKjFmdDUNPb">证据获取层：文本直抽 → 渲染 OCR → 视觉读取 → 内置联网搜索，扫描件由专家自己识别</li>
+<li data-page-node-id="Geg9CSRJVyqSKsPpFRGcgZ">缺口治理层：G1–G4 分类，汇总为「需用户自行核验清单」</li>
+</ul>
+
+<h2 data-page-node-id="1aJw5CCDKrxKNXufelHKu4">五、证据检索：混合检索 + 证据门</h2>
+<p class="lead" data-page-node-id="qM9Fq9ifNt81twFzsbVfyV">四路召回保证「捞得全」，证据门保证「不误杀」。</p>
+<div class="fig" data-page-node-id="uubwPpXZnWzpvSpzKRIhVN">
+<svg viewBox="0 0 680 402" width="100%" role="img" data-page-node-id="N6VIFOY2wzw7DqYYQjGovr">
+<title>证据检索：混合检索与证据门</title>
+<desc data-page-node-id="Gui4ehF3ljHeITY2CBoLN8">结构化主张经四路召回、统一重排、证据门过滤，输出带页码的 Top-N 证据候选块。</desc>
+<defs data-page-node-id="tlT1pfO35wc7SUGmHnG2wH">
+<marker id="arrow5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse" data-page-node-id="rCADPWEEtr2LbIxTYyzw9R">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="e2thUNxQcUGdkkNop93Cyr"/>
+</marker>
+</defs>
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" font-family="sans-serif" data-page-node-id="tm9eBXAwgdqvWrgKRpXUR9">证据检索：混合检索 + 证据门</text>
+
+<rect x="190" y="50" width="300" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="DkRMMbwxZe4DeNrZbGGemh"/>
+<text x="340" y="66" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="5VAlJa7wWkac6WkL6braWZ">输入：结构化主张</text>
+<text x="340" y="84" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="kkk4jkAcES5BhlWpa0TaV4">指标 + 期间 + 口径 + 数值</text>
+
+<line x1="340" y1="98" x2="340" y2="118" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow5)" data-page-node-id="WBSqUfoneeBEUF21UmFTBF"/>
+
+<rect x="40" y="118" width="140" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="7KaADhuc2KzevZyPEoQyzF"/>
+<text x="110" y="136" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="eZZC8mcCNQx1HAeiOueA1S">BM25</text>
+<text x="110" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="QN83iGWbcPAusjJWeCqLLN">关键词：指标词+数值</text>
+
+<rect x="190" y="118" width="140" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="fUX7Zn5WTrl2zHxCChvRmH"/>
+<text x="260" y="136" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="cFwfIqZfuhh9LiBEG1uPZS">向量检索</text>
+<text x="260" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="dHn7ZCfRr6HPdbpLg5UURn">语义近邻</text>
+
+<rect x="340" y="118" width="140" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="IPyNeFojBIkebLgD0AgROE"/>
+<text x="410" y="136" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="WVogDjkxqBGVPpDA2WrbT7">规则召回</text>
+<text x="410" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="HkahRZtnbgo5YOH5S0jaSM">公司+指标+期间</text>
+
+<rect x="490" y="118" width="140" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="HDDhzlGfD1KrPT9dBwIGrD"/>
+<text x="560" y="136" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="sdr3fftFwMi9mnAYnpS3d4">财务指标索引</text>
+<text x="560" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="56FJpxfHaCd9HXHH2tfODv">结构化财务事实</text>
+
+<line x1="340" y1="174" x2="340" y2="196" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow5)" data-page-node-id="ZiA1RvIb5mlKJaSTIwglWn"/>
+
+<rect x="190" y="196" width="300" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="twKbaFYztbQLECN1coc1b8"/>
+<text x="340" y="218" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="0ZupVqcRpxEx4JaTj0AaIm">统一重排 rerank</text>
+
+<line x1="340" y1="240" x2="340" y2="258" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow5)" data-page-node-id="ojjo4d4xMkcorArzykPdBt"/>
+
+<rect x="140" y="258" width="400" height="56" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5" data-page-node-id="cGxad6nniu3Op8Cuhn3lNx"/>
+<text x="340" y="276" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif" data-page-node-id="k5xTOXY4SHAFivzWKDk4Wp">证据门 Evidence Gate</text>
+<text x="340" y="298" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif" data-page-node-id="aeYj2KEvvmhUJg9PK7vYC2">strict scope 归因 · 主表利润严格恢复</text>
+
+<line x1="340" y1="314" x2="340" y2="334" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow5)" data-page-node-id="z3FQdsmdtIVDEI7PBChPEh"/>
+
+<rect x="190" y="334" width="300" height="48" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" data-page-node-id="tVFIEAnyuTmuJqJFcBd3yz"/>
+<text x="340" y="350" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif" data-page-node-id="XvluKzWDqk0eDKZVdM4afP">输出：Top-N 证据候选块</text>
+<text x="340" y="368" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif" data-page-node-id="yH8jHFKd6mD6FilO5oroAW">带页码 · 提交版默认 Top3</text>
+</svg>
+</div>
+<ul data-page-node-id="WvwQFD0Hbn0uZkLRPovlAi">
+<li data-page-node-id="ZmOuUVEXCIarFeZEbQDtSL">四路：BM25（关键词+数值）、向量（语义近邻）、规则召回（公司+指标+期间）、财务指标索引（结构化事实）</li>
+<li data-page-node-id="5VHL9mUDxFodrAX5K3pQbX">证据门：strict scope 归因 —— 从 metric_code 推断归母/扣非口径，避免把对的证据判成不匹配</li>
+<li data-page-node-id="pxOIYvYvY0y8mq1EArf7xw">无 Embedding 服务时向量路降级为关键词+指标精确匹配，如实说明，不假装做了语义检索</li>
+<li data-page-node-id="bLBjJglIgfVYGfFYV9knCK">实测归因：检索失败占 81%（17/21），其中 16/21 是正确证据根本没进 top10 —— 检索召回是绝对瓶颈</li>
+</ul>
+
+<h2 data-page-node-id="cNWe42waelFIbyRt9MfD8L">六、附录：方法论速查</h2>
+
+<table data-page-node-id="CmZh2HIaKCG0WhOzE5Dq97">
+<tr data-page-node-id="ZQVGFYdZEilpv7rk8EnALz"><th style="width:22%" data-page-node-id="rycL6VVRLbX012aURA4FME">体系</th><th data-page-node-id="NJWhG7Cnd7BLoGgWSQFSi1">取值 / 内容</th></tr>
+<tr data-page-node-id="9rcj4avScJ78yGPFHR8Iwj"><td data-page-node-id="1xyyBaSBt54auxEQmpPLcS">主张分类 A–G</td><td data-page-node-id="lvuS8nTZotjJmdsXbndgWh">A 原始数字 · B 计算型 · C 财务口径 · D 业务事实 · E 因果关系 · F 比较型 · G 预测观点</td></tr>
+<tr data-page-node-id="dOrk5YZSpYGIoEyScPkeQg"><td data-page-node-id="vIe5HZBmbdrJZaHKkk5dnx">九类错误</td><td data-page-node-id="ivBVz6AWuloN4cRZcyZkzI">数字 · 计算 · 时间 · 口径 · 引用错配 · 证据不足 · 跨文件矛盾 · 因果过度推断 · 预测事实化</td></tr>
+<tr data-page-node-id="eeISR2W9vd0mi6ROfangN6"><td data-page-node-id="1QTn67qQwcyXX21T93bsUp">六类结论</td><td data-page-node-id="qwffA2AEGfikp5ry2yaoJG">支持 · 反驳 · 部分支持 · 证据不足 · 观点或预测 · 无法判断</td></tr>
+<tr data-page-node-id="GjZf3jPfgloHU1nEgMbNc6"><td data-page-node-id="G7Ly5R4R33EjFD87Z6FPRj">八步判定链</td><td data-page-node-id="EoZCULC2qNmh6UMD4Y70LX">证据 → 实体 → 指标 → 期间 → 口径 → 数值 → 语义 → 映射（不跳步）</td></tr>
+<tr data-page-node-id="1ljVVVYFCa3tIMu4VKkT69"><td data-page-node-id="ZrnBXVyN11ZHm1eFeE5NbC">结论映射优先级</td><td data-page-node-id="2hYbEMbduypBzk58JF7t39">REFUTED &gt; SUPPORTED &gt; PARTIAL &gt; INSUFFICIENT（是顺序，不是等级）</td></tr>
+</table>
+
+<table data-page-node-id="FMbvNBNn7g34xzc4dbiovp">
+<tr data-page-node-id="CNayB6ZD4co3SysAZPut8n"><th style="width:22%" data-page-node-id="gSyG0n5doxlHkEdBToOCMA">FinProof Score</th><th data-page-node-id="McSIXE7aIuUReIEF2dDP7a">权重</th></tr>
+<tr data-page-node-id="gWCyJ8pp9Irc8FlBDQoEkC"><td data-page-node-id="60cfOAWHsH9QQunz25i9Eb">证据覆盖率</td><td data-page-node-id="IXsiqPX7dtBdJrY5cQB5nI">25%</td></tr>
+<tr data-page-node-id="BtdVk1rFtu5DtlTi4AG2ca"><td data-page-node-id="HT2CLREFVEpnNIbbPqEjI3">数字与计算准确性</td><td data-page-node-id="QqxGjPNQ0KoIKYBqP1KIuZ">25%</td></tr>
+<tr data-page-node-id="bANZtnCk2dMfrhAlIc8b8b"><td data-page-node-id="zvgQChPEr9NGsUq2gJKOFZ">引用一致性</td><td data-page-node-id="x1lyfuFJt1iTbq25LFGAwA">20%</td></tr>
+<tr data-page-node-id="71jSfVq65VB5N2BVF1VJSA"><td data-page-node-id="7PLZgVDV8Z2L3duDiDkmI7">来源权威性</td><td data-page-node-id="vc2eyjQfRKXFFYxcDwL5q5">15%</td></tr>
+<tr data-page-node-id="Ol75rRTiEWLEI3tgGQuF4u"><td data-page-node-id="YK2zwF77RjX6kCA8Xq9USz">时间与口径一致性</td><td data-page-node-id="Hx7bFHqootN1PqyQG3nQHY">15%</td></tr>
+</table>
+
+<table data-page-node-id="1GBWGnJTQurtVWligsSh0p">
+<tr data-page-node-id="PmHQRBB0Cx2renJ6JC02zc"><th style="width:22%" data-page-node-id="k01gFhjRRRzAQQo1c0a2WS">风险量化</th><th data-page-node-id="vBVnRZRosRvAmPK6rsj61y">基准分（区间中值）</th></tr>
+<tr data-page-node-id="CiHyls5f4gGxWN9ApSkLd6"><td data-page-node-id="HINJXWs0E0FnpcMhWBbXTK">REFUTED 反驳</td><td data-page-node-id="ZvcgEo3zDAMtgXn1kIDWeO">90（区间 80–100）</td></tr>
+<tr data-page-node-id="ZOaXlD4j2d0yvExgrvc1VA"><td data-page-node-id="3h389EiyDDnjQE5Dzsujze">INSUFFICIENT / UNABLE</td><td data-page-node-id="MDVUXQgRwt9DbNwNvxom1s">75（区间 60–90）</td></tr>
+<tr data-page-node-id="iVhFIzQNhVGW0xLFF2o2dL"><td data-page-node-id="W8r5xbwp7P7zCiRZTtEJHO">PARTIALLY_SUPPORTED</td><td data-page-node-id="uQp4XbR7JFPDhMZmE7eTCE">55（区间 40–70）</td></tr>
+<tr data-page-node-id="upFLBF2NLDlZDgQr96klmu"><td data-page-node-id="qmZuRJjdVdnFRQUF4RiiZ3">SUPPORTED 支持</td><td data-page-node-id="GreE932kQ3qMcKKavmkjij">10（区间 0–20）</td></tr>
+<tr data-page-node-id="0rvnLLCNUHLFC5zvR1XZSv"><td data-page-node-id="IwudFE8wvbmGPtFyfEfxqm">调整项</td><td data-page-node-id="JIs93OBCXMV1P6f88VfVUv">重要性 HIGH +8 / MEDIUM +4 / LOW +0；置信度 (conf−0.5)×24；证据质量 ±（按核验类型）；预测类 +15</td></tr>
+<tr data-page-node-id="12aigNrOlIQRMJuAQ2J4uk"><td data-page-node-id="6aoSHRfYCuHgW0moWhmazJ">等级映射</td><td data-page-node-id="EL5IHZ1bWMxy8DAx4OkTpk">&lt;30 LOW · 30–65 MEDIUM · &gt;65 HIGH</td></tr>
+</table>
+
+<table data-page-node-id="J4gNH942hVHy3reb0mrQHX">
+<tr data-page-node-id="yFDIvLJTnvro3UhDgTHjV9"><th style="width:22%" data-page-node-id="R801G9vys3HDXi8idBqGSW">证据等级</th><th data-page-node-id="VBB98B3mink6iL2BnQOO3J">来源</th></tr>
+<tr data-page-node-id="NeOZcCV7fQK45GgethmDCb"><td data-page-node-id="GHkMN4wUygiYEBCxUM7V0P">S 级（法定/监管披露）</td><td data-page-node-id="BkACZip2eHzarjJVQ2X3QW">交易所公告、定期报告、监管文件、审计报告、法院或政府正式文件</td></tr>
+<tr data-page-node-id="URcUqctF1qxi0kH6yaWqdJ"><td data-page-node-id="HQlCKXNnpq6uwpTDN3gBWO">A 级（公司直接披露）</td><td data-page-node-id="8ETIgJk5Es2IG0iXHlf4yC">公司官网、投资者关系材料、业绩说明会</td></tr>
+<tr data-page-node-id="Okz9ANl2Run1EeGeXB8a3P"><td data-page-node-id="7czpQCcqFzsds7oMpTt2DB">更低等级（未命名）</td><td data-page-node-id="rdCnqNZ0U7RfTcs4fU27yZ">媒体转述、第三方研报、未注明来源 —— 需交叉验证，不能单独定案</td></tr>
+</table>
+
+<table data-page-node-id="XoQXwiDHSmzHtzOCfObSS6">
+<tr data-page-node-id="IE0KXN24HF1YSmjwBFNJhb"><th style="width:22%" data-page-node-id="66xwD8lNgFK33ADJzXXj4R">缺口分类</th><th data-page-node-id="qYDIAHBddHp6zUBYI2obqC">含义与用户动作</th></tr>
+<tr data-page-node-id="oEWVZoYY5nsNal4C9jm2l7"><td data-page-node-id="Tb3MWBUePBAyXIONcgWYS5">G1 源文件缺失</td><td data-page-node-id="YXb6FBiN8jDst1wLeW6sTf">未上传对应披露文件 → 上传后重跑</td></tr>
+<tr data-page-node-id="v1umSTdDYERAs4GAEEwHF2"><td data-page-node-id="FZhL6Azv5M8S0dRzRsf0ct">G2 检索不可达</td><td data-page-node-id="LKsrfwcsotXcX7cPEjO4Bn">付费墙 / 未索引 / 离岸 / Pre-IPO → 凭授权数据源自核</td></tr>
+<tr data-page-node-id="LAmXk9PGx2xnqajDVYvth4"><td data-page-node-id="nNeFeReZAqt8nMAns5m705">G3 非公开数据</td><td data-page-node-id="cgxtmNfIdWH1MHgFjpkhtU">细分口径、子公司经营数据、内部假设 → 标注「内部估算」</td></tr>
+<tr data-page-node-id="HzSZz52PLbx5TXGCMrHaCZ"><td data-page-node-id="E7p9Kudf4AFGx4ZCpnDtFO">G4 提取失败</td><td data-page-node-id="JHmIpg65XpBsJdrtyR3PTm">OCR 已尝试仍不可信 → 提供清晰文本版</td></tr>
+</table>
+
+<p class="note" data-page-node-id="cWQcdyeLveVvMuNiCSWiG6">不追求虚假的 100% 覆盖 —— 让每一个缺口透明、可追溯、可行动。<br data-page-node-id="rc3QOjFOecxQMiwOpLyuSf">
+注：风险量化表为后端 risk_engine.py 实际实现（加总模型），与文档所写「三者乘积」概念模型不一致；等级映射仅三级，CRITICAL 未在代码中实现。</p>
+
+</div>
+</body>
+</html>

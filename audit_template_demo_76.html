@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>鉴融审计报告 · 示例（问题前置）</title>
+<style>
+  :root{
+    --bg:#ffffff; --ink:#1f2328; --muted:#57606a; --line:#d8dee4;
+    --sup:#1a7f37; --sup-bg:#e6f4ea;
+    --ref:#cf222e; --ref-bg:#ffebe9;
+    --par:#9a6700; --par-bg:#fff8e1;
+    --ins:#0969da; --ins-bg:#ddf4ff;
+    --opi:#57606a; --opi-bg:#f0f1f3;
+    --s:#8250df; --a:#0969da; --oth:#57606a; --none:#cf222e;
+    --shadow:0 1px 3px rgba(27,31,36,.08);
+  }
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+       color:var(--ink);max-width:980px;margin:24px auto;padding:0 20px;line-height:1.6;
+       background:var(--bg);font-size:15px}
+  h1{font-size:24px;border-bottom:3px solid var(--ink);padding-bottom:8px}
+  h2{font-size:19px;margin-top:34px;border-left:5px solid var(--ink);padding-left:10px}
+  h3{font-size:16px;margin-top:22px}
+  .meta{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 22px;
+        background:var(--opi-bg);border:1px solid var(--line);border-radius:8px;
+        padding:14px 18px;margin:14px 0}
+  .meta div{font-size:13.5px}
+  .meta b{color:var(--muted);font-weight:600;margin-right:6px}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f6f8fa;font-weight:600}
+  .v{display:inline-block;font-weight:700;padding:1px 9px;border-radius:999px;font-size:13px;white-space:nowrap}
+  .v-sup{color:var(--sup);background:var(--sup-bg)}
+  .v-ref{color:var(--ref);background:var(--ref-bg)}
+  .v-par{color:var(--par);background:var(--par-bg)}
+  .v-ins{color:var(--ins);background:var(--ins-bg)}
+  .v-opi{color:var(--opi);background:var(--opi-bg)}
+  .g{font-weight:700;padding:0 6px;border-radius:4px;font-size:12.5px}
+  .g-s{color:var(--s);background:#f3effd}
+  .g-a{color:var(--a);background:var(--ins-bg)}
+  .g-oth{color:var(--oth);background:var(--opi-bg)}
+  .g-none{color:var(--none);background:var(--ref-bg)}
+  a.evid{color:var(--ins);text-decoration:none;font-weight:600;border-bottom:1px dotted var(--ins)}
+  a.evid:hover{background:var(--ins-bg)}
+  .claim{border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin:12px 0;box-shadow:var(--shadow)}
+  .claim .hd{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .claim .num{font-weight:800;font-size:15px}
+  .claim .risk{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 6px}
+  .kv{display:grid;grid-template-columns:120px 1fr;gap:2px 12px;font-size:13.5px;margin-top:6px}
+  .kv dt{color:var(--muted);font-weight:600}
+  .kv dd{margin:0}
+  details{border:1px solid var(--line);border-radius:8px;padding:8px 14px;margin:8px 0}
+  details>summary{cursor:pointer;font-weight:600;color:var(--ins)}
+  .warn{border-left:4px solid var(--ref);background:var(--ref-bg);padding:8px 14px;margin:12px 0;border-radius:0 6px 6px 0}
+  .note{border-left:4px solid var(--par);background:var(--par-bg);padding:8px 14px;margin:12px 0;border-radius:0 6px 6px 0}
+  .score-hero{font-size:46px;font-weight:800;text-align:center;padding:10px 0}
+  code{background:#f6f8fa;padding:1px 5px;border-radius:4px;font-size:12.5px}
+  .foot{color:var(--muted);font-size:12.5px;margin-top:30px;border-top:1px solid var(--line);padding-top:10px}
+  @media print{
+    body{max-width:none;margin:0;padding:14mm;font-size:11pt}
+    details:not([open])>*:not(summary){display:block !important}
+    details{border-color:#bbb}
+    details>summary{color:var(--ink);list-style:none}
+    h2{break-after:avoid-page;break-inside:avoid}
+    .claim,.meta{break-inside:avoid-page;box-shadow:none}
+    a.evid{border-bottom:none;color:var(--ink)}
+    .score-hero{font-size:30pt}
+  }
+</style>
+</head>
+<body>
+
+<h1>鉴融审计报告</h1>
+
+<h2>报告基本信息</h2>
+<div class="meta">
+  <div><b>报告名称</b>示例研报《某公司 2025 年报与 2026Q1 点评》</div>
+  <div><b>页数 / 主张总数</b>6 页 / 9 条主张</div>
+  <div><b>核验模式</b>联网模式</div>
+  <div><b>运行档位</b>完整档（快速档时此处列省略项，并建议发现反驳/极高风险后重跑完整档）</div>
+  <div><b>核验时间</b>2026-09-14 17:30</div>
+  <div><b>证据来源</b>本地文件 2 份 + 联网来源 4 条</div>
+  <div><b>计算方法</b>确定性引擎复算 bin/finproof_calc.py</div>
+  <div><b>联网检索次数</b>12 次（预算上限 40 次）</div>
+  <div><b>降级声明</b>无</div>
+  <div><b>引擎复算覆盖</b>N_e 3 / N_v 4 条数值主张（75%；#6 因证据不足无证据数值，未经引擎复算。口径：N_e 只计实际调用引擎且审计轨迹留有命令与输出的主张）——判定溯源见审计轨迹</div>
+  <div><b>主审模型</b>GLM-5.3</div>
+  <div><b>独立复核</b>异源 · GLM-5.3-Flash（经子代理盲复核）</div>
+  <div><b>复现性声明</b>数值复算由确定性引擎执行、可复现；拆解与语义判定由模型产出，两次运行可能不同</div>
+  <div><b>审计质量分 AQS</b>94 / 100 · 优（C 9/9=100 · E 3/4=75 · V 4/4=100 · R 异源+自检=100 · L 3/3=100）</div>
+</div>
+
+<h2>审计结论</h2>
+<p>仅列不确定与错误项（按 反驳 &gt; 证据不足 &gt; 部分支持 &gt; 无法判断 &gt; 预测事实化 排序）；支持类不展开。预测事实化条目结论仍为「观点或预测」（G 类不判真假），进本段是因为确定性表述无已披露依据支撑。</p>
+<table>
+  <tr><th>#</th><th>报告原句</th><th>结论</th><th>问题</th><th>证据</th><th>建议</th></tr>
+  <tr><td>#2</td><td>"公司 2026Q1 净利润同比增长 20%"</td><td><span class="v v-ref">反驳</span></td><td>复算 12.45%，超容差 7.55pp；以归母净利充"净利润"表述，口径未注明</td><td><a class="evid" href="#E02">[E02]</a> <a class="evid" href="#E03">[E03]</a></td><td>改为"归母净利润同比增长约 12.4%"</td></tr>
+  <tr><td>#5</td><td>"市场份额提升至 4.8%"</td><td><span class="v v-par">部分支持</span></td><td>证据为 4.5% 且"基本持平"，"提升"无据</td><td><a class="evid" href="#E05">[E05]</a></td><td>改为"份额约 4.5%，与去年基本持平"</td></tr>
+  <tr><td>#6</td><td>"某细分产品最新报价 XX 元/吨"</td><td><span class="v v-ins">证据不足</span></td><td>无支撑：G2 检索不可达（付费墙）</td><td><a class="evid" href="#E06">[E06]</a></td><td>凭已授权终端核对后回填</td></tr>
+  <tr><td>#7</td><td>"2026 年归母净利润达 12 亿元已无悬念"</td><td><span class="v v-opi">观点或预测</span></td><td>预测事实化："已无悬念"为确定性表述，依据未披露（无测算过程与假设）</td><td>依据未披露（无 [E##]）</td><td>改为"我们预计约 12 亿元"并披露测算依据</td></tr>
+</table>
+<p class="foot">其余 5 条主张经核验支持或属观点/预测且依据已披露（#8、#9 已核依据披露），不展开；如需可索取逐条明细。</p>
+
+<h2>报告健康度</h2>
+
+<h3>统计口径</h3>
+<table>
+  <tr><th>统计量</th><th>数值</th></tr>
+  <tr><td>总主张 N</td><td>9（其中观点/预测类 3：#7、#8、#9）</td></tr>
+  <tr><td>可判主张 N_d</td><td>6</td></tr>
+  <tr><td>闭环主张 N_c</td><td>5（#1–#5）</td></tr>
+  <tr><td>数值类 N_v</td><td>4（#1、#2、#3、#6）</td></tr>
+  <tr><td>数值错 E_v / 引用错配 E_q / 期间错配 E_p / 口径问题 E_s / 证据不足 E_i</td><td>1 / 0 / 0 / 1 / 1</td></tr>
+</table>
+
+<h3>五维明细</h3>
+<table>
+  <tr><th>维度</th><th>权重</th><th>原始观测</th><th>得分</th><th>加权</th></tr>
+  <tr><td>可判定率</td><td>25%</td><td>5 / 6</td><td>83.3</td><td>20.83</td></tr>
+  <tr><td>数字与计算准确性</td><td>25%</td><td>100 − (1/4×100×2)</td><td>50.0</td><td>12.50</td></tr>
+  <tr><td>引用一致性</td><td>20%</td><td>100 − 0</td><td>100.0</td><td>20.00</td></tr>
+  <tr><td>来源权威性</td><td>15%</td><td>(3×100+1×70+1×40)/5</td><td>82.0</td><td>12.30</td></tr>
+  <tr><td>时间与口径一致性</td><td>15%</td><td>100 − (1/6×100×2)</td><td>66.7</td><td>10.00</td></tr>
+  <tr><th>合计</th><th></th><th></th><th></th><td><b>75.63 ≈ 76</b></td></tr>
+</table>
+
+<h3>证据等级分布</h3>
+<table>
+  <tr><th>等级</th><th>条数</th></tr>
+  <tr><td><span class="g g-s">S 级</span></td><td>3</td></tr>
+  <tr><td><span class="g g-a">A 级</span></td><td>1</td></tr>
+  <tr><td><span class="g g-oth">其他</span></td><td>1</td></tr>
+  <tr><td><span class="g g-none">未注明</span></td><td>0</td></tr>
+</table>
+<p class="foot">来源权威性 = (3×100 + 1×70 + 1×40) / 5 = 82.0。证据不足的 #6 不计入本维度（不属闭环）。S+A 级占比 4/5 = 80% ≥ 50%、权威性 82.0 ≥ 60——未触发弱来源警示（若 S+A &lt;50% 或权威性 &lt;60，此处必须加「⚠ 弱来源依赖：S+A 级证据占比 X%（x/y），本报告结论可靠性受限，建议补充交易所/定期报告等一手来源」警示行）。</p>
+
+<h3>扣分清单</h3>
+<table>
+  <tr><th>#</th><th>主张</th><th>证据</th><th>错误类型</th><th>扣分依据</th><th>影响维度</th></tr>
+  <tr><td>1</td><td>#2</td><td>[E02]</td><td>计算错误 + 口径错误</td><td>同比重算 12.45%，报告称 20%，差 7.55pp（超 0.5pp）；以归母净利充"净利润"表述，口径未注明</td><td>准确性 −50.0；时间口径 −33.3</td></tr>
+  <tr><td>2</td><td>#6</td><td>[E06]</td><td>证据不足</td><td>检索不可达，未闭环</td><td>可判定率 −16.7</td></tr>
+</table>
+<p class="foot">本列口径为<b>维内扣分（含惩罚系数 2）</b>：准确性/引用一致性/时间口径三维的扣分 = 错误率 × 100 × 2；可判定率无惩罚系数。与五维明细一一对应（100 − 维内扣分 = 维度得分）。</p>
+
+<h3>档位与固定文案</h3>
+<div class="score-hero">76 / 100</div>
+<p style="text-align:center"><b>‖ 审计质量分 AQS 94 / 100 · 优</b>（C 100 · E 75 · V 100 · R 100 · L 100 → 93.75≈94；AQS 衡量审计过程质量，FinProof Score 衡量报告证据链质量——两分独立解读，不可互相替代）</p>
+<p><b>76 / 100 · 良——问题项 4 条（反驳 1 / 证据不足 1 / 部分支持 1 / 无法判断 0 / 预测事实化 1）；分数衡量证据链质量与引用规范，不代表结论正确性。</b>附加要求：列出瑕疵条数（见审计结论；#7 预测事实化为 G 类标记性问题项，不计入评分分母）；"优"档才强制首行点名 REFUTED 矛盾。</p>
+<div class="note">
+<b>【公式来源】</b>FinProof Score = 0.25×可判定率 + 0.25×数字准确性 + 0.20×引用一致性 + 0.15×来源权威性 + 0.15×时间与口径一致性；证据等级 S 100 / A 70 / 其他 40 / 未注明 0；加权求和使用未取整的各维分值，最后四舍五入到整数（展示时各维保留一位小数、加权贡献保留两位小数）。完整规格见附录 A 与 scoring-spec.md。
+</div>
+<div class="warn">
+<b>【固定警示】</b>FinProof Score 反映证据链质量与引用规范，不代表结论正确性。请结合「反驳/部分支持」条数与「需用户自行核验清单」一并判断。<b>不同报告的 Score 不可横向直接比较</b>——准确性与可判定率的分子/分母均随该报告自身主张总数变化。
+</div>
+<div class="note">
+<b>【口径披露】</b>①「可判定率」（历史名「证据覆盖率」，公式与全部历史分数不变）衡量"能否判定"——闭环含支持/反驳/部分支持/无法判断，REFUTED 也计入闭环，错误较多但都能被判定的报告本维可为 100，它不衡量"证据是否充分、来源是否可靠"。②「来源权威性」仅占 15%，<b>数字自洽但来源等级普遍偏低的报告仍可能拿到"优"档</b>，请据此解读档次。③ 数值复算由确定性引擎执行（覆盖 N_e/N_v 见基本信息），拆解与语义判定由模型产出，两次运行可能不同。
+</div>
+<div class="note">
+<b>【自评声明】</b>本分为专家自评，非第三方认证。分子/分母与公式均已列出，可自行复算；如复算与本文不一致，即为本专家实现有误，请指出。
+</div>
+
+<h2>证据清单</h2>
+<details id="E02">
+  <summary><span class="g g-oth">[E02]</span> 其他 · 联网来源</summary>
+  <div class="kv">
+    <dt>来源</dt><dd>某财经媒体，2026-04-24 报道</dd>
+    <dt>链接</dt><dd><a href="https://example.com/news/2026-04-24/xxxxx" target="_blank" rel="noopener noreferrer">https://example.com/news/2026-04-24/xxxxx</a>〔复验：可达 · 2026-09-14 17:26〕</dd>
+    <dt>抓取</dt><dd>2026-09-10 17:20</dd>
+    <dt>定位</dt><dd>正文第 6 段、第 14 段</dd>
+    <dt>逐字摘录</dt><dd>「一季度实现归属于母公司股东的净利润 2.8 亿元，同比增长 12.4%」</dd>
+    <dt>关联</dt><dd>反驳 <a class="evid" href="#c2">#2</a></dd>
+  </div>
+</details>
+<details id="E03">
+  <summary><span class="g g-s">[E03]</span> S 级 · 联网来源</summary>
+  <div class="kv">
+    <dt>来源</dt><dd>某公司 2026 年第一季度报告（交易所信息披露平台）</dd>
+    <dt>链接</dt><dd><a href="https://example.com/disclosure/detail?id=xxxxx" target="_blank" rel="noopener noreferrer">https://example.com/disclosure/detail?id=xxxxx</a>〔复验：重定向至信息披露平台 · 2026-09-14 17:27〕</dd>
+    <dt>抓取</dt><dd>2026-09-10 17:22</dd>
+    <dt>定位</dt><dd>第 3 页「主要会计数据」表第 2 行</dd>
+    <dt>逐字摘录</dt><dd>「营业收入 60.00 亿元，本报告期比上年同期增减 12.40%」</dd>
+    <dt>关联</dt><dd>反驳 <a class="evid" href="#c2">#2</a>（2026Q1 对照期数据）</dd>
+  </div>
+</details>
+<details id="E05">
+  <summary><span class="g g-a">[E05]</span> A 级 · 联网来源</summary>
+  <div class="kv">
+    <dt>来源</dt><dd>某公司投资者关系活动记录表（公司官网）</dd>
+    <dt>链接</dt><dd><a href="https://example.com/ir/xxxxx" target="_blank" rel="noopener noreferrer">https://example.com/ir/xxxxx</a>〔复验：可达 · 2026-09-14 17:28〕</dd>
+    <dt>抓取</dt><dd>2026-09-10 17:25</dd>
+    <dt>定位</dt><dd>问答第 3 问</dd>
+    <dt>逐字摘录</dt><dd>「公司在 XX 细分市场的份额约为 4.5%，与去年同期基本持平」</dd>
+    <dt>关联</dt><dd>部分支持 <a class="evid" href="#c5">#5</a>（报告称"提升至 4.8%"，与 4.5% 不符；"提升"无据）</dd>
+  </div>
+</details>
+<details id="E06">
+  <summary><span class="g g-oth">[E06]</span> 其他 · 联网来源（不可达）</summary>
+  <div class="kv">
+    <dt>来源</dt><dd>某行业数据库（需授权终端）</dd>
+    <dt>链接</dt><dd>未取得可访问链接（付费墙，未检索）</dd>
+    <dt>抓取</dt><dd>—</dd>
+    <dt>定位</dt><dd>—</dd>
+    <dt>逐字摘录</dt><dd>—</dd>
+    <dt>关联</dt><dd>证据不足 <a class="evid" href="#c6">#6</a>（[G2] 检索不可达）</dd>
+    <dt>备注</dt><dd>已尝试 3 轮检索（见聚焦再搜索记录），未取得可访问来源；未闭环 ≠ 通过，请用户凭已授权终端自行核对。</dd>
+  </div>
+</details>
+
+<h2>主张核验卡</h2>
+<p>只出问题项；核验通过（支持）的主张不建卡。</p>
+
+<div class="claim" id="c2">
+  <div class="hd"><span class="num">#2</span><span class="v v-ref">反驳</span><span class="risk">风险：高</span><span>B 计算型 + C 口径型</span></div>
+  <div class="kv">
+    <dt>报告原句</dt><dd>"公司 2026 年第一季度净利润同比增长 20%"</dd>
+    <dt>证据引用</dt><dd><a class="evid" href="#E02">[E02]</a>（其他）第 6 段；<a class="evid" href="#E03">[E03]</a>（S 级）p.3「主要会计数据」</dd>
+    <dt>复算</dt><dd>报告值 +20%；证据 2026Q1 净利 2.8 亿 / 2025Q1 2.49 亿 → (2.8−2.49)/2.49 = 12.45%；绝对差 7.55pp，相对差 60.6%；容差 ±0.5pp，严重超限 → 不匹配〔引擎复算〕</dd>
+    <dt>口径对照</dt><dd>报告口径 = 净利润（归母/扣非未注明）｜证据口径 = 归母净利润 → 不一致（以归母数据充"净利润"表述，口径未注明）</dd>
+    <dt>单位确认</dt><dd>亿元（CNY）；% 与 pp 未混用</dd>
+    <dt>修改建议</dt><dd>改为"归母净利润同比增长约 12.4%"，并注明所用口径</dd>
+  </div>
+</div>
+
+<div class="claim" id="c5">
+  <div class="hd"><span class="num">#5</span><span class="v v-par">部分支持</span><span class="risk">中</span><span>F 比较型</span></div>
+  <div class="kv">
+    <dt>报告原句</dt><dd>"市场份额提升至 4.8%"</dd>
+    <dt>证据引用</dt><dd><a class="evid" href="#E05">[E05]</a>（A 级）问答第 3 问</dd>
+    <dt>复算</dt><dd>证据 4.5% 且"基本持平"；报告 4.8% 且"提升" → 数值差 0.3pp，方向无据〔引擎复算〕</dd>
+    <dt>修改建议</dt><dd>改为"份额约 4.5%，与去年基本持平"</dd>
+  </div>
+</div>
+
+<div class="claim" id="c6">
+  <div class="hd"><span class="num">#6</span><span class="v v-ins">证据不足</span><span class="risk">高</span><span>A 原始数字</span></div>
+  <div class="kv">
+    <dt>报告原句</dt><dd>"某细分产品最新报价 XX 元/吨"</dd>
+    <dt>证据引用</dt><dd><a class="evid" href="#E06">[E06]</a>（其他·不可达）</dd>
+    <dt>缺口分类</dt><dd>[G2] 检索不可达（付费墙）</dd>
+    <dt>修改建议</dt><dd>凭已授权终端核对后回填；未闭环 ≠ 通过</dd>
+  </div>
+</div>
+
+<div class="claim" id="c7">
+  <div class="hd"><span class="num">#7</span><span class="v v-opi">观点或预测</span><span class="risk">中</span><span>G 预测观点 · 依据未披露</span></div>
+  <div class="kv">
+    <dt>报告原句</dt><dd>"2026 年归母净利润达 12 亿元已无悬念"</dd>
+    <dt>依据披露</dt><dd>依据未披露——报告未给出测算过程、假设与输入（无 [E##] 可挂）</dd>
+    <dt>问题定性</dt><dd>预测事实化："已无悬念"为确定性措辞，把前瞻值当事实陈述；G 类不判真假，故结论仍为观点或预测，但列入问题项</dd>
+    <dt>修改建议</dt><dd>改为"我们预计约 12 亿元"并披露测算依据；或删除确定性措辞</dd>
+  </div>
+</div>
+
+<h2>需用户自行核验清单</h2>
+<div class="claim">
+  <div class="hd"><span class="v v-ins">影响核心结论</span></div>
+  <div class="kv">
+    <dt>主张</dt><dd><a class="evid" href="#c6">#6</a></dd>
+    <dt>证据</dt><dd><a class="evid" href="#E06">[E06]</a>（其他·不可达）</dd>
+    <dt>原因</dt><dd>该价格是报告盈利预测的直接输入项，错则结论反转</dd>
+    <dt>已尝试</dt><dd>3 轮检索（见 [E06] 备注），未取得可访问来源</dd>
+    <dt>动作</dt><dd>请用已授权终端核对后回填</dd>
+    <dt>注意</dt><dd>未闭环 ≠ 通过</dd>
+  </div>
+</div>
+<div class="claim">
+  <div class="hd"><span class="v v-opi">次优先</span></div>
+  <div class="kv">
+    <dt>主张</dt><dd><a class="evid" href="#c7">#7</a>（预测事实化）</dd>
+    <dt>缺口分类</dt><dd>[G3] 非公开数据——预测依据（测算假设/输入）未随报告披露</dd>
+    <dt>动作</dt><dd>向作者索取测算依据；确认后标注「内部估算」或补披露</dd>
+  </div>
+</div>
+
+<h2>对抗性抽查</h2>
+<table>
+  <tr><th>检查项</th><th>结果</th></tr>
+  <tr><td>明细偏差（>0.1% / 增长率 >0.5pp）</td><td>4 条数值主张中超容差 1 条：#2（7.55pp）；标 [舍入差异] 0 条</td></tr>
+  <tr><td>口径伪装（归母↔扣非 / 营收↔营业总收入 / 单季↔累计 / 合并↔母公司）</td><td>核验 4 项，发现 1 处（#2 以归母净利充"净利润"表述，口径未注明）</td></tr>
+  <tr><td>单位与币种</td><td>确认单位 6 条 / 未确认 0 / % 与 pp 混用 0 处</td></tr>
+  <tr><td>编造因果</td><td>E 类主张 0 条</td></tr>
+  <tr><td>引用错配（来源+页码/章节+报告期三对齐，含时序不可能检查）</td><td>检查 5 条，发现 0 处不对齐；时序不可能 0 处（来源覆盖期间均不早于数据所属期间）</td></tr>
+  <tr><td>预测事实化（确定性措辞的 G 类）</td><td>G 类主张 3 条中 1 条带确定性措辞且依据未披露（#7），已列问题项；其余 2 条标注依据已披露</td></tr>
+  <tr><td>元攻击</td><td>[疑似检索逃逸] 0 条 / G2 付费墙缺口 1 条（#6，未闭环 ≠ 通过）</td></tr>
+</table>
+<div class="warn">Score 提示：FinProof Score 反映证据链质量与引用规范，不代表结论正确性。</div>
+
+<h2>独立复核</h2>
+<table>
+  <tr><th>项</th><th>内容</th></tr>
+  <tr><td>复核方式</td><td>异源 · GLM-5.3-Flash（经子代理盲复核，仅输入主张原文+证据摘录+复算数字，不含主审结论）+ 自检层〔引擎重跑 3/3 一致 · 摘录复读 3/3 一致 · 口径核对 ✓〕</td></tr>
+  <tr><td>复核范围</td><td>问题项 4/4 条（#2 #5 #6 #7）+ 支持项抽样 3 条（#1 #3 #4）+ 评分复算 ✓</td></tr>
+  <tr><td>结果</td><td>一致 7 条 · 分歧 0 条（若有分歧逐条列：#N · 主审判 X（依据）· 复核判 Y（理由）· 分歧点与处理）</td></tr>
+</table>
+<p class="foot">协议见 independent-review.md：异源优先（不同模型经子代理盲复核）&gt; 同源盲复核 &gt; 自检复核〔机械层：仅防算错抄错，非独立判断〕&gt; 未复核（如实写原因）。复核降低单模型误判风险，不改变评分的自评性质。</p>
+
+<h2>审计轨迹</h2>
+<table>
+  <tr><th>主张</th><th>证据 → 计算 → 判定</th></tr>
+  <tr><td><a class="evid" href="#c2">#2</a></td><td>[E02]+[E03] → 引擎 yoy --current 2.8 --previous 2.49 → 12.4498%，vs 报告 20%，超容差 7.55pp → REFUTED</td></tr>
+  <tr><td><a class="evid" href="#c5">#5</a></td><td>[E05] → 证据 4.5% 且"基本持平" vs 报告 4.8% 且"提升"，数值差 0.3pp、方向无据 → PARTIALLY_SUPPORTED</td></tr>
+  <tr><td><a class="evid" href="#c6">#6</a></td><td>[E06] 付费墙不可达，3 轮检索无果 → INSUFFICIENT（未闭环 ≠ 通过）</td></tr>
+  <tr><td><a class="evid" href="#c7">#7</a></td><td>无证据可挂（依据未披露）→ "已无悬念"属确定性措辞的前瞻表述 → OPINION_OR_FORECAST + 预测事实化问题项（G 类不计入评分分母）</td></tr>
+</table>
+
+<h2 id="appendix">附录 · 评分与分类标准</h2>
+<p>本附录是本次评分所依据的全部标准，随报告交付，便于读者直接在报告内复核；口径与 <code>scoring-spec.md</code>、<code>SKILL.md</code> 一致。</p>
+
+<h3>A. 五维定义与公式</h3>
+<table>
+  <tr><th>维度</th><th>权重</th><th>公式</th><th>满分条件</th></tr>
+  <tr><td>可判定率</td><td>25%</td><td>N_c / N_d × 100</td><td>全部可判主张有证据闭环</td></tr>
+  <tr><td>数字与计算准确性</td><td>25%</td><td>max(0, 100 − E_v/N_v × 100 × 2)</td><td>无数值类 REFUTED</td></tr>
+  <tr><td>引用一致性</td><td>20%</td><td>max(0, 100 − E_q/N_d × 100 × 2)</td><td>引用均三对齐</td></tr>
+  <tr><td>来源权威性</td><td>15%</td><td>Σ(每条闭环主张最高证据等级分) / N_c</td><td>全部主张由 S 级证据支撑</td></tr>
+  <tr><td>时间与口径一致性</td><td>15%</td><td>max(0, 100 − (E_p+E_s)/N_d × 100 × 2)</td><td>无期间错配与口径混用</td></tr>
+  <tr><th>总分</th><th>100%</th><td colspan="2">0.25×可判定率 + 0.25×准确性 + 0.20×引用一致性 + 0.15×来源权威性 + 0.15×时间口径</td></tr>
+</table>
+<p class="foot">取整规则：加权求和使用未取整的各维分值，最后四舍五入到整数；展示时各维保留一位小数、加权贡献保留两位小数（先各自取整再加权会产生累积误差，禁止）。惩罚系数 = 2。N_v = 0（纯定性报告）时准确性按 80 计。</p>
+
+<h3>B. 统计口径</h3>
+<table>
+  <tr><th>符号</th><th>含义</th></tr>
+  <tr><td>N</td><td>总主张数（含观点/预测）</td></tr>
+  <tr><td>N_d</td><td>可判主张数 = N − 观点/预测类(G)</td></tr>
+  <tr><td>N_c</td><td>闭环主张数（有证据可判：支持/反驳/部分支持/无法判断；不含证据不足）</td></tr>
+  <tr><td>N_v</td><td>数值类主张数（A/B/C 三类）</td></tr>
+  <tr><td>N_e</td><td>数值类主张中经引擎复算的条数（不计分，仅判定溯源；证据不足主张无证据数值，不计入）。口径：只计"实际调用引擎且审计轨迹留有命令与输出"的主张；〔逐字一致，免引擎〕与〔心算估算〕计入 N_v、不计入 N_e</td></tr>
+  <tr><td>E_v / E_q / E_p / E_s / E_i</td><td>数值错误 / 引用错配 / 期间错配 / 口径问题 / 证据不足 的条数</td></tr>
+</table>
+
+<h3>C. 证据等级标准</h3>
+<table>
+  <tr><th>等级</th><th>分值</th><th>典型来源</th></tr>
+  <tr><td><span class="g g-s">S</span></td><td>100</td><td>交易所公告、定期报告（年报/中报）、招股书、监管/审计/法院/政府正式文件</td></tr>
+  <tr><td><span class="g g-a">A</span></td><td>70</td><td>公司官网、投资者关系材料、业绩说明会、公司公告性新闻稿</td></tr>
+  <tr><td><span class="g g-oth">其他</span></td><td>40</td><td>权威财经媒体、第三方研究机构、行业协会、政府统计年鉴</td></tr>
+  <tr><td><span class="g g-none">未注明</span></td><td>0</td><td>报告未给出来源，或来源不可追溯</td></tr>
+</table>
+
+<h3>D. 分数档位与附加要求</h3>
+<table>
+  <tr><th>档位</th><th>区间</th><th>含义</th><th>附加要求</th></tr>
+  <tr><td>优</td><td>90–100</td><td>证据链完整，无实质性问题</td><td>若仍有 REFUTED，须在摘要首行点名该矛盾</td></tr>
+  <tr><td>良</td><td>75–89</td><td>个别瑕疵，不影响核心结论</td><td>列出瑕疵条数</td></tr>
+  <tr><td>一般</td><td>60–74</td><td>存在影响局部结论的问题，需修订</td><td>给出修订优先级</td></tr>
+  <tr><td>差</td><td>&lt;60</td><td>存在影响核心结论的问题，不建议直接使用</td><td>列出所有 REFUTED 与核心缺口</td></tr>
+</table>
+
+<h3>E. 主张分类</h3>
+<table>
+  <tr><th>类型</th><th>说明</th><th>核验重点</th></tr>
+  <tr><td>A 原始数字</td><td>直接陈述的数值</td><td>数字 / 单位 / 量级 / 期间 / 口径</td></tr>
+  <tr><td>B 计算型</td><td>含同比·环比·比率等推导</td><td>取两期数据重新算</td></tr>
+  <tr><td>C 口径型</td><td>涉及单季/累计、归母/扣非等</td><td>披露的是哪种口径</td></tr>
+  <tr><td>D 业务事实</td><td>定性业务结论</td><td>是否有披露支撑（市占率/客户/产能等）</td></tr>
+  <tr><td>E 因果型</td><td>归因结论</td><td>原文是否支持所引原因、机制性表述</td></tr>
+  <tr><td>F 比较型</td><td>同业 / 对标比较</td><td>对标对象、指标、期间、口径是否可比</td></tr>
+  <tr><td>G 预测观点</td><td>前瞻 / 主观判断</td><td>标为观点，核查是否披露依据，不判真假；标注「依据已披露/未披露」，确定性措辞的预测按「预测事实化」进问题项</td></tr>
+</table>
+
+<h3>F. 六类结论与触发条件</h3>
+<table>
+  <tr><th>结论</th><th>触发条件</th></tr>
+  <tr><td><span class="v v-sup">支持</span></td><td>证据直接支持主体/指标/期间/单位/口径/数值，且在容差内</td></tr>
+  <tr><td><span class="v v-ref">反驳</span></td><td>证据给出冲突事实、错值、错期、错单位或相反方向</td></tr>
+  <tr><td><span class="v v-par">部分支持</span></td><td>多组成部分中部分成立、关键部分缺失，或证据只支持较弱表述</td></tr>
+  <tr><td><span class="v v-ins">证据不足</span></td><td>既不能证明也不能反驳（不得把解析失败归入此类）</td></tr>
+  <tr><td><span class="v v-opi">观点或预测</span></td><td>预测/展望/主观判断，不判真假；须标注依据已披露/未披露；确定性措辞的预测按「预测事实化」列入审计结论问题项</td></tr>
+  <tr><td><span class="v v-opi">无法判断</span></td><td>材料缺失或不可判定</td></tr>
+</table>
+<p class="foot">优先级顺序（取舍顺序，非等级）：REFUTED &gt; SUPPORTED &gt; PARTIALLY_SUPPORTED &gt; INSUFFICIENT。</p>
+
+<h3>G. 缺口分类</h3>
+<table>
+  <tr><th>缺口</th><th>含义</th><th>用户动作</th></tr>
+  <tr><td>G1</td><td>源文件缺失</td><td>上传后重跑该主张</td></tr>
+  <tr><td>G2</td><td>检索不可达（付费墙 / 未索引 / 离岸 / Pre-IPO 分散披露）</td><td>凭已授权数据源自核；未闭环 ≠ 通过</td></tr>
+  <tr><td>G3</td><td>非公开数据（细分口径、内部假设）</td><td>确认依据，标注「内部估算/未审计」</td></tr>
+  <tr><td>G4</td><td>提取失败（加密 / 损坏 / 模糊到手写级）</td><td>提供清晰文本版；须先走内置 OCR</td></tr>
+</table>
+
+<h3>H. 复算容差表</h3>
+<table>
+  <tr><th>复算类型</th><th>容差</th><th>超限判定</th></tr>
+  <tr><td>数值比对 / 累计转单季 / 比率</td><td>相对 0.1%</td><td>REFUTED</td></tr>
+  <tr><td>同比 / 环比增长率</td><td>0.5 个百分点（pp）</td><td>REFUTED</td></tr>
+  <tr><td>披露舍入豁免（唯一例外）</td><td>最多 0.5%</td><td>超过 0.5% 一律 REFUTED</td></tr>
+</table>
+
+<div class="note"><b>口径披露</b>：①「可判定率」（历史名「证据覆盖率」，公式与全部历史分数不变）衡量"能否判定"——闭环含 REFUTED，不衡量证据是否充分、来源是否可靠；②「来源权威性」仅占 15%，数字自洽但来源等级普遍偏低的报告仍可能拿到"优"档；③ 数值复算由确定性引擎执行（覆盖 N_e/N_v 见基本信息），拆解与语义判定由模型产出、两次运行可能不同；④ 本分为<b>专家自评</b>（判定经独立复核，见「独立复核」段），且不同报告的 Score 不可横向直接比较。完整依据见 <code>scoring-spec.md</code>。</div>
+
+<p class="foot">本报告由鉴融（FinProof）生成 · 2026-09-14 17:30 · 专家自评，非第三方认证 · 公式与分子分母均公开，可自行复算。</p>
+</body>
+</html>

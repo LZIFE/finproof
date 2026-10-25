@@ -1,0 +1,72 @@
+[
+ {
+  "id": "C11",
+  "verdict": "REFUTED",
+  "reason_zh": "Snopes 于发帖当日（2016-12-19）判定 False：所谓维京人开放美国银行球馆收容无家可归者系推特恶作剧（发帖人已承认编造以讽刺纳税人出资的球馆），球馆从未实际开放、明尼苏达体育设施管理局确认无人入内避寒，部分媒体（Yahoo/CBS）当日误报后已更正。",
+  "excerpt": "The Minnesota Vikings, however, did not open U.S. Bank Stadium on 18 December 2016 to shelter the homeless.",
+  "source_urls": ["https://www.snopes.com/fact-check/minnesota-vikings-open-their-stadium-to-shelter-the-homeless/"]
+ },
+ {
+  "id": "C12",
+  "verdict": "REFUTED",
+  "reason_zh": "PolitiFact 判 False：无任何证据显示 Becerra 试图废除 Prop 13——总检察长仅依法为公民倡议撰写标题与摘要而非发起方，所涉 19-0008 号倡议实为仅对大型商业/工业地产按市值征税的 split-roll 提案（预计年增收 75-120 亿美元），不动住宅、农地及 300 万美元以下小商业的保护上限。",
+  "excerpt": "There's no evidence Becerra is trying to eliminate Prop. 13",
+  "source_urls": ["https://www.politifact.com/factchecks/2020/jan/24/facebook-posts/no-californians-arent-being-asked-repeal-prop-13s/"]
+ },
+ {
+  "id": "C13",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "机制成立（PolitiFact Mostly True：社保工资基数 118,500 美元 vs 年薪约 2,350 万，引擎复算应税占比仅 0.5043%〔引擎复算 margin --revenue 23500000 --segment-revenue 118500 → 0.5042553%〕），但按每节约 71,646 美元复算，基数在首场比赛第二节开始后约 7.85 分钟（近半场）才用尽，并非主张所称的'第二节开始时'，且存在按赛季期还是按纳税年度计的差异——证据仅支持较弱表述'他在赛季首场比赛上半场内即停止缴纳社保税'。",
+  "excerpt": "James would reach the cap somewhere before the eighth minute of the second quarter of the first game",
+  "source_urls": ["https://www.politifact.com/factchecks/2016/apr/28/alan-grayson/lebron-james-pays-social-security-taxes-halftime-f/"]
+ },
+ {
+  "id": "C14",
+  "verdict": "SUPPORTED",
+  "reason_zh": "PolitiFact 判 Mostly True，税率对比两部分均获数字直接支持：中央卫生区拟税率 12.9 美分/百美元估值（由 7.89 美分上调）低于次低的 Nueces 县 16.24 美分和 Harris 县 18.22 美分，提案通过后仍将保持最低；PolitiFact 保留意见涉及被省略的另一口径语境（按人均税负收入 115 美元高于 Nueces/El Paso），不构成对'税率最低且通过后仍最低'这一原主张本身的反驳。",
+  "excerpt": "the Nueces County district has the next-lowest rate, 16.24 cents per $100 valuation",
+  "source_urls": ["https://www.politifact.com/factchecks/2012/oct/26/keep-austin-healthy-pac/proposition-advocate-says-central-health-district/"]
+ },
+ {
+  "id": "C15",
+  "verdict": "SUPPORTED",
+  "reason_zh": "PolitiFact 判 Mostly True：Michels 公司持有 TC Energy 在蒙大拿、南达科他、俄克拉何马、得州的八座泵站建设合同，其加拿大子公司承包约 260 公里管段（拜登 2021-01-20 撤销许可时约完工三分之一），故'我的公司当时正在建设 Keystone 输油管道、被拜登叫停'这一核心事实获直接支持；保留意见仅涉措辞可能暗示其为总承包商及个别泵站或属既有 Keystone 管线，不动摇核心。",
+  "excerpt": "But Michels is right that his company had a significant role in the pipeline project.",
+  "source_urls": ["https://www.politifact.com/factchecks/2022/jul/21/tim-michels/michels-target-claim-my-company-was-building-keyst/"]
+ },
+ {
+  "id": "C16",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "数字本身在舍入豁免内成立（BLS 就业降幅：2008-11 为 -76.5 万、2008-12 为 -69.6 万、2009-01 为 -79.6 万，三个月均值 75.23 万，引擎复算相对差 0.31%〔引擎复算 match --claim 750000 --evidence-yuan 752333.33 → matched=false@0.1%，适用舍入豁免 0.31%<0.5%〕），但该速率仅存在于布什任期最后三个月，PolitiFact 自认'有挑选数据的成分'（任期内整体就业并非每月净减 75 万），作为对'共和党总统在任期间'的整体表述，证据只支持较弱表述'其任期最后三个月平均每月约减少 75 万个就业岗位'。",
+  "excerpt": "Wasserman Schultz was speaking of President George W. Bush and at the end of his term, the monthly job losses averaged about 750,000 jobs.",
+  "source_urls": ["https://www.politifact.com/factchecks/2015/oct/11/debbie-wasserman-schultz/wasserman-schultz-under-conservative-republican-pr/"]
+ },
+ {
+  "id": "C17",
+  "verdict": "SUPPORTED",
+  "reason_zh": "PolitiFact 判 True 且引擎复算确认：TIGTA/IRS 数据显示 501(c)(4) 申请数 2010 年（1,735 件）较 2009 年（1,751 件）不增反降 0.91%〔引擎复算 qoq --current 1735 --previous 1751 → -0.9138%〕，2010 年确无激增；翻倍发生在 2011-2012 年（2012 较 2010 +93.5%），且针对性筛查始于 2010 年 3 月，早于任何申请增长。",
+  "excerpt": "We rate the statement True.",
+  "source_urls": ["https://www.politifact.com/factchecks/2013/jun/07/tim-griffin/no-rise-applications-triggered-irs-actions-says-ti/"]
+ },
+ {
+  "id": "C18",
+  "verdict": "SUPPORTED",
+  "reason_zh": "PolitiFact 逐点核实判 True：'找不到全职工作'对应 BLS U-6 口径（14.0M 失业+2.5M 边际附着+9.3M 非自愿兼职≈25.8M，主张 24M 为月份/口径范围内偏保守取整）；无保险人口 2010 年普查 49.9M≈50M（相对差 0.2%，舍入豁免内）；SNAP 2011-07 为 45.3M（其后数月逼近 47M）；负资产房屋 Zillow 估 15.3M≈15M（CoreLogic 口径为 10.9M，主张落在两机构估计区间内）——四项数字均为当时官方统计的合理取整，属统计月份与口径差异而非数值错误。",
+  "excerpt": "We examined each of his economic claims and found them accurate, point for point. We rate his claim True.",
+  "source_urls": ["https://www.politifact.com/factchecks/2011/oct/24/alan-grayson/alan-graysons-defense-occupy-wall-street-impassion/"]
+ },
+ {
+  "id": "C19",
+  "verdict": "REFUTED",
+  "reason_zh": "Snopes 于发帖当日（2016-07-18）判定 False：该说法源自讽刺网站文章，特鲁多政府当时的真实计划是于次年春季提出大麻合法化立法，并无'赦免所有涉大麻定罪者'的赦免计划，也无人因此获释（事后的大规模宽赦直到 2018-2019 年才落地，且仅限简单持有、须逐案申请）。",
+  "excerpt": "has not freed all those convicted of marijuana-related offences from prison",
+  "source_urls": ["https://www.snopes.com/fact-check/justin-trudeau-pardon-marijuana/"]
+ },
+ {
+  "id": "C20",
+  "verdict": "REFUTED",
+  "reason_zh": "Snopes 判 False：不存在 Cheryl Mills 称班加西死者为'idiot soldiers'的泄露电邮——在 WikiLeaks 全部公布电邮中检索'idiot US soldiers'为零结果，该电邮系伪造；且伪造电邮落款日期为 2012-07-26，早于 2012-09-11 班加西遇袭，属'来源期间早于数据期间'的时序不可能，纯逻辑即可判定。",
+  "excerpt": "There is no leaked e-mail in which longtime Clinton aide Cheryl Mills called the Benghazi dead 'idiot soldiers'",
+  "source_urls": ["https://www.snopes.com/fact-check/cheryl-mills-leaked-email/"]
+ }
+]

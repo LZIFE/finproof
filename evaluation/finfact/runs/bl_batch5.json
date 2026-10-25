@@ -1,0 +1,94 @@
+[
+ {
+  "id": "C41",
+  "verdict": "uncertain",
+  "reason": "Snopes 2014-08-19 核实（与 posted 日期同日）评为 Mixture：奥巴马确曾被86岁的Ethel Kennedy提名且拒绝被冰水浇身、只以捐款响应，但按ALS挑战规则'捐款也算参与'，故'奥巴马拒绝冰桶挑战'的说法只对一半、属误导性框架。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/ice-bucket-challenge",
+   "https://time.com/3104483/obama-declines-ice-bucket-challenge",
+   "https://www.politico.com/story/2014/08/obama-als-challenge-kennedy-family-109947"
+  ]
+ },
+ {
+  "id": "C42",
+  "verdict": "true",
+  "reason": "PolitiFact 2008-10-16（与 posted 同日）评为 True：Tax Policy Center 分析显示约98%的小企业申报人收入低于25万美元，在奥巴马计划下不会增税反而多数减税，与第三方无党派分析一致。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2008/oct/16/barack-obama/most-small-businesses-wont-be-subject-to-obamas-ta/"
+  ]
+ },
+ {
+  "id": "C43",
+  "verdict": "false",
+  "reason": "这封声称'联邦税表/缴款被拒或退税通知'的邮件是钓鱼诈骗（Snopes 2007-08-28 定性为 Phishing bait）：IRS 从不通过电子邮件主动联系纳税人，链接指向窃取社保号和银行卡信息的假 IRS/EFTPS 网站。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/irs-notification-rejected-federal-tax-returnpayment-or-notice-of-refund",
+   "https://www.irs.gov/help/report-fraud/report-fake-irs-treasury-or-tax-related-emails-and-messages"
+  ]
+ },
+ {
+  "id": "C44",
+  "verdict": "true",
+  "reason": "18 U.S.C. §208 明确不适用于总统（同样豁免副总统、国会议员和联邦法官），且没有任何法律强制总统设盲信托（仅为惯例），PolitiFact 2016-11-16 将 Giuliani 的同一表述评为 True。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2016/nov/16/rudy-giuliani/giuliani-president-trump-will-be-exempt-conflict-i",
+   "https://www.law.cornell.edu/uscode/text/18/208"
+  ]
+ },
+ {
+  "id": "C45",
+  "verdict": "true",
+  "reason": "该问题有充分可查证的记录答案：Bronco Wine Company（Fred Franzia）在2000年代初加州葡萄酒过剩期用廉价中央山谷葡萄大规模自产自装、几乎零营销投入，并由 Trader Joe's 独家以1.99美元（Two Buck Chuck）销售，多个来源（含2003年brandchannel报道）一致印证。",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Charles_Shaw_wine",
+   "https://thehustle.co/how-two-buck-chuck-changed-the-wine-industry",
+   "https://www.brandchannel.com/features_profile.asp?id=131"
+  ]
+ },
+ {
+  "id": "C46",
+  "verdict": "uncertain",
+  "reason": "Snopes 2017-04-17 评为 Mixture：Flake 确实在Mesa市政厅谈过夜间太阳能需靠电池、现有技术不足以支撑基荷供电，但网传版本改写并删减了他的原话，且'太阳能不能点亮夜间灯'的绝对说法不成立（储电或电网供电可行）。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/jeff-flake-solar-energy",
+   "https://www.aol.com/article/news/2017/04/14/republican-sen-jeff-flake-gets-slammed-in-raucous-town-hall-meeting/22039773/"
+  ]
+ },
+ {
+  "id": "C47",
+  "verdict": "false",
+  "reason": "出自已知的讽刺假新闻网站 National Report（Snopes 2014-11-13 评为 False）：国会从未表决取消儿童税收抵免、房贷利息抵扣和EITC，文中所称'支持率10%的国会投票通过'纯属虚构。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/koch-druthers",
+   "https://nationalreport.net/congress-eliminates-child-tax-credit-mortgage-deduction-e-t-c-tax-code/"
+  ]
+ },
+ {
+  "id": "C48",
+  "verdict": "uncertain",
+  "reason": "Snopes 2022-03-28（Jordan Liles）评为 Mixture/Misleading：这些copypasta帖子把仅针对联邦机构的 CISA 'Shields Up' 指引改写为'国土安全部提醒全体民众储备油料现金'，且'接听问疫苗的robocall按1/2即被盗取银行信息'无任何依据——真假混杂、确具误导性。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/cellphones-homeland-security",
+   "https://www.snopes.com/list/copypasta-snopes-false-misleading"
+  ]
+ },
+ {
+  "id": "C49",
+  "verdict": "true",
+  "reason": "PolitiFact 2018-01-17（与 posted 同日）评为 Mostly True：纽约州劳工厅数据显示2016-11至2017-11，纽约市五县失业率全部下降，市外57县几乎全部上升（仅Lewis县下降、Seneca/Clinton持平），'all of them'略有夸张但方向属实。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2018/jan/17/edward-cox/unemployment-inching-almost-every-county-outside-n",
+   "https://www.empirecenter.org/publications/report-job-gains-in-ny-but-not-everywhere/"
+  ]
+ },
+ {
+  "id": "C50",
+  "verdict": "false",
+  "reason": "PolitiFact 2021-02-11（与 posted 同日）将 McCarthy 的同一表述评为 False：CBO 2021年2月报告的中心估计是把最低工资提到15美元平均减少140万个岗位，370万是从2019年旧报告不确定性区间上限中挑出的夸大数字（且忽略增薪约1700万人、减贫约90万人的收益）。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2021/feb/11/kevin-mccarthy/gop-house-leader-kevin-mccarthy-distorts-job-loss",
+   "https://www.factcheck.org/2021/01/paul-distorts-cbos-estimate-on-impact-of-15-minimum-wage",
+   "https://www.cbo.gov/system/files/2021-02/56975-Minimum-Wage.pdf"
+  ]
+ }
+]

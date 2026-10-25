@@ -72,7 +72,7 @@ def verify_exact_value(
       避免 UNABLE 过度弃权（Phase 23.7 修复）。
 
     Phase 23.7 修复：
-    1. 容差从 0.5% 收紧到 0.1%（_VALUE_TOLERANCE），消除假阳性支持；
+    1. 容差从 0.5% 收紧到 0.1%（经 base.VALUE_TOLERANCE=0.001，v2.7.1 落地；此前文档声称收紧但代码仍为 0.005）；
     2. 非数值类 claim_type 路由到 semantic_verifier，消除过度弃权；
     3. VerificationResult 添加 rule_id / calculated_value 结构化字段（诊断脚本依赖）。
     """

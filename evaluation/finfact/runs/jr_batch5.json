@@ -1,0 +1,106 @@
+[
+ {
+  "id": "C41",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "该条实为'奥巴马拒绝参加冰桶挑战'之谣传（Snopes 2014-08-19 判 Mixture）：Ethel Kennedy 2014-08 确实名挑战奥巴马，他婉拒浇冰水但按规则捐款（'contribution will be monetary'），'拒绝参与'只对了一半。",
+  "excerpt": "The President appreciates Mrs. Kennedy thinking of him for the challenge — though his contribution to this effort will be monetary.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/ice-bucket-challenge",
+   "https://time.com/3104483/obama-declines-ice-bucket-challenge"
+  ]
+ },
+ {
+  "id": "C42",
+  "verdict": "SUPPORTED",
+  "reason_zh": "奥巴马 2008-10-15 终场辩论原话，PolitiFact 判 True；引擎复算 Tax Policy Center 数据（约3540万有小企业收入申报人中仅66.36万超25万美元）得 98.13% 低于该线，'98%'在整数舍入内成立，且其计划不对该线下小企业加税。",
+  "excerpt": "The statement: \"98 percent of small businesses make less than $250,000\" and would not see a tax increase under Barack Obama's plan.",
+  "source_urls": [
+   "https://www.politifact.com/article/2008/oct/16/joe-plumber-small-business-taxes/",
+   "https://www.pulitzer.org/winners/staff-69",
+   "https://www.factcheck.org/2008/07/mccains-small-business-bunk/",
+   "https://transcripts.cnn.com/show/oh/date/2008-10-25/segment/01"
+  ]
+ },
+ {
+  "id": "C43",
+  "verdict": "REFUTED",
+  "reason_zh": "该主题'IRS通知'邮件为钓鱼诈骗而非真实 IRS 通知：Snopes（2007-08-28）指出其链接诱导至假冒网站窃取个人信息，IRS 明确从不主动以电子邮件联系纳税人——邮件所声称的官方通知身份被反驳。",
+  "excerpt": "The IRS never offers refunds through e-mail or sends out unsolicited e-mails to taxpayers.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/irs-notification-rejected-federal-tax-returnpayment-or-notice-of-refund",
+   "https://www.irs.gov/privacy-disclosure/report-phishing"
+  ]
+ },
+ {
+  "id": "C44",
+  "verdict": "SUPPORTED",
+  "reason_zh": "法律核实成立：18 U.S.C. §202(c) 明确将总统排除于 §208 等财务利益冲突条款的'officer/employee'定义之外，CRS RS21656 载明无任何联邦成文法要求官员（含总统）设立盲信托、总统仅是传统上自愿采用（PolitiFact 因贿赂等少数其他条款仍适用而判 Mostly True）。",
+  "excerpt": "the terms 'officer' and 'employee' in sections 203, 205, 207 through 209, and 218 of this title shall not include the President, the Vice President, a Member of Congress, or a Federal judge",
+  "source_urls": [
+   "https://www.law.cornell.edu/uscode/text/18/202",
+   "https://www.everycrsreport.com/reports/RS21656.html",
+   "https://www.concordmonitor.com/2016/11/18/trump-will-be-exempt-from-conflict-of-interest-laws-6204899"
+  ]
+ },
+ {
+  "id": "C45",
+  "verdict": "UNABLE_TO_DETERMINE",
+  "reason_zh": "该条为疑问句而非可判定真伪的事实断言（无可判定的命题内容）：其预设事实（Charles Shaw 在 Trader Joe's 以 $1.99 低价销售、成本低主要因葡萄过剩与 Bronco 纵向整合）有据可查，但未找到针对该问题本身的评级。",
+  "excerpt": "Franzia is part of this glut of course, with perhaps 40,000 acres of vines.",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Charles_Shaw_wine",
+   "https://wineeconomist.com/2007/06/07/300-million-bottles-of-two-buck-chuck",
+   "https://www.businessinsider.com/why-trader-joes-wine-is-so-cheap-2015-7"
+  ]
+ },
+ {
+  "id": "C46",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "Flake 确在 2017-04-13 Mesa 市政会说过'夜里太阳不亮不能断电'之类的话，但网传'太阳能无法在夜间点亮电灯'系断章改词（power→lights）且忽略他明知太阳能可储能（Tesla-Kauai 储能电站 2017-03 已实现夜间供电）——Snopes 判 Mixture。",
+  "excerpt": "What's False: The full context of Senator Flake's remark showed he was aware that solar energy can be stored and was not suggesting solar power technology was useless at night.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/jeff-flake-solar-energy",
+   "https://www.engadget.com/2017/03/08/teslas-new-solar-energy-station-will-power-hawaii-at-night/"
+  ]
+ },
+ {
+  "id": "C47",
+  "verdict": "REFUTED",
+  "reason_zh": "该'新闻'源自讽刺假新闻站 National Report 2014-11-11 的捏造文章，Snopes（2014-11-13）判 FALSE：国会从未取消儿童税收抵免、EITC 或房贷利息抵扣，文中'经济学家 Paul Horner'系该站惯用虚构人物。",
+  "excerpt": "\"a well-known fake news outlet\" ... \"nothing but a chain-yanking spoof\"",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/koch-druthers"
+  ]
+ },
+ {
+  "id": "C48",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2022-03-28）核实相关帖文确具误导性：DHS 并未向全体美国公民发布此类备忘录或短信警报，'手机被黑窃取银行信息'说法失实，帖文系把针对联邦机构的 CISA 指引再包装的 copypasta——'帖文误导'的判断成立。",
+  "excerpt": "Homeland Security did not issue a memo or any guidance to all U.S. citizens to \"keep your fuel topped off\" or to \"store up some cash\" due to the war in Ukraine.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/cellphones-homeland-security",
+   "https://www.snopes.com/articles/369246/what-is-copypasta/"
+  ]
+ },
+ {
+  "id": "C49",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "方向大体正确但'all'过强：NYS DOL 数据（经 PolitiFact 2018-01-17 核查）显示 2016-11→2017-11 非 NYC 的 57 县中 54 县失业率上升、Lewis 县下降、Seneca/Clinton 持平，NYC 五县确降；引擎复算 54/57=94.7%，证据只支持'几乎所有县'的较弱表述（PolitiFact 判 Mostly True）。",
+  "excerpt": "Cox's numbers were close to correct. He said unemployment was up everywhere but NYC, but three counties outside NYC did not go up.",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2018/jan/17/edward-cox/unemployment-inching-almost-every-county-outside-n/"
+  ]
+ },
+ {
+  "id": "C50",
+  "verdict": "OPINION_OR_FORECAST",
+  "reason_zh": "前瞻性政策效果预测（G 类，依据已披露）：'up to 3.7 million jobs' 源自 CBO 2019-07 报告 15 美元方案可能区间上限（中位估计仅 -130 万）；发帖时（2021-02-11）最新 CBO（2021-02-08）平均估计为 -140 万，故该数是区间上限而非中心预测（FactCheck.org 亦指出此引用方式），预测本身不判真假。",
+  "excerpt": "CBO estimates that there is about a two-thirds chance that the change in employment would lie between about zero and a reduction of 3.7 million workers",
+  "source_urls": [
+   "https://www.cbo.gov/publication/55410",
+   "https://www.cbo.gov/publication/56975",
+   "https://www.republicanleader.gov/democrats-minimum-wage-mandate-would-destroy-up-to-3-7-million-jobs/",
+   "https://www.factcheck.org/2021/01/paul-distorts-cbos-estimate-on-impact-of-15-minimum-wage/"
+  ]
+ }
+]

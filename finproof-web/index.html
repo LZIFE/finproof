@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>鉴融 FinProof · 网页版体验与 API</title>
+<style>
+  :root{
+    --ink:#0f1b2d; --primary:#16406b; --primary-600:#1d4ed8; --accent:#e11d48;
+    --teal:#0d9488; --amber:#d97706; --blue:#2563eb; --gray:#64748b;
+    --text:#1f2937; --muted:#5b6675; --line:#e6eaf0; --bg:#ffffff; --bg-soft:#f5f7fa;
+    --green:#16a34a; --radius:16px; --shadow:0 1px 2px rgba(15,27,45,.06),0 8px 24px rgba(15,27,45,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink)}
+  .brand .logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--primary-600));color:#fff;display:grid;place-items:center;font-size:15px;font-weight:900}
+  .tag{font-size:12px;font-weight:700;color:#fff;background:var(--teal);padding:4px 10px;border-radius:999px}
+
+  .hero{background:radial-gradient(1000px 460px at 75% -10%,rgba(29,78,216,.10),transparent),linear-gradient(180deg,#0f1b2d,#13243b);color:#eaf1fb;padding:64px 0 56px}
+  .hero h1{font-size:38px;font-weight:900;letter-spacing:-.5px}
+  .hero h1 .grad{background:linear-gradient(90deg,#7fb2ff,#9be7d8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{margin-top:16px;font-size:17px;color:#cdddf2;max-width:760px}
+  .hero .slogan{margin-top:18px;font-size:15px;color:#9fc2ee;font-weight:600}
+
+  section{padding:56px 0}
+  .sec-soft{background:var(--bg-soft)}
+  .sec-head{margin-bottom:26px}
+  .sec-head .kicker{font-size:13px;font-weight:800;letter-spacing:1.5px;color:var(--primary-600);text-transform:uppercase}
+  .sec-head h2{font-size:28px;font-weight:900;color:var(--ink);margin-top:6px}
+  .sec-head p{margin-top:10px;color:var(--muted);max-width:760px;font-size:15px}
+
+  .panel{background:var(--card,#fff);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  label{display:block;font-size:13px;font-weight:700;color:var(--ink);margin:14px 0 6px}
+  textarea,input{width:100%;font-family:inherit;font-size:14px;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;outline:none}
+  textarea{min-height:140px;resize:vertical}
+  textarea:focus,input:focus{border-color:var(--primary-600)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.row{grid-template-columns:1fr}}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;padding:12px 20px;border-radius:12px;font-size:15px;border:none;cursor:pointer;background:var(--primary-600);color:#fff;margin-top:16px}
+  .btn:hover{opacity:.92}
+  .btn:disabled{opacity:.6;cursor:default}
+  .hint{font-size:12px;color:var(--muted);margin-top:6px}
+  .note{font-size:13px;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:12px;padding:12px 14px;margin-top:16px}
+  .note b{color:var(--ink)}
+
+  #result{margin-top:26px}
+  .score-card{display:flex;align-items:center;gap:24px;flex-wrap:wrap;background:linear-gradient(135deg,#0f1b2d,#16406b);color:#fff;border-radius:var(--radius);padding:24px 28px;box-shadow:var(--shadow)}
+  .score-num{font-size:56px;font-weight:900;line-height:1}
+  .score-meta{font-size:14px;color:#cdddf2}
+  .score-meta b{color:#fff}
+  .dims{margin-top:18px;display:grid;gap:12px}
+  .dim{display:grid;grid-template-columns:140px 1fr 64px;align-items:center;gap:12px;font-size:13px}
+  .dim .name{color:var(--ink);font-weight:600}
+  .dim .bar{height:10px;background:var(--bg-soft);border-radius:999px;overflow:hidden}
+  .dim .bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--primary-600),var(--teal))}
+  .dim .val{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+  .est{font-size:11px;color:var(--amber);font-weight:700}
+
+  .dist{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .chip{font-size:13px;background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+
+  table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:700;background:var(--bg-soft)}
+  .vbadge{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;color:#fff;white-space:nowrap}
+  .v-SUPPORTED{background:var(--green)} .v-REFUTED{background:var(--accent)}
+  .v-PARTIALLY_SUPPORTED{background:var(--amber)} .v-INSUFFICIENT_EVIDENCE{background:var(--blue)}
+  .v-OPINION_OR_FORECAST,.v-UNABLE_TO_DETERMINE{background:var(--gray)}
+  .type-pill{font-size:11px;font-weight:700;color:var(--primary-600);background:#eaf1fb;border-radius:6px;padding:2px 7px}
+  .rc-ok{color:var(--green);font-weight:600} .rc-bad{color:var(--accent);font-weight:600}
+
+  pre{background:#0f1b2d;color:#dbe7f7;padding:16px;border-radius:12px;overflow:auto;font-size:13px;line-height:1.6}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .api-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:820px){.api-grid{grid-template-columns:1fr}}
+
+  .err{background:#fff5f7;border:1px solid #fcd5de;color:#9b1c3b;border-radius:12px;padding:14px;margin-top:16px;font-size:14px}
+  footer{background:var(--bg-deep);color:#cdddf2;padding:44px 0 36px;margin-top:20px}
+  footer .slogan{color:#9fc2ee;font-size:15px}
+  footer .meta{font-size:13px;color:#8aa3c6;margin-top:12px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="logo">鉴</span><span>鉴融 FinProof</span></div>
+    <span class="tag">网页版 · 自带 API</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>鉴融 FinProof · <span class="grad">网页版体验</span></h1>
+    <p class="lead">把一份 AI 生成的报告贴进来，亲自看它怎么被拆解、复算、判定并打分。底层复用鉴融确定性复算引擎，分数口径与 WorkBuddy 内专家一致。</p>
+    <div class="slogan">让每条结论都可追溯，让每个缺口都可行动。</div>
+  </div>
+</section>
+
+<section id="try">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">立即体验</div>
+      <h2>粘贴报告，跑一次事实核验</h2>
+      <p>本页调用的核验流程使用<b>你自己的 OpenAI 兼容 Key</b>——密钥仅在你浏览器与对应大模型服务之间传递，本服务不存储、不留痕、不替你付费。支持 OpenAI、DeepSeek、通义、智谱等兼容接口（填对应 base_url 即可）。</p>
+    </div>
+
+    <div class="panel">
+      <label for="report">报告文本</label>
+      <textarea id="report" placeholder="在此粘贴一段 AI 生成的研报 / 行业分析 / 尽调纪要……&#10;例如：该公司 2025 年营业收入 120 亿元，同比增长 20%；第二季度净利润 30 亿元……"></textarea>
+
+      <div class="row">
+        <div>
+          <label for="apikey">你的 API Key（OpenAI 兼容）</label>
+          <input id="apikey" type="password" placeholder="sk-..." autocomplete="off" />
+        </div>
+        <div>
+          <label for="baseurl">base_url（默认 OpenAI）</label>
+          <input id="baseurl" value="https://api.openai.com/v1" />
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="model">模型</label>
+          <input id="model" value="gpt-4o-mini" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button class="btn" id="runBtn" onclick="runVerify()">开始核验</button>
+        </div>
+      </div>
+      <div class="hint">提示：报告越长、主张越多，LLM 调用越久（约 10–60 秒）。Key 不会离开你的浏览器。</div>
+      <div class="note"><b>网页版 MVP 范围说明：</b>本页做「主张拆解 → 确定性复算 → 六类判定 → 五维评分」核心闭环；<b>不含联网检索一手来源</b>，因此「来源权威性 / 时间口径一致性」两维为估算值（结果中标注 estimated），不冒充完整专家能力。完整联网核验请在 WorkBuddy 内使用「鉴融 FinProof」专家。</div>
+    </div>
+
+    <div id="result"></div>
+  </div>
+</section>
+
+<section id="api" class="sec-soft">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">自带 API</div>
+      <h2>同样的核验能力，直接调接口</h2>
+      <p>除了网页体验，任何系统都能直接调用 <code>POST /api/verify</code> 拿到结构化审计报告 JSON。LLM 凭据同样由调用方自带。</p>
+    </div>
+    <div class="api-grid">
+      <div class="panel">
+        <h3 style="font-size:17px;color:var(--ink);margin-bottom:10px">请求</h3>
+        <pre>POST /api/verify
+Content-Type: application/json
+
+{
+  "report": "报告全文……",
+  "api_key": "sk-你的密钥",
+  "base_url": "https://api.openai.com/v1",
+  "model": "gpt-4o-mini"
+}</pre>
+        <h3 style="font-size:17px;color:var(--ink);margin:18px 0 10px">curl 示例</h3>
+        <pre>curl -X POST https://&lt;你的域名&gt;/api/verify \
+  -H "Content-Type: application/json" \
+  -d '{"report":"...","api_key":"sk-...","model":"gpt-4o-mini"}'</pre>
+      </div>
+      <div class="panel">
+        <h3 style="font-size:17px;color:var(--ink);margin-bottom:10px">返回（节选）</h3>
+        <pre>{
+  "ok": true,
+  "score": { "score": 86, "dims": {
+      "coverage": 100.0, "accuracy": 55.6,
+      "citation": 100.0, "authority": 40.0,
+      "time_scope": 86.7 },
+    "estimated_dims": ["citation","authority"] },
+  "verdict_distribution": {"支持":9,"反驳":2,"证据不足":1},
+  "claims": [
+    { "id":"1","type":"B","text":"……",
+      "verdict":"REFUTED","verdict_cn":"反驳",
+      "recompute": {"kind":"yoy",
+        "recomputed":15.0,"claim_value":20.0,"match":false},
+      "reason":"复算同比增长应为 15%，与主张 20% 不符" }
+  ]
+}</pre>
+        <div class="note">返回字段与专家审计报告同构：每条主张含 <b>type / verdict / recompute / reason</b>；score 五维中 citation、authority 为 MVP 估算项。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="slogan">让每条结论都可追溯，让每个缺口都可行动。</div>
+    <div class="meta">鉴融 FinProof 网页版 MVP · 底层复用确定性复算引擎 finproof_calc.py · 分数口径与 WorkBuddy 内专家一致。<br/>本页仅为可交互演示，完整能力（联网核验、G1–G4 缺口分类、对抗性防御）见 WorkBuddy 专家版。</div>
+  </div>
+</footer>
+
+<script>
+function band(score){
+  if(score>=90) return "优"; if(score>=75) return "良";
+  if(score>=60) return "一般"; return "差";
+}
+function esc(s){return (s==null?"":String(s)).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));}
+
+async function runVerify(){
+  const btn=document.getElementById("runBtn");
+  const result=document.getElementById("result");
+  const report=document.getElementById("report").value.trim();
+  const api_key=document.getElementById("apikey").value.trim();
+  const base_url=document.getElementById("baseurl").value.trim();
+  const model=document.getElementById("model").value.trim();
+  if(!report){result.innerHTML='<div class="err">请先粘贴报告文本。</div>';return;}
+  if(!api_key){result.innerHTML='<div class="err">请填写你的 API Key。</div>';return;}
+  btn.disabled=true; btn.textContent="核验中…（10–60 秒）"; result.innerHTML="";
+  try{
+    const r=await fetch("/api/verify",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({report,api_key,base_url,model})});
+    const d=await r.json();
+    if(!d.ok){result.innerHTML='<div class="err">核验失败：'+(d.error||"未知错误")+'</div>';if(d.raw)result.innerHTML+='<pre style="margin-top:10px">'+esc(d.raw)+'</pre>';return;}
+    render(d);
+  }catch(e){result.innerHTML='<div class="err">请求异常：'+esc(e)+'</div>';}
+  finally{btn.disabled=false; btn.textContent="开始核验";}
+}
+
+function render(d){
+  const s=d.score;
+  let dimsHtml="";
+  const names={coverage:"证据覆盖率",accuracy:"数字与计算准确性",citation:"引用一致性",authority:"来源权威性",time_scope:"时间与口径一致性"};
+  for(const k of ["coverage","accuracy","citation","authority","time_scope"]){
+    const est=s.estimated_dims.includes(k);
+    dimsHtml+=`<div class="dim"><div class="name">${names[k]}${est?' <span class="est">估算</span>':''}</div>`+
+      `<div class="bar"><span style="width:${Math.max(0,Math.min(100,s.dims[k]))}%"></span></div>`+
+      `<div class="val">${s.dims[k]}</div></div>`;
+  }
+  let distHtml="";
+  for(const [k,v] of Object.entries(d.verdict_distribution||{}))
+    distHtml+=`<span class="chip">${esc(k)}：${v}</span>`;
+  let rows="";
+  for(const c of d.claims||[]){
+    let rc="";
+    if(c.recompute&&c.recompute.recomputed!=null){
+      const ok=c.recompute.match;
+      rc=`<span class="${ok?'rc-ok':'rc-bad'}">复算 ${c.recompute.recomputed} / 主张 ${c.recompute.claim_value} ${ok?'✓':'✗'}</span>`;
+    }
+    rows+=`<tr><td><span class="type-pill">${esc(c.type)}</span> ${esc(c.id)}</td>`+
+      `<td>${esc(c.text)}</td>`+
+      `<td><span class="vbadge v-${c.verdict}">${esc(c.verdict_cn)}</span></td>`+
+      `<td>${rc}</td><td>${esc(c.reason)}</td></tr>`;
+  }
+  document.getElementById("result").innerHTML=
+    `<div class="score-card"><div><div class="score-num">${s.score}</div><div class="score-meta">/100 · ${band(s.score)}</div></div>`+
+    `<div class="score-meta">模型：<b>${esc(d.model)}</b><br/>主张总数 ${s.counts.N} · 闭环 ${s.counts.N_c}/${s.counts.N_d}</div></div>`+
+    `<div class="dims">${dimsHtml}</div>`+
+    `<div class="dist">${distHtml}</div>`+
+    `<table><thead><tr><th>类型·#</th><th>主张原句</th><th>结论</th><th>确定性复算</th><th>判定理由</th></tr></thead><tbody>${rows}</tbody></table>`+
+    `<div class="note">${esc(d.note||"")}</div>`;
+}
+</script>
+</body>
+</html>

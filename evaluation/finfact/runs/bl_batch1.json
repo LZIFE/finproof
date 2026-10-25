@@ -1,0 +1,89 @@
+[
+ {
+  "id": "C01",
+  "verdict": "true",
+  "reason": "Putin从未说过此话：该\"普京称奥巴马是蠢货/推行社会主义政策\"的语录源自2009年讽刺网站Scooter's Report的虚构内容，Snopes于2016-02-17（与posted同日）判定该传言为False，即否定式主张成立。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/putin-obama-idiot-socialist/",
+   "https://peacemoonbeam.typepad.com/scooters_report/2009/02/index.html"
+  ]
+ },
+ {
+  "id": "C02",
+  "verdict": "false",
+  "reason": "这段广为流传的\"西塞罗论政府财政\"引语（预算应平衡、国库应充实等）并非出自西塞罗任何著作，而是小说家Taylor Caldwell 1965年小说《A Pillar of Iron》中的虚构表述，Snopes于2013-05-08（与posted同日）判定该归因为False。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/taylor-made/"
+  ]
+ },
+ {
+  "id": "C03",
+  "verdict": "true",
+  "reason": "PolitiFact于2014-06-15（与posted同日）对参议员Jack Reed完全相同的说法评级Mostly True：1950-60年代最低工资确实能让单身工作者维持贫困线以上，但需说明其对1967年前的三口之家和任何时期的四口之家并不够用。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2014/jun/15/jack-reed/jack-reed-says-minimum-wage-1950s-and-1960s-would/"
+  ]
+ },
+ {
+  "id": "C04",
+  "verdict": "false",
+  "reason": "PolitiFact于2016-12-23（与posted同日）将Ryan的\"因为奥巴马医改，Medicare正在破产\"评为Pants on Fire：ACA实际通过削减支付增速和对高收入者征税延长了Medicare信托基金偿付能力（延至约2028-2029年），华盛顿邮报也给出四皮诺基奥。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2016/dec/23/paul-ryan/repeal-and-replace-works-paul-ryan-says-obamacare/",
+   "https://www.washingtonpost.com/news/fact-checker/wp/2016/11/14/paul-ryans-false-claim-that-because-of-obamacare-medicare-is-going-broke/",
+   "https://www.factcheck.org/2016/11/broke-and-because-of-aca/"
+  ]
+ },
+ {
+  "id": "C05",
+  "verdict": "true",
+  "reason": "Snopes于2023-02-22（与posted同日）核实：伪装Target发放免费PS5的钓鱼邮件确实将用户引向一个注册在越南域名注册商网站的信用卡表单，属实。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/target-ps5-scam-email-loyalty-program/"
+  ]
+ },
+ {
+  "id": "C06",
+  "verdict": "true",
+  "reason": "Snopes于2019-12-03（与posted同日）判定\"Walmart Facebook免费$50周年礼券\"为典型优惠券诈骗（Scam/False），即Walmart并未提供该礼券，否定式主张成立。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/walmart-anniversary-coupon-scam/"
+  ]
+ },
+ {
+  "id": "C07",
+  "verdict": "true",
+  "reason": "Trump在2006年公开（音频）表示希望房地产崩盘以便低价买入、他在下行中能赚钱，PolitiFact于2016-05-26将希拉里相应指控评为Mostly True，2016-07-20 KQED转述同一说法时亦确认其Mostly True。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2016/may/26/hillary-clinton/hillary-clinton-faults-donald-trump-hoping-real-es/",
+   "http://www.cnn.com/2016/05/19/politics/donald-trump-2006-hopes-real-estate-market-crashes/index.html",
+   "https://www.kqed.org/news/11026026/congressman-repeats-mostly-true-claim-donald-trump-rooted-housing-crisis"
+  ]
+ },
+ {
+  "id": "C08",
+  "verdict": "true",
+  "reason": "Snopes于2022-02-04（与posted同日）核实辉瑞并不拥有Neil Young的音乐版权目录（其词曲版权卖给的是Hipgnosis Songs，而非Pfizer），该阴谋论为假，否定式主张成立。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/pfizer-neil-young-music-catalog/",
+   "https://musictech.com/news/industry/no-neil-youngs-music-is-not-owned-by-pfizer/"
+  ]
+ },
+ {
+  "id": "C09",
+  "verdict": "true",
+  "reason": "与C08同一传言：Snopes于2022-02-04明确判定\"Pfizer拥有Neil Young音乐目录\"为False（实际买家为Hipgnosis），否定式主张成立。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/pfizer-neil-young-music-catalog/",
+   "https://www.nme.com/news/music/neil-young-debunks-conspiracy-theory-that-pfizer-invested-in-his-music-publishing-clever-but-wrong-3161809"
+  ]
+ },
+ {
+  "id": "C10",
+  "verdict": "true",
+  "reason": "PolitiFact于2015-08-07（与posted同日）核实：威斯康星预算稳定基金约2.8亿美元，较Walker上任时的约168万美元确为约165倍，数学成立，评为Mostly True（降级仅因基金绝对规模仍小等背景）。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2015/aug/07/scott-walker/scott-walker-says-wisconsin-reserve-fund-165-times/"
+  ]
+ }
+]

@@ -1,0 +1,605 @@
+[
+ {
+  "id": "C01",
+  "label": "false",
+  "claim": "Vladimir Putin did not refer to Obama as foolish for his socialist policies.",
+  "posted": "02/17/2016",
+  "checker_url": "https://www.snopes.com/fact-check/putin-obama-idiot-socialist/",
+  "issues": [
+   "economy"
+  ],
+  "justification_head": "On 15 February 2016, the Facebook page \"The Original Wake Up People\" posted a years-old memefeaturing a quote ostensibly uttered by Vladimir Putin:   This is not a real quote from the Russian president.The above-displayed quote has been circulating since 2009 in one form or another (usually in the f"
+ },
+ {
+  "id": "C02",
+  "label": "false",
+  "claim": "Cicero's thoughts on managing a government's finances.",
+  "posted": "05/08/2013",
+  "checker_url": "https://www.snopes.com/fact-check/taylor-made/",
+  "issues": [
+   "budget"
+  ],
+  "justification_head": "As we've noted many times in these pages, one common way in which people attempt to demonstrate the aptness of a particular social or political viewpoint is to put its expression into the mouth of a revered historical figure.  [Collected via e-mail, April 2008] This quote is going around the interne"
+ },
+ {
+  "id": "C03",
+  "label": "true",
+  "claim": "In the 1950s and 1960s, the minimum wage was such that it would lift you out of poverty.",
+  "posted": "06/15/2014",
+  "checker_url": "https://www.politifact.com/factchecks/2014/jun/15/jack-reed/jack-reed-says-minimum-wage-1950s-and-1960s-would-/",
+  "issues": [
+   "Rhode Island",
+   "Economy",
+   "History",
+   "Income",
+   "Poverty",
+   "Welfare"
+  ],
+  "justification_head": "In the battle to raise the federal minimum wage, proponents have been arguing that the minimum wage now buys far less than it has in the past, and is no longer high enough to lift someone out of poverty. Duringa May 1 speechon the floor of the U.S. Senate, Jack Reed (D-RI) offered a version of that "
+ },
+ {
+  "id": "C04",
+  "label": "false",
+  "claim": "Because of Obamacare, Medicare is going broke.",
+  "posted": "12/23/2016",
+  "checker_url": "https://www.politifact.com/factchecks/2016/dec/23/paul-ryan/repeal-and-replace-works-paul-ryan-says-obamacare-/",
+  "issues": [
+   "Bankruptcy",
+   "Federal Budget",
+   "Health Care",
+   "Medicare",
+   "Wisconsin"
+  ],
+  "justification_head": "As U.S. House SpeakerPaul Ryandiscussed the repeal and replacement of the Affordable Care Act, a top priority of President-electDonald Trump, he made a claim about the financial health ofMedicare. What people dont realize is, because of Obamacare, Medicare is going broke, the Wisconsin Republicantol"
+ },
+ {
+  "id": "C05",
+  "label": "false",
+  "claim": "'Target PS5' Scam Email Leads to Credit Card Form on Vietnam-Registered Website",
+  "posted": "02/22/2023",
+  "checker_url": "https://www.snopes.com/fact-check/target-ps5-scam-email-loyalty-program/",
+  "issues": [
+   "credit"
+  ],
+  "justification_head": "In February 2023, we investigated a new Target PS5 scam email that claimed recipients had won a brand new Sony PlayStation 5 gaming console. However, this was a scam, and a potentially dangerous one at that. The subject line of the emails read, \"You have won a PlayStation 5.\" The messages came from "
+ },
+ {
+  "id": "C06",
+  "label": "false",
+  "claim": "\"Contrary to rumors, Walmart is not providing a complimentary $50 'Anniversary' voucher on Facebook.\"",
+  "posted": "12/03/2019",
+  "checker_url": "https://www.snopes.com/fact-check/walmart-anniversary-coupon-scam/",
+  "issues": [
+   "credit"
+  ],
+  "justification_head": "In March 2020, Facebook posts offering free coupons supposedly worth $50 in merchandise from Walmart began circulating with the claim that the company was celebrating its anniversary:  Users who clicked on the offer were taken to an external website where they were instructed to answer survey questi"
+ },
+ {
+  "id": "C07",
+  "label": "true",
+  "claim": "Donald Trump rooted for the housing crisis, because he knew he could make money off of it.",
+  "posted": "07/20/2016",
+  "checker_url": "https://www.politifact.com/factchecks/2016/jul/20/scott-peters/ca-congressman-repeats-mostly-true-critique-donald/",
+  "issues": [
+   "Economy",
+   "Housing",
+   "California"
+  ],
+  "justification_head": " During Donald Trumps recent fundraising trip to San Diego, Democratic Congressman Scott Peters had some harsh words for the GOP nominee. His economic policies are dangerous, Peters, who represents much of 'America's Finest City,' told reporters on a conference call. He will say or do anything that "
+ },
+ {
+  "id": "C08",
+  "label": "false",
+  "claim": "No, Pfizer does not possess the music catalog of Neil Young.",
+  "posted": "02/04/2022",
+  "checker_url": "https://www.snopes.com/fact-check/pfizer-neil-young-music-catalog/",
+  "issues": [
+   "investment"
+  ],
+  "justification_head": "In early 2022, folk-rock legend Neil Young found himself the target of a laughable conspiracy theory after he spoke out against COVID-19-related misinformation. On Jan. 24, Young wrote that he wanted his music removed from the streaming platform Spotify, unless the company ended its agreement to hos"
+ },
+ {
+  "id": "C09",
+  "label": "false",
+  "claim": "No, Pfizer Does Not Own Neil Young's Music Catalog",
+  "posted": "02/04/2022",
+  "checker_url": "https://www.snopes.com/fact-check/pfizer-neil-young-music-catalog/",
+  "issues": [
+   "investment"
+  ],
+  "justification_head": "In early 2022, folk-rock legend Neil Young found himself the target of a laughable conspiracy theory after he spoke out against COVID-19-related misinformation. On Jan. 24, Young wrote that he wanted his music removed from the streaming platform Spotify, unless the company ended its agreement to hos"
+ },
+ {
+  "id": "C10",
+  "label": "true",
+  "claim": "Wisconsins rainy day fund is 165 times bigger than when we first took office.",
+  "posted": "08/07/2015",
+  "checker_url": "https://www.politifact.com/factchecks/2015/aug/07/scott-walker/scott-walker-says-wisconsin-reserve-fund-165-times/",
+  "issues": [
+   "State Budget",
+   "Taxes",
+   "Wisconsin"
+  ],
+  "justification_head": "One of Gov. Scott Walker's talking points -- a claim about the size of Wisconsins budget stabilization fund -- is striking in seemingly contradictory ways. Here is how Walker phrased the claim Aug. 3, 2015 at a presidential candidateforumin New Hampshire: Our rainy day fund's 165 times bigger than w"
+ },
+ {
+  "id": "C11",
+  "label": "false",
+  "claim": "The Minnesota Vikings have opened their stadium to provide shelter for homeless individuals.",
+  "posted": "12/19/2016",
+  "checker_url": "https://www.snopes.com/fact-check/minnesota-vikings-open-their-stadium-to-shelter-the-homeless/",
+  "issues": [
+   "profit"
+  ],
+  "justification_head": "On 18 December 2016, Twitter user David Dellanave posted a message claiming that the Minnesota Vikings football team had opened up U.S. Bank Stadium to shelter the homeless on a particularly cold winter night: posted Although Dellanave is not a reporter or a spokesperson for the Minnesota Vikings, h"
+ },
+ {
+  "id": "C12",
+  "label": "false",
+  "claim": "California's Attorney General, Xavier Becerra is putting together plans to raise property tax revenue by eliminating the only thing keeping some people's property tax from sky rocketing, Prop 13.",
+  "posted": "01/24/2020",
+  "checker_url": "https://www.politifact.com/factchecks/2020/jan/24/facebook-posts/no-californians-arent-being-asked-repeal-prop-13s-/",
+  "issues": [
+   "City Budget",
+   "County Budget",
+   "Education",
+   "Federal Budget",
+   "State Budget",
+   "Taxes",
+   "California"
+  ],
+  "justification_head": "Supporters of a California ballot measure that would remove some of Proposition 13s tax protections say claims shared thousands of times on Facebook and other social media platforms have distorted their initiative. The campaign for theCalifornia Schools and Local Communities Funding Act of 2020, als"
+ },
+ {
+  "id": "C13",
+  "label": "true",
+  "claim": "Says LeBron James stops paying his Social Security taxes at the beginning of the second quarter of the first game of the season.",
+  "posted": "04/28/2016",
+  "checker_url": "https://www.politifact.com/factchecks/2016/apr/28/alan-grayson/lebron-james-pays-social-security-taxes-halftime-f/",
+  "issues": [
+   "Social Security",
+   "Taxes",
+   "Florida"
+  ],
+  "justification_head": "Not only has U.S. Rep. Alan Graysonendorsed presidential candidate Bernie Sanders, he also has echoed one of the senatorsmain platform planksthat the rich should help shore up Social Security. At a Senate campaign debate with U.S. Rep. David Jolly, R-Indian Shores, in Orlandoon April 25, 2016, Grays"
+ },
+ {
+  "id": "C14",
+  "label": "true",
+  "claim": "Says the Central Health district's tax rate is the lowest among the largest counties in Texas, and it will continue to be the lowest if voters approve a proposed tax increase.",
+  "posted": "10/26/2012",
+  "checker_url": "https://www.politifact.com/factchecks/2012/oct/26/keep-austin-healthy-pac/proposition-advocate-says-central-health-district-/",
+  "issues": [
+   "Health Care",
+   "Public Health",
+   "Taxes",
+   "Texas"
+  ],
+  "justification_head": "Central Health, the government agency entrusted with improving health care access across Travis County, has a low tax rate that will remain low if voters ratify Proposition 1 on the November 2012ballot, a proponent says.Mark Nathan of theKeep Austin HealthyPAC said recently: Our health care district"
+ },
+ {
+  "id": "C15",
+  "label": "true",
+  "claim": "My company was building the Keystone Pipeline when (President Joe) Biden canceled it.",
+  "posted": "07/21/2022",
+  "checker_url": "https://www.politifact.com/factchecks/2022/jul/21/tim-michels/michels-target-claim-my-company-was-building-keyst/",
+  "issues": [
+   "Economy",
+   "Energy",
+   "Gas Prices",
+   "Jobs",
+   "Wisconsin"
+  ],
+  "justification_head": "On his first day in office, President Joe Biden put the final nail in the coffin of the Keystone XL pipeline when he revoked its construction permit via an executive order. Several months later, in June 2021, TC Energy Corporation announced the termination of the project, bringing an end to more tha"
+ },
+ {
+  "id": "C16",
+  "label": "true",
+  "claim": "During the time when a Republican president with conservative views was in office, the job loss rate was at 750,000 per month.",
+  "posted": "10/11/2015",
+  "checker_url": "https://www.politifact.com/factchecks/2015/oct/11/debbie-wasserman-schultz/wasserman-schultz-under-conservative-republican-pr/",
+  "issues": [
+   "National",
+   "Economy",
+   "Jobs"
+  ],
+  "justification_head": "Its been nearlyeight years since George W. Bush was president, but Democrats still plan to run against him. Certainly, thats what Democratic National Committee chairwoman Debbie Wasserman Schultz promised on the eve of the first Democratic presidential debate. There are so many people who are focuse"
+ },
+ {
+  "id": "C17",
+  "label": "true",
+  "claim": "There was no surge in 501(c)(4) applications in 2010.",
+  "posted": "06/07/2013",
+  "checker_url": "https://www.politifact.com/factchecks/2013/jun/07/tim-griffin/no-rise-applications-triggered-irs-actions-says-ti/",
+  "issues": [
+   "National",
+   "Taxes"
+  ],
+  "justification_head": "One of the lines of defense in the current Internal Revenue Service controversy is that the agency stumbled under a heavy workload of applications from groups seeking tax-exempt status. Steven Miller, the former acting IRS commissioner, made this point in a piece he wrote forUSA Today,describing a s"
+ },
+ {
+  "id": "C18",
+  "label": "true",
+  "claim": "Says 24 million people in this country can't find a full-time job, 50 million can't see a doctor when they're sick, 47 million people need government help to feed themselves and 15 million families owe more than the value of their home.",
+  "posted": "10/24/2011",
+  "checker_url": "https://www.politifact.com/factchecks/2011/oct/24/alan-grayson/alan-graysons-defense-occupy-wall-street-impassion/",
+  "issues": [
+   "Economy",
+   "Florida"
+  ],
+  "justification_head": "Alan Grayson, an Orlando Democrat and former U.S. Representative running to reclaim a seat in 2012, emerged a big-time supporter of the Occupy Wall Street movement after appearing on HBO'sReal Time with Bill Maheron Oct. 7, 2011.A couple of Maher's panelists, and even Maher himself, mocked the prote"
+ },
+ {
+  "id": "C19",
+  "label": "false",
+  "claim": "Justin Trudeau is planning to grant pardons to all individuals who have been convicted of a marijuana-related offense.",
+  "posted": "07/18/2016",
+  "checker_url": "https://www.snopes.com/fact-check/justin-trudeau-pardon-marijuana/",
+  "issues": [
+   "profit"
+  ],
+  "justification_head": "In July 2016, a image picturing Canadian Prime Minister Justin Trudeau was circulated with text stating that he had freed everyone imprisoned for marijuana offences and expunged their records, and that he was able to enact such a sweeping reform because Canada (unlike the U.S.) has no \"prison for pr"
+ },
+ {
+  "id": "C20",
+  "label": "false",
+  "claim": "Cheryl Mills Called Benghazi Dead 'Idiot Soldiers' in Leaked E-Mail",
+  "posted": "10/24/2016",
+  "checker_url": "https://www.snopes.com/fact-check/cheryl-mills-leaked-email/",
+  "issues": [
+   "returns"
+  ],
+  "justification_head": "In October 2016, the above-reproduced email screenshot began circulating on social media, purportedly capturing a message from longtime Clinton aide Cheryl Mills to Hillary Clinton. In this message, Mills expressed a need to \"hide\" the fact that requests for help made by the four U.S. personnel who "
+ },
+ {
+  "id": "C21",
+  "label": "false",
+  "claim": "No, McDonald's Is Not Offering 2 Free Big Mac Meals for a Month",
+  "posted": "04/03/2020",
+  "checker_url": "https://www.snopes.com/fact-check/mcdonalds-coupon-scam/",
+  "issues": [
+   "credit"
+  ],
+  "justification_head": "In March 2020, Facebook posts circulating online offered free coupons supposedly good for two free Big Mac Meals for a month from outlets of the McDonald's fast food chain. Users who clicked on the offer were taken to an external website where they were instructed to answer survey questions in order"
+ },
+ {
+  "id": "C22",
+  "label": "false",
+  "claim": "Video Does Not Show Thousands of US Marines Deboarding Plane in Israel in October 2023",
+  "posted": "10/27/2023",
+  "checker_url": "https://www.snopes.com/fact-check/video-marines-israel-2023/",
+  "issues": [
+   "share"
+  ],
+  "justification_head": "On Oct. 26, 2023, X user Matt Wallace (@MattWallace888)  a user who has a history of promoting misinformation  created a post with a video that included the caption, \"HAPPENING NOW: Thousands of U.S. Marines Just Landed in Israel. WW3 HIGH ALERT.\" history post The video showed uniformed U.S. militar"
+ },
+ {
+  "id": "C23",
+  "label": "NEI",
+  "claim": "How have the financial assets of Presidents evolved over time?",
+  "posted": "12/28/2017",
+  "checker_url": "https://www.snopes.com/fact-check/net-worths-of-presidents/",
+  "issues": [
+   "interest"
+  ],
+  "justification_head": "An image comparing changes in the financial status of former and current United States presidents was widely shared on social media at the end of 2017, with minimal text suggesting that the data it presented was particularly revealing of something (without providing any detail about what that \"somet"
+ },
+ {
+  "id": "C24",
+  "label": "true",
+  "claim": "Texans pay the sixth-highest property tax in the nation.",
+  "posted": "12/01/2016",
+  "checker_url": "https://www.politifact.com/factchecks/2016/dec/01/dan-patrick/dan-patrick-mostly-right-texans-pay-nations-sixth-/",
+  "issues": [
+   "Taxes",
+   "Texas"
+  ],
+  "justification_head": "After Texas Lt. Gov. Dan Patrick saluted legislation potentially giving voters more sway over local property taxes, we wondered afresh about how Texas ranks nationally in terms of property tax burden. Patrick, talking upa proposalhatched by fellow Republicans led by Houston state Sen. Paul Bettencou"
+ },
+ {
+  "id": "C25",
+  "label": "true",
+  "claim": "Taxes and fees amount to about 20 percent of a typical $300 round-trip domestic ticket. Thats higher than taxes on products like alcohol, tobacco and firearms.",
+  "posted": "03/17/2013",
+  "checker_url": "https://www.politifact.com/factchecks/2013/mar/17/gary-kelly/southwest-airlines-ceo-says-federal-taxes-flight-a/",
+  "issues": [
+   "Homeland Security",
+   "Government Regulation",
+   "Transportation",
+   "Taxes",
+   "Wisconsin"
+  ],
+  "justification_head": "On a scale of politically controversial topics, airline tickets might rank near the bottom, perhaps somewhere just above Roberts Rules of Order and a quorum call.And yet plane tickets have been part of some curious claims taken on by PolitiFact: Every time you buy an airline ticket, the federal gove"
+ },
+ {
+  "id": "C26",
+  "label": "false",
+  "claim": "Bill Cosby's Write-In Candidate Platform",
+  "posted": "07/31/2008",
+  "checker_url": "https://www.snopes.com/fact-check/bill-of-write-ins/",
+  "issues": [
+   "taxes"
+  ],
+  "justification_head": "Claim: E-mail reproduces comedian Bill Cosby's platform as a write-in candidate in an upcoming presidential election. INCORRECTLY ATTRIBUTED Example: [Collected via e-mail, July 2008] I HAVE DECIDED TO BECOME A WRITE-IN CANDIDATE. HERE IS MY PLATFORM: (1.) Press 1 for English is immediately banned. "
+ },
+ {
+  "id": "C27",
+  "label": "true",
+  "claim": "The median male worker in this country has not seen a raise, inflation adjusted, for 30 years, basically.",
+  "posted": "01/15/2014",
+  "checker_url": "https://www.politifact.com/factchecks/2014/jan/15/rana-foroohar/times-rana-foroohar-says-median-male-worker-hasnt-/",
+  "issues": [
+   "Economy",
+   "Jobs",
+   "Labor",
+   "Workers",
+   "PunditFact"
+  ],
+  "justification_head": "For all the advances since the era of teased-out rocker hair, one thing hasnt changed for Americas average working man: the amount of bacon he brings home. So says Rana Foroohar, a CNN global economic analyst andTimemagazine assistant managing editor (who, by the way,snagged thefirst interviewwith n"
+ },
+ {
+  "id": "C28",
+  "label": "NEI",
+  "claim": "What alterations have occurred in the net worths of presidents?",
+  "posted": "12/28/2017",
+  "checker_url": "https://www.snopes.com/fact-check/net-worths-of-presidents/",
+  "issues": [
+   "asset"
+  ],
+  "justification_head": "An image comparing changes in the financial status of former and current United States presidents was widely shared on social media at the end of 2017, with minimal text suggesting that the data it presented was particularly revealing of something (without providing any detail about what that \"somet"
+ },
+ {
+  "id": "C29",
+  "label": "false",
+  "claim": "Coca-Cola is not offering a bottle with the message 'Share a Coke with the KKK' for sale.",
+  "posted": "03/02/2016",
+  "checker_url": "https://www.snopes.com/fact-check/coca-cola-kkk-trump/",
+  "issues": [
+   "share"
+  ],
+  "justification_head": "In March 2016, photos showing a bottle of Coca-Cola with the words \"share a Coke with the KKK\" written on its label started circulating online. This is not a real product sold by Coca-Cola. While the \"Share a Coke\" campaign allows Coca-Cola drinkers to personalize their cans, some words or phrases ("
+ },
+ {
+  "id": "C30",
+  "label": "true",
+  "claim": "They're paying a less rate of tax -- these richest people in America -- than they have in the last 80 years.",
+  "posted": "03/11/2012",
+  "checker_url": "https://www.politifact.com/factchecks/2012/mar/11/steve-rothman/congressman-steve-rothman-claims-wealthiest-americ/",
+  "issues": [
+   "New Jersey",
+   "Wealth",
+   "Taxes"
+  ],
+  "justification_head": "As U.S. Rep. Steve Rothman recently told workers at a small business in Bergen County, the middle-class must pick up the tab for wealthy Americans paying their lowest income tax rate in 80 years.The congressman pointed to that reduced tax rate during a campaign video posted Feb. 13 on YouTube, where"
+ },
+ {
+  "id": "C31",
+  "label": "false",
+  "claim": "What Happens When You Cross the United States Border Illegally?",
+  "posted": "01/16/2018",
+  "checker_url": "https://www.snopes.com/fact-check/illegal-immigrant-benefits/",
+  "issues": [
+   "income"
+  ],
+  "justification_head": "A nine-year-old viral Facebook post that portrays the United States as soft on illegal immigration experienced a resurgence in early 2018, likely due to ongoing negotiations between President Donald Trump and Congressional Democrats regarding the fate of immigrants who were brought to the U.S. as ch"
+ },
+ {
+  "id": "C32",
+  "label": "false",
+  "claim": "What occurs when you unlawfully cross the border of the United States?",
+  "posted": "01/16/2018",
+  "checker_url": "https://www.snopes.com/fact-check/illegal-immigrant-benefits/",
+  "issues": [
+   "taxes"
+  ],
+  "justification_head": "A nine-year-old viral Facebook post that portrays the United States as soft on illegal immigration experienced a resurgence in early 2018, likely due to ongoing negotiations between President Donald Trump and Congressional Democrats regarding the fate of immigrants who were brought to the U.S. as ch"
+ },
+ {
+  "id": "C33",
+  "label": "true",
+  "claim": "The distressing experience of an Alabama mother under the Obamacare healthcare system.",
+  "posted": "01/02/2014",
+  "checker_url": "https://www.snopes.com/fact-check/obamacare-horror-story/",
+  "issues": [
+   "insurance"
+  ],
+  "justification_head": " Claim:  Alabama mom's Obamacare horror story gives America a glimpse of government run healthcare. CORRECTLY ATTRIBUTED Example:  [Collected on the Internet, December 2013] My family's journey with securing our new insurance under the Affordable Care Act (ACA) started on October 1, 2013.   I have d"
+ },
+ {
+  "id": "C34",
+  "label": "true",
+  "claim": "Director Victor Salva, who helmed 'Jeepers Creepers 3', was found guilty of child molestation.",
+  "posted": "09/18/2017",
+  "checker_url": "https://www.snopes.com/fact-check/jeepers-creepers-victor-salva-convicted-child-molestation/",
+  "issues": [
+   "budget"
+  ],
+  "justification_head": "As the premiere of the horror flick Jeepers Creepers 3 approached in September 2017, many posted messages on social media to remind potential moviegoers about director Victor Salva's criminal history. Salva was convicted in 1988 on charges related to the sexual molestation of 12-year-old actor Natha"
+ },
+ {
+  "id": "C35",
+  "label": "NEI",
+  "claim": "Death Row Inmate Asks for a Child As His Last Meal, Texas DOC Plan to Grant Request?",
+  "posted": "10/30/2014",
+  "checker_url": "https://www.snopes.com/fact-check/texas-two-misstep/",
+  "issues": [
+   "budget"
+  ],
+  "justification_head": " Claim: The Texas Department of Corrections granted a cannibal inmate's request of a child for his last meal.   Example:  [Collected via email, October 2014] I just saw on face book about A Death Row Inmate Asks For A Child As His Last Meal, Texas DOC Plan To (Grant Request) The article I am hoping "
+ },
+ {
+  "id": "C36",
+  "label": "false",
+  "claim": "Giant Sea Creature Washes Ashore Along Santa Monica Coastline",
+  "posted": "01/09/2014",
+  "checker_url": "https://www.snopes.com/fact-check/gigantic-squid/",
+  "issues": [
+   "share"
+  ],
+  "justification_head": "On 9 January 2014, the Lightly Braised Turnip website published an article (complete with a photo) positing that a gigantic mutant squid, grown to a size of 160 feet due to radioactivity, had been discovered on the California coast near Santa Monica. For the second time in recent months, a giant sea"
+ },
+ {
+  "id": "C37",
+  "label": "NEI",
+  "claim": "The Northridge earthquake was not accurately reported.",
+  "posted": "06/06/2000",
+  "checker_url": "https://www.snopes.com/fact-check/shakes-peers-n-gov/",
+  "issues": [
+   "loan"
+  ],
+  "justification_head": "Claim:  The magnitude of the 17 January 1994 Northridge earthquake was deliberately under-reported in order to spare the government from having to pay out emergency relief funds.   Examples:  [Harvey, 1994] Urban Myth No. 5,212: It's linked to the earthquake, of course  what isn't these days? The [L"
+ },
+ {
+  "id": "C38",
+  "label": "false",
+  "claim": "What occurred silently on January 1, 2015?",
+  "posted": "08/26/2014",
+  "checker_url": "https://www.snopes.com/fact-check/what-happened-quietly-obamacare/",
+  "issues": [
+   "income"
+  ],
+  "justification_head": "An item about a collection of U.S. tax increases which were supposedly enacted as of 1 January 2016 due to the provisions of the Affordable Care Act (commonly known as \"Obamacare\") was circulated widely at the beginning of 2016, but it was merely an updated version of identical claims circulated in "
+ },
+ {
+  "id": "C39",
+  "label": "true",
+  "claim": "Since that famous day in February where the governor campaigned with Barack Obama on behalf of the stimulus program, 211,000 Floridians have lost their jobs.",
+  "posted": "03/28/2010",
+  "checker_url": "https://www.politifact.com/factchecks/2010/mar/28/marco-rubio/rubio-says-florida-has-lost-211000-jobs-crist-camp/",
+  "issues": [
+   "Economy",
+   "Stimulus",
+   "Florida"
+  ],
+  "justification_head": "You knew it wouldn't take long for the hug to get some love during Sunday's debate between Republicans Marco Rubio and Charlie Crist. Minutes into the 40-minute Florida Senate Showdown, Rubio made a case that he'll stand up to President Barack Obama's agenda and Crist won't.Everyone knows that you w"
+ },
+ {
+  "id": "C40",
+  "label": "true",
+  "claim": "The Origins of Princess Leia's Hairstyle",
+  "posted": "12/30/2016",
+  "checker_url": "https://www.snopes.com/fact-check/origins-princess-leias-hairstyle/",
+  "issues": [
+   "interest"
+  ],
+  "justification_head": "Following the death of Carrie Fisher, the resurgent interest in her most famous role as Princess Leia in Star Wars prompted renewed attention to the inspiration behind the most distinctive aspect of her character's appearance. Princess Leia's iconic look was inspired by real-life Mexican revolutiona"
+ },
+ {
+  "id": "C41",
+  "label": "NEI",
+  "claim": "President Obama and the Ice Bucket Challenge",
+  "posted": "08/19/2014",
+  "checker_url": "https://www.snopes.com/fact-check/ice-bucket-challenge/",
+  "issues": [
+   "profit"
+  ],
+  "justification_head": " Claim:  President Obama refused to participate in the ALS Association's \"Ice Bucket Challenge.\"  Example:  [Collected via e-mail, August 2014] Tea Party.net posted on Facebook that President Obama refuse to take the ice bucket challenge from an 86 year old woman who did take the challenge.  Is that"
+ },
+ {
+  "id": "C42",
+  "label": "true",
+  "claim": "98 percent of small businesses make less than $250,000 and would not see a tax increase under Barack Obama's plan.",
+  "posted": "10/16/2008",
+  "checker_url": "https://www.politifact.com/factchecks/2008/oct/16/barack-obama/most-small-businesses-wont-be-subject-to-obamas-ta/",
+  "issues": [
+   "National",
+   "Taxes"
+  ],
+  "justification_head": "During the final presidential debate in Hempstead, N.Y., Barack Obama and John McCain got into an argument about Joe the Plumber. McCain said Joe would get a bigger tax bill under the Obama tax plan. Obama defended himself by saying that 98 percent of small businesses make less than $250,000 and wou"
+ },
+ {
+  "id": "C43",
+  "label": "NEI",
+  "claim": "IRS Notification: Federal Tax Return/Payment Rejection or Refund Notice",
+  "posted": "08/28/2007",
+  "checker_url": "https://www.snopes.com/fact-check/irs-notification-rejected-federal-tax-returnpayment-or-notice-of-refund/",
+  "issues": [
+   "loan"
+  ],
+  "justification_head": "Phishing bait:  Notice from the IRS indicating the recipient's electronic tax return or payment has been rejected or that the recipient has a refund coming. Examples:   [Collected via e-mail, October 2010] Subject: Your Federal Tax Payment ID 010357109 is rejected.  Urgent Report. Your Federal Tax P"
+ },
+ {
+  "id": "C44",
+  "label": "true",
+  "claim": "Financial conflict-of-interest laws don't apply to the president, right? So, the president doesn't have to have a blind trust.",
+  "posted": "11/16/2016",
+  "checker_url": "https://www.politifact.com/factchecks/2016/nov/16/rudy-giuliani/giuliani-president-trump-will-be-exempt-conflict-i/",
+  "issues": [
+   "National",
+   "Campaign Finance",
+   "Corrections and Updates",
+   "Ethics"
+  ],
+  "justification_head": "How President-elect Donald Trump will handle his extensive businesses and financial holdings  and the potential conflict of interest that comes with them  when he gets into the Oval Office remains an open question. Trump has said his children will manage his business dealings. Many presidents in the"
+ },
+ {
+  "id": "C45",
+  "label": "NEI",
+  "claim": "What is the reason behind the low cost of Charles Shaw wine?",
+  "posted": "01/02/2003",
+  "checker_url": "https://www.snopes.com/fact-check/cheap-swills/",
+  "issues": [
+   "asset"
+  ],
+  "justification_head": " Claim:  Charles Shaw wine was sold cheaply because airlines could no longer use corkscrews after 9/11 and dumped their stocks of wine.  Origins:  We tend to equate quality with cost, so the appearance of an underpriced wine of surprising virtue is bound to spark its share of interesting backstories"
+ },
+ {
+  "id": "C46",
+  "label": "NEI",
+  "claim": "Senator Jeff Flake: Solar Energy Can't Power Lights at Night?",
+  "posted": "04/17/2017",
+  "checker_url": "https://www.snopes.com/fact-check/jeff-flake-solar-energy/",
+  "issues": [
+   "taxes"
+  ],
+  "justification_head": "On 13 April 2017, Senator Jeff Flake of Arizona participated in a town hall meeting with some of his constituents that, like several other such events held by U.S. Congress members in the early part of the year, proved to be contentious for the Republican senator. Flake encountered a raucous audienc"
+ },
+ {
+  "id": "C47",
+  "label": "NEI",
+  "claim": "Congress Eliminates Child Tax Credit, Mortgage Deduction and EITC from Tax Code",
+  "posted": "11/13/2014",
+  "checker_url": "https://www.snopes.com/fact-check/koch-druthers/",
+  "issues": [
+   "income"
+  ],
+  "justification_head": " Claim:  Congress has eliminated the child tax credit, the earned income tax credit (EITC), and mortgage deductions from the tax code under pressure from lobby groups and the Koch brothers.  Example:  [Collected via Twitter, November 2014] Are u kidding!? Congress Eliminates Child Tax Credit, Mortga"
+ },
+ {
+  "id": "C48",
+  "label": "NEI",
+  "claim": "Facebook Posts About Homeland Security Memos and 'Hacked' Cellphones Are Misleading",
+  "posted": "03/28/2022",
+  "checker_url": "https://www.snopes.com/fact-check/cellphones-homeland-security/",
+  "issues": [
+   "banking"
+  ],
+  "justification_head": "In late March 2022, we examined two viral and false Facebook posts that were copied and pasted by countless users. One of the posts, which was also purportedly received as a text message alert, claimed that \"cellphones are being hacked\" to steal banking information. The misleading copypasta post sta"
+ },
+ {
+  "id": "C49",
+  "label": "true",
+  "claim": "Of all the 62 counties in New York state, all of them, unemployment is going up except for the five counties of New York City.",
+  "posted": "01/17/2018",
+  "checker_url": "https://www.politifact.com/factchecks/2018/jan/17/edward-cox/unemployment-inching-almost-every-county-outside-n/",
+  "issues": [
+   "Economy",
+   "Jobs",
+   "New York"
+  ],
+  "justification_head": "New York Republican State Committee Chairman Edward F. Cox claimed that the unemployment rate is rising in upstate counties, something Republicans intend to remind voters about in the 2018 race for governor. Of all the 62 counties in New York State, unemployment is increasing in all except for the f"
+ },
+ {
+  "id": "C50",
+  "label": "false",
+  "claim": "Raising the national minimum wage to $15 per hour would destroy up to 3.7 million jobs.",
+  "posted": "02/11/2021",
+  "checker_url": "https://www.politifact.com/factchecks/2021/feb/11/kevin-mccarthy/gop-house-leader-kevin-mccarthy-distorts-job-loss-/",
+  "issues": [
+   "Economy",
+   "Jobs",
+   "California"
+  ],
+  "justification_head": "Would raising the federal minimum wage to $15 per hour destroy up to 3.7 million jobs in the United States? Thats what GOP House Minority Leader and California Rep. Kevin McCarthy claimed in the headline of apress releaseon Tuesday as Democrats in Congress began debating the move. On Twitter the sam"
+ }
+]

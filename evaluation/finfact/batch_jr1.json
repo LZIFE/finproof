@@ -1,0 +1,106 @@
+[
+ {
+  "id": "C01",
+  "claim": "Vladimir Putin did not refer to Obama as foolish for his socialist policies.",
+  "posted": "02/17/2016",
+  "evidence_links": [
+   "https://peacemoonbeam.typepad.com/scooters_report/2009/02/index.html",
+   "https://content.time.com/time/specials/2007/personoftheyear/article/0,28804,1690753_1690757_1695787-4,00.html"
+  ]
+ },
+ {
+  "id": "C02",
+  "claim": "Cicero's thoughts on managing a government's finances.",
+  "posted": "05/08/2013",
+  "evidence_links": [
+   "https://www.archive.org/stream/congressionalrec114dunit#page/n631/mode/1up",
+   "https://www.imdb.com/title/tt0073971/"
+  ]
+ },
+ {
+  "id": "C03",
+  "claim": "In the 1950s and 1960s, the minimum wage was such that it would lift you out of poverty.",
+  "posted": "06/15/2014",
+  "evidence_links": [
+   "https://www.youtube.com/watch?v=UWQ92HVJ1i8",
+   "http://www.dol.gov/whd/minwage/chart.htm",
+   "https://www.politifact.com/rhode-island/statements/2014/mar/28/occupy-democrats/pro-democrat-group-says-9-10-poorest-states-are-re/",
+   "http://www.ocpp.org/poverty/how/"
+  ]
+ },
+ {
+  "id": "C04",
+  "claim": "Because of Obamacare, Medicare is going broke.",
+  "posted": "12/23/2016",
+  "evidence_links": [
+   "https://www.politifact.com/personalities/paul-ryan/",
+   "http://insider.foxnews.com/2016/11/10/paul-ryan-special-report-donald-trump-republican-congress",
+   "https://www.politifact.com/wisconsin/statements/2016/nov/17/paul-ryan/donald-trump-and-paul-ryan-threatening-repeal-and-/",
+   "https://www.sharethefacts.co/share/7de6b429-1d9a-42de-ad08-c7998eaa6ca5"
+  ]
+ },
+ {
+  "id": "C05",
+  "claim": "'Target PS5' Scam Email Leads to Credit Card Form on Vietnam-Registered Website",
+  "posted": "02/22/2023",
+  "evidence_links": [
+   "https://www.snopes.com/fact-check/walmart-employees-hiding-ps5/",
+   "https://archive.ph/pMJB9"
+  ]
+ },
+ {
+  "id": "C06",
+  "claim": "\"Contrary to rumors, Walmart is not providing a complimentary $50 'Anniversary' voucher on Facebook.\"",
+  "posted": "12/03/2019",
+  "evidence_links": [
+   "https://www.snopes.com/fact-check/kohls-thanksgiving-coupon-scam/",
+   "https://www.snopes.com/fact-check/bud-light-anniversary-free-24-pack-facebook-offer/",
+   "https://www.snopes.com/fact-check/free-southwest-tickets-scam/",
+   "https://www.snopes.com/fact-check/walmart-gift-card/"
+  ]
+ },
+ {
+  "id": "C07",
+  "claim": "Donald Trump rooted for the housing crisis, because he knew he could make money off of it.",
+  "posted": "07/20/2016",
+  "evidence_links": [
+   "https://www.youtube.com/watch?v=m0xmr_HHkTc",
+   "https://www.politifact.com/truth-o-meter/statements/2016/may/26/hillary-clinton/hillary-clinton-faults-donald-trump-hoping-real-es/",
+   "https://www.politifact.com/truth-o-meter/article/2016/mar/08/secret-behind-trump-universitys-rating-doing-nothi/",
+   "http://www.cnn.com/2016/05/19/politics/donald-trump-2006-hopes-real-estate-market-crashes/index.html"
+  ]
+ },
+ {
+  "id": "C08",
+  "claim": "No, Pfizer does not possess the music catalog of Neil Young.",
+  "posted": "02/04/2022",
+  "evidence_links": [
+   "https://archive.is/UprtY",
+   "https://www.snopes.com/fact-check/rogan-dont-need-to-worry-vaccine/",
+   "https://archive.is/0dktw",
+   "https://archive.is/Hy43y"
+  ]
+ },
+ {
+  "id": "C09",
+  "claim": "No, Pfizer Does Not Own Neil Young's Music Catalog",
+  "posted": "02/04/2022",
+  "evidence_links": [
+   "https://archive.is/UprtY",
+   "https://www.snopes.com/fact-check/rogan-dont-need-to-worry-vaccine/",
+   "https://archive.is/0dktw",
+   "https://archive.is/Hy43y"
+  ]
+ },
+ {
+  "id": "C10",
+  "claim": "Wisconsins rainy day fund is 165 times bigger than when we first took office.",
+  "posted": "08/07/2015",
+  "evidence_links": [
+   "http://www.c-span.org/video/?327157-1/2016-republican-candidates-voters-first-forum&live",
+   "http://www.doa.state.wi.us/Documents/DEBF/Financial%20Reporting/AFR/WI%202010%20AFR.pdf",
+   "https://www.politifact.com/wisconsin/statements/2012/may/31/scott-walker/gov-scott-walker-says-he-has-made-first-back-back/",
+   "http://legis.wisconsin.gov/lfb/publications/informational-papers/documents/2015/76_budget%20stabilization%20fund%20and%20general%20fund%20reserve%20requirements.pdf"
+  ]
+ }
+]

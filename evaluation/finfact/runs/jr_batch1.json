@@ -1,0 +1,72 @@
+[
+ {
+  "id": "C01",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2016-02-17，评级 False）判定\"普京称奥巴马社会政策愚蠢/白痴\"系 2009 年讽刺博客 Scooter's Report 编造的假引语（自标 fictitious satire），故反向否定主张成立。",
+  "excerpt": "\"Any fourth grade history student knows socialism has failed in every country, at every time in history.\" ... \"This is not a real quote from the Russian president.\"",
+  "source_urls": ["https://www.snopes.com/fact-check/putin-obama-idiot-socialist/"]
+ },
+ {
+  "id": "C02",
+  "verdict": "REFUTED",
+  "reason_zh": "所谓\"西塞罗论政府理财\"名言并非 Cicero 所言：Quote Investigator 溯源至 Taylor Caldwell 1965 年小说《A Pillar of Iron》中虚构人物内心独白（第483页），判定\"没有实质性证据表明西塞罗说过这些话\"。",
+  "excerpt": "There is no substantive evidence that Cicero spoke or wrote these words.",
+  "source_urls": ["https://quoteinvestigator.com/2013/05/15/cicero-budget/", "https://www.snopes.com/fact-check/taylor-made"]
+ },
+ {
+  "id": "C03",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "PolitiFact（2014-06-15，Mostly True）：1950s–60s 全职最低工资确可让工作者个人脱贫（如1963年年收入 $1.25×1,968小时=$2,460，shell 算术核验一致），但家庭口径多数年份不成立——三人家庭1967年起才稳定够用、四人家庭从未够用，故仅部分成立。",
+  "excerpt": "That same year, a minimum-wage worker earned $2,460 annually — enough for a family of three, but not four.",
+  "source_urls": ["https://www.politifact.com/factchecks/2014/jun/15/jack-reed/jack-reed-says-minimum-wage-1950s-and-1960s-would/"]
+ },
+ {
+  "id": "C04",
+  "verdict": "REFUTED",
+  "reason_zh": "PolitiFact（2016-12-23）判 Pants on Fire：Medicare 受托人报告显示 ACA 的支出控制与增收反而使住院保险信托基金偿付能力延至2029年、比立法前预测多12年，\"Medicare 因 Obamacare 破产\"与证据方向相反。",
+  "excerpt": "That's 12 years later than had been projected a year before the Affordable Care Act became law.",
+  "source_urls": ["https://www.politifact.com/factchecks/2016/dec/23/paul-ryan/repeal-and-replace-works-paul-ryan-says-obamacare/"]
+ },
+ {
+  "id": "C05",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2023-02-22，评级 Scam）核实：\"Target PS5\"中奖邮件确为钓鱼骗局，链接站点 orientgrounds.info/myluckyprizes.com 以 $7.95 邮费为名索要信用卡号，且域名注册于越南注册商，主张描述属实。",
+  "excerpt": "asked for a credit card number and claimed $7.95 was needed — myluckyprizes.com \"registered on a Vietnamese domain registrar.\"",
+  "source_urls": ["https://www.snopes.com/fact-check/target-ps5-scam-email-loyalty-program/"]
+ },
+ {
+  "id": "C06",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2019-12-03）专门核查并评级 Scam：沃尔玛并未在 Facebook 发放免费 $50 \"周年\"优惠券，该类帖子系诱导分享并收割个人信息的骗局，否定式主张成立。",
+  "excerpt": "Like innumerable other 'free merchandise' offers on Facebook... this one is a scam.",
+  "source_urls": ["https://www.snopes.com/fact-check/walmart-anniversary-coupon-scam/", "https://www.snopes.com/fact-check/walmart-gift-card/"]
+ },
+ {
+  "id": "C07",
+  "verdict": "SUPPORTED",
+  "reason_zh": "特朗普 2006 年有声书原话\"I sort of hope that happens because then people like me would go in and buy\"及\"you can make a lot of money\"直接支撑\"祈盼崩盘并图利\"两个要件（PolitiFact 2016-05-26 判 Mostly True，仅提示他未预见崩盘规模）。",
+  "excerpt": "I sort of hope that happens because then people like me would go in and buy",
+  "source_urls": ["https://www.politifact.com/factchecks/2016/may/26/hillary-clinton/hillary-clinton-faults-donald-trump-hoping-real-es/"]
+ },
+ {
+  "id": "C08",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2022-02-04）评级 False：辉瑞并不拥有 Neil Young 曲库，谣言系疫苗怀疑者的梗图/阴谋论（把 Young 2021 年 1 月向 Hipgnosis 出售一半曲库、Blackstone 与辉瑞前 CEO 的牵强关联硬凑），否定式主张成立。",
+  "excerpt": "When you realize Neil Young's music catalogue is owned by Pfizer.",
+  "source_urls": ["https://www.snopes.com/fact-check/pfizer-neil-young-music-catalog/"]
+ },
+ {
+  "id": "C09",
+  "verdict": "SUPPORTED",
+  "reason_zh": "同 C08：Snopes（2022-02-04）对\"辉瑞拥有 Neil Young 曲库\"这一原始主张评级 False，其曲库半数权益归属 Hipgnosis 而非辉瑞，否定式标题主张成立。",
+  "excerpt": "As of January and February 2022, Pfizer owned Neil Young's song catalog",
+  "source_urls": ["https://www.snopes.com/fact-check/pfizer-neil-young-music-catalog/"]
+ },
+ {
+  "id": "C10",
+  "verdict": "SUPPORTED",
+  "reason_zh": "PolitiFact（2015-08-07）判 True：Walker 2011年1月上任时威斯康星雨天基金约 $1.68M、2015 年达 $280M；引擎复算〔引擎复算〕yoy --current 280000000 --previous 1680000 → 16566.6667%，即 166.7 倍 ≥165 倍，主张成立。",
+  "excerpt": "We rate Walker's statement True.",
+  "source_urls": ["https://www.politifact.com/factchecks/2015/aug/07/scott-walker/scott-walker-says-wisconsin-reserve-fund-165-times/"]
+ }
+]

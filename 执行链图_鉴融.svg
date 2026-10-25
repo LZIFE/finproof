@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 356" width="100%" role="img">
+<title>鉴融执行链十步</title>
+<desc>从受理到审计输出的十个执行步骤，标注每步由程序或模型负责。</desc>
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" font-family="sans-serif">鉴融 · 执行链十步（按编号 0→9 顺序执行）</text>
+<text x="340" y="42" text-anchor="middle" font-size="11" fill="#5F5E5A" font-family="sans-serif">数字归程序，语义归模型</text>
+
+<rect x="40" y="60" width="280" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="56" y="76" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">0 受理</text>
+<text x="56" y="94" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">接收报告 + 源文件</text>
+
+<rect x="40" y="118" width="280" height="44" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="56" y="134" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif">1 范围判定门</text>
+<text x="56" y="152" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif">本地 / 联网 —— 由用户定</text>
+
+<rect x="40" y="176" width="280" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="56" y="192" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">2 文档解析</text>
+<text x="56" y="210" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">程序 · OCR 三级降级</text>
+
+<rect x="40" y="234" width="280" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="56" y="250" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">3 主张拆解</text>
+<text x="56" y="268" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">模型 · A–G 七类</text>
+
+<rect x="40" y="292" width="280" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="56" y="308" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">4 结构化归一化</text>
+<text x="56" y="326" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">程序 · 数字 / 期间 / 口径</text>
+
+<rect x="350" y="60" width="290" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="366" y="76" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">5 证据检索</text>
+<text x="366" y="94" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">程序 · 混合检索 + 证据门</text>
+
+<rect x="350" y="118" width="290" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="366" y="134" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">6 确定性复算</text>
+<text x="366" y="152" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">程序 · decimal 精确运算</text>
+
+<rect x="350" y="176" width="290" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="366" y="192" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">7 八步判定链</text>
+<text x="366" y="210" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">混合 · 数值守卫</text>
+
+<rect x="350" y="234" width="290" height="44" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="366" y="250" dominant-baseline="central" font-size="13" font-weight="500" fill="#633806" font-family="sans-serif">8 联网补证 + 聚焦再搜索</text>
+<text x="366" y="268" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="sans-serif">混合 · 仅联网模式</text>
+
+<rect x="350" y="292" width="290" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="366" y="308" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C" font-family="sans-serif">9 评分与审计输出</text>
+<text x="366" y="326" dominant-baseline="central" font-size="11" fill="#185FA5" font-family="sans-serif">程序 · 五维加权</text>
+</svg>

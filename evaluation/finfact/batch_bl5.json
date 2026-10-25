@@ -1,0 +1,105 @@
+[
+ {
+  "id": "C41",
+  "claim": "President Obama and the Ice Bucket Challenge",
+  "posted": "08/19/2014",
+  "evidence_links": [
+   "https://www.alsa.org/news/archive/ice-bucket-challenge.html",
+   "https://www.alsa.org/about-us/",
+   "https://www.alsa.org/news/archive/ice-bucket-donations-surpass.html",
+   "https://bostonherald.com/news_opinion/local_coverage/2014/08/ethel_kennedy_takes_the_ice_bucket_challenge_video"
+  ]
+ },
+ {
+  "id": "C42",
+  "claim": "98 percent of small businesses make less than $250,000 and would not see a tax increase under Barack Obama's plan.",
+  "posted": "10/16/2008",
+  "evidence_links": [
+   "https://www.youtube.com/watch?v=BRPbCSSXyp0"
+  ]
+ },
+ {
+  "id": "C43",
+  "claim": "IRS Notification: Federal Tax Return/Payment Rejection or Refund Notice",
+  "posted": "08/28/2007",
+  "evidence_links": [
+   "phishing.asp#phish",
+   "https://www.irs.gov/privacy/article/0,,id=179820,00.html",
+   "https://www.eftps.gov/eftps/direct/EftpsHome.page"
+  ]
+ },
+ {
+  "id": "C44",
+  "claim": "Financial conflict-of-interest laws don't apply to the president, right? So, the president doesn't have to have a blind trust.",
+  "posted": "11/16/2016",
+  "evidence_links": [
+   "http://congressionalresearch.com/RS21656/document.php",
+   "http://www.cnn.com/TRANSCRIPTS/1611/13/sotu.01.html",
+   "https://www.law.cornell.edu/uscode/text/18/208",
+   "https://www.law.cornell.edu/uscode/text/18/202"
+  ]
+ },
+ {
+  "id": "C45",
+  "claim": "What is the reason behind the low cost of Charles Shaw wine?",
+  "posted": "01/02/2003",
+  "evidence_links": [
+   "https://www.napavalley.com/",
+   "https://www.quora.com/How-is-Trader-Joes-wine-so-cheap/answer/Chris-Knox",
+   "https://www.traderjoes.com/",
+   "https://www.brandchannel.com/features_profile.asp?id=131"
+  ]
+ },
+ {
+  "id": "C46",
+  "claim": "Senator Jeff Flake: Solar Energy Can't Power Lights at Night?",
+  "posted": "04/17/2017",
+  "evidence_links": [
+   "https://www.aol.com/article/news/2017/04/14/republican-sen-jeff-flake-gets-slammed-in-raucous-town-hall-meeting/22039773/",
+   "https://www.engadget.com/2017/03/08/teslas-new-solar-energy-station-will-power-hawaii-at-night/"
+  ]
+ },
+ {
+  "id": "C47",
+  "claim": "Congress Eliminates Child Tax Credit, Mortgage Deduction and EITC from Tax Code",
+  "posted": "11/13/2014",
+  "evidence_links": [
+   "https://nationalreport.net/congress-eliminates-child-tax-credit-mortgage-deduction-e-t-c-tax-code/",
+   "swatted.asp\"",
+   "/politics/satire/solarpanels.asp",
+   "breakingbad.asp"
+  ]
+ },
+ {
+  "id": "C48",
+  "claim": "Facebook Posts About Homeland Security Memos and 'Hacked' Cellphones Are Misleading",
+  "posted": "03/28/2022",
+  "evidence_links": [
+   "https://www.snopes.com/tag/facebook/",
+   "https://www.snopes.com/articles/369246/what-is-copypasta/",
+   "https://www.snopes.com/tag/homeland-security/",
+   "https://snopes.com/tag/russia-ukraine/"
+  ]
+ },
+ {
+  "id": "C49",
+  "claim": "Of all the 62 counties in New York state, all of them, unemployment is going up except for the five counties of New York City.",
+  "posted": "01/17/2018",
+  "evidence_links": [
+   "https://www.wcny.org/january-9-2018-ed-cox/",
+   "https://www.bostonglobe.com/business/2017/06/15/unemployment-rising-and-that-good-news-really/nQVe3gkbyQm6L0Qp3c4n3O/story.html",
+   "https://www.empirecenter.org/publications/report-job-gains-in-ny-but-not-everywhere/"
+  ]
+ },
+ {
+  "id": "C50",
+  "claim": "Raising the national minimum wage to $15 per hour would destroy up to 3.7 million jobs.",
+  "posted": "02/11/2021",
+  "evidence_links": [
+   "https://www.republicanleader.gov/democrats-minimum-wage-mandate-would-destroy-up-to-3-7-million-jobs/",
+   "https://edlabor.house.gov/media/press-releases/top-democrats-introduce-bill-raising-minimum-wage-to-15-by-2025",
+   "https://www.cbo.gov/system/files/2021-02/56975-Minimum-Wage.pdf",
+   "https://www.cbo.gov/system/files/2019-07/CBO-55410-MinimumWage2019.pdf"
+  ]
+ }
+]

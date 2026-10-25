@@ -49,8 +49,10 @@ VERIFICATION_TYPES = {
 
 # 增长率允许误差（±0.5 个百分点）
 GROWTH_TOLERANCE_PP = 0.5
-# 数值相对容差（对齐证据检索）
-VALUE_TOLERANCE = 0.005
+# 数值相对容差（v2.7.1 对齐 skills/finproof-verification/bin/finproof_calc.py 的 0.1% 权威口径；
+# 此前为 0.005——与注释"收紧到 0.1%"长期不符，属文档-代码分歧）。
+# 注意：evidence_retrieval/engine.py 的 0.5% 为检索候选预过滤（有其回归原因），非权威判定口径。
+VALUE_TOLERANCE = 0.001
 
 
 @dataclass

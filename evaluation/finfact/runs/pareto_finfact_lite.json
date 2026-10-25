@@ -1,0 +1,62 @@
+[
+ {
+  "id": "C01",
+  "verdict": "SUPPORTED",
+  "qualifier": "",
+  "reason_zh": "Snopes 摘录明言流传的\"普京嘲讽奥巴马社会主义\"引语 \"This is not a real quote from the Russian president\"，直接支持\"普京并未这样说\"的主张。"
+ },
+ {
+  "id": "C02",
+  "verdict": "REFUTED",
+  "qualifier": "",
+  "reason_zh": "该主张实指流传的\"西塞罗论政府财政\"名言出自其口，而摘录明确 \"There is no substantive evidence that Cicero spoke or wrote these words\"，与归因方向相反。"
+ },
+ {
+  "id": "C03",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "qualifier": "",
+  "reason_zh": "证据显示该年最低工资年收入 $2,460 仅够三口之家高于贫困线、四口之家则不足（且摘录仅覆盖单一年份），\"必能脱贫\"的笼统主张只部分成立。"
+ },
+ {
+  "id": "C04",
+  "verdict": "REFUTED",
+  "qualifier": "",
+  "reason_zh": "摘录显示 Medicare 信托基金预计耗尽时间比 ACA 立法前的预测推迟了 12 年（Obamacare 延长而非拖垮其偿付能力），与\"因 Obamacare 而 going broke\"的因果方向相反。"
+ },
+ {
+  "id": "C05",
+  "verdict": "SUPPORTED",
+  "qualifier": "",
+  "reason_zh": "摘录逐项吻合骗局要素：邮件诱导至索要信用卡号并称需 $7.95 的表单，myluckyprizes.com 注册于越南域名注册商，与\"Target PS5 骗局邮件→信用卡表单→越南注册网站\"各成分一致。"
+ },
+ {
+  "id": "C06",
+  "verdict": "SUPPORTED",
+  "qualifier": "",
+  "reason_zh": "摘录 \"Like innumerable other 'free merchandise' offers on Facebook... this one is a scam\" 直接证实该 $50 周年礼券系骗局，支持\"沃尔玛并未提供\"的主张。"
+ },
+ {
+  "id": "C07",
+  "verdict": "SUPPORTED",
+  "qualifier": "[限定：\"知道能赚钱\"系由原话动机从句\"那样像我这样的人就会进场买入\"概括而来，属个别措辞层面，方向一致]",
+  "reason_zh": "特朗普原话逐字摘录 \"I sort of hope that happens because then people like me would go in and buy\" 同时覆盖\"盼望房市崩盘\"与\"因可低价买入获利\"两个核心成分。"
+ },
+ {
+  "id": "C08",
+  "verdict": "REFUTED",
+  "qualifier": "",
+  "reason_zh": "本轮采信的摘录 \"When you realize Neil Young's music catalogue is owned by Pfizer\" 以断言口吻预设曲库归辉瑞所有，与主张\"辉瑞不拥有\"方向直接冲突。"
+ },
+ {
+  "id": "C09",
+  "verdict": "REFUTED",
+  "qualifier": "",
+  "reason_zh": "摘录明示 \"As of January and February 2022, Pfizer owned Neil Young's song catalog\"，直接反驳\"辉瑞不拥有 Neil Young 曲库\"的主张（与 C08 同源同命题，判定保持一致）。"
+ },
+ {
+  "id": "C10",
+  "verdict": "SUPPORTED",
+  "qualifier": "",
+  "reason_zh": "PolitiFact 原文 \"We rate Walker's statement True\" 直接确认 165 倍主张；数值判定来源〔逐字一致，免引擎〕——摘录未含底层基金金额，无法独立复算，采信核查方裁定。"
+ }
+]

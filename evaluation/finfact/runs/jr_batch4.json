@@ -1,0 +1,94 @@
+[
+ {
+  "id": "C31",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "病毒帖宣称无证移民非法入境即获工作/驾照/食品券/医保/住房/'七年免税生意'等福利，Snopes（2018-01-16）评 Mostly False：雇佣无证者违法（8 U.S.C. §1324a）、食品券与医保资格不符、'七年免税期'纯属虚构，仅'子女可入读公立学校'一项成立——多数子项被驳、个别成立，判部分支持。",
+  "excerpt": "This is completely false. Undocumented immigrants pay taxes, and there is no provision in law at the federal or state level which grants them any kind of 'tax holiday.'",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/illegal-immigrant-benefits",
+   "https://www.law.cornell.edu/uscode/text/8/1324a"
+  ]
+ },
+ {
+  "id": "C32",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "reason_zh": "与 C31 为同一事实核查（同一组证据链接的改写版）：'非法入境美国后即自动获得各项福利'的核心断言多数被驳、仅教育一项成立，Snopes（2018-01-16）评 Mostly False，判部分支持。",
+  "excerpt": "An immigrant who does not have a legal status in the United States is not eligible for food stamps",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/illegal-immigrant-benefits",
+   "https://www.law.cornell.edu/uscode/text/8/1324a"
+  ]
+ },
+ {
+  "id": "C33",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2014-01-02，与发帖同日）判 Correctly Attributed：该公开信确为阿拉巴马母亲 Karri Kinder 于 2013-12-23 所写，信中保费数字（$380→$753.26/月）属实，其奥巴马医改续保暴涨经历真实；其后获每月 $255 补贴、实付 $204.19 属后续进展，不推翻其所述经历。",
+  "excerpt": "Our premiums for the Blue Saver Silver would now be $753.26.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/obamacare-horror-story"
+  ]
+ },
+ {
+  "id": "C34",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2017-09-18，与发帖同日）评 True：Victor Salva 1988 年因性侵《Clownhouse》12 岁男演员 Nathan Forrest Winters 被判罪、服刑 15 个月，并在密西西比/佛州性犯罪者登记库在册，其执导《Jeepers Creepers 3》亦属实（证据链接中的两州登记库即该页所引来源）。",
+  "excerpt": "Claim: \"Director Victor Salva was convicted of child molestation.\" Rating: True — \"Salva served 15 months in prison and finished his parole in 1992.\"",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/jeepers-creepers-victor-salva-convicted-child-molestation"
+  ]
+ },
+ {
+  "id": "C35",
+  "verdict": "REFUTED",
+  "reason_zh": "德州死囚点名'要一个孩子作最后一餐、狱方拟照办'纯属虚构：故事源自讽刺假新闻站 Hip-Hop Hangover（即证据链接站点），所配照片实为佛州因交通违规被捕的 Kyle Walker 而非德州死囚，且德州已取消最后餐制度，Snopes（2014-10-30，与发帖同日）评 False。",
+  "excerpt": "there is no law mandating last meal requests be honored by prison officials",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/texas-two-misstep"
+  ]
+ },
+ {
+  "id": "C36",
+  "verdict": "REFUTED",
+  "reason_zh": "'160 英尺巨型鱿鱼受福岛辐射变异冲上圣莫尼卡海岸'出自讽刺网站 Lightly Braised Turnip 的捏造文章（即证据链接站点），照片系将 2011 年智利死鲸照片与鱿鱼图像拼接，当地亦无任何人目击或媒体报道，Snopes（2014-01-09，与发帖同日）评 False。",
+  "excerpt": "The photo was a fabrication that melded a picture depicting a dead whale found in Chile back in 2011",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/gigantic-squid"
+  ]
+ },
+ {
+  "id": "C37",
+  "verdict": "REFUTED",
+  "reason_zh": "'1994 年北岭地震震级被故意瞒报以减少政府救济'的传言无任何依据：6.7 级经全球多个地震台网同时独立测定一致，传闻源自把 Mercalli 烈度误当里氏震级的假传真，Snopes（2000-06-06，与发帖同日）评 False。",
+  "excerpt": "the Northridge quake was a 6.7 no matter who measured it",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/shakes-peers-n-gov"
+  ]
+ },
+ {
+  "id": "C38",
+  "verdict": "REFUTED",
+  "reason_zh": "病毒信息称'2015 年 1 月 1 日医改加税悄然生效'不实：所涉税率调整实于 2013 年初经《2012 年纳税人救济法》（即证据链接中的 HR 8 法案）生效、与 ACA 无关且仅适用高收入者（28% 资本利得、55% 遗产税等数字系夸大），Snopes（2014-08-26，与发帖同日）评 False。",
+  "excerpt": "took effect at the beginning of 2013 (not 2014 or 2015 or 2016)",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/what-happened-quietly-obamacare"
+  ]
+ },
+ {
+  "id": "C39",
+  "verdict": "SUPPORTED",
+  "reason_zh": "PolitiFact Florida（2010-03-28，与发帖同日）评 True：佛州机构数据显示非农就业 2009 年 2 月至 2010 年 2 月减少 211,500，与主张 211,000 相对差 0.237%〔引擎复算：match --claim 211000 --claim-unit 元 --evidence-yuan 211500 → ratio=1.002370，matched=false @0.1% 容差〕，偏差可由取整解释（<0.5% 舍入豁免上限），判支持。",
+  "excerpt": "if you look at seasonally adjusted nonagricultural employment — a less-inclusive number — you see the basis for Rubio's claim. There the job loss in a year's time is 211,500.",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2010/mar/28/marco-rubio/rubio-says-florida-has-lost-211000-jobs-crist-camp/"
+  ]
+ },
+ {
+  "id": "C40",
+  "verdict": "SUPPORTED",
+  "reason_zh": "Snopes（2016-12-30，与发帖同日）评 Mostly True：卢卡斯 2002 年自述（Snopes 引《时代》原文）Leia 发髻'基本来自世纪之交墨西哥'的 Pancho Villa 革命女性造型，总体主张成立；唯病毒帖点名的具体人物 Clara de la Rocha 未获 Lucasfilm 证实、Hopi 发型说并存（已作澄清，不影响主体判定）。",
+  "excerpt": "The buns are basically from the turn-of-the-century Mexico.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/origins-princess-leias-hairstyle"
+  ]
+ }
+]

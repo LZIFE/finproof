@@ -1,0 +1,43 @@
+[
+  {
+    "id": "T-1",
+    "verdict": "SUPPORTED",
+    "g_basis": "不适用",
+    "basis_check": "不适用（非 G 类，为可核事实统计主张）；98% 口径与同代一手证据相符：Tax Policy Center 投影仅 663,608 名有经营收入的申报人落入最高两档（2009 年、奥巴马增税生效年，FactCheck.org 2008-07 引 TPC；NYT 2008-10-02 副总统辩论核查同引）；CBPP 引 TPC 称超过 98% 有经营收入者低于门槛；Tax Foundation 辩论当日核查承认该数字 \"technically correct under certain assumptions\"（口径＝按有经营收入申报人计数而非按营收加权）。数字 98 与各证据逐字一致（同数值同单位同量级）〔逐字一致，免引擎〕",
+    "reason_zh": "按主张发表当时（2008-10）证据判定：PolitiFact（Holan，2008-10-16）评 True，TPC 数据显示仅约 2% 有经营收入申报人超过 25 万美元、奥巴马计划增税仅针对该线以上者，'98% 小企业低于 25 万且不加税'成立（注：口径为纳税申报人计数，Tax Foundation 指其'技术上正确但按营收加权则代表性弱'，不改变数字本身的成立）。",
+    "source_urls": [
+      "https://politifact.com/search/factcheck?q=speak&page=231",
+      "https://www.pulitzer.org/winners/staff-69",
+      "https://taxfoundation.org/blog/fact-checking-tax-policy-discussion-final-presidential-debate",
+      "https://www.factcheck.org/2008/07/mccains-small-business-bunk/",
+      "https://www.cbpp.org/research/house-health-bills-high-income-surcharge-is-sound-and-well-targeted",
+      "https://archive.nytimes.com/thecaucus.blogs.nytimes.com/2008/10/02/check-point-the-vice-presidential-debate/"
+    ]
+  },
+  {
+    "id": "T-2",
+    "verdict": "SUPPORTED",
+    "g_basis": "不适用",
+    "basis_check": "不适用（非 G 类，为法条适用性事实主张）；法条核证相符：18 U.S.C. §202 的定义条款将总统/副总统排除在 §208 刑事利益冲突禁令的适用对象之外（1974 年 DOJ 函确认、1989 年由国会成文化，OGE 指引同旨），故法律不强制总统将资产置入盲信任；PolitiFact 原文结论句 \"The president is, in fact, exempt from the primary conflict-of-interest provision in the U.S. code.\" 与主张相符",
+    "reason_zh": "按发表当时（2016-11）证据判定：PolitiFact（2016-11-16）对 Giuliani 同一表述评 True——总统确获 18 U.S.C. §208 金融利益冲突刑律豁免（§202 定义排除），盲信任并非法定义务（财务披露义务与宪法薪酬条款仍适用，但不否定本主张的两个断言）。",
+    "source_urls": [
+      "https://www.politifact.com/factchecks/2016/nov/16/rudy-giuliani/giuliani-president-trump-will-be-exempt-conflict-i/",
+      "https://www.law.cornell.edu/uscode/text/18/202",
+      "https://www.law.cornell.edu/uscode/text/18/208"
+    ]
+  },
+  {
+    "id": "T-3",
+    "verdict": "OPINION_OR_FORECAST",
+    "g_basis": "依据已披露",
+    "basis_check": "失真：主张者（McCarthy 2021-02-09 新闻稿）链接的是 CBO 2021 年新报告，但 'up to 3.7 million' 并非该报告数字——2021 报告全篇无 3.7M，其平均估计（中心）为 1.4M（中位数 1.0M，三分之二概率区间上界仅 2.7M）；3.7M 实为 CBO 2019 年 7 月旧报告'三分之二概率区间'的上限（该旧报告中心估计 1.3M），且 'destroy' 的确定性表述把概率区间端点当作可期结果。〔引擎复算〕3.7M 较 2021 年中心估计 1.4M 高 164.29%（3.7−1.4)/1.4，较 2019 年中心估计 1.3M 高 184.62%——属 SKILL §一 G 类输出纪律第 3 条明列的'引用区间上限冒充中心估计＋旧报告数字冒充最新'，判依据失真、进问题项，不得因'依据已披露'放行（PolitiFact 2021-02-11 亦评 False；CBO 发言人称该数字'很可能取自 2019 年分析'）",
+    "reason_zh": "对 15 美元最低工资就业影响的测算属前瞻预测（G 类）不判真假，但其披露依据（CBO 报告）失真：新闻稿链接 2021 新报告（中心估计 1.4M、区间上界 2.7M、全篇无 3.7M）却引用 2019 旧报告三分之二概率区间的上限 3.7M（旧中心估计 1.3M）冒充新报告结果。",
+    "source_urls": [
+      "https://www.cbo.gov/system/files/2021-02/56975-Minimum-Wage.pdf",
+      "https://www.cbo.gov/publication/56975",
+      "https://www.cbo.gov/system/files/2019-07/CBO-55410-MinimumWage2019.pdf",
+      "https://www.politifact.com/factchecks/2021/feb/11/kevin-mccarthy/gop-house-leader-kevin-mccarthy-distorts-job-loss/",
+      "https://www.factcheck.org/2021/01/paul-distorts-cbos-estimate-on-impact-of-15-minimum-wage/"
+    ]
+  }
+]

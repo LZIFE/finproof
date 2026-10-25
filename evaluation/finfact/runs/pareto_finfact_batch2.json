@@ -1,0 +1,113 @@
+[
+ {
+  "id": "C11",
+  "verdict": "REFUTED",
+  "qualifier": "",
+  "reason_zh": "Snopes 裁定 False：维京人队并未于2016年12月18日开放美国银行体育场收容无家可归者，传言为推特用户自认的造假（删帖并道歉），明尼苏达体育设施管理局亦确认球场未用作庇护所。",
+  "excerpt": "The Minnesota Vikings, however, did not open U.S. Bank Stadium on 18 December 2016 to shelter the homeless.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/minnesota-vikings-open-their-stadium-to-shelter-the-homeless/",
+   "https://www.cbsnews.com/minnesota/news/us-bank-stadium-homeless-rumor"
+  ]
+ },
+ {
+  "id": "C12",
+  "verdict": "REFUTED",
+  "qualifier": "",
+  "reason_zh": "PolitiFact 判 False：19-0008 号“分轨”倡议仅取消商业/工业地产的 Prop 13 保护，住宅完全豁免保留保护，且总检察长贝塞拉仅负责撰写倡议的投票标题与摘要、并不发起倡议——‘消除 Prop 13 导致民众房产税飙升’的核心断言不成立。",
+  "excerpt": "While Becerra's office writes the legal titles and summaries for voter initiatives, the attorney general does not put forward ballot measures.",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2020/jan/24/facebook-posts/no-californians-arent-being-asked-repeal-prop-13s/",
+   "https://oag.ca.gov/system/files/initiatives/pdfs/19-0008%20%28The%20California%20Schools%20and%20Local%20Communities%20Funding%20Act%20of%202020%29_1.pdf"
+  ]
+ },
+ {
+  "id": "C13",
+  "verdict": "SUPPORTED",
+  "qualifier": "[限定：实为首场第2节进行至约7.85分钟（第8分钟前）处达上限，而非严格“节初”——〔引擎复算〕margin 23,500,000/328=71,646.34美元/节；118500/71646.34=1.654节；另按税务日历年严格计应为一月首战即达标；且医保税(1.45%+0.9%)不封顶]",
+  "reason_zh": "核心断言（詹姆斯在赛季首场比赛极早即停止缴纳社保税）成立：按 Spotrac 年薪均值2350万美元与2016年应税工资上限$118,500复算，其确于首场第2节内达到上限，PolitiFact 判 Mostly True。",
+  "excerpt": "James reaches the $118,500 cap \"somewhere before the eighth minute of the second quarter of the first game.\" We rate the statement Mostly True.",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2016/apr/28/alan-grayson/lebron-james-pays-social-security-taxes-halftime-f/",
+   "http://www.spotrac.com/nba/cleveland-cavaliers/lebron-james/",
+   "https://www.irs.gov/taxtopics/tc751.html"
+  ]
+ },
+ {
+  "id": "C14",
+  "verdict": "SUPPORTED",
+  "qualifier": "[限定：前提是其他县不上调/不下调税率；且按人均税负口径，上调后 Central Health（$115/人）将超过 Nueces（$91）与 El Paso（$86）两县]",
+  "reason_zh": "PolitiFact 判 Mostly True：Central Health 税率7.89美分/百元估值，远低于德州最大县各医疗区（次低 Nueces 16.24美分，Harris 18.22美分），即便按公投上调至12.9美分后仍为最低，核心断言成立。",
+  "excerpt": "Claim \"correct, presuming other districts don't slash rates\" — \"We rate the claim as Mostly True.\"",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2012/oct/26/keep-austin-healthy-pac/proposition-advocate-says-central-health-district/",
+   "http://www.traviscountyhd.org/"
+  ]
+ },
+ {
+  "id": "C15",
+  "verdict": "SUPPORTED",
+  "qualifier": "[限定：撤销许可时管线整体仅约8%建成（美国段泵站接近完工、加拿大段约1/3）；部分所引泵站属既有管线，“building”实指承担重大施工份额（泵站+加拿大段主干线），非独家承建整条管线]",
+  "reason_zh": "PolitiFact Wisconsin 判 Mostly True：TC Energy 以邮件向其证实 Michels Corp 在拜登2021年1月20日撤销许可前已获 Keystone XL 管线及设施的“重大施工份额”（Michels Pipeline 承建泵站、Michels Canada 参建主干线），“我公司当时在建”核心成立。",
+  "excerpt": "TC Energy confirmed that Michels Corp. had been awarded \"a significant construction scope\" on the Keystone XL pipeline.",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2022/jul/21/tim-michels/michels-target-claim-my-company-was-building-keyst/",
+   "https://www.tcenergy.com/announcements/2021/2021-06-09-tc-energy-confirms-termination-of-keystone-xl-pipeline-project/",
+   "https://www.whitehouse.gov/briefing-room/presidential-actions/2021/01/20/executive-order-protecting-public-health-and-environment-and-restoring-science-to-tackle-climate-crisis/"
+  ]
+ },
+ {
+  "id": "C16",
+  "verdict": "SUPPORTED",
+  "qualifier": "[限定：指布什任期最后三个月（2008.11:−765K、2008.12:−696K、2009.1:−796K）的均值，非整个任期（最后12个月均值约−36.5万/月），存在择取最差区间的成分；〔引擎复算〕margin (765000+696000+796000)/3=752,333/月；match 750000 vs 752333：绝对差2,333、相对差0.31%≤0.5%且万位精度舍入可解释，标[舍入差异0.31%]]",
+  "reason_zh": "核心成立（危机顶峰确在单月流失约75万岗位），PolitiFact 判 Mostly True：布什最后三个月平均每月流失约75.2万岗位，与“75万/月”相符，唯时间段为精选的最差三个月（an element of cherry-picking, the overall point holds up）。",
+  "excerpt": "Bush's final three months \"averaged about 750,000 jobs a month\" ... \"an element of cherry-picking\" but \"the overall point holds up.\"",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2015/oct/11/debbie-wasserman-schultz/wasserman-schultz-under-conservative-republican-pr/",
+   "http://www.bls.gov/web/empsit/compaes.xlsx"
+  ]
+ },
+ {
+  "id": "C17",
+  "verdict": "SUPPORTED",
+  "qualifier": "[限定：申请量系2011–2012年才激增（2011:2,265件；2012:3,357件），2010年本身无激增；〔引擎复算〕yoy 2010年1,735 vs 2009年1,751 = −0.91%，不增反微降]",
+  "reason_zh": "PolitiFact 判 True：TIGTA/IRS 数据显示2010年501(c)(4)申请1,735件、略低于2009年1,751件（无激增），且基于茶党背景的筛选始于2010年3月1日、早于任何工作量上升，核心断言被数据支持。",
+  "excerpt": "Griffin said there was no surge in 501(c)(4) applications in 2010, and the numbers from the IRS back him up.",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2013/jun/07/tim-griffin/no-rise-applications-triggered-irs-actions-says-ti/",
+   "http://www.treasury.gov/tigta/auditreports/2013reports/201310053fr.html"
+  ]
+ },
+ {
+  "id": "C18",
+  "verdict": "SUPPORTED",
+  "qualifier": "[限定：〔引擎复算〕①24M vs 23.3M（BLS 14.0M失业+9.3M非自愿兼职），差−2.9%，若含边际依附2.5M（U-6=25.8M）则偏低；②50M vs 人口普查49.9M无保险，差0.2%，舍入可解释[舍入差异0.2%]；③47M vs USDA SNAP 2011年7月实际45,344,946，高约3.7%（当时月度纪录45.4M），为主张时点略超前；④15M vs Zillow 二季度15.3M，差2.0%，且口径为“负资产房屋（套）”而非“家庭”]",
+  "reason_zh": "PolitiFact 判 True：四个数字与 BLS 失业/兼职数据、人口普查无保险人数、USDA SNAP 参与数、Zillow 负资产统计逐项对得上，属合理量级近似，核心断言成立。",
+  "excerpt": "We examined each of his economic claims and found them accurate, point for point. We rate his claim True.",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2011/oct/24/alan-grayson/alan-graysons-defense-occupy-wall-street-impassion/"
+  ]
+ },
+ {
+  "id": "C19",
+  "verdict": "REFUTED",
+  "qualifier": "",
+  "reason_zh": "Snopes（与主张同日2016-07-18）裁定 False：特鲁多并未宣布赦免所有涉大麻定罪者，传言源自2016年7月3日讽刺网站 Global Sun 的捏造文章；当时政府实际计划是2017年春季提出休闲大麻合法化法案，并无全面赦免计划。",
+  "excerpt": "Canadian Prime Minister Justin Trudeau has not freed from prison and expunged the record of every convicted marijuana user in Canada.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/justin-trudeau-pardon-marijuana/",
+   "https://www.usatoday.com/story/news/world/2016/04/26/canada-pot-legal-marijuana/83492344/"
+  ]
+ },
+ {
+  "id": "C20",
+  "verdict": "REFUTED",
+  "qualifier": "",
+  "reason_zh": "Snopes 裁定 False：不存在此邮件——「idiot soldiers」短语在维基解密全部已公开档案（DNC、Podesta、克林顿邮件库）中检索为零结果；伪造截图套用真实邮件头但正文系捏造，且落款2012年7月26日早于9月11日班加西事件，时序不可能。",
+  "excerpt": "There is no leaked e-mail in which longtime Clinton aide Cheryl Mills called the Benghazi dead \"idiot soldiers\"",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/cheryl-mills-leaked-email/",
+   "https://wikileaks.org/clinton-emails/emailid/4829"
+  ]
+ }
+]

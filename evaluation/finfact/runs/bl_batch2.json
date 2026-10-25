@@ -1,0 +1,87 @@
+[
+ {
+  "id": "C11",
+  "verdict": "false",
+  "reason": "It was a viral hoax: a tweet by David Dellanave on Dec 18, 2016 (later deleted, admitted not real) was picked up by some sports outlets, but the Vikings and the Minnesota Sports Facilities Authority confirmed U.S. Bank Stadium was never opened as a homeless shelter; Snopes rated the claim False the same day it was posted.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/minnesota-vikings-open-their-stadium-to-shelter-the-homeless/",
+   "https://www.cbsnews.com/minnesota/news/us-bank-stadium-homeless-rumor/",
+   "https://www.startribune.com/twin-cities-man-shuts-twitter-account-after-false-post-about-u-s-bank-stadium-turning-into-homeless/407457936/"
+  ]
+ },
+ {
+  "id": "C12",
+  "verdict": "false",
+  "reason": "PolitiFact rated this False on the same day (Jan 24, 2020): Becerra as AG merely writes titles/summaries for citizen initiatives and did not propose anything; the split-roll initiative (19-0008) affected only commercial properties over $3M and left Prop 13's residential protections intact.",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2020/jan/24/facebook-posts/no-californians-arent-being-asked-repeal-prop-13s/"
+  ]
+ },
+ {
+  "id": "C13",
+  "verdict": "true",
+  "reason": "PolitiFact rated Alan Grayson's illustration Mostly True on Apr 28, 2016: at ~$71,600 of salary per game quarter, LeBron hits the 2016 Social Security wage cap ($118,500) early in the first game, after which he pays no Social Security tax (though the calendar-year cap would technically be hit in his 31st game of the season, i.e., in January).",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2016/apr/28/alan-grayson/lebron-james-pays-social-security-taxes-halftime-f/"
+  ]
+ },
+ {
+  "id": "C14",
+  "verdict": "true",
+  "reason": "PolitiFact rated Keep Austin Healthy PAC's claim Mostly True on Oct 26, 2012: Central Health's rate (7.89 cents/$100) was the lowest among Texas' large urban hospital districts and would stay lowest even after the proposed increase to 12.9 cents, though the comparison omitted per-resident revenue differences.",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2012/oct/26/keep-austin-healthy-pac/proposition-advocate-says-central-health-district/"
+  ]
+ },
+ {
+  "id": "C15",
+  "verdict": "true",
+  "reason": "PolitiFact rated Tim Michels' tweet Mostly True on Jul 21, 2022: Biden revoked the Keystone XL permit on Jan 20, 2021, and Michels Corp was then actively building contracted pump stations and roughly half of the Canadian segment (though only ~8% of the whole pipeline was done and some work related to the existing pipeline).",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2022/jul/21/tim-michels/michels-target-claim-my-company-was-building-keyst/",
+   "https://www.whitehouse.gov/briefing-room/presidential-actions/2021/01/20/executive-order-protecting-public-health-and-environment-and-restoring-science-to-tackle-climate-crisis/"
+  ]
+ },
+ {
+  "id": "C16",
+  "verdict": "true",
+  "reason": "This is Debbie Wasserman Schultz's Oct 11, 2015 claim about the Bush years; PolitiFact rated it Mostly True because BLS data show job losses of roughly 750,000/month in early 2009 at the depth of the Great Recession (though not for his entire presidency).",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2015/oct/11/debbie-wasserman-schultz/wasserman-schultz-under-conservative-republican-pr/"
+  ]
+ },
+ {
+  "id": "C17",
+  "verdict": "true",
+  "reason": "PolitiFact rated Rep. Tim Griffin's claim True (Jun 7, 2013): per TIGTA data, 501(c)(4) applications actually dipped slightly in FY2010 (1,735 vs 1,751 in FY2009); the surge came later (2,265 in FY2011, 3,357 in FY2012).",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2013/jun/07/tim-griffin/no-rise-applications-triggered-irs-actions-says-ti/"
+  ]
+ },
+ {
+  "id": "C18",
+  "verdict": "true",
+  "reason": "PolitiFact rated Alan Grayson's Oct 24, 2011 Occupy Wall Street defense True point-for-point: ~25.8M under-/unemployed (U-6), 49.9M uninsured in 2010, ~45.3M on SNAP, and Zillow's 15.3M underwater homes closely matched his 24M/50M/47M/15M figures.",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2011/oct/24/alan-grayson/alan-graysons-defense-occupy-wall-street-impassion/"
+  ]
+ },
+ {
+  "id": "C19",
+  "verdict": "false",
+  "reason": "Snopes rated the July 2016 viral rumor False, tracing it to a satirical 'Global Sun' article: as of mid-2016 Trudeau's government only planned to legalize recreational marijuana (a law promised for spring 2017), with no plan to pardon all marijuana offenders — pardons for simple possession only came via Bill C-93 in 2019.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/justin-trudeau-pardon-marijuana/",
+   "https://www.usatoday.com/story/news/world/2016/04/26/canada-pot-legal-marijuana/83492344/"
+  ]
+ },
+ {
+  "id": "C20",
+  "verdict": "false",
+  "reason": "Snopes rated this False on Oct 24, 2016: no WikiLeaks release contains any email in which Cheryl Mills calls the Benghazi dead 'idiot soldiers'; the fabricated screenshot borrowed the header of a real email but was dated July 26, 2012, over two months before the Benghazi attack.",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/cheryl-mills-leaked-email/",
+   "https://wikileaks.org/clinton-emails/emailid/4829"
+  ]
+ }
+]

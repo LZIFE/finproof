@@ -1,0 +1,44 @@
+{
+  "name": "finproof-verifier",
+  "version": "2.7.0",
+  "description": "Jianrong (鉴融) is a business-analysis report fact-verification expert. It verifies industry research, market analysis, competitive benchmarks, business-model write-ups, company deep-dives, due-diligence memos, business plans and investment memos (listed-company / equity research is the deepest-tuned case). It decomposes reports into checkable claims, recomputes numbers with a deterministic engine at published exact tolerances (0.1% relative; 0.5pp for growth rates) with per-verdict engine provenance under a fixed N_e counting rule, judges each claim across six verdicts via an eight-step decision chain, cross-checks every problem verdict through an independent blind re-review (a second model dispatched as a subagent when the host provides one, with a zero-cost mechanical self-check layer — engine re-run and excerpt re-read — as the floor), applies adversarial defense against small-deviation, scope-disguise, unit-disguise, spurious-causality and quote-misalignment errors (including a temporal-impossibility citation check: a source whose coverage period predates the data period is a mismatch by logic alone), tags every forecast claim with an explicit disclosed-basis / undisclosed-basis marker (certainty-worded forecasts surface as forecast-as-fact problem items), offers a fast tier for short reports that keeps the three hard checks, and classifies unclosable gaps (G1–G4) into a ranked user self-verification checklist. Its audit report cites a numbered Evidence Register for every claim — each entry with a clickable source link, liveness re-check status, retrieval timestamp and verbatim excerpt — and its FinProof Score is fully transparent: the score is recomputable from a published formula with the numerator/denominator of every dimension, a deduction list traced to claim and evidence IDs, and an explicit self-assessment statement. Scanned PDFs and image tables go through the built-in OCR path; online verification uses WorkBuddy's built-in web search.",
+  "author": {
+    "name": "FinProof / 鉴融",
+    "email": "hello@finproof.example"
+  },
+  "agents": ["./agents/finproof-verifier.md"],
+  "skills": ["./skills/finproof-verification"],
+
+  "expertType": "agent",
+  "agentName": "finproof-verifier",
+
+  "displayName": {
+    "en": "Jianrong — Business-Analysis Report Verification Expert",
+    "zh": "鉴融—商业分析报告核验专家"
+  },
+  "profession": {
+    "en": "Business-Analysis Report Fact-Verifier",
+    "zh": "商业分析报告事实核验专家"
+  },
+  "displayDescription": {
+    "en": "Verifies business-analysis reports: decomposes claims, recomputes figures at published tolerances, emits six-class verdicts, and scores transparency—every score is recomputable. Audit output is a structured single-file HTML report.",
+    "zh": "核验商业分析报告：拆解主张、复算数字、给出六类结论；每条主张附可点开来源与原文摘录，评分可复算。审计报告输出为 HTML 结构化单文件。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "10-ProjectQuality",
+  "defaultInitPrompt": {
+    "zh": "核验这份商业分析报告：每条结论都要给出可点开的来源链接与原文摘录，并说明分数是怎么算出来的。",
+    "en": "Verify this business-analysis report — give a clickable source link and verbatim excerpt for every conclusion, and show me how the score is computed."
+  },
+  "plugin": "finproof-verifier",
+  "tags": [
+    { "en": "Fact Verification", "zh": "事实核验" },
+    { "en": "Source-Traceable Audit", "zh": "来源可核对" },
+    { "en": "Score Transparency", "zh": "评分透明" }
+  ],
+  "quickPrompts": [
+    { "en": "Verify this business-analysis report — give a clickable source link and verbatim excerpt for every conclusion, and show me how the score is computed.", "zh": "核验这份商业分析报告：每条结论都要给出可点开的来源链接与原文摘录，并说明分数是怎么算出来的。" },
+    { "en": "Explain exactly how your FinProof Score is calculated, with the numerator/denominator of each dimension and every deduction traced to a claim and evidence ID.", "zh": "请完整说明 FinProof Score 是怎么算的：每个维度的分子分母、每一分扣在哪条主张和哪条证据上。" },
+    { "en": "Verify this report and give me a ranked checklist of what I still need to check by hand.", "zh": "核验这份报告，并给我一份按优先级排序的、我仍需亲自核验的清单。" }
+  ]
+}

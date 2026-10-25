@@ -1,0 +1,91 @@
+[
+ {
+  "id": "C31",
+  "verdict": "false",
+  "reason": "该说法源自2018年1月病毒式传播的对比图（称非法越境美国者可获得工作、驾照、食品券、住房等），Snopes于2018-01-16核实评为Mostly False：成年非法入境者并不被提供工作（明知雇佣无工作许可者违法，见8 U.S.C. 1324a），各项'福利'描述与事实不符。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/illegal-immigrant-benefits/",
+   "https://www.law.cornell.edu/uscode/text/8/1324a"
+  ]
+ },
+ {
+  "id": "C32",
+  "verdict": "false",
+  "reason": "此条为C31同一病毒式说法的改写（'非法跨越美国边境会发生什么'），同日传播，Snopes 2018-01-16评为Mostly False——该meme称非法入境者自动获得工作、驾照、食品券等说法大多不实。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/illegal-immigrant-benefits/",
+   "https://www.law.cornell.edu/uscode/text/8/1324a"
+  ]
+ },
+ {
+  "id": "C33",
+  "verdict": "true",
+  "reason": "这封'阿拉巴马母亲的绝望经历'公开信确系Auburn, Alabama的Karri Kinder本人于2013年12月23日所写并发布在其博客，后被IJReview转载而走红；Snopes 2014-01-02核实评为Correctly Attributed，其保费上涨经历属实（多家BCBS of Alabama客户遭遇类似，且她后来获得补贴降至每月$204.19）。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/obamacare-horror-story/",
+   "https://www.ijreview.com/2013/12/105176-alabama-mom-shares-devastating-experience-obamacare-open-letter-american-people/"
+  ]
+ },
+ {
+  "id": "C34",
+  "verdict": "true",
+  "reason": "Victor Salva确于1988年因拍摄《Clownhouse》时性侵12岁童星而认罪（另涉持有儿童色情物品），服刑约15个月并登记为性犯罪者；《Jeepers Creepers 3》2017年上映时旧案重提，Snopes 2017-09-18评为True。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/jeepers-creepers-victor-salva-convicted-child-molestation/",
+   "https://en.wikipedia.org/wiki/Victor_Salva"
+  ]
+ },
+ {
+  "id": "C35",
+  "verdict": "false",
+  "reason": "'德州死囚要求以一名儿童作为最后一餐、狱方拟同意'是流传多年的恶作剧邮件（所谓'cannibal pedophile'），并不存在这样的囚犯或请求，Snopes 2014-10-30核实评为False。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/texas-two-misstep/",
+   "https://www.snopes.com/fact-check/last-meal/"
+  ]
+ },
+ {
+  "id": "C36",
+  "verdict": "false",
+  "reason": "2014年1月所谓'巨型突变鱿鱼被冲上圣莫尼卡海滩（归因于福岛放射性巨化）'出自讽刺网站Lightly Braised Turnip，图片系PS合成（改编自西班牙海滩真实乌贼照），Snopes评为False，国家地理等亦辟谣。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/gigantic-squid/",
+   "https://globalvoices.org/2014/01/11/photo-of-giant-squid-found-in-california-is-fake/"
+  ]
+ },
+ {
+  "id": "C37",
+  "verdict": "false",
+  "reason": "'1994年Northridge地震震级被故意低报（6.7实为更高）以免政府/FEMA赔付'的传言被Snopes于2000-06-06评为False：地震实测即为6.7级，且FEMA援助按实际损失而非震级门槛发放；USGS地震误区页面亦无低报依据。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/shakes-peers-n-gov/",
+   "https://earthquake.usgs.gov/faq/#myths"
+  ]
+ },
+ {
+  "id": "C38",
+  "verdict": "false",
+  "reason": "链式邮件称'2015年1月1日美国人在庆祝新年时被悄悄加征一系列奥巴马医改税'，Snopes 2014-08-26评为False：所列增税多在2013年1月1日依《2012年纳税人救济法》生效、与ACA无关或根本不存在，FactCheck.org与PolitiFact均作同类辟谣。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/what-happened-quietly-obamacare/",
+   "https://www.factcheck.org/2015/01/return-of-the-false-tax-claims/"
+  ]
+ },
+ {
+  "id": "C39",
+  "verdict": "true",
+  "reason": "这是Marco Rubio 2010-03-28初选辩论中的原话，PolitiFact当日核查评为True：自Crist 2009年2月与奥巴马同台为刺激法案站台以来，佛州按可用就业数据确已减少约21.1万个工作岗位。",
+  "source_urls": [
+   "https://politifact.com/factchecks/2010/mar/28/marco-rubio/rubio-says-florida-has-lost-211000-jobs-crist-camp/"
+  ]
+ },
+ {
+  "id": "C40",
+  "verdict": "true",
+  "reason": "莱娅公主'双丸子头'源自墨西哥革命时期女性发式的说法基本属实：George Lucas本人2002年接受Time采访时称灵感是'世纪之交墨西哥、潘乔·维拉式女革命者的造型'，Snopes 2016-12-30评为Mostly True（但具体人物Clara de la Rocha的对应缺乏确证）。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/origins-princess-leias-hairstyle/",
+   "https://time.com/archive/6911956/so-whats-the-deal-with-leias-hair/"
+  ]
+ }
+]

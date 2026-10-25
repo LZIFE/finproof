@@ -1,0 +1,8 @@
+[
+ {
+  "id": "C03",
+  "verdict": "PARTIALLY_SUPPORTED",
+  "qualifier": "[限定：证据摘录仅覆盖1960年代单一年份（\"that same year\"），且自身写明该最低工资年薪$2,460\"enough for a family of three, but not four\"——即仅支撑三口之家脱贫、四口之家不能；摘录对1950年代部分无任何数据覆盖；该句出自PolitiFact对Jack Reed完全相同表述的核查，其原评亦为条件性成立（Half True），非笼统全称成立]",
+  "reason_zh": "摘录仅证明1960年代单年最低工资收入够三口之家脱贫但不够四口之家，且完全未覆盖1950年代，\"整个50、60年代最低工资足以脱贫\"的笼统核心断言仅获部分支持。"
+ }
+]

@@ -1,0 +1,124 @@
+[
+ {
+  "id": "C01",
+  "claim": "Vladimir Putin did not refer to Obama as foolish for his socialist policies.",
+  "posted": "02/17/2016",
+  "verified_evidence": {
+   "excerpt": "\"Any fourth grade history student knows socialism has failed in every country, at every time in history.\" ... \"This is not a real quote from the Russian president.\"",
+   "source_urls": [
+    "https://www.snopes.com/fact-check/putin-obama-idiot-socialist/"
+   ],
+   "note": "证据摘录来自此前一轮联网核验的抓取结果，本轮直接采信（不重复联网）"
+  }
+ },
+ {
+  "id": "C02",
+  "claim": "Cicero's thoughts on managing a government's finances.",
+  "posted": "05/08/2013",
+  "verified_evidence": {
+   "excerpt": "There is no substantive evidence that Cicero spoke or wrote these words.",
+   "source_urls": [
+    "https://quoteinvestigator.com/2013/05/15/cicero-budget/",
+    "https://www.snopes.com/fact-check/taylor-made"
+   ],
+   "note": "证据摘录来自此前一轮联网核验的抓取结果，本轮直接采信（不重复联网）"
+  }
+ },
+ {
+  "id": "C03",
+  "claim": "In the 1950s and 1960s, the minimum wage was such that it would lift you out of poverty.",
+  "posted": "06/15/2014",
+  "verified_evidence": {
+   "excerpt": "That same year, a minimum-wage worker earned $2,460 annually — enough for a family of three, but not four.",
+   "source_urls": [
+    "https://www.politifact.com/factchecks/2014/jun/15/jack-reed/jack-reed-says-minimum-wage-1950s-and-1960s-would/"
+   ],
+   "note": "证据摘录来自此前一轮联网核验的抓取结果，本轮直接采信（不重复联网）"
+  }
+ },
+ {
+  "id": "C04",
+  "claim": "Because of Obamacare, Medicare is going broke.",
+  "posted": "12/23/2016",
+  "verified_evidence": {
+   "excerpt": "That's 12 years later than had been projected a year before the Affordable Care Act became law.",
+   "source_urls": [
+    "https://www.politifact.com/factchecks/2016/dec/23/paul-ryan/repeal-and-replace-works-paul-ryan-says-obamacare/"
+   ],
+   "note": "证据摘录来自此前一轮联网核验的抓取结果，本轮直接采信（不重复联网）"
+  }
+ },
+ {
+  "id": "C05",
+  "claim": "'Target PS5' Scam Email Leads to Credit Card Form on Vietnam-Registered Website",
+  "posted": "02/22/2023",
+  "verified_evidence": {
+   "excerpt": "asked for a credit card number and claimed $7.95 was needed — myluckyprizes.com \"registered on a Vietnamese domain registrar.\"",
+   "source_urls": [
+    "https://www.snopes.com/fact-check/target-ps5-scam-email-loyalty-program/"
+   ],
+   "note": "证据摘录来自此前一轮联网核验的抓取结果，本轮直接采信（不重复联网）"
+  }
+ },
+ {
+  "id": "C06",
+  "claim": "\"Contrary to rumors, Walmart is not providing a complimentary $50 'Anniversary' voucher on Facebook.\"",
+  "posted": "12/03/2019",
+  "verified_evidence": {
+   "excerpt": "Like innumerable other 'free merchandise' offers on Facebook... this one is a scam.",
+   "source_urls": [
+    "https://www.snopes.com/fact-check/walmart-anniversary-coupon-scam/",
+    "https://www.snopes.com/fact-check/walmart-gift-card/"
+   ],
+   "note": "证据摘录来自此前一轮联网核验的抓取结果，本轮直接采信（不重复联网）"
+  }
+ },
+ {
+  "id": "C07",
+  "claim": "Donald Trump rooted for the housing crisis, because he knew he could make money off of it.",
+  "posted": "07/20/2016",
+  "verified_evidence": {
+   "excerpt": "I sort of hope that happens because then people like me would go in and buy",
+   "source_urls": [
+    "https://www.politifact.com/factchecks/2016/may/26/hillary-clinton/hillary-clinton-faults-donald-trump-hoping-real-es/"
+   ],
+   "note": "证据摘录来自此前一轮联网核验的抓取结果，本轮直接采信（不重复联网）"
+  }
+ },
+ {
+  "id": "C08",
+  "claim": "No, Pfizer does not possess the music catalog of Neil Young.",
+  "posted": "02/04/2022",
+  "verified_evidence": {
+   "excerpt": "When you realize Neil Young's music catalogue is owned by Pfizer.",
+   "source_urls": [
+    "https://www.snopes.com/fact-check/pfizer-neil-young-music-catalog/"
+   ],
+   "note": "证据摘录来自此前一轮联网核验的抓取结果，本轮直接采信（不重复联网）"
+  }
+ },
+ {
+  "id": "C09",
+  "claim": "No, Pfizer Does Not Own Neil Young's Music Catalog",
+  "posted": "02/04/2022",
+  "verified_evidence": {
+   "excerpt": "As of January and February 2022, Pfizer owned Neil Young's song catalog",
+   "source_urls": [
+    "https://www.snopes.com/fact-check/pfizer-neil-young-music-catalog/"
+   ],
+   "note": "证据摘录来自此前一轮联网核验的抓取结果，本轮直接采信（不重复联网）"
+  }
+ },
+ {
+  "id": "C10",
+  "claim": "Wisconsins rainy day fund is 165 times bigger than when we first took office.",
+  "posted": "08/07/2015",
+  "verified_evidence": {
+   "excerpt": "We rate Walker's statement True.",
+   "source_urls": [
+    "https://www.politifact.com/factchecks/2015/aug/07/scott-walker/scott-walker-says-wisconsin-reserve-fund-165-times/"
+   ],
+   "note": "证据摘录来自此前一轮联网核验的抓取结果，本轮直接采信（不重复联网）"
+  }
+ }
+]

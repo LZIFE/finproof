@@ -1,0 +1,83 @@
+[
+ {
+  "id": "C21",
+  "verdict": "true",
+  "reason": "McDonald's确实没有推出'免费送2份巨无霸套餐一个月'活动，Snopes于2020-04-03核查确认这是钓鱼/调查诈骗，评为Scam。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/mcdonalds-coupon-scam"
+  ]
+ },
+ {
+  "id": "C22",
+  "verdict": "true",
+  "reason": "Snopes(2023-10-27)确认该视频实为美陆军101空降师2022年6月在罗马尼亚下机的画面，并非2023年10月数千名海军陆战队员抵达以色列，原始传言评为False（否定性核查结论成立）。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/video-marines-israel-2023"
+  ]
+ },
+ {
+  "id": "C23",
+  "verdict": "uncertain",
+  "reason": "这是一个疑问句而非可验证的事实断言；其对应Snopes 2017-12-28文章'How Have the Net Worths of Presidents Changed?'核查的是一张对比克林顿/奥巴马/特朗普净资产的病毒图，Snopes评为Mixture（数字大致属实但对比有误导性），无单一真/假结论。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/net-worths-of-presidents"
+  ]
+ },
+ {
+  "id": "C24",
+  "verdict": "true",
+  "reason": "PolitiFact于2016-12-01核查Dan Patrick的同一说法评为Mostly True：依据Tax Foundation基于2013年人口普查数据的有效房产税率排名，德州以1.9%居全国第六（次于威斯康星、康涅狄格、新罕布什尔、伊利诺伊和新泽西）。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2016/dec/01/dan-patrick/dan-patrick-mostly-right-texans-pay-nations-sixth/",
+   "https://www.politifact.com/factchecks/2016/jan/22/jeff-judson/texas-has-sixth-highest-property-taxes-nation/"
+  ]
+ },
+ {
+  "id": "C25",
+  "verdict": "true",
+  "reason": "PolitiFact于2013-03-17核查西南航空CEO Gary Kelly的同一说法评为Mostly True：$300往返票约含$61-66联邦税费（约20%）属实，且对比酒精/烟草/枪支的税率也基本成立，仅'典型'取样略有夸大。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2013/mar/17/gary-kelly/southwest-airlines-ceo-says-federal-taxes-flight-a/"
+  ]
+ },
+ {
+  "id": "C26",
+  "verdict": "false",
+  "reason": "Snopes(2008-07-31)核查'Bill Cosby以写票候选人身份竞选总统及其施政纲领'的传言评为骗局/False：纯属病毒邮件谣言，Cosby本人公开否认，从未宣布参选或提出任何纲领。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/bill-of-write-ins"
+  ]
+ },
+ {
+  "id": "C27",
+  "verdict": "true",
+  "reason": "PolitiFact于2014-01-15核查Time的Rana Foroohar同一说法评为Mostly True：经通胀调整的男性全职工人中位数收入在过去约30年基本持平，仅个别口径下有小幅增长。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2014/jan/15/rana-foroohar/times-rana-foroohar-says-median-male-worker-hasnt/"
+  ]
+ },
+ {
+  "id": "C28",
+  "verdict": "uncertain",
+  "reason": "与C23相同，这是疑问句而非可验证断言；对应Snopes 2017-12-28对总统净资产病毒图的核查评为Mixture（数字大致准确但对比误导，如忽略特朗普仍在任、卸任总统可通过出书演讲赚钱等因素），无单一真/假结论。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/net-worths-of-presidents"
+  ]
+ },
+ {
+  "id": "C29",
+  "verdict": "true",
+  "reason": "Snopes(2016-03-02)确认可口可乐并未出售'Share a Coke with the KKK'瓶子，流传图片是一幅抗议活动艺术图/合成图，非真实产品。",
+  "source_urls": [
+   "https://www.snopes.com/fact-check/coca-cola-kkk-trump"
+  ]
+ },
+ {
+  "id": "C30",
+  "verdict": "true",
+  "reason": "PolitiFact NJ于2012-03-11核查众议员Steve Rothman同一说法评为Mostly True：最富人群的法定最高税率(35%)和有效税率均处于近几十年低位，仅在1988-1992年间曾更低，故'80年来最低'略有不精确但基本属实。",
+  "source_urls": [
+   "https://www.politifact.com/factchecks/2012/mar/11/steve-rothman/congressman-steve-rothman-claims-wealthiest-americ/"
+  ]
+ }
+]

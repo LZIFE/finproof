@@ -1,0 +1,12 @@
+[
+ {
+  "id": "C03",
+  "claim": "In the 1950s and 1960s, the minimum wage was such that it would lift you out of poverty.",
+  "posted": "06/15/2014",
+  "verified_evidence": {
+   "excerpt": "That same year, a minimum-wage worker earned $2,460 annually — enough for a family of three, but not four.",
+   "additional_context": "来源裁定句（PolitiFact 对 Jack Reed 同表述的核查结论）：PolitiFact 评级为 Mostly True——1950s–60s 全职最低工资可保单身工作者高于贫困线，但对四口之家从来不够。摘录与裁定句均来自此前联网核验抓取，本轮直接采信。",
+   "note": "按 v2.6.1 摘录充分性规则：本输入已含来源裁定句。"
+  }
+ }
+]
