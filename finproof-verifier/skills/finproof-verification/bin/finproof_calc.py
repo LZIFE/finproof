@@ -24,6 +24,7 @@
   cashdiff     经营现金流与净利润差异
   period       期间归一化（PeriodContext）
   temporal     引用时序检查：来源覆盖期间 vs 数据所属期间 → IMPOSSIBLE/COVERED/PARTIAL/UNCLEAR
+  sum_check    总和一致性：分项之和 vs 合计（SOTP/成本明细/分部收入的确定性核对）
 
 所有子命令以 JSON 输出结果，便于专家逐步核对（对应审计轨迹）。
 """
@@ -490,6 +491,33 @@ def temporal_check(source, data):
     return out
 
 
+def sum_check(values, total, tolerance=VALUE_TOLERANCE):
+    """总和一致性检查：分项之和 vs 合计（通用数值复算的确定性实现）。
+
+    values: 分项列表（数字或字符串）；total: 报告合计值。
+    返回 dict：sum / total / abs_diff / rel_diff_pct / matched（相对容差 0.1%）。
+    典型用途：SOTP 分项 vs 合计、成本明细 vs 总成本、分部收入 vs 总收入。
+    """
+    parts = [Decimal(str(v)) for v in values]
+    tot = Decimal(str(total))
+    calc = sum(parts, Decimal("0"))
+    diff = calc - tot
+    rel = abs(diff) / abs(tot) if tot != 0 else (Decimal("0") if diff == 0 else None)
+    matched = rel is not None and rel <= Decimal(str(tolerance))
+    return {
+        "sum": float(calc),
+        "total": float(tot),
+        "abs_diff": float(diff),
+        "rel_diff_pct": float(rel * 100) if rel is not None else None,
+        "tolerance": tolerance,
+        "matched": matched,
+        "parts": [float(p) for p in parts],
+        "reason": (f"分项之和 {calc} vs 合计 {tot}，相对差 {rel*100:.4f}% ≤ {tolerance*100:.1f}% → 一致"
+                   if matched else
+                   f"分项之和 {calc} vs 合计 {tot}，相对差 {rel*100:.4f}% > {tolerance*100:.1f}% → 不一致（超容差）"),
+    }
+
+
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
@@ -571,6 +599,11 @@ def build_parser():
     sp.add_argument("--source", required=True, help="来源描述，如 '2025年年度报告' / '2026-06-30'")
     sp.add_argument("--data", required=True, help="数据所属期间，如 '2026年上半年' / '2026Q1'")
 
+    sp = sub.add_parser("sum_check", help="总和一致性：分项之和 vs 合计（相对容差 0.1%）")
+    sp.add_argument("--values", required=True, help="分项，逗号分隔，如 '117.0,88.9'")
+    sp.add_argument("--total", type=float, required=True, help="报告合计值")
+    sp.add_argument("--tolerance", type=float, default=VALUE_TOLERANCE)
+
     return p
 
 
@@ -615,6 +648,9 @@ def main(argv=None):
         _out(parse_period(args.period))
     elif cmd == "temporal":
         _out(temporal_check(args.source, args.data))
+    elif cmd == "sum_check":
+        vals = [v.strip() for v in args.values.split(",") if v.strip()]
+        _out(sum_check(vals, args.total, args.tolerance))
     else:
         _out({"error": f"unknown command {cmd}"})
         return 2

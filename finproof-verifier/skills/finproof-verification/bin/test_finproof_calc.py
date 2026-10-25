@@ -235,5 +235,41 @@ class TestTemporal(unittest.TestCase):
         self.assertEqual((s, e, k), ("2026-07-01", "2026-12-31", "h2"))
 
 
+class TestSumCheck(unittest.TestCase):
+    """v2.8.0 总和一致性：SOTP/成本明细/分部收入的确定性核对。"""
+
+    def test_sotp_consistent(self):
+        r = fc.sum_check(["117.0", "88.9"], 205.9)
+        self.assertTrue(r["matched"])
+        self.assertAlmostEqual(r["abs_diff"], 0.0)
+
+    def test_denominator_swap_detected(self):
+        # 第一轮测评 E8 原型：分项真、合计基数错拿（117/88.9 vs 171.0）
+        r = fc.sum_check(["117.0", "88.9"], 171.0)
+        self.assertFalse(r["matched"])
+        self.assertGreater(r["rel_diff_pct"], 20.0)
+
+    def test_single_part(self):
+        r = fc.sum_check(["52.06"], 52.06)
+        self.assertTrue(r["matched"])
+
+    def test_negative_parts(self):
+        r = fc.sum_check(["100", "-30"], 70)
+        self.assertTrue(r["matched"])
+
+    def test_zero_total_zero_diff(self):
+        r = fc.sum_check(["0", "0"], 0)
+        self.assertTrue(r["matched"])
+        self.assertAlmostEqual(r["rel_diff_pct"], 0.0)
+
+    def test_custom_tolerance(self):
+        r = fc.sum_check(["100", "1"], 100, tolerance=0.02)
+        self.assertTrue(r["matched"])  # 1% 偏差在 2% 容差内
+
+    def test_default_tolerance_is_engine_standard(self):
+        r = fc.sum_check(["100", "0.2"], 100)
+        self.assertFalse(r["matched"])  # 0.2% > 0.1% 默认容差
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

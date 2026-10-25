@@ -1,6 +1,8 @@
-# 鉴融—商业分析报告核验专家（FinProof Verifier）
+# 鉴融—通用 AI 报告审计专家（FinProof Verifier）
 
-> **商业分析类报告**（行业研究、市场分析、竞品分析、商业模式分析、公司深度研究、尽调报告、商业计划书、投资备忘录、财务分析）的 **AI 写稿后复审层**——把一份 AI 写出来的报告，逐条找出里面的数字错误与逻辑漏洞，给出**可溯源、可复核、分数可复算**的结论。
+**English**: Jianrong (FinProof) is a general-purpose **audit agent for AI-generated reports**. It decomposes a report into checkable claims, recomputes every number with a deterministic engine at published tolerances, checks citations (including temporal-impossibility detection — a source whose coverage period predates the data period is rejected by logic alone), emits six-class verdicts with full evidence chains, and outputs a dual-score audit: **FinProof Score** (the audited report's evidence-chain quality) alongside an **Audit Quality Score (AQS)** (the audit process itself — coverage, recompute rate, citability, review completion, link re-checks). Every score is recomputable from published formulas; honesty rules (never fabricate URLs, never fake reviews, gaps returned as actionable checklists) are enforced throughout. See [evaluation/](../evaluation/) for six-round head-to-head benchmarks against bare-prompt baselines and the Fin-Fact real-world corpus.
+
+> **任何 AI 生成的报告**（行业研究、市场分析、竞品分析、商业模式、公司深度、尽调、商业计划书、投资备忘录、财务分析，以及政策解读、数据白皮书、技术评估、合规纪要）的 **AI 写稿后审计层**——AI 把写稿压到几分钟，也批量生产了事实错误、口径混淆、数字矛盾与编造引文；鉴融逐条找出这些错误，给出**可溯源、可复核、分数可复算**的审计结论。金融/上市公司研报是验证最深的场景。
 
 `finproof-verifier` 是一个基于本地 **FinProof** 全量资料构建的 Agent 型智能体。它的工作不是"再写一篇报告"，而是**当审稿人**：把报告拆成可独立核验的结构化主张，用确定性计算引擎对照原始材料亲自复算数值，按八步决策链给出六类判定，并指出九类常见错误，最终输出一份可追溯的审计报告。金融/上市公司研报是验证最深的场景，方法论与判定链对商业分析类报告通用。
 
@@ -115,6 +117,7 @@ AI 生成研报已经很普遍，但金融数字正是大模型最容易"幻觉"
 | `cagr` / `eps` / `roe` / `debt` / `cashdiff` | 复合增长/每股收益/净资产收益率/资产负债率/现金流差异 |
 | `period` | 期间归一化（standalone vs cumulative） |
 | `temporal` | **引用时序检查（v2.6.2）**：来源覆盖期间 vs 数据所属期间 → IMPOSSIBLE/COVERED/PARTIAL/UNCLEAR（"时序不可能"由模型语义判定收敛为确定性输出） |
+| `sum_check` | **总和一致性（v2.8.0）**：分项之和 vs 合计（SOTP/成本明细/分部收入），相对容差 0.1% |
 
 **演示高光**（报告称"Q2 收入 60 亿"，实为 H1 累计误当单季）：
 
@@ -294,9 +297,9 @@ python3 skills/finproof-verification/bin/finproof_calc.py quarter --h1 60 --q1 2
 | `references/web-verification.md` | 联网核验协议：范围/需求判定门、权威来源优先级、聚焦再搜索、链接存活复验、联网操守 |
 | `references/adversarial-blindspots.md` | 对抗性盲区与五类强制检查、三类元攻击防御 |
 | `references/independent-review.md` | **独立复核协议（v2.5.0；v2.6.0 增自检复核档）**：盲复核输入、异源/同源/自检复核〔机械层〕/未复核四档、评分复算、分歧处理 |
-| `bin/finproof_calc.py` | 确定性计算引擎（Python `decimal`），13 个子命令 |
+| `bin/finproof_calc.py` | 确定性计算引擎（Python `decimal`），15 个子命令（v2.8.0 增 `sum_check`） |
 
-计算引擎：`skills/finproof-verification/bin/finproof_calc.py`（纯标准库 Python，`decimal` 精确运算，可独立运行；含 42 项回归测试（v2.6.2 增时序检查 12 项），随包提供 `test_finproof_calc.py`）。
+计算引擎：`skills/finproof-verification/bin/finproof_calc.py`（纯标准库 Python，`decimal` 精确运算，可独立运行；含 49 项回归测试（v2.6.2 增时序检查 12 项、v2.8.0 增总和一致性 7 项），随包提供 `test_finproof_calc.py`）。
 
 包一致性检查：`python3 check_package.py`（33+ 项一键全检：版本/格式/枚举/算例计数/引擎测试/zip 新旧）。
 
@@ -348,6 +351,7 @@ zip -r finproof-verifier.zip finproof-verifier/
 
 ## 十三、版本与变更
 
+- **v2.8.0**：**通用 AI 报告审计 agent 定位 + GitHub 开源基建 + 引擎补缺**（本次）。① **重定位**：从"商业分析报告核验"扩展为**通用 AI 报告审计**——AI 生成内容的幻觉、口径错位与编造引文是跨领域通用风险，任何领域的 AI 报告（研究/分析/尽调/解读/白皮书/技术评估/合规纪要）均可审计；方法论与 A–G 分类本就是通用语义，落地到 frontmatter/agent/plugin/README/材料全链路。② **GitHub 开源基建**：LICENSE（MIT）、GitHub Actions CI（引擎测试+包检查+backend 对齐测试）、双语 README 头、CHANGELOG.md。③ **引擎补缺 `sum_check`**：SKILL 早已宣称"总和一致性（分项之和=合计）"属通用数值复算，但引擎一直无确定性子命令（由模型 shell 算术代劳）——新增 `sum_check --values … --total …`（相对容差 0.1%，SOTP/成本明细/分部收入），7 项新测试（合计 49 项全绿），实测第一例即第一轮测评 E8 场景（117/88.9 vs 171.0 分母错拿）。④ backend `VALUE_TOLERANCE` 对齐 0.001（984 测试零回归，docstring 分歧消除）。⑤ check_package 增引擎-文档同步检查（见下）。
 - **v2.7.0**：**双分体系：新增审计质量分 AQS**（本次）。解决实测悖论——FinProof Score 度量被审报告，抓错越多扣分越多，"6 处错误全抓"的优质审计只得 71–72 分，用户易误解为审计没做好。AQS 度量**审计自身过程质量**：主张覆盖 30% + 引擎复算率 25% + 证据可核性 20% + 复核完成度 15% + 链接复验率 10%——五维全部机械可算（来自审计元数据，无主观项），本地模式 L 权重并入其余四维。输出与 FinProof Score 并列（`FinProof Score 76/100 · 良 ‖ 审计质量 AQS 94/100 · 优`）并附五维明细与固定独立性警示。边界如实：AQS 不度量判定正确性（需外部金标准），度量审计过程的完备与诚实。落点：SKILL §8.6、scoring-spec §十一（含算例）、LITE、模板与演示件（并列行）、agent MD、check_package.py 新增检查。同步第二轮外部检索发现（Factcheck-GPT/OpenFactCheck/G-Eval/auditable，见 `evaluation/外部基准对照.md`）。
 - **v2.6.2**：**"逻辑判定归程序"——三项产品级修补**（本次）。来源：产品问题清单 P0-1（规则执行一致性：时序不可能 run1 漏判/run2 命中、判定校准 C03 未触发/C13 命中——SKILL 是软约束，写进文档 ≠ 每次执行）、P1-5（时点漂移无规则：第四轮 T6 快照日真/核验日假两臂同误判）、P2-7（包一致性靠人肉：曾抓出 4 处漏同步与"九臂"数字错）。三项变更：
   1. **引擎新增 `temporal` 子命令（12 项回归测试，合计 42 项全绿）**：`temporal --source "2025年年度报告" --data "2026年上半年"` → IMPOSSIBLE/COVERED/PARTIAL/UNCLEAR——"时序不可能"从模型自觉收敛为确定性输出，与"数字归程序"同构；SKILL §五-5 / LITE §3-5 / agent MD 同步为"有 shell 必走引擎"。

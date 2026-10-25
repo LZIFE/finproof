@@ -195,6 +195,26 @@ def check_aqs():
     check("AQS 94" in demo, "演示件 AQS 算例为 94（并列展示）")
 
 
+# 10.7 引擎-文档同步（v2.8.0）：parser 注册的子命令必须出现在 SKILL/LITE 速查
+def check_engine_doc_sync():
+    import ast
+    eng = os.path.join(SKILL, "bin", "finproof_calc.py")
+    tree = ast.parse(read(eng))
+    cmds = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call) and getattr(node.func, "attr", "") == "add_parser":
+            if node.args and isinstance(node.args[0], ast.Constant):
+                cmds.add(node.args[0].value)
+    skill = read(os.path.join(SKILL, "SKILL.md"))
+    lite = read(os.path.join(SKILL, "LITE.md"))
+    missing_skill = sorted(c for c in cmds if c not in skill)
+    check(not missing_skill, f"引擎子命令({len(cmds)})全部见于 SKILL 速查", f"缺:{missing_skill}")
+    # LITE 是快速档最小卡：只要求三项硬检查+通用复算核心子命令（全量表在 SKILL，属有意精简）
+    lite_core = {"match", "yoy", "quarter", "margin", "sum_check", "temporal", "convert"}
+    missing_lite = sorted(c for c in lite_core if c not in lite)
+    check(not missing_lite, "LITE 含快速档核心子命令（7 个）", f"缺:{missing_lite}")
+
+
 # 11. zip 新旧提醒
 def check_zip_freshness():
     if not os.path.exists(ZIP):
@@ -218,7 +238,7 @@ def check_zip_freshness():
 def main():
     for fn in (check_versions, check_grade_lines, check_conclusion_enum, check_review_tiers,
                check_ne_rule, check_lite, check_engine, check_tests, check_worked_example,
-               check_stale_markers, check_aqs, check_zip_freshness):
+               check_stale_markers, check_aqs, check_engine_doc_sync, check_zip_freshness):
         try:
             fn()
         except Exception as e:  # noqa: BLE001

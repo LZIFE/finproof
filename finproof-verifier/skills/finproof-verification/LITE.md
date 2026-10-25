@@ -1,4 +1,4 @@
-# FinProof 轻量执行卡（LITE · v2.7.0）
+# FinProof 轻量执行卡（LITE · v2.8.0）
 
 > **用途**：快速档唯一必读文件，自足可执行。适用于短报告（≤10 页）、单条/小批量主张核验、用户只要"快速过一遍"。与 `SKILL.md` 冲突时以 SKILL 为准；需要完整评分推导、HTML 报告、分批审协议时回读 SKILL 对应节。**容差与诚实纪律不降档。**
 
@@ -50,6 +50,7 @@ python3 $P quarter --h1 60 --q1 28                                          # �
 python3 $P margin --revenue 100 --cost 68                                   # 毛利率/占比
 python3 $P convert --value 35.87 --unit 亿元                                # 单位换算
 python3 $P temporal --source "2025年年度报告" --data "2026年上半年"            # 引用时序 → IMPOSSIBLE
+python3 $P sum_check --values "117.0,88.9" --total 205.9                       # 总和一致性（分项 vs 合计）
 ```
 
 ## 7. 输出模板（精简版，字段不省）
