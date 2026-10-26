@@ -9,7 +9,7 @@
     "model": null,
     "is_configured": false
   },
-  "input_file": "/Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json",
+  "input_file": "/path/to/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json",
   "stats": {
     "total_items": 32,
     "success": 0,

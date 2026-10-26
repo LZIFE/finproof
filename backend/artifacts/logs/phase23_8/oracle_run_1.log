@@ -1,3 +1,3 @@
-saved: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/oracle_diagnosis/phase23_8_cases.json
+saved: /path/to/finproof/backend/artifacts/oracle_diagnosis/phase23_8_cases.json
 total: 43, correct: 26, error: 17
 failure distribution: {'THOUSAND_SEPARATOR_ERROR': 1, 'SEMANTIC_OVERREACH': 6, 'MULTIPLE_NUMBER_AMBIGUITY': 3, 'EVIDENCE_INCOMPLETE': 1, 'VERDICT_MAPPING_ERROR': 4, 'PARTIAL_BOUNDARY_ERROR': 2}

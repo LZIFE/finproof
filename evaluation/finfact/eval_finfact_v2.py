@@ -9,7 +9,7 @@
 import json
 from collections import Counter
 
-BASE = "/Users/z1/Documents/trae_projects/finproof/evaluation/finfact"
+BASE = "/path/to/finproof/evaluation/finfact"
 
 JR_MAP = {"SUPPORTED": "true", "PARTIALLY_SUPPORTED": "partial", "REFUTED": "false",
           "INSUFFICIENT_EVIDENCE": "nei", "UNABLE_TO_DETERMINE": "nei", "OPINION_OR_FORECAST": "other"}

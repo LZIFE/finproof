@@ -1,7 +1,7 @@
 2026-08-05 16:06:19,910 [INFO] ============================================================
 2026-08-05 16:06:19,910 [INFO] Phase 23.11.6.2 NOT_FOUND 恢复脚本启动
-2026-08-05 16:06:19,910 [INFO] grounding audit: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_5_1_grounding_audit.json
-2026-08-05 16:06:19,910 [INFO] output: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_6_2_not_found_recovery.json
+2026-08-05 16:06:19,910 [INFO] grounding audit: /path/to/finproof/backend/artifacts/gold_contract/phase23_11_5_1_grounding_audit.json
+2026-08-05 16:06:19,910 [INFO] output: /path/to/finproof/backend/artifacts/gold_contract/phase23_11_6_2_not_found_recovery.json
 2026-08-05 16:06:19,911 [INFO] NOT_FOUND evidence count: 10
 2026-08-05 16:06:19,915 [INFO] ----------------------------------------
 2026-08-05 16:06:19,915 [INFO] [EVD-010] CLM-008 annotated_page=96
@@ -80,5 +80,5 @@
 2026-08-05 16:06:25,261 [INFO]   recovery_status: STILL_NOT_FOUND
 2026-08-05 16:06:25,261 [INFO]   recovery_reason: 在主 PDF（annual_report.pdf）全文中未找到 Gold 关键数字 ['30.0%']，可能涉及其他文档或 Gold 文本有误。
 2026-08-05 16:06:25,262 [INFO] ============================================================
-2026-08-05 16:06:25,262 [INFO] wrote output: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_6_2_not_found_recovery.json
+2026-08-05 16:06:25,262 [INFO] wrote output: /path/to/finproof/backend/artifacts/gold_contract/phase23_11_6_2_not_found_recovery.json
 2026-08-05 16:06:25,262 [INFO] status_counts: {"CANDIDATES_RECOVERED": 0, "PARAPHRASED_SOURCE_LOCATED": 6, "VISUAL_REVIEW_REQUIRED": 0, "WRONG_PAGE_REFERENCE": 0, "WRONG_DOCUMENT_REFERENCE": 0, "STILL_NOT_FOUND": 4}

@@ -57,6 +57,13 @@
   .score-hero{font-size:46px;font-weight:800;text-align:center;padding:10px 0}
   code{background:#f6f8fa;padding:1px 5px;border-radius:4px;font-size:12.5px}
   .foot{color:var(--muted);font-size:12.5px;margin-top:30px;border-top:1px solid var(--line);padding-top:10px}
+  /* 移动端：单列元信息、表格可横向滚动、长串断行，避免整页横向溢出 */
+  @media (max-width:700px){
+    body{padding:0 12px;margin:12px auto}
+    .meta{grid-template-columns:1fr}
+    table{display:block;overflow-x:auto}
+    th,td{word-break:break-word}
+  }
   @media print{
     body{max-width:none;margin:0;padding:14mm;font-size:11pt}
     details:not([open])>*:not(summary){display:block !important}

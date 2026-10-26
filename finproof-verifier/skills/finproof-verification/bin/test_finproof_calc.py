@@ -266,9 +266,50 @@ class TestSumCheck(unittest.TestCase):
         r = fc.sum_check(["100", "1"], 100, tolerance=0.02)
         self.assertTrue(r["matched"])  # 1% 偏差在 2% 容差内
 
+    def test_rejects_nonnumeric(self):
+        # 输入错误应是可读 ValueError，而不是裸 decimal.InvalidOperation
+        with self.assertRaises(ValueError):
+            fc.sum_check(["abc"], 10)
+
     def test_default_tolerance_is_engine_standard(self):
         r = fc.sum_check(["100", "0.2"], 100)
         self.assertFalse(r["matched"])  # 0.2% > 0.1% 默认容差
+
+
+class TestCliContract(unittest.TestCase):
+    """CLI 契约：v2.8.0 的 sum_check help 串含未转义 %，曾使 `--help` 直接崩溃。"""
+
+    def test_parser_help_renders(self):
+        text = fc.build_parser().format_help()
+        self.assertIn("sum_check", text)
+        self.assertIn("0.1%", text)  # %% 转义后应还原为单个百分号
+
+    def test_cli_help_exits_zero(self):
+        import contextlib
+        import io
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf), self.assertRaises(SystemExit) as ctx:
+            fc.main(["--help"])
+        self.assertEqual(ctx.exception.code, 0)
+        self.assertIn("sum_check", buf.getvalue())
+
+    def test_invalid_input_returns_error_json(self):
+        import contextlib
+        import io
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            code = fc.main(["sum_check", "--values", "a,b", "--total", "10"])
+        self.assertEqual(code, 2)          # 引擎契约：输入错误 → 退出码 2
+        self.assertIn("非数字", buf.getvalue())  # 且为 JSON，可被 agent 解析
+
+    def test_cli_no_args_is_usage_error(self):
+        import contextlib
+        import io
+        err = io.StringIO()
+        with contextlib.redirect_stderr(err), self.assertRaises(SystemExit) as ctx:
+            fc.main([])
+        self.assertEqual(ctx.exception.code, 2)
+        self.assertIn("cmd", err.getvalue())
 
 
 if __name__ == "__main__":

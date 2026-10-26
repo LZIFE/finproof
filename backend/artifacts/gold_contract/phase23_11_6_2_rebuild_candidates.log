@@ -1,7 +1,7 @@
 2026-08-05 17:06:27,748 [INFO] ============================================================
 2026-08-05 17:06:27,748 [INFO] Phase 23.11.6.2 候选 Evidence 重建脚本启动
-2026-08-05 17:06:27,748 [INFO] grounding audit: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_5_1_grounding_audit.json
-2026-08-05 17:06:27,748 [INFO] output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6_2/review_items_rebuilt.json
+2026-08-05 17:06:27,748 [INFO] grounding audit: /path/to/finproof/backend/artifacts/gold_contract/phase23_11_5_1_grounding_audit.json
+2026-08-05 17:06:27,748 [INFO] output: /path/to/finproof/data/gold_review/phase23_11_6_2/review_items_rebuilt.json
 2026-08-05 17:06:27,748 [INFO] grounding audit per_evidence: 42
 2026-08-05 17:06:27,751 [INFO] ----------------------------------------
 2026-08-05 17:06:27,751 [INFO] [1] EVD-001 page=9 doc=1
@@ -67,8 +67,8 @@
 2026-08-05 17:06:28,761 [INFO] [31] EVD-H12 page=6 doc=1
 2026-08-05 17:06:28,773 [INFO] ----------------------------------------
 2026-08-05 17:06:28,773 [INFO] [32] EVD-H16 page=7 doc=1
-2026-08-05 17:06:28,779 [INFO] wrote rebuilt items: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6_2/review_items_rebuilt.json
-2026-08-05 17:06:28,780 [INFO] wrote candidate recall: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_6_2_candidate_recall.json
+2026-08-05 17:06:28,779 [INFO] wrote rebuilt items: /path/to/finproof/data/gold_review/phase23_11_6_2/review_items_rebuilt.json
+2026-08-05 17:06:28,780 [INFO] wrote candidate recall: /path/to/finproof/backend/artifacts/gold_contract/phase23_11_6_2_candidate_recall.json
 2026-08-05 17:06:28,780 [INFO] ============================================================
 2026-08-05 17:06:28,780 [INFO] 候选 Evidence 重建统计:
 2026-08-05 17:06:28,780 [INFO]   total evidence: 32

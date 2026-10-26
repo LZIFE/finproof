@@ -1,5 +1,5 @@
 
-> finproof-frontend@0.1.0 build /Users/z1/Documents/trae_projects/finproof/frontend
+> finproof-frontend@0.1.0 build /path/to/finproof/frontend
 > next build
 
    ▲ Next.js 15.5.22

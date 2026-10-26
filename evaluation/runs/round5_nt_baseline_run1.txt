@@ -1,5 +1,5 @@
-核验对象：/Users/z1/Documents/trae_projects/finproof/evaluation/round5_workspace/待核验报告_近容差.txt（Y 公司 605020 2025 年报与 2026 半年报数据复核简报）
-对照证据：/Users/z1/Documents/trae_projects/finproof/evaluation/round5_workspace/证据摘录包.txt
+核验对象：/path/to/finproof/evaluation/round5_workspace/待核验报告_近容差.txt（Y 公司 605020 2025 年报与 2026 半年报数据复核简报）
+对照证据：/path/to/finproof/evaluation/round5_workspace/证据摘录包.txt
 核验日期：2026-10-25
 
 总体结论：共发现 10 处问题——8 处数字与证据不符（+0.03%～+0.39% 量级的近容差偏差，多数无法用四舍五入解释），2 处为证据包无法支撑的断言。另有 1 条备注。

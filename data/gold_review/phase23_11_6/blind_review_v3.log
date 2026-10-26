@@ -1,8 +1,8 @@
 2026-08-05 15:19:40,970 [INFO] ============================================================
 2026-08-05 15:19:40,970 [INFO] Phase 23.11.6 第一轮 AI 盲审执行脚本启动 (v3)
-2026-08-05 15:19:40,970 [INFO] input:  /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json
-2026-08-05 15:19:40,970 [INFO] output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_results_agent_v3.json
-2026-08-05 15:19:40,970 [INFO] log:    /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/blind_review_v3.log
+2026-08-05 15:19:40,970 [INFO] input:  /path/to/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json
+2026-08-05 15:19:40,970 [INFO] output: /path/to/finproof/data/gold_review/phase23_11_6/review_results_agent_v3.json
+2026-08-05 15:19:40,970 [INFO] log:    /path/to/finproof/data/gold_review/phase23_11_6/blind_review_v3.log
 2026-08-05 15:19:40,972 [INFO] loaded 32 review items
 2026-08-05 15:19:40,972 [INFO] injection stats: full=3 partial=29 missing=0
 2026-08-05 15:19:40,972 [WARNING] model NOT configured (need FINPROOF_LLM_API_KEY/BASE_URL/MODEL or OPENAI_API_KEY/BASE_URL/MODEL). Items will be SKIPPED_NO_MODEL.
@@ -103,5 +103,5 @@
 2026-08-05 15:19:40,974 [INFO] [32/32] item_id=EVD-H16
 2026-08-05 15:19:40,974 [WARNING] item_id=EVD-H16 SKIPPED_NO_MODEL
 2026-08-05 15:19:40,975 [INFO] ============================================================
-2026-08-05 15:19:40,975 [INFO] wrote output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_results_agent_v3.json
+2026-08-05 15:19:40,975 [INFO] wrote output: /path/to/finproof/data/gold_review/phase23_11_6/review_results_agent_v3.json
 2026-08-05 15:19:40,975 [INFO] stats: {"total_items": 32, "success": 0, "parse_failure": 0, "call_failure": 0, "skipped_no_model": 32, "skipped_missing_block_text": 0, "retries_total": 0}

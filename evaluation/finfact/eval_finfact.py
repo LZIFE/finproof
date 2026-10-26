@@ -10,7 +10,7 @@
 import json, glob, sys
 from collections import Counter, defaultdict
 
-BASE = "/Users/z1/Documents/trae_projects/finproof/evaluation/finfact"
+BASE = "/path/to/finproof/evaluation/finfact"
 
 VERDICT_TO_FEVER = {
     "SUPPORTED": "true",

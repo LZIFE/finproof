@@ -1,10 +1,10 @@
 2026-08-05 15:46:06,772 [INFO] ============================================================
 2026-08-05 15:46:06,772 [INFO] v2 盲审输入来源审计启动
-2026-08-05 15:46:06,772 [INFO] input:  /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_results_agent_v2.json
-2026-08-05 15:46:06,772 [INFO] output: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_6_2_v2_provenance_audit.json
+2026-08-05 15:46:06,772 [INFO] input:  /path/to/finproof/data/gold_review/phase23_11_6/review_results_agent_v2.json
+2026-08-05 15:46:06,772 [INFO] output: /path/to/finproof/backend/artifacts/gold_contract/phase23_11_6_2_v2_provenance_audit.json
 2026-08-05 15:46:06,772 [INFO] v2 items: 32
 2026-08-05 15:46:06,773 [INFO] review_items.json items: 32
-2026-08-05 15:46:06,948 [INFO] wrote output: /Users/z1/Documents/trae_projects/finproof/backend/artifacts/gold_contract/phase23_11_6_2_v2_provenance_audit.json
+2026-08-05 15:46:06,948 [INFO] wrote output: /path/to/finproof/backend/artifacts/gold_contract/phase23_11_6_2_v2_provenance_audit.json
 2026-08-05 15:46:06,948 [INFO] ============================================================
 2026-08-05 15:46:06,948 [INFO] v2 来源审计汇总:
 2026-08-05 15:46:06,948 [INFO]   v2 records: 32

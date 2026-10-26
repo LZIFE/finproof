@@ -1,4 +1,4 @@
-核验对象：/Users/z1/Documents/trae_projects/finproof/evaluation/round4_workspace/待核验报告.txt
+核验对象：/path/to/finproof/evaluation/round4_workspace/待核验报告.txt
 （报告标的"Y公司（605020）"即浙江永和制冷股份有限公司/永和股份，以下称"公司"）
 核验日期：2026-10-25。核验手段：公司《2025年年度报告》《2026年半年度报告》及三季报公开数据、东方财富/新浪财经/财联社/证券时报等公开报道、USGS萤石储量产量数据。
 

@@ -73,7 +73,7 @@
   },
   "all_invariants_passed": true,
   "previous_metrics": {
-    "old_metrics_file": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/retrieval/phase23_7_retrieval_metrics.json",
+    "old_metrics_file": "/path/to/finproof/backend/artifacts/retrieval/phase23_7_retrieval_metrics.json",
     "invalid_reasons": [
       "Page Hit@1=0.744 > Page Hit@3=0.674 > Page Hit@5=0.628，违反 Hit@K 单调性",
       "per-claim top10 candidate_id 全为 '?'，命中判定未使用真实 block id/page，无法复核",

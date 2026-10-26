@@ -1,7 +1,7 @@
 2026-08-05 23:29:06,790 [INFO] ============================================================
 2026-08-05 23:29:06,790 [INFO] Phase 23.11.6.2 Prompt Pack 生成脚本启动
-2026-08-05 23:29:06,790 [INFO] input:  /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6_2/review_items_rebuilt.json
-2026-08-05 23:29:06,790 [INFO] output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6_2/prompt_pack
+2026-08-05 23:29:06,790 [INFO] input:  /path/to/finproof/data/gold_review/phase23_11_6_2/review_items_rebuilt.json
+2026-08-05 23:29:06,790 [INFO] output: /path/to/finproof/data/gold_review/phase23_11_6_2/prompt_pack
 2026-08-05 23:29:06,792 [INFO] rebuilt items: 32
 2026-08-05 23:29:06,796 [INFO] [001] EVD-001 -> 001_EVD-001.md (bundles=5)
 2026-08-05 23:29:06,797 [INFO] [002] EVD-002 -> 002_EVD-002.md (bundles=5)
@@ -35,7 +35,7 @@
 2026-08-05 23:29:06,802 [INFO] [030] EVD-H11 -> 030_EVD-H11.md (bundles=5)
 2026-08-05 23:29:06,802 [INFO] [031] EVD-H12 -> 031_EVD-H12.md (bundles=5)
 2026-08-05 23:29:06,802 [INFO] [032] EVD-H16 -> 032_EVD-H16.md (bundles=5)
-2026-08-05 23:29:06,803 [INFO] wrote index: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6_2/prompt_pack_index.md
+2026-08-05 23:29:06,803 [INFO] wrote index: /path/to/finproof/data/gold_review/phase23_11_6_2/prompt_pack_index.md
 2026-08-05 23:29:06,803 [INFO] ============================================================
 2026-08-05 23:29:06,803 [INFO] Prompt Pack 生成统计:
 2026-08-05 23:29:06,803 [INFO]   total items: 32

@@ -1,7 +1,7 @@
 核验任务：待核验报告_近容差.txt × 证据摘录包.txt 对照核验
 核验日期：2026-10-25
-报告路径：/Users/z1/Documents/trae_projects/finproof/evaluation/round5_workspace/待核验报告_近容差.txt
-证据路径：/Users/z1/Documents/trae_projects/finproof/evaluation/round5_workspace/证据摘录包.txt
+报告路径：/path/to/finproof/evaluation/round5_workspace/待核验报告_近容差.txt
+证据路径：/path/to/finproof/evaluation/round5_workspace/证据摘录包.txt
 
 结论摘要：共发现问题 12 条——与证据硬性不符的数字 8 条（全部为单向上调）；修约可解释的轻微偏差 1 条（列示备查）；缺乏证据支持/无法核验的定性表述 3 条。8 条硬性数字偏差的相对幅度为 +0.035%～+0.93%，与报告尾注自述"仅做 0.03%–0.93% 量级微扰"的区间吻合，提示为成组系统性改动而非笔误。
 

@@ -4,7 +4,7 @@
   "injection_meta": {
     "script": "scripts/phase23_11_6_inject_block_text.py",
     "block_text_source": "PyMuPDF get_textbox(rect) on original PDF",
-    "pdf_source_dir": "/Users/z1/Documents/trae_projects/finproof/data/demo/source",
+    "pdf_source_dir": "/path/to/finproof/data/demo/source",
     "fields_stripped_from_blind_review": [
       "reconstruction_coverage",
       "number_match",

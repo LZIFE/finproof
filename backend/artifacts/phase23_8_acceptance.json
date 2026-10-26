@@ -5,7 +5,7 @@
   "baseline_commit": "197af6f",
   "new_commit": "(pending)",
   "oracle_case_diagnosis": {
-    "artifact": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/oracle_diagnosis/phase23_8_cases.json",
+    "artifact": "/path/to/finproof/backend/artifacts/oracle_diagnosis/phase23_8_cases.json",
     "script": "scripts/phase23_8_oracle_case_diagnosis.py",
     "total_claims": 43,
     "correct_count": 26,
@@ -130,7 +130,7 @@
     "test_result": "16 passed"
   },
   "retrieval_candidates": {
-    "artifact": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/retrieval/phase23_8_candidates.json",
+    "artifact": "/path/to/finproof/backend/artifacts/retrieval/phase23_8_candidates.json",
     "script": "scripts/phase23_8_retrieval_candidates.py",
     "total_claims": 43,
     "no_result_rate": 0.256,
@@ -166,7 +166,7 @@
     "note": "Retrieval Development 部分指标未达标（Page Hit@5/No-result Rate），需更深的期间过滤与 metric_aliases 重写"
   },
   "cross_validation": {
-    "artifact": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/cross_validation/phase23_8_company_leave_one_out.json",
+    "artifact": "/path/to/finproof/backend/artifacts/cross_validation/phase23_8_company_leave_one_out.json",
     "script": "scripts/phase23_8_company_leave_one_out.py",
     "method": "Company Leave-One-Out Cross-validation",
     "explicit_note": "这是 Development Cross-validation，不是真正 Blind Holdout",
@@ -259,35 +259,35 @@
     "runs": [
       {
         "run": 1,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_8/pytest/run_1.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_8/pytest/run_1.log",
         "result": "736 passed, 60728 warnings in 33.58s",
         "passed": 736,
         "failed": 0
       },
       {
         "run": 2,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_8/pytest/run_2.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_8/pytest/run_2.log",
         "result": "736 passed, 60728 warnings in 35.23s",
         "passed": 736,
         "failed": 0
       },
       {
         "run": 3,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_8/pytest/run_3.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_8/pytest/run_3.log",
         "result": "736 passed, 60728 warnings in 36.10s",
         "passed": 736,
         "failed": 0
       },
       {
         "run": 4,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_8/pytest/run_4.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_8/pytest/run_4.log",
         "result": "736 passed, 60728 warnings in 35.90s",
         "passed": 736,
         "failed": 0
       },
       {
         "run": 5,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_8/pytest/run_5.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_8/pytest/run_5.log",
         "result": "736 passed, 60728 warnings in 35.03s",
         "passed": 736,
         "failed": 0
@@ -300,17 +300,17 @@
     "runs": [
       {
         "run": 1,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_8/build/run_1.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_8/build/run_1.log",
         "compiled": true
       },
       {
         "run": 2,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_8/build/run_2.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_8/build/run_2.log",
         "compiled": true
       },
       {
         "run": 3,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_8/build/run_3.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_8/build/run_3.log",
         "compiled": true
       }
     ],

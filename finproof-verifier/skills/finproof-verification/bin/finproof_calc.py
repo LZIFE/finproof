@@ -498,8 +498,16 @@ def sum_check(values, total, tolerance=VALUE_TOLERANCE):
     返回 dict：sum / total / abs_diff / rel_diff_pct / matched（相对容差 0.1%）。
     典型用途：SOTP 分项 vs 合计、成本明细 vs 总成本、分部收入 vs 总收入。
     """
-    parts = [Decimal(str(v)) for v in values]
-    tot = Decimal(str(total))
+    parts = []
+    for v in values:
+        try:
+            parts.append(Decimal(str(v)))
+        except (ArithmeticError, ValueError):
+            raise ValueError(f"分项含非数字：{v!r}（应为逗号分隔的数字列表，如 '117.0,88.9'）")
+    try:
+        tot = Decimal(str(total))
+    except (ArithmeticError, ValueError):
+        raise ValueError(f"合计值非数字：{total!r}")
     calc = sum(parts, Decimal("0"))
     diff = calc - tot
     rel = abs(diff) / abs(tot) if tot != 0 else (Decimal("0") if diff == 0 else None)
@@ -599,7 +607,8 @@ def build_parser():
     sp.add_argument("--source", required=True, help="来源描述，如 '2025年年度报告' / '2026-06-30'")
     sp.add_argument("--data", required=True, help="数据所属期间，如 '2026年上半年' / '2026Q1'")
 
-    sp = sub.add_parser("sum_check", help="总和一致性：分项之和 vs 合计（相对容差 0.1%）")
+    # 注意：argparse 会对 help 串做 % 格式化，字面百分号必须写成 %%
+    sp = sub.add_parser("sum_check", help="总和一致性：分项之和 vs 合计（相对容差 0.1%%）")
     sp.add_argument("--values", required=True, help="分项，逗号分隔，如 '117.0,88.9'")
     sp.add_argument("--total", type=float, required=True, help="报告合计值")
     sp.add_argument("--tolerance", type=float, default=VALUE_TOLERANCE)
@@ -609,6 +618,15 @@ def build_parser():
 
 def main(argv=None):
     args = build_parser().parse_args(argv)
+    try:
+        return _dispatch(args)
+    except (ValueError, ArithmeticError) as e:
+        # 引擎契约：任何输入错误都以 JSON 返回并退出码 2，不抛裸 traceback
+        _out({"error": str(e)})
+        return 2
+
+
+def _dispatch(args):
     cmd = args.cmd
 
     if cmd == "convert":

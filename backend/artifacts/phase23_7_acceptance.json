@@ -60,7 +60,7 @@
   },
   "oracle_diagnosis": {
     "script": "scripts/phase23_7_oracle_diagnosis.py",
-    "artifact": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/oracle_diagnosis/phase23_7_oracle_diagnosis.json",
+    "artifact": "/path/to/finproof/backend/artifacts/oracle_diagnosis/phase23_7_oracle_diagnosis.json",
     "datasets_used": [
       "demo",
       "holdout"
@@ -81,7 +81,7 @@
     "note": "Oracle Verification 规则修复尝试未达标（容差收紧+非数值类路由），需更深的规则重写"
   },
   "retrieval_metrics": {
-    "artifact": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/retrieval/phase23_7_retrieval_metrics.json",
+    "artifact": "/path/to/finproof/backend/artifacts/retrieval/phase23_7_retrieval_metrics.json",
     "total_claims": 43,
     "avg_retrieved_count": 6.33,
     "no_result_rate": 0.256,
@@ -117,7 +117,7 @@
     "verification": "Demo step4 OK, 22 条风险真实依赖本次 Verification，metadata 含血缘证明字段"
   },
   "prompt_injection": {
-    "artifact": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/security/phase23_7_prompt_injection.json",
+    "artifact": "/path/to/finproof/backend/artifacts/security/phase23_7_prompt_injection.json",
     "module": "app/services/claims/prompt_injection_guard.py",
     "design_principles": [
       "用户输入与 Evidence 封装为 UntrustedData（不可信数据）",
@@ -140,35 +140,35 @@
     "runs": [
       {
         "run": 1,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_7/pytest/run_1.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_7/pytest/run_1.log",
         "result": "617 passed, 60728 warnings in 30.10s",
         "passed": 617,
         "failed": 0
       },
       {
         "run": 2,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_7/pytest/run_2.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_7/pytest/run_2.log",
         "result": "617 passed, 60728 warnings in 30.50s",
         "passed": 617,
         "failed": 0
       },
       {
         "run": 3,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_7/pytest/run_3.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_7/pytest/run_3.log",
         "result": "617 passed, 60728 warnings in 30.46s",
         "passed": 617,
         "failed": 0
       },
       {
         "run": 4,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_7/pytest/run_4.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_7/pytest/run_4.log",
         "result": "617 passed, 60728 warnings in 30.85s",
         "passed": 617,
         "failed": 0
       },
       {
         "run": 5,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_7/pytest/run_5.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_7/pytest/run_5.log",
         "result": "617 passed, 60728 warnings in 30.66s",
         "passed": 617,
         "failed": 0
@@ -181,17 +181,17 @@
     "runs": [
       {
         "run": 1,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_7/build/run_1.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_7/build/run_1.log",
         "compiled": true
       },
       {
         "run": 2,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_7/build/run_2.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_7/build/run_2.log",
         "compiled": true
       },
       {
         "run": 3,
-        "log": "/Users/z1/Documents/trae_projects/finproof/backend/artifacts/logs/phase23_7/build/run_3.log",
+        "log": "/path/to/finproof/backend/artifacts/logs/phase23_7/build/run_3.log",
         "compiled": true
       }
     ],

@@ -1,12 +1,12 @@
 2026-08-05 15:11:20,422 [INFO] ============================================================
 2026-08-05 15:11:20,422 [INFO] Block 正文注入脚本启动
-2026-08-05 15:11:20,422 [INFO] input:  /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_items.json
-2026-08-05 15:11:20,422 [INFO] output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json
-2026-08-05 15:11:20,422 [INFO] log:    /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/block_text_injection.log
+2026-08-05 15:11:20,422 [INFO] input:  /path/to/finproof/data/gold_review/phase23_11_6/review_items.json
+2026-08-05 15:11:20,422 [INFO] output: /path/to/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json
+2026-08-05 15:11:20,422 [INFO] log:    /path/to/finproof/data/gold_review/phase23_11_6/block_text_injection.log
 2026-08-05 15:11:20,423 [INFO] loaded 32 review items
 2026-08-05 15:11:20,434 [INFO] preloaded coords for 86 block_ids
-2026-08-05 15:11:20,445 [INFO] doc_id=1 opened PDF: /Users/z1/Documents/trae_projects/finproof/data/demo/source/annual_report.pdf (pages=276)
-2026-08-05 15:11:20,961 [INFO] wrote output: /Users/z1/Documents/trae_projects/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json
+2026-08-05 15:11:20,445 [INFO] doc_id=1 opened PDF: /path/to/finproof/data/demo/source/annual_report.pdf (pages=276)
+2026-08-05 15:11:20,961 [INFO] wrote output: /path/to/finproof/data/gold_review/phase23_11_6/review_items_with_block_text.json
 2026-08-05 15:11:20,961 [INFO] ============================================================
 2026-08-05 15:11:20,961 [INFO] Block 正文注入完成统计:
 2026-08-05 15:11:20,961 [INFO]   total items: 32

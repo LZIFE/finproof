@@ -1,6 +1,6 @@
 FinProof 快速档核验报告（LITE v2.7.0 · 本地模式 · 不联网）
-对象：/Users/z1/Documents/trae_projects/finproof/evaluation/round5_workspace/待核验报告_近容差.txt
-证据：/Users/z1/Documents/trae_projects/finproof/evaluation/round5_workspace/证据摘录包.txt（用户随报告提供，含 5 份源文件摘录）
+对象：/path/to/finproof/evaluation/round5_workspace/待核验报告_近容差.txt
+证据：/path/to/finproof/evaluation/round5_workspace/证据摘录包.txt（用户随报告提供，含 5 份源文件摘录）
 引擎：finproof_calc.py（match×8 + yoy×1 + margin×1 + temporal×2，全部实际执行）
 主张计数：15 条原子主张（数值 11 + 语义 4）；评级「增持（维持）」为投资建议不判定；风险提示为常规列举不计入。
 
