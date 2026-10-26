@@ -1,0 +1,1683 @@
+{
+  "suite": "round7 / cite_suite",
+  "arms": {
+    "B": {
+      "runs": [
+        11,
+        12,
+        12
+      ],
+      "median_verdict": 12,
+      "min_verdict": 11,
+      "max_verdict": 12,
+      "category_correct": [
+        8,
+        9,
+        9
+      ],
+      "false_positives": [
+        0,
+        0,
+        0
+      ]
+    },
+    "F": {
+      "runs": [
+        12,
+        12,
+        12
+      ],
+      "median_verdict": 12,
+      "min_verdict": 12,
+      "max_verdict": 12,
+      "category_correct": [
+        9,
+        9,
+        9
+      ],
+      "false_positives": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "gap_median": 0,
+  "decision": "H1 不成立（基线中位数 ≥ 10/12）",
+  "per_case_b_correct_of_3": [
+    [
+      "C01",
+      "valid",
+      3
+    ],
+    [
+      "C02",
+      "valid",
+      3
+    ],
+    [
+      "C03",
+      "valid",
+      3
+    ],
+    [
+      "C04",
+      "unreachable",
+      3
+    ],
+    [
+      "C05",
+      "unreachable",
+      3
+    ],
+    [
+      "C06",
+      "unreachable",
+      3
+    ],
+    [
+      "C07",
+      "unreachable",
+      3
+    ],
+    [
+      "C08",
+      "excerpt",
+      3
+    ],
+    [
+      "C09",
+      "excerpt",
+      3
+    ],
+    [
+      "C10",
+      "excerpt",
+      3
+    ],
+    [
+      "C11",
+      "temporal",
+      3
+    ],
+    [
+      "C12",
+      "temporal",
+      2
+    ]
+  ],
+  "runs_detail": [
+    {
+      "arm": "B",
+      "verdict_correct": 11,
+      "verdict_accuracy": 0.9167,
+      "category_correct": 8,
+      "category_denominator": 9,
+      "false_positives": 0,
+      "rows": [
+        [
+          "C01",
+          {
+            "id": "C01",
+            "claim": "2026Q1 归母净利润 2.80 亿元，同比增长 12.4%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元，同比增长 12.4%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C01",
+            "verdict": "PASS",
+            "reason": "2026 年一季报快照明确披露归母净利润 2.80 亿元、同比增长 12.4%，与主张完全一致。"
+          },
+          true,
+          null
+        ],
+        [
+          "C02",
+          {
+            "id": "C02",
+            "claim": "2025 年营业收入 60.00 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C02",
+            "verdict": "PASS",
+            "reason": "2025 年年报快照载明营业收入 60.00 亿元，与主张一致。"
+          },
+          true,
+          null
+        ],
+        [
+          "C03",
+          {
+            "id": "C03",
+            "claim": "2025 年行业规模约 1,200 亿元",
+            "url": "https://example.com/industry/whitepaper-2025",
+            "fixture": "pages/industry_2025.html",
+            "excerpt": "2025 年行业规模约 1,200 亿元",
+            "source_date": "2026-01-15",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C03",
+            "verdict": "PASS",
+            "reason": "白皮书快照载明 2025 年行业规模约 1,200 亿元，与主张一致。"
+          },
+          true,
+          null
+        ],
+        [
+          "C04",
+          {
+            "id": "C04",
+            "claim": "公司 2025 年海外收入占比 35%",
+            "url": "https://example.com/xxkj/overseas",
+            "fixture": null,
+            "excerpt": "海外收入占比 35%",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C04",
+            "verdict": "FAIL",
+            "reason": "四个来源快照中并无“公司海外业务页”，35% 的海外收入占比无任何快照支持。"
+          },
+          true,
+          null
+        ],
+        [
+          "C05",
+          {
+            "id": "C05",
+            "claim": "据某券商研报，目标价 58 元",
+            "url": "https://example.com/research/target",
+            "fixture": null,
+            "excerpt": "目标价 58 元",
+            "source_date": "2026-06-01",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C05",
+            "verdict": "FAIL",
+            "reason": "快照中没有“研报页”这一来源，58 元目标价在现有材料中无从核实。"
+          },
+          true,
+          null
+        ],
+        [
+          "C06",
+          {
+            "id": "C06",
+            "claim": "2025 年研发投入 8.6 亿元",
+            "url": "https://example.com/xxkj/rd",
+            "fixture": null,
+            "excerpt": "研发投入 8.6 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C06",
+            "verdict": "FAIL",
+            "reason": "快照中没有“公司研发页”，8.6 亿元研发投入无任何来源支撑。"
+          },
+          true,
+          null
+        ],
+        [
+          "C07",
+          {
+            "id": "C07",
+            "claim": "工信部数据显示行业增速 15%",
+            "url": "https://example.com/miit/stat",
+            "fixture": null,
+            "excerpt": "行业增速 15%",
+            "source_date": "2026-02-01",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C07",
+            "verdict": "FAIL",
+            "reason": "快照中没有“工信部统计页”，且唯一的行业数据（白皮书）显示增速为 8.0% 而非 15%。"
+          },
+          true,
+          null
+        ],
+        [
+          "C08",
+          {
+            "id": "C08",
+            "claim": "2026Q1 毛利率提升至 45.2%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "毛利率提升至 45.2%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C08",
+            "verdict": "FAIL",
+            "reason": "一季报快照未披露任何毛利率数据，45.2% 在该报告中查无实据（年报口径为 42.10%）。"
+          },
+          true,
+          null
+        ],
+        [
+          "C09",
+          {
+            "id": "C09",
+            "claim": "2025 年报披露归母净利润 2.80 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "归母净利润 2.80 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C09",
+            "verdict": "FAIL",
+            "reason": "年报快照披露的归母净利润为 10.50 亿元，2.80 亿元实际是一季报数据，属张冠李戴。"
+          },
+          true,
+          null
+        ],
+        [
+          "C10",
+          {
+            "id": "C10",
+            "claim": "2026Q1 营收同比增长 19.9%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "同比增长 19.9%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C10",
+            "verdict": "FAIL",
+            "reason": "一季报快照显示营收同比增长 18.3%，报告写成 19.9%，数字不符。"
+          },
+          true,
+          null
+        ],
+        [
+          "C11",
+          {
+            "id": "C11",
+            "claim": "2025 年报数据支撑 2026H1 收入判断",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C11",
+            "verdict": "FAIL",
+            "reason": "2025 年报数据仅覆盖 2025 年度，无法支撑 2026 年上半年收入判断（公司亦明确未提供量化指引）。"
+          },
+          true,
+          null
+        ],
+        [
+          "C12",
+          {
+            "id": "C12",
+            "claim": "一季报净利润数据支撑上半年结论",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元",
+            "source_date": "2026-04-24",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C12",
+            "verdict": "PASS",
+            "reason": "一季报确有净利润 2.80 亿元（同比 +12.4%）的披露，其作为上半年结论内的已实现部分可提供部分支撑。"
+          },
+          false,
+          null
+        ]
+      ]
+    },
+    {
+      "arm": "B",
+      "verdict_correct": 12,
+      "verdict_accuracy": 1.0,
+      "category_correct": 9,
+      "category_denominator": 9,
+      "false_positives": 0,
+      "rows": [
+        [
+          "C01",
+          {
+            "id": "C01",
+            "claim": "2026Q1 归母净利润 2.80 亿元，同比增长 12.4%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元，同比增长 12.4%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C01",
+            "verdict": "PASS",
+            "reason": "一季报快照明确载有归母净利润 2.80 亿元、同比增长 12.4%，公告日期亦为 2026-04-24，完全吻合。"
+          },
+          true,
+          null
+        ],
+        [
+          "C02",
+          {
+            "id": "C02",
+            "claim": "2025 年营业收入 60.00 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C02",
+            "verdict": "PASS",
+            "reason": "2025 年报原文载明营业收入 60.00 亿元，公告日 2026-03-20，与引用一致。"
+          },
+          true,
+          null
+        ],
+        [
+          "C03",
+          {
+            "id": "C03",
+            "claim": "2025 年行业规模约 1,200 亿元",
+            "url": "https://example.com/industry/whitepaper-2025",
+            "fixture": "pages/industry_2025.html",
+            "excerpt": "2025 年行业规模约 1,200 亿元",
+            "source_date": "2026-01-15",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C03",
+            "verdict": "PASS",
+            "reason": "白皮书原文写明 2025 年行业规模约 1,200 亿元，发布日期 2026-01-15，一致。"
+          },
+          true,
+          null
+        ],
+        [
+          "C04",
+          {
+            "id": "C04",
+            "claim": "公司 2025 年海外收入占比 35%",
+            "url": "https://example.com/xxkj/overseas",
+            "fixture": null,
+            "excerpt": "海外收入占比 35%",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C04",
+            "verdict": "FAIL",
+            "reason": "快照中没有“公司海外业务页”这一来源，35% 的海外收入占比无从核对（IR 记录仅有 4.5% 市场份额）。"
+          },
+          true,
+          null
+        ],
+        [
+          "C05",
+          {
+            "id": "C05",
+            "claim": "据某券商研报，目标价 58 元",
+            "url": "https://example.com/research/target",
+            "fixture": null,
+            "excerpt": "目标价 58 元",
+            "source_date": "2026-06-01",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C05",
+            "verdict": "FAIL",
+            "reason": "快照中不存在任何券商研报页，58 元目标价没有任何可核对来源。"
+          },
+          true,
+          null
+        ],
+        [
+          "C06",
+          {
+            "id": "C06",
+            "claim": "2025 年研发投入 8.6 亿元",
+            "url": "https://example.com/xxkj/rd",
+            "fixture": null,
+            "excerpt": "研发投入 8.6 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C06",
+            "verdict": "FAIL",
+            "reason": "快照中没有“公司研发页”，8.6 亿元研发投入无法核实。"
+          },
+          true,
+          null
+        ],
+        [
+          "C07",
+          {
+            "id": "C07",
+            "claim": "工信部数据显示行业增速 15%",
+            "url": "https://example.com/miit/stat",
+            "fixture": null,
+            "excerpt": "行业增速 15%",
+            "source_date": "2026-02-01",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C07",
+            "verdict": "FAIL",
+            "reason": "快照中没有工信部统计页，且白皮书给出的行业增速为 8.0%，与所称 15% 不符。"
+          },
+          true,
+          null
+        ],
+        [
+          "C08",
+          {
+            "id": "C08",
+            "claim": "2026Q1 毛利率提升至 45.2%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "毛利率提升至 45.2%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C08",
+            "verdict": "FAIL",
+            "reason": "一季报未披露毛利率，年报毛利率为 42.10%，45.2% 在快照中无任何数据支撑。"
+          },
+          true,
+          null
+        ],
+        [
+          "C09",
+          {
+            "id": "C09",
+            "claim": "2025 年报披露归母净利润 2.80 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "归母净利润 2.80 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C09",
+            "verdict": "FAIL",
+            "reason": "年报归母净利润为 10.50 亿元，2.80 亿元实为 2026Q1 数据，属张冠李戴。"
+          },
+          true,
+          null
+        ],
+        [
+          "C10",
+          {
+            "id": "C10",
+            "claim": "2026Q1 营收同比增长 19.9%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "同比增长 19.9%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C10",
+            "verdict": "FAIL",
+            "reason": "一季报营收同比增速为 18.3%，与所称 19.9% 数字不符。"
+          },
+          true,
+          null
+        ],
+        [
+          "C11",
+          {
+            "id": "C11",
+            "claim": "2025 年报数据支撑 2026H1 收入判断",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C11",
+            "verdict": "FAIL",
+            "reason": "2025 年报只含 2025 年全年数据，无 2026H1 数据或量化指引，不足以支撑上半年收入判断。"
+          },
+          true,
+          null
+        ],
+        [
+          "C12",
+          {
+            "id": "C12",
+            "claim": "一季报净利润数据支撑上半年结论",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元",
+            "source_date": "2026-04-24",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C12",
+            "verdict": "FAIL",
+            "reason": "一季报仅有 Q1 单季数据，且 IR 记录明确公司未提供量化指引，无法支撑上半年结论。"
+          },
+          true,
+          null
+        ]
+      ]
+    },
+    {
+      "arm": "B",
+      "verdict_correct": 12,
+      "verdict_accuracy": 1.0,
+      "category_correct": 9,
+      "category_denominator": 9,
+      "false_positives": 0,
+      "rows": [
+        [
+          "C01",
+          {
+            "id": "C01",
+            "claim": "2026Q1 归母净利润 2.80 亿元，同比增长 12.4%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元，同比增长 12.4%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C01",
+            "verdict": "PASS",
+            "reason": "一季报快照明确载有归母净利润 2.80 亿元、同比增长 12.4%，公告日期 2026-04-24 与引用一致。"
+          },
+          true,
+          null
+        ],
+        [
+          "C02",
+          {
+            "id": "C02",
+            "claim": "2025 年营业收入 60.00 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C02",
+            "verdict": "PASS",
+            "reason": "2025 年年度报告快照载有营业收入 60.00 亿元，公告日期 2026-03-20 与引用一致。"
+          },
+          true,
+          null
+        ],
+        [
+          "C03",
+          {
+            "id": "C03",
+            "claim": "2025 年行业规模约 1,200 亿元",
+            "url": "https://example.com/industry/whitepaper-2025",
+            "fixture": "pages/industry_2025.html",
+            "excerpt": "2025 年行业规模约 1,200 亿元",
+            "source_date": "2026-01-15",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C03",
+            "verdict": "PASS",
+            "reason": "白皮书快照载有 2025 年行业规模约 1,200 亿元，发布日期 2026-01-15 与引用一致。"
+          },
+          true,
+          null
+        ],
+        [
+          "C04",
+          {
+            "id": "C04",
+            "claim": "公司 2025 年海外收入占比 35%",
+            "url": "https://example.com/xxkj/overseas",
+            "fixture": null,
+            "excerpt": "海外收入占比 35%",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C04",
+            "verdict": "FAIL",
+            "reason": "快照中没有“公司海外业务页”，四个来源均未提及海外收入或 35% 占比，该数字无可核验依据。"
+          },
+          true,
+          null
+        ],
+        [
+          "C05",
+          {
+            "id": "C05",
+            "claim": "据某券商研报，目标价 58 元",
+            "url": "https://example.com/research/target",
+            "fixture": null,
+            "excerpt": "目标价 58 元",
+            "source_date": "2026-06-01",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C05",
+            "verdict": "FAIL",
+            "reason": "快照中没有券商研报页，目标价 58 元在任何来源中均无出处，属无法核验的引用。"
+          },
+          true,
+          null
+        ],
+        [
+          "C06",
+          {
+            "id": "C06",
+            "claim": "2025 年研发投入 8.6 亿元",
+            "url": "https://example.com/xxkj/rd",
+            "fixture": null,
+            "excerpt": "研发投入 8.6 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C06",
+            "verdict": "FAIL",
+            "reason": "快照中没有“公司研发页”，年报与一季报也均未披露研发投入金额，8.6 亿元无来源支撑。"
+          },
+          true,
+          null
+        ],
+        [
+          "C07",
+          {
+            "id": "C07",
+            "claim": "工信部数据显示行业增速 15%",
+            "url": "https://example.com/miit/stat",
+            "fixture": null,
+            "excerpt": "行业增速 15%",
+            "source_date": "2026-02-01",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C07",
+            "verdict": "FAIL",
+            "reason": "快照中没有工信部统计页，且唯一涉及行业增速的白皮书给出的是 8.0%，与 15% 相互矛盾。"
+          },
+          true,
+          null
+        ],
+        [
+          "C08",
+          {
+            "id": "C08",
+            "claim": "2026Q1 毛利率提升至 45.2%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "毛利率提升至 45.2%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C08",
+            "verdict": "FAIL",
+            "reason": "2026 年一季报快照通篇未披露毛利率，45.2% 在该报告中不存在（年报披露的毛利率为 42.10%）。"
+          },
+          true,
+          null
+        ],
+        [
+          "C09",
+          {
+            "id": "C09",
+            "claim": "2025 年报披露归母净利润 2.80 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "归母净利润 2.80 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C09",
+            "verdict": "FAIL",
+            "reason": "2025 年年报披露归母净利润为 10.50 亿元，2.80 亿元实为一季报数字，属张冠李戴。"
+          },
+          true,
+          null
+        ],
+        [
+          "C10",
+          {
+            "id": "C10",
+            "claim": "2026Q1 营收同比增长 19.9%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "同比增长 19.9%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C10",
+            "verdict": "FAIL",
+            "reason": "一季报快照显示营收同比增速为 18.3%，并非报告所称的 19.9%，数字不符。"
+          },
+          true,
+          null
+        ],
+        [
+          "C11",
+          {
+            "id": "C11",
+            "claim": "2025 年报数据支撑 2026H1 收入判断",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C11",
+            "verdict": "FAIL",
+            "reason": "2025 年报只覆盖历史年度数据，未涉及 2026H1，且投资者关系记录明确公司未提供量化指引，无法支撑上半年收入判断。"
+          },
+          true,
+          null
+        ],
+        [
+          "C12",
+          {
+            "id": "C12",
+            "claim": "一季报净利润数据支撑上半年结论",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元",
+            "source_date": "2026-04-24",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C12",
+            "verdict": "FAIL",
+            "reason": "一季报仅覆盖 2026 年 1—3 月，其净利润数据无法支撑“上半年”结论，属超出数据期间的过度推断。"
+          },
+          true,
+          null
+        ]
+      ]
+    },
+    {
+      "arm": "F",
+      "verdict_correct": 12,
+      "verdict_accuracy": 1.0,
+      "category_correct": 9,
+      "category_denominator": 9,
+      "false_positives": 0,
+      "rows": [
+        [
+          "C01",
+          {
+            "id": "C01",
+            "claim": "2026Q1 归母净利润 2.80 亿元，同比增长 12.4%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元，同比增长 12.4%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C01",
+            "verdict": "PASS",
+            "fail": null
+          },
+          true,
+          null
+        ],
+        [
+          "C02",
+          {
+            "id": "C02",
+            "claim": "2025 年营业收入 60.00 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C02",
+            "verdict": "PASS",
+            "fail": null
+          },
+          true,
+          null
+        ],
+        [
+          "C03",
+          {
+            "id": "C03",
+            "claim": "2025 年行业规模约 1,200 亿元",
+            "url": "https://example.com/industry/whitepaper-2025",
+            "fixture": "pages/industry_2025.html",
+            "excerpt": "2025 年行业规模约 1,200 亿元",
+            "source_date": "2026-01-15",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C03",
+            "verdict": "PASS",
+            "fail": null
+          },
+          true,
+          null
+        ],
+        [
+          "C04",
+          {
+            "id": "C04",
+            "claim": "公司 2025 年海外收入占比 35%",
+            "url": "https://example.com/xxkj/overseas",
+            "fixture": null,
+            "excerpt": "海外收入占比 35%",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C04",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C05",
+          {
+            "id": "C05",
+            "claim": "据某券商研报，目标价 58 元",
+            "url": "https://example.com/research/target",
+            "fixture": null,
+            "excerpt": "目标价 58 元",
+            "source_date": "2026-06-01",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C05",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C06",
+          {
+            "id": "C06",
+            "claim": "2025 年研发投入 8.6 亿元",
+            "url": "https://example.com/xxkj/rd",
+            "fixture": null,
+            "excerpt": "研发投入 8.6 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C06",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C07",
+          {
+            "id": "C07",
+            "claim": "工信部数据显示行业增速 15%",
+            "url": "https://example.com/miit/stat",
+            "fixture": null,
+            "excerpt": "行业增速 15%",
+            "source_date": "2026-02-01",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C07",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C08",
+          {
+            "id": "C08",
+            "claim": "2026Q1 毛利率提升至 45.2%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "毛利率提升至 45.2%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C08",
+            "verdict": "FAIL",
+            "fail": "摘录未命中"
+          },
+          true,
+          null
+        ],
+        [
+          "C09",
+          {
+            "id": "C09",
+            "claim": "2025 年报披露归母净利润 2.80 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "归母净利润 2.80 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C09",
+            "verdict": "FAIL",
+            "fail": "摘录未命中"
+          },
+          true,
+          null
+        ],
+        [
+          "C10",
+          {
+            "id": "C10",
+            "claim": "2026Q1 营收同比增长 19.9%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "同比增长 19.9%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C10",
+            "verdict": "FAIL",
+            "fail": "摘录未命中"
+          },
+          true,
+          null
+        ],
+        [
+          "C11",
+          {
+            "id": "C11",
+            "claim": "2025 年报数据支撑 2026H1 收入判断",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C11",
+            "verdict": "FAIL",
+            "fail": "时序不可能"
+          },
+          true,
+          null
+        ],
+        [
+          "C12",
+          {
+            "id": "C12",
+            "claim": "一季报净利润数据支撑上半年结论",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元",
+            "source_date": "2026-04-24",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C12",
+            "verdict": "FAIL",
+            "fail": "时序不可能"
+          },
+          true,
+          null
+        ]
+      ]
+    },
+    {
+      "arm": "F",
+      "verdict_correct": 12,
+      "verdict_accuracy": 1.0,
+      "category_correct": 9,
+      "category_denominator": 9,
+      "false_positives": 0,
+      "rows": [
+        [
+          "C01",
+          {
+            "id": "C01",
+            "claim": "2026Q1 归母净利润 2.80 亿元，同比增长 12.4%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元，同比增长 12.4%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C01",
+            "verdict": "PASS",
+            "fail": null
+          },
+          true,
+          null
+        ],
+        [
+          "C02",
+          {
+            "id": "C02",
+            "claim": "2025 年营业收入 60.00 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C02",
+            "verdict": "PASS",
+            "fail": null
+          },
+          true,
+          null
+        ],
+        [
+          "C03",
+          {
+            "id": "C03",
+            "claim": "2025 年行业规模约 1,200 亿元",
+            "url": "https://example.com/industry/whitepaper-2025",
+            "fixture": "pages/industry_2025.html",
+            "excerpt": "2025 年行业规模约 1,200 亿元",
+            "source_date": "2026-01-15",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C03",
+            "verdict": "PASS",
+            "fail": null
+          },
+          true,
+          null
+        ],
+        [
+          "C04",
+          {
+            "id": "C04",
+            "claim": "公司 2025 年海外收入占比 35%",
+            "url": "https://example.com/xxkj/overseas",
+            "fixture": null,
+            "excerpt": "海外收入占比 35%",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C04",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C05",
+          {
+            "id": "C05",
+            "claim": "据某券商研报，目标价 58 元",
+            "url": "https://example.com/research/target",
+            "fixture": null,
+            "excerpt": "目标价 58 元",
+            "source_date": "2026-06-01",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C05",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C06",
+          {
+            "id": "C06",
+            "claim": "2025 年研发投入 8.6 亿元",
+            "url": "https://example.com/xxkj/rd",
+            "fixture": null,
+            "excerpt": "研发投入 8.6 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C06",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C07",
+          {
+            "id": "C07",
+            "claim": "工信部数据显示行业增速 15%",
+            "url": "https://example.com/miit/stat",
+            "fixture": null,
+            "excerpt": "行业增速 15%",
+            "source_date": "2026-02-01",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C07",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C08",
+          {
+            "id": "C08",
+            "claim": "2026Q1 毛利率提升至 45.2%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "毛利率提升至 45.2%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C08",
+            "verdict": "FAIL",
+            "fail": "摘录未命中"
+          },
+          true,
+          null
+        ],
+        [
+          "C09",
+          {
+            "id": "C09",
+            "claim": "2025 年报披露归母净利润 2.80 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "归母净利润 2.80 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C09",
+            "verdict": "FAIL",
+            "fail": "摘录未命中"
+          },
+          true,
+          null
+        ],
+        [
+          "C10",
+          {
+            "id": "C10",
+            "claim": "2026Q1 营收同比增长 19.9%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "同比增长 19.9%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C10",
+            "verdict": "FAIL",
+            "fail": "摘录未命中"
+          },
+          true,
+          null
+        ],
+        [
+          "C11",
+          {
+            "id": "C11",
+            "claim": "2025 年报数据支撑 2026H1 收入判断",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C11",
+            "verdict": "FAIL",
+            "fail": "时序不可能"
+          },
+          true,
+          null
+        ],
+        [
+          "C12",
+          {
+            "id": "C12",
+            "claim": "一季报净利润数据支撑上半年结论",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元",
+            "source_date": "2026-04-24",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C12",
+            "verdict": "FAIL",
+            "fail": "时序不可能"
+          },
+          true,
+          null
+        ]
+      ]
+    },
+    {
+      "arm": "F",
+      "verdict_correct": 12,
+      "verdict_accuracy": 1.0,
+      "category_correct": 9,
+      "category_denominator": 9,
+      "false_positives": 0,
+      "rows": [
+        [
+          "C01",
+          {
+            "id": "C01",
+            "claim": "2026Q1 归母净利润 2.80 亿元，同比增长 12.4%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元，同比增长 12.4%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C01",
+            "verdict": "PASS",
+            "fail": null
+          },
+          true,
+          null
+        ],
+        [
+          "C02",
+          {
+            "id": "C02",
+            "claim": "2025 年营业收入 60.00 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C02",
+            "verdict": "PASS",
+            "fail": null
+          },
+          true,
+          null
+        ],
+        [
+          "C03",
+          {
+            "id": "C03",
+            "claim": "2025 年行业规模约 1,200 亿元",
+            "url": "https://example.com/industry/whitepaper-2025",
+            "fixture": "pages/industry_2025.html",
+            "excerpt": "2025 年行业规模约 1,200 亿元",
+            "source_date": "2026-01-15",
+            "period": "2025A",
+            "expected_verdict": "PASS",
+            "expected_fail": null
+          },
+          {
+            "id": "C03",
+            "verdict": "PASS",
+            "fail": null
+          },
+          true,
+          null
+        ],
+        [
+          "C04",
+          {
+            "id": "C04",
+            "claim": "公司 2025 年海外收入占比 35%",
+            "url": "https://example.com/xxkj/overseas",
+            "fixture": null,
+            "excerpt": "海外收入占比 35%",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C04",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C05",
+          {
+            "id": "C05",
+            "claim": "据某券商研报，目标价 58 元",
+            "url": "https://example.com/research/target",
+            "fixture": null,
+            "excerpt": "目标价 58 元",
+            "source_date": "2026-06-01",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C05",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C06",
+          {
+            "id": "C06",
+            "claim": "2025 年研发投入 8.6 亿元",
+            "url": "https://example.com/xxkj/rd",
+            "fixture": null,
+            "excerpt": "研发投入 8.6 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C06",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C07",
+          {
+            "id": "C07",
+            "claim": "工信部数据显示行业增速 15%",
+            "url": "https://example.com/miit/stat",
+            "fixture": null,
+            "excerpt": "行业增速 15%",
+            "source_date": "2026-02-01",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "unreachable"
+          },
+          {
+            "id": "C07",
+            "verdict": "FAIL",
+            "fail": "不可达"
+          },
+          true,
+          null
+        ],
+        [
+          "C08",
+          {
+            "id": "C08",
+            "claim": "2026Q1 毛利率提升至 45.2%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "毛利率提升至 45.2%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C08",
+            "verdict": "FAIL",
+            "fail": "摘录未命中"
+          },
+          true,
+          null
+        ],
+        [
+          "C09",
+          {
+            "id": "C09",
+            "claim": "2025 年报披露归母净利润 2.80 亿元",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "归母净利润 2.80 亿元",
+            "source_date": "2026-03-20",
+            "period": "2025A",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C09",
+            "verdict": "FAIL",
+            "fail": "摘录未命中"
+          },
+          true,
+          null
+        ],
+        [
+          "C10",
+          {
+            "id": "C10",
+            "claim": "2026Q1 营收同比增长 19.9%",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "同比增长 19.9%",
+            "source_date": "2026-04-24",
+            "period": "2026Q1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "excerpt"
+          },
+          {
+            "id": "C10",
+            "verdict": "FAIL",
+            "fail": "摘录未命中"
+          },
+          true,
+          null
+        ],
+        [
+          "C11",
+          {
+            "id": "C11",
+            "claim": "2025 年报数据支撑 2026H1 收入判断",
+            "url": "https://example.com/xxkj/2025-annual",
+            "fixture": "pages/annual_2025.html",
+            "excerpt": "2025 年实现营业收入 60.00 亿元",
+            "source_date": "2026-03-20",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C11",
+            "verdict": "FAIL",
+            "fail": "时序不可能"
+          },
+          true,
+          null
+        ],
+        [
+          "C12",
+          {
+            "id": "C12",
+            "claim": "一季报净利润数据支撑上半年结论",
+            "url": "https://example.com/xxkj/2026-q1",
+            "fixture": "pages/q1_2026_report.html",
+            "excerpt": "归属于母公司股东的净利润 2.80 亿元",
+            "source_date": "2026-04-24",
+            "period": "2026H1",
+            "expected_verdict": "FAIL",
+            "expected_fail": "temporal"
+          },
+          {
+            "id": "C12",
+            "verdict": "FAIL",
+            "fail": "时序不可能"
+          },
+          true,
+          null
+        ]
+      ]
+    }
+  ]
+}

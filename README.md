@@ -89,6 +89,8 @@ flowchart LR
 完整过程、分歧与失败案例见 [`evaluation/测评报告.md`](evaluation/测评报告.md)、帕累托验证见 [`evaluation/帕累托验证.md`](evaluation/帕累托验证.md)。
 
 > 引用真伪另设离线专项套件（12 条引用 / 4 类问题，`python3 evaluation/cite_suite/run_cite_suite.py` → 12/12），验证 `cite_check` 的确定性判定可复现：伪造链接、摘录张冠李戴、时序不可能各归各类。
+>
+> 第 7 轮预注册两臂对照（12 条引用、证据齐备）：裸模型 11/12 · 12/12 · 12/12，工具臂 12/12 ×3 —— **检出打平**。工具的增量在**可复现（3/3 一致）、零 token、吞吐（约 0.23 秒/条，1000 条约 4 分钟）**，不在"多抓错"。原始输出与判定线见 [`evaluation/cite_suite/round7/`](evaluation/cite_suite/round7/README.md)。
 
 ## 快速开始
 
