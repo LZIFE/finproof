@@ -1,12 +1,12 @@
 ---
 name: finproof-verification
-version: 2.8.0
+version: 2.8.1
 description: Use when auditing any AI-generated report for factual errors — 行业研究 / 市场分析 / 竞品分析 / 商业模式分析 / 公司深度研究 / 尽调报告 / 商业计划书 / 投资备忘录 / 财务分析 / 政策解读 / 数据白皮书 / 技术评估报告 / 合规与尽调纪要（AI 生成内容的幻觉、口径错位与编造引文是通用风险；金融/上市公司研报是验证最深的场景）. Provides the FinProof operational methodology: claim decomposition (A–G), deterministic recomputation with exact tolerances and per-verdict engine provenance (with a fixed N_e counting rule), the eight-step decision chain, six verdicts, an independent cross-check pass (blind re-review by a second model when the host provides one, falling back to a zero-cost mechanical self-check layer — engine re-run + excerpt re-read), G1–G4 gap classification, adversarial defense checks (including a temporal-impossibility citation check: a source whose coverage period predates the data period is a mismatch by logic alone, no evidence closure needed), prediction claims tagged with an explicit disclosed-basis / undisclosed-basis marker (certainty-worded forecasts flagged as "forecast-as-fact" problem items), two run tiers (full audit by default; a fast tier for short reports that keeps the three hard checks), the fully transparent FinProof Score specification, and a parallel Audit Quality Score (AQS) measuring the audit process itself (claim coverage, engine-recompute rate, evidence citability, review completion, link re-check rate — all mechanical). Its audit report outputs as a structured single-file HTML (color-coded verdicts, clickable [E##] evidence anchors, score derivation tables, collapsible details). Includes the calc engine at bin/finproof_calc.py.
 ---
 
 # FinProof 核验操作手册（鉴融）
 
-> **定位（v2.8.0）**：**通用 AI 报告审计 agent**——AI 把写稿从几天压到几分钟，也批量生产了事实错误、口径混淆、数字矛盾与编造引文。鉴融是 AI 写稿之后的**事实审计层**：任何领域的 AI 生成报告（研究/分析/尽调/解读/白皮书）都按同一套方法论审计——机械判定（数字/时序/一致性）归确定性引擎，语义判定归模型并强制纪律，缺口诚实交回。金融/上市公司研报是验证最深的场景，方法论对通用报告同样成立。
+> **定位（v2.8.1）**：**通用 AI 报告审计 agent**——AI 把写稿从几天压到几分钟，也批量生产了事实错误、口径混淆、数字矛盾与编造引文。鉴融是 AI 写稿之后的**事实审计层**：任何领域的 AI 生成报告（研究/分析/尽调/解读/白皮书）都按同一套方法论审计——机械判定（数字/时序/一致性）归确定性引擎，语义判定归模型并强制纪律，缺口诚实交回。金融/上市公司研报是验证最深的场景，方法论对通用报告同样成立。
 
 本 Skill 是鉴融的**可执行操作层**。`agents/finproof-verifier.md` 定义角色与流程；本文件定义**具体怎么算、怎么判、怎么打分**。
 
@@ -60,7 +60,7 @@ description: Use when auditing any AI-generated report for factual errors — �
 
 **G 类输出纪律（v2.6.0 起硬规则）**：
 1. **依据披露必须显式**：每条 G 类主张的结论行必须标注**「依据已披露」**（同时列出依据的证据编号）或**「依据未披露」**——不得静默归入"不判真假"了事；"依据未披露"的 G 类主张进「需用户自行核验清单」（G3 非公开数据/内部假设）。
-2. **确定性语境的预测 = 预测事实化，进问题项**：前瞻表述若带"已无悬念 / 确定性强 / 板上钉钉 / 无虞 / 必然达成 / 胜券在握"等**确定性措辞**，视为把预测包装成事实陈述——结论仍为 OPINION_OR_FORECAST（G 类不判真假的规则不变），但**必须列入「审计结论」问题项**，问题写「预测事实化：确定性表述但依据未披露/不足以支撑确定性」；档位行的问题项计数含此类。所依赖的**基期数字若有误，仍须就基期单独判 REFUTED**（复合攻击规则）。
+2. **确定性语境的预测 = 预测事实化，进问题项**（**有 shell 时先跑 `forecast_scan --text "…"`，以引擎 FLAG/CLEAN 为准，不靠自觉**）：前瞻表述若带"已无悬念 / 确定性强 / 板上钉钉 / 无虞 / 必然达成 / 胜券在握"等**确定性措辞**，视为把预测包装成事实陈述——结论仍为 OPINION_OR_FORECAST（G 类不判真假的规则不变），但**必须列入「审计结论」问题项**，问题写「预测事实化：确定性表述但依据未披露/不足以支撑确定性」；档位行的问题项计数含此类。所依赖的**基期数字若有误，仍须就基期单独判 REFUTED**（复合攻击规则）。
 3. **「依据已披露」不免责——依据本身须核（v2.6.0 补，源自 Fin-Fact 实测教训）**：披露了测算依据的 G 类主张，须对**依据里的数字与来源**做核查（数值复算 + 追溯一手来源）；若依据失真（如引用区间上限冒充中心估计、旧报告数字冒充最新、来源不支持所引数值），该主张**进问题项**，问题写「依据失真：披露的测算依据与一手来源不符（{{差异}}）」——不得因"依据已披露"直接放行。
 
 ---
@@ -124,6 +124,9 @@ python3 $P extract  --text "2025年营业收入35.87亿元"            # 抽取�
 python3 $P period   --text "2026年上半年"                       # 期间归一化
 python3 $P temporal --source "2025年年度报告" --data "2026年上半年"   # 引用时序检查 → IMPOSSIBLE（时序不可能，判定归程序）
 python3 $P sum_check --values "117.0,88.9" --total 205.9              # 总和一致性（SOTP/成本明细/分部收入）→ 一致/超容差
+python3 $P forecast_scan --text "2026 年归母净利润达 12 亿元已无悬念"    # 预测事实化 → FLAG（确定性措辞 + 依据未披露）
+python3 $P cite_check --url https://example.com/report --excerpt "归母净利润 2.8 亿元" \
+  --source-date 2026-04-24 --period 2026Q1                            # 引用真伪 → PASS/FAIL（可达/摘录/时序）
 python3 $P eps / roe / debt / cashdiff --help                  # 其余子命令
 ```
 
@@ -175,6 +178,8 @@ python3 $P eps / roe / debt / cashdiff --help                  # 其余子命令
 3. **单位/币种伪装**：显式确认量级（元/万元/亿元）、币种与汇率来源、pp 与 % 区分。单位无法确认 → INSUFFICIENT。
 4. **编造因果**：E 类须有机制性表述或可比期初值；**禁止把"时间先后"当"因果"**；归因类须可加总核对（分项之和 = 总变动）。主张卡须区分 `[事实成立]` / `[因果成立]`。
 5. **引用错配**：来源 + 页码/章节 + 报告期**三对齐**；使用相邻期间须标 `[期间近似]`。**时序不可能检查（无需证据闭环）**：所引来源的**覆盖期间早于**数据所属期间（例："据《2025 年年度报告》第 12 页"支撑 **2026H1** 数据——2025 年报在逻辑上不可能披露 2026 上半年收入），属**纯逻辑即可判定**的引用错配 → 直接判 **REFUTED（引用一致性·时序不可能）**并注明"来源期间早于数据期间，无需证据即可判定"；**G1"源文件缺失"不得收容此类问题**——补传源文件也改变不了时序不可能。此检查是引用三对齐的**独立必做项、先于页码可核验性判断执行**——不得以"页码无法核验/来源存疑"替代时序判定（v2.6.0 第四轮实测教训：run1 曾因走页码核验路径漏判）。**有 shell 时必须走引擎判定**：`temporal --source … --data …` → IMPOSSIBLE/COVERED/PARTIAL/UNCLEAR（v2.6.2 起，纯逻辑判定归程序，不再依赖模型自觉；UNCLEAR 时才退回语义判定）。
+
+> **引用真伪硬门（v2.8.1）**：有 shell 时，**每条引用型主张必须跑 `cite_check`**（链接可达 / 摘录逐字命中 / 来源日期与数据期间一致），审计轨迹中无 cite_check 输出 = 该主张审计未完成。`FAIL·摘录未命中` 按**引用错配**处理（疑似张冠李戴/编造引文）；`FAIL·不可达` 按**证据不足 G2** 处理；两者均**不得判支持**。AI 报告最常见的失效不是数字算错，而是引用看着真、点开不对——这一项必须由工具做，不能靠模型"觉得像"。
 
 **三类元攻击**（针对判定机制本身）：
 - **检索逃逸**：报告用语生僻（如"母公司拥有人应占溢利"）导致查不到 → 标 `[疑似检索逃逸]`，不得中性收口。

@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/LZIFE/finproof/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/LZIFE/finproof/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.8.0-1a7f37.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.8.1-1a7f37.svg)](CHANGELOG.md)
 
 > **English** — Jianrong (FinProof) is an audit agent for AI-generated reports. It decomposes a report into checkable claims, recomputes every number with a deterministic engine at published tolerances (0.1% relative; 0.5pp for growth rates), checks citations — including a temporal-impossibility check that rejects a source by logic alone — and emits six-class verdicts with a per-claim evidence chain. The output is a single-file HTML audit report with a dual score (the report's evidence-chain quality alongside the audit process's own quality), and every number in it is recomputable. Benchmarks and all raw outputs live in [`evaluation/`](evaluation/README.md).
 
@@ -39,7 +39,7 @@ AI 已经把写稿从几天压到几分钟，也批量生产了四类错误：**
 flowchart LR
     A[被审报告] --> B["主张拆解 A–G<br/>每条可独立核验"]
     B --> C{能机械判定吗}
-    C -->|数值 / 时序 / 一致性| D["确定性引擎<br/>15 子命令 · 命令级溯源"]
+    C -->|数值 / 时序 / 一致性| D["确定性引擎<br/>17 子命令 · 命令级溯源"]
     C -->|语义 / 因果 / 比较| E["模型判定<br/>证据链 + 容差纪律"]
     D --> F["六类结论"]
     E --> F
@@ -53,14 +53,15 @@ flowchart LR
 | 能力 | 实现 |
 |---|---|
 | **主张拆解** | 把报告拆成 A 原始数字 / B 计算型 / C 口径型 / D 业务事实 / E 因果型 / F 比较型 / G 预测，按类型分配核验策略 |
-| **确定性引擎** | [`finproof_calc.py`](finproof-verifier/skills/finproof-verification/bin/finproof_calc.py)，纯标准库 `decimal`，**15 个子命令**（同比、累计转单季、毛利率、CAGR、EPS、ROE、资产负债率、总和一致性、时序检查…），54 项回归测试 |
+| **确定性引擎** | [`finproof_calc.py`](finproof-verifier/skills/finproof-verification/bin/finproof_calc.py)，纯标准库 `decimal`，**17 个子命令**（同比、累计转单季、毛利率、CAGR、EPS、ROE、资产负债率、总和一致性、时序检查、预测事实化、引用真伪…），68 项回归测试 |
 | **判定纪律** | 八步判定链 → 六类结论（支持 / 反驳 / 部分支持 / 证据不足 / 观点或预测 / 无法判断），每条判定必须能指到证据与计算 |
 | **容差纪律** | 数值相对 0.1%；增长率 0.5pp；披露舍入豁免最多 0.5%（唯一例外）——**该放过的精确放过，不"见差就报"** |
 | **时序不可能** | 来源覆盖期间早于数据所属期间时，无需证据闭环、纯逻辑判 `IMPOSSIBLE`（E5 时序错配在十轮对照中全灭，v2.6.0 后成为唯一被完整检出的框架独占点） |
+| **引用真伪** | `cite_check` 逐条验链接可达、摘录逐字命中、来源日期能否支撑数据期间——AI 报告最常见的"引用看着真、点开不对"，由工具判而不是靠感觉 |
 | **预测事实化** | G 类不判真假，但标注"依据已披露 / 未披露"；"已无悬念"这类确定性措辞列入问题项 |
 | **双分体系** | FinProof Score 度量**被审报告**的证据链质量；AQS 度量**审计过程**本身，两分并列、互不替代 |
 | **缺口诚实交回** | 查不到就说查不到，G1–G4 分类 + 按影响排序的自核清单 |
-| **包自检** | [`check_package.py`](finproof-verifier/check_package.py) 43 项一致性检查（版本、档位行、算例自洽、引擎-文档同步、zip 新旧…） |
+| **包自检** | [`check_package.py`](finproof-verifier/check_package.py) 50 项一致性检查（版本、档位行、算例自洽、引擎-文档同步、zip 新旧…） |
 
 ### 两个分数，各管各的
 
@@ -87,6 +88,8 @@ flowchart LR
 
 完整过程、分歧与失败案例见 [`evaluation/测评报告.md`](evaluation/测评报告.md)、帕累托验证见 [`evaluation/帕累托验证.md`](evaluation/帕累托验证.md)。
 
+> 引用真伪另设离线专项套件（12 条引用 / 4 类问题，`python3 evaluation/cite_suite/run_cite_suite.py` → 12/12），验证 `cite_check` 的确定性判定可复现：伪造链接、摘录张冠李戴、时序不可能各归各类。
+
 ## 快速开始
 
 ### 1. 跑确定性引擎（零依赖）
@@ -102,8 +105,8 @@ python3 finproof-verifier/skills/finproof-verification/bin/finproof_calc.py \
 ### 2. 自检
 
 ```bash
-python3 -m pytest finproof-verifier/skills/finproof-verification/bin/test_finproof_calc.py -q   # 54 passed
-python3 finproof-verifier/check_package.py                                                      # 43 项全绿
+python3 -m pytest finproof-verifier/skills/finproof-verification/bin/test_finproof_calc.py -q   # 68 passed
+python3 finproof-verifier/check_package.py                                                      # 50 项全绿
 ```
 
 ### 3. 作为 agent 技能使用
@@ -158,7 +161,7 @@ finproof/
 
 ## 边界（不做什么）
 
-- **不判预测真假**：预测 / 主观判断标为观点，只核"依据是否披露"，不用真值去判；
+- **不判预测真假**：预测 / 主观判断标为观点，只核"依据是否披露"，不用真值去判（`forecast_scan` 只扫"确定性措辞 + 依据未披露"）；
 - **不给投资建议**：不预测涨跌、不给买卖建议；
 - **未闭环不等于通过**：查不到就是查不到，交回用户核；
 - **AQS 不度量判定正确性**：它需要外部金标准，AQS 只保证过程完备与诚实；

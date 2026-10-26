@@ -25,6 +25,8 @@
   period       期间归一化（PeriodContext）
   temporal     引用时序检查：来源覆盖期间 vs 数据所属期间 → IMPOSSIBLE/COVERED/PARTIAL/UNCLEAR
   sum_check    总和一致性：分项之和 vs 合计（SOTP/成本明细/分部收入的确定性核对）
+  forecast_scan 预测事实化扫描：确定性措辞 + 依据披露 → FLAG/CLEAN
+  cite_check   引用真伪核验：链接可达 / 摘录逐字命中 / 来源日期与数据期间一致
 
 所有子命令以 JSON 输出结果，便于专家逐步核对（对应审计轨迹）。
 """
@@ -32,10 +34,14 @@
 from __future__ import annotations
 
 import argparse
+import html as html_lib
 import json
+import os
 import re
 import sys
 import unicodedata
+import urllib.error
+import urllib.request
 from decimal import Decimal, getcontext
 
 # 高精度，避免浮点误差
@@ -527,6 +533,210 @@ def sum_check(values, total, tolerance=VALUE_TOLERANCE):
 
 
 # ---------------------------------------------------------------------------
+# 预测事实化扫描（v2.8.1）：确定性措辞 + 依据披露
+#
+# 背景：SKILL 要求"带确定性措辞的预测进问题项"，但实测执行不一致——第一轮
+# 鉴融 15/18 vs 基线 17/18，丢分点正是 E7："已无悬念"未按自身规则点出"依据
+# 未披露"。本子命令把该判定收敛为确定性输出，不依赖模型自觉。
+# ---------------------------------------------------------------------------
+_STRONG_CERTAINTY = (
+    "已无悬念", "毫无悬念", "板上钉钉", "毫无疑问", "毋庸置疑", "不容置疑",
+    "必将", "必然", "必定", "铁定", "锁定", "确保", "将达", "将达到", "笃定",
+)
+_WEAK_CERTAINTY = ("一定", "肯定", "确定", "稳了", "保证")
+_FORECAST_HINTS = (
+    "预计", "预测", "有望", "展望", "目标", "指引", "未来", "明年", "后年",
+    "计划", "将", "估算", "测算",
+)
+# 否定/限定语境：先遮蔽，避免"不一定/一定程度上/不确定"被误报
+_MASK_PHRASES = (
+    "不一定", "不确定", "未确定", "无法确定", "尚不确定", "难以确定", "难以保证",
+    "无法确保", "不能确保", "一定程度上", "某种程度上", "未必", "难说",
+)
+
+
+def _mask(text: str) -> str:
+    t = text or ""
+    for ph in _MASK_PHRASES:
+        t = t.replace(ph, "□" * len(ph))
+    return t
+
+
+def forecast_scan(text, evidence_ids=None, has_method=False):
+    """预测事实化扫描。
+
+    判定：预测语境 + 确定性措辞 + 依据未披露 → forecast_as_fact。
+    依据披露 = 显式给出证据编号（[E##]）或报告披露了测算方法/假设。
+    """
+    masked = _mask(text)
+    strong = [w for w in _STRONG_CERTAINTY if w in masked]
+    weak = [w for w in _WEAK_CERTAINTY if w in masked]
+    forecast_like = any(h in masked for h in _FORECAST_HINTS) or bool(strong)
+    basis = bool(evidence_ids) or bool(has_method)
+    flagged = forecast_like and bool(strong or weak) and not basis
+    if flagged:
+        reason = (f"预测语境 + 确定性措辞（{'、'.join(strong + weak)}）+ 依据未披露"
+                  f" → 预测事实化，进审计结论问题项（结论仍为观点或预测，不判真假）")
+    elif forecast_like and (strong or weak) and basis:
+        reason = "预测语境 + 确定性措辞，但依据已披露（证据编号/测算方法）→ 不判预测事实化"
+    elif forecast_like:
+        reason = "预测语境，未见确定性措辞 → 常规观点或预测条目"
+    else:
+        reason = "非预测语境 → 不适用预测事实化规则"
+    return {
+        "text": text,
+        "strong_hits": strong,
+        "weak_hits": weak,
+        "forecast_like": forecast_like,
+        "basis_disclosed": basis,
+        "forecast_as_fact": flagged,
+        "verdict": "FLAG" if flagged else "CLEAN",
+        "reason": reason,
+    }
+
+
+# ---------------------------------------------------------------------------
+# 引用真伪核验（v2.8.1）：链接可达 / 摘录逐字命中 / 来源日期与数据期间一致
+#
+# 背景：编造引用与张冠李戴是 AI 报告最典型的失效模式，而裸提示结构上不会去
+# 点链接、比对摘录。SKILL 原有"链接复验"流程要求，但没有确定性工具、没有
+# 强制门——第四轮 E5（引用期间错配）十轮全灭正是这个缺口。
+# ---------------------------------------------------------------------------
+_UA = "Mozilla/5.0 (compatible; FinProof/2.8.1; citation-audit)"
+_ZERO_WIDTH_RE = re.compile(r"[\u200b-\u200f\u202a-\u202e\ufeff]")
+_QUOTE_MAP = str.maketrans({
+    "\u201c": '"', "\u201d": '"', "\u2018": "'", "\u2019": "'",
+    "\u2014": "-", "\u2013": "-", "\u2026": "...",
+})
+
+
+def _html_to_text(raw: str) -> str:
+    s = re.sub(r"(?is)<(script|style|noscript)[^>]*>.*?</\1>", " ", raw or "")
+    s = re.sub(r"(?s)<[^>]+>", " ", s)
+    return html_lib.unescape(s)
+
+
+def _normalize_text(s: str) -> str:
+    s = unicodedata.normalize("NFKC", s or "")
+    s = s.translate(_QUOTE_MAP)
+    s = _ZERO_WIDTH_RE.sub("", s)
+    return re.sub(r"\s+", "", s).lower()
+
+
+def _excerpt_parts(excerpt: str):
+    """逐字摘录允许用 … 省略中间：每段都必须命中。"""
+    return [p for p in (_normalize_text(x) for x in re.split(r"\.\.\.|\u2026", excerpt or "")) if p]
+
+
+def _load_source(url=None, file=None, timeout=10.0):
+    """返回 (reachable, status, final_url, page_text, error)。file 优先（离线快照）。"""
+    if file:
+        if not os.path.exists(file):
+            return False, None, f"file://{file}", "", "本地快照不存在（离线模拟不可达）"
+        try:
+            raw = open(file, encoding="utf-8", errors="replace").read()
+        except OSError as e:
+            return False, None, f"file://{file}", "", f"快照读取失败：{e}"
+        text = _html_to_text(raw) if file.lower().endswith((".html", ".htm")) else raw
+        return True, 200, f"file://{file}", text, ""
+    if not url:
+        return False, None, "", "", "未提供 url 或 file"
+    target = url.strip()
+    if re.match(r"^10\.\d{4,9}/", target):        # DOI → https://doi.org/
+        target = "https://doi.org/" + target
+    if not re.match(r"^https?://", target, re.IGNORECASE):
+        return False, None, target, "", f"不支持的 URL 协议：{target[:40]}"
+    try:
+        req = urllib.request.Request(target, headers={"User-Agent": _UA})
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            status = getattr(resp, "status", 200)
+            final = resp.geturl()
+            raw = resp.read(2_000_000).decode("utf-8", errors="replace")
+        return True, status, final, _html_to_text(raw), ""
+    except urllib.error.HTTPError as e:
+        return False, e.code, target, "", f"HTTP {e.code}"
+    except Exception as e:  # URLError / timeout / SSL ...
+        return False, None, target, "", f"不可达（{type(e).__name__}: {e}）"
+
+
+def cite_check(url=None, excerpt=None, source_date=None, period=None,
+               file=None, timeout=10.0):
+    """引用真伪核验。
+
+    verdict：PASS = 可达 + 摘录逐字命中 + 时序可行；
+             FAIL = 任一项不通过（不可达 / 摘录未命中 / 时序不可能）。
+    未提供的检查项记 None，不参与判定（但报告须说明为何未检）。
+    """
+    reachable, status, final_url, page_text, err = _load_source(url=url, file=file, timeout=timeout)
+
+    excerpt_found = None
+    if excerpt and reachable:
+        norm = _normalize_text(page_text)
+        parts = _excerpt_parts(excerpt)
+        excerpt_found = bool(parts) and all(p in norm for p in parts)
+
+    date_ok, date_reason, window = None, "", None
+    if source_date and period:
+        m = _FULL_DATE_RE.search(source_date)
+        ds, de, dk = period_window(period)
+        window = (ds, de, dk)
+        if not m or ds is None:
+            date_reason = "来源日期或数据期间无法解析，引擎不猜（退回人工核）"
+        else:
+            sd = f"{int(m.group(1)):04d}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+            if sd < de:
+                date_ok = False
+                date_reason = (f"来源发布日期 {sd} 早于数据期间结束 {de}"
+                               f"（数据期间 {ds}~{de}）→ 时序不可能，该来源无法支撑该数据")
+            else:
+                date_ok = True
+                date_reason = f"来源发布日期 {sd} ≥ 数据期间结束 {de} → 时序可行"
+
+    fails = []
+    if not reachable:
+        fails.append("不可达")
+    if excerpt_found is False:
+        fails.append("摘录未命中")
+    if date_ok is False:
+        fails.append("时序不可能")
+    verdict = "FAIL" if fails else "PASS"
+
+    if not reachable:
+        reason = f"FAIL·不可达：{err}"
+    elif excerpt_found is False:
+        reason = "FAIL·摘录未命中：页面可达，但逐字摘录未出现（疑似张冠李戴或编造引文）"
+    elif date_ok is False:
+        reason = f"FAIL·时序不可能：{date_reason}"
+    else:
+        bits = [f"链接可达（HTTP {status}）"]
+        if excerpt_found:
+            bits.append("摘录逐字命中")
+        if date_ok:
+            bits.append("时序可行")
+        missing = [n for n, v in (("摘录", excerpt_found), ("时序", date_ok)) if v is None]
+        if missing:
+            bits.append("未检：" + "、".join(missing))
+        reason = "PASS：" + "；".join(bits)
+
+    return {
+        "url": url,
+        "source": final_url,
+        "reachable": reachable,
+        "status": status,
+        "excerpt": excerpt,
+        "excerpt_found": excerpt_found,
+        "source_date": source_date,
+        "period": period,
+        "period_window": window,
+        "date_ok": date_ok,
+        "date_reason": date_reason,
+        "verdict": verdict,
+        "fails": fails,
+        "reason": reason,
+    }
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 def _out(obj):
@@ -608,7 +818,21 @@ def build_parser():
     sp.add_argument("--data", required=True, help="数据所属期间，如 '2026年上半年' / '2026Q1'")
 
     # 注意：argparse 会对 help 串做 % 格式化，字面百分号必须写成 %%
+    sp = sub.add_parser("forecast_scan", help="预测事实化扫描：确定性措辞 + 依据披露 → FLAG/CLEAN")
+    sp.add_argument("--text", required=True, help="主张原文")
+    sp.add_argument("--evidence-ids", default="", help="已挂证据编号，逗号分隔（如 'E01,E02'）")
+    sp.add_argument("--has-method", action="store_true", help="报告披露了测算方法/假设")
+
+    sp = sub.add_parser("cite_check", help="引用真伪核验：链接可达 / 摘录命中 / 日期-期间一致")
+    sp.add_argument("--url", default=None, help="证据链接或 DOI")
+    sp.add_argument("--file", default=None, help="离线快照文件（优先于 --url，用于归档/测试）")
+    sp.add_argument("--excerpt", default=None, help="逐字摘录（可用 … 省略中间）")
+    sp.add_argument("--source-date", default=None, help="来源发布日期，如 2026-04-24")
+    sp.add_argument("--period", default=None, help="数据所属期间，如 2026Q1 / 2026年上半年")
+    sp.add_argument("--timeout", type=float, default=10.0)
+
     sp = sub.add_parser("sum_check", help="总和一致性：分项之和 vs 合计（相对容差 0.1%%）")
+
     sp.add_argument("--values", required=True, help="分项，逗号分隔，如 '117.0,88.9'")
     sp.add_argument("--total", type=float, required=True, help="报告合计值")
     sp.add_argument("--tolerance", type=float, default=VALUE_TOLERANCE)
@@ -666,6 +890,12 @@ def _dispatch(args):
         _out(parse_period(args.period))
     elif cmd == "temporal":
         _out(temporal_check(args.source, args.data))
+    elif cmd == "forecast_scan":
+        ids = [x.strip() for x in args.evidence_ids.split(",") if x.strip()]
+        _out(forecast_scan(args.text, evidence_ids=ids, has_method=args.has_method))
+    elif cmd == "cite_check":
+        _out(cite_check(url=args.url, excerpt=args.excerpt, source_date=args.source_date,
+                        period=args.period, file=args.file, timeout=args.timeout))
     elif cmd == "sum_check":
         vals = [v.strip() for v in args.values.split(",") if v.strip()]
         _out(sum_check(vals, args.total, args.tolerance))

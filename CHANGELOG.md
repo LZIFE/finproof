@@ -4,6 +4,7 @@
 
 | 版本 | 主题 | 关键变更 |
 |---|---|---|
+| v2.8.1 | 引用真伪 + 预测事实化 | 引擎新增 `cite_check`（链接可达 / 摘录逐字命中 / 日期-期间一致）与 `forecast_scan`（确定性措辞 + 依据披露）；SKILL/LITE 增引用硬门（无 cite_check 输出 = 未完成）；15→17 子命令、54→68 测试；新增 `evaluation/cite_suite/` 离线套件 |
 | v2.8.0 | 通用化 + 开源基建 | 重定位为通用 AI 报告审计 agent；LICENSE/CI/双语 README；仓库首页重写、本地路径脱敏与构建产物出库；引擎新增 `sum_check`（总和一致性）、修复 `--help` 崩溃与非法输入裸 traceback |
 | v2.7.0 | 双分体系 | 新增审计质量分 AQS（与 FinProof Score 并列，解决"好审计审烂报告得低分"悖论）；判定校准决策树（Mostly True 计真） |
 | v2.6.2 | 逻辑判定归程序 | 引擎 `temporal` 时序检查子命令；时点漂移三档规则；`check_package.py` 包一致性检查 |

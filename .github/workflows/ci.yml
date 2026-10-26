@@ -12,6 +12,8 @@ jobs:
         run: python3 -m pytest finproof-verifier/skills/finproof-verification/bin/test_finproof_calc.py -q
       - name: Package consistency checks (check_package.py)
         run: python3 finproof-verifier/check_package.py
+      - name: Citation authenticity suite (12/12 expected)
+        run: python3 evaluation/cite_suite/run_cite_suite.py
       - name: Backend tolerance alignment tests
         run: |
           cd backend

@@ -1,0 +1,112 @@
+{
+  "suite": "cite_suite",
+  "version": "1.0",
+  "source": "deterministic cite_check (offline snapshots)",
+  "total": 12,
+  "correct": 12,
+  "accuracy": 1.0,
+  "by_category": {
+    "valid": {
+      "total": 3,
+      "correct": 3
+    },
+    "unreachable": {
+      "total": 4,
+      "correct": 4
+    },
+    "excerpt": {
+      "total": 3,
+      "correct": 3
+    },
+    "temporal": {
+      "total": 2,
+      "correct": 2
+    }
+  },
+  "cases": [
+    {
+      "id": "C01",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "reason": "PASS：链接可达（HTTP 200）；摘录逐字命中；时序可行"
+    },
+    {
+      "id": "C02",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "reason": "PASS：链接可达（HTTP 200）；摘录逐字命中；时序可行"
+    },
+    {
+      "id": "C03",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "reason": "PASS：链接可达（HTTP 200）；摘录逐字命中；时序可行"
+    },
+    {
+      "id": "C04",
+      "expected": "FAIL(unreachable)",
+      "got": "不可达",
+      "ok": true,
+      "reason": "FAIL·不可达：本地快照不存在（离线模拟不可达）"
+    },
+    {
+      "id": "C05",
+      "expected": "FAIL(unreachable)",
+      "got": "不可达",
+      "ok": true,
+      "reason": "FAIL·不可达：本地快照不存在（离线模拟不可达）"
+    },
+    {
+      "id": "C06",
+      "expected": "FAIL(unreachable)",
+      "got": "不可达",
+      "ok": true,
+      "reason": "FAIL·不可达：本地快照不存在（离线模拟不可达）"
+    },
+    {
+      "id": "C07",
+      "expected": "FAIL(unreachable)",
+      "got": "不可达",
+      "ok": true,
+      "reason": "FAIL·不可达：本地快照不存在（离线模拟不可达）"
+    },
+    {
+      "id": "C08",
+      "expected": "FAIL(excerpt)",
+      "got": "摘录未命中",
+      "ok": true,
+      "reason": "FAIL·摘录未命中：页面可达，但逐字摘录未出现（疑似张冠李戴或编造引文）"
+    },
+    {
+      "id": "C09",
+      "expected": "FAIL(excerpt)",
+      "got": "摘录未命中",
+      "ok": true,
+      "reason": "FAIL·摘录未命中：页面可达，但逐字摘录未出现（疑似张冠李戴或编造引文）"
+    },
+    {
+      "id": "C10",
+      "expected": "FAIL(excerpt)",
+      "got": "摘录未命中",
+      "ok": true,
+      "reason": "FAIL·摘录未命中：页面可达，但逐字摘录未出现（疑似张冠李戴或编造引文）"
+    },
+    {
+      "id": "C11",
+      "expected": "FAIL(temporal)",
+      "got": "时序不可能",
+      "ok": true,
+      "reason": "FAIL·时序不可能：来源发布日期 2026-03-20 早于数据期间结束 2026-06-30（数据期间 2026-01-01~2026-06-30）→ 时序不可能，该来源无法支撑该数据"
+    },
+    {
+      "id": "C12",
+      "expected": "FAIL(temporal)",
+      "got": "时序不可能",
+      "ok": true,
+      "reason": "FAIL·时序不可能：来源发布日期 2026-04-24 早于数据期间结束 2026-06-30（数据期间 2026-01-01~2026-06-30）→ 时序不可能，该来源无法支撑该数据"
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "suite": "cite_suite",
+  "version": "1.0",
+  "note": "离线引用真伪套件：URL 为示例域名，网络由本地快照模拟（fixture 缺失 = 不可达）。12 条引用覆盖 4 类：伪造/不可达、摘录张冠李戴、时序不可能、真实可核。",
+  "cases": [
+    {
+      "id": "C01",
+      "claim": "2026Q1 归母净利润 2.80 亿元，同比增长 12.4%",
+      "url": "https://example.com/xxkj/2026-q1",
+      "fixture": "pages/q1_2026_report.html",
+      "excerpt": "归属于母公司股东的净利润 2.80 亿元，同比增长 12.4%",
+      "source_date": "2026-04-24",
+      "period": "2026Q1",
+      "expected_verdict": "PASS",
+      "expected_fail": null
+    },
+    {
+      "id": "C02",
+      "claim": "2025 年营业收入 60.00 亿元",
+      "url": "https://example.com/xxkj/2025-annual",
+      "fixture": "pages/annual_2025.html",
+      "excerpt": "2025 年实现营业收入 60.00 亿元",
+      "source_date": "2026-03-20",
+      "period": "2025A",
+      "expected_verdict": "PASS",
+      "expected_fail": null
+    },
+    {
+      "id": "C03",
+      "claim": "2025 年行业规模约 1,200 亿元",
+      "url": "https://example.com/industry/whitepaper-2025",
+      "fixture": "pages/industry_2025.html",
+      "excerpt": "2025 年行业规模约 1,200 亿元",
+      "source_date": "2026-01-15",
+      "period": "2025A",
+      "expected_verdict": "PASS",
+      "expected_fail": null
+    },
+    {
+      "id": "C04",
+      "claim": "公司 2025 年海外收入占比 35%",
+      "url": "https://example.com/xxkj/overseas",
+      "fixture": null,
+      "excerpt": "海外收入占比 35%",
+      "source_date": "2026-03-20",
+      "period": "2025A",
+      "expected_verdict": "FAIL",
+      "expected_fail": "unreachable"
+    },
+    {
+      "id": "C05",
+      "claim": "据某券商研报，目标价 58 元",
+      "url": "https://example.com/research/target",
+      "fixture": null,
+      "excerpt": "目标价 58 元",
+      "source_date": "2026-06-01",
+      "period": "2026Q1",
+      "expected_verdict": "FAIL",
+      "expected_fail": "unreachable"
+    },
+    {
+      "id": "C06",
+      "claim": "2025 年研发投入 8.6 亿元",
+      "url": "https://example.com/xxkj/rd",
+      "fixture": null,
+      "excerpt": "研发投入 8.6 亿元",
+      "source_date": "2026-03-20",
+      "period": "2025A",
+      "expected_verdict": "FAIL",
+      "expected_fail": "unreachable"
+    },
+    {
+      "id": "C07",
+      "claim": "工信部数据显示行业增速 15%",
+      "url": "https://example.com/miit/stat",
+      "fixture": null,
+      "excerpt": "行业增速 15%",
+      "source_date": "2026-02-01",
+      "period": "2025A",
+      "expected_verdict": "FAIL",
+      "expected_fail": "unreachable"
+    },
+    {
+      "id": "C08",
+      "claim": "2026Q1 毛利率提升至 45.2%",
+      "url": "https://example.com/xxkj/2026-q1",
+      "fixture": "pages/q1_2026_report.html",
+      "excerpt": "毛利率提升至 45.2%",
+      "source_date": "2026-04-24",
+      "period": "2026Q1",
+      "expected_verdict": "FAIL",
+      "expected_fail": "excerpt"
+    },
+    {
+      "id": "C09",
+      "claim": "2025 年报披露归母净利润 2.80 亿元",
+      "url": "https://example.com/xxkj/2025-annual",
+      "fixture": "pages/annual_2025.html",
+      "excerpt": "归母净利润 2.80 亿元",
+      "source_date": "2026-03-20",
+      "period": "2025A",
+      "expected_verdict": "FAIL",
+      "expected_fail": "excerpt"
+    },
+    {
+      "id": "C10",
+      "claim": "2026Q1 营收同比增长 19.9%",
+      "url": "https://example.com/xxkj/2026-q1",
+      "fixture": "pages/q1_2026_report.html",
+      "excerpt": "同比增长 19.9%",
+      "source_date": "2026-04-24",
+      "period": "2026Q1",
+      "expected_verdict": "FAIL",
+      "expected_fail": "excerpt"
+    },
+    {
+      "id": "C11",
+      "claim": "2025 年报数据支撑 2026H1 收入判断",
+      "url": "https://example.com/xxkj/2025-annual",
+      "fixture": "pages/annual_2025.html",
+      "excerpt": "2025 年实现营业收入 60.00 亿元",
+      "source_date": "2026-03-20",
+      "period": "2026H1",
+      "expected_verdict": "FAIL",
+      "expected_fail": "temporal"
+    },
+    {
+      "id": "C12",
+      "claim": "一季报净利润数据支撑上半年结论",
+      "url": "https://example.com/xxkj/2026-q1",
+      "fixture": "pages/q1_2026_report.html",
+      "excerpt": "归属于母公司股东的净利润 2.80 亿元",
+      "source_date": "2026-04-24",
+      "period": "2026H1",
+      "expected_verdict": "FAIL",
+      "expected_fail": "temporal"
+    }
+  ]
+}

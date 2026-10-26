@@ -276,6 +276,97 @@ class TestSumCheck(unittest.TestCase):
         self.assertFalse(r["matched"])  # 0.2% > 0.1% 默认容差
 
 
+class TestForecastScan(unittest.TestCase):
+    """v2.8.1 预测事实化：确定性措辞 + 依据披露（第一轮 E7 丢分的确定性补丁）。"""
+
+    def test_certainty_forecast_flagged(self):
+        r = fc.forecast_scan("2026 年归母净利润达 12 亿元已无悬念")
+        self.assertTrue(r["forecast_as_fact"])
+        self.assertEqual(r["verdict"], "FLAG")
+        self.assertIn("已无悬念", r["strong_hits"])
+
+    def test_basis_disclosed_not_flagged(self):
+        r = fc.forecast_scan("预计 2026 年净利润 12 亿元已无悬念", evidence_ids=["E05"])
+        self.assertFalse(r["forecast_as_fact"])
+        self.assertTrue(r["basis_disclosed"])
+
+    def test_has_method_not_flagged(self):
+        r = fc.forecast_scan("预计 2026 年净利润 12 亿元已无悬念", has_method=True)
+        self.assertFalse(r["forecast_as_fact"])
+
+    def test_negation_masked(self):
+        r = fc.forecast_scan("毛利率不一定提升，存在一定不确定性")
+        self.assertFalse(r["forecast_as_fact"])
+
+    def test_non_forecast_is_clean(self):
+        r = fc.forecast_scan("公司 2025 年营业收入 60.00 亿元")
+        self.assertFalse(r["forecast_like"])
+        self.assertEqual(r["verdict"], "CLEAN")
+
+    def test_weak_certainty_needs_forecast_context(self):
+        # "确定"在非预测语境（确定了供应商）不应误报
+        r = fc.forecast_scan("董事会确定了新的供应商名单")
+        self.assertFalse(r["forecast_as_fact"])
+
+
+class TestCiteCheck(unittest.TestCase):
+    """v2.8.1 引用真伪：链接可达 / 摘录逐字命中 / 来源日期与数据期间一致。"""
+
+    def _tmp_html(self, html_text):
+        import tempfile
+        fd, path = tempfile.mkstemp(suffix=".html")
+        os.close(fd)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(html_text)
+        self.addCleanup(os.unlink, path)
+        return path
+
+    def test_match_ignores_html_tags_and_whitespace(self):
+        p = self._tmp_html("<p>归母净利润 <b>2.8 亿元</b>，同比增长 12.4%</p><script>var x=1</script>")
+        r = fc.cite_check(file=p, excerpt="归母净利润2.8亿元，同比增长12.4%")
+        self.assertTrue(r["excerpt_found"])
+        self.assertEqual(r["verdict"], "PASS")
+
+    def test_ellipsis_requires_all_segments(self):
+        p = self._tmp_html("<p>营收 60 亿元；归母净利润 2.8 亿元；同比增长 12.4%</p>")
+        ok = fc.cite_check(file=p, excerpt="营收 60 亿元…归母净利润 2.8 亿元")
+        bad = fc.cite_check(file=p, excerpt="营收 60 亿元…净利润 3.9 亿元")
+        self.assertTrue(ok["excerpt_found"])
+        self.assertFalse(bad["excerpt_found"])
+
+    def test_missing_excerpt_fails_as_misattribution(self):
+        p = self._tmp_html("<p>同比增长 12.4%</p>")
+        r = fc.cite_check(file=p, excerpt="同比增长 19.9%")
+        self.assertEqual(r["verdict"], "FAIL")
+        self.assertIn("摘录未命中", r["reason"])
+
+    def test_temporal_impossible_when_source_predates_period(self):
+        p = self._tmp_html("<p>归母净利润 2.8 亿元</p>")
+        r = fc.cite_check(file=p, excerpt="归母净利润 2.8 亿元",
+                          source_date="2026-04-24", period="2026H1")
+        self.assertFalse(r["date_ok"])
+        self.assertEqual(r["verdict"], "FAIL")
+        self.assertIn("时序不可能", r["reason"])
+
+    def test_temporal_ok_for_q1_report(self):
+        p = self._tmp_html("<p>归母净利润 2.8 亿元</p>")
+        r = fc.cite_check(file=p, excerpt="归母净利润 2.8 亿元",
+                          source_date="2026-04-24", period="2026Q1")
+        self.assertTrue(r["date_ok"])
+        self.assertEqual(r["verdict"], "PASS")
+
+    def test_unreachable_snapshot_fails(self):
+        r = fc.cite_check(file="/nonexistent/never.html", excerpt="任意")
+        self.assertFalse(r["reachable"])
+        self.assertEqual(r["verdict"], "FAIL")
+        self.assertIn("不可达", r["reason"])
+
+    def test_fullwidth_digits_normalized(self):
+        p = self._tmp_html("<p>净利润 2.8 亿元</p>")
+        r = fc.cite_check(file=p, excerpt="净利润 ２.８ 亿元")
+        self.assertTrue(r["excerpt_found"])
+
+
 class TestCliContract(unittest.TestCase):
     """CLI 契约：v2.8.0 的 sum_check help 串含未转义 %，曾使 `--help` 直接崩溃。"""
 
@@ -292,6 +383,25 @@ class TestCliContract(unittest.TestCase):
             fc.main(["--help"])
         self.assertEqual(ctx.exception.code, 0)
         self.assertIn("sum_check", buf.getvalue())
+
+    def test_cite_check_cli_json(self):
+        import contextlib
+        import io
+        import json as _json
+        import tempfile
+        fd, path = tempfile.mkstemp(suffix=".html")
+        os.close(fd)
+        try:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write("<p>净利润 2.8 亿元，同比增长 12.4%</p>")
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):
+                code = fc.main(["cite_check", "--file", path, "--excerpt", "净利润 2.8 亿元"])
+            self.assertEqual(code, 0)
+            data = _json.loads(buf.getvalue())
+            self.assertEqual(data["verdict"], "PASS")
+        finally:
+            os.unlink(path)
 
     def test_invalid_input_returns_error_json(self):
         import contextlib

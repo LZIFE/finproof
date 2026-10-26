@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""鉴融专家包一致性检查（v2.6.2）。
+"""鉴融专家包一致性检查（v2.8.1）。
 
 背景：包内文档曾出现 4 处漏同步与"九臂"数字错（人工同步遗漏）。本脚本把
 包一致性从"人肉 grep + 验收子代理"变成一键全检。
@@ -126,7 +126,8 @@ def check_ne_rule():
 def check_lite():
     lite = read(os.path.join(SKILL, "LITE.md"))
     check(bool(lite), "LITE.md 存在")
-    for kw in ["0.1%", "0.5pp", "判定校准", "时序不可能", "temporal", "时点漂移", "G 类", "逐字摘录"]:
+    for kw in ["0.1%", "0.5pp", "判定校准", "时序不可能", "temporal", "时点漂移", "G 类", "逐字摘录",
+               "cite_check", "forecast_scan"]:
         check(kw in lite, f"LITE 含关键内容：{kw}")
     check("只读本目录 `LITE.md`" in read(os.path.join(SKILL, "SKILL.md")), "SKILL §0.1 快速档指向 LITE.md")
 
@@ -142,6 +143,28 @@ def check_engine():
     r = subprocess.run([sys.executable, eng, "temporal", "--source", "2025年年度报告", "--data", "2026年上半年"],
                        capture_output=True, text=True)
     check('"IMPOSSIBLE"' in r.stdout, "temporal CLI 冒烟：E5 原型判 IMPOSSIBLE", r.stdout[:80])
+
+    r = subprocess.run([sys.executable, eng, "forecast_scan", "--text", "2026 年净利润达 12 亿元已无悬念"],
+                       capture_output=True, text=True)
+    check('"FLAG"' in r.stdout, "forecast_scan CLI 冒烟：确定性措辞判 FLAG", r.stdout[:80])
+
+    import tempfile
+    fd, snap = tempfile.mkstemp(suffix=".html")
+    os.close(fd)
+    try:
+        with open(snap, "w", encoding="utf-8") as f:
+            f.write("<p>归母净利润 2.8 亿元，同比增长 12.4%</p>")
+        r = subprocess.run([sys.executable, eng, "cite_check", "--file", snap,
+                            "--excerpt", "归母净利润 2.8 亿元", "--source-date", "2026-04-24",
+                            "--period", "2026Q1"], capture_output=True, text=True)
+    finally:
+        os.unlink(snap)
+    check('"PASS"' in r.stdout, "cite_check CLI 冒烟：可达+摘录命中+时序可行判 PASS", r.stdout[:80])
+
+    for name, path in [("SKILL.md", os.path.join(SKILL, "SKILL.md")), ("LITE.md", os.path.join(SKILL, "LITE.md")),
+                       ("agent MD", os.path.join(ROOT, "agents", "finproof-verifier.md"))]:
+        t = read(path)
+        check("cite_check" in t and "forecast_scan" in t, f"{name} 同步 cite_check/forecast_scan 命令")
 
 
 # 8. 引擎回归测试
@@ -210,9 +233,10 @@ def check_engine_doc_sync():
     missing_skill = sorted(c for c in cmds if c not in skill)
     check(not missing_skill, f"引擎子命令({len(cmds)})全部见于 SKILL 速查", f"缺:{missing_skill}")
     # LITE 是快速档最小卡：只要求三项硬检查+通用复算核心子命令（全量表在 SKILL，属有意精简）
-    lite_core = {"match", "yoy", "quarter", "margin", "sum_check", "temporal", "convert"}
+    lite_core = {"match", "yoy", "quarter", "margin", "sum_check", "temporal", "convert",
+                 "cite_check", "forecast_scan"}
     missing_lite = sorted(c for c in lite_core if c not in lite)
-    check(not missing_lite, "LITE 含快速档核心子命令（7 个）", f"缺:{missing_lite}")
+    check(not missing_lite, "LITE 含快速档核心子命令（9 个）", f"缺:{missing_lite}")
 
 
 # 11. zip 新旧提醒
