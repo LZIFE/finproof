@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""鉴融专家包一致性检查（v2.8.1）。
+"""鉴融专家包一致性检查（v2.16.1）。
 
 背景：包内文档曾出现 4 处漏同步与"九臂"数字错（人工同步遗漏）。本脚本把
 包一致性从"人肉 grep + 验收子代理"变成一键全检。
@@ -169,8 +169,23 @@ def check_engine():
 
 # 8. 引擎回归测试
 def check_tests():
-    r = subprocess.run([sys.executable, "-m", "pytest", os.path.join(SKILL, "bin", "test_finproof_calc.py"), "-q"],
-                       capture_output=True, text=True, cwd=os.path.join(SKILL, "bin"))
+    """优先 pytest（CI 用）；本机缺 pytest 时回退 unittest 直跑。
+
+    测试文件本身是纯标准库 unittest（docstring 明写"无需 pytest"）——检查器
+    硬依赖 pytest 会让"零依赖"的包在自己的自检里 FAIL，语义上是把
+    「本机缺测试工具」误报成「包不一致」。
+    """
+    path = os.path.join(SKILL, "bin", "test_finproof_calc.py")
+    cwd = os.path.join(SKILL, "bin")
+    r = subprocess.run([sys.executable, "-m", "pytest", path, "-q"],
+                       capture_output=True, text=True, cwd=cwd)
+    if "No module named pytest" in (r.stderr or "") or "No module named 'pytest'" in (r.stderr or ""):
+        r2 = subprocess.run([sys.executable, path], capture_output=True, text=True, cwd=cwd)
+        tail = (r2.stderr or r2.stdout).strip().splitlines()
+        ok = r2.returncode == 0 and "OK" in (r2.stderr or "")
+        add("PASS" if ok else "FAIL", "引擎回归测试全绿（本机无 pytest，已回退 unittest 直跑）",
+            (tail[-1] if tail else "无输出") if not ok else (tail[-1] if tail else "OK"))
+        return
     check("passed" in r.stdout and "failed" not in r.stdout.split("passed")[0],
           "引擎回归测试全绿", r.stdout.strip().splitlines()[-1] if r.stdout.strip() else r.stderr[:80])
 
@@ -259,10 +274,38 @@ def check_zip_freshness():
         add("PASS", "zip 新旧", "zip 比包内全部文件新")
 
 
+
+# N. 文档-代码数字一致性（防漂移）
+def check_doc_code_numbers():
+    tests = read(os.path.join(SKILL, "bin", "test_finproof_calc.py"))
+    n_test = len(re.findall(r"def test_", tests))
+    skill = read(os.path.join(SKILL, "SKILL.md"))
+    m = re.search(r"(\d+)\s*项回归测试", skill)
+    check(bool(m) and int(m.group(1)) == n_test,
+          "SKILL 声称的测试数 == 实际 def test_ 数",
+          f"文档={m.group(1) if m else '?'} 实际={n_test}")
+
+    src = read(os.path.join(SKILL, "bin", "finproof_calc.py"))
+    n_sub = len(re.findall(r'sub\.add_parser\(\s*"', src))
+    # 速查块里每个子命令都要出现（防止加了子命令忘了写文档）
+    missing = []
+    for name in re.findall(r'sub\.add_parser\(\s*"(\w+)"', src):
+        if name not in skill and name not in ("--help",):
+            missing.append(name)
+    check(not missing, "SKILL 速查覆盖全部引擎子命令",
+          "未在 SKILL 出现：" + ",".join(missing) if missing else f"{n_sub} 个子命令全覆盖")
+
+    # yoy 分母必须取绝对值（2026-10-26 修的负基数方向 bug，文档写的是 |上年|）
+    check("abs(prev)" in src or "abs(previous)" in src,
+          "yoy/qoq 分母取绝对值（负基数方向正确）")
+
+
+
 def main():
     for fn in (check_versions, check_grade_lines, check_conclusion_enum, check_review_tiers,
                check_ne_rule, check_lite, check_engine, check_tests, check_worked_example,
-               check_stale_markers, check_aqs, check_engine_doc_sync, check_zip_freshness):
+               check_stale_markers, check_aqs, check_engine_doc_sync, check_doc_code_numbers,
+               check_zip_freshness):
         try:
             fn()
         except Exception as e:  # noqa: BLE001

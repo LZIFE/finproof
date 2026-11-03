@@ -1,0 +1,252 @@
+{
+  "cases": 16,
+  "bare": {
+    "name": "bare",
+    "available": true,
+    "total": 16,
+    "correct": 13,
+    "accuracy": 0.8125,
+    "by_gold": {
+      "PASS": {
+        "correct": 5,
+        "total": 5
+      },
+      "FAIL": {
+        "correct": 4,
+        "total": 4
+      },
+      "ABSTAIN": {
+        "correct": 4,
+        "total": 7
+      }
+    },
+    "confusion": {
+      "PASS->PASS": 5,
+      "FAIL->FAIL": 4,
+      "ABSTAIN->ABSTAIN": 4,
+      "ABSTAIN->FAIL": 3
+    },
+    "rows": [
+      {
+        "id": "ML-01",
+        "gold": "PASS",
+        "got": "PASS",
+        "ok": true
+      },
+      {
+        "id": "ML-02",
+        "gold": "PASS",
+        "got": "PASS",
+        "ok": true
+      },
+      {
+        "id": "ML-03",
+        "gold": "PASS",
+        "got": "PASS",
+        "ok": true
+      },
+      {
+        "id": "ML-04",
+        "gold": "FAIL",
+        "got": "FAIL",
+        "ok": true
+      },
+      {
+        "id": "ML-05",
+        "gold": "FAIL",
+        "got": "FAIL",
+        "ok": true
+      },
+      {
+        "id": "ML-06",
+        "gold": "FAIL",
+        "got": "FAIL",
+        "ok": true
+      },
+      {
+        "id": "ML-07",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-08",
+        "gold": "ABSTAIN",
+        "got": "FAIL",
+        "ok": false
+      },
+      {
+        "id": "ML-09",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-10",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-11",
+        "gold": "ABSTAIN",
+        "got": "FAIL",
+        "ok": false
+      },
+      {
+        "id": "ML-12",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-13",
+        "gold": "PASS",
+        "got": "PASS",
+        "ok": true
+      },
+      {
+        "id": "ML-14",
+        "gold": "FAIL",
+        "got": "FAIL",
+        "ok": true
+      },
+      {
+        "id": "ML-15",
+        "gold": "ABSTAIN",
+        "got": "FAIL",
+        "ok": false
+      },
+      {
+        "id": "ML-16",
+        "gold": "PASS",
+        "got": "PASS",
+        "ok": true
+      }
+    ]
+  },
+  "framework": {
+    "name": "framework",
+    "available": true,
+    "total": 16,
+    "correct": 16,
+    "accuracy": 1.0,
+    "by_gold": {
+      "PASS": {
+        "correct": 5,
+        "total": 5
+      },
+      "FAIL": {
+        "correct": 4,
+        "total": 4
+      },
+      "ABSTAIN": {
+        "correct": 7,
+        "total": 7
+      }
+    },
+    "confusion": {
+      "PASS->PASS": 5,
+      "FAIL->FAIL": 4,
+      "ABSTAIN->ABSTAIN": 7
+    },
+    "rows": [
+      {
+        "id": "ML-01",
+        "gold": "PASS",
+        "got": "PASS",
+        "ok": true
+      },
+      {
+        "id": "ML-02",
+        "gold": "PASS",
+        "got": "PASS",
+        "ok": true
+      },
+      {
+        "id": "ML-03",
+        "gold": "PASS",
+        "got": "PASS",
+        "ok": true
+      },
+      {
+        "id": "ML-04",
+        "gold": "FAIL",
+        "got": "FAIL",
+        "ok": true
+      },
+      {
+        "id": "ML-05",
+        "gold": "FAIL",
+        "got": "FAIL",
+        "ok": true
+      },
+      {
+        "id": "ML-06",
+        "gold": "FAIL",
+        "got": "FAIL",
+        "ok": true
+      },
+      {
+        "id": "ML-07",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-08",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-09",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-10",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-11",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-12",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-13",
+        "gold": "PASS",
+        "got": "PASS",
+        "ok": true
+      },
+      {
+        "id": "ML-14",
+        "gold": "FAIL",
+        "got": "FAIL",
+        "ok": true
+      },
+      {
+        "id": "ML-15",
+        "gold": "ABSTAIN",
+        "got": "ABSTAIN",
+        "ok": true
+      },
+      {
+        "id": "ML-16",
+        "gold": "PASS",
+        "got": "PASS",
+        "ok": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "passed": 13,
+  "total": 13,
+  "release_ok": true,
+  "results": [
+    {
+      "name": "引擎回归测试",
+      "ok": true,
+      "detail": "OK"
+    },
+    {
+      "name": "引擎侧契约测试",
+      "ok": true,
+      "detail": "OK"
+    },
+    {
+      "name": "backend 侧契约测试",
+      "ok": true,
+      "detail": "backend 契约：0 个失败"
+    },
+    {
+      "name": "Anamnesis 主集 392/392",
+      "ok": true,
+      "detail": "准确率：392/392"
+    },
+    {
+      "name": "OOD catch ≥ 0.95",
+      "ok": true,
+      "detail": "1.000 (52/52)"
+    },
+    {
+      "name": "OOD false flag ≤ 0.065",
+      "ok": true,
+      "detail": "0.065 (2/31)"
+    },
+    {
+      "name": "OOD error ≤ 0.01",
+      "ok": true,
+      "detail": "0.000"
+    },
+    {
+      "name": "弃权专项 100%",
+      "ok": true,
+      "detail": "弃权专项：20/20 = 100.0%"
+    },
+    {
+      "name": "Track B 可判项 100%",
+      "ok": true,
+      "detail": "Track B 弃权专项：17708/17708 = 100.0%"
+    },
+    {
+      "name": "Track B 严格口径 ≥ 95%",
+      "ok": true,
+      "detail": "严格口径 17708/18600 = 95.2%"
+    },
+    {
+      "name": "Track B headline 未见批次 100%",
+      "ok": true,
+      "detail": "Track B 弃权专项：2213/2213 = 100.0%"
+    },
+    {
+      "name": "对抗变异 + 历史错误 100%",
+      "ok": true,
+      "detail": "对抗/历史回归：45/45 = 100.0%"
+    },
+    {
+      "name": "封存集 100%",
+      "ok": true,
+      "detail": "封存集：25/25 = 100.0%"
+    }
+  ]
+}

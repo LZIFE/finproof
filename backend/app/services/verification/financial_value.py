@@ -32,8 +32,105 @@ from typing import Iterator
 UNIT_SCALE: dict[str, float] = {
     "亿元": 1e8, "万万元": 1e8, "万元": 1e4, "千元": 1e3, "元": 1.0,
     "百万": 1e6, "十亿": 1e9, "百亿": 1e10,
+    # 复合中文单位：真实财报写「百万元」「十亿元」，原表只有「百万」「十亿」，
+    # 导致 convert 静默按 1 倍处理，差 1e6（2026-10-26 CFR-NumQA 实测发现）
+    "十万元": 1e5, "百万元": 1e6, "千万元": 1e7,
+    "十亿元": 1e9, "百亿元": 1e10, "千亿元": 1e11, "万亿元": 1e12,
+    "万亿": 1e12, "千万": 1e7,
     "million": 1e6, "billion": 1e9, "mb": 1e6, "b": 1e9,
 }
+
+# ── 单位归一化（与 skills/finproof-verification/bin/finproof_calc.py 对齐）──
+# 原先 `UNIT_SCALE.get(unit, 1.0)` 对「亿美元」「million USD」等写法静默按 1 倍，
+# 差 1e4~1e9 且无警告。改为解析量级词 + 货币词，解析不出来就抛错。
+_CUR_WORDS = {
+    "usd": "USD", "us$": "USD", "$": "USD", "美元": "USD", "美金": "USD",
+    "cny": "CNY", "rmb": "CNY", "¥": "CNY", "￥": "CNY", "人民币": "CNY", "元": "CNY",
+    "hkd": "HKD", "hk$": "HKD", "港元": "HKD", "港币": "HKD",
+    "eur": "EUR", "€": "EUR", "欧元": "EUR",
+}
+_SCALE_WORDS = [
+    ("万亿", 1e12), ("千亿", 1e11), ("百亿", 1e10), ("十亿", 1e9), ("亿", 1e8),
+    ("千万", 1e7), ("百万", 1e6), ("十万", 1e5), ("万", 1e4), ("千", 1e3),
+    ("trillion", 1e12), ("billion", 1e9), ("million", 1e6), ("thousand", 1e3),
+    ("bn", 1e9), ("mn", 1e6), ("mm", 1e6), ("k", 1e3),
+]
+
+# 物理计量单位（与技能引擎保持同一集合）。财务报告里的产量/能耗/面积/门店数
+# 不能因为不是货币就被丢弃或当作无量纲数。
+_PHYSICAL_UNITS = (
+    "吨标准煤", "千瓦时", "平方米", "立方米", "平方公里", "平方英尺", "平方千米",
+    "千瓦", "兆瓦", "吉瓦", "公顷", "公里", "千米", "加仑", "盎司", "克拉",
+    "吨", "桶", "头", "只", "羽", "台", "套", "辆", "架", "艘", "件", "人",
+    "户", "家", "座", "条", "亩", "升", "度", "瓦",
+)
+_PHYS_ALT = "|".join(re.escape(x) for x in _PHYSICAL_UNITS)
+_PHYS_RE = re.compile(r"^(?:" + _PHYS_ALT + r")(?:/[年月日人台吨]{1,3})?")
+
+
+def _physical_unit_of(u: str):
+    """识别物理单位（可带量级前缀），返回 (完整单位, scale) 或 None。"""
+    pm = _PHYS_RE.fullmatch(u)
+    if pm:
+        return pm.group(0), 1.0
+    for w, s in _SCALE_WORDS:
+        if u.startswith(w):
+            pm = _PHYS_RE.fullmatch(u[len(w):])
+            if pm:
+                return w + pm.group(0), s
+    return None
+
+
+def _unit_currency(u_lower: str) -> str | None:
+    for k in sorted(_CUR_WORDS, key=len, reverse=True):
+        if k in u_lower:
+            return _CUR_WORDS[k]
+    return None
+
+
+_RATIO_UNITS = frozenset({"%", "％", "percent", "percentage", "pct",
+                          "pp", "percentage_point", "个百分点", "百分点",
+                          "bp", "basis point", "basis points"})
+
+
+def parse_unit(unit):
+    """解成 (scale, currency)。未知单位抛 ValueError，不再静默按 1 倍。"""
+    if unit is None:
+        return 1.0, None
+    raw = str(unit).strip()
+    if not raw:
+        return 1.0, None
+    u = raw.lower().replace(" ", "")
+    if u in _RATIO_UNITS:
+        return 1.0, None
+    if raw in UNIT_SCALE:
+        return UNIT_SCALE[raw], _unit_currency(u)
+    phys = _physical_unit_of(u)
+    if phys:
+        return phys[1], None
+    cur = _unit_currency(u)
+    for w, sc in _SCALE_WORDS:
+        if w in u:
+            return sc, cur
+    if cur is not None:
+        return 1.0, cur
+    raise ValueError(f"未知单位：{raw!r}（不再按 1 倍静默处理）")
+
+
+def unit_kind(unit) -> str:
+    """单位类别：currency / ratio / physical / scalar / unknown。"""
+    if not unit:
+        return "scalar"
+    u = str(unit).strip().lower().replace(" ", "")
+    if u in _RATIO_UNITS:
+        return "ratio"
+    if _physical_unit_of(u):
+        return "physical"
+    try:
+        _scale, cur = parse_unit(unit)
+    except ValueError:
+        return "unknown"
+    return "currency" if cur else "scalar"
 
 # Currency 识别（英文单位默认 USD，中文默认 CNY）
 USD_UNITS: frozenset[str] = frozenset({"million", "billion", "mb", "b"})
@@ -75,6 +172,7 @@ class FinancialValue:
             "scale": self.scale,
             "currency": self.currency,
             "unit": self.unit,
+            "unit_kind": unit_kind(self.unit),
             "percentage_type": self.percentage_type,
             "sign": self.sign,
             "metric": self.metric,
@@ -123,6 +221,27 @@ _PLAIN_RE = re.compile(
     r"(" + _NUMBER_BODY + r")\s*(" + _UNIT_PATTERN + r")?[\s　]*((?:百分点|个百分点|basis\s*points|bp|%)|%)?",
     re.UNICODE | re.IGNORECASE,
 )
+_UNIT_CAND_RE = re.compile(r"^[\u4e00-\u9fa5A-Za-z$￥¥€/]{1,8}")
+
+
+def _complete_physical_unit(unit: str, tail: str) -> str:
+    """把「万」+「吨」补成「万吨」；货币单位不参与。"""
+    if not unit or _unit_currency(unit):
+        return unit
+    if unit not in {w for w, _ in _SCALE_WORDS}:
+        return unit
+    m = _PHYS_RE.match(tail.lstrip())
+    return unit + m.group(0) if m else unit
+
+
+def _resolve_unit(unit: str, tail: str) -> str:
+    """无单位时从数字尾部取候选；有量级词时补物理单位。"""
+    if not unit:
+        m = _UNIT_CAND_RE.match(tail)
+        if m and m.group(0) not in ("同比", "环比", "增长", "下降", "提升", "回落", "个百分点"):
+            return m.group(0)
+        return unit
+    return _complete_physical_unit(unit, tail)
 
 # 同比增长/下降/亏损扩大/收窄 等方向词（紧邻数值前，可含尾随空格）
 # 注意：用在 prefix 文本末尾搜索，不需 $ 锚点；允许方向词后有空格再接数值
@@ -173,6 +292,7 @@ def extract_financial_values(
         except ValueError:
             continue
         unit = m.group(2) or context_unit or ""
+        unit = _resolve_unit(unit, normalized[m.end():])
         fv = _make_fv(raw, val, unit, "negative_paren", m.span(),
                       context_metric, context_period)
         results.append(fv)
@@ -207,6 +327,7 @@ def extract_financial_values(
                 paren_unit = pu
                 break
         unit = m.group(2) or paren_unit or context_unit or ""
+        unit = _resolve_unit(unit, normalized[m.end():])
         pct = m.group(3) or ""
         sign = _detect_sign(normalized, m.span(), val)
         pct_type = _classify_pct(pct)
@@ -225,8 +346,11 @@ def _make_fv(raw: str, value: float, unit: str, sign: str,
              span: tuple[int, int], metric: str | None, period: str | None,
              pct_type: str = "") -> FinancialValue:
     """构建 FinancialValue。"""
-    scale = UNIT_SCALE.get(unit, 1.0) if unit else 1.0
-    currency = "USD" if unit.lower() in USD_UNITS else ("CNY" if unit else "")
+    try:
+        scale, cur = parse_unit(unit)
+    except ValueError:
+        scale, cur = 1.0, None   # 抽取路径不整体失败，但 currency 留空表示未解析
+    currency = cur or ("USD" if unit and unit.lower() in USD_UNITS else ("CNY" if unit else ""))
     confidence = 0.85 if unit else (0.6 if pct_type else 0.5)
     if sign in ("negative_paren", "negative_sign"):
         confidence = max(confidence, 0.9)
@@ -313,7 +437,8 @@ def values_match(
     """
     if require_unit:
         # 换算为元后比较
-        claim_in_yuan = claim_value * UNIT_SCALE.get(claim_unit, 1.0)
+        _sc, _cur = parse_unit(claim_unit)   # 未知单位抛错，不静默
+        claim_in_yuan = claim_value * _sc
         ev_in_yuan = evidence_fv.absolute_value_in_yuan
         if claim_in_yuan == 0 and ev_in_yuan == 0:
             return True, "均为 0"
@@ -387,4 +512,6 @@ __all__ = [
     "values_match",
     "find_best_match",
     "UNIT_SCALE",
+    "parse_unit",
+    "unit_kind",
 ]

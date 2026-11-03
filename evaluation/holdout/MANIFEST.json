@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "frozen_at": "2026-10-28",
+  "sha256": "4737ddac578332afc3c4ecde9b35ac9b6ce4f72e22aa248c14bf2fa8b775ccd2",
+  "n": 25,
+  "rule": "创建后禁止修改；调参只能看开发集（OOD/对抗），发布门禁才跑本集"
+}

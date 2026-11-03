@@ -66,6 +66,7 @@ from app.services.verification.verdict_decision import (
     resolve_verdict,
     guard_semantic_not_override_numeric,
 )
+from app.services.verification.financial_value import parse_unit  # noqa: E402
 
 # 文档文件名 → 报告期间（Gold Evidence 的 document_name）
 DOC_PERIOD_BY_NAME: dict[str, str] = {
@@ -209,7 +210,7 @@ def _extract_evidence_fvs(text: str, claim_metric: str, claim_period: str) -> li
         for fv in fvs:
             if not fv.unit and fv.source_span[0] > m.end():
                 fv.unit = col_unit
-                fv.scale = UNIT_SCALE.get(col_unit, 1.0)
+                fv.scale = parse_unit(col_unit)[0]   # 未知单位抛错，不静默
                 fv.extraction_confidence = max(fv.extraction_confidence, 0.85)
     return fvs
 

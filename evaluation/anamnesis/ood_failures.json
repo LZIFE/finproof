@@ -1,0 +1,43 @@
+{
+  "total": 104,
+  "failures": [
+    {
+      "id": "OOD-0001",
+      "kind": "reconcile",
+      "gold": "consistent",
+      "got": "violation",
+      "reason": "单位表述不一致（USD billions vs USD millions）",
+      "in_official_scope": true,
+      "failure_stage": "单位/量级",
+      "artifact": {
+        "kind": "reconcile",
+        "metric": "Total revenue",
+        "reported": "8.4",
+        "source": "$8,400 million",
+        "tol_kind": "currency",
+        "unit_reported": "USD billions",
+        "unit_source": "USD millions"
+      },
+      "rationale": "8.4 USD billions equals 8,400 USD millions exactly; surface forms differ but magnitudes match. Stresses a checker that doesn't normalize units or parse string-typed reported values."
+    },
+    {
+      "id": "OOD-0003",
+      "kind": "reconcile",
+      "gold": "consistent",
+      "got": "violation",
+      "reason": "单位表述不一致（percent vs fraction）",
+      "in_official_scope": true,
+      "failure_stage": "单位/量级",
+      "artifact": {
+        "kind": "reconcile",
+        "metric": "Gross margin",
+        "reported": "42.0%",
+        "source": "0.420",
+        "tol_kind": "ratio_pp",
+        "unit_reported": "percent",
+        "unit_source": "fraction"
+      },
+      "rationale": "42.0% equals fraction 0.420; difference 0 pp. A naive checker subtracting 42.0-0.420 would wrongly flag."
+    }
+  ]
+}

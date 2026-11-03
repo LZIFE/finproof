@@ -1,0 +1,198 @@
+{
+  "total": 20,
+  "correct": 20,
+  "accuracy": 1.0,
+  "by_expected": {
+    "ABSTAIN": 14,
+    "PASS": 4,
+    "FAIL": 2
+  },
+  "abstain_correct": 14,
+  "abstain_total": 14,
+  "pass_correct": 4,
+  "pass_total": 4,
+  "fail_correct": 2,
+  "fail_total": 2,
+  "rows": [
+    {
+      "id": "ABST-001",
+      "category": "missing_value",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "CLAIM_VALUE_MISSING",
+      "expected_reason": "CLAIM_VALUE_MISSING",
+      "ok": true
+    },
+    {
+      "id": "ABST-002",
+      "category": "missing_unit",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "CLAIM_UNIT_MISSING",
+      "expected_reason": "CLAIM_UNIT_MISSING",
+      "ok": true
+    },
+    {
+      "id": "ABST-003",
+      "category": "unknown_unit",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "CLAIM_UNIT_UNRESOLVED",
+      "expected_reason": "CLAIM_UNIT_UNRESOLVED",
+      "ok": true
+    },
+    {
+      "id": "ABST-004",
+      "category": "missing_period",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "CLAIM_PERIOD_MISSING",
+      "expected_reason": "CLAIM_PERIOD_MISSING",
+      "ok": true
+    },
+    {
+      "id": "ABST-005",
+      "category": "period_unresolved",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "CLAIM_PERIOD_UNRESOLVED",
+      "expected_reason": "CLAIM_PERIOD_UNRESOLVED",
+      "ok": true
+    },
+    {
+      "id": "ABST-006",
+      "category": "no_evidence",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "NO_EVIDENCE",
+      "expected_reason": "NO_EVIDENCE",
+      "ok": true
+    },
+    {
+      "id": "ABST-007",
+      "category": "period_mismatch",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "PERIOD_MISMATCH",
+      "expected_reason": "PERIOD_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "ABST-008",
+      "category": "metric_mismatch",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "METRIC_MISMATCH",
+      "expected_reason": "METRIC_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "ABST-009",
+      "category": "source_unverified",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "SOURCE_UNVERIFIED",
+      "expected_reason": "SOURCE_UNVERIFIED",
+      "ok": true
+    },
+    {
+      "id": "ABST-010",
+      "category": "conflict",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "EVIDENCE_CONFLICT",
+      "expected_reason": "EVIDENCE_CONFLICT",
+      "ok": true
+    },
+    {
+      "id": "ABST-011",
+      "category": "unit_kind_mismatch",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "UNIT_KIND_MISMATCH",
+      "expected_reason": "UNIT_KIND_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "ABST-012",
+      "category": "evidence_value_missing",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "EVIDENCE_VALUE_MISSING",
+      "expected_reason": "EVIDENCE_VALUE_MISSING",
+      "ok": true
+    },
+    {
+      "id": "ABST-013",
+      "category": "evidence_unit_missing",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "EVIDENCE_UNIT_MISSING",
+      "expected_reason": "EVIDENCE_UNIT_MISSING",
+      "ok": true
+    },
+    {
+      "id": "ABST-014",
+      "category": "evidence_period_unresolved",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason_code": "EVIDENCE_PERIOD_UNRESOLVED",
+      "expected_reason": "EVIDENCE_PERIOD_UNRESOLVED",
+      "ok": true
+    },
+    {
+      "id": "PASS-001",
+      "category": "control_pass",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason_code": "VALUE_MATCH",
+      "expected_reason": "VALUE_MATCH",
+      "ok": true
+    },
+    {
+      "id": "PASS-002",
+      "category": "control_pass",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason_code": "VALUE_MATCH",
+      "expected_reason": "VALUE_MATCH",
+      "ok": true
+    },
+    {
+      "id": "PASS-003",
+      "category": "control_pass",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason_code": "VALUE_MATCH",
+      "expected_reason": "VALUE_MATCH",
+      "ok": true
+    },
+    {
+      "id": "PASS-004",
+      "category": "control_pass",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason_code": "VALUE_WITHIN_TOLERANCE",
+      "expected_reason": "VALUE_WITHIN_TOLERANCE",
+      "ok": true
+    },
+    {
+      "id": "FAIL-001",
+      "category": "control_fail",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason_code": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "FAIL-002",
+      "category": "control_fail",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason_code": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    }
+  ]
+}

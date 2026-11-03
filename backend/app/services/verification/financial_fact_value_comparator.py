@@ -13,8 +13,9 @@ from __future__ import annotations
 
 import re
 
-# 单位换算（统一到元）
-UNIT_SCALE = {"元": 1.0, "千元": 1000.0, "万元": 1e4, "百万元": 1e6, "亿元": 1e8}
+# 单位换算（统一到元）—— 与 financial_value 的 parse_unit 对齐。
+# 原表只有 5 个单位且未知单位默认按「千元」(1000 倍)，差 1e3~1e9。
+from app.services.verification.financial_value import parse_unit, UNIT_SCALE  # noqa: E402
 
 # 默认四舍五入容差（±5%）
 DEFAULT_TOLERANCE = 0.05
@@ -32,8 +33,10 @@ def _normalize_to_yuan(value, unit) -> float | None:
         v = float(value)
     except (TypeError, ValueError):
         return None
-    u = (unit or "").replace("人民币", "").strip()
-    scale = UNIT_SCALE.get(u, UNIT_SCALE.get("千元", 1000.0))
+    try:
+        scale, _cur = parse_unit(unit)
+    except ValueError:
+        return None   # 未知单位不猜倍数——原先默认「千元」(1000 倍)
     return v * scale
 
 

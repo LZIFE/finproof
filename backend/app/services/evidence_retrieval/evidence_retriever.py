@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from app.services.verification.financial_value import parse_unit  # noqa: E402
 
 BACKEND = Path(__file__).resolve().parents[3]  # backend/
 INDEX_PATH = BACKEND / "artifacts" / "financial_evidence_index" / "evidence_index_v1.json"
@@ -78,8 +79,8 @@ def _value_compatible(claim_value: float | None, claim_unit: str | None,
     unit_scale = {"元": 1.0, "千元": 1000.0, "万元": 1e4, "百万元": 1e6, "亿元": 1e8}
     cu = (claim_unit or "").replace("人民币", "")
     eu = (ev_unit or "").replace("人民币", "")
-    cs = unit_scale.get(cu, unit_scale.get("千元", 1.0))
-    es = unit_scale.get(eu, unit_scale.get("千元", 1.0))
+    cs = parse_unit(cu)[0] if cu else 1.0   # 未知单位不猜倍数
+    es = parse_unit(eu)[0] if eu else 1.0   # 未知单位不猜倍数
     claim_abs = claim_value * cs
     ev_abs = ev_value * es
     if ev_abs == 0:

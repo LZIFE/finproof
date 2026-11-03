@@ -14,6 +14,7 @@ from __future__ import annotations
 import re
 
 from app.services.verification.financial_value import UNIT_SCALE, values_match
+from app.services.verification.financial_value import parse_unit  # noqa: E402
 
 # 货币：英文单位默认 USD，中文默认 CNY（与 financial_value 一致）
 _USD_UNITS = {"million", "billion", "mb", "b"}
@@ -31,7 +32,7 @@ def normalize_value(value: float | None, unit: str | None) -> float | None:
     """归一化数值到元（currency/unit conversion）。"""
     if value is None:
         return None
-    scale = UNIT_SCALE.get((unit or "").strip(), 1.0)
+    scale = parse_unit(unit)[0]   # 未知单位抛错，不静默
     return value * scale
 
 
@@ -88,8 +89,8 @@ def normalize_financial_fact(fact: dict, claim: dict) -> dict:
 
     value_match = {"matched": False, "claim_yuan": None, "fact_yuan": None, "reason": ""}
     if claim_value is not None and fact_value is not None:
-        claim_yuan = claim_value * UNIT_SCALE.get(claim_unit, 1.0)
-        fact_yuan = fact_value * UNIT_SCALE.get(fact_unit or "千元", 1.0)
+        claim_yuan = claim_value * parse_unit(claim_unit)[0]
+        fact_yuan = fact_value * parse_unit(fact_unit)[0]   # 无单位=1，不再默认「千元」
         ok, reason = values_match(claim_value, claim_unit,
                                   _make_fv(fact_value, fact_unit), tolerance=0.01)
         value_match = {"matched": ok, "claim_yuan": round(claim_yuan, 2),
@@ -147,7 +148,7 @@ def _make_fv(value: float, unit: str):
 
     return FinancialValue(
         raw_text=str(value), normalized_value=value,
-        scale=UNIT_SCALE.get((unit or "").strip(), 1.0),
+        scale=parse_unit(unit)[0],
         currency=currency_of(unit), unit=unit or "", percentage_type="",
         sign="positive", metric="", period="", source_span=(0, 0), extraction_confidence=1.0,
     )

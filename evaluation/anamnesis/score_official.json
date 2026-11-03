@@ -1,0 +1,15 @@
+{
+  "cases": null,
+  "ood": {
+    "n": 83,
+    "violations": 52,
+    "clean": 31,
+    "caught": 52,
+    "escaped": 0,
+    "false_flag": 2,
+    "abstain": 0,
+    "catch_rate": 1.0,
+    "false_flag_rate": 0.06451612903225806,
+    "error_rate": 0.0
+  }
+}

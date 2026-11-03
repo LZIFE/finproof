@@ -1,0 +1,9 @@
+{
+  "consensus_n": 96,
+  "contested_n": 8,
+  "gated_catch": 0.667,
+  "gated_false_flag": 0.133,
+  "gated_error": 0.067,
+  "novel_n": 21,
+  "novel_violations": 14
+}

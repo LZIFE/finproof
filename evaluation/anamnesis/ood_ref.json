@@ -1,0 +1,196 @@
+{
+  "n_cases": 104,
+  "in_scope_gated": {
+    "n": 83,
+    "violations": 52,
+    "clean": 31,
+    "caught": 33,
+    "escaped": 19,
+    "catch_rate": 0.635,
+    "false_flag_rate": 0.129,
+    "errors": 5,
+    "error_rate": 0.06
+  },
+  "by_pillar_gated": {
+    "P1": {
+      "n": 24,
+      "violations": 12,
+      "clean": 12,
+      "caught": 8,
+      "escaped": 4,
+      "catch_rate": 0.667,
+      "false_flag_rate": 0.333,
+      "errors": 3,
+      "error_rate": 0.125
+    },
+    "P2": {
+      "n": 14,
+      "violations": 7,
+      "clean": 7,
+      "caught": 5,
+      "escaped": 2,
+      "catch_rate": 0.714,
+      "false_flag_rate": 0.0,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "P3": {
+      "n": 20,
+      "violations": 14,
+      "clean": 6,
+      "caught": 7,
+      "escaped": 7,
+      "catch_rate": 0.5,
+      "false_flag_rate": 0.0,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "P4": {
+      "n": 7,
+      "violations": 6,
+      "clean": 1,
+      "caught": 4,
+      "escaped": 2,
+      "catch_rate": 0.667,
+      "false_flag_rate": 0.0,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "P5": {
+      "n": 18,
+      "violations": 13,
+      "clean": 5,
+      "caught": 9,
+      "escaped": 4,
+      "catch_rate": 0.692,
+      "false_flag_rate": 0.0,
+      "errors": 2,
+      "error_rate": 0.111
+    }
+  },
+  "by_kind_gated": {
+    "gate_source": {
+      "n": 10,
+      "violations": 6,
+      "clean": 4,
+      "caught": 6,
+      "escaped": 0,
+      "catch_rate": 1.0,
+      "false_flag_rate": 0.5,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "metrics_table": {
+      "n": 8,
+      "violations": 6,
+      "clean": 2,
+      "caught": 2,
+      "escaped": 4,
+      "catch_rate": 0.333,
+      "false_flag_rate": 0.0,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "packaging_profile": {
+      "n": 7,
+      "violations": 6,
+      "clean": 1,
+      "caught": 6,
+      "escaped": 0,
+      "catch_rate": 1.0,
+      "false_flag_rate": 0.0,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "period": {
+      "n": 5,
+      "violations": 3,
+      "clean": 2,
+      "caught": 0,
+      "escaped": 3,
+      "catch_rate": 0.0,
+      "false_flag_rate": 0.0,
+      "errors": 1,
+      "error_rate": 0.2
+    },
+    "porter_slot": {
+      "n": 9,
+      "violations": 7,
+      "clean": 2,
+      "caught": 5,
+      "escaped": 2,
+      "catch_rate": 0.714,
+      "false_flag_rate": 0.0,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "reconcile": {
+      "n": 13,
+      "violations": 6,
+      "clean": 7,
+      "caught": 4,
+      "escaped": 2,
+      "catch_rate": 0.667,
+      "false_flag_rate": 0.286,
+      "errors": 1,
+      "error_rate": 0.077
+    },
+    "sankey": {
+      "n": 10,
+      "violations": 5,
+      "clean": 5,
+      "caught": 3,
+      "escaped": 2,
+      "catch_rate": 0.6,
+      "false_flag_rate": 0.0,
+      "errors": 1,
+      "error_rate": 0.1
+    },
+    "user_agent": {
+      "n": 10,
+      "violations": 6,
+      "clean": 4,
+      "caught": 3,
+      "escaped": 3,
+      "catch_rate": 0.5,
+      "false_flag_rate": 0.0,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "waterfall": {
+      "n": 11,
+      "violations": 7,
+      "clean": 4,
+      "caught": 4,
+      "escaped": 3,
+      "catch_rate": 0.571,
+      "false_flag_rate": 0.0,
+      "errors": 2,
+      "error_rate": 0.182
+    }
+  },
+  "coverage_gap_novel": {
+    "n": 21,
+    "violations": 14,
+    "gate_abstains": 21,
+    "kinds": [
+      "axis_unit_mismatch",
+      "cross_section_mismatch",
+      "currency_mixing",
+      "date_inconsistency",
+      "double_counted_flow",
+      "dual_axis_scale_inversion",
+      "duplicate_row",
+      "license_mismatch",
+      "negative_value_in_pie",
+      "pii_in_body",
+      "retracted_citation",
+      "stacked_bar_total_mismatch",
+      "stale_disclaimer"
+    ]
+  },
+  "in_domain_v1_reference": {
+    "catch_rate": 1.0,
+    "false_flag_rate": 0.0
+  }
+}

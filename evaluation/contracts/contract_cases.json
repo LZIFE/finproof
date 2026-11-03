@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "note": "技能引擎与 backend 共用的契约用例。任何一条在两侧结果不一致，都视为发布阻塞。",
+  "yoy": [
+    {
+      "id": "loss_narrowing",
+      "current": -64.2,
+      "previous": -86.2,
+      "expected_pct": 25.5220417633,
+      "why": "亏损收窄：上年 -86.2，本期 -64.2，方向应为正"
+    },
+    {
+      "id": "loss_widening",
+      "current": -100.0,
+      "previous": -80.0,
+      "expected_pct": -25.0,
+      "why": "亏损扩大：分母取绝对值，结果为负"
+    },
+    {
+      "id": "turnaround",
+      "current": 20.0,
+      "previous": -10.0,
+      "expected_pct": 300.0,
+      "why": "扭亏：上年为负、本期为正"
+    },
+    {
+      "id": "profit_to_loss",
+      "current": -10.0,
+      "previous": 20.0,
+      "expected_pct": -150.0,
+      "why": "由盈转亏：上年为正、本期为负"
+    },
+    {
+      "id": "positive_growth",
+      "current": 32.0,
+      "previous": 28.0,
+      "expected_pct": 14.2857142857,
+      "why": "普通正增长"
+    },
+    {
+      "id": "zero_base",
+      "current": 10.0,
+      "previous": 0.0,
+      "expected_pct": null,
+      "why": "上年为 0，增长率无定义，必须拒绝而不是给 0 或无穷"
+    }
+  ],
+  "units": [
+    {"unit": "亿元", "scale": 100000000.0, "currency": "CNY", "kind": "currency"},
+    {"unit": "万元", "scale": 10000.0, "currency": "CNY", "kind": "currency"},
+    {"unit": "千元", "scale": 1000.0, "currency": "CNY", "kind": "currency"},
+    {"unit": "百万元", "scale": 1000000.0, "currency": "CNY", "kind": "currency"},
+    {"unit": "万亿元", "scale": 1000000000000.0, "currency": "CNY", "kind": "currency"},
+    {"unit": "亿美元", "scale": 100000000.0, "currency": "USD", "kind": "currency"},
+    {"unit": "million USD", "scale": 1000000.0, "currency": "USD", "kind": "currency"},
+    {"unit": "亿港元", "scale": 100000000.0, "currency": "HKD", "kind": "currency"},
+    {"unit": "%", "scale": 1.0, "currency": null, "kind": "ratio"},
+    {"unit": "个百分点", "scale": 1.0, "currency": null, "kind": "ratio"},
+    {"unit": "万吨", "scale": 10000.0, "currency": null, "kind": "physical"},
+    {"unit": "亿千瓦时", "scale": 100000000.0, "currency": null, "kind": "physical"},
+    {"unit": "万平方米", "scale": 10000.0, "currency": null, "kind": "physical"},
+    {"unit": "万头", "scale": 10000.0, "currency": null, "kind": "physical"},
+    {"unit": "吨/年", "scale": 1.0, "currency": null, "kind": "physical"}
+  ],
+  "invalid_units": [
+    {"unit": "widgets", "why": "未知英文单位不得按 1 倍"},
+    {"unit": "标准箱", "why": "未登记的物理单位不得猜测量级"},
+    {"unit": "人次", "why": "复合人计量单位尚未登记"}
+  ],
+  "physical_extract": [
+    {"text": "产量2.5万吨", "value": 2.5, "unit": "万吨", "scale": 10000.0, "base": 25000.0},
+    {"text": "耗电1.2亿千瓦时", "value": 1.2, "unit": "亿千瓦时", "scale": 100000000.0, "base": 120000000.0},
+    {"text": "装机500万千瓦", "value": 500.0, "unit": "万千瓦", "scale": 10000.0, "base": 5000000.0},
+    {"text": "面积3.6万平方米", "value": 3.6, "unit": "万平方米", "scale": 10000.0, "base": 36000.0},
+    {"text": "出栏120万头", "value": 120.0, "unit": "万头", "scale": 10000.0, "base": 1200000.0},
+    {"text": "单产2.5吨", "value": 2.5, "unit": "吨", "scale": 1.0, "base": 2.5},
+    {"text": "能耗10万吨标准煤", "value": 10.0, "unit": "万吨标准煤", "scale": 10000.0, "base": 100000.0},
+    {"text": "取水10万吨/年", "value": 10.0, "unit": "万吨/年", "scale": 10000.0, "base": 100000.0}
+  ]
+}

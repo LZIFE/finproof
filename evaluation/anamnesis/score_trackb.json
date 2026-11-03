@@ -1,0 +1,7 @@
+{
+  "clean_cases": 2400,
+  "false_positive": 0,
+  "errors_detected": 2400,
+  "fp_rate": 0.0,
+  "detection_rate": 1.0
+}

@@ -16,6 +16,7 @@ from sqlalchemy.orm import Session
 from app.models import Document, DocumentBlock, DocumentPage
 from app.models.financial_fact import FinancialFact
 from app.services.evidence_retrieval.table_context import build_table_contexts
+from app.services.verification.financial_value import parse_unit  # noqa: E402
 
 
 # Unit normalization to base (元)
@@ -35,7 +36,10 @@ def _normalize_value_to_base(raw_value: str, unit: str) -> float | None:
         v = float(clean)
     except ValueError:
         return None
-    scale = _UNIT_TO_BASE.get(unit, 1.0)
+    try:
+        scale, _cur = parse_unit(unit)
+    except ValueError:
+        return None   # 未知单位不猜倍数（原先默认 1 倍），索引会跳过该条
     return v * scale
 
 

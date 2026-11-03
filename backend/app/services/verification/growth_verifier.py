@@ -77,15 +77,17 @@ def _growth_evidence_order(evidence: list[dict], claim: dict) -> list[dict]:
 
 
 def _extract_current_prev(text: str):
-    """从证据文本提取当前期与上年同期两个数值（同单位，跳过 4 位年份）。
+    r"""从证据文本提取当前期与上年同期两个数值（同单位，跳过 4 位年份）。
 
-    返回 (cur, prev, unit, cur_yi, prev_yi) 或 None。
+    必须保留负号：原正则 `(\d+...)` 会把 -64.2 读成 64.2，导致「亏损收窄」
+    被算成「下降 25.5%」——这正是 2026-10-26 修过的方向 bug 在 backend 的
+    残留。括号负数由 _clean_numbers 先转成负号。
     """
-    cleaned = _clean_numbers(text or "")
+    cleaned = _clean_numbers(text or "").replace("−", "-").replace("–", "-")
     m = _COLUMN_UNIT_RE.search(cleaned)
     unit = m.group(0) if m else None
     nums = []
-    for n in re.finditer(r"(?<![0-9])(\d+(?:\.\d+)?)(?![0-9])", cleaned):
+    for n in re.finditer(r"(?<![\d.])(-?\d+(?:\.\d+)?)(?![\d.])", cleaned):
         token = n.group(1)
         if _YEAR_RE.match(token):
             continue
@@ -148,10 +150,15 @@ def verify_growth_rate(
             continue
         # 换算到亿元（若单位可换算）后计算；否则按原值计算
         a, b = (cur_yi, prev_yi) if (cur_yi is not None and prev_yi is not None) else (cur, prev)
-        calculated = (a - b) / b * 100.0
+        # 分母必须取绝对值：基数为负时（亏损、负现金流），"亏损收窄"要记为正增长。
+        # 用带符号的 b 会把方向算反——上年 -86.2 亿、本期 -64.2 亿会被算成 -25.5%，
+        # 而实际是改善 25.5%。此类错误在审计里等于把结论说反。
+        denom = abs(b)
+        calculated = (a - b) / denom * 100.0
         calc = {
             "current_value": a,
             "previous_value": b,
+            "negative_base": b < 0,
             "source_unit": unit,
             "calculated_growth_pp": round(calculated, 2),
             "claimed_growth_pp": claimed_growth,

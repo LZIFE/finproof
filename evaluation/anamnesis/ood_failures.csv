@@ -1,0 +1,3 @@
+﻿id,kind,gold,got,in_official_scope,failure_stage,reason
+OOD-0001,reconcile,consistent,violation,True,单位/量级,单位表述不一致（USD billions vs USD millions）
+OOD-0003,reconcile,consistent,violation,True,单位/量级,单位表述不一致（percent vs fraction）

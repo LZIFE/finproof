@@ -1,0 +1,471 @@
+{
+  "total": 45,
+  "correct": 45,
+  "accuracy": 1.0,
+  "by_category": {
+    "currency": 14,
+    "physical": 14,
+    "ratio": 7,
+    "historical/yoy_direction": 2,
+    "historical/unknown_unit": 1,
+    "historical/composite_unit": 1,
+    "historical/period_mismatch": 1,
+    "historical/metric_scope": 1,
+    "historical/percent_vs_pp": 1,
+    "historical/physical_dimension": 1,
+    "historical/currency": 1,
+    "historical/missing_period": 1
+  },
+  "rows": [
+    {
+      "id": "SEED-001-BASE",
+      "category": "currency",
+      "why": "原始正例",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason": "VALUE_MATCH",
+      "expected_reason": "VALUE_MATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-001-VALUE100",
+      "category": "currency",
+      "why": "数值放大 100 倍",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-001-UNIT",
+      "category": "currency",
+      "why": "单位降一档，数值未换算",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-001-PERIOD",
+      "category": "currency",
+      "why": "期间上移一年",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "PERIOD_MISMATCH",
+      "expected_reason": "PERIOD_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-001-METRIC",
+      "category": "currency",
+      "why": "指标偷换",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "METRIC_MISMATCH",
+      "expected_reason": "METRIC_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-001-SOURCE",
+      "category": "currency",
+      "why": "撤掉来源核验标记",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "SOURCE_UNVERIFIED",
+      "expected_reason": "SOURCE_UNVERIFIED",
+      "ok": true
+    },
+    {
+      "id": "SEED-001-SIGN",
+      "category": "currency",
+      "why": "数值取反",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-002-BASE",
+      "category": "physical",
+      "why": "原始正例",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason": "VALUE_MATCH",
+      "expected_reason": "VALUE_MATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-002-VALUE100",
+      "category": "physical",
+      "why": "数值放大 100 倍",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-002-UNIT",
+      "category": "physical",
+      "why": "单位降一档，数值未换算",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-002-PERIOD",
+      "category": "physical",
+      "why": "期间上移一年",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "PERIOD_MISMATCH",
+      "expected_reason": "PERIOD_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-002-METRIC",
+      "category": "physical",
+      "why": "指标偷换",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "METRIC_MISMATCH",
+      "expected_reason": "METRIC_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-002-SOURCE",
+      "category": "physical",
+      "why": "撤掉来源核验标记",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "SOURCE_UNVERIFIED",
+      "expected_reason": "SOURCE_UNVERIFIED",
+      "ok": true
+    },
+    {
+      "id": "SEED-002-SIGN",
+      "category": "physical",
+      "why": "数值取反",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-003-BASE",
+      "category": "ratio",
+      "why": "原始正例",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason": "VALUE_MATCH",
+      "expected_reason": "VALUE_MATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-003-VALUE100",
+      "category": "ratio",
+      "why": "数值放大 100 倍",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-003-UNIT",
+      "category": "ratio",
+      "why": "百分比偷换成百分点",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "RATIO_UNIT_MISMATCH",
+      "expected_reason": "RATIO_UNIT_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-003-PERIOD",
+      "category": "ratio",
+      "why": "期间上移一年",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "PERIOD_MISMATCH",
+      "expected_reason": "PERIOD_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-003-METRIC",
+      "category": "ratio",
+      "why": "指标偷换",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "METRIC_MISMATCH",
+      "expected_reason": "METRIC_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-003-SOURCE",
+      "category": "ratio",
+      "why": "撤掉来源核验标记",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "SOURCE_UNVERIFIED",
+      "expected_reason": "SOURCE_UNVERIFIED",
+      "ok": true
+    },
+    {
+      "id": "SEED-003-SIGN",
+      "category": "ratio",
+      "why": "数值取反",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-004-BASE",
+      "category": "currency",
+      "why": "原始正例",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason": "VALUE_MATCH",
+      "expected_reason": "VALUE_MATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-004-VALUE100",
+      "category": "currency",
+      "why": "数值放大 100 倍",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-004-UNIT",
+      "category": "currency",
+      "why": "单位降一档，数值未换算",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-004-PERIOD",
+      "category": "currency",
+      "why": "期间上移一年",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "PERIOD_MISMATCH",
+      "expected_reason": "PERIOD_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-004-METRIC",
+      "category": "currency",
+      "why": "指标偷换",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "METRIC_MISMATCH",
+      "expected_reason": "METRIC_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-004-SOURCE",
+      "category": "currency",
+      "why": "撤掉来源核验标记",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "SOURCE_UNVERIFIED",
+      "expected_reason": "SOURCE_UNVERIFIED",
+      "ok": true
+    },
+    {
+      "id": "SEED-004-SIGN",
+      "category": "currency",
+      "why": "数值取反",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-005-BASE",
+      "category": "physical",
+      "why": "原始正例",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason": "VALUE_MATCH",
+      "expected_reason": "VALUE_MATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-005-VALUE100",
+      "category": "physical",
+      "why": "数值放大 100 倍",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-005-UNIT",
+      "category": "physical",
+      "why": "单位降一档，数值未换算",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-005-PERIOD",
+      "category": "physical",
+      "why": "期间上移一年",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "PERIOD_MISMATCH",
+      "expected_reason": "PERIOD_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-005-METRIC",
+      "category": "physical",
+      "why": "指标偷换",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "METRIC_MISMATCH",
+      "expected_reason": "METRIC_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "SEED-005-SOURCE",
+      "category": "physical",
+      "why": "撤掉来源核验标记",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "SOURCE_UNVERIFIED",
+      "expected_reason": "SOURCE_UNVERIFIED",
+      "ok": true
+    },
+    {
+      "id": "SEED-005-SIGN",
+      "category": "physical",
+      "why": "数值取反",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "HIST-001",
+      "category": "historical/yoy_direction",
+      "why": "富技术式错误：亏损收窄被写成大幅增长，方向/量级都不对",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "VALUE_MISMATCH",
+      "expected_reason": "VALUE_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "HIST-002",
+      "category": "historical/yoy_direction",
+      "why": "亏损收窄的正确同比：分母取绝对值",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason": "VALUE_MATCH",
+      "expected_reason": "VALUE_MATCH",
+      "ok": true
+    },
+    {
+      "id": "HIST-003",
+      "category": "historical/unknown_unit",
+      "why": "未知单位曾被按 1 倍静默处理",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "CLAIM_UNIT_UNRESOLVED",
+      "expected_reason": "CLAIM_UNIT_UNRESOLVED",
+      "ok": true
+    },
+    {
+      "id": "HIST-004",
+      "category": "historical/composite_unit",
+      "why": "百万元曾缺映射，差 1e6",
+      "expected": "PASS",
+      "got": "PASS",
+      "reason": "VALUE_MATCH",
+      "expected_reason": "VALUE_MATCH",
+      "ok": true
+    },
+    {
+      "id": "HIST-005",
+      "category": "historical/period_mismatch",
+      "why": "Q1 证据判 Q2 主张，期间未对齐",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "PERIOD_MISMATCH",
+      "expected_reason": "PERIOD_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "HIST-006",
+      "category": "historical/metric_scope",
+      "why": "归母净利润不能拿营业收入证据判",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "METRIC_MISMATCH",
+      "expected_reason": "METRIC_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "HIST-007",
+      "category": "historical/percent_vs_pp",
+      "why": "% 与百分点是不同口径，数值相同也不能判通过",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "RATIO_UNIT_MISMATCH",
+      "expected_reason": "RATIO_UNIT_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "HIST-008",
+      "category": "historical/physical_dimension",
+      "why": "吨与千瓦时量纲不同，不能因数值相同判通过",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "UNIT_DIMENSION_MISMATCH",
+      "expected_reason": "UNIT_DIMENSION_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "HIST-009",
+      "category": "historical/currency",
+      "why": "人民币与美元不能按同一数值比较",
+      "expected": "FAIL",
+      "got": "FAIL",
+      "reason": "CURRENCY_MISMATCH",
+      "expected_reason": "CURRENCY_MISMATCH",
+      "ok": true
+    },
+    {
+      "id": "HIST-010",
+      "category": "historical/missing_period",
+      "why": "无期间不能进入同比/本期判断",
+      "expected": "ABSTAIN",
+      "got": "ABSTAIN",
+      "reason": "CLAIM_PERIOD_MISSING",
+      "expected_reason": "CLAIM_PERIOD_MISSING",
+      "ok": true
+    }
+  ]
+}
