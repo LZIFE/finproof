@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/LZIFE/finproof/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/LZIFE/finproof/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.8.1-1a7f37.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.16.1-1a7f37.svg)](CHANGELOG.md)
 
 > **English** — Jianrong (FinProof) is an audit agent for AI-generated reports. It decomposes a report into checkable claims, recomputes every number with a deterministic engine at published tolerances (0.1% relative; 0.5pp for growth rates), checks citations — including a temporal-impossibility check that rejects a source by logic alone — and emits six-class verdicts with a per-claim evidence chain. The output is a single-file HTML audit report with a dual score (the report's evidence-chain quality alongside the audit process's own quality), and every number in it is recomputable. Benchmarks and all raw outputs live in [`evaluation/`](evaluation/README.md).
 
@@ -53,7 +53,7 @@ flowchart LR
 | 能力 | 实现 |
 |---|---|
 | **主张拆解** | 把报告拆成 A 原始数字 / B 计算型 / C 口径型 / D 业务事实 / E 因果型 / F 比较型 / G 预测，按类型分配核验策略 |
-| **确定性引擎** | [`finproof_calc.py`](finproof-verifier/skills/finproof-verification/bin/finproof_calc.py)，纯标准库 `decimal`，**17 个子命令**（同比、累计转单季、毛利率、CAGR、EPS、ROE、资产负债率、总和一致性、时序检查、预测事实化、引用真伪…），68 项回归测试 |
+| **确定性引擎** | [`finproof_calc.py`](finproof-verifier/skills/finproof-verification/bin/finproof_calc.py)，纯标准库 `decimal`，**21 个子命令**（同比、累计转单季、毛利率、CAGR、EPS、ROE、资产负债率、总和一致性、时序检查、预测事实化、引用真伪、可判性闸门、双抽取对账…），136 项回归测试 + 跨端契约测试 |
 | **判定纪律** | 八步判定链 → 六类结论（支持 / 反驳 / 部分支持 / 证据不足 / 观点或预测 / 无法判断），每条判定必须能指到证据与计算 |
 | **容差纪律** | 数值相对 0.1%；增长率 0.5pp；披露舍入豁免最多 0.5%（唯一例外）——**该放过的精确放过，不"见差就报"** |
 | **时序不可能** | 来源覆盖期间早于数据所属期间时，无需证据闭环、纯逻辑判 `IMPOSSIBLE`（E5 时序错配在十轮对照中全灭，v2.6.0 后成为唯一被完整检出的框架独占点） |

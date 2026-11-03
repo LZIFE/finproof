@@ -1,6 +1,19 @@
-# FinProof 轻量执行卡（LITE · v2.8.1）
+# FinProof 轻量执行卡（LITE · v2.19.0）
 
 > **用途**：快速档唯一必读文件，自足可执行。适用于短报告（≤10 页）、单条/小批量主张核验、用户只要"快速过一遍"。与 `SKILL.md` 冲突时以 SKILL 为准；需要完整评分推导、HTML 报告、分批审协议时回读 SKILL 对应节。**容差与诚实纪律不降档。**
+
+## 0. 规模门（v2.9.0，先量再拆）
+
+```bash
+python3 "$P" coverage_scan --file <报告路径> --claims <实际主张数>
+```
+
+`min_claim_floor` = 报告里"必须被拆解"的句子数（机械下界）。实测 276 页年报 = **1,588** 处，短报告 1,700 字 = 37 处。
+
+- **≤60**：全审。**61–300**：分批审。**>300**：不可能全拆 → `coverage_scan --budget N` 已按**风险画像 + 行覆盖**排好（增长率/负数/期间/单位/比率优先，同一行先取一条）；**报告里必须写 `已审 M / floor（覆盖率 x%）`、`risk_distribution` 与未审区间**。
+- 返回 `UNDER_COVERED` = 有整段没看，要么补扫，要么在报告里写明。
+- **分数只在已审区间内成立**——档位行必须并列覆盖率，否则"局部满分"会被读成"报告没问题"。
+- 不得把"审了一部分"写成"审计完成"。
 
 ## 1. 容差表（硬规则，不得放宽）
 
@@ -20,6 +33,27 @@
 1. 先问：**主张的核心断言是否被证据支持？** 支持 → 判 **SUPPORTED**；次要不精确（边缘时点/精度/个别措辞）一律写进 `[限定：…]`，**不得作为降级理由**（例：'第二节开始停缴'实为第二节内 7.85 分钟处 → 判支持＋限定）。
 2. 核心不被支持，才问第二层：是**关键组成部分缺失/方向冲突**（→ PARTIALLY_SUPPORTED），还是**证据给出相反事实**（→ REFUTED），还是**查无证据**（→ INSUFFICIENT）。
 3. 数值主张不走本决策树——一律先走容差表（引擎说了算，数字守卫优先）。
+
+## 2.5 必查 12 项（v2.12.0，每次审计都做，不做等于没审）
+
+先过 `references/disclosure-rulebase.md` 规则铰定扫描（命中即查，v2.19.0），再做 12 项核心；89 条清单不逐条过——其余按命中信号展开（详见 `references/error-taxonomy.md` 两阶段）。
+
+| # | 查什么 | 命令 |
+|---|---|---|
+| 1 | 同比/环比全部重算 | `yoy` / `qoq` |
+| 2 | "提升 X 个百分点"是 pp 还是 % | 手算两期比率 |
+| 3 | 合计/分项对账 | `sum_check` |
+| 4 | 营业收入 vs 营业总收入 | 口径双栏 |
+| 5 | 归母 vs 净利 vs 扣非 | 口径双栏 |
+| 6 | 单季 vs 累计 | `quarter` |
+| 7 | 引用来源期间覆盖数据期间吗 | `temporal` |
+| 8 | 引用链接与摘录真伪 | `cite_check` |
+| 9 | 预测依据是否披露 | `forecast_scan` |
+| 10 | 金额量级（千元/亿） | `convert` |
+| 11 | 格式规范化（大小写/空格/全角/字符串数值） | 解析兜底 |
+| 12 | 承重结论句是否被上述问题推翻 | 人工复核 |
+
+**批量复算**：同类计算合进一次 Bash（`;` 串联 + `tee`），51 条主张从 ~51 轮压到 6–10 轮。
 
 ## 3. 对抗五查（每条主张过一遍，一句话版）
 
@@ -42,17 +76,28 @@
 
 ## 6. 引擎速查（有 shell 必用）
 
+**先定位（只做一次，不可跳过）**：`bin/finproof_calc.py` 是相对本 Skill 目录的路径，在用户工作目录下直接用会 `No such file`。
+
 ```bash
-P=skills/finproof-verification/bin/finproof_calc.py
-python3 $P match --claim 4.38 --claim-unit 亿元 --evidence-yuan 439314000   # 数值比对(0.1%)
-python3 $P yoy --current 35.87 --previous 19.09                             # 同比(±0.5pp)
-python3 $P quarter --h1 60 --q1 28                                          # 累计转单季
-python3 $P margin --revenue 100 --cost 68                                   # 毛利率/占比
-python3 $P convert --value 35.87 --unit 亿元                                # 单位换算
-python3 $P temporal --source "2025年年度报告" --data "2026年上半年"            # 引用时序 → IMPOSSIBLE
-python3 $P sum_check --values "117.0,88.9" --total 205.9                       # 总和一致性（分项 vs 合计）
-python3 $P forecast_scan --text "…已无悬念"                                      # 预测事实化 → FLAG/CLEAN
-python3 $P cite_check --url https://… --excerpt "…" --source-date 2026-04-24 --period 2026Q1   # 引用真伪
+P=$(ls "$HOME/.workbuddy/plugins/marketplaces/my-experts/plugins/finproof-verifier/skills/finproof-verification/bin/finproof_calc.py" \
+        ./finproof-verifier/skills/finproof-verification/bin/finproof_calc.py 2>/dev/null | head -1)
+[ -z "$P" ] && P=$(find "$HOME/.workbuddy/plugins" -name finproof_calc.py -path "*finproof-verification*" 2>/dev/null | head -1)
+[ -z "$P" ] && P=$(find "$HOME" -maxdepth 6 -name finproof_calc.py -path "*finproof-verification*" 2>/dev/null | head -1)
+echo "$P" && python3 "$P" --help >/dev/null && echo ENGINE_OK   # 必须看到 ENGINE_OK 才可标〔引擎复算〕
+```
+
+```bash
+python3 "$P" match --claim 4.38 --claim-unit 亿元 --evidence-yuan 439314000   # 数值比对(0.1%)
+python3 "$P" yoy --current 35.87 --previous 19.09                             # 同比(±0.5pp)
+python3 "$P" quarter --h1 60 --q1 28                                          # 累计转单季
+python3 "$P" margin --revenue 100 --cost 68                                   # 毛利率/占比
+python3 "$P" convert --value 35.87 --unit 亿元                                # 单位换算
+python3 "$P" temporal --source "2025年年度报告" --data "2026年上半年"            # 引用时序 → IMPOSSIBLE
+python3 "$P" sum_check --values "117.0,88.9" --total 205.9                       # 总和一致性（分项 vs 合计）
+python3 "$P" forecast_scan --text "…已无悬念"                                      # 预测事实化 → FLAG/CLEAN
+python3 "$P" claim_gate --json '{"claim":{…},"evidence":[…]}'                     # 可判性 → PASS/FAIL/ABSTAIN
+python3 "$P" dual_extract --json '{"first":{…},"second":{…}}'                    # 两次抽取对账 → CONSISTENT/ABSTAIN
+python3 "$P" cite_check --url https://… --excerpt "…" --source-date 2026-04-24 --period 2026Q1   # 引用真伪
 ```
 
 ## 7. 输出模板（精简版，字段不省）

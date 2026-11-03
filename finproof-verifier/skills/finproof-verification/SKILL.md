@@ -1,12 +1,12 @@
 ---
 name: finproof-verification
-version: 2.8.1
+version: 2.19.0
 description: Use when auditing any AI-generated report for factual errors — 行业研究 / 市场分析 / 竞品分析 / 商业模式分析 / 公司深度研究 / 尽调报告 / 商业计划书 / 投资备忘录 / 财务分析 / 政策解读 / 数据白皮书 / 技术评估报告 / 合规与尽调纪要（AI 生成内容的幻觉、口径错位与编造引文是通用风险；金融/上市公司研报是验证最深的场景）. Provides the FinProof operational methodology: claim decomposition (A–G), deterministic recomputation with exact tolerances and per-verdict engine provenance (with a fixed N_e counting rule), the eight-step decision chain, six verdicts, an independent cross-check pass (blind re-review by a second model when the host provides one, falling back to a zero-cost mechanical self-check layer — engine re-run + excerpt re-read), G1–G4 gap classification, adversarial defense checks (including a temporal-impossibility citation check: a source whose coverage period predates the data period is a mismatch by logic alone, no evidence closure needed), prediction claims tagged with an explicit disclosed-basis / undisclosed-basis marker (certainty-worded forecasts flagged as "forecast-as-fact" problem items), two run tiers (full audit by default; a fast tier for short reports that keeps the three hard checks), the fully transparent FinProof Score specification, and a parallel Audit Quality Score (AQS) measuring the audit process itself (claim coverage, engine-recompute rate, evidence citability, review completion, link re-check rate — all mechanical). Its audit report outputs as a structured single-file HTML (color-coded verdicts, clickable [E##] evidence anchors, score derivation tables, collapsible details). Includes the calc engine at bin/finproof_calc.py.
 ---
 
 # FinProof 核验操作手册（鉴融）
 
-> **定位（v2.8.1）**：**通用 AI 报告审计 agent**——AI 把写稿从几天压到几分钟，也批量生产了事实错误、口径混淆、数字矛盾与编造引文。鉴融是 AI 写稿之后的**事实审计层**：任何领域的 AI 生成报告（研究/分析/尽调/解读/白皮书）都按同一套方法论审计——机械判定（数字/时序/一致性）归确定性引擎，语义判定归模型并强制纪律，缺口诚实交回。金融/上市公司研报是验证最深的场景，方法论对通用报告同样成立。
+> **定位（v2.19.0）**：**通用 AI 报告审计 agent**——AI 把写稿从几天压到几分钟，也批量生产了事实错误、口径混淆、数字矛盾与编造引文。鉴融是 AI 写稿之后的**事实审计层**：任何领域的 AI 生成报告（研究/分析/尽调/解读/白皮书）都按同一套方法论审计——机械判定（数字/时序/一致性）归确定性引擎，语义判定归模型并强制纪律，缺口诚实交回。金融/上市公司研报是验证最深的场景，方法论对通用报告同样成立。
 
 本 Skill 是鉴融的**可执行操作层**。`agents/finproof-verifier.md` 定义角色与流程；本文件定义**具体怎么算、怎么判、怎么打分**。
 
@@ -40,6 +40,51 @@ description: Use when auditing any AI-generated report for factual errors — �
 
 **快速档省的是流程，不是纪律**：容差表、判定来源标记〔引擎复算〕、G 类依据披露标注、G1–G4 缺口分类、"未闭环 ≠ 通过"、不编造来源——一律照旧。**快速档发现 ≥1 条 REFUTED 或 CRITICAL 风险项时，建议用户重跑完整档**（写进报告末尾建议行）。
 
+### 0.2 规模门（v2.9.0 起：先量再拆，不许假装全审）
+
+实测：一份 276 页真实年报 = 19,243 句 / **1,588 处应拆解点** / 10,044 个数值锚点（引擎 `coverage_scan`，0.35 秒）。任何模型都不可能在一次会话里逐条拆完。**"全量拆解"只在短报告成立**——把它当默认，等于对 90% 的真实报告假装审过了。
+
+拆解前先量化（有 shell 必做）：
+
+```bash
+python3 "$P" coverage_scan --file <报告路径>          # 或 --text "…"
+# 抽样审（floor>300）：让工具直接把预算内的抽样清单排好，并给出覆盖率：
+python3 "$P" coverage_scan --file <报告路径> --budget 120
+# 拆完后回填对账，低于下界会报 UNDER_COVERED：
+python3 "$P" coverage_scan --file <报告路径> --claims <实际主张数>
+```
+
+`--budget N` 返回 `sampling_plan`：`selected` / `coverage_of_floor_pct` / `must_disclose`（如 `已审 120 / 下界 1588（覆盖率 7.6%）`）+ 已排序的行号清单。**`must_disclose` 那句话要原样写进报告基本信息**。
+
+按 `min_claim_floor` 分三档：
+
+| 档 | floor | 策略 | 报告必须披露 |
+|---|---|---|---|
+| **全审** | ≤ 60 | 逐条拆解，走完整流程 | N_e/N_v |
+| **分批全审** | 61–300 | 按第十节分批协议，每批标进度 | 批次进度 + 最终覆盖率 |
+| **抽样审** | > 300 | **不可能全拆**：按风险密度分配预算 + 明确写出抽样规则 | `已审 M / 下界 floor（覆盖率 x%）` + 未审区间 |
+
+**抽样审的选取顺序（v2.16.0：风险驱动 + 行覆盖，不按篇幅）**：`coverage_scan --budget N` 现在给每条候选打 `risk_score / risk_level / risk_reasons`，选取时**同一行先只取一条**（防止 12 条预算里 8 条落在同一行、整段错误没看）。风险画像的机械信号：
+
+1. **承重结论句**——含评级/目标价/买入/建议/核心逻辑（权重最高，错了推翻全篇）；
+2. **增长率**——同比/环比：基数、方向、分母绝对值（`GROWTH`）；
+3. **负数/亏损**——亏损扩大/收窄、扭亏、由盈转亏（负基数方向）；
+4. **期间口径**——本期/上年同期/上半年/前三季/截至日；
+5. **单位/量级**——亿元/百万元/万吨/万千瓦、% vs 百分点；
+6. **比率类**——毛利率/净利率/ROE/资产负债率/CAGR（定义域）；
+7. **引用、表格合计、比较句**——按原有权重叠加。
+
+预算 ≥12 时保留 2 条定性（因果/预测/比较）保底，防止纯数值句把定性错误挤出预算；预算 <12 不设固定配额（实测会把数值错误行挤掉）。报告里要写 `risk_distribution` 与 `must_disclose`，让用户看到"高风险审了几条、低风险没审多少"。
+
+**三条硬纪律**：
+- **必须对账**：拆解数与下界比对，`UNDER_COVERED` 说明有整段没看——要么补扫，要么在报告里写明未覆盖区间；
+- **不得把"审了一部分"写成"审计完成"**；
+- **分数口径联动**：FinProof Score 的分母是「已拆解主张数」，**不含未拆解部分**。因此抽样审的分数只在"已审区间内"成立，档位行必须并列覆盖率（`覆盖率 8%（128/1588）`），否则用户会把"局部满分"读成"报告没问题"。
+
+> 为什么这一步归框架而不归模型：模型无法自己知道"我漏了多少"——它没有报告的总量基准。`coverage_scan` 给的就是这个基准，纯机械、可复现、零 token。
+>
+> **边界（必须知道）**：`TABLE_ROW` 只识别 Markdown/HTML 的 `| … |` 表格。PDF 用 `pdftotext` 抽出的文本层**不保留表格结构**（实测 276 页年报 `table_rows=0`），此时表格合计行要靠 `pdfplumber.extract_table` / 视觉读表恢复后再扫，或直接对可疑表跑 `sum_check`。`min_claim_floor` 是按"句子"计的下界，一句话含多个数值时实际应拆条数会高于该值——它是下限，不是目标。
+
 ---
 
 ## 一、主张拆解（A–G 七类）
@@ -57,6 +102,28 @@ description: Use when auditing any AI-generated report for factual errors — �
 商业分析报告高频类型：市场规模与增速（A/B）、竞品对标（F）、商业模式归因（E）、门店/用户/产能等经营指标（A）、战略判断（G）。
 
 **拆解纪律**：只提可独立核验的主张；复合主张必须拆开；增长率必须绑定指标与期间；观点/预测/因果必须正确归类（G 类不得判真假）。**编号纪律（v2.5.0）**：主张 `#1、#2…` 一律按**原文出现顺序**编号（可复现性要求）；"高风险优先"只决定**审阅与输出的先后**，不得重排编号。
+
+**规则铰定扫描（v2.19.0 起，先于检查点执行）**：`references/disclosure-rulebase.md`
+的 **A 股披露硬规则库**（R 持股限售 / S 报表口径 / M 货币资金 / G 比率增长 /
+T 期间引用 / Q 研报断言，每条 = 规则来源 + 触发信号 + 强制检查动作）。
+两臂实验实测（`evaluation/checkpoints/`）：泛化清单不提升检出，**检出的增量
+来自领域知识**——本库把领域知识写死为"命中即查"。路由纪律：
+
+1. 主张先**去语境化**（自含式：谁/什么指标/什么期间/什么值——Factcheck-GPT 实践）；
+2. 命中规则触发信号 → 执行强制检查动作（引擎子命令或证据对照），轨迹留规则编号；
+3. 未命中规则的数值走通用引擎复算，未命中的定性走语义判定 + 弃权纪律；
+4. 命中 ≠ 有问题；但命中 = 必须留痕。
+
+**检查点扫描（v2.16.0 起两阶段，拆解时同步做）**：`references/error-taxonomy.md` 的 **89 条检查点**分两段执行——
+
+- **第一阶段（必做）**：12 项核心检查，覆盖引擎的 7 个命令与最高频口径错——同比重算 / 百分点差 / 合计对账 / 营收vs营业总收入 / 归母vs净利vs扣非 / 单季vs累计 / 引用期间(`temporal`) / 引用真伪(`cite_check`) / 预测依据(`forecast_scan`) / 金额量级(`convert`) / 格式规范化(K1–K4) / 承重结论句复核。**这 12 项不做等于没审。**
+- **第二阶段（按需）**：其余 77 条只在第一部分命中的信号附近展开（出现同业对标→E 组，出现因果归因→F 组，出现分部拆分→I 组）。未展开的组要在「对抗性抽查」段写明。
+
+**命中必须留下检查痕迹**（查了、结论是什么），没留痕视为没查。清单是**发现用**（什么时候该想起来），九类是**归类用**（判完贴标签）——两者不可互相替代。清单命中不等于有问题，命中的正常项判支持，不得凑数。
+
+> **批量复算纪律（v2.12.0，直接决定轮次能否收敛）**：**不要把每条主张拆成一次工具调用**。同一类计算合进一次 Bash（多条命令用 `;` 串联，输出 `tee` 到日志），实测可把 51 条主张的复算从 ~51 轮压到 6–10 轮。引擎输出里每条都带命令回显，批量不损失逐条溯源。
+
+> 为什么把清单写死：拆解靠"读一遍、想到什么查什么"，想到什么取决于当下注意到什么。同一模型、同一报告，两次跑注意到的东西可以完全不同——这是"检出打平"测评里最容易被忽略的方差来源。固定清单把敏感度从临场发挥变成可执行流程，降低的是**注意力下限**，不是提高判断力。
 
 **G 类输出纪律（v2.6.0 起硬规则）**：
 1. **依据披露必须显式**：每条 G 类主张的结论行必须标注**「依据已披露」**（同时列出依据的证据编号）或**「依据未披露」**——不得静默归入"不判真假"了事；"依据未披露"的 G 类主张进「需用户自行核验清单」（G3 非公开数据/内部假设）。
@@ -103,36 +170,54 @@ Q2 = H1 − Q1 ;  Q4 = FY − Q1 − Q2 − Q3 ;  H1 = Q1 + Q2
 业务占比(%) = 分部收入 / 总营业收入 × 100%
 CAGR(%)     = (末期/初期)^(1/年数) − 1
 EPS = 净利润 / 总股本 ;  ROE = 净利润 / 平均净资产 ;  资产负债率 = 总负债 / 总资产
-单位换算：1 亿元 = 1e8 元 = 10000 万元 ; 1 万元 = 1e4 元
+单位换算：1 亿元 = 1e8 元 = 10000 万元 ; 1 万元 = 1e4 元 ; 1 百万元 = 1e6 元 ; 1 千亿元 = 1e11 元
+中文复合单位（十万元/百万元/千万元/十亿元/百亿元/千亿元/万亿元）全部支持；**不认识的单位不得默认按 1 倍处理**——那样会静默差 1e6（v2.13.0 修复记录）
 ```
 
 **通用数值复算（非财务报告同样适用）**：占比、增长率、总和一致性（分项之和 = 合计）、时间序列推算（年均、复合）、单位/币种换算、百分点(pp)与百分比(%)的区分。
 
 **精确计算**：有 shell 时调用引擎（参数名已实测校核，勿臆造）。
 
+> **路径解析（v2.8.2 起必做，先做一次）**：`bin/finproof_calc.py` 是**相对本 Skill 目录**的路径，不是相对当前工作目录。直接写 `P=skills/...` 在用户工作目录下会 `No such file`——**引擎调不起来就等于放弃了"可复算"这一唯一硬能力**。第一次调用前先定位绝对路径并把结果记进上下文：
+>
+> ```bash
+> P=$(ls "$HOME/.workbuddy/plugins/marketplaces/my-experts/plugins/finproof-verifier/skills/finproof-verification/bin/finproof_calc.py" \
+>         ./finproof-verifier/skills/finproof-verification/bin/finproof_calc.py 2>/dev/null | head -1)
+> [ -z "$P" ] && P=$(find "$HOME/.workbuddy/plugins" -name finproof_calc.py -path "*finproof-verification*" 2>/dev/null | head -1)
+> [ -z "$P" ] && P=$(find "$HOME" -maxdepth 6 -name finproof_calc.py -path "*finproof-verification*" 2>/dev/null | head -1)
+> echo "$P" && python3 "$P" --help >/dev/null && echo ENGINE_OK
+> ```
+>
+> 输出 `ENGINE_OK` 后才能标〔引擎复算〕。三条路径全部落空 → 才允许降级为〔心算估算〕，**并在报告基本信息写明"引擎未定位（已尝试 N 条路径）"**，不得静默降级。
+
 ```bash
-P=skills/finproof-verification/bin/finproof_calc.py
-python3 $P yoy      --current 35.87 --previous 19.09            # 同比增长率 → 87.8994%
-python3 $P qoq      --current 32 --previous 28                 # 环比增长率
-python3 $P quarter  --h1 60 --q1 28                            # 累计转单季 → Q2 = 32
-python3 $P match    --claim 4.38 --claim-unit 亿元 --evidence-yuan 439314000
-python3 $P margin   --revenue 100 --cost 68                    # 毛利率 → 32%
-python3 $P margin   --revenue 100 --segment-revenue 31.6       # 业务占比
-python3 $P cagr     --end 35.87 --start 6.79 --years 3         # → 74.1622%
-python3 $P convert  --value 35.87 --unit 亿元                  # → 3,587,000,000 元
-python3 $P extract  --text "2025年营业收入35.87亿元"            # 抽取结构化数值
-python3 $P period   --text "2026年上半年"                       # 期间归一化
-python3 $P temporal --source "2025年年度报告" --data "2026年上半年"   # 引用时序检查 → IMPOSSIBLE（时序不可能，判定归程序）
-python3 $P sum_check --values "117.0,88.9" --total 205.9              # 总和一致性（SOTP/成本明细/分部收入）→ 一致/超容差
-python3 $P forecast_scan --text "2026 年归母净利润达 12 亿元已无悬念"    # 预测事实化 → FLAG（确定性措辞 + 依据未披露）
-python3 $P cite_check --url https://example.com/report --excerpt "归母净利润 2.8 亿元" \
+# P 由上面的定位命令得到（绝对路径）
+python3 "$P" yoy      --current 35.87 --previous 19.09            # 同比增长率 → 87.8994%
+python3 "$P" qoq      --current 32 --previous 28                 # 环比增长率
+python3 "$P" quarter  --h1 60 --q1 28                            # 累计转单季 → Q2 = 32
+python3 "$P" match    --claim 4.38 --claim-unit 亿元 --evidence-yuan 439314000
+python3 "$P" margin   --revenue 100 --cost 68                    # 毛利率 → 32%
+python3 "$P" margin   --revenue 100 --segment-revenue 31.6       # 业务占比
+python3 "$P" cagr     --end 35.87 --start 6.79 --years 3         # → 74.1622%
+python3 "$P" convert  --value 35.87 --unit 亿元                  # → 3,587,000,000 元
+python3 "$P" extract  --text "2025年营业收入35.87亿元"            # 抽取结构化数值
+python3 "$P" period   --text "2026年上半年"                       # 期间归一化
+python3 "$P" temporal --source "2025年年度报告" --data "2026年上半年"   # 引用时序检查 → IMPOSSIBLE（时序不可能，判定归程序）
+python3 "$P" sum_check --values "117.0,88.9" --total 205.9              # 总和一致性（SOTP/成本明细/分部收入）→ 一致/超容差
+python3 "$P" forecast_scan --text "2026 年归母净利润达 12 亿元已无悬念"    # 预测事实化 → FLAG（确定性措辞 + 依据未披露）
+python3 "$P" cite_check --url https://example.com/report --excerpt "归母净利润 2.8 亿元" \
   --source-date 2026-04-24 --period 2026Q1                            # 引用真伪 → PASS/FAIL（可达/摘录/时序）
-python3 $P eps / roe / debt / cashdiff --help                  # 其余子命令
+python3 "$P" coverage_scan --file report.md --claims 51                 # 拆解覆盖率下界（防漏拆）→ OK/UNDER_COVERED
+python3 "$P" saturation_scan --file report.md                        # 规模饱和扫：零 token 机械复算全文自洽点（表内加总/占比列/同句同比/引用时序/预测）
+python3 "$P" claim_gate --json '{"claim":{...},"evidence":[...]}'       # 可判性闸门 → PASS/FAIL/ABSTAIN
+python3 "$P" dual_extract --json '{"first":{...},"second":{...}}'       # 两次抽取对账 → CONSISTENT/ABSTAIN
+python3 "$P" artifact_audit --json '{"kind":"reconcile",...}'            # 结构化产物缺陷检查 → consistent/violation/abstain
+python3 "$P" eps / roe / debt / cashdiff --help                  # 其余子命令
 ```
 
 > **`match` 的容差**：引擎内置默认 `0.001`（0.1%）。如需临时放宽（例如已确认披露舍入较粗）显式传 `--tolerance 0.005`，**并在主张卡中说明放宽理由**。
 
-> **引擎与后端的一致性提示（v2.7.1 已对齐）**：`backend/app/services/verification/base.py` 的 `VALUE_TOLERANCE` 已由 0.005 修正为 **0.001**（backend 984 项测试全绿零回归）；`numeric_verifier.py` 的 docstring 同步修正（其曾声称收紧到 0.1% 但代码仍为 0.005，属文档-代码分歧，已消）。注意：`evidence_retrieval/engine.py` 的 0.5% 为**检索候选预过滤**（有其回归原因），非权威判定口径。本 Skill 的 `bin/finproof_calc.py` 仍为唯一权威（42 项回归测试）。
+> **引擎与后端的一致性提示（v2.7.1 已对齐）**：`backend/app/services/verification/base.py` 的 `VALUE_TOLERANCE` 已由 0.005 修正为 **0.001**（backend 984 项测试全绿零回归）；`numeric_verifier.py` 的 docstring 同步修正（其曾声称收紧到 0.1% 但代码仍为 0.005，属文档-代码分歧，已消）。注意：`evidence_retrieval/engine.py` 的 0.5% 为**检索候选预过滤**（有其回归原因），非权威判定口径。本 Skill 的 `bin/finproof_calc.py` 仍为唯一权威（191 项回归测试 + 4 项跨端契约测试）。
 
 
 ---
@@ -166,6 +251,52 @@ python3 $P eps / roe / debt / cashdiff --help                  # 其余子命令
 优先级顺序：`REFUTED > SUPPORTED > PARTIAL > INSUFFICIENT`（是取舍顺序，不是等级）。
 
 **判定校准（v2.6.1 起，对齐专业核查"Mostly True 计真"口径）**：核心主张成立、仅有次要限定（边缘时点、精度、个别措辞）→ 判 **SUPPORTED** 并附 `[限定：…]` 标注，不得因次要不精确降级 PARTIAL；**PARTIAL 仅用于关键组成部分缺失或与证据方向冲突**。数值主张不适用本校准——一律走容差表（数字守卫优先）。目的：与 PolitiFact/Snopes 的 Mostly True→true 分档一致，避免语义层的过度保守（Fin-Fact 外部臂实测教训：8 条 Mostly True 被判 PARTIAL，拉低严格一致率 14pp）。
+
+---
+
+## 四之二、可判性闸门：先判能不能判，再判对不对（v2.16.0 必做）
+
+数值复算只回答"算得对不对"，不回答"这条主张有没有资格被判"。真实审计最贵的错误是**证据根本没有却硬判通过/硬判错误**。判定前对有 shell 的高风险主张按以下顺序过闸：
+
+### 4.2.1 `claim_gate`：三态输出
+
+```bash
+python3 "$P" claim_gate --json '{
+  "claim":    {"metric":"revenue","value":100,"unit":"亿元","period":"2025FY"},
+  "evidence": [{"id":"E1","metric":"revenue","value":10000000000,"unit":"元",
+                "period":"2025FY","source_verified":true}]
+}'
+# → PASS/VALUE_MATCH；证据缺失 → ABSTAIN/NO_EVIDENCE；
+#   期间不对齐 → ABSTAIN/PERIOD_MISMATCH；同期间两条证据冲突 → ABSTAIN/EVIDENCE_CONFLICT
+```
+
+| 结果 | 含义 | 报告写法 |
+|---|---|---|
+| `PASS` | 指标/期间/单位/币种/量纲/比率口径全部对齐，数值在容差内 | 支持（附证据编号） |
+| `FAIL` | 上述字段对齐但数值不符；或单位虽同类但币种/量纲/%vs百分点不可比 | 反驳（附冲突字段） |
+| `ABSTAIN` | 缺值、缺单位、缺期间、无证据、来源未核验、证据冲突 | 证据不足/无法判断，**不得写成通过** |
+
+**硬规则**：`ABSTAIN` 不得被模型改写成 SUPPORTED；`FAIL` 不得被语义解释翻案。闸门只作用于**高风险/数值型**主张，定性主张仍走语义判定 + 引用核验。
+
+### 4.2.2 `dual_extract`：抽取与裁决分离
+
+高风险主张（承重结论、增长率、负数/亏损、跨表单位、期间口径变化）要求**两次独立抽取**，只比较结构化字段，不比较措辞：
+
+```bash
+python3 "$P" dual_extract --json '{
+  "first":  {"metric":"revenue","value":100,"unit":"亿元","period":"2025FY"},
+  "second": {"metric":"revenue","value":10000000000,"unit":"元","period":"2025FY"}
+}'
+# → CONSISTENT；期间/指标/量级冲突 → ABSTAIN/EXTRACTION_CONFLICT
+```
+
+- 两遍必须**互相看不见**（第二遍不读第一遍结论），否则不是独立复核。
+- 冲突时**直接弃权或交第三来源**，禁止取平均、禁止投票、禁止"以看起来更合理的一遍为准"。
+- 一致后把 `canonical` 交给 `claim_gate` 做证据裁决；顺序不能反。
+
+### 4.2.3 弃权不是免责
+
+弃权必须写清原因码、已尝试的对齐动作、缺口类型（G1–G4）和用户下一步。**"弃权"不等于"没问题"**；它只表示当前证据不足以支持任何一侧结论。审计报告的健康度与覆盖率仍按已判定主张计算，弃权项单独计数，不得混入支持。
 
 ---
 
@@ -425,7 +556,7 @@ risk_score = 基准分(按结论) + 重要性 + 置信度项 + 证据质量项 +
 | `references/verdict-decision.md` | 八步链的判定细节与守卫逻辑 |
 | `references/calc-engine.md` | 完整公式表、单位换算表、容差来源、期间归一化 |
 | `references/claim-taxonomy.md` | 主张结构化字段、抽取规则 |
-| `references/error-taxonomy.md` | 九类错误的定义与高频触发点 |
+| `references/error-taxonomy.md` | **拆解时逐条过的 89 条检查点清单（含 K 组格式规范化、L 组可判性）**（发现用）+ 九类错误分类（归类用） |
 | `references/web-verification.md` | 联网检索战术、聚焦再搜索、内置 OCR 路径 |
 | `references/adversarial-blindspots.md` | 对抗性检查细节与元攻击防御 |
 | `references/evidence-retrieval-gate.md` | 检索召回瓶颈、证据门归因 |
