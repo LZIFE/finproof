@@ -1,0 +1,67 @@
+{
+ "A1": {
+  "detected": 62,
+  "total": 62,
+  "granularity": "未分级（71 对统一'引用作废数据'）",
+  "extras": [
+   "小节序号",
+   "残缺标签",
+   "单位错(股→元)",
+   "同比→较期初",
+   "重复条目",
+   "前五名单变动×4",
+   "创历史新高证伪",
+   "证据自身单位矛盾(如实弃权)"
+  ],
+  "false_flags": 0,
+  "tokens": 148809,
+  "seconds": 319,
+  "tool_uses": 12
+ },
+ "A2": {
+  "detected": 62,
+  "total": 62,
+  "granularity": "未分级（同 A1）",
+  "extras": [
+   "同 A1 集合",
+   "海希单位矛盾如实弃权",
+   "股东大会审议未提"
+  ],
+  "false_flags": 0,
+  "tokens": 153388,
+  "seconds": 278,
+  "tool_uses": 13
+ },
+ "B1": {
+  "detected": 62,
+  "total": 62,
+  "granularity": "三分级：56 硬错 + 12 容差内引用更新 + 2 弃权(带方向)",
+  "extras": [
+   "逐条引擎判定+相对差%",
+   "规则编号留痕",
+   "报告主张自相矛盾识别(0 vs 70.7M)",
+   "证据命中校验 70/70",
+   "G2/G3 复算留痕",
+   "forecast_scan FLAG",
+   "弃权说明(T1/T3/M1)"
+  ],
+  "false_flags": 0,
+  "tokens": 309903,
+  "seconds": 450,
+  "tool_uses": 17
+ },
+ "B2": {
+  "detected": 62,
+  "total": 62,
+  "granularity": "三分级（与 B1 逐条一致：56+12+2）",
+  "extras": [
+   "与 B1 判定集合完全复现",
+   "G3 复算留痕(37.7278%/-5.3873%)",
+   "Q2 strong_hits=['板上钉钉']，'国产化'句细分 CLEAN+Q3"
+  ],
+  "false_flags": 0,
+  "tokens": 455934,
+  "seconds": 585,
+  "tool_uses": 20
+ }
+}

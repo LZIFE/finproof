@@ -1,0 +1,22 @@
+{
+  "description": "饱和扫夹具金标准（与 demo_report.txt 逐条对齐，数值均经引擎复算核实超容差）。评分口径：每个预埋错误在其 check 类型上出现 verdict=violation/flagged 记检出；findings 指向陷阱句（T 项）记误报。复算值：E3 31.62% vs 声称 28.2%；E4 22.01% vs 25.0%；E5 26.53% vs 18.4%；E6 分项和 11.2 vs 合计 12.2；E7 占比和 37.4% vs 100%；E8 时序 IMPOSSIBLE；E9 预测事实化 FLAG。",
+  "planted_errors": [
+    {"id": "E3", "check": "yoy_base_in_sentence", "anchor_contains": "归母净利润 15.4 亿元，同比增长 28.2%", "detail": "(15.4-11.7)/11.7 = +31.62%，声称 +28.2%，差 3.42pp > 0.5pp"},
+    {"id": "E4", "check": "share_in_sentence", "anchor_contains": "占公司总营收 128.6 亿元的 25.0%", "detail": "28.3/128.6 = 22.01%，声称 25.0%，差 2.99pp > 0.5pp"},
+    {"id": "E5", "check": "yoy_from_to", "anchor_contains": "资本开支从 2024 年的 9.8 亿元增长至 2025 年的 12.4 亿元，同比增长 18.4%", "detail": "(12.4-9.8)/9.8 = +26.53%，声称 +18.4%，差 8.13pp > 0.5pp"},
+    {"id": "E6", "check": "table_sum", "anchor_contains": "现金流项目", "detail": "18.2+(-9.4)+2.4 = 11.2，合计行写 12.2，相对差 8.2% > 0.1%"},
+    {"id": "E7", "check": "table_share_sum", "anchor_contains": "现金流项目", "detail": "60.7%+(-31.3%)+8.0% = 37.4% ≠ 100%（合计行同样写 37.4%，占比列语义应合计 100%）"},
+    {"id": "E8", "check": "temporal_citation", "anchor_contains": "《2025 年年度报告》，2026 年上半年", "detail": "来源覆盖期截至 2025-12-31，不可能包含 2026H1 数据 → IMPOSSIBLE，纯逻辑反驳（v2.6.2 特则）"},
+    {"id": "E9", "check": "forecast_scan", "anchor_contains": "毛利率必将站上 45%", "detail": "预测语境 + 确定性措辞（必将）+ 依据未披露 → 预测事实化 FLAG"}
+  ],
+  "traps": [
+    {"id": "T1", "anchor_contains": "同比提升 1.8 个百分点", "detail": "同比基数不在句内：正确行为是不产出 finding（不可判 ≠ 通过）"},
+    {"id": "T2", "anchor_contains": "营业收入 128.6 亿元，同比增长 24.8%", "detail": "复算 +24.86%，容差内 → consistent，判 violation 即误报"},
+    {"id": "T3", "anchor_contains": "智能硬件业务收入 38.6 亿元，占公司总营收 128.6 亿元的 30.0%", "detail": "复算 30.01%，容差内 → consistent"},
+    {"id": "T4", "anchor_contains": "云计算业务收入从 2024 年的 35.2 亿元增长至 2025 年的 52.0 亿元，同比增长 47.7%", "detail": "复算 +47.73%，容差内 → consistent"},
+    {"id": "T5", "anchor_contains": "在手订单 76.3 亿元，同比增长 42.1%", "detail": "复算 +42.09%，容差内 → consistent"},
+    {"id": "T6", "anchor_contains": "目标价 58 元", "detail": "承重结论但无数值可复算，不属饱和扫管辖；产出 finding 即误报"}
+  ],
+  "expected": {"violations": 7, "false_flags": 0, "check_types_used": ["yoy_base_in_sentence", "share_in_sentence", "yoy_from_to", "table_sum", "table_share_sum", "temporal_citation", "forecast_scan"]},
+  "scoring": "run_saturation.py 按 check 类型 + 锚点子串自动对账；裁判可复算"
+}

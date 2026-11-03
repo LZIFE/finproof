@@ -1,0 +1,668 @@
+{
+ "errors": [
+  {
+   "company": "微创光电",
+   "label": "营业收入",
+   "before": "121,229,490.80",
+   "after": "107,580,339.94",
+   "unit": "",
+   "engine": "violation",
+   "id": "G01"
+  },
+  {
+   "company": "微创光电",
+   "label": "营业成本",
+   "before": "74,432,404.29",
+   "after": "60,783,253.43",
+   "unit": "",
+   "engine": "violation",
+   "id": "G02"
+  },
+  {
+   "company": "凯大催化",
+   "label": "营业收入",
+   "before": "1,982,523,522.63",
+   "after": "1,619,073,601.02",
+   "unit": "",
+   "engine": "violation",
+   "id": "G03"
+  },
+  {
+   "company": "凯大催化",
+   "label": "营业收入",
+   "before": "15.85",
+   "after": "-5.39",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G04"
+  },
+  {
+   "company": "凯大催化",
+   "label": "基本每股收益",
+   "before": "0.45",
+   "after": "0.40",
+   "unit": "",
+   "engine": "violation",
+   "id": "G05"
+  },
+  {
+   "company": "凯大催化",
+   "label": "基本每股收益",
+   "before": "9.76",
+   "after": "-2.44",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G06"
+  },
+  {
+   "company": "凯大催化",
+   "label": "资产总计",
+   "before": "748,262,639.23",
+   "after": "893,268,403.26",
+   "unit": "",
+   "engine": "violation",
+   "id": "G07"
+  },
+  {
+   "company": "凯大催化",
+   "label": "资产总计",
+   "before": "-1.43",
+   "after": "17.68",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G08"
+  },
+  {
+   "company": "凯大催化",
+   "label": "负债总计",
+   "before": "185,356,756.95",
+   "after": "337,010,583.74",
+   "unit": "",
+   "engine": "violation",
+   "id": "G09"
+  },
+  {
+   "company": "凯大催化",
+   "label": "负债总计",
+   "before": "-16.33",
+   "after": "52.12",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G10"
+  },
+  {
+   "company": "凯大催化",
+   "label": "归属于上市公司股东的净资",
+   "before": "562,905,882.28",
+   "after": "556,257,819.52",
+   "unit": "",
+   "engine": "violation",
+   "id": "G11"
+  },
+  {
+   "company": "凯大催化",
+   "label": "归属于上市公司股东的净资",
+   "before": "4.72",
+   "after": "3.48",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G12"
+  },
+  {
+   "company": "凯大催化",
+   "label": "资产负债率母公司",
+   "before": "27.08",
+   "after": "39.60",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G13"
+  },
+  {
+   "company": "凯大催化",
+   "label": "资产负债率合并",
+   "before": "24.77",
+   "after": "37.73",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G14"
+  },
+  {
+   "company": "凯大催化",
+   "label": "流动比率",
+   "before": "2.82",
+   "after": "2.04",
+   "unit": "",
+   "engine": "violation",
+   "id": "G15"
+  },
+  {
+   "company": "凯大催化",
+   "label": "流动比率",
+   "before": "-6.00",
+   "after": "-32.00",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G16"
+  },
+  {
+   "company": "凯大催化",
+   "label": "利息保障倍数",
+   "before": "24.11",
+   "after": "22.05",
+   "unit": "",
+   "engine": "violation",
+   "id": "G17"
+  },
+  {
+   "company": "凯大催化",
+   "label": "应收账款周转率",
+   "before": "18.66",
+   "after": "30.44",
+   "unit": "",
+   "engine": "violation",
+   "id": "G18"
+  },
+  {
+   "company": "凯大催化",
+   "label": "存货周转率",
+   "before": "8.52",
+   "after": "4.42",
+   "unit": "",
+   "engine": "violation",
+   "id": "G19"
+  },
+  {
+   "company": "凯大催化",
+   "label": "总资产增长率",
+   "before": "-1.43",
+   "after": "17.68",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G20"
+  },
+  {
+   "company": "凯大催化",
+   "label": "营业收入增长率",
+   "before": "15.85",
+   "after": "-5.39",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G21"
+  },
+  {
+   "company": "凯大催化",
+   "label": "净利润增长率",
+   "before": "9.25",
+   "after": "-1.43",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G22"
+  },
+  {
+   "company": "海希通讯",
+   "label": "HBC公司",
+   "before": "47.55",
+   "after": "50.24",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G23"
+  },
+  {
+   "company": "海希通讯",
+   "label": "合计",
+   "before": "57,790,957.80",
+   "after": "60,812,659.82",
+   "unit": "",
+   "engine": "violation",
+   "id": "G24"
+  },
+  {
+   "company": "海希通讯",
+   "label": "合计",
+   "before": "57.97",
+   "after": "64.45",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G25"
+  },
+  {
+   "company": "禾昌聚合",
+   "label": "减少",
+   "before": "10.13",
+   "after": "12.01",
+   "unit": "",
+   "engine": "violation",
+   "id": "G26"
+  },
+  {
+   "company": "禾昌聚合",
+   "label": "中国石化化工销售有限公司及其关联公司",
+   "before": "73,022,983.16",
+   "after": "74,589,461.04",
+   "unit": "",
+   "engine": "violation",
+   "id": "G27"
+  },
+  {
+   "company": "禾昌聚合",
+   "label": "合计",
+   "before": "303,396,909.77",
+   "after": "304,113,617.78",
+   "unit": "",
+   "engine": "violation",
+   "id": "G28"
+  },
+  {
+   "company": "禾昌聚合",
+   "label": "其中：改性聚丙烯",
+   "before": "781,551,253.37",
+   "after": "767,676,053.86",
+   "unit": "",
+   "engine": "violation",
+   "id": "G29"
+  },
+  {
+   "company": "禾昌聚合",
+   "label": "其他改性塑料",
+   "before": "74,960,291.47",
+   "after": "88,835,490.98",
+   "unit": "",
+   "engine": "violation",
+   "id": "G30"
+  },
+  {
+   "company": "汇隆活塞",
+   "label": "中国中车集团有限公司",
+   "before": "36,374,754.81",
+   "after": "41,748,290.65",
+   "unit": "",
+   "engine": "violation",
+   "id": "G31"
+  },
+  {
+   "company": "汇隆活塞",
+   "label": "中国中车集团有限公司",
+   "before": "27.00",
+   "after": "29.51",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G32"
+  },
+  {
+   "company": "汇隆活塞",
+   "label": "中国船舶集团有限公司",
+   "before": "21,739,542.42",
+   "after": "25,276,257.59",
+   "unit": "",
+   "engine": "violation",
+   "id": "G33"
+  },
+  {
+   "company": "汇隆活塞",
+   "label": "中国船舶集团有限公司",
+   "before": "16.13",
+   "after": "17.87",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G34"
+  },
+  {
+   "company": "汇隆活塞",
+   "label": "中国国家铁路集团有限公司",
+   "before": "14,171,171.53",
+   "after": "13,882,699.06",
+   "unit": "",
+   "engine": "violation",
+   "id": "G35"
+  },
+  {
+   "company": "汇隆活塞",
+   "label": "中国国家铁路集团有限公司",
+   "before": "10.52",
+   "after": "9.81",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G36"
+  },
+  {
+   "company": "汇隆活塞",
+   "label": "合计",
+   "before": "104,327,438.15",
+   "after": "110,233,468.49",
+   "unit": "",
+   "engine": "violation",
+   "id": "G37"
+  },
+  {
+   "company": "远航精密",
+   "label": "合计‐",
+   "before": "590,252,374.58",
+   "after": "626,209,471.73",
+   "unit": "",
+   "engine": "violation",
+   "id": "G38"
+  },
+  {
+   "company": "远航精密",
+   "label": "合计‐",
+   "before": "83.70",
+   "after": "82.99",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G39"
+  },
+  {
+   "company": "凯德石英",
+   "label": "资产总计",
+   "before": "1,043,644,090.60",
+   "after": "1,039,332,415.62",
+   "unit": "",
+   "engine": "violation",
+   "id": "G40"
+  },
+  {
+   "company": "凯德石英",
+   "label": "应收账款较期初增加，主要系本期",
+   "before": "37.85",
+   "after": "32.98",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G41"
+  },
+  {
+   "company": "凯德石英",
+   "label": "应收账款",
+   "before": "109,287,860.76",
+   "after": "105,422,245.96",
+   "unit": "",
+   "engine": "violation",
+   "id": "G42"
+  },
+  {
+   "company": "凯德石英",
+   "label": "存货",
+   "before": "107,698,781.73",
+   "after": "107,252,721.55",
+   "unit": "",
+   "engine": "violation",
+   "id": "G43"
+  },
+  {
+   "company": "凯德石英",
+   "label": "流动资产合计",
+   "before": "469,085,487.11",
+   "after": "464,773,812.13",
+   "unit": "",
+   "engine": "violation",
+   "id": "G44"
+  },
+  {
+   "company": "凯德石英",
+   "label": "应付账款",
+   "before": "68,292,816.97",
+   "after": "63,981,141.99",
+   "unit": "",
+   "engine": "violation",
+   "id": "G45"
+  },
+  {
+   "company": "凯德石英",
+   "label": "流动负债合计",
+   "before": "176,903,990.30",
+   "after": "172,592,315.32",
+   "unit": "",
+   "engine": "violation",
+   "id": "G46"
+  },
+  {
+   "company": "凯德石英",
+   "label": "负债合计",
+   "before": "229,678,921.69",
+   "after": "225,367,246.71",
+   "unit": "",
+   "engine": "violation",
+   "id": "G47"
+  },
+  {
+   "company": "凯德石英",
+   "label": "负债和所有者权益或股东权益总计",
+   "before": "1,043,644,090.60",
+   "after": "1,039,332,415.62",
+   "unit": "",
+   "engine": "violation",
+   "id": "G48"
+  },
+  {
+   "company": "宁新新材",
+   "label": "江西新启建筑工程有限公司",
+   "before": "40,724,365.05",
+   "after": "41,343,782.53",
+   "unit": "",
+   "engine": "violation",
+   "id": "G49"
+  },
+  {
+   "company": "宁新新材",
+   "label": "合计",
+   "before": "248,021,269.68",
+   "after": "249,458,030.80",
+   "unit": "",
+   "engine": "violation",
+   "id": "G50"
+  },
+  {
+   "company": "国子软件",
+   "label": "韩承志境内",
+   "before": "0",
+   "after": "70,759,963",
+   "unit": "",
+   "engine": "violation",
+   "id": "G51"
+  },
+  {
+   "company": "国子软件",
+   "label": "韩承志境内",
+   "before": "70,759,963",
+   "after": "0",
+   "unit": "",
+   "engine": "abstain",
+   "id": "G52"
+  },
+  {
+   "company": "国子软件",
+   "label": "济南国境内",
+   "before": "0",
+   "after": "14,196,000",
+   "unit": "",
+   "engine": "violation",
+   "id": "G53"
+  },
+  {
+   "company": "国子软件",
+   "label": "济南国境内",
+   "before": "14,196,000",
+   "after": "0",
+   "unit": "",
+   "engine": "abstain",
+   "id": "G54"
+  },
+  {
+   "company": "国子软件",
+   "label": "合计",
+   "before": "5,541,763",
+   "after": "90,497,726",
+   "unit": "",
+   "engine": "violation",
+   "id": "G55"
+  },
+  {
+   "company": "国子软件",
+   "label": "合计",
+   "before": "89,958,617",
+   "after": "5,002,654",
+   "unit": "",
+   "engine": "violation",
+   "id": "G56"
+  },
+  {
+   "company": "国义招标",
+   "label": "货币资金中银行存款余额",
+   "before": "628,316,643.99",
+   "after": "615,839,082.96",
+   "unit": "元",
+   "engine": "violation",
+   "id": "G57"
+  },
+  {
+   "company": "国义招标",
+   "label": "银行存款占资产总额比例",
+   "before": "69.83",
+   "after": "68.44",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G58"
+  },
+  {
+   "company": "凯德石英",
+   "label": "应收账款较期初增幅",
+   "before": "37.85",
+   "after": "32.98",
+   "unit": "%",
+   "engine": "violation",
+   "id": "G59"
+  }
+ ],
+ "traps": [
+  {
+   "company": "凯大催化",
+   "label": "毛利率",
+   "before": "4.95",
+   "after": "5.37",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T01"
+  },
+  {
+   "company": "海希通讯",
+   "label": "上海电视电子进出口有限公司",
+   "before": "4.40",
+   "after": "4.65",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T02"
+  },
+  {
+   "company": "禾昌聚合",
+   "label": "外销",
+   "before": "-88.87",
+   "after": "-88.69",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T03"
+  },
+  {
+   "company": "禾昌聚合",
+   "label": "外销",
+   "before": "-87.49",
+   "after": "-86.99",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T04"
+  },
+  {
+   "company": "禾昌聚合",
+   "label": "沙伯基础上海商贸有限公司",
+   "before": "9.07",
+   "after": "9.06",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T05"
+  },
+  {
+   "company": "禾昌聚合",
+   "label": "中国石化化工销售有限公司及其关联公司",
+   "before": "8.11",
+   "after": "8.27",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T06"
+  },
+  {
+   "company": "禾昌聚合",
+   "label": "合计",
+   "before": "33.68",
+   "after": "33.73",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T07"
+  },
+  {
+   "company": "汇隆活塞",
+   "label": "合计",
+   "before": "77.43",
+   "after": "77.93",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T08"
+  },
+  {
+   "company": "凯德石英",
+   "label": "资产总计",
+   "before": "3.16",
+   "after": "2.73",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T09"
+  },
+  {
+   "company": "凯德石英",
+   "label": "资产负债率合并",
+   "before": "22.01",
+   "after": "21.68",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T10"
+  },
+  {
+   "company": "宁新新材",
+   "label": "江西新启建筑工程有限公司",
+   "before": "6.25",
+   "after": "6.35",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T11"
+  },
+  {
+   "company": "宁新新材",
+   "label": "合计",
+   "before": "38.08",
+   "after": "38.30",
+   "unit": "%",
+   "engine": "consistent",
+   "id": "T12"
+  }
+ ],
+ "constructed": [
+  {
+   "id": "X1",
+   "company": "凯大催化",
+   "claim": "营运水平领先/下一报告期回升 20% 以上/板上钉钉",
+   "type": "无据比较+预测事实化",
+   "note": "Q1/Q2 规则"
+  },
+  {
+   "id": "X2",
+   "company": "凯德石英",
+   "claim": "核心供应商/毛利率显著高于同业/需求持续旺盛",
+   "type": "无据比较",
+   "note": "Q1 规则"
+  },
+  {
+   "id": "X3",
+   "company": "微创光电",
+   "claim": "经审计调整后…更加稳健/打下基础",
+   "type": "粉饰差错更正",
+   "note": "S1 规则"
+  }
+ ]
+}

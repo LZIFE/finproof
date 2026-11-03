@@ -1,0 +1,35 @@
+{
+  "description": "77/89 条检查点两臂实跑金标准。报告内嵌的错误绝大部分来自 evaluation/corrections/cases.jsonl 的真实更正对（更正前=错误值），另加 3 条明标构造的语义错误（G1-G3）。评分口径沿用六轮对照：检出 2 / 部分 1 / 未检出 0；把正确表述判错每处 -1（T 项为陷阱）。",
+  "gold_errors": [
+    {"id": "E01", "company": "凯大催化", "type": "数值（真实更正 CR107 来源）", "checkpoint_group": "数字与计算", "claim": "2022 年营业收入 19.83 亿元，同比增长 15.85%", "truth": "更正后：收入 16.19 亿元，同比增长 -5.39%（更正公告 2024-08-28）", "evidence_hint": "http://static.cninfo.com.cn/finalpage/2024-08-28/1221036030.PDF"},
+    {"id": "E02", "company": "凯大催化", "type": "数值", "checkpoint_group": "数字与计算", "claim": "基本每股收益 0.45 元，同比增长 9.76%", "truth": "更正后：0.40 元，同比增长 -2.44%", "evidence_hint": "同上"},
+    {"id": "E03", "company": "凯大催化", "type": "数值", "checkpoint_group": "结构与加总", "claim": "资产总计 7.48 亿元，同比下降 1.43%", "truth": "更正后：8.93 亿元，同比增长 17.68%", "evidence_hint": "同上"},
+    {"id": "E04", "company": "凯大催化", "type": "数值", "checkpoint_group": "结构与加总", "claim": "负债总计 1.85 亿元，同比下降 16.33%", "truth": "更正后：3.37 亿元，同比增长 52.12%", "evidence_hint": "同上"},
+    {"id": "E05", "company": "凯大催化", "type": "数值", "checkpoint_group": "口径位移", "claim": "合并资产负债率 24.77%", "truth": "更正后：37.73%（负债几乎翻倍的故事线与此一致）", "evidence_hint": "同上"},
+    {"id": "E06", "company": "凯大催化", "type": "数值", "checkpoint_group": "内部自洽", "claim": "流动比率 2.82、利息保障倍数 24.11、应收账款周转率 18.66 次、存货周转率 8.52 次", "truth": "更正后：流动比率 2.04、利息保障倍数 22.05、应收账款周转率 30.44、存货周转率 4.42（与更正后的资产负债结构配套）", "evidence_hint": "同上"},
+    {"id": "E07", "company": "凯大催化", "type": "结论失真（构造）", "checkpoint_group": "比较与对标", "claim": "营运质量在同板块中处于领先水平", "truth": "更正后存货周转率仅 4.42 次且负债大增，『领先水平』无依据（依据未披露的比较结论）", "evidence_hint": "同上"},
+    {"id": "E08", "company": "凯大催化", "type": "预测事实化（构造）", "checkpoint_group": "预测与前瞻", "claim": "预计 2023 年收入增速将回升至 20% 以上，盈利拐点板上钉钉", "truth": "确定性措辞（板上钉钉）+ 无依据披露 → 预测事实化；且与更正后收入负增长的事实相悖", "evidence_hint": "同上"},
+    {"id": "E09", "company": "凯德石英", "type": "数值", "checkpoint_group": "数字与计算", "claim": "应收账款 1.09 亿元，较期初增加 37.85%", "truth": "更正后：1.05 亿元，较期初增加 32.98%（更正公告 2025-08-28）", "evidence_hint": "http://static.cninfo.com.cn/finalpage/2025-08-28/1224615810.PDF"},
+    {"id": "E10", "company": "凯德石英", "type": "数值", "checkpoint_group": "数字与计算", "claim": "应付账款 6,829.28 万元", "truth": "更正后：6,398.11 万元", "evidence_hint": "同上"},
+    {"id": "E11", "company": "凯德石英", "type": "数值", "checkpoint_group": "结构与加总", "claim": "资产总计 10.44 亿元", "truth": "更正后：10.39 亿元（更正公告：资产负债表多项科目同步更正）", "evidence_hint": "同上"},
+    {"id": "E12", "company": "凯德石英", "type": "编造因果（构造）", "checkpoint_group": "因果与归因", "claim": "产品毛利率显著高于同业，需求受半导体国产化拉动持续旺盛", "truth": "报告未给出任何毛利率对比数据或需求依据——无据断言", "evidence_hint": "原文无支撑"},
+    {"id": "E13", "company": "禾昌聚合", "type": "数值", "checkpoint_group": "数字与计算", "claim": "其他改性塑料实现收入 7,496.03 万元", "truth": "更正后：8,883.55 万元（更正公告 2024-06-27）", "evidence_hint": "http://static.cninfo.com.cn/finalpage/2024-06-27/1219540094.PDF"},
+    {"id": "E14", "company": "禾昌聚合", "type": "数值", "checkpoint_group": "数字与计算", "claim": "华北地区营业收入同比减少 65.05%", "truth": "更正后：减少 59.33%", "evidence_hint": "同上"},
+    {"id": "E15", "company": "禾昌聚合", "type": "数值", "checkpoint_group": "引用与出处", "claim": "中国石化化工销售…销售金额 7,302.30 万元，占年度采购总额比例 8.11%", "truth": "更正后：7,458.95 万元、占 8.27%", "evidence_hint": "同上"},
+    {"id": "E16", "company": "微创光电", "type": "数值", "checkpoint_group": "数字与计算", "claim": "2022 年营业收入 1.21 亿元，营业成本 7,443.24 万元", "truth": "更正后：收入 1.08 亿元、成本 6,078.33 万元（会计差错更正 1,365 万元，更正公告 2025-04-25）", "evidence_hint": "http://static.cninfo.com.cn/finalpage/2025-04-25/1223331648.PDF"},
+    {"id": "E17", "company": "微创光电", "type": "语义（构造）", "checkpoint_group": "期间与时点", "claim": "经审计调整后，公司收入确认政策更加稳健，为后续年度业绩打下基础", "truth": "该更正系会计差错更正（收入多记 1,365 万元），『更加稳健/打下基础』是对差错的粉饰性表述", "evidence_hint": "同上"},
+    {"id": "E18", "company": "国义招标", "type": "数值", "checkpoint_group": "数字与计算", "claim": "银行存款余额 6.28 亿元，占资产总额 69.83%", "truth": "更正后：6.16 亿元、占 68.44%（更正公告 2024-06-27）", "evidence_hint": "http://static.cninfo.com.cn/finalpage/2024-06-27/1220484020.PDF"},
+    {"id": "E19", "company": "国子软件", "type": "数值", "checkpoint_group": "内部自洽", "claim": "韩承志持有 7,076.00 万股，全部为无限售条件股份", "truth": "更正后：其中 7,076.00 万股为限售股份、无限售 0 股（2025 半年报更正公告 2025-08-28）——『全部为无限售』与实际相反", "evidence_hint": "http://static.cninfo.com.cn/finalpage/2025-08-28/1224613089.PDF"}
+  ],
+  "traps": [
+    {"id": "T1", "claim": "凯大催化 2022 年毛利率 4.95%", "detail": "更正后 5.37%，差 0.42pp 在公开容差内——正确放行，判错即误报"},
+    {"id": "T2", "claim": "禾昌聚合 外销收入同比下降 88.87%", "detail": "更正后 -88.69%，差 0.18pp 容差内——正确放行"},
+    {"id": "T3", "claim": "凯德石英 存货 1.08 亿元", "detail": "更正后 1.07 亿元（107,252,721.55 vs 107,698,781.73），相对差 0.04% 容差内——正确放行"},
+    {"id": "T4", "claim": "综合点评的板块景气判断", "detail": "观点性表述，无可判数值——不得计为检出也不得计为误报"}
+  ],
+  "scoring": {
+    "检出": "2 分：明确指出该处错误且方向正确；1 分：提及该句可疑但未指出错在哪/方向含糊；0 分：未检出",
+    "误报": "把 T 项（容差内/观点）判为错误，每处 -1",
+    "统计": "每臂 2 次，报中位检出分与 F1@K；唯一变量 = 是否加载 89 条检查点清单（error-taxonomy.md）"
+  }
+}
