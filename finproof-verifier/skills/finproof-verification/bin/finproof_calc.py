@@ -28,6 +28,7 @@
   forecast_scan 预测事实化扫描：确定性措辞 + 依据披露 → FLAG/CLEAN
   cite_check   引用真伪核验：链接可达 / 摘录逐字命中 / 来源日期与数据期间一致
   saturation_scan 规模饱和扫：零 token 机械复算全文自洽点（表内加总/占比列/同句同比/引用时序/预测）
+  prefilter    引擎优先管线·预对账：报告引用值 vs 证据更正后值全量机械对账（例外交模型）
 
 所有子命令以 JSON 输出结果，便于专家逐步核对（对应审计轨迹）。
 """
@@ -1695,8 +1696,216 @@ def saturation_scan(text, max_findings=200):
         "findings": ordered[:max_findings],
         "findings_truncated": max(0, len(findings) - max_findings),
         "note": "饱和扫只判句内/表内自洽与纯逻辑时序；跨句绑定与语义判定仍归模型。"
-                "零 token 判定不是审计结论，violation 须进入主张清单复核后才能写进审计报告。",
+                "零 token 判定不是审计结论，violation 须进入主张清单复核后才能写进审计报告。"
     }
+
+
+# ── 引擎优先管线·预对账（v2.20.0，从评测管线提升为引擎能力）──────────
+# 用途：S3 引用效力场景——证据对（更正前/更正后）已由证据获取层产生后，
+# 对"报告引用值 vs 证据更正后值"做全量机械对账，只把例外清单交给模型。
+# v5 实测：裸臂吞整本年报 3.66M tokens 且含虚假核验；本管线 0 token 完成
+# 261 对对账，模型仅复核例外（检出 62/62、成本 0.26×）。
+# 五项硬化全部来自实测缺陷：token 精确匹配（防子串碰撞 65.05⊂40,724,365.05）、
+# 公司小节锚定（防跨公司碰撞）、全局去重（防多公告重复）、多值冲突弃权
+# （防跨期误配，claim_gate 纪律）、单位上下文锚定（防元/% 孪生对翻转）。
+
+_PF_LABEL_SUFFIX_JUNK = ("否", "是", "境内自然人", "境内非国有法人", "境内国有法人",
+                         "境内", "‐", "-", "：", ":")
+_PF_LABEL_NUM_TAIL = re.compile(r"([一二三四五六七八九十]{1,3})$")
+_PF_METRIC_TAILS = ("收入", "成本", "账款", "资产", "负债", "费用", "现金", "存货",
+                    "准备", "余额", "组合", "总计", "合计", "收益", "付款", "支出",
+                    "利润", "权益", "票据", "材料", "商品")
+_PF_LABEL_FIX = {"归属于上市公司股东的净资": "归属于上市公司股东的净资产",
+                 "资产负债率母公司": "母公司资产负债率",
+                 "资产负债率合并": "合并资产负债率",
+                 "应收账款较期初增加，主要系本期": "应收账款较期初增幅"}
+
+
+def _pf_digits(s):
+    return re.sub(r"[\s,，\-−]", "", str(s))  # 负号一并归一（匹配与符号无关）
+
+
+def pf_clean_label(label):
+    """标签清洗：去表格残留后缀/行号残片/空白；已知截断修正。"""
+    t = re.sub(r"\s+", "", str(label or ""))
+    changed = True
+    while changed and t:
+        changed = False
+        for junk in _PF_LABEL_SUFFIX_JUNK:
+            if t.endswith(junk) and len(t) > len(junk):
+                t = t[:-len(junk)]
+                changed = True
+        m = _PF_LABEL_NUM_TAIL.search(t)
+        if m and len(t) > 4 and any(t[:-len(m.group(1))].endswith(w) for w in _PF_METRIC_TAILS):
+            t = t[:-len(m.group(1))]  # 表格行号残片（"应收账款六"→"应收账款"）
+            changed = True
+    return _PF_LABEL_FIX.get(t, t)
+
+
+def pf_clean_unit(label, unit):
+    """单位语义修正：股数标'元'→'股'；比率/增长类去掉'元'（无量纲）。"""
+    u = str(unit or "元").strip()
+    if u == "元":
+        if re.search(r"股|持股|限售|无限售", label):
+            return "股"
+        if re.search(r"率|占比|比例|增幅|增减|增长|百分点", label) or "%" in label:
+            return ""
+    return u
+
+
+def _pf_company_ranges(report_lines, companies_codes):
+    """公司小节行号区间锚定：{company: (start, end)}。命中不到返回空（退回全局匹配）。"""
+    ranges, marks = {}, []
+    for ln, line in enumerate(report_lines, start=1):
+        for company, code in companies_codes:
+            if (code and code in line) or (company and company in line
+                                           and re.match(r"^\s*[一二三四五六七八九十\d]+、", line)):
+                marks.append((ln, company))
+                break
+    for i, (ln, company) in enumerate(marks):
+        end = marks[i + 1][0] - 1 if i + 1 < len(marks) else len(report_lines)
+        if company in ranges:
+            ranges[company] = (min(ranges[company][0], ln), max(ranges[company][1], end))
+        else:
+            ranges[company] = (ln, end)
+    return ranges
+
+
+def _pf_reconcile(label, reported, source, unit, tol_pp, tol_rel):
+    is_pp = unit == "%" or re.search(r"率|占比|比例|增幅|增减|增长", label or "")
+    if is_pp:
+        art = {"kind": "reconcile", "metric": label, "reported": f"{reported}%",
+               "source": f"{source}%", "tol_kind": "ratio_pp",
+               "unit_reported": "percent", "unit_source": "percent"}
+    else:
+        u = unit if unit in ("元", "万元", "亿元", "股", "万股", "吨") else "元"
+        art = {"kind": "reconcile", "metric": label, "reported": reported,
+               "source": source, "tol_kind": "currency",
+               "unit_reported": u, "unit_source": u}
+    r = artifact_audit(art, tol_pp=tol_pp, tol_rel=tol_rel)
+    m = re.search(r"相对差 ([\d.]+)%", r.get("reason") or "")
+    return r["verdict"], r["reason"], (float(m.group(1)) if m else None)
+
+
+def prefilter_scan(report, pairs, tol_pp=0.5, tol_rel=0.001):
+    """引擎优先管线·预对账：报告引用值 vs 证据更正后值的全量机械对账。
+
+    pairs：[{"company","label","before","after","unit"}]（证据对）。
+    返回 violations（超容差硬错，S3 须改数）/ tolerance（容差内引用更新）/
+    abstains（零值与多值冲突，附方向）/ unclaimed（证据有而报告未引用）/
+    structural（F 类结构性缺陷：编号重复/期间缺失/重复行/单位错配/残缺
+    标签/S4 并列）。全程零 LLM；例外清单交模型复核。
+    """
+    report_lines = report.splitlines()
+    report_line_index = {}
+    for ln, line in enumerate(report_lines, start=1):
+        for t in re.findall(r"\d[\d,]*(?:\.\d+)?", line):
+            report_line_index.setdefault(_pf_digits(t), []).append((ln, line.strip()))
+
+    companies_codes = sorted({(p.get("company") or "?", str(p.get("code") or ""))
+                              for p in pairs if p.get("company")})
+    ranges = _pf_company_ranges(report_lines, companies_codes)
+
+    out = {"violations": [], "tolerance": [], "abstains": [], "unclaimed": []}
+    seen_global, claims = set(), {}
+    n_pairs = 0
+    for p in pairs:
+        company = p.get("company") or "?"
+        label = pf_clean_label(p.get("label"))
+        unit = pf_clean_unit(label, p.get("unit"))
+        key = (company, label, _pf_digits(p["before"]), _pf_digits(p["after"]))
+        if key in seen_global:
+            continue
+        seen_global.add(key)
+        n_pairs += 1
+        claims.setdefault((company, label, _pf_digits(p["before"])), []).append(
+            (unit, p))
+
+    for (company, label, before_d), group in sorted(claims.items()):
+        rng = ranges.get(company)
+        lines_hit = [(ln, txt) for ln, txt in report_line_index.get(before_d, [])
+                     if rng is None or (rng[0] <= ln <= rng[1])]
+        if not lines_hit:
+            for _u, p in group:
+                out["unclaimed"].append({"company": company, "label": label,
+                                         "corrected": p["after"], "unit": p.get("unit") or "元"})
+            continue
+        afters = {_pf_digits(p["after"]) for _u, p in group}
+        ln_all = ",".join(f"L{ln}" for ln, _t in lines_hit)
+        line_txt = lines_hit[0][1]
+        # 单位上下文锚定：报告行含 "%" 时优先 % 变体（消除元/% 孪生对翻转）
+        prefer_pct = "%" in line_txt
+        group_sorted = sorted(group, key=lambda g: 0 if (g[0] == "%") == prefer_pct else 1)
+        unit0, p0 = group_sorted[0]
+        if len(afters) > 1:
+            out["abstains"].append({
+                "company": company, "label": label, "rule": "S3+claim_gate",
+                "report_value": p0["before"], "corrected_value": "／".join(sorted(afters)),
+                "unit": unit0 or "元", "engine": "abstain",
+                "reason": f"同一主张命中 {len(group)} 条不同更正后值（多公告/多期间），可判性不足，不硬配",
+                "report_line": ln_all, "report_excerpt": line_txt[:80]})
+            continue
+        unit, p = group_sorted[0]
+        after = p["after"]
+        verdict, reason, rel = _pf_reconcile(label, p["before"], after, unit, tol_pp, tol_rel)
+        rec = {"company": company, "label": label, "rule": "S3 引用效力（引用已更正作废数据）",
+               "report_value": p["before"], "corrected_value": after,
+               "unit": unit or "元", "engine": verdict, "reason": reason,
+               "report_line": ln_all, "report_excerpt": line_txt[:80]}
+        if verdict == "violation":
+            rec["rel_diff_pct"] = rel if rel is not None else round(
+                abs(abs(float(_pf_digits(p["before"]) or 0)) - abs(float(_pf_digits(after) or 0)))
+                / abs(float(_pf_digits(after) or 1)) * 100, 3)
+            out["violations"].append(rec)
+        elif verdict == "abstain":
+            rec["note"] = "零值比较相对差无定义；方向：报告值引用作废数据，更正后见 corrected_value"
+            out["abstains"].append(rec)
+        else:
+            out["tolerance"].append(rec)
+
+    # F 类结构性缺陷（机械可检模式）
+    f = []
+    sec_nums = [m.group(1) for l in report_lines for m in [re.match(r"^\s*([一二三四五六七八九十]+)、", l)] if m]
+    if len(sec_nums) != len(set(sec_nums)):
+        f.append("F1 小节编号重复：[" + "、".join(
+            f"{n}×{sec_nums.count(n)}" for n in set(sec_nums) if sec_nums.count(n) > 1) + "]")
+    if not re.search(r"报告期|年度|截至", report):
+        f.append("F2 全文未标注数据所属报告期间（关联 T 组/S4）")
+    seen_l, dups = set(), []
+    for ln, l in enumerate(report_lines, start=1):
+        t = l.strip()
+        if t and t in seen_l:
+            dups.append(f"L{ln}")
+        seen_l.add(t)
+    if dups:
+        f.append(f"F3 完全重复行 {len(dups)} 处：" + "、".join(dups[:6]) + ("…" if len(dups) > 6 else ""))
+    unit_mis = [v for v in out["violations"] + out["tolerance"]
+                if (v["unit"] == "元") and re.search(r"%|率|占比|比例|增幅|增减", v["label"] or "")]
+    if unit_mis:
+        f.append(f"F4 单位/口径错配 {len(unit_mis)} 条（示例："
+                 + "；".join(f"L{v.get('report_line')} {v['label'][:10]}" for v in unit_mis[:4]) + "）")
+    broken = [v for v in out["violations"] + out["tolerance"]
+              if re.match(r"^(减少|增加|和|。|/)", v["label"] or "") or len(v["label"] or "") < 2]
+    if broken:
+        f.append(f"F5 残缺标签 {len(broken)} 条（示例："
+                 + "；".join(f"L{v.get('report_line')} {v['label'][:8]}" for v in broken[:4]) + "）")
+    _dd = {}
+    for v in out["violations"] + out["tolerance"]:
+        _dd.setdefault((v["company"], v["label"]), set()).add(v["report_value"])
+    dual = [k for k, vs in _dd.items() if len(vs) > 1]
+    if dual:
+        f.append(f"F6 同一科目多值并列未标调整前/后 {len(dual)} 组（命中 S4，示例："
+                 + "；".join(f"{k[0]} {k[1][:10]}" for k in dual[:3]) + "）")
+    out["structural"] = f
+    out["summary"] = {
+        "evidence_pairs": n_pairs,
+        "violations": len(out["violations"]), "tolerance": len(out["tolerance"]),
+        "abstains": len(out["abstains"]), "unclaimed": len(out["unclaimed"]),
+        "structural": len(f),
+        "cost": "0 token（纯引擎+正则）",
+        "semantic_note": "定性断言段交模型按规则库 Q1/Q2/Q3/S1 检查",
+    }
+    return out
 
 
 # ── 结构化产物缺陷检查（v2.12.0）──────────────────────────────────────
@@ -2722,6 +2931,12 @@ def build_parser():
     sp.add_argument("--budget", type=int, default=None, help="抽样审预算：按优先级给出 top-N 抽样清单与覆盖率")
     sp.add_argument("--max-points", type=int, default=200, help="最多回显多少个应拆解点")
 
+    sp = sub.add_parser("prefilter", help="引擎优先管线·预对账：报告引用值 vs 证据更正后值全量机械对账（例外清单交模型复核）")
+    sp.add_argument("--report", required=True, help="报告文件路径（UTF-8）")
+    sp.add_argument("--pairs", required=True, help="证据对 JSON 文件（[{company,label,before,after,unit}]）")
+    sp.add_argument("--tol-pp", type=float, default=0.5)
+    sp.add_argument("--tol-rel", type=float, default=0.001)
+
     sp = sub.add_parser("saturation_scan", help="规模饱和扫：零 token 机械复算全文自洽点（表内加总/占比列/同句同比/同句占比/引用时序/预测扫）")
     sp.add_argument("--text", default=None, help="报告文本；与 --file 二选一")
     sp.add_argument("--file", default=None, help="报告文件路径（UTF-8）")
@@ -2825,6 +3040,10 @@ def _dispatch(args):
             return 2
         _out(coverage_scan(text, claims=args.claims, max_points=args.max_points,
                            budget=args.budget))
+    elif cmd == "prefilter":
+        text = args.report and open(args.report, encoding="utf-8", errors="replace").read() or ""
+        pairs = json.load(open(args.pairs, encoding="utf-8"))
+        _out(prefilter_scan(text, pairs, tol_pp=args.tol_pp, tol_rel=args.tol_rel))
     elif cmd == "saturation_scan":
         text = args.text
         if not text and args.file:

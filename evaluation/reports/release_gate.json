@@ -1,6 +1,6 @@
 {
-  "passed": 13,
-  "total": 13,
+  "passed": 14,
+  "total": 14,
   "release_ok": true,
   "results": [
     {
@@ -67,6 +67,11 @@
       "name": "封存集 100%",
       "ok": true,
       "detail": "封存集：25/25 = 100.0%"
+    },
+    {
+      "name": "prefilter 预对账回归",
+      "ok": true,
+      "detail": "prefilter 回归：金标错误 59/59、陷阱 12/12、管线 56/12/2（0 token）"
     }
   ]
 }

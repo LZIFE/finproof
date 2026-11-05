@@ -1349,5 +1349,126 @@ class TestSaturationScan(unittest.TestCase):
         self.assertGreater(r["zero_token_verdicts"], 100)
 
 
+class TestPrefilterScan(unittest.TestCase):
+    """引擎优先管线·预对账（v2.20.0）：报告引用值 vs 证据更正后值全量机械对账。
+
+    五项硬化各有针对性缺陷来源：token 精确匹配（v2c 子串碰撞）、公司小节
+    锚定（v5 B1 跨公司碰撞）、全局去重（v5 多公告噪声）、多值冲突弃权
+    （v5 B1 跨期误配）、单位上下文锚定（元/% 孪生对翻转）。
+    """
+
+    def _scan(self, report, pairs):
+        return fc.prefilter_scan(report, pairs)
+
+    def test_violation_and_tolerance_classified(self):
+        report = ("一、甲（900001）\n· 营业收入为 1,982,523,522.63 元。\n"
+                  "· 毛利率为 4.95%。\n")
+        pairs = [{"company": "甲", "code": "900001", "label": "营业收入",
+                  "before": "1,982,523,522.63", "after": "1,619,073,601.02", "unit": "元"},
+                 {"company": "甲", "code": "900001", "label": "毛利率",
+                  "before": "4.95", "after": "5.37", "unit": "%"}]
+        r = self._scan(report, pairs)
+        self.assertEqual(len(r["violations"]), 1)
+        self.assertEqual(len(r["tolerance"]), 1)  # 0.42pp 在容差内
+        self.assertEqual(r["violations"][0]["rule"].startswith("S3"), True)
+
+    def test_zero_value_abstains_with_direction(self):
+        """更正后值为 0 → 相对差无定义 → 弃权附方向（v5 国子软件实测）。"""
+        report = "一、甲（900001）\n· 韩承志无限售股为 70,759,963 元。\n"
+        pairs = [{"company": "甲", "code": "900001", "label": "韩承志无限售股",
+                  "before": "70,759,963", "after": "0", "unit": "股"}]
+        r = self._scan(report, pairs)
+        self.assertEqual(len(r["abstains"]), 1)
+        self.assertIn("方向", r["abstains"][0]["note"])
+
+    def test_cross_company_token_isolated_by_section_anchor(self):
+        """v5 B1 跨公司碰撞：乙公告里的 1.43 不得匹配甲小节的 -1.43。"""
+        report = ("一、甲（900001）\n· 资产总计为 -1.43%。\n"
+                  "二、乙（900002）\n· 营业收入为 999 元。\n")
+        pairs = [{"company": "乙", "code": "900002", "label": "华北减少",
+                  "before": "1.43", "after": "4.09", "unit": "%"}]
+        r = self._scan(report, pairs)
+        self.assertEqual(len(r["violations"]), 0)
+        self.assertEqual(len(r["unclaimed"]), 1)  # 乙的值不在乙小节 → 未引用
+
+    def test_multi_after_conflict_abstains(self):
+        """同一主张被两条不同更正后值对应（多公告/多期间）→ 弃权不硬配。"""
+        report = "一、甲（900001）\n· 资产总计为 -1.43%。\n"
+        pairs = [{"company": "甲", "code": "900001", "label": "资产总计同比",
+                  "before": "-1.43", "after": "17.68", "unit": "%"},
+                 {"company": "甲", "code": "900001", "label": "资产总计同比",
+                  "before": "-1.43", "after": "-13.07", "unit": "%"}]
+        r = self._scan(report, pairs)
+        self.assertEqual(len(r["abstains"]), 1)
+        self.assertIn("可判性不足", r["abstains"][0]["reason"])
+
+    def test_unit_context_anchor_prefers_percent(self):
+        """元/% 孪生对：报告行含 % 时按 pp 容差判（0.15pp→tolerance，非硬错）。"""
+        report = "一、甲（900001）\n· 安川电机为 14.56%。\n"
+        pairs = [{"company": "甲", "code": "900001", "label": "安川电机",
+                  "before": "14.56", "after": "14.71", "unit": "%"}]
+        r = self._scan(report, pairs)
+        self.assertEqual(len(r["tolerance"]), 1)
+        self.assertEqual(len(r["violations"]), 0)
+
+    def test_global_dedup_across_duplicate_pairs(self):
+        report = "一、甲（900001）\n· 营业收入为 100 元。\n"
+        pairs = [{"company": "甲", "code": "900001", "label": "营业收入",
+                  "before": "100", "after": "80", "unit": "元"},
+                 {"company": "甲", "code": "900001", "label": "营业收入",
+                  "before": "100", "after": "80", "unit": "元"}]
+        r = self._scan(report, pairs)
+        self.assertEqual(r["summary"]["evidence_pairs"], 1)
+
+    def test_clean_label_strips_table_residue(self):
+        self.assertEqual(fc.pf_clean_label("应收账款六"), "应收账款")
+        self.assertEqual(fc.pf_clean_label("韩承志境内"), "韩承志")
+        self.assertEqual(fc.pf_clean_label("归属于上市公司股东的净资"),
+                         "归属于上市公司股东的净资产")
+
+    def test_clean_unit_semantics(self):
+        self.assertEqual(fc.pf_clean_unit("韩承志限售股", "元"), "股")
+        self.assertEqual(fc.pf_clean_unit("毛利率", "元"), "")
+        self.assertEqual(fc.pf_clean_unit("营业收入", "万元"), "万元")
+
+    def test_structural_f_class_detected(self):
+        report = ("一、甲（900001）\n· 营业收入为 100 元。\n"
+                  "一、乙（900002）\n· 营业收入为 100 元。\n")
+        r = self._scan(report, [{"company": "甲", "code": "900001", "label": "营业收入",
+                                 "before": "100", "after": "80", "unit": "元"}])
+        self.assertTrue(any(x.startswith("F1") for x in r["structural"]))
+        self.assertTrue(any(x.startswith("F3") for x in r["structural"]))
+
+    def test_unclaimed_when_report_lacks_value(self):
+        report = "一、甲（900001）\n· 营业收入为 100 元。\n"
+        pairs = [{"company": "甲", "code": "900001", "label": "净利润",
+                  "before": "55", "after": "60", "unit": "元"}]
+        r = self._scan(report, pairs)
+        self.assertEqual(len(r["unclaimed"]), 1)
+
+    def test_cli_prefilter_json(self):
+        import contextlib
+        import io
+        import json as _json
+        import tempfile
+        fd, rp = tempfile.mkstemp(suffix=".txt")
+        os.close(fd)
+        with open(rp, "w", encoding="utf-8") as f:
+            f.write("一、甲（900001）\n· 营业收入为 100 元。\n")
+        fd2, pp = tempfile.mkstemp(suffix=".json")
+        os.close(fd2)
+        with open(pp, "w", encoding="utf-8") as f:
+            f.write(_json.dumps([{"company": "甲", "code": "900001", "label": "营业收入",
+                                  "before": "100", "after": "80", "unit": "元"}]))
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            code = fc.main(["prefilter", "--report", rp, "--pairs", pp])
+        self.assertEqual(code, 0)
+        data = _json.loads(buf.getvalue())
+        self.assertEqual(data["summary"]["violations"], 1)
+        os.unlink(rp)
+        os.unlink(pp)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -1,12 +1,12 @@
 ---
 name: finproof-verification
-version: 2.19.0
+version: 2.20.0
 description: Use when auditing any AI-generated report for factual errors — 行业研究 / 市场分析 / 竞品分析 / 商业模式分析 / 公司深度研究 / 尽调报告 / 商业计划书 / 投资备忘录 / 财务分析 / 政策解读 / 数据白皮书 / 技术评估报告 / 合规与尽调纪要（AI 生成内容的幻觉、口径错位与编造引文是通用风险；金融/上市公司研报是验证最深的场景）. Provides the FinProof operational methodology: claim decomposition (A–G), deterministic recomputation with exact tolerances and per-verdict engine provenance (with a fixed N_e counting rule), the eight-step decision chain, six verdicts, an independent cross-check pass (blind re-review by a second model when the host provides one, falling back to a zero-cost mechanical self-check layer — engine re-run + excerpt re-read), G1–G4 gap classification, adversarial defense checks (including a temporal-impossibility citation check: a source whose coverage period predates the data period is a mismatch by logic alone, no evidence closure needed), prediction claims tagged with an explicit disclosed-basis / undisclosed-basis marker (certainty-worded forecasts flagged as "forecast-as-fact" problem items), two run tiers (full audit by default; a fast tier for short reports that keeps the three hard checks), the fully transparent FinProof Score specification, and a parallel Audit Quality Score (AQS) measuring the audit process itself (claim coverage, engine-recompute rate, evidence citability, review completion, link re-check rate — all mechanical). Its audit report outputs as a structured single-file HTML (color-coded verdicts, clickable [E##] evidence anchors, score derivation tables, collapsible details). Includes the calc engine at bin/finproof_calc.py.
 ---
 
 # FinProof 核验操作手册（鉴融）
 
-> **定位（v2.19.0）**：**通用 AI 报告审计 agent**——AI 把写稿从几天压到几分钟，也批量生产了事实错误、口径混淆、数字矛盾与编造引文。鉴融是 AI 写稿之后的**事实审计层**：任何领域的 AI 生成报告（研究/分析/尽调/解读/白皮书）都按同一套方法论审计——机械判定（数字/时序/一致性）归确定性引擎，语义判定归模型并强制纪律，缺口诚实交回。金融/上市公司研报是验证最深的场景，方法论对通用报告同样成立。
+> **定位（v2.20.0）**：**通用 AI 报告审计 agent**——AI 把写稿从几天压到几分钟，也批量生产了事实错误、口径混淆、数字矛盾与编造引文。鉴融是 AI 写稿之后的**事实审计层**：任何领域的 AI 生成报告（研究/分析/尽调/解读/白皮书）都按同一套方法论审计——机械判定（数字/时序/一致性）归确定性引擎，语义判定归模型并强制纪律，缺口诚实交回。金融/上市公司研报是验证最深的场景，方法论对通用报告同样成立。
 
 本 Skill 是鉴融的**可执行操作层**。`agents/finproof-verifier.md` 定义角色与流程；本文件定义**具体怎么算、怎么判、怎么打分**。
 
@@ -114,6 +114,8 @@ T 期间引用 / Q 研报断言，每条 = 规则来源 + 触发信号 + 强制�
 3. 未命中规则的数值走通用引擎复算，未命中的定性走语义判定 + 弃权纪律；
 4. 命中 ≠ 有问题；但命中 = 必须留痕。
 
+**引擎优先管线（v2.20.0，无证据包+联网场景的标准路径）**：S3 命中且本地无证据时，按 `fetch_announcements.py`（或同能力检索）获取更正公告 → `align` 解析证据对 → 引擎 `prefilter` 全量对账（0 token）→ **模型只复核例外清单**（D 类语义 + 抽检 + 签章）。实测（evaluation/checkpoints v5）：裸臂单次 3.66M tokens 且含虚假核验；框架臂 ~1M tokens、检出 62/62 反超、零虚假核验。
+
 **检查点扫描（v2.16.0 起两阶段，拆解时同步做）**：`references/error-taxonomy.md` 的 **89 条检查点**分两段执行——
 
 - **第一阶段（必做）**：12 项核心检查，覆盖引擎的 7 个命令与最高频口径错——同比重算 / 百分点差 / 合计对账 / 营收vs营业总收入 / 归母vs净利vs扣非 / 单季vs累计 / 引用期间(`temporal`) / 引用真伪(`cite_check`) / 预测依据(`forecast_scan`) / 金额量级(`convert`) / 格式规范化(K1–K4) / 承重结论句复核。**这 12 项不做等于没审。**
@@ -209,6 +211,7 @@ python3 "$P" cite_check --url https://example.com/report --excerpt "归母净利
   --source-date 2026-04-24 --period 2026Q1                            # 引用真伪 → PASS/FAIL（可达/摘录/时序）
 python3 "$P" coverage_scan --file report.md --claims 51                 # 拆解覆盖率下界（防漏拆）→ OK/UNDER_COVERED
 python3 "$P" saturation_scan --file report.md                        # 规模饱和扫：零 token 机械复算全文自洽点（表内加总/占比列/同句同比/引用时序/预测）
+python3 "$P" prefilter --report report.txt --pairs pairs.json        # 引擎优先管线：报告引用值 vs 证据更正后值全量对账（例外清单交模型复核）
 python3 "$P" claim_gate --json '{"claim":{...},"evidence":[...]}'       # 可判性闸门 → PASS/FAIL/ABSTAIN
 python3 "$P" dual_extract --json '{"first":{...},"second":{...}}'       # 两次抽取对账 → CONSISTENT/ABSTAIN
 python3 "$P" artifact_audit --json '{"kind":"reconcile",...}'            # 结构化产物缺陷检查 → consistent/violation/abstain
@@ -217,7 +220,7 @@ python3 "$P" eps / roe / debt / cashdiff --help                  # 其余子命�
 
 > **`match` 的容差**：引擎内置默认 `0.001`（0.1%）。如需临时放宽（例如已确认披露舍入较粗）显式传 `--tolerance 0.005`，**并在主张卡中说明放宽理由**。
 
-> **引擎与后端的一致性提示（v2.7.1 已对齐）**：`backend/app/services/verification/base.py` 的 `VALUE_TOLERANCE` 已由 0.005 修正为 **0.001**（backend 984 项测试全绿零回归）；`numeric_verifier.py` 的 docstring 同步修正（其曾声称收紧到 0.1% 但代码仍为 0.005，属文档-代码分歧，已消）。注意：`evidence_retrieval/engine.py` 的 0.5% 为**检索候选预过滤**（有其回归原因），非权威判定口径。本 Skill 的 `bin/finproof_calc.py` 仍为唯一权威（191 项回归测试 + 4 项跨端契约测试）。
+> **引擎与后端的一致性提示（v2.7.1 已对齐）**：`backend/app/services/verification/base.py` 的 `VALUE_TOLERANCE` 已由 0.005 修正为 **0.001**（backend 984 项测试全绿零回归）；`numeric_verifier.py` 的 docstring 同步修正（其曾声称收紧到 0.1% 但代码仍为 0.005，属文档-代码分歧，已消）。注意：`evidence_retrieval/engine.py` 的 0.5% 为**检索候选预过滤**（有其回归原因），非权威判定口径。本 Skill 的 `bin/finproof_calc.py` 仍为唯一权威（202 项回归测试 + 4 项跨端契约测试）。
 
 
 ---

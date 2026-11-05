@@ -78,6 +78,9 @@ def main():
     code, out = run([PY, "run_holdout.py"], cwd=os.path.join(HERE, "holdout"))
     add("封存集 100%", code == 0, out.splitlines()[0] if out else "")
 
+    code, out = run([PY, os.path.join(HERE, "checkpoints", "prefilter_regression.py")])
+    add("prefilter 预对账回归", code == 0, out.splitlines()[0] if out else out.strip()[:200])
+
     failed = [r for r in results if not r["ok"]]
     summary = {"passed": len(results) - len(failed), "total": len(results),
                "release_ok": not failed, "results": results}

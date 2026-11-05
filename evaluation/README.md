@@ -27,7 +27,7 @@
 | `abstention/` | **弃权专项**：20 例三态边界（应弃权/应通过/应反驳），`claim_gate` 的可判性门禁 |
 | `adversarial/` | **对抗变异 + 历史真实错误**：5 条正例自动生成 30 个变体 + 10 条真实事故，当前 45/45 |
 | `holdout/` | **封存集**：25 例，SHA256 冻结，发布门禁专用，不参与调参 |
-| `release_gate.py` | **发布门禁**：引擎/契约/主集/OOD/弃权/Track B/对抗/封存 11 项，全过才允许发版 |
+| `release_gate.py` | **发布门禁**：引擎/契约/主集/OOD/弃权/Track B/对抗/封存/prefilter 回归 14 项，全过才允许发版 |
 | `saturation/` | **饱和扫套件（v2.18.0）**：7 处预埋机械错误 + 6 陷阱，检出 7/7、误伤 0、零 token（`python3 saturation/run_saturation.py --scale 400` 可复现含规模实测） |
 | `corrections/` | **A股更正公告套件（真实错误语料 · 窄版）**：巨潮 37 份更正公告 → 人工核验 10 档 79 对真实错误；引擎判驳 65/79、容差内 12（真实世界容差边界实证）、弃权 2；全部 evidence_bound 带源可溯（`python3 corrections/run_corrections.py`） |
 | `checkpoints/` | **89 条检查点两臂实跑（v2.10.0 悬案闭合）**：预注册 + 真实更正错误夹具 + 同模型两臂×2——裸提示 11 vs 检查点 8.5，H1 不成立；检查点增量=过程留痕/弃权纪律而非检出（`python3 checkpoints/score_checkpoints.py` 可复算） |
