@@ -39,8 +39,67 @@ COMPANY_BY_PREFIX = {
     "830974": "凯大催化", "835179": "凯德石英", "832089": "禾昌聚合",
     "430198": "微创光电", "831039": "国义招标", "872953": "国子软件",
     "833455": "汇隆活塞", "831305": "海希通讯", "839719": "宁新新材",
-    "833914": "远航精密",
+    "833914": "远航精密", "430510": "丰光精密",
 }
+
+# ── v3.3 标签/单位硬化（来源：v5 两轮复核层的逐条纠错）──
+_LABEL_SUFFIX_JUNK = ("否", "是", "境内自然人", "境内非国有法人", "境内国有法人",
+                      "境内", "‐", "-", "：", ":")
+_LABEL_NUM_TAIL = re.compile(r"([一二三四五六七八九十]{1,3})$")
+_METRIC_TAILS = ("收入", "成本", "账款", "资产", "负债", "费用", "现金", "存货",
+                 "准备", "余额", "组合", "总计", "合计", "收益", "付款", "支出",
+                 "利润", "权益", "票据", "材料", "商品")
+_GROWTH_WORDS = ("增长率", "增幅", "增减", "同比增长", "较期初")
+
+
+def clean_label(label):
+    """标签清洗：去表格残留后缀/行号残片/空白；已知截断修正。"""
+    t = re.sub(r"\s+", "", str(label or ""))
+    changed = True
+    while changed and t:
+        changed = False
+        for junk in _LABEL_SUFFIX_JUNK:
+            if t.endswith(junk) and len(t) > len(junk):
+                t = t[:-len(junk)]
+                changed = True
+        m = _LABEL_NUM_TAIL.search(t)
+        if m and len(t) > 4 and any(t[:-len(m.group(1))].endswith(w) for w in _METRIC_TAILS):
+            t = t[:-len(m.group(1))]  # 表格行号残片（"应收账款六"→"应收账款"）
+            changed = True
+    fix = {"归属于上市公司股东的净资": "归属于上市公司股东的净资产",
+           "资产负债率母公司": "母公司资产负债率",
+           "资产负债率合并": "合并资产负债率",
+           "应收账款较期初增加，主要系本期": "应收账款较期初增幅"}
+    return fix.get(t, t)
+
+
+def clean_unit(label, unit):
+    """单位语义修正：股数标'元'→'股'；比率/增长类去掉'元'（无量纲）。"""
+    u = str(unit or "元").strip()
+    if u == "元":
+        if re.search(r"股|持股|限售|无限售", label):
+            return "股"
+        if re.search(r"率|占比|比例|增幅|增减|增长|百分点", label) or "%" in label:
+            return ""
+    return u
+
+
+def company_ranges(report_lines, companies_codes):
+    """公司小节行号区间锚定：{company: (start, end)}。命中不到返回空（退回全局匹配）。"""
+    ranges = {}
+    marks = []
+    for ln, line in enumerate(report_lines, start=1):
+        for company, code in companies_codes:
+            if code and code in line or (company and company in line and re.match(r"^\s*[一二三四五六七八九十\d]+、", line)):
+                marks.append((ln, company))
+                break
+    for i, (ln, company) in enumerate(marks):
+        end = marks[i + 1][0] - 1 if i + 1 < len(marks) else len(report_lines)
+        if company in ranges:
+            ranges[company] = (min(ranges[company][0], ln), max(ranges[company][1], end))
+        else:
+            ranges[company] = (ln, end)
+    return ranges
 
 
 def digits(s):
@@ -85,48 +144,87 @@ def main():
     args = ap.parse_args()
 
     report = open(args.report, encoding="utf-8").read()
+    report_lines = report.splitlines()
     # token 精确匹配：抽报告全部数字 token 再归一，防子串碰撞
     # （"65.05" ⊂ "40,724,365.05" 的归一子串——v2c 两名复核者独立抓到的误匹配）
+    # v3.3：token 带全部出现行号；公司小节锚定（防跨公司碰撞——v5 B1 实测）
     report_line_index = {}
-    for ln, line in enumerate(report.splitlines(), start=1):
+    for ln, line in enumerate(report_lines, start=1):
         for t in re.findall(r"\d[\d,]*(?:\.\d+)?", line):
-            report_line_index.setdefault(digits(t), (ln, line.strip()))
+            report_line_index.setdefault(digits(t), []).append((ln, line.strip()))
     report_tokens = set(report_line_index)
+
+    # 公司小节区间（证据文件名前缀 → 公司名/代码）
+    companies_codes = []
+    for fname in sorted(os.listdir(args.evidence_dir)):
+        if fname.endswith(".txt"):
+            code = fname.split("_")[0]
+            companies_codes.append((COMPANY_BY_PREFIX.get(code, code), code))
+    ranges = company_ranges(report_lines, companies_codes)
 
     out = {"violations": [], "tolerance": [], "abstains": [], "unclaimed": []}
     n_pairs = 0
+    seen_global = set()   # v3.3：跨文件全局去重（多公告同对只算一次）
+    claims = {}           # (company, label, before) → [pair...]，多 after 冲突检测
     for fname in sorted(os.listdir(args.evidence_dir)):
         if not fname.endswith(".txt"):
             continue
         code = fname.split("_")[0]
         company = COMPANY_BY_PREFIX.get(code, code)
         pairs = A.parse_file(os.path.join(args.evidence_dir, fname))
-        seen = set()
         for p in pairs:
-            key = (p["label"], p["before"], p["after"])
-            if key in seen:
+            label = clean_label(p["label"])
+            unit = clean_unit(label, p["unit"])
+            key = (company, label, digits(p["before"]), digits(p["after"]))
+            if key in seen_global:
                 continue
-            seen.add(key)
+            seen_global.add(key)
             n_pairs += 1
-            claimed = digits(p["before"]) in report_tokens
-            if not claimed:
-                out["unclaimed"].append({"company": company, "label": p["label"],
-                                         "corrected": p["after"], "unit": p["unit"]})
-                continue
-            verdict, reason, rel = reconcile(p["label"], p["before"], p["after"], p["unit"])
-            ln, line_txt = report_line_index.get(digits(p["before"]), (None, ""))
-            rec = {"company": company, "label": p["label"], "rule": "S3 引用效力（引用已更正作废数据）",
-                   "report_value": p["before"], "corrected_value": p["after"],
-                   "unit": p["unit"] or "元", "engine": verdict, "reason": reason,
-                   "report_line": ln, "report_excerpt": line_txt[:80]}
-            if verdict == "violation":
-                rec["rel_diff_pct"] = rel if rel is not None else rel_diff(p["before"], p["after"])
-                out["violations"].append(rec)
-            elif verdict == "abstain":
-                rec["note"] = "零值比较相对差无定义；方向：报告值引用作废数据，更正后见 corrected_value"
-                out["abstains"].append(rec)
-            else:
-                out["tolerance"].append(rec)
+            claims.setdefault((company, label, digits(p["before"])), []).append(
+                (p["after"], unit, p))
+
+    for (company, label, before_d), group in sorted(claims.items()):
+        rng = ranges.get(company)
+        lines_hit = [(ln, txt) for ln, txt in report_line_index.get(before_d, [])
+                     if rng is None or (rng[0] <= ln <= rng[1])]
+        if not lines_hit:
+            for after, unit, p in group:
+                out["unclaimed"].append({"company": company, "label": label,
+                                         "corrected": p["after"], "unit": unit})
+            continue
+        # v3.3 多公告冲突：同一主张被不同更正后值对应 → 可判性不足，弃权
+        # （claim_gate 纪律；v5 B1 的跨期误配 -1.43→-13.07 即此类）
+        afters = {digits(a) for a, _u, _p in group}
+        ln_all = ",".join(f"L{ln}" for ln, _t in lines_hit)
+        line_txt = lines_hit[0][1]
+        # v3.3 单位锚定：报告行上下文含 "%" 时优先 % 变体（消除元/% 孪生对
+        # 的判定顺序翻转——占比 0.15pp 按 pp 容差属引用更新，非数值硬错）
+        prefer_pct = "%" in line_txt
+        group_sorted = sorted(group, key=lambda g: 0 if (g[1] == "%") == prefer_pct else 1)
+        unit0 = group_sorted[0][1]
+        p0 = group_sorted[0][2]
+        if len(afters) > 1:
+            out["abstains"].append({
+                "company": company, "label": label, "rule": "S3+claim_gate",
+                "report_value": p0["before"], "corrected_value": "／".join(sorted(afters)),
+                "unit": unit0, "engine": "abstain",
+                "reason": f"同一主张命中 {len(group)} 条不同更正后值（多公告/多期间），可判性不足，不硬配",
+                "report_line": ln_all, "report_excerpt": line_txt[:80]})
+            continue
+        after, unit, p = group_sorted[0]
+        verdict, reason, rel = reconcile(label, p["before"], after, unit)
+        rec = {"company": company, "label": label, "rule": "S3 引用效力（引用已更正作废数据）",
+               "report_value": p["before"], "corrected_value": after,
+               "unit": unit or "元", "engine": verdict, "reason": reason,
+               "report_line": ln_all, "report_excerpt": line_txt[:80]}
+        if verdict == "violation":
+            rec["rel_diff_pct"] = rel if rel is not None else rel_diff(p["before"], after)
+            out["violations"].append(rec)
+        elif verdict == "abstain":
+            rec["note"] = "零值比较相对差无定义；方向：报告值引用作废数据，更正后见 corrected_value"
+            out["abstains"].append(rec)
+        else:
+            out["tolerance"].append(rec)
 
     # ── F 类：结构性缺陷（机械可检模式，零 token）──
     f_findings = []

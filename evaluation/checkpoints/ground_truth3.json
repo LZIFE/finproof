@@ -366,7 +366,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "其他应收款较上年年末增加，增幅，主要原因是：",
+   "label": "其他应收款较上年年末增加，增幅，主要原因",
    "before": "23.26",
    "after": "576.50",
    "unit": "万元",
@@ -377,7 +377,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "其他应收款较上年年末增加，增幅，主要原因是：",
+   "label": "其他应收款较上年年末增加，增幅，主要原因",
    "before": "61.59",
    "after": "1,526.47",
    "unit": "%",
@@ -564,7 +564,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "保定隆达铝业有限公司否",
+   "label": "保定隆达铝业有限公司",
    "before": "20.71",
    "after": "21.65",
    "unit": "%",
@@ -652,17 +652,6 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "应收账款六",
-   "before": "66,546,170.33",
-   "after": "63,681,413.86",
-   "unit": "元",
-   "engine": "violation",
-   "gold_class": "error",
-   "low_confidence": true
-  },
-  {
-   "company": "丰光精密",
-   "code": "430510",
    "label": "其他应收款六",
    "before": "610,291.08",
    "after": "6,142,652.95",
@@ -685,7 +674,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "应付账款六",
+   "label": "应付账款",
    "before": "21,071,489.32",
    "after": "19,586,111.62",
    "unit": "元",
@@ -696,7 +685,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "其他应付款六",
+   "label": "其他应付款",
    "before": "1,025,995.91",
    "after": "2,511,373.61",
    "unit": "元",
@@ -707,7 +696,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "应收账款十六",
+   "label": "应收账款",
    "before": "67,269,405.94",
    "after": "64,404,649.47",
    "unit": "元",
@@ -729,17 +718,6 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "应付账款",
-   "before": "21,071,489.32",
-   "after": "19,586,111.62",
-   "unit": "元",
-   "engine": "violation",
-   "gold_class": "error",
-   "low_confidence": true
-  },
-  {
-   "company": "丰光精密",
-   "code": "430510",
    "label": "其他应付款",
    "before": "995,276.10",
    "after": "2,480,653.80",
@@ -751,7 +729,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "营业总收入六",
+   "label": "营业总收入",
    "before": "251,656,784.15",
    "after": "249,121,601.43",
    "unit": "元",
@@ -762,7 +740,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "其中：营业收入六",
+   "label": "其中：营业收入",
    "before": "251,656,784.15",
    "after": "249,121,601.43",
    "unit": "元",
@@ -784,7 +762,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "其中：营业成本六",
+   "label": "其中：营业成本",
    "before": "174,420,059.40",
    "after": "171,884,876.68",
    "unit": "元",
@@ -795,7 +773,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "营业收入十六",
+   "label": "营业收入",
    "before": "251,251,096.37",
    "after": "248,715,913.65",
    "unit": "元",
@@ -806,7 +784,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "减：营业成本十六",
+   "label": "减：营业成本",
    "before": "174,426,183.82",
    "after": "171,891,001.10",
    "unit": "元",
@@ -828,7 +806,7 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "支付其他与经营活动有关的现金六",
+   "label": "支付其他与经营活动有关的现金",
    "before": "6,881,484.75",
    "after": "11,183,791.52",
    "unit": "元",
@@ -1018,7 +996,7 @@
    "label": "汇总金额为，占应收账款期末余额合计数的比例为",
    "before": "42,409,723.11",
    "after": "39,544,966.64",
-   "unit": "元",
+   "unit": "",
    "engine": "violation",
    "gold_class": "error",
    "low_confidence": true
@@ -1301,17 +1279,6 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "其他应付款",
-   "before": "1,025,995.91",
-   "after": "2,511,373.61",
-   "unit": "元",
-   "engine": "violation",
-   "gold_class": "error",
-   "low_confidence": true
-  },
-  {
-   "company": "丰光精密",
-   "code": "430510",
    "label": "合计",
    "before": "1,025,995.91",
    "after": "2,511,373.61",
@@ -1436,40 +1403,7 @@
    "label": "宁波均胜电子股份有限公司",
    "before": "15.75",
    "after": "15.91",
-   "unit": "元",
-   "engine": "violation",
-   "gold_class": "error",
-   "low_confidence": true
-  },
-  {
-   "company": "丰光精密",
-   "code": "430510",
-   "label": "安川电机株式会社",
-   "before": "14.56",
-   "after": "14.71",
-   "unit": "元",
-   "engine": "violation",
-   "gold_class": "error",
-   "low_confidence": true
-  },
-  {
-   "company": "丰光精密",
-   "code": "430510",
-   "label": "THK株式会社",
-   "before": "11.61",
-   "after": "11.72",
-   "unit": "元",
-   "engine": "violation",
-   "gold_class": "error",
-   "low_confidence": true
-  },
-  {
-   "company": "丰光精密",
-   "code": "430510",
-   "label": "光洋技研株式会社",
-   "before": "9.89",
-   "after": "9.99",
-   "unit": "元",
+   "unit": "股",
    "engine": "violation",
    "gold_class": "error",
    "low_confidence": true
@@ -1810,7 +1744,7 @@
    "label": "基本每股收益",
    "before": "0.45",
    "after": "0.40",
-   "unit": "元",
+   "unit": "股",
    "engine": "violation",
    "gold_class": "error",
    "low_confidence": false
@@ -1873,10 +1807,10 @@
   {
    "company": "凯大催化",
    "code": "830974",
-   "label": "归属于上市公司股东的净资",
+   "label": "归属于上市公司股东的净资产",
    "before": "562,905,882.28",
    "after": "556,257,819.52",
-   "unit": "元",
+   "unit": "股",
    "engine": "violation",
    "gold_class": "error",
    "low_confidence": false
@@ -1884,7 +1818,7 @@
   {
    "company": "凯大催化",
    "code": "830974",
-   "label": "归属于上市公司股东的净资",
+   "label": "归属于上市公司股东的净资产",
    "before": "4.72",
    "after": "3.48",
    "unit": "%",
@@ -1895,7 +1829,7 @@
   {
    "company": "凯大催化",
    "code": "830974",
-   "label": "资产负债率母公司",
+   "label": "母公司资产负债率",
    "before": "27.08",
    "after": "39.60",
    "unit": "%",
@@ -1906,7 +1840,7 @@
   {
    "company": "凯大催化",
    "code": "830974",
-   "label": "资产负债率合并",
+   "label": "合并资产负债率",
    "before": "24.77",
    "after": "37.73",
    "unit": "%",
@@ -1920,7 +1854,7 @@
    "label": "流动比率",
    "before": "2.82",
    "after": "2.04",
-   "unit": "元",
+   "unit": "",
    "engine": "violation",
    "gold_class": "error",
    "low_confidence": false
@@ -1953,7 +1887,7 @@
    "label": "应收账款周转率",
    "before": "18.66",
    "after": "30.44",
-   "unit": "元",
+   "unit": "",
    "engine": "violation",
    "gold_class": "error",
    "low_confidence": false
@@ -1964,7 +1898,7 @@
    "label": "存货周转率",
    "before": "8.52",
    "after": "4.42",
-   "unit": "元",
+   "unit": "",
    "engine": "violation",
    "gold_class": "error",
    "low_confidence": false
@@ -2008,7 +1942,7 @@
    "label": "标货币资金中银行存款余额为，占资产总额的比例为",
    "before": "628,316,643.99",
    "after": "615,839,082.96",
-   "unit": "元",
+   "unit": "",
    "engine": "violation",
    "gold_class": "error",
    "low_confidence": false
@@ -2027,7 +1961,7 @@
   {
    "company": "海希通讯",
    "code": "831305",
-   "label": "HBC公司否",
+   "label": "HBC公司",
    "before": "47.55",
    "after": "50.24",
    "unit": "%",
@@ -2104,7 +2038,7 @@
   {
    "company": "禾昌聚合",
    "code": "832089",
-   "label": "中国石化化工销售有限公司及其关联公司否",
+   "label": "中国石化化工销售有限公司及其关联公司",
    "before": "73,022,983.16",
    "after": "74,589,461.04",
    "unit": "元",
@@ -2148,7 +2082,7 @@
   {
    "company": "汇隆活塞",
    "code": "833455",
-   "label": "中国中车集团有限公司否",
+   "label": "中国中车集团有限公司",
    "before": "36,374,754.81",
    "after": "41,748,290.65",
    "unit": "元",
@@ -2159,7 +2093,7 @@
   {
    "company": "汇隆活塞",
    "code": "833455",
-   "label": "中国中车集团有限公司否",
+   "label": "中国中车集团有限公司",
    "before": "27.00",
    "after": "29.51",
    "unit": "%",
@@ -2192,7 +2126,7 @@
   {
    "company": "汇隆活塞",
    "code": "833455",
-   "label": "中国船舶集团有限公司否",
+   "label": "中国船舶集团有限公司",
    "before": "21,739,542.42",
    "after": "25,276,257.59",
    "unit": "元",
@@ -2203,7 +2137,7 @@
   {
    "company": "汇隆活塞",
    "code": "833455",
-   "label": "中国船舶集团有限公司否",
+   "label": "中国船舶集团有限公司",
    "before": "16.13",
    "after": "17.87",
    "unit": "%",
@@ -2214,7 +2148,7 @@
   {
    "company": "汇隆活塞",
    "code": "833455",
-   "label": "中国国家铁路集团有限公司否",
+   "label": "中国国家铁路集团有限公司",
    "before": "14,171,171.53",
    "after": "13,882,699.06",
    "unit": "元",
@@ -2225,7 +2159,7 @@
   {
    "company": "汇隆活塞",
    "code": "833455",
-   "label": "中国国家铁路集团有限公司否",
+   "label": "中国国家铁路集团有限公司",
    "before": "10.52",
    "after": "9.81",
    "unit": "%",
@@ -2269,7 +2203,7 @@
   {
    "company": "远航精密",
    "code": "833914",
-   "label": "合计‐",
+   "label": "合计",
    "before": "590,252,374.58",
    "after": "626,209,471.73",
    "unit": "元",
@@ -2280,7 +2214,7 @@
   {
    "company": "远航精密",
    "code": "833914",
-   "label": "合计‐",
+   "label": "合计",
    "before": "83.70",
    "after": "82.99",
    "unit": "%",
@@ -2302,7 +2236,7 @@
   {
    "company": "凯德石英",
    "code": "835179",
-   "label": "应收账款较期初增加，主要系本期",
+   "label": "应收账款较期初增幅",
    "before": "37.85",
    "after": "32.98",
    "unit": "%",
@@ -2404,7 +2338,7 @@
    "label": "负债和所有者权益或股东权益总计",
    "before": "1,043,644,090.60",
    "after": "1,039,332,415.62",
-   "unit": "元",
+   "unit": "股",
    "engine": "violation",
    "gold_class": "error",
    "low_confidence": false
@@ -2412,7 +2346,7 @@
   {
    "company": "宁新新材",
    "code": "839719",
-   "label": "江西新启建筑工程有限公司否",
+   "label": "江西新启建筑工程有限公司",
    "before": "40,724,365.05",
    "after": "41,343,782.53",
    "unit": "元",
@@ -2434,7 +2368,7 @@
   {
    "company": "国子软件",
    "code": "872953",
-   "label": "韩承志境内",
+   "label": "韩承志",
    "before": "0",
    "after": "70,759,963",
    "unit": "元",
@@ -2445,7 +2379,7 @@
   {
    "company": "国子软件",
    "code": "872953",
-   "label": "韩承志境内",
+   "label": "韩承志",
    "before": "70,759,963",
    "after": "0",
    "unit": "元",
@@ -2456,7 +2390,7 @@
   {
    "company": "国子软件",
    "code": "872953",
-   "label": "济南国境内",
+   "label": "济南国",
    "before": "0",
    "after": "14,196,000",
    "unit": "元",
@@ -2467,7 +2401,7 @@
   {
    "company": "国子软件",
    "code": "872953",
-   "label": "济南国境内",
+   "label": "济南国",
    "before": "14,196,000",
    "after": "0",
    "unit": "元",
@@ -2538,7 +2472,7 @@
    "label": "应收账款周转率",
    "before": "3.80",
    "after": "3.84",
-   "unit": "元",
+   "unit": "",
    "engine": "consistent",
    "gold_class": "trap",
    "low_confidence": true
@@ -2549,7 +2483,7 @@
    "label": "存货周转率",
    "before": "3.73",
    "after": "3.78",
-   "unit": "元",
+   "unit": "",
    "engine": "consistent",
    "gold_class": "trap",
    "low_confidence": true
@@ -2678,39 +2612,6 @@
   {
    "company": "丰光精密",
    "code": "430510",
-   "label": "安川电机株式会社否",
-   "before": "14.56",
-   "after": "14.71",
-   "unit": "%",
-   "engine": "consistent",
-   "gold_class": "trap",
-   "low_confidence": true
-  },
-  {
-   "company": "丰光精密",
-   "code": "430510",
-   "label": "THK株式会社否",
-   "before": "11.61",
-   "after": "11.72",
-   "unit": "%",
-   "engine": "consistent",
-   "gold_class": "trap",
-   "low_confidence": true
-  },
-  {
-   "company": "丰光精密",
-   "code": "430510",
-   "label": "光洋技研株式会社否",
-   "before": "9.89",
-   "after": "9.99",
-   "unit": "%",
-   "engine": "consistent",
-   "gold_class": "trap",
-   "low_confidence": true
-  },
-  {
-   "company": "丰光精密",
-   "code": "430510",
    "label": "合计",
    "before": "73.81",
    "after": "73.54",
@@ -2755,7 +2656,7 @@
   {
    "company": "海希通讯",
    "code": "831305",
-   "label": "上海电视电子进出口有限公司否",
+   "label": "上海电视电子进出口有限公司",
    "before": "4.40",
    "after": "4.65",
    "unit": "%",
@@ -2788,7 +2689,7 @@
   {
    "company": "禾昌聚合",
    "code": "832089",
-   "label": "沙伯基础上海商贸有限公司否",
+   "label": "沙伯基础上海商贸有限公司",
    "before": "9.07",
    "after": "9.06",
    "unit": "%",
@@ -2799,7 +2700,7 @@
   {
    "company": "禾昌聚合",
    "code": "832089",
-   "label": "中国石化化工销售有限公司及其关联公司否",
+   "label": "中国石化化工销售有限公司及其关联公司",
    "before": "8.11",
    "after": "8.27",
    "unit": "%",
@@ -2843,7 +2744,7 @@
   {
    "company": "凯德石英",
    "code": "835179",
-   "label": "资产负债率合并",
+   "label": "合并资产负债率",
    "before": "22.01",
    "after": "21.68",
    "unit": "%",
@@ -2854,7 +2755,7 @@
   {
    "company": "宁新新材",
    "code": "839719",
-   "label": "江西新启建筑工程有限公司否",
+   "label": "江西新启建筑工程有限公司",
    "before": "6.25",
    "after": "6.35",
    "unit": "%",
@@ -2885,5 +2786,6 @@
    "claim": "基本面扎实/建议积极关注",
    "type": "Q1"
   }
- ]
+ ],
+ "note": "v3.3 单位归一+上下文锚定重裁（2026-11-05）：元/% 孪生对按报告引用上下文（%）统一裁决并去重；丰光精密 low_confidence 标记保留。；另 3 条'元'误标占比对按报告引用行上下文（含%）重裁为引用更新。"
 }
